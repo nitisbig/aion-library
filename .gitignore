@@ -1,0 +1,29 @@
+# Python / uv
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Manim output
+media/
+
+# Rendered video output
+videos/*/out/
+lab/**/out/
+*.mp4
+*.mov
+*.webm
+*.gif
+frames/
+
+# Production inputs (large audio; keep SRT/scripts tracked)
+videos/*/assets/*.mp3
+videos/*/assets/*.wav
+
+# LaTeX / editor / OS junk
+*.aux
+*.log
+*.dvi
+.DS_Store
+.vscode/
+.idea/
