@@ -108,13 +108,13 @@ def params(t):
     p["hero"] = ramp(m, 0.6, 1.8) * (1.0 - ramp(m, 8.0, 10.0))
     # ── photon ring (artistic emission placed exactly at b = √27) ──
     flash = np.exp(-max(m - 7.5, 0.0) * 2.2) * (m >= 7.3) * ramp(m, 7.3, 7.5)
-    ring = 0.55 * ramp(m, 7.35, 8.6) + 3.0 * flash
+    ring = 0.55 * ramp(m, 7.35, 8.6) + 1.3 * flash
     ring *= 1.0 - 0.45 * ramp(m, 10.0, 12.0)
     ring += 0.5 * ramp(m, 22.2, 23.2) * (1.0 - ramp(m, 25.8, 26.8))
     ring += 0.9 * ramp(m, 28.4, 29.1)
     ring *= 1.0 - ramp(m, 29.7, 30.7)               # hands over to the grid's photon sphere
     p["ring"] = ring
-    p["ring_w"] = 0.06 + 0.25 * np.exp(-max(m - 7.5, 0.0) * 3.0) * (m >= 7.3)
+    p["ring_w"] = 0.06 + 0.07 * np.exp(-max(m - 7.5, 0.0) * 3.0) * (m >= 7.3)
     p["sweep"] = ramp(m, 7.45, 8.9, ease_out_cubic) if 7.3 < m < 9.6 else -1.0
     p["sweep_amp"] = 1.0 - ramp(m, 8.7, 9.6)
     # ── accretion disk ──

@@ -43,6 +43,44 @@ and architecture are in `storyboard.md`. Every pixel is ray-traced through the S
   is up, so the background stays black.
 - 480p30 preview of the full 58 s: about 56 s to render. Final 1080p60 with 4× motion blur: 23m53s (2.4 fr/s), 123 MB, 3480 frames.
 
+## v3: crisp family (S / G / K), based on look B's physical disk
+- **Crisp pipeline:** 2× SSAA (4K internal for a 1080p output). Composite outputs *tonemapped linear*,
+  and `resolve.frag` box-averages then applies gamma, so edges are anti-aliased in linear light. No motion
+  blur, chromatic aberration or grain. Bloom only above HDR 0.9 (threshold on the first downsample).
+  At 1:1, B's photon-ring and hat edges sparkle; S's are solid. With SSAA there's headroom for one
+  finer filament layer in the gas (lr·120) without shimmer.
+- **More visible lensing:** the lensing only shows if there's structure behind the hole, so two
+  celestial layers are mapped through the exact exit direction:
+  - **G:** a procedural galaxy band + bulge (pole tilted 25°, centre placed behind the hole at
+    t ≈ 27 s), with fbm level of detail driven by the lensed footprint fp (octaves finer than a pixel
+    collapse to their mean, so the region near the critical curve doesn't sparkle). The bulge's lensed
+    image becomes a glowing crescent hugging the shadow.
+  - **K:** a 10° latitude/longitude grid on the celestial sphere (30° majors, amber equator), lines
+    anti-aliased in pixel units from fwidth, fading where they compress below ~3 px. It makes the
+    lensing map visible: nested Einstein loops, the folded secondary image and the critical curve.
+- **Cost:** about 1.0 s per frame at 1080p (4K internal, ray trace + post). The 58 s at 60 fps
+  takes roughly 1 h in the background.
+- Not added: higher-order disk images (k ≥ 3). At this framing the k = 3 image is about 5e-4·b
+  wide, far below one pixel, so it would only cost time.
+
+## v4: celestial objects (looks SO / GO = S / G + objects; K stays clean for chapters)
+Use: **SO / GO for intros**, **K for the explanation chapters**. Placements in `objects.py` are derived
+from the camera path, so each object lands where it should in frame.
+- **Nebulae (3)**, on the sky sphere and lensed exactly: domain-warped fbm with ionisation-front filaments
+  and dust lanes, coloured with emission-line hues (Hα red, O III teal, S II magenta). N1 sits behind the
+  hole at the shadow reveal (≈20.5 s) and becomes a full red/teal **Einstein ring**. N2 is in the travel
+  shot, N3 behind the face-on orbit. Filtered by the lensed footprint, like the galaxy band.
+- **Supernova** at 5.6 s (upper right): fast rise, exponential decay with a faint tail, cooling from
+  16000 K to 5000 K through the blackbody LUT; diffraction spikes (4 + 4 faint) and a fading light-echo
+  ring. Drawn on the sky, so it is lensed too (negligibly, at that angle).
+- **Distant galaxies**: rare elliptical smudges (warm ellipticals, spirals with a bluer disk).
+- **Pulsar fly-by** (3–10 s, passes at 8.6 s): `pulsar.frag`, a volumetric ray march (96 steps) of
+  two magnetic-pole beams precessing around a spin axis tilted so a beam sweeps across the camera once
+  per turn (the lighthouse flash), plus a pulsar-wind torus, polar jets and a pinpoint core. It uses straight
+  rays: at r ≳ 300M the hole bends light by < 1°, so lensing is ignored there.
+- **Time compression:** the pulsar's 1.15 s period and the supernova's seconds-long light curve are
+  stylised (real ones: ms to s, and weeks). They're illustrative, not to scale.
+
 ## Looks (`out/looks_*.png`, `out/contact_all.png`)
 | Look | Verdict |
 |---|---|
@@ -66,6 +104,13 @@ and architecture are in `storyboard.md`. Every pixel is ray-traced through the S
   motion), and the disk is geometrically thin.
 
 ## Render
+`video` is **resumable**. It encodes 240-frame segments into `out/segments/<look>_<res>_<hash>/`, and a
+segment only appears once it's complete (written as `.part`, then atomically renamed). Re-running the same
+command after a crash or power cut skips the finished segments, then joins them with the concat demuxer
+(stream copy, lossless). The hash covers every `.py` and shader file plus the render settings, so editing
+the code never reuses stale segments. Pass `--fresh` to start over. (A plain single-pass MP4 can't be
+salvaged after a power cut: its index is written only at the end.)
+
 ```bash
 uv run python lab/2026-11-04-black-hole/geodesics.py                       # rebuild + validate tables
 uv run python lab/2026-11-04-black-hole/render.py looks --t 3 8 12 18 24.6 28.6 --height 360

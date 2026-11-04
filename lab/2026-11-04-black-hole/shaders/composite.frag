@@ -1,7 +1,7 @@
 // tonemap + chromatic aberration + vignette + grain
 in vec2 uv;
 uniform sampler2D scene, bloom, streak;
-uniform float u_bloom, u_streak, u_exposure, u_fade, u_grain, u_ca, u_vig, u_frame;
+uniform float u_bloom, u_streak, u_exposure, u_fade, u_grain, u_ca, u_vig, u_frame, u_linearOut;
 uniform vec2 u_res; uniform vec3 u_streakTint;
 out vec4 o;
 float hash(vec2 p) { p = fract(p * vec2(443.897, 441.423)); p += dot(p, p.yx + 19.19); return fract((p.x + p.y) * p.x); }
@@ -18,6 +18,7 @@ void main() {
     c = aces(c * u_exposure);
     c *= 1.0 - u_vig * smoothstep(0.35, 0.95, length(d * vec2(1.0, 0.75)));
     c *= u_fade;
+    if (u_linearOut > 0.5) { o = vec4(c, 1.0); return; }   // supersampled: resolve applies gamma
     c = pow(c, vec3(1.0 / 2.2));
     float lum = dot(c, vec3(0.299, 0.587, 0.114));
     c += (hash(uv * u_res + u_frame * 17.13) - 0.5) * u_grain * smoothstep(0.0, 0.25, lum) * (0.3 + lum);

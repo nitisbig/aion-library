@@ -22,6 +22,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import blackbody as BB  # noqa: E402
 import geodesics as G  # noqa: E402
+import objects as OB  # noqa: E402
 import space as SP  # noqa: E402
 import timeline as TL  # noqa: E402
 
@@ -53,6 +54,24 @@ LOOKS = {
               ring_T=9000.0, ring_k=1.0, star_gain=1.0,
               ov_cap="#FF7FA8", ov_esc="#7FD8FF", ov_crit="#FFFFFF", ov_sphere="#FF7FA8"),
 }
+
+# Crisp family: look B's physical disk, 2× supersampling (linear-light downsample),
+# no motion blur / chromatic aberration / grain, bloom only above a highlight threshold.
+_CRISP = dict(LOOKS["B"], ssaa=2, mb_off=True, bloom=0.30, bloom_thresh=0.9, ca=0.0, grain=0.0,
+              vig=0.22, star_boost=1.6, sky=0, sky_k=0.0)
+LOOKS["S"] = dict(_CRISP)                                     # crisp, stars only
+LOOKS["G"] = dict(_CRISP, sky=2, sky_k=1.0)                   # crisp + lensed galaxy band
+LOOKS["K"] = dict(_CRISP, sky=1, sky_k=1.0)                   # crisp + lensed celestial grid
+LOOKS["SO"] = dict(LOOKS["S"], objects=1.0)                   # + nebulae, supernova, galaxies, pulsar
+LOOKS["GO"] = dict(LOOKS["G"], objects=1.0)
+
+# celestial frame for the sky layers: pole tilted 25° off the disk axis; the galactic centre sits
+# behind the hole as seen around the ignition (t ≈ 27 s), so the band wraps the shadow
+_tilt = np.radians(25.0)
+SKY_POLE = np.array([np.sin(_tilt), np.cos(_tilt), 0.0])
+_behind = -TL.camera(27.0)[0]
+_gc = _behind - np.dot(_behind, SKY_POLE) * SKY_POLE
+SKY_GC = _gc / np.linalg.norm(_gc)
 
 DEFINES = {
     "B_C": G.B_C, "EPS": G.EPS, "Y0": G.Y0, "Y1": G.Y1, "PHI_MAX": G.PHI_MAX, "U_CMAX": G.U_CMAX,
@@ -108,7 +127,11 @@ def overlay_segments(look):
 class Renderer:
     def __init__(self, width, height, look="A", mb=1):
         self.L = L = LOOKS[look]
-        self.W, self.H, self.mb = width, height, mb
+        self.ss = L.get("ssaa", 1)
+        self.OW, self.OH = width, height                        # output size
+        width, height = width * self.ss, height * self.ss       # internal (supersampled) size
+        self.W, self.H = width, height
+        self.mb = 1 if L.get("mb_off") else mb
         self.ctx = ctx = moderngl.create_context(standalone=True)
 
         b, U, phi_end, status, PHC = G.load_tables()
@@ -130,6 +153,10 @@ class Renderer:
         self.bh_p = mk("blackhole.frag", True)
         self.copy_p, self.down_p, self.up_p = mk("copy.frag"), mk("down.frag"), mk("up.frag")
         self.streak_p, self.comp_p = mk("streak.frag"), mk("composite.frag")
+        self.res_p = mk("resolve.frag")
+        self.res_v = qv(self.res_p)
+        self.ns_p = mk("pulsar.frag")
+        self.ns_v = qv(self.ns_p)
         self.bh_v, self.copy_v, self.down_v, self.up_v, self.streak_v, self.comp_v = map(
             qv, (self.bh_p, self.copy_p, self.down_p, self.up_p, self.streak_p, self.comp_p))
 
@@ -183,7 +210,9 @@ class Renderer:
             self.levels.append(target(w, h))
         sw, shh = max(1, width // 4), max(1, height // 4)
         self.streak = [target(sw, shh), target(sw, shh)]
-        self.out_tex, self.out_fbo = target(width, height, dtype="f1", comps=3)
+        # with supersampling the composite stays linear (f2) and the resolve pass applies gamma
+        self.out_tex, self.out_fbo = target(width, height, dtype="f2" if self.ss > 1 else "f1", comps=3)
+        self.fin_tex, self.fin_fbo = target(self.OW, self.OH, dtype="f1", comps=3)
 
         # static uniforms
         p = self.bh_p
@@ -197,6 +226,23 @@ class Renderer:
         p["u_starGain"].value = L["star_gain"]
         p["u_heroDir"].value = tuple(TL.hero_star_dir())
         p["u_ringTint"].value = tuple(BB.rgb(L["ring_T"])[0] * L["ring_k"])
+        p["u_sky"].value = float(L.get("sky", 0))
+        p["u_skyPole"].value = tuple(SKY_POLE)
+        p["u_skyGC"].value = tuple(SKY_GC)
+        p["u_ss"].value = float(self.ss)
+        p["u_starBoost"].value = L.get("star_boost", 1.0)
+        neb = OB.nebulae()
+        p["u_nebC"].value = [tuple(n[0]) for n in neb]
+        p["u_nebR"].value = [float(n[1]) for n in neb]
+        p["u_nebA"].value = [tuple(n[2]) for n in neb]
+        p["u_nebB"].value = [tuple(n[3]) for n in neb]
+        p["u_nebI"].value = [float(n[4]) for n in neb]
+        p["u_nebSeed"].value = [float(n[5]) for n in neb]
+        p["u_snDir"].value = tuple(OB.supernova_dir())
+        self.ns_pos, self.ns_spin, self.ns_m0 = OB.pulsar()
+        self.ns_p["u_nsPos"].value = tuple(self.ns_pos)
+        self.ns_p["u_spin"].value = tuple(self.ns_spin)
+        self.ns_p["u_aspect"].value = width / height
         self.line_p["u_res"].value = (width, height)
         self.line_p["u_width"].value = 1.5 * height / 1080 * (1.3 if height < 700 else 1.0)
         self.line_p["u_aspect"].value = width / height
@@ -207,7 +253,7 @@ class Renderer:
         pos, right, up, fwd, fov = TL.camera(t)
         P = TL.params(t)
         th = float(np.tan(fov / 2))
-        for prog in (p, self.line_p, self.dust_p, self.grid_p):
+        for prog in (p, self.line_p, self.dust_p, self.grid_p, self.ns_p):
             prog["u_cam"].value = tuple(pos)
             prog["u_right"].value, prog["u_up"].value, prog["u_fwd"].value = tuple(right), tuple(up), tuple(fwd)
             prog["u_tanHalf"].value = th
@@ -216,6 +262,11 @@ class Renderer:
             p[f"u_{k}"].value = float(P[k])
         p["u_ringW"].value = float(P["ring_w"])
         p["u_sweepAmp"].value = float(P["sweep_amp"])
+        p["u_skyAmt"].value = float(P["stars"]) * self.L.get("sky_k", 0.0)
+        O = OB.params(t)
+        ok = self.L.get("objects", 0.0)
+        p["u_objects"].value = float(O["objects"]) * ok
+        p["u_snI"].value, p["u_snT"].value, p["u_snAge"].value = O["sn_I"], O["sn_T"], O["sn_age"]
         for tex, unit in self._units:
             tex.use(unit)
         self.scene_fbo.use()
@@ -226,6 +277,12 @@ class Renderer:
             self.scene_fbo.clear(0, 0, 0, 1)
         ctx.enable(moderngl.BLEND)
         ctx.blend_func = moderngl.ONE, moderngl.ONE
+        if ok > 0 and O["ns"] > 0:
+            n = self.ns_p
+            n["u_ns"].value = float(O["ns"])
+            n["u_time"].value = float(t)
+            n["u_beam"].value = tuple(OB.pulsar_beam(t, self.ns_spin, self.ns_m0))
+            self.ns_v.render(moderngl.TRIANGLE_STRIP)
         if P["dust"] > 0:
             pp, rp, upp, fp_, _ = TL.camera(max(t - 0.035, 0.0))
             d = self.dust_p
@@ -276,8 +333,9 @@ class Renderer:
 
         # bloom pyramid
         srct = self.acc_tex
-        for tex, fbo in self.levels:
-            self._pass(self.down_p, self.down_v, fbo, srct, u_texel=(1 / srct.width, 1 / srct.height))
+        for i, (tex, fbo) in enumerate(self.levels):
+            self._pass(self.down_p, self.down_v, fbo, srct, u_texel=(1 / srct.width, 1 / srct.height),
+                       u_thresh=float(L.get("bloom_thresh", 0.0)) if i == 0 else 0.0)
             srct = tex
         ctx.enable(moderngl.BLEND)
         ctx.blend_func = moderngl.ONE, moderngl.ONE
@@ -312,8 +370,16 @@ class Renderer:
         c["u_vig"].value = L["vig"]
         c["u_frame"].value = float(frame_idx % 997)
         c["u_res"].value = (self.W, self.H)
+        c["u_linearOut"].value = 1.0 if self.ss > 1 else 0.0
         self.comp_v.render(moderngl.TRIANGLE_STRIP)
-        return self.out_fbo.read(components=3, alignment=1)    # bottom-up rows
+        if self.ss == 1:
+            return self.out_fbo.read(components=3, alignment=1)    # bottom-up rows
+        self.fin_fbo.use()
+        self.out_tex.use(0)
+        self.res_p["tex"].value = 0
+        self.res_p["u_ss"].value = self.ss
+        self.res_v.render(moderngl.TRIANGLE_STRIP)
+        return self.fin_fbo.read(components=3, alignment=1)
 
 
 # ── CLI ─────────────────────────────────────────────────────────────────────
@@ -344,14 +410,15 @@ def cmd_looks(a):
     w, h = size_for(a.height)
     OUT.mkdir(exist_ok=True)
     tiles_by_t = {t: [] for t in a.t}
-    for k in "ABC":                       # one GL context at a time: standalone contexts don't switch
+    for k in (a.looks.split(",") if "," in a.looks else list(a.looks)):   # one GL context at a time
         r = Renderer(w, h, k)
         for t in a.t:
             tiles_by_t[t].append(save_png(r.frame(t), w, h, OUT / f"look_{k}_{t:05.2f}s.png"))
         r.ctx.release()
     for t in a.t:
         tiles = tiles_by_t[t]
-        sheet = Image.new("RGB", (w * 3 + 20, h), (40, 40, 40))
+        n = len(tiles)
+        sheet = Image.new("RGB", (w * n + 10 * (n - 1), h), (40, 40, 40))
         for i, im in enumerate(tiles):
             sheet.paste(im, (i * (w + 10), 0))
         path = OUT / f"looks_{t:05.2f}s.png"
@@ -359,28 +426,66 @@ def cmd_looks(a):
         print(path)
 
 
+SEG_FRAMES = 240     # 4 s at 60 fps: at most this much work is lost if a render is interrupted
+
+
+def _render_key(a):
+    """Segments are reusable only if the code and settings that made them are unchanged."""
+    import hashlib
+    hsh = hashlib.sha1()
+    for p in sorted([*HERE.glob("*.py"), *SH.glob("*")]):
+        hsh.update(p.name.encode())
+        hsh.update(p.read_bytes())
+    hsh.update(f"{a.look}|{a.height}|{a.fps}|{a.mb}|{a.crf}|{a.preset}|{SEG_FRAMES}".encode())
+    return hsh.hexdigest()[:12]
+
+
 def cmd_video(a):
+    """Resumable: frames are encoded in finished, self-contained segments under out/segments/<key>/.
+    Re-running the same command after a crash or power cut skips the segments already done, then
+    joins them losslessly (concat demuxer, stream copy)."""
+    import os
+    import shutil
     w, h = size_for(a.height)
     fps = a.fps
     n = int(round(TL.DURATION * fps))
-    r = Renderer(w, h, a.look, mb=a.mb)
     OUT.mkdir(exist_ok=True)
     out = Path(a.out) if a.out else OUT / f"blackhole_{a.look}_{h}p{fps}.mp4"
-    ff = subprocess.Popen(
-        ["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24",
-         "-s", f"{w}x{h}", "-r", str(fps), "-i", "-", "-vf", "vflip",
-         "-c:v", "libx264", "-preset", a.preset, "-crf", str(a.crf), "-pix_fmt", "yuv420p",
-         "-movflags", "+faststart", str(out)],
-        stdin=subprocess.PIPE)
-    bar = tqdm(total=n, desc=f"BlackHole{a.look}@{h}p{fps}", unit="fr", dynamic_ncols=True,
+    segdir = OUT / "segments" / f"{a.look}_{h}p{fps}_{_render_key(a)}"
+    if a.fresh and segdir.exists():
+        shutil.rmtree(segdir)
+    segdir.mkdir(parents=True, exist_ok=True)
+    chunks = [(s, min(s + SEG_FRAMES, n)) for s in range(0, n, SEG_FRAMES)]
+    seg = lambda k: segdir / f"seg_{k:04d}.mp4"                     # noqa: E731
+    done = sum(e - s for k, (s, e) in enumerate(chunks) if seg(k).exists())
+    bar = tqdm(total=n, initial=done, desc=f"BlackHole{a.look}@{h}p{fps}", unit="fr", dynamic_ncols=True,
                bar_format="{desc}: {percentage:3.0f}%|{bar}| {n_fmt}/{total_fmt} fr "
                           "[{elapsed} elapsed, ETA {remaining}, {rate_fmt}]")
-    for i in range(n):
-        ff.stdin.write(r.frame(i / fps, fps, i))
-        bar.update(1)
-    ff.stdin.close()
-    ff.wait()
+    if done:
+        tqdm.write(f"resuming: {done}/{n} frames already rendered in {segdir}")
+    r = None
+    for k, (s, e) in enumerate(chunks):
+        if seg(k).exists():
+            continue
+        r = r or Renderer(w, h, a.look, mb=a.mb)
+        part = segdir / f"seg_{k:04d}.part.mp4"
+        ff = subprocess.Popen(
+            ["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24",
+             "-s", f"{w}x{h}", "-r", str(fps), "-i", "-", "-vf", "vflip",
+             "-c:v", "libx264", "-preset", a.preset, "-crf", str(a.crf), "-pix_fmt", "yuv420p", str(part)],
+            stdin=subprocess.PIPE)
+        for i in range(s, e):
+            ff.stdin.write(r.frame(i / fps, fps, i))
+            bar.update(1)
+        ff.stdin.close()
+        if ff.wait() != 0:
+            raise RuntimeError(f"ffmpeg failed on segment {k}")
+        os.replace(part, seg(k))                                     # atomic: a segment exists only when complete
     bar.close()
+    lst = segdir / "list.txt"
+    lst.write_text("".join(f"file '{seg(k).name}'\n" for k in range(len(chunks))))
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", str(lst),
+                    "-c", "copy", "-movflags", "+faststart", str(out)], check=True)
     print(f"✔ {n} frames → {out}")
 
 
@@ -391,11 +496,12 @@ def main():
     s.add_argument("--look", default="B"); s.add_argument("--height", type=int, default=540)
     s.add_argument("--mb", type=int, default=1)
     s = sub.add_parser("looks"); s.add_argument("--t", type=float, nargs="+", default=[12.0])
-    s.add_argument("--height", type=int, default=360)
+    s.add_argument("--height", type=int, default=360); s.add_argument("--looks", default="ABC")
     s = sub.add_parser("video"); s.add_argument("--look", default="B")
     s.add_argument("--height", type=int, default=480); s.add_argument("--fps", type=int, default=30)
     s.add_argument("--mb", type=int, default=1); s.add_argument("--crf", type=int, default=16)
     s.add_argument("--preset", default="medium"); s.add_argument("--out", default=None)
+    s.add_argument("--fresh", action="store_true", help="discard finished segments and start over")
     a = ap.parse_args()
     {"still": cmd_still, "looks": cmd_looks, "video": cmd_video}[a.cmd](a)
 

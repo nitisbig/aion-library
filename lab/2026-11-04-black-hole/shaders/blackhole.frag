@@ -18,6 +18,13 @@ uniform float u_stars, u_hero, u_starGain;
 uniform vec3 u_heroDir;
 uniform float u_ring, u_ringW, u_sweep, u_sweepAmp, u_ringT;
 uniform vec3 u_ringTint;
+uniform float u_sky, u_skyAmt, u_ss, u_starBoost;   // sky: 0 none, 1 celestial grid, 2 galaxy band
+uniform vec3 u_skyPole, u_skyGC;
+// "O" looks: lensed celestial objects
+uniform float u_objects;
+uniform vec3 u_nebC[3]; uniform float u_nebR[3]; uniform vec3 u_nebA[3]; uniform vec3 u_nebB[3];
+uniform float u_nebI[3]; uniform float u_nebSeed[3];
+uniform vec3 u_snDir; uniform float u_snI, u_snT, u_snAge;
 
 const float PI = 3.14159265358979;
 const float TAU = 6.28318530717959;
@@ -78,7 +85,12 @@ float gasDensity(float r, float a) {
     vec3 w = vec3(fbm(q + vec3(5.2, 1.3, 0.0)), fbm(q + vec3(1.7, 9.2, 4.0)), fbm(q + vec3(8.3, 2.8, 1.0)));
     float n = fbm(q * 1.3 + 1.6 * (w - 0.5));                         // domain-warped turbulence
     float fine = vnoise(vec3(cos(a) * 7.0, sin(a) * 7.0, lr * 34.0 + 2.0 * n));   // sheared filaments
-    return smoothstep(0.22, 0.8, n) * (0.75 + 0.4 * fine);
+    float d = smoothstep(0.22, 0.8, n) * (0.75 + 0.4 * fine);
+    if (u_ss > 1.5) {    // crisp looks: one finer layer of sheared filaments (safe under supersampling)
+        float hair = vnoise(vec3(cos(a) * 16.0, sin(a) * 16.0, lr * 120.0 + 4.0 * n));
+        d *= 0.72 + 0.5 * hair;
+    }
+    return d;
 }
 
 struct Hit { vec3 emit; float alpha; };
@@ -162,6 +174,121 @@ vec3 starLayer(vec3 dir, float N, float prob, float fluxK, float seed, float sig
     return col;
 }
 
+// ── lensed sky layers (filtered by the lensed footprint fp, so they stay sharp and alias-free) ──
+// fbm with level of detail: octaves finer than the pixel footprint are replaced by their mean
+float fbmLod(vec3 p, float fs) {
+    float s = 0.0, a = 0.5;
+    for (int i = 0; i < 6; i++) {
+        float w = 1.0 - smoothstep(0.25, 0.6, fs);
+        s += a * mix(0.5, vnoise(p), w);
+        p = p * 2.03 + vec3(1.7, 9.2, 3.1); fs *= 2.03; a *= 0.52;
+    }
+    return s;
+}
+vec3 galaxy(vec3 d, float fp) {
+    vec3 gy = cross(u_skyPole, u_skyGC);
+    float lat = asin(clamp(dot(d, u_skyPole), -1.0, 1.0));
+    float lon = atan(dot(d, gy), dot(d, u_skyGC));
+    float n = fbmLod(d * 5.0, fp * 5.0);
+    float lanes = fbmLod(d * 13.0 + 7.3, fp * 13.0);
+    float band = exp(-pow(lat / 0.2, 2.0));
+    float bulge = exp(-pow(lon / 0.75, 2.0) - pow(lat / 0.22, 2.0));
+    float dust = smoothstep(0.42, 0.68, lanes) * exp(-pow((lat - 0.015) / 0.06, 2.0));
+    float I = (band * (0.01 + 1.5 * pow(n, 3.0)) + 1.2 * bulge * (0.35 + 0.65 * n)) * (1.0 - 0.9 * dust);
+    vec3 col = mix(vec3(0.62, 0.72, 1.0), vec3(1.0, 0.80, 0.58), clamp(1.4 * bulge + 0.25 * n, 0.0, 1.0));
+    return col * I * 0.085;
+}
+// lines every 10° of celestial latitude/longitude, majors every 30°, the equator brightest
+float gridLine(float x, float fw, float lw) {
+    float d = abs(fract(x + 0.5) - 0.5) / max(fw, 1e-6);       // distance in pixels
+    return (1.0 - smoothstep(lw, lw + 1.0, d)) * (1.0 - smoothstep(0.08, 0.3, fw));
+}
+vec3 skyGrid(vec3 d, float lat, float lon, float lon2) {
+    const float STEP = PI / 18.0;
+    float x = lat / STEP, y = lon / STEP, y2 = lon2 / STEP;
+    float fx = fwidth(x), fy = min(fwidth(y), fwidth(y2));
+    float lw = 0.35 * u_ss;
+    float mx = abs(mod(floor(x + 0.5), 3.0)) < 0.5 ? 1.0 : 0.45;
+    float my = abs(mod(floor(y + 0.5), 3.0)) < 0.5 ? 1.0 : 0.45;
+    float eq = abs(floor(x + 0.5)) < 0.5 ? 1.8 : 1.0;
+    float lx = gridLine(x, fx, lw) * mx * eq;
+    float ly = gridLine(y, fy, lw) * my * (1.0 - smoothstep(1.25, 1.5, abs(lat)));   // thin out at the poles
+    vec3 c = vec3(0.30, 0.55, 1.0) * max(ly, 0.0) + mix(vec3(0.30, 0.55, 1.0), vec3(1.0, 0.62, 0.35), eq - 1.0 > 0.0 ? 1.0 : 0.0) * lx;
+    return c * 0.22;
+}
+
+// ── lensed celestial objects ──────────────────────────────────────────────────
+// emission nebula: domain-warped fbm, ionisation-front filaments, dark dust lanes
+vec3 nebula(vec3 d, int i, float fp) {
+    vec3 c = u_nebC[i]; float R = u_nebR[i];
+    float ca = dot(d, c);
+    if (ca < cos(min(R * 1.8, 3.0))) return vec3(0.0);
+    float ang = acos(clamp(ca, -1.0, 1.0));
+    float k = 2.6 / R;
+    vec3 p = d * k + u_nebSeed[i];
+    float fs = fp * k;
+    vec3 w = vec3(fbmLod(p + 1.3, fs), fbmLod(p + 7.1, fs), fbmLod(p + 3.7, fs));
+    float n = fbmLod(p + 1.9 * (w - 0.5), fs);
+    float n2 = fbmLod(p * 1.8 + 3.0 * w, fs * 1.8);
+    float shape = exp(-1.8 * pow(ang / R, 2.0));
+    float body = smoothstep(0.30, 0.78, n + 0.30 * shape) * shape;
+    float dens = body * body;
+    float fil = pow(clamp(1.0 - abs(n - 0.56) * 7.0, 0.0, 1.0), 4.0) * shape;     // bright rims
+    float dust = smoothstep(0.52, 0.72, n2) * shape;
+    vec3 col = mix(u_nebA[i], u_nebB[i], smoothstep(0.38, 0.66, n2));
+    vec3 e = col * dens * 1.6 + mix(u_nebA[i], vec3(1.0), 0.35) * fil * 0.8;
+    return e * (1.0 - 0.85 * dust) * u_nebI[i];
+}
+// distant galaxies: rare small elliptical smudges (ellipticals warm, spirals with a bluer disk)
+vec3 galaxies(vec3 dir, float sigmaPx) {
+    vec3 ad = abs(dir);
+    int f; vec2 st;
+    if (ad.x >= ad.y && ad.x >= ad.z) { f = dir.x > 0.0 ? 0 : 1; st = dir.zy / ad.x; }
+    else if (ad.y >= ad.z)            { f = dir.y > 0.0 ? 2 : 3; st = dir.xz / ad.y; }
+    else                              { f = dir.z > 0.0 ? 4 : 5; st = dir.xy / ad.z; }
+    const float N = 70.0;
+    vec2 cell = floor((st * 0.5 + 0.5) * N);
+    vec3 col = vec3(0.0);
+    for (int j = -1; j <= 1; j++)
+    for (int i = -1; i <= 1; i++) {
+        vec2 c = cell + vec2(i, j);
+        if (c.x < 0.0 || c.y < 0.0 || c.x >= N || c.y >= N) continue;
+        vec3 h = hash33(vec3(c, float(f) * 13.0 + 211.0));
+        if (h.x > 0.05) continue;
+        vec3 h2 = hash33(vec3(c.yx, float(f) * 3.0 + 517.0));
+        vec3 g = normalize(faceDir(f, (c + 0.2 + 0.6 * h.yz) / N * 2.0 - 1.0));
+        vec3 t1 = normalize(cross(g, abs(g.y) < 0.9 ? vec3(0, 1, 0) : vec3(1, 0, 0)));
+        vec3 t2 = cross(g, t1);
+        float th = h2.x * TAU, e = 0.25 + 0.75 * h2.y;
+        vec2 q = vec2(dot(dir - g, t1), dot(dir - g, t2));
+        q = vec2(cos(th) * q.x + sin(th) * q.y, -sin(th) * q.x + cos(th) * q.y);
+        float s = 0.0006 + 0.0022 * pow(h2.z, 2.0);
+        float sx = max(s, sigmaPx), sy = max(s * e, sigmaPx);
+        float r2 = q.x * q.x / (sx * sx) + q.y * q.y / (sy * sy);
+        bool spiral = h.z > 0.45;
+        vec3 core = vec3(1.0, 0.82, 0.6), disk = spiral ? vec3(0.55, 0.7, 1.0) : core;
+        vec3 gc = mix(disk, core, exp(-r2 * 3.0));
+        col += gc * exp(-0.5 * r2) * (0.05 + 0.25 * h2.z) * (s * s) / (sx * sy);
+    }
+    return col;
+}
+// supernova: lensed point source with a light curve, diffraction spikes and a light echo
+vec3 supernova(vec3 d, float sigma) {
+    if (u_snI <= 0.0 || dot(d, u_snDir) < 0.9) return vec3(0.0);
+    vec3 v = d - u_snDir;
+    float x = dot(v, u_right), y = dot(v, u_up);
+    float r = length(vec2(x, y));
+    vec3 c = blackbody(u_snT);
+    float core = exp(-0.5 * r * r / (sigma * sigma)) * 60.0 + exp(-r / (6.0 * u_pix)) * 2.0;
+    float L = 40.0 * u_pix * sqrt(u_snI), w = 0.7 * u_pix * u_ss;
+    float spikes = exp(-abs(x) / L) * exp(-pow(y / w, 2.0)) + exp(-abs(y) / L) * exp(-pow(x / w, 2.0));
+    vec2 xr = vec2(x + y, x - y) * 0.7071;
+    spikes += 0.35 * (exp(-abs(xr.x) / (0.5 * L)) * exp(-pow(xr.y / w, 2.0)) + exp(-abs(xr.y) / (0.5 * L)) * exp(-pow(xr.x / w, 2.0)));
+    float echoR = 0.006 * sqrt(u_snAge), echo = exp(-pow((r - echoR) / (0.0012 + 0.1 * echoR), 2.0));
+    vec3 echoC = mix(vec3(0.3, 0.6, 1.0), vec3(1.0, 0.4, 0.5), clamp(u_snAge / 6.0, 0.0, 1.0));
+    return c * u_snI * (core + 1.5 * spikes) + echoC * echo * 0.12 * exp(-u_snAge / 7.0) * step(0.0, u_snAge);
+}
+
 void main() {
     vec2 ndc = uv * 2.0 - 1.0;
     vec3 d = normalize(u_fwd + ndc.x * u_tanHalf * u_aspect * u_right + ndc.y * u_tanHalf * u_up);
@@ -219,8 +346,10 @@ void main() {
         float th = atan(ndc.y, ndc.x * u_aspect);
         float head = PI * 0.5 - u_sweep * TAU;          // starts at the top, runs clockwise
         float behind = mod(th - head, TAU);             // angular distance behind the head
-        float swept = 1.0 - smoothstep(u_sweep * TAU, u_sweep * TAU + 0.05, behind);
-        ringI *= swept * (1.0 + 4.0 * u_sweepAmp * exp(-behind * 4.0));
+        // soft leading edge, gaussian-tapered head, long fading tail
+        float swept = 1.0 - smoothstep(u_sweep * TAU - 0.02, u_sweep * TAU + 0.18, behind);
+        float headI = exp(-pow((behind - 0.06) / 0.09, 2.0));
+        ringI *= swept * (1.0 + u_sweepAmp * (3.0 * headI + 1.2 * exp(-behind * 2.5)));
     }
     col += T * u_ring * ringI * u_ringTint;
 
@@ -229,9 +358,25 @@ void main() {
     vec3 dOut = cos(psiE) * e1 + sin(psiE) * e2;
     float fp = max(length(dFdx(dOut)), length(dFdy(dOut)));
     bool sky = outward || (b > B_C && phiEnd < PHI_MAX);
+    // sky-layer coordinates and their derivatives (uniform control flow)
+    vec3 gy = cross(u_skyPole, u_skyGC);
+    float slat = asin(clamp(dot(dOut, u_skyPole), -1.0, 1.0));
+    float slon = atan(dot(dOut, gy), dot(dOut, u_skyGC));
+    float slon2 = atan(-dot(dOut, gy), -dot(dOut, u_skyGC));   // same angle, seam on the other side
+    vec3 grid = u_sky > 0.5 && u_sky < 1.5 ? skyGrid(dOut, slat, slon, slon2) : vec3(0.0);
+    if (sky && u_skyAmt > 0.0) {
+        vec3 skyc = u_sky > 1.5 ? galaxy(dOut, fp) : grid;
+        col += T * skyc * u_skyAmt;
+    }
+    if (sky && u_objects > 0.0) {
+        float sigmaO = max(0.55 * fp, 0.5 * u_pix);
+        vec3 ob = nebula(dOut, 0, fp) + nebula(dOut, 1, fp) + nebula(dOut, 2, fp);
+        ob += galaxies(dOut, sigmaO) + supernova(dOut, sigmaO);
+        col += T * ob * u_objects;
+    }
     if (sky && u_stars > 0.0) {
         float sigma = max(0.55 * fp, 0.5 * u_pix);
-        vec3 s = starLayer(dOut, 190.0, 0.13, 1.6, 0.0, sigma);
+        vec3 s = starLayer(dOut, 190.0, min(0.13 * u_starBoost, 0.6), 1.6, 0.0, sigma);
         s += starLayer(dOut, 34.0, 0.30, 9.0, 7.0, sigma);
         s += starKernel(dOut, u_heroDir, 26.0 * u_hero, 11000.0, sigma);
         col += T * s * u_stars * u_starGain;
