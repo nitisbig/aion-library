@@ -16,6 +16,7 @@ If the request is ambiguous, ask which mode it is. A good exploration result can
 ## Environment
 
 - Python 3.12, managed with **uv**. Use `uv run ...` and `uv add <pkg>`. Never use bare `pip install`.
+- `aion/` is installed in editable mode (hatchling build backend), so `from aion import style` works from any scene in `videos/` or `lab/`.
 - Installed: `manim` (Community Edition 0.22), `moderngl`, `skia-python`, `pyvista`, `pytinytex`.
 - System: `ffmpeg`/`ffprobe` are on PATH. The hardware is modest: an **AMD A6-9225 APU** (2 CPU cores) with an integrated **Radeon R4 GPU** (Stoney, `amdgpu` driver, Mesa radeonsi, OpenGL 4.5).
   - moderngl gets **hardware acceleration** headlessly: `moderngl.create_context(standalone=True)` (or `backend='egl'`) renders on the Radeon R4, with no window needed.
@@ -134,3 +135,13 @@ The style is meant to evolve. When exploration produces a better look, propose u
 - Keep scenes deterministic (seed every RNG) so re-renders are identical.
 - Don't commit rendered media (`media/`, `out/`, `*.mp4`, `*.png` frames). Do commit storyboards, scenes, and the library.
 - Render long finals in the background and report when they're done. Don't block on multi-minute renders during iteration.
+
+## Render progress (required)
+
+Every render must show **one whole-scene progress bar with an ETA**.
+- Every scene inherits from `aion.progress.ProgressScene` (or `ProgressThreeDScene`), **never** plain `Scene`, and sets `TOTAL_DURATION` (in seconds). In production that's the scene's slice of the audio, taken from the SRT or `ffprobe`. Without it, the duration of the previous render is used, and a first render shows no ETA.
+- If a scene overrides `render()`, it must call `super().render()`.
+- The bar prints `Scene@480p15: 42%|████| 285/675 fr [elapsed, ETA, fr/s]` and finishes with a `✔ … → <output path>` line. `manim.cfg` turns off Manim's per-animation bars and INFO logs; add `-v INFO` to see the logs.
+- Live status is written to `media/progress/<Scene>.json` (frames, percent, elapsed_s, eta_s, done) about once a second. When a render runs in the background, read that file to report progress and the ETA to the user.
+- Always run renders from the repo root so `manim.cfg` applies.
+- Non-Manim pipelines (moderngl, skia, pyvista frame loops, long ffmpeg jobs) follow the same rule: wrap the frame loop in a `tqdm` bar with a known total frame count, so it shows an ETA.

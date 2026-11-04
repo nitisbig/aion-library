@@ -14,7 +14,7 @@ required-markers = [
 [[package]]
 name = "aion"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "manim" },
     { name = "moderngl" },
@@ -1634,6 +1634,7 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/87/19/aabcaf6ab5ddd402cc8c67ea7f69ed5b698ad016f84d845768bfd681c375/vtk-9.7.2-cp314-cp314-manylinux_2_28_aarch64.whl", hash = "sha256:df103b630d300895e66b8c498196c843943b37cccc9317049326a5f79b7aaa86", size = 129497583, upload-time = "2026-11-04T00:18:01.571Z" },
     { url = "https://files.pythonhosted.org/packages/f7/42/50abb325b447bad3b70f2cb88267f6afb82e940980dc64bf739d3f42c852/vtk-9.7.2-cp314-cp314-win_amd64.whl", hash = "sha256:38bda6a2034aaea9bf8d413148bd4941dd2e52629ad2ee69110f9455ca75ce87", size = 82680717, upload-time = "2026-11-03T23:20:42.35Z" },
     { url = "https://files.pythonhosted.org/packages/f5/25/ac7e9fa0ed824881846205d5e1d78899ea439a52eb9075efa3997f4691b0/vtk-9.7.2-cp314-cp314t-manylinux_2_28_aarch64.whl", hash = "sha256:862e052d62a42aa97e1b0d3b8fe4a9b95a18136ea909d5112e102c90133d83ab", size = 129392563, upload-time = "2026-11-04T00:23:21.376Z" },
+    { url = "https://files.pythonhosted.org/packages/df/3b/2f934e233ea2a9bd97cb797260d185260ea79dcf46e98c78212b77c9aecd/vtk-9.7.2-cp314-cp314t-win_amd64.whl", hash = "sha256:1249996567497327c9c614ada34273405a97a0717e92e3a61fcdb8bdc4cb7a0d", size = 82489216, upload-time = "2026-11-04T01:37:33.862Z" },
     { url = "https://files.pythonhosted.org/packages/54/03/a3672e2b5256797b679699b1d94bcad38abb9429f0edd380d2aca2f5b367/vtk-9.7.2-cp315-cp315-manylinux_2_28_aarch64.whl", hash = "sha256:f4452d47b842bd786e0c102eb0b521f98e5463f5df3d377cdf977d26661504f8", size = 129497422, upload-time = "2026-11-04T00:26:22.491Z" },
     { url = "https://files.pythonhosted.org/packages/69/be/4a3651f36bf32032c9b53882766498e56e987c0d9a60aa5c8bb3c91cc48e/vtk-9.7.2-cp315-cp315-win_amd64.whl", hash = "sha256:6256f7ddcef3747fa31f83afbf3596d46c675d5847a63596950098c2f666189d", size = 82696832, upload-time = "2026-11-03T23:30:10.233Z" },
 ]
