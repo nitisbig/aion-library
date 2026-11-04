@@ -1,0 +1,43 @@
+// light reaching each (coarse) voxel from each of the 4 lightning lights: Beer–Lambert transmittance along
+// the path to the channel + multiple-scattering octaves (light keeps diffusing through thick cloud)
+layout(local_size_x = 4, local_size_y = 4, local_size_z = 4) in;
+layout(rgba16f, binding = 2) writeonly uniform image3D illum;
+uniform sampler3D dens;
+uniform ivec3 u_ires;
+uniform float u_sigma;
+layout(r16f, binding = 3) writeonly uniform image3D sunVol;
+uniform float u_sunOn;
+uniform vec3 u_sunDir;
+void main() {
+    ivec3 v = ivec3(gl_GlobalInvocationID);
+    if (any(greaterThanEqual(v, u_ires))) return;
+    vec3 p = u_boxMin + (vec3(v) + 0.5) / vec3(u_ires) * (u_boxMax - u_boxMin);
+    vec4 o = vec4(0.0);
+    for (int k = 0; k < 4; k++) {
+        if (u_lb[k].w <= 0.0) continue;
+        vec3 q = segClosest(p, u_la[k].xyz, u_lb[k].xyz);
+        vec3 d = q - p;
+        float dist = length(d);
+        const int N = 20;
+        float L = min(dist, 14.0), dt = L / float(N), od = 0.0;
+        vec3 dir = d / max(dist, 1e-4);
+        for (int j = 0; j < N; j++) od += textureLod(dens, boxUVW(p + dir * dt * (float(j) + 0.5)), 1.0).r;
+        od *= dt * u_sigma;
+        float ms = exp(-od) + 0.5 * exp(-od * 0.22) + 0.25 * exp(-od * 0.05);
+        o[k] = u_lb[k].w * ms / (dist * dist + u_la[k].w * u_la[k].w);
+    }
+    imageStore(illum, v, o);
+    float sT = 0.0;
+    if (u_sunOn > 0.5) {
+        // transmittance toward the sun (to the box exit), with multiple-scattering octaves
+        vec3 inv = 1.0 / u_sunDir;
+        vec3 ta = (u_boxMin - p) * inv, tb = (u_boxMax - p) * inv;
+        float texit = min(min(max(ta.x, tb.x), max(ta.y, tb.y)), max(ta.z, tb.z));
+        const int N = 28;
+        float L = min(texit, 22.0), dt = L / float(N), od = 0.0;
+        for (int j = 0; j < N; j++) od += textureLod(dens, boxUVW(p + u_sunDir * dt * (float(j) + 0.5)), 1.0).r;
+        od *= dt * u_sigma;
+        sT = exp(-od) + 0.45 * exp(-od * 0.2) + 0.2 * exp(-od * 0.05);
+    }
+    imageStore(sunVol, v, vec4(sT));
+}
