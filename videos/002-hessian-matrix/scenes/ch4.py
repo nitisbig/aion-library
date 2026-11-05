@@ -132,7 +132,7 @@ def eq_bending():
     from aion.components.cards import card_image
     m = MathTex(r"\text{bending}(u)", "=", r"u^\top", "H", "u", font_size=44, color=S.TEXT)
     m.move_to([-3.45, -2.75, 0])
-    card = card_image(m.width + 0.8, m.height + 0.55, top=S.GLASS_TOP, bottom=S.GLASS_BOTTOM,
+    card = V.panel(m.width + 0.8, m.height + 0.55, top=S.GLASS_TOP, bottom=S.GLASS_BOTTOM,
                       border=S.LINE, glow=S.GLASS_TOP).move_to(m)
     return card, m
 
@@ -291,8 +291,8 @@ def legend():
         lm = MathTex(lam, font_size=44, color=col).move_to([LEG_X[2], y, 0], aligned_edge=LEFT)
         rows.append((icon, vm, lm))
     top = LEG_Y[0] + 0.85
-    ev = V.label("EIGENVECTOR", 18, S.MUTED, weight="BOLD").move_to([0.5 * (LEG_X[0] + LEG_X[1]), top, 0])
-    ew = V.label("EIGENVALUE", 18, S.MUTED, weight="BOLD").move_to([LEG_X[2], top, 0], aligned_edge=LEFT)
+    ev = V.hush(V.label("EIGENVECTOR", 18, S.MUTED, weight="BOLD")).move_to([0.5 * (LEG_X[0] + LEG_X[1]), top, 0])
+    ew = V.hush(V.label("EIGENVALUE", 18, S.MUTED, weight="BOLD")).move_to([LEG_X[2], top, 0], aligned_edge=LEFT)
     return rows, ev, ew
 
 
@@ -362,7 +362,7 @@ def parabola_inset():
     """(glass card, cos curve, dashed 1 − x²/2): the Ch1 picture, small, top-right."""
     from aion.components.cards import card_image
     c = np.array([4.75, 2.55, 0.0])
-    card = card_image(3.3, 1.9, top=S.GLASS_TOP, bottom=S.GLASS_BOTTOM, border=S.LINE, glow=S.GLASS_TOP).move_to(c)
+    card = V.panel(3.3, 1.9, top=S.GLASS_TOP, bottom=S.GLASS_BOTTOM, border=S.LINE, glow=S.GLASS_TOP).move_to(c)
     ax = Axes(x_range=[-2.6, 2.6], y_range=[-0.9, 1.25], x_length=2.9, y_length=1.5, tips=False).move_to(c)
     cosc = V.lit(ax.plot(np.cos, x_range=[-2.6, 2.6]), S.TERRAIN_LINE, width=3, halo=10)
     par = DashedVMobject(ax.plot(lambda x: 1 - x * x / 2, x_range=[-1.25, 1.25]), num_dashes=22)

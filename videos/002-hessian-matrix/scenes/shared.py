@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 
 import numpy as np
-from manim import (DOWN, LEFT, ORIGIN, RIGHT, UP, Axes, Circle, Dot, Line, ManimColor, MathTex,
+from manim import (DOWN, LEFT, ORIGIN, RIGHT, UP, Axes, Circle, Dot, Line, ManimColor, MathTex, VMobject,
                    Text, ValueTracker, VGroup, interpolate_color, smooth,
                    there_and_back, UpdateFromAlphaFunc)
 
@@ -158,7 +158,7 @@ def puzzle_rig(**kw) -> Rig:
               grid=(0.18, 0.18), contour=0.0, contour_step=0.2, tint=0.0, opacity=1.0,
               zlo=-1.5, zhi=1.5, time=0.0, slices=[], disc=None,
               # luminous look (as ch2.LUMINOUS_PANEL; the plate is a viewport, so glow only)
-              lum=1.0, bloom=1.0, fog_color=S.STAGE)
+              lum=1.0, bloom=0.4, fog_color=S.STAGE)
     st.update(kw)
     return Rig(**st)
 
@@ -203,18 +203,68 @@ CH1_ORIGIN = np.array([0.0, -2.35, 0.0])
 X0_HANDOFF = 1.0                      # the tangent point (1, 1), slope 2
 
 
+def graph_grid(ax: Axes) -> VGroup:
+    """Major lines at every tick, minor lines halfway, clipped to the axes' box."""
+    (x0, x1, dx), (y0, y1, dy) = ax.x_range[:3], ax.y_range[:3]
+    g = VGroup()
+    for step, col, w, op in ((dx / 2, S.GRID_MINOR, 1.0, 0.9), (dx, S.GRID_MAJOR, 1.2, 1.0)):
+        n0, n1 = math.ceil(x0 / step - 1e-9), math.floor(x1 / step + 1e-9)
+        for i in range(n0, n1 + 1):
+            g.add(Line(ax.c2p(i * step, y0), ax.c2p(i * step, y1)).set_stroke(col, w, opacity=op))
+    for step, col, w, op in ((dy / 2, S.GRID_MINOR, 1.0, 0.9), (dy, S.GRID_MAJOR, 1.2, 1.0)):
+        n0, n1 = math.ceil(y0 / step - 1e-9), math.floor(y1 / step + 1e-9)
+        for i in range(n0, n1 + 1):
+            g.add(Line(ax.c2p(x0, i * step), ax.c2p(x1, i * step)).set_stroke(col, w, opacity=op))
+    return g
+
+
 def hairline(ax: Axes) -> Axes:
-    """Design-system axes: muted hairlines, small ticks, no numbers (the curve is the subject)."""
-    ax.set_stroke(S.MUTED, 1.6, opacity=0.55)
+    """Axes on a deep-blue grid: crisp silver axis lines, no numbers (the curve is the subject)."""
+    ax.set_stroke(S.TERRAIN_LINE, 1.5, opacity=0.7)
+    ax.add_to_back(graph_grid(ax))
     return ax
 
 
+def panel(width: float, height: float, **_) -> VGroup:
+    """Replaces the glass UI cards: a soft dark scrim (no border) with four thin corner marks."""
+    from manim import RoundedRectangle
+    scrim = RoundedRectangle(width=width, height=height, corner_radius=0.14).set_fill(S.STAGE, 0.55)
+    scrim.set_stroke(width=0)
+    marks = VGroup()
+    L = min(0.24, 0.12 * min(width, height))
+    for sx in (-1, 1):
+        for sy in (-1, 1):
+            cpt = np.array([sx * width / 2, sy * height / 2, 0.0])
+            marks.add(VMobject().set_points_as_corners([cpt - np.array([sx * L, 0, 0]), cpt,
+                                                        cpt - np.array([0, sy * L, 0])]))
+    marks.set_stroke(S.TERRAIN_LINE, 1.4, opacity=0.45)
+    return VGroup(scrim, marks)
+
+
+def hush(mob):
+    """Text the redesign removed (uppercase eyebrows): kept in place for layout, never shown."""
+    return mob.set_opacity(0.0)
+
+
+LINE_SCALE = 0.62          # all lit() strokes are thinner than their call sites ask (crisp look)
+
+
+def _hex(c) -> str:
+    return ManimColor(c).to_hex().upper()
+
+
 def lit(mob, color=None, width: float = 4, halo: float = 16, opacity: float = 0.13):
-    """Stroke `mob` and give it a soft glow band (a wide, faint background stroke).
-    The glow is part of the mobject's own stroke data, so it survives Transform."""
+    """Crisp stroke with a tight edge glow (no blurry shadow). Neutral (silver) lines get
+    the cyan → lavender sheen; semantic colours get a slight lift toward white along the
+    line. The glow is part of the mobject's own stroke data, so it survives Transform."""
     c = color or mob.get_stroke_color()
-    mob.set_stroke(c, width)
-    mob.set_stroke(c, halo, opacity=opacity, background=True)
+    w = width * LINE_SCALE
+    if _hex(c) == _hex(S.TERRAIN_LINE):
+        cols = [S.CURVE_A, S.CURVE_B]
+    else:
+        cols = [c, interpolate_color(ManimColor(c), ManimColor("#FFFFFF"), 0.28)]
+    mob.set_stroke(cols, w)
+    mob.set_stroke(cols, w * 2.2, opacity=min(opacity, 0.12) * 0.7, background=True)
     return mob
 
 

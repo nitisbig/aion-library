@@ -90,8 +90,8 @@ def quadrant(ax, q: int) -> VGroup:
 
 def q_label(ax, q: int) -> VGroup:
     if q in (1, 3):
-        word, sub, col = ("valley", "local minimum", S.SMILE) if q == 1 else ("peak", "local maximum", S.FROWN)
-        g = VGroup(V.label(word, 28, col, weight="MEDIUM"), V.label(sub, 18, S.MUTED)).arrange(DOWN, buff=0.08)
+        word, col = ("valley", S.SMILE) if q == 1 else ("peak", S.FROWN)
+        g = VGroup(V.label(word, 28, col, weight="MEDIUM"))
     else:
         g = VGroup(V.label("saddle", 28, S.TEXT, weight="MEDIUM"))
     return g.move_to(ax.c2p(*Q_POS[q]))
@@ -159,9 +159,9 @@ def eq_lams(eq) -> MathTex:
 def det_card():
     """(glass card, eyebrow, rows [(math, arrow, word)]): the 2D second-derivative test."""
     from aion.components.cards import card_image
-    card = card_image(CARD_W, CARD_H, top=S.GLASS_TOP, bottom=S.GLASS_BOTTOM, border=S.LINE,
+    card = V.panel(CARD_W, CARD_H, top=S.GLASS_TOP, bottom=S.GLASS_BOTTOM, border=S.LINE,
                       glow=S.GLASS_TOP).move_to(CARD_C)
-    head = V.label("THE TEST AT A FLAT POINT", 18, S.MUTED, weight="BOLD").move_to(CARD_C + UP * (CARD_H / 2 - 0.38))
+    head = V.hush(V.label("THE TEST AT A FLAT POINT", 18, S.MUTED, weight="BOLD")).move_to(CARD_C + UP * (CARD_H / 2 - 0.38))
     rows = []
     x0 = CARD_C[0] - CARD_W / 2 + 0.35
     for i, (tex, word, col) in enumerate(((r"\det H < 0", "saddle", S.TEXT),

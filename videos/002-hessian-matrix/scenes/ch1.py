@@ -159,9 +159,9 @@ TEST_ROWS = ((2.0, "valley", S.SMILE), (-2.0, "peak", S.FROWN), (0.0, "can't tel
 def test_card():
     """(card, head): a design-system glass card with its uppercase eyebrow, at CARD_C."""
     from aion.components.cards import card_image
-    card = card_image(CARD_W, CARD_H, top=S.GLASS_TOP, bottom=S.GLASS_BOTTOM, border=S.LINE,
+    card = V.panel(CARD_W, CARD_H, top=S.GLASS_TOP, bottom=S.GLASS_BOTTOM, border=S.LINE,
                       glow=S.GLASS_TOP).move_to(CARD_C)
-    head = V.label("SECOND DERIVATIVE TEST", 20, S.MUTED, weight="BOLD")
+    head = V.hush(V.label("SECOND DERIVATIVE TEST", 20, S.MUTED, weight="BOLD"))
     head.move_to(CARD_C + UP * (CARD_H / 2 - 0.5))
     return card, head
 

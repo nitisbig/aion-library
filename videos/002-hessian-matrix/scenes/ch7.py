@@ -45,9 +45,9 @@ EYEBROWS = ("ON A LINE", "ON A SURFACE", "ANY DIRECTION", "AT A FLAT POINT")
 
 def card(i: int) -> VGroup:
     c = CARD_C[i]
-    bg = card_image(CARD_W, CARD_H, top=S.GLASS_TOP, bottom=S.GLASS_BOTTOM, border=S.LINE,
+    bg = V.panel(CARD_W, CARD_H, top=S.GLASS_TOP, bottom=S.GLASS_BOTTOM, border=S.LINE,
                     glow=S.GLASS_TOP).move_to(c)
-    eb = V.label(EYEBROWS[i], 18, S.MUTED, weight="BOLD")
+    eb = V.hush(V.label(EYEBROWS[i], 18, S.MUTED, weight="BOLD"))
     eb.move_to(c + np.array([-CARD_W / 2 + 0.35, CARD_H / 2 - 0.36, 0]), aligned_edge=LEFT)
     return bg, eb
 

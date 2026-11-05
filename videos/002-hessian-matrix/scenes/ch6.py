@@ -79,7 +79,7 @@ def settle_xy(k: float):
 
 
 def eyebrow() -> VGroup:
-    a = V.label("TRAINING A NEURAL NETWORK", 18, S.MUTED, weight="BOLD")
+    a = V.hush(V.label("TRAINING A NEURAL NETWORK", 18, S.MUTED, weight="BOLD"))
     a.to_corner(UP + LEFT, buff=0.6)
     return a
 

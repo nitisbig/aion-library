@@ -164,16 +164,15 @@ class Scene02Puzzle(V.VideoScene):
         u = always_redraw(lambda: Arrow(c, c + 1.35 * np.array([math.cos(th.get_value()), math.sin(th.get_value()), 0]),
                                         buff=0, color=S.TEXT, stroke_width=4,
                                         max_tip_length_to_length_ratio=0.16))
-        ax = Axes(x_range=[0, PI, PI / 4], y_range=[-1.5, 5.5, 1], x_length=5.0, y_length=3.6, tips=False,
-                  axis_config={"color": S.MUTED, "stroke_width": 1.6, "stroke_opacity": 0.6}
-                  ).move_to(RIGHT * 2.6 + DOWN * 0.1)
+        ax = V.hairline(Axes(x_range=[0, PI, PI / 4], y_range=[-1.5, 5.5, 1], x_length=5.0, y_length=3.6,
+                             tips=False, axis_config={"include_ticks": False}).move_to(RIGHT * 2.6 + DOWN * 0.1))
 
         def trace():
             t = th.get_value()
             out = VGroup()
             for lo, hi, col in ((0, Z1, S.SMILE), (Z1, Z2, S.FROWN), (Z2, PI, S.SMILE)):
                 if t > lo + 1e-3:
-                    out.add(ax.plot(BEND, x_range=[lo, min(t, hi)], color=col, stroke_width=4))
+                    out.add(V.lit(ax.plot(BEND, x_range=[lo, min(t, hi)]), col, width=4.5))
             return out
         dot = always_redraw(lambda: Dot(ax.c2p(th.get_value(), BEND(th.get_value())), radius=0.07,
                                         color=S.SMILE if BEND(th.get_value()) >= 0 else S.FROWN))

@@ -81,11 +81,10 @@ class Scene05Test(V.VideoScene):
         # 1-11 · the test card
         left = VGroup(ax, curve, tan, hug)
         card, head = C.test_card()
-        card.shift(DOWN * 0.4).set_opacity(0)
         self.beat("second derivative test",
                   left.animate.scale(C.BOARD_SMALL, about_point=ax.c2p(0, 0)).shift(C.BOARD_LEFT - ax.c2p(0, 0)),
                   FadeOut(gauge), FadeOut(b["fpp"]), FadeOut(b["tag"]), FadeOut(approx),
-                  card.animate.move_to(C.CARD_C).set_opacity(1), FadeIn(head, shift=UP * 0.2), rt=0.8)
+                  FadeIn(card, shift=UP * 0.4), FadeIn(head, shift=UP * 0.2), rt=0.8)
 
         (g1, a1, l1), (g2, a2, l2), (g3, a3, l3) = (C.test_row(i) for i in range(3))
         self.beat("bending up", FadeIn(a1), GrowFromCenter(g1), rt=0.4)

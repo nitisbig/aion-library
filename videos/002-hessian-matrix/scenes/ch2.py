@@ -17,7 +17,7 @@ from aion.components.surface_gl import slice_line, tangent_disc
 
 # The luminous look (Aion design system) for every Ch2 surface: black body, silver
 # lines, glow. Full-frame plates also get the vignette + grain finish.
-LUMINOUS = dict(lum=1.0, bloom=1.0, vignette=0.5, grain=0.04, fog_color=S.STAGE)
+LUMINOUS = dict(lum=1.0, bloom=0.4, vignette=0.5, grain=0.015, fog_color=S.STAGE)
 LUMINOUS_PANEL = dict(LUMINOUS, vignette=0.0, grain=0.0)    # small viewports: glow only
 
 HILLS = [(1.15, 0.55, 1.25, 0.72), (-1.05, -0.65, 1.0, 0.8)]

@@ -89,7 +89,7 @@ class Scene11Matrix(V.VideoScene):
 
         # 3-10 · Hesse; symmetric across the diagonal
         cap_c = np.array([L.HC[0] - 0.5, -2.85, 0])
-        card = card_image(6.4, 0.95, top=S.GLASS_TOP, bottom=S.GLASS_BOTTOM, border=S.LINE,
+        card = V.panel(6.4, 0.95, top=S.GLASS_TOP, bottom=S.GLASS_BOTTOM, border=S.LINE,
                           glow=S.GLASS_TOP).move_to(cap_c)
         name = VGroup(V.label("Ludwig Otto Hesse", 32, S.TEXT), V.label("1811–1874", 26, S.MUTED))
         name.arrange(RIGHT, buff=0.35).move_to(cap_c)

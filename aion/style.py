@@ -36,13 +36,20 @@ Z = VEC                 # the moving complex number z (arrow)
 NEG = "#F2A65A"         # minus one, half turn
 
 # Hessian matrix (video 002). Fixed meaning for the whole video.
-HX = J_HAT              # x direction, x slice, f_xx (red)
-HY = I_HAT              # y direction, y slice, f_yy (green)
-TWIST = I_UNIT          # f_xy, f_yx: the twist (violet)
-GRAD = VEC              # slope, gradient arrow, the walker (yellow)
-SMILE = ACCENT          # bending up, positive eigenvalue, valley (blue)
-FROWN = NEG             # bending down, negative eigenvalue, peak (orange)
-FLAT = "#7A8290"        # zero bending: flat gauge, "can't tell"
+# RGB-led and saturated for a crisp look on pure black: red and green are the two input
+# axes, blue is "bends up / stable / valley" (calm), orange is "bends down / peak" (alert),
+# gold is "you / the slope", violet is the twist that mixes x and y.
+HX = "#FF3D5A"          # x direction, x slice, f_xx (red)
+HY = "#2EE88A"          # y direction, y slice, f_yy (green)
+TWIST = "#A77BFF"       # f_xy, f_yx: the twist (violet)
+GRAD = "#FFD43B"        # slope, gradient arrow, the walker (gold)
+SMILE = "#2E9BFF"       # bending up, positive eigenvalue, valley (blue)
+FROWN = "#FF8A2A"       # bending down, negative eigenvalue, peak (orange)
+FLAT = "#8892A2"        # zero bending: flat gauge, "can't tell"
+CURVE_A = "#6FE3FF"     # neutral curves and rings: an ice-cyan → lavender sheen
+CURVE_B = "#B9A6FF"
+GRID_MAJOR = "#173A63"  # graph grids: deep blue on black
+GRID_MINOR = "#0D2140"
 SURF_LO = "#1B2433"     # surface colour ramp, low → high (neutral slate)
 SURF_HI = "#4C5D75"
 SURF_LINE = "#8A9BB4"   # coordinate grid drawn on a surface
