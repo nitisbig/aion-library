@@ -193,6 +193,6 @@ def s25_end() -> VGroup:
 
 # ── scene 26: back to the fog ─────────────────────────────────────────────
 FOG = dict(H=(0.0, 0.0, 0.0), reveal=60.0, dist=6.2, pitch=10.0, yaw=200.0, target=(0.0, 0.0, 0.7),
-           fog=0.34, fognear=1.8, mist=1.0, haze=0.9, disc_r=V.DISC_R, disc_a=0.8)
+           fog=0.34, fognear=1.8, mist=1.0, haze=0.9, disc_r=V.DISC_R, disc_a=0.8, form=1.0, **V.SPLAT_LOOK)
 LIFT = dict(H=V.H_SADDLE, dist=7.0, pitch=22.0, yaw=215.0, target=(0.0, 0.0, 0.3), fog=0.06, fognear=3.0,
             mist=0.5, haze=0.25, contour=1.0, grid=0.22, tint=1.0, disc_a=0.6, fwd=1.0, side=1.0)

@@ -342,7 +342,8 @@ def terrain_rig(**kw) -> Rig:
               contour=1.0, cstep=0.12, grid=0.22, gstep=0.5, gridR=3.5, reveal=0.0,
               tint=0.0, fog=0.08, fognear=3.0, mist=0.6, haze=0.25, dots=1.0,
               opacity=0.0, time=0.0, disc_a=0.0, disc_r=0.0, gold=0.0, ping_r=0.0, ping_a=0.0,
-              fwd=0.0, side=0.0, xs=0.0, ys=0.0)
+              fwd=0.0, side=0.0, xs=0.0, ys=0.0, splat=0.0, form=1.0, lift=0.0, aurora=0.0,
+              gal=1.0, paint=0.0, paintR=3.5)
     st.update(kw)
     rig = Rig(**st)
     rig.dyn["disc"] = lambda: (0.0, 0.0, rig.val("disc_r"), rig.val("disc_a"))
@@ -375,20 +376,27 @@ def intro_rig(clk: ValueTracker, **kw) -> Rig:
     return rig
 
 
-def terrain_plate(rig: Rig) -> TerrainPlate:
-    return TerrainPlate(rig.state)
+SPLATS = 120_000                     # Gaussian splats in the intro's mountain range (0 = none)
+# the intro world: splat mountains that condense in place, a parametric gradient ground,
+# aurora-tinted lines, the old
+# moonlit dust turned down so the splats carry the range
+SPLAT_LOOK = dict(splat=1.0, aurora=1.0, dots=0.35, gal=0.0, paint=0.42)
+
+
+def terrain_plate(rig: Rig, splats: int = 0) -> TerrainPlate:
+    return TerrainPlate(rig.state, splats=splats)
 
 
 # Scene 01's last frame = scene 02's first frame (built from these numbers in both).
 S01_END = dict(H=H_SADDLE, opacity=1.0, reveal=60.0, dist=7.0, pitch=22.0, yaw=215.0,
                target=(0.0, 0.0, 0.3), fog=0.06, fognear=3.0, mist=0.5, haze=0.25,
-               contour=1.0, grid=0.22, tint=1.0, disc_a=0.6, disc_r=DISC_R, gold=0.0)
+               contour=1.0, grid=0.35, tint=1.0, disc_a=0.6, disc_r=DISC_R, gold=0.0, form=1.0, **SPLAT_LOOK)
 
 # The puzzle surface x² + 3xy + y² as the luminous plate shows it (scene 02).
 PUZZLE_VIEW = dict(H=H_PUZZLE, zs=0.3, win=40.0, zclip=1.6, wm=0.0, edge=2.7,
                    yaw=302.0, pitch=30.0, dist=8.5, target=(0.0, 0.0, 0.0),
                    cstep=0.15, gstep=0.3, grid=0.35, gridR=40.0, tint=0.0,
-                   fog=0.0, mist=0.2, haze=0.0, disc_a=0.0)
+                   fog=0.0, mist=0.2, haze=0.0, disc_a=0.0, paintR=3.2)
 
 
 def glass_grid(cell: float = 1.15, center=ORIGIN):

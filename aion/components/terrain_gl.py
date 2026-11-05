@@ -45,6 +45,7 @@ from manim import ORIGIN, ImageMobject, color_to_rgb, config
 from .. import style as S
 from . import blit
 from .shader_plate import _ctx
+from .splat_gl import SPLAT_DEFAULTS, SplatLayer
 from .surface_gl import camera_matrices
 
 blit.install()
@@ -62,7 +63,8 @@ TERRAIN_DEFAULTS: dict = {
     "tint": 0.0, "tintR": 2.2,
     "fog": 0.08, "fognear": 3.0, "fogH": 1.6, "mist": 0.6, "haze": 0.25, "time": 0.0,
     "slices": [], "disc": (0.0, 0.0, 0.5, 0.0), "disc_color": S.TEXT, "ping": (0.0, 0.0),
-    "bloom": 1.0, "vignette": 0.5, "grain": 0.04, "opacity": 1.0,
+    "bloom": 1.0, "vignette": 0.5, "grain": 0.04, "opacity": 1.0, "aurora": 0.0, "paint": 0.0, "paintR": 3.5,
+    **SPLAT_DEFAULTS,
 }
 
 
@@ -103,7 +105,10 @@ in vec2 v_p;
 in vec3 v_w;
 uniform vec3 u_eye;
 uniform float u_px, u_lw, u_edge;
-uniform vec3 u_line, u_body, u_smile, u_frown;
+uniform vec3 u_line, u_body, u_smile, u_frown, u_aurA, u_aurB;
+uniform float u_aurora;
+uniform float u_paint, u_paintR;   // parametric gradient fill of the walker's ground
+uniform vec3 u_pc[4];              // its corner colours (−x−y, +x−y, −x+y, +x+y)
 uniform float u_contour, u_cstep, u_grid, u_gstep, u_gridR, u_reveal, u_rim, u_mline;
 uniform float u_fog, u_fognear, u_fogH, u_tint, u_tintR;
 uniform vec4 u_sl[4];        // (dir.x, dir.y, strength, half length)
@@ -159,10 +164,29 @@ void main() {
     // bend tint: blue where the ground rises from the walker's level, orange where it falls
     float hp = patch_h(v_p);
     float tw = u_tint * exp(-r * r / (2.0 * u_tintR * u_tintR)) * smoothstep(0.0, 0.05, abs(hp));
-    vec3 lc = mix(u_line, hp > 0.0 ? u_smile : u_frown, clamp(tw, 0.0, 1.0));
+    // aurora: the neutral lines take an ice-cyan → lavender sheen that turns around the walker
+    float ang = atan(v_p.y, v_p.x);
+    vec3 aur = mix(u_aurA, u_aurB, 0.5 + 0.5 * sin(ang * 1.0 + 0.35 * r));
+    vec3 base = mix(u_line, aur, u_aurora);
+    vec3 lc = mix(base, hp > 0.0 ? u_smile : u_frown, clamp(tw, 0.0, 1.0));
     lum *= 1.0 + 0.6 * clamp(tw, 0.0, 1.0);
 
     vec3 col = u_body * shade * vis * edgeF + lc * lum;
+
+    // parametric fill: a bilinear gradient over (x, y), brighter where the patch is high,
+    // lit like a solid surface, fading out where the mountains begin
+    if (u_paint > 0.0) {
+        vec2 uv = clamp(v_p / (0.75 * u_paintR) * 0.5 + 0.5, 0.0, 1.0);
+        vec3 pc = mix(mix(u_pc[0], u_pc[1], uv.x), mix(u_pc[2], u_pc[3], uv.x), uv.y);
+        float hl = clamp(0.5 + hp / 0.8, 0.0, 1.0);
+        float fr = pow(1.0 - max(dot(n, V), 0.0), 2.0);          // grazing angles glow a little
+        float fade = (1.0 - smoothstep(0.96 * u_paintR, u_paintR, r)) * (1.0 - smoothstep(0.0, 0.3, mountain_mask(v_p)));
+        pc *= (0.30 + 0.70 * shade) * (0.55 + 0.75 * hl) + 0.35 * fr;
+        col += pc * u_paint * fade * vis * edgeF * reveal;
+        // the patch's boundary curve, crisp
+        float rim = curve(r - u_paintR, w * 1.4) * (1.0 - smoothstep(0.0, 0.3, mountain_mask(v_p)));
+        col += mix(u_aurA, u_aurB, uv.x) * rim * u_paint * 1.4 * vis * edgeF * reveal;
+    }
 
     // slice curves through the origin, drawn on the ground
     for (int i = 0; i < 4; i++) {
@@ -338,7 +362,8 @@ class TerrainPlate(ImageMobject):
     """Full-frame GPU terrain. Opaque: meant to sit directly on the black stage."""
 
     def __init__(self, state: Callable[[], dict], *, mesh: int = 480, R: float = 40.0,
-                 samples: int = 4, dust: int = 5000, banks: int = 420, dots: int = 450_000, seed: int = 11, **kw):
+                 samples: int = 4, dust: int = 5000, banks: int = 420, dots: int = 450_000, seed: int = 11,
+                 splats: int = 0, **kw):
         w, h = config.pixel_width, config.pixel_height
         ctx = _ctx()
         head = "#version 330\n" + (SHADER_DIR / "terrain.glsl").read_text()
@@ -386,7 +411,8 @@ class TerrainPlate(ImageMobject):
         _GL[self._gl_key] = dict(prog=prog, mist=mist, dprog=dprog, dots=dots_vao, down=down, blur=blur, comp=comp, vao=vao,
                                  dust=dust_vao, banks=bank_vao, qv=qv, ms=ms, scene=scene,
                                  b1=(b1a, b1b), b2=(b2a, b2b), q4=q4, q8=q8, out=out, size=(w, h),
-                                 R=R, state=state)
+                                 R=R, state=state,
+                                 splats=SplatLayer(ctx, head, splats, TERRAIN_DEFAULTS["m0"]) if splats else None)
         self.stretch_to_fit_width(config.frame_width)
         self.stretch_to_fit_height(config.frame_height)
         self.move_to(ORIGIN)
@@ -448,6 +474,8 @@ class TerrainPlate(ImageMobject):
             **height_u, **common,
             "u_px": px, "u_lw": s["lw"], "u_line": _rgb(S.TERRAIN_LINE), "u_body": _rgb(S.TERRAIN_BODY),
             "u_smile": _rgb(S.SMILE), "u_frown": _rgb(S.FROWN),
+            "u_aurA": _rgb(S.CURVE_A), "u_aurB": _rgb(S.CURVE_B), "u_aurora": s["aurora"],
+            "u_paint": s["paint"], "u_paintR": s["paintR"], "u_pc": [_rgb(c) for c in S.GROUND_GRADIENT],
             "u_contour": s["contour"], "u_cstep": s["cstep"], "u_grid": s["grid"], "u_gstep": s["gstep"], "u_gridR": s["gridR"],
             "u_reveal": s["reveal"], "u_rim": s["rim"], "u_mline": s["mline"], "u_tint": s["tint"], "u_tintR": s["tintR"],
             "u_sl": sl_u, "u_slc": sl_c, "u_disc": tuple(map(float, s["disc"])),
@@ -459,6 +487,11 @@ class TerrainPlate(ImageMobject):
         ms.clear(0.0, 0.0, 0.0, 1.0, depth=1.0)
         ctx.enable(moderngl.DEPTH_TEST)
         gl["vao"].render()
+        if gl["splats"] is not None:
+            ms.depth_mask = False
+            gl["splats"].render(s, height_u, mvp_b, eye, (w, h), px, s["time"])
+            ms.depth_mask = True
+            ctx.disable(moderngl.BLEND)
 
         # mist: additive, depth-tested against the ground, never writing depth
         ctx.enable(moderngl.BLEND | moderngl.PROGRAM_POINT_SIZE)

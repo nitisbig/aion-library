@@ -678,3 +678,12 @@ The builders are in `scenes/ch7.py`; the asserts there cover the dial's bending 
 - **Build order:** `SurfacePlate` lab test (480p and 1080p speed, fog, ribbons) → `BendGauge`, `HessianGrid` → scenes 03–05 (pure Manim, proves the pipeline) → the GL scenes → `build.sh`.
 - **Listen check:** at 280.76 the aligner heard "Otto **Hess**". If ElevenLabs said "Hess" rather than "HESS-uh", it's a small inaccuracy; the on-screen caption spells it correctly either way.
 - **Honesty flags:** the saddle-dominance shot (6-9) is intuition, captioned as such. "Bending" means the second directional derivative `uᵀHu`; the word "curvature" is kept off screen.
+
+## Chapter 0 splat pass (2026-11-05)
+- Scene 01 opens on a spiral galaxy of 120k 3D Gaussian splats (`aion/components/splat_gl.py`, promoted from
+  `lab/2026-11-04-gaussian-splat-city`). It rains down in a wave from the walker outward; each splat lands as a
+  sliver of the mountain range (altitude ramp `S.SPLAT_RAMP`). The fog now rolls in on "fog." and drowns the
+  colour (splat visibility = fog³). Walker lines take the `aurora` cyan→lavender sheen.
+- Scene 02: as the range sinks, the splats tear off and rise as sparks (`lift`), under the fog-bank dip.
+- Scene 26 reuses the splat range so the outro matches the opening.
+- After editing only a shader/GPU component, render with `--fresh` (Manim's cache can't see shader changes).

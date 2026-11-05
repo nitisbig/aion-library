@@ -69,7 +69,7 @@ class Scene02Puzzle(V.VideoScene):
         clk = ValueTracker(e1 - s1)
         rig = V.intro_rig(clk, **V.S01_END, time=e1 - s1)
         self.run_clock(rig["time"], clk)
-        plate = V.terrain_plate(rig)
+        plate = V.terrain_plate(rig, splats=V.SPLATS)
         self.add(plate, *rig.trackers())
         roll = ValueTracker(0.0)
         me = V.walker()
@@ -88,6 +88,9 @@ class Scene02Puzzle(V.VideoScene):
         anims = [rig["haze"].animate(rate_func=swell(haze0, 0.0001, 1.3)).set_value(0.0001),
                  rig["opacity"].animate(rate_func=swell(1.0, 0.999, 0.12)).set_value(0.999),
                  rig["wm"].animate(rate_func=V.window(0.0, 0.7)).set_value(0.0),
+                 # the splat range tears off the sinking ground and rises as sparks
+                 rig["lift"].animate(rate_func=V.window(0.0, 0.75)).set_value(1.0),
+                 rig["splat"].animate(rate_func=V.window(0.8, 1.0)).set_value(0.0),
                  rig["edge"].animate(rate_func=V.window(0.0, 0.55)).set_value(pv.pop("edge")),
                  rig["win"].animate(rate_func=V.window(0.35, 1.0)).set_value(pv.pop("win"))]
         pv.pop("haze")

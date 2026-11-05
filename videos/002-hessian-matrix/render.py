@@ -43,11 +43,11 @@ def scene_files() -> dict[int, tuple[Path, str]]:
     return out
 
 
-def render_scene(f: Path, cls: str, w: int, h: int, fps: int) -> Path:
+def render_scene(f: Path, cls: str, w: int, h: int, fps: int, fresh: bool = False) -> Path:
     env = dict(os.environ)
     env["PATH"] = str(Path(sys.executable).parent) + os.pathsep + env.get("PATH", "")   # TinyTeX via .venv/bin
     cmd = [sys.executable, "-m", "manim", "render", "-r", f"{w},{h}", "--fps", str(fps),
-           str(f.relative_to(ROOT)), cls]
+           *(["--disable_caching"] if fresh else []), str(f.relative_to(ROOT)), cls]
     proc = subprocess.Popen(cmd, cwd=ROOT, env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
                             text=True, bufsize=1)
     path, tail = None, []
@@ -77,6 +77,8 @@ def main():
     ap.add_argument("--quality", default="480p", choices=list(QUALITY))
     ap.add_argument("--fps", type=int, default=15, choices=(15, 30, 60))
     ap.add_argument("--open", action="store_true", help="open the result when done (xdg-open)")
+    ap.add_argument("--fresh", action="store_true",
+                    help="ignore Manim's cache (needed after editing only a shader or GPU component)")
     a = ap.parse_args()
 
     first, last = (a.scene, a.scene) if a.scene else CHAPTERS[a.chapter]
@@ -88,7 +90,7 @@ def main():
     for n in range(first, last + 1):
         f, cls = files[n]
         print(f"\n── scene {n:02d} / {first:02d}–{last:02d} · {cls} · {a.quality} {a.fps} fps ──", flush=True)
-        clips.append(render_scene(f, cls, w, h, a.fps))
+        clips.append(render_scene(f, cls, w, h, a.fps, a.fresh))
 
     start, end = CUT_FRAMES[first - 1] / CUT_FPS, CUT_FRAMES[last] / CUT_FPS
     out = HERE / "out" / f"preview_{tag}_{a.quality}_{a.fps}fps.mp4"

@@ -66,6 +66,11 @@ TERRAIN_LINE = "#C9D4E3"  # contour and wire lines on the ground
 TERRAIN_BODY = "#06080C"  # the ground itself, one step off black
 MIST = "#9FB0C6"          # drifting mist particles and fog banks
 LIGHT = "#FFE9C7"         # design-system `light`: light sweeps and glints only
+# Gaussian-splat world (intro): altitude ramp, valley floor → peaks. Kept away from the
+# semantic blue/orange by staying in teal / indigo / violet / magenta with a warm crest.
+# parametric ground fill (intro): corner colours of a bilinear gradient over (x, y)
+GROUND_GRADIENT = ("#0FC2B0", "#2F6BFF", "#8A3BFF", "#FF3FA8")
+SPLAT_RAMP = ("#0A6E7A", "#12C8C0", "#3A5BFF", "#8B45FF", "#E23FD0", "#FFC79A")
 
 # Typography
 FONT_DISPLAY = "SpaceGrotesk[wght].ttf"   # design-system display face (title lockups), in aion/assets/fonts

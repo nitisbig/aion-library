@@ -47,9 +47,9 @@ class Scene01Fog(V.VideoScene):
 
     def timeline(self):
         clk = ValueTracker(0.0)
-        rig = V.intro_rig(clk)
+        rig = V.intro_rig(clk, form=0.0, grid=0.35, **V.SPLAT_LOOK)
         self.run_clock(rig["time"], clk)
-        plate = V.terrain_plate(rig)
+        plate = V.terrain_plate(rig, splats=V.SPLATS)
         self.add(plate, *rig.trackers())
 
         me = V.walker()
@@ -60,18 +60,20 @@ class Scene01Fog(V.VideoScene):
         me.add_updater(lambda m: V.set_walker_alpha(m, a.get_value()))
         self.add(a)
 
-        # I-1 · the range draws itself on from the walker outward while the camera
-        # descends from the sky to stand beside them; on "thick fog" the fog rolls in
-        # (one move until "perfectly flat", each part on its own window of it)
+        # I-1 · a spiral galaxy of Gaussian splats hangs over the valley; it rains down
+        # in a wave from the walker outward and every splat lands as a sliver of the
+        # mountain range, while the camera descends to stand beside them. On "fog." the
+        # fog rolls in (one move until "perfectly flat", each part on its own window of it)
         T1 = self.t("perfectly flat") - S.LEAD
-        fog_at = (self.t("thick") - S.LEAD) / T1
-        self.play(rig["opacity"].animate(rate_func=V.window(0.0, 0.35)).set_value(1.0),
-                  rig["reveal"].animate(rate_func=V.window(0.0, 0.75, rush_from)).set_value(60.0),
+        fog_at = (self.t("fog") - S.LEAD) / T1
+        self.play(rig["opacity"].animate(rate_func=V.window(0.0, 0.1)).set_value(1.0),
+                  rig["form"].animate(rate_func=V.window(0.12, 0.8)).set_value(1.0),
+                  rig["reveal"].animate(rate_func=V.window(0.1, 0.8, rush_from)).set_value(60.0),
                   *[t.animate(rate_func=smooth).set_value(v) for t, v in
                     ((rig["dist"], 6.2), (rig["pitch"], 10.0), (rig["yaw"], 200.0),
                      (rig["target"][2], 0.7))],
                   a.animate(rate_func=V.window(0.22, 0.45)).set_value(1.0),
-                  *[rig[k].animate(rate_func=V.window(fog_at, fog_at + 0.55)).set_value(v)
+                  *[rig[k].animate(rate_func=V.window(fog_at, min(1.0, fog_at + 0.55))).set_value(v)
                     for k, v in (("fog", 0.34), ("fognear", 1.8), ("mist", 1.0), ("haze", 0.9))],
                   run_time=self.snap(T1))
 

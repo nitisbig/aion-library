@@ -35,7 +35,7 @@ class Scene26Fog(V.VideoScene):
         clk = ValueTracker(0.0)
         fog = V.intro_rig(clk, **C.FOG, opacity=0.0)
         self.run_clock(fog["time"], clk)
-        plate = V.terrain_plate(fog)
+        plate = V.terrain_plate(fog, splats=V.SPLATS)
         self.add(plate, *fog.trackers())
         self.bring_to_front(recap)
         me = V.walker()
