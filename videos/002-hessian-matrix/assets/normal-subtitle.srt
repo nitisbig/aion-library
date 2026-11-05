@@ -1,0 +1,876 @@
+1
+00:00:00,050 --> 00:00:02,960
+You're standing on a hill in thick fog.
+
+2
+00:00:02,960 --> 00:00:05,640
+The ground under your feet is perfectly flat.
+
+3
+00:00:05,640 --> 00:00:09,200
+No slope in any direction. So where are
+
+4
+00:00:09,200 --> 00:00:11,280
+you? Maybe at the top of the hill,
+
+5
+00:00:11,280 --> 00:00:13,500
+maybe at the bottom of a valley, or
+
+6
+00:00:13,500 --> 00:00:17,350
+somewhere stranger, a mountain pass, where the ground
+
+7
+00:00:17,350 --> 00:00:19,680
+rises ahead of you and falls away on
+
+8
+00:00:19,680 --> 00:00:22,810
+both sides. The slope can't tell you. Here,
+
+9
+00:00:22,810 --> 00:00:25,550
+the slope is zero. To know where you
+
+10
+00:00:25,550 --> 00:00:28,000
+are, you need to know how the ground
+
+11
+00:00:28,000 --> 00:00:30,880
+bends. And here's a puzzle. This surface curves
+
+12
+00:00:30,880 --> 00:00:33,680
+upward if you walk east. It curves upward
+
+13
+00:00:33,680 --> 00:00:35,880
+if you walk north. And yet, the point
+
+14
+00:00:35,880 --> 00:00:38,410
+in the middle is not a valley. The
+
+15
+00:00:38,410 --> 00:00:40,440
+answer lives in a small grid of four
+
+16
+00:00:40,440 --> 00:00:43,820
+numbers. It's called the Hessian Matrix. Over the
+
+17
+00:00:43,820 --> 00:00:45,920
+next few minutes, we'll build it from nothing,
+
+18
+00:00:45,920 --> 00:00:48,120
+see what each number means, and see why
+
+19
+00:00:48,120 --> 00:00:51,130
+the same idea helps computer search landscapes with
+
+20
+00:00:51,130 --> 00:00:54,280
+millions of dimensions. All you need is the
+
+21
+00:00:54,280 --> 00:00:56,750
+idea of a slope. Let's start with a
+
+22
+00:00:56,750 --> 00:00:59,930
+single curve. Why equals x squared? At every
+
+23
+00:00:59,930 --> 00:01:02,330
+point, it has a slope. That's the first
+
+24
+00:01:02,330 --> 00:01:05,200
+derivative. On the left, the slope is negative.
+
+25
+00:01:05,200 --> 00:01:07,430
+On the right, it's positive, and right at
+
+26
+00:01:07,430 --> 00:01:10,520
+the bottom, it's zero. Now, watch the slope
+
+27
+00:01:10,520 --> 00:01:12,400
+itself. As we move to the right, it
+
+28
+00:01:12,400 --> 00:01:15,340
+keeps rising steadily. The rate at which the
+
+29
+00:01:15,340 --> 00:01:17,970
+slope changes is the second derivative. For x
+
+30
+00:01:17,970 --> 00:01:21,890
+squared, it's two everywhere. A positive second derivative
+
+31
+00:01:21,890 --> 00:01:24,670
+means the slope is rising. The curve bends
+
+32
+00:01:24,670 --> 00:01:27,140
+upward like a smile. Flip it over to
+
+33
+00:01:27,140 --> 00:01:29,940
+minus x squared, and the second derivative is
+
+34
+00:01:29,940 --> 00:01:32,410
+minus two. The curve bends down like a
+
+35
+00:01:32,410 --> 00:01:35,730
+frown. So the second derivative measures bending, and
+
+36
+00:01:35,730 --> 00:01:37,810
+that's exactly what we need at a flat
+
+37
+00:01:37,810 --> 00:01:40,900
+spot. Take cosine of x. At zero, it's
+
+38
+00:01:40,900 --> 00:01:44,340
+flat. Top or bottom? The second derivative there
+
+39
+00:01:44,340 --> 00:01:47,840
+is minus one. It bends down. A peak.
+
+40
+00:01:47,840 --> 00:01:50,270
+Zooming close and any curve starts to look
+
+41
+00:01:50,270 --> 00:01:53,600
+like a parabola. Near zero, cosine looks almost
+
+42
+00:01:53,600 --> 00:01:56,720
+exactly like one. Minus x squared over two.
+
+43
+00:01:56,780 --> 00:01:59,730
+The second derivative decides which way that parabola
+
+44
+00:01:59,730 --> 00:02:02,910
+opens. That's the second derivative test. Flat and
+
+45
+00:02:02,910 --> 00:02:06,520
+bending up. A valley. Flat and bending down.
+
+46
+00:02:06,520 --> 00:02:09,180
+A peak. And when the bending is zero,
+
+47
+00:02:09,180 --> 00:02:11,760
+like x cubed at zero, the test simply
+
+48
+00:02:11,760 --> 00:02:14,200
+can't tell. Now, let's step off the line
+
+49
+00:02:14,200 --> 00:02:17,160
+and onto a surface. A function of two
+
+50
+00:02:17,160 --> 00:02:19,320
+inputs, x and y, gives a height above
+
+51
+00:02:19,320 --> 00:02:22,480
+every point on the floor. Together, those heights
+
+52
+00:02:22,480 --> 00:02:24,700
+form a landscape. To measure slope on a
+
+53
+00:02:24,700 --> 00:02:27,630
+landscape, we slice it. Hold y fixed and
+
+54
+00:02:27,630 --> 00:02:30,230
+cut along the x direction. The cut is
+
+55
+00:02:30,230 --> 00:02:32,530
+an ordinary curve and its slope is the
+
+56
+00:02:32,530 --> 00:02:35,570
+partial derivative with respect to x. Cut along
+
+57
+00:02:35,570 --> 00:02:37,600
+y instead and you get the partial derivative
+
+58
+00:02:37,600 --> 00:02:40,240
+with respect to y. Put those two slopes
+
+59
+00:02:40,240 --> 00:02:41,920
+together and you get an arrow on the
+
+60
+00:02:41,920 --> 00:02:45,500
+floor, the gradient. It points straight uphill and
+
+61
+00:02:45,500 --> 00:02:48,090
+its length tells you how steep. Walk around
+
+62
+00:02:48,090 --> 00:02:50,640
+and the arrow changes. On a steep side,
+
+63
+00:02:50,640 --> 00:02:53,480
+it's long. Near the top, it shrinks. And
+
+64
+00:02:53,480 --> 00:02:56,570
+at a few special points, it vanishes. These
+
+65
+00:02:56,570 --> 00:02:59,320
+flat points are called critical points. Look at
+
+66
+00:02:59,320 --> 00:03:02,760
+these three surfaces. A bowl, a dome, and
+
+67
+00:03:02,760 --> 00:03:05,140
+a saddle, shaped like a mountain pass. At
+
+68
+00:03:05,140 --> 00:03:07,470
+the center of each one, the gradient is
+
+69
+00:03:07,470 --> 00:03:09,970
+zero. But the bowl is a valley. The
+
+70
+00:03:09,970 --> 00:03:11,970
+dome is a peak and the saddle is
+
+71
+00:03:11,970 --> 00:03:14,500
+neither. It's low one way and high the
+
+72
+00:03:14,500 --> 00:03:16,680
+other way. To tell them apart, we need
+
+73
+00:03:16,680 --> 00:03:19,480
+second derivatives again. But on a surface, there's
+
+74
+00:03:19,480 --> 00:03:22,060
+more than one. We have two slopes, the
+
+75
+00:03:22,060 --> 00:03:24,360
+slope in x and the slope in y.
+
+76
+00:03:24,420 --> 00:03:26,800
+And each slope can change in two ways.
+
+77
+00:03:26,800 --> 00:03:28,920
+As you move in x or as you
+
+78
+00:03:28,920 --> 00:03:32,200
+move in y. Two slopes, two directions, four
+
+79
+00:03:32,200 --> 00:03:35,420
+second derivatives. How the x slope changes as
+
+80
+00:03:35,420 --> 00:03:37,880
+you move in x. That's the bending of
+
+81
+00:03:37,880 --> 00:03:40,190
+the x slice. We write it f x
+
+82
+00:03:40,190 --> 00:03:42,700
+x. How the y slope changes as you
+
+83
+00:03:42,700 --> 00:03:44,920
+move in y. The bending of the y
+
+84
+00:03:44,920 --> 00:03:47,740
+slice, f y y. The other two are
+
+85
+00:03:47,740 --> 00:03:51,080
+more interesting. Picture yourself on the surface facing
+
+86
+00:03:51,080 --> 00:03:53,130
+east. Now, take a step to the side
+
+87
+00:03:53,130 --> 00:03:55,760
+toward the north. Does the ground ahead of
+
+88
+00:03:55,760 --> 00:03:58,390
+you get steeper or flatter? That's f x
+
+89
+00:03:58,390 --> 00:04:02,210
+y. It measures twist. The surface z equals
+
+90
+00:04:02,210 --> 00:04:05,100
+x times y shows this perfectly. Along the
+
+91
+00:04:05,100 --> 00:04:07,700
+x-axis, it's flat. But step north and the
+
+92
+00:04:07,700 --> 00:04:11,060
+ground facing east tilts upward. Step south and
+
+93
+00:04:11,060 --> 00:04:13,640
+it tilts down. It's bending in x is
+
+94
+00:04:13,640 --> 00:04:16,410
+zero. It's bending in y is zero. But
+
+95
+00:04:16,410 --> 00:04:19,120
+it's twist is one. The last one, f
+
+96
+00:04:19,120 --> 00:04:21,600
+y x, asks the same question the other
+
+97
+00:04:21,600 --> 00:04:24,780
+way around. For any smooth surface, it always
+
+98
+00:04:24,780 --> 00:04:27,020
+matches f x y. The twist is the
+
+99
+00:04:27,020 --> 00:04:29,920
+same from both sides. Now arrange all four
+
+100
+00:04:29,920 --> 00:04:32,280
+in a square. Bending in x on the
+
+101
+00:04:32,280 --> 00:04:34,320
+top left, bending in y on the bottom
+
+102
+00:04:34,320 --> 00:04:36,370
+right, and the twist in the other two
+
+103
+00:04:36,370 --> 00:04:39,500
+corners. That's the Hessian matrix, named after the
+
+104
+00:04:39,500 --> 00:04:42,920
+German mathematician Otto Hess. Because the twist appears
+
+105
+00:04:42,920 --> 00:04:45,640
+twice, the grid is symmetric. A mirror image
+
+106
+00:04:45,640 --> 00:04:48,840
+across its diagonal. Let's build one. F equals
+
+107
+00:04:48,840 --> 00:04:51,220
+x squared plus three x y plus y
+
+108
+00:04:51,220 --> 00:04:54,210
+squared. The bending in x is two. The
+
+109
+00:04:54,210 --> 00:04:56,620
+bending in y is two. The twist is
+
+110
+00:04:56,620 --> 00:05:00,370
+three. So the Hessian is two, three, three,
+
+111
+00:05:00,370 --> 00:05:02,230
+two. Hold on to that one. It's the
+
+112
+00:05:02,230 --> 00:05:04,660
+puzzle surface from the start. A surface can
+
+113
+00:05:04,660 --> 00:05:07,010
+bend in any direction, not just east or
+
+114
+00:05:07,010 --> 00:05:09,880
+north. So what about the directions in between?
+
+115
+00:05:09,880 --> 00:05:12,700
+Here's the beautiful part. You don't need any
+
+116
+00:05:12,700 --> 00:05:15,860
+new derivatives. Pick a direction as a little
+
+117
+00:05:15,860 --> 00:05:18,481
+arrow of length one. Multiply the Hessian by
+
+118
+00:05:18,480 --> 00:05:21,180
+that arrow. Then take the dot product with
+
+119
+00:05:21,180 --> 00:05:23,580
+the same arrow again. The number that comes
+
+120
+00:05:23,580 --> 00:05:26,290
+out is the bending in that direction. Let's
+
+121
+00:05:26,290 --> 00:05:28,980
+watch it on the puzzle surface. Facing east,
+
+122
+00:05:28,980 --> 00:05:32,670
+the bending is two. A smile. Now slowly
+
+123
+00:05:32,670 --> 00:05:36,870
+turn. Toward the northeast, the bending grows. Three,
+
+124
+00:05:36,870 --> 00:05:40,610
+four. At 45 degrees, it reaches five. The
+
+125
+00:05:40,610 --> 00:05:44,120
+strongest smile on the surface. Keep turning, the
+
+126
+00:05:44,120 --> 00:05:47,290
+bending falls. Back to two, facing north. And
+
+127
+00:05:47,290 --> 00:05:50,520
+it keeps falling through zero and past it.
+
+128
+00:05:50,520 --> 00:05:53,800
+Facing northwest, the bending is minus one, a
+
+129
+00:05:53,800 --> 00:05:56,960
+frown. So the surface smiles along one diagonal
+
+130
+00:05:56,960 --> 00:05:59,720
+and frowns along the other. It's a saddle.
+
+131
+00:05:59,720 --> 00:06:01,960
+The east and north slices showed us two
+
+132
+00:06:01,960 --> 00:06:05,130
+smiles. The frown was hiding in between. Those
+
+133
+00:06:05,130 --> 00:06:08,080
+two special directions are always at right angles.
+
+134
+00:06:08,080 --> 00:06:10,770
+They're called the eigenvectors of the Hessian. And
+
+135
+00:06:10,770 --> 00:06:13,320
+the bending along them, five and minus one,
+
+136
+00:06:13,320 --> 00:06:16,010
+are its eigenvalues. Turn the grid to line
+
+137
+00:06:16,010 --> 00:06:19,080
+up with those directions and the twist disappears.
+
+138
+00:06:19,080 --> 00:06:22,100
+The Hessian becomes just its two eigenvalues sitting
+
+139
+00:06:22,100 --> 00:06:24,160
+on the diagonal. And this is how any
+
+140
+00:06:24,160 --> 00:06:26,950
+smooth surface looks up close. The height plus
+
+141
+00:06:26,950 --> 00:06:28,890
+a tilt from the gradient plus a bend
+
+142
+00:06:28,890 --> 00:06:31,360
+from the Hessian. Just like the parabola from
+
+143
+00:06:31,360 --> 00:06:34,030
+before, one dimension up. Now we can answer
+
+144
+00:06:34,030 --> 00:06:36,090
+the question from the foggy hill. At a
+
+145
+00:06:36,090 --> 00:06:38,970
+flat point, look at the two eigenvalues. Both
+
+146
+00:06:38,970 --> 00:06:42,000
+positive, the surface smiles in every direction. A
+
+147
+00:06:42,000 --> 00:06:45,610
+valley, a local minimum. Both negative, it frowns
+
+148
+00:06:45,610 --> 00:06:49,080
+in every direction. A peak, a local maximum.
+
+149
+00:06:49,080 --> 00:06:51,200
+One of each, it smiles one way and
+
+150
+00:06:51,200 --> 00:06:54,150
+frowns the other. A saddle. There's even a
+
+151
+00:06:54,150 --> 00:06:57,370
+shortcut. Multiply the two bending numbers and subtract
+
+152
+00:06:57,370 --> 00:07:00,130
+the twist squared. That's the determinant and it
+
+153
+00:07:00,130 --> 00:07:03,400
+equals the two eigenvalues multiplied together. If it's
+
+154
+00:07:03,400 --> 00:07:06,560
+negative, they have opposite signs. A saddle. If
+
+155
+00:07:06,560 --> 00:07:08,880
+it's positive, they share a sign and the
+
+156
+00:07:08,880 --> 00:07:11,140
+bending in x tells you which. For the
+
+157
+00:07:11,140 --> 00:07:14,130
+puzzle surface, two times two is four. Three
+
+158
+00:07:14,130 --> 00:07:17,140
+squared is nine. Four minus nine is minus
+
+159
+00:07:17,140 --> 00:07:21,440
+five. A saddle, confirmed. Now a real landscape.
+
+160
+00:07:21,440 --> 00:07:24,030
+F equals x cubed minus three x plus
+
+161
+00:07:24,030 --> 00:07:26,800
+y squared. It has two flat points at
+
+162
+00:07:26,800 --> 00:07:29,400
+x equals one and x equals minus one.
+
+163
+00:07:29,400 --> 00:07:31,600
+At x equals one, the Hessian is six,
+
+164
+00:07:31,600 --> 00:07:35,470
+zero, zero, two. Both positive, a valley. At
+
+165
+00:07:35,470 --> 00:07:38,330
+x equals minus one, it's minus six, zero,
+
+166
+00:07:38,330 --> 00:07:41,370
+zero, two. One of each, a saddle. The
+
+167
+00:07:41,370 --> 00:07:43,500
+pass that leads out of the valley. And
+
+168
+00:07:43,500 --> 00:07:46,080
+just like on the line, sometimes the test
+
+169
+00:07:46,080 --> 00:07:48,230
+can't tell. X to the fourth plus y
+
+170
+00:07:48,230 --> 00:07:50,510
+to the fourth is a valley. But at
+
+171
+00:07:50,510 --> 00:07:53,350
+its center, the Hessian is all zeros. So
+
+172
+00:07:53,350 --> 00:07:55,370
+is the Hessian of the monkey saddle with
+
+173
+00:07:55,370 --> 00:07:57,690
+room for two legs and a tail. When
+
+174
+00:07:57,690 --> 00:08:00,370
+an eigenvalue is zero, you have to look
+
+175
+00:08:00,370 --> 00:08:02,920
+closer. So why does this matter outside a
+
+176
+00:08:02,920 --> 00:08:05,220
+math class? Because so much of the modern
+
+177
+00:08:05,220 --> 00:08:07,420
+world is about finding the bottom of a
+
+178
+00:08:07,420 --> 00:08:09,941
+valley. Training a neural network means searching a
+
+179
+00:08:09,940 --> 00:08:12,790
+landscape for its lowest point. The height is
+
+180
+00:08:12,790 --> 00:08:15,140
+the error. And the landscape has not two
+
+181
+00:08:15,140 --> 00:08:18,520
+dimensions, but millions. The simplest way down is
+
+182
+00:08:18,520 --> 00:08:21,060
+to follow the gradient, one small step at
+
+183
+00:08:21,060 --> 00:08:24,320
+a time. That's gradient descent. But watch it
+
+184
+00:08:24,320 --> 00:08:27,610
+in a long narrow valley. Here, the eigenvalues
+
+185
+00:08:27,610 --> 00:08:30,110
+are two and 20. The walls are 10
+
+186
+00:08:30,110 --> 00:08:33,240
+times steeper than the floor. Each step overshoots
+
+187
+00:08:33,240 --> 00:08:36,180
+and the path zigzags back and forth crawling
+
+188
+00:08:36,180 --> 00:08:39,360
+toward the bottom. That ratio, 20 over two,
+
+189
+00:08:39,360 --> 00:08:41,830
+is called the condition number. Now bring in
+
+190
+00:08:41,830 --> 00:08:44,620
+the Hessian. Newton's method treats the ground around
+
+191
+00:08:44,620 --> 00:08:46,510
+you as a bowl, built from the gradient
+
+192
+00:08:46,510 --> 00:08:48,720
+and the Hessian, and jumps straight to the
+
+193
+00:08:48,720 --> 00:08:51,060
+bottom of that bowl. On this valley, one
+
+194
+00:08:51,060 --> 00:08:54,440
+jump lands exactly on the minimum. The catch?
+
+195
+00:08:54,440 --> 00:08:56,560
+With a million inputs, the Hessian is a
+
+196
+00:08:56,560 --> 00:08:59,820
+million by a million, a trillion numbers. So
+
+197
+00:08:59,820 --> 00:09:02,650
+real methods only estimate pieces of it. And
+
+198
+00:09:02,650 --> 00:09:05,700
+the Hessian explains something surprising. In these huge
+
+199
+00:09:05,700 --> 00:09:08,800
+landscapes, most flat points aren't valleys at all.
+
+200
+00:09:08,800 --> 00:09:11,700
+They're saddles. To be a valley, every single
+
+201
+00:09:11,700 --> 00:09:14,710
+eigenvalue has to be positive. With millions of
+
+202
+00:09:14,710 --> 00:09:17,990
+them, a few are almost always negative. There's
+
+203
+00:09:17,990 --> 00:09:20,580
+almost always a way down. Let's walk back
+
+204
+00:09:20,580 --> 00:09:23,140
+through it. On a line, the second derivative
+
+205
+00:09:23,140 --> 00:09:26,560
+measures bending. Positive is a smile. Negative is
+
+206
+00:09:26,560 --> 00:09:28,890
+a frown. On a surface, there are four
+
+207
+00:09:28,890 --> 00:09:32,000
+second derivatives, bending in x, bending in y,
+
+208
+00:09:32,000 --> 00:09:34,800
+and the twist, which shows up twice. Arrange
+
+209
+00:09:34,800 --> 00:09:36,320
+them in a grid and you have the
+
+210
+00:09:36,320 --> 00:09:38,820
+Hessian. Give it any direction, and it tells
+
+211
+00:09:38,820 --> 00:09:41,420
+you the bending that way. Its eigenvectors point
+
+212
+00:09:41,420 --> 00:09:44,320
+along the strongest smile and the deepest frown.
+
+213
+00:09:44,320 --> 00:09:46,850
+Its eigenvalues say how strong they are. And
+
+214
+00:09:46,850 --> 00:09:50,080
+at a flat point, their signs decide everything.
+
+215
+00:09:50,080 --> 00:09:53,520
+All positive, a valley, all negative, a peak,
+
+216
+00:09:53,520 --> 00:09:56,150
+mixed, a saddle. So the next time you're
+
+217
+00:09:56,150 --> 00:09:59,140
+standing somewhere flat, in the fog, you'll know
+
+218
+00:09:59,140 --> 00:10:01,400
+what to ask, not which way is down,
+
+219
+00:10:01,400 --> 00:10:05,320
+but how the ground bends. Thanks for watching.
+

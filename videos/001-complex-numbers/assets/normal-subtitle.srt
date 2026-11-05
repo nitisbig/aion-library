@@ -1,0 +1,84 @@
+1
+00:00:00,060 --> 00:00:02,440
+What if a number could turn, not just
+
+2
+00:00:02,440 --> 00:00:05,760
+grow or shrink but spin? That's a complex
+
+3
+00:00:05,760 --> 00:00:07,700
+number, and in one minute you'll see it
+
+4
+00:00:07,700 --> 00:00:10,960
+isn't complex at all. Here's the puzzle. What
+
+5
+00:00:10,960 --> 00:00:14,530
+number times itself gives minus one? Square two,
+
+6
+00:00:14,530 --> 00:00:17,880
+you get four. Square minus two, still four.
+
+7
+00:00:17,880 --> 00:00:20,080
+Nothing on the number line works. So we
+
+8
+00:00:20,080 --> 00:00:23,250
+give it a name, i. Watch what multiplying
+
+9
+00:00:23,250 --> 00:00:25,910
+by minus one does. It flips the line,
+
+10
+00:00:25,910 --> 00:00:27,970
+a half turn. So I should be half
+
+11
+00:00:27,970 --> 00:00:30,810
+of that, a quarter turn. Multiply one by
+
+12
+00:00:30,810 --> 00:00:33,520
+i, and it swings straight up again, and
+
+13
+00:00:33,520 --> 00:00:36,000
+it lands on minus one. Now the line
+
+14
+00:00:36,000 --> 00:00:38,560
+opens into a plane. Three plus two i
+
+15
+00:00:38,560 --> 00:00:41,770
+is three steps right, two steps up. Multiply
+
+16
+00:00:41,770 --> 00:00:44,400
+by i, and the arrow turns 90 degrees
+
+17
+00:00:44,400 --> 00:00:46,830
+to minus two plus three i. A complex
+
+18
+00:00:46,830 --> 00:00:48,910
+number is a point with a direction. i
+
+19
+00:00:48,910 --> 00:00:51,400
+is a quarter turn, and two quarter turns
+
+20
+00:00:51,400 --> 00:00:54,450
+face backward. That's why I squared is minus
+
+21
+00:00:54,450 --> 00:00:56,660
+one, not imaginary, just rotation.
+

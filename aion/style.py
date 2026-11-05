@@ -27,3 +27,39 @@ VECTOR_STROKE = 7
 # Timing
 FADE = 0.6              # standard caption/element fade
 LEAD = 0.15             # visuals land slightly before the narration beat
+
+# Complex numbers (video 001). Fixed meaning for the whole video.
+REAL = ACCENT           # real part, real axis, plain numbers on the line
+IMAG = J_HAT            # imaginary part, imaginary axis
+I_UNIT = "#B48EF0"      # the number i, quarter-turn arcs
+Z = VEC                 # the moving complex number z (arrow)
+NEG = "#F2A65A"         # minus one, half turn
+
+# Hessian matrix (video 002). Fixed meaning for the whole video.
+HX = J_HAT              # x direction, x slice, f_xx (red)
+HY = I_HAT              # y direction, y slice, f_yy (green)
+TWIST = I_UNIT          # f_xy, f_yx: the twist (violet)
+GRAD = VEC              # slope, gradient arrow, the walker (yellow)
+SMILE = ACCENT          # bending up, positive eigenvalue, valley (blue)
+FROWN = NEG             # bending down, negative eigenvalue, peak (orange)
+FLAT = "#7A8290"        # zero bending: flat gauge, "can't tell"
+SURF_LO = "#1B2433"     # surface colour ramp, low → high (neutral slate)
+SURF_HI = "#4C5D75"
+SURF_LINE = "#8A9BB4"   # coordinate grid drawn on a surface
+FOG = "#2B3442"
+
+# Luminous terrain (TerrainPlate, Aion design system: black stage, light only from
+# thin geometry). Neutral silver so the semantic colours keep their meaning on top.
+STAGE = "#000000"         # design-system `stage`
+STAGE_RAISED = "#05070A"  # design-system `stage-raised`: glass-cell bodies
+LINE = "#2A3140"          # design-system `line`: glass rims at rest
+GLASS_TOP = "#0E131C"     # design-system glass-top (opaque on black)
+GLASS_BOTTOM = "#04060A"  # design-system glass-bottom
+TERRAIN_LINE = "#C9D4E3"  # contour and wire lines on the ground
+TERRAIN_BODY = "#06080C"  # the ground itself, one step off black
+MIST = "#9FB0C6"          # drifting mist particles and fog banks
+LIGHT = "#FFE9C7"         # design-system `light`: light sweeps and glints only
+
+# Typography
+FONT_DISPLAY = "SpaceGrotesk[wght].ttf"   # design-system display face (title lockups), in aion/assets/fonts
+FONT = "Inter Variable"   # captions and labels (Text); math stays LaTeX

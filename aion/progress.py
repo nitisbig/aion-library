@@ -86,6 +86,8 @@ class RenderProgressMixin:
 
     # ── internals ─────────────────────────────────────────────────
     def _pg_sync(self, force: bool = False, done: bool = False) -> None:
+        if getattr(self, "_pg_paused", False) and not done:
+            return  # e.g. a NarratedScene silently replaying earlier scenes
         frames = round(self.renderer.time * config.frame_rate)
         bar = self._pg_bar
         if bar.total is not None and frames > bar.total:
