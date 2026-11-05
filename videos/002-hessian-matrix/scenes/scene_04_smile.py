@@ -125,5 +125,6 @@ class Scene04Smile(V.VideoScene):
         down = V.lit(cax.plot(math.cos, x_range=[-1.1, 1.1]), S.FROWN, 5, 18, 0.18)
         self.beat("bends down", Create(down), rt=0.5, after=105.0)
         ring = Circle(radius=0.22, color=S.FROWN, stroke_width=4).move_to(cax.c2p(0, 1))
-        self.beat("peak", Create(ring), rt=0.5, after=106.5)
+        self.beat("peak", Create(ring), V.punch(VGroup(ax, par_s, down, ft), cax.c2p(0, 1), 1.12),
+                  rt=0.5, after=106.5)
         self.finish()

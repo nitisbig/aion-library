@@ -46,9 +46,9 @@ GRAD = "#FFD43B"        # slope, gradient arrow, the walker (gold)
 SMILE = "#2E9BFF"       # bending up, positive eigenvalue, valley (blue)
 FROWN = "#FF8A2A"       # bending down, negative eigenvalue, peak (orange)
 FLAT = "#8892A2"        # zero bending: flat gauge, "can't tell"
-CURVE_A = "#6FE3FF"     # neutral curves and rings: an ice-cyan → lavender sheen
-CURVE_B = "#B9A6FF"
-GRID_MAJOR = "#173A63"  # graph grids: deep blue on black
+CURVE_A = "#2FE6FF"     # neutral curves and rings: an ice-cyan → lavender sheen
+CURVE_B = "#D56BFF"
+GRID_MAJOR = "#1A4272"  # graph grids: deep blue on black
 GRID_MINOR = "#0D2140"
 SURF_LO = "#1B2433"     # surface colour ramp, low → high (neutral slate)
 SURF_HI = "#4C5D75"
@@ -75,3 +75,6 @@ SPLAT_RAMP = ("#0A6E7A", "#12C8C0", "#3A5BFF", "#8B45FF", "#E23FD0", "#FFC79A")
 # Typography
 FONT_DISPLAY = "SpaceGrotesk[wght].ttf"   # design-system display face (title lockups), in aion/assets/fonts
 FONT = "Inter Variable"   # captions and labels (Text); math stays LaTeX
+LABEL_WEIGHT = "LIGHT"    # thin, professional labels (Inter Light); headings pass weight= themselves
+# math typeface: Libertinus text + maths: thin, refined, professional
+TEX_PREAMBLE = r"\usepackage{libertinus-type1}\usepackage{libertinust1math}"

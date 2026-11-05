@@ -217,7 +217,7 @@ def peak_ring(ax) -> Circle:
 
 
 def sweep_formula(ax) -> MathTex:
-    return MathTex("2", "+", r"3\sin 2\theta", font_size=38, color=S.TEXT).move_to(ax.c2p(138, 4.6))
+    return MathTex("2", "+", r"3\sin 2\theta", font_size=38, color=S.TEXT).next_to(ax.c2p(180, 5.5), UP, buff=0.15, aligned_edge=RIGHT)  # above the plot
 
 
 def dial(th):

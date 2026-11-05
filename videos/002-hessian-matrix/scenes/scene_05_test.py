@@ -101,5 +101,6 @@ class Scene05Test(V.VideoScene):
                   Transform(curve, C.cube_plot(cax)), FadeOut(tan), rt=0.8)
         ft = C.flat_tangent(cax, 0, 0, half=0.55)
         self.beat("x cubed", Create(ft[0]), FadeIn(ft[1], scale=0.5), rt=0.6)
-        self.beat("cant tell", FadeIn(l3, shift=LEFT * 0.15), rt=0.5)
+        self.beat("cant tell", FadeIn(l3, shift=LEFT * 0.15),
+                  V.punch(VGroup(ax, curve, ft), cax.c2p(0, 0), 1.12), rt=0.5)
         self.finish()

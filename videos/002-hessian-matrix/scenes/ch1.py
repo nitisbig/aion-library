@@ -47,7 +47,7 @@ def slope_axes() -> Axes:
 
 
 def slope_axes_label(ax2: Axes):
-    return V.label("slope", 24, S.GRAD).next_to(ax2.c2p(-3, 4.5), RIGHT, buff=0.15)
+    return V.label("slope", 24, S.GRAD).next_to(ax2.c2p(-3, 4.5), LEFT, buff=0.25)   # outside the plot
 
 
 def readout(x0, s: float = 1.0) -> VGroup:

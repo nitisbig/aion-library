@@ -687,3 +687,18 @@ The builders are in `scenes/ch7.py`; the asserts there cover the dial's bending 
 - Scene 02: as the range sinks, the splats tear off and rise as sparks (`lift`), under the fog-bank dip.
 - Scene 26 reuses the splat range so the outro matches the opening.
 - After editing only a shader/GPU component, render with `--fresh` (Manim's cache can't see shader changes).
+
+## Whole-video look pass (2026-11-05)
+- Stage is pure black for the whole video (backdrops tried and dropped: galaxy, world, red smoke, red
+  gradient). `blit.UNDERLAY` / plate coverage code is kept but dormant.
+- Typography: maths in Libertinus (`S.TEX_PREAMBLE`, global tex template in shared.py); labels in Inter
+  Light (`S.LABEL_WEIGHT`); headings and eyebrows pass their own weight. Curves use a brighter
+  cyan → lavender sheen (`S.CURVE_A/B`) over a deep-blue grid (`S.GRID_MAJOR`).
+- Graph motion layer (`VideoScene.play` in shared.py, applies everywhere): `Create`/`FadeIn` of an `Axes`
+  becomes a stretch-in from the origin (x, then y, fading up); `Create` of a curve gets a glowing comet head
+  riding its drawing tip. `V.punch(mob, point, k)` is a there-and-back zoom on a key word: scene 03 "zero",
+  scene 04 "peak", scene 05 "can't tell".
+- Labels kept off the plots: "slope" sits left of the slope panel; "2 + 3 sin 2θ" sits above the sweep graph.
+- Every SurfacePlate wears the intro's parametric look through `Rig.plate()` (`SURF_LOOK`: gradient fill
+  `S.GROUND_GRADIENT`, aurora-tinted grid and contours, crisp boundary with a rim line).
+- Scene 17's foggy-hill flashback uses the intro's splat range and gradient ground.

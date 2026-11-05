@@ -54,6 +54,7 @@ class Scene03Slope(V.VideoScene):
         self.beat("right", x0.animate.set_value(1.5), rt=1.0, after=65.0)
         self.beat("bottom", x0.animate.set_value(0.0), rt=0.8, after=67.0)
         self.beat("zero", Flash(ax.c2p(0, 0), color=S.GRAD, line_length=0.25, flash_radius=0.35),
+                  V.punch(VGroup(ax, par), ax.c2p(0, 0), 1.12),
                   rt=0.4, after=67.5)
 
         # 1-4 · split: the slope gets its own graph

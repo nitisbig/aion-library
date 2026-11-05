@@ -14,7 +14,7 @@ from pathlib import Path
 import numpy as np
 from manim import (DOWN, LEFT, ORIGIN, RIGHT, UP, Axes, Circle, Dot, Line, ManimColor, MathTex, VMobject,
                    Text, ValueTracker, VGroup, interpolate_color, smooth,
-                   there_and_back, UpdateFromAlphaFunc)
+                   there_and_back, UpdateFromAlphaFunc, TexTemplate, config, Animation)
 
 from aion import style as S
 from aion.components.surface_gl import SurfacePlate, slice_line, tangent_disc
@@ -29,6 +29,87 @@ SRT = ROOT / "assets" / "cue-per-word.srt"
 BG = "#000000"                       # pure black for this video (user decision)
 
 
+# the video's math typeface (every MathTex / Tex / DecimalNumber made after this import)
+_TEX = TexTemplate()
+_TEX.add_to_preamble(S.TEX_PREAMBLE)
+config.tex_template = _TEX
+
+
+# ── motion layer (applied to every VideoScene.play) ───────────────────────
+class Comet(Animation):
+    """A glowing head that rides the drawing tip of a curve while Create draws it."""
+
+    def __init__(self, path: VMobject, color, **kw):
+        self.path = path
+        head = VGroup(Dot(radius=0.13).set_fill(color, 0.10).set_stroke(width=0),
+                      Dot(radius=0.07).set_fill(color, 0.35).set_stroke(width=0),
+                      Dot(radius=0.032).set_fill("#FFFFFF", 0.95).set_stroke(width=0))
+        head.move_to(path.get_start())
+        self._ops = (0.10, 0.35, 0.95)
+        self._tip = VMobject()
+        super().__init__(head, remover=True, **kw)
+
+    def interpolate_mobject(self, alpha: float) -> None:
+        a = float(np.clip(self.rate_func(alpha), 0.0, 1.0))
+        if 0 < a < 1:                       # Create grows by points, not arc length: follow its tip exactly
+            self._tip.pointwise_become_partial(self.path, 0, a)
+            self.mobject.move_to(self._tip.get_end())
+        f = min(1.0, a / 0.06, (1.0 - a) / 0.1) if 0 < a < 1 else 0.0
+        for d, op in zip(self.mobject, self._ops):
+            d.set_fill(opacity=op * max(f, 0.0))
+
+
+def _comet_path(m) -> VMobject | None:
+    """The curve a comet should ride, or None (text, axes, dashes, tiny or point-less shapes)."""
+    from manim import NumberLine, SingleStringMathTex, Text as _T, DecimalNumber as _D, DashedVMobject as _DV
+    if isinstance(m, (Axes, NumberLine, SingleStringMathTex, MathTex, _T, _D, _DV)) or not isinstance(m, VMobject):
+        return None
+    if m.has_no_points() or len(m.submobjects) > 0:
+        return None
+    try:
+        if np.linalg.norm(m.get_end() - m.get_start()) + m.get_arc_length() < 0.8:
+            return None
+    except Exception:
+        return None
+    return m
+
+
+def _stretch_in(ax: Axes) -> Animation:
+    """Axes (and their grid) stretch out from the origin: x first, then y, fading up."""
+    start = ax.copy()
+    (x0, x1), (y0, y1) = ax.x_range[:2], ax.y_range[:2]
+    o = ax.c2p(min(max(0, x0), x1), min(max(0, y0), y1))
+    pairs = list(zip(ax.family_members_with_points(), start.family_members_with_points()))
+    ops = [(s.get_stroke_opacity(), s.get_fill_opacity()) for _, s in pairs]
+
+    def upd(m, a):
+        sx, sy = smooth(min(1.0, a / 0.7)), smooth(min(1.0, max(0.0, a - 0.2) / 0.8))
+        m.become(start)
+        if a < 1.0:
+            m.stretch(max(sx, 1e-3), 0, about_point=o).stretch(max(sy, 1e-3), 1, about_point=o)
+            f = smooth(min(1.0, a / 0.45))
+            for (mm, _), (so, fo) in zip(pairs, ops):
+                mm.set_stroke(opacity=so * f).set_fill(opacity=fo * f)
+    return UpdateFromAlphaFunc(ax, upd)
+
+
+def _motion(an):
+    from manim import Create, Uncreate, FadeIn as _FI
+    if isinstance(an, (Create, _FI)) and not isinstance(an, Uncreate) and isinstance(an.mobject, Axes):
+        return [_stretch_in(an.mobject)]
+    if isinstance(an, Create) and not isinstance(an, Uncreate):
+        path = _comet_path(an.mobject)
+        if path is not None:
+            col = path.get_stroke_color()
+            return [an, Comet(path, col)]
+    return [an]
+
+
+def punch(mob, about, k: float = 1.18):
+    """A quick zoom into `about` and back: the graph leans in on a key word."""
+    return pulse(mob, lambda m: m.scale(k, about_point=about))
+
+
 def scene_range(n: int) -> tuple[float, float]:
     """(start, end) in absolute seconds of scene number n (1-based), frame-exact."""
     return CUT_FRAMES[n - 1] / FPS, CUT_FRAMES[n] / FPS
@@ -36,6 +117,13 @@ def scene_range(n: int) -> tuple[float, float]:
 
 class VideoScene(NarratedScene):
     AUDIO, SRT, BACKGROUND = AUDIO, SRT, BG
+
+    def play(self, *anims, **kw):
+        """Every play goes through the motion layer: axes stretch in, curves draw with a comet head."""
+        out = []
+        for an in anims:
+            out += _motion(an)
+        super().play(*out, **kw)
 
     def beat(self, key: str, *anims, rt: float = 0.8, after: float | None = None,
              lead: float = S.LEAD, rate=smooth, **kw):
@@ -120,7 +208,11 @@ class Rig:
         return out
 
     def plate(self, **kw) -> SurfacePlate:
-        return SurfacePlate(self.state, **kw)
+        return SurfacePlate(lambda: {**SURF_LOOK, **self.state()}, **kw)
+
+
+# every surface in the video wears the intro's parametric look (keys a rig may override)
+SURF_LOOK = dict(paint=0.40, aurora=1.0, crisp=1.0)
 
 
 # ── surfaces used in the video (H as (a, b, c) = [[a, b], [b, c]]) ─────
@@ -186,6 +278,7 @@ def on_surface(plate: SurfacePlate, x, y, lift: float = 0.0):
 
 
 def label(text: str, size: float = 30, color=S.TEXT, **kw) -> Text:
+    kw.setdefault("weight", S.LABEL_WEIGHT)
     return Text(text, font=S.FONT, font_size=size, color=color, **kw)
 
 

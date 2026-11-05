@@ -39,9 +39,9 @@ class Scene17Signs(V.VideoScene):
 
         # 5-1 · back to the foggy hill: the walker on its flat disc
         clk = ValueTracker(0.0)
-        fog = V.intro_rig(clk, **FOG, opacity=0.0)
+        fog = V.intro_rig(clk, **{**FOG, "form": 1.0, **V.SPLAT_LOOK}, opacity=0.0)
         self.run_clock(fog["time"], clk)
-        fplate = V.terrain_plate(fog)
+        fplate = V.terrain_plate(fog, splats=V.SPLATS)
         self.add(fplate, *fog.trackers())
         me = V.walker()
         V.pin(me, fplate, V.on_surface(fplate, 0, 0, 0.03))

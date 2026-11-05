@@ -72,6 +72,9 @@ DEFAULTS: dict = {
     "slices": [], "disc": None,
     # luminous look (Aion design system): lum 1 = black body + silver lines; finish = glow pass
     "lum": 0.0, "bloom": 0.0, "vignette": 0.0, "grain": 0.0,
+    # parametric look (luminous mode only): gradient fill over the domain, aurora lines,
+    # a crisp boundary with a rim line instead of the soft fade
+    "paint": 0.0, "aurora": 0.0, "crisp": 0.0,
 }
 
 
@@ -244,6 +247,8 @@ class SurfacePlate(ImageMobject):
             "u_fog": s["fog"], "u_fog_h": s["fog_height"], "u_fog_col": fog_col, "u_time": s["time"],
             "u_sl_plane": sl_plane, "u_sl_col": sl_col, "u_px": config.pixel_height / 1080.0,
             "u_lum": float(s["lum"]), "u_body": _rgb(S.TERRAIN_BODY), "u_line": _rgb(S.TERRAIN_LINE),
+            "u_paint": float(s["paint"]), "u_aurora": float(s["aurora"]), "u_crisp": float(s["crisp"]),
+            "u_pc": [_rgb(c) for c in S.GROUND_GRADIENT], "u_aurA": _rgb(S.CURVE_A), "u_aurB": _rgb(S.CURVE_B),
         }
         for k, v in U.items():
             if k in prog:
@@ -283,6 +288,11 @@ class SurfacePlate(ImageMobject):
         ms.depth_mask = True
         ctx.disable(moderngl.DEPTH_TEST | moderngl.BLEND)
 
+        # over a live backdrop the plate must hide what is behind the surface: keep its coverage
+        self._cover = None
+        if gl["opaque"] and blit.UNDERLAY:
+            ctx.copy_framebuffer(gl["out"], ms)
+            self._cover = np.frombuffer(gl["out"].read(components=4), dtype=np.uint8).reshape(h, w, 4)[::-1, :, 3].copy()
         finish = gl["opaque"] and (s["bloom"] > 0 or s["vignette"] > 0 or s["grain"] > 0)
         if finish:
             if gl.get("glow") is None:
@@ -429,6 +439,9 @@ uniform vec4 u_sl_plane[4];
 uniform vec4 u_sl_col[4];
 uniform float u_lum;                                    // 0 = slate look, 1 = luminous (design system)
 uniform vec3 u_body, u_line;
+uniform float u_paint, u_aurora, u_crisp;
+uniform vec3 u_pc[4];                                   // gradient corners (−x−y, +x−y, −x+y, +x+y)
+uniform vec3 u_aurA, u_aurB;
 out vec4 frag;
 
 float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
@@ -467,7 +480,12 @@ void main() {
     vec3 col = base * (0.38 + 0.9 * dif) + rim * 0.12 * u_hi;
     // luminous: a near-black body, a whisper of relief light, a silver silhouette rim
     vec3 lc = u_body * (0.6 + 0.8 * dif) + u_line * (0.035 * dif + 0.16 * rim);
-    vec3 lline = u_line;                                // line colour (bend-tinted below)
+    vec2 uvp = clamp((p - u_center) / u_R * 0.5 + 0.5, 0.0, 1.0);
+    vec3 lline = mix(u_line, mix(u_aurA, u_aurB, 0.5 + 0.5 * sin(3.0 * uvp.x - 2.0 * uvp.y)), u_aurora);
+    if (u_paint > 0.0) {                                // parametric fill: bilinear gradient, lit, brighter up high
+        vec3 pc = mix(mix(u_pc[0], u_pc[1], uvp.x), mix(u_pc[2], u_pc[3], uvp.x), uvp.y);
+        lc += pc * u_paint * ((0.30 + 0.70 * dif) * (0.55 + 0.75 * t) + 0.35 * rim);
+    }
 
     // bend tint: sign of the second derivative along the ray from tint_center
     if (u_tint > 0.0) {
@@ -534,7 +552,13 @@ void main() {
     // edge fade so the finite mesh dissolves into black
     vec2 rr = abs(p - u_center) / u_R;
     float r = pow(pow(rr.x, 4.0) + pow(rr.y, 4.0), 0.25);
-    float edge = 1.0 - smoothstep(u_edge, 0.98, r);
+    float edge = 1.0 - smoothstep(mix(u_edge, 0.955, u_crisp), 0.98, r);
+    if (u_crisp > 0.0) {                                // the patch's boundary curve
+        float fw = max(fwidth(r), 1e-5);
+        float bl = (1.0 - smoothstep(0.7, 1.7, abs(r - 0.962) / fw)) * u_crisp;
+        col += mix(u_aurA, u_aurB, uvp.x) * bl * 0.9 * (1.0 - f);
+        mask = max(mask, bl);
+    }
     float a = edge * max(u_fill, mask);
     frag = vec4(col * a, a);
 }

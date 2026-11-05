@@ -19,6 +19,7 @@ import numpy as np
 from manim import Camera
 
 _ORIG = Camera.display_image_mobject
+UNDERLAY = False      # True while a backdrop is on: opaque plates are added onto it, not copied over it
 
 
 def _blit(camera: Camera, mob, pixel_array: np.ndarray) -> bool:
@@ -41,6 +42,15 @@ def _blit(camera: Camera, mob, pixel_array: np.ndarray) -> bool:
     a = src[..., 3]
     if getattr(mob, "_blit_add", False):           # premultiplied-on-black plate, fading
         dst[..., :3] = np.minimum(dst[..., :3].astype(np.uint16) + src[..., :3], 255)
+        dst[..., 3] = 255
+    elif a.min() == 255 and UNDERLAY:              # opaque plate on black over a live backdrop:
+        cover = getattr(mob, "_cover", None)       # the surface hides it, the black stage shows it
+        if cover is not None and cover.shape == img.shape[:2]:
+            c = cover[sy0:sy0 + (dy1 - dy0), sx0:sx0 + (dx1 - dx0), None].astype(np.uint16)
+            under = dst[..., :3].astype(np.uint16) * (255 - c) // 255
+            dst[..., :3] = np.minimum(under + src[..., :3], 255)
+        else:
+            dst[..., :3] = np.minimum(dst[..., :3].astype(np.uint16) + src[..., :3], 255)
         dst[..., 3] = 255
     elif a.min() == 255:
         dst[...] = src
