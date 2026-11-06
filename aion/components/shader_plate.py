@@ -43,7 +43,10 @@ _CTX: list = []
 
 def _ctx():
     if not _CTX:
-        _CTX.append(moderngl.create_context(standalone=True))
+        try:
+            _CTX.append(moderngl.create_context(standalone=True))
+        except Exception:   # no X display (cloud render boxes): headless EGL instead
+            _CTX.append(moderngl.create_context(standalone=True, backend="egl"))
     return _CTX[0]
 
 

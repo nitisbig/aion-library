@@ -10,6 +10,8 @@ media/
 # Rendered video output
 videos/*/out/
 lab/**/out/
+kaggle/
+sfx/
 *.mp4
 *.mov
 *.webm
