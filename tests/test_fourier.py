@@ -3,7 +3,7 @@
 import numpy as np
 import pytest
 
-from aion import fourier as F
+from aion.maths import fourier as F
 
 
 def test_square_wave_gibbs():

@@ -1,0 +1,10 @@
+# ElevenLabs settings for this video (defaults shown)
+voice_id = "s3TPKV1kjDlVtZbl4Ksh"
+model_id = "eleven_v4"
+output_format = "mp3_44100_128"
+stitch = true
+seed = 7
+# [settings]
+# stability = 0.5
+# similarity_boost = 0.75
+# speed = 1.0

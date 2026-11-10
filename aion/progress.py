@@ -1,18 +1,16 @@
-"""Whole-scene render progress bar with ETA.
+"""One progress bar with an ETA for every long job, plus a JSON status file.
 
-Manim's built-in bars are per-animation, so they can't show an ETA for the whole
-render. Inherit from `ProgressScene` instead of `Scene`:
+    with Progress("004-demo", total=1800) as bar:     # frames, chunks, sim steps...
+        for _ in range(1800):
+            bar.update()
 
-    class MyScene(ProgressScene):
-        TOTAL_DURATION = 45.0      # seconds; lets the bar show % and ETA from frame 1
+Prints `004-demo: 42%|████| 756/1800 fr [00:31 elapsed, ETA 00:43, 24.1fr/s]`
+and finishes with `✔ 004-demo: … → <output>`. About once a second it writes
+`media/progress/<name>.json` with frames, total_frames, percent, elapsed_s,
+eta_s and done, so `aion status` can report on background renders.
 
-You get one tqdm bar (frames done / total, elapsed, ETA, render fps) on stderr.
-Progress is also written to `<media_dir>/progress/<Scene>.json` about once a second,
-so a render running in the background can be monitored.
-
-If TOTAL_DURATION isn't set, the duration of the previous render of the same scene
-(stored in `<media_dir>/progress/durations.json`) is used. On a first render without
-it, the bar counts frames with no ETA.
+`ProgressScene` / `ProgressThreeDScene` give a raw `manim` render the same bar
+(only for exploration; production renders go through `aion render`).
 """
 
 from __future__ import annotations
@@ -21,111 +19,143 @@ import json
 import time
 from pathlib import Path
 
-from manim import Scene, ThreeDScene, config
 from tqdm import tqdm
 
+from aion._env import media_dir
 
-def _progress_dir() -> Path:
-    d = Path(config.media_dir) / "progress"
-    d.mkdir(parents=True, exist_ok=True)
-    return d
+__all__ = ["Progress", "read_status", "ProgressScene", "ProgressThreeDScene"]
+
+_FMT = "{desc}: {percentage:3.0f}%|{bar}| {n_fmt}/{total_fmt} {unit} [{elapsed} elapsed, ETA {remaining}, {rate_fmt}]"
+_FMT_NOTOTAL = "{desc}: {n_fmt} {unit} [{elapsed}, {rate_fmt}]"
 
 
-class RenderProgressMixin:
-    TOTAL_DURATION: float | None = None
+def status_path(name: str) -> Path:
+    return media_dir("progress") / f"{name.replace('/', '_')}.json"
 
-    # ── public hook ───────────────────────────────────────────────
-    def render(self, preview: bool = False):
-        name = type(self).__name__
-        fps = config.frame_rate
-        key = f"{name}@{config.pixel_height}p{fps:g}"
-        durations_file = _progress_dir() / "durations.json"
-        durations = self._read_json(durations_file)
-        expected = self.TOTAL_DURATION or durations.get(name)
-        total_frames = round(expected * fps) if expected else None
 
-        self._pg_status = _progress_dir() / f"{name}.json"
-        self._pg_start = time.monotonic()
-        self._pg_last_write = 0.0
-        self._pg_total = total_frames
-        self._pg_bar = tqdm(
-            total=total_frames, desc=key, unit="fr", dynamic_ncols=True, smoothing=0.1,
-            bar_format=(
-                "{desc}: {percentage:3.0f}%|{bar}| {n_fmt}/{total_fmt} fr "
-                "[{elapsed} elapsed, ETA {remaining}, {rate_fmt}]"
-                if total_frames else "{desc}: {n_fmt} fr [{elapsed}, {rate_fmt}]"
-            ),
-        )
+class Progress:
+    """tqdm bar + media/progress/<name>.json. `initial` counts cached work (ETA excludes it)."""
 
-        renderer = self.renderer
-        orig_add_frame, orig_play = renderer.add_frame, renderer.play
+    def __init__(self, name: str, total: int | None, unit: str = "fr", initial: int = 0,
+                 desc: str | None = None, disable: bool = False):
+        self.name, self.total, self.unit = name, total, unit
+        self.status = status_path(name)
+        self.t0 = time.monotonic()
+        self.initial = initial
+        self.n = initial
+        self._last = 0.0
+        self.bar = tqdm(total=total, initial=initial, desc=desc or name, unit=unit,
+                        dynamic_ncols=True, smoothing=0.1, disable=disable,
+                        bar_format=_FMT if total else _FMT_NOTOTAL)
+        self._write(force=True)
 
-        def add_frame(*args, **kwargs):
-            orig_add_frame(*args, **kwargs)
-            self._pg_sync()
+    def update(self, n: int = 1) -> None:
+        self.n += n
+        if self.total is not None and self.n > self.total:
+            self.total = self.bar.total = self.n
+        self.bar.update(n)
+        self._write()
 
-        def play(*args, **kwargs):  # also covers cached animations that skip add_frame
-            orig_play(*args, **kwargs)
-            self._pg_sync()
+    def set(self, n: int) -> None:
+        if n > self.n:
+            self.update(n - self.n)
 
-        renderer.add_frame, renderer.play = add_frame, play
-        try:
-            result = super().render(preview)
-        finally:
-            renderer.add_frame, renderer.play = orig_add_frame, orig_play
-            self._pg_sync(force=True, done=True)
-            self._pg_bar.close()
+    def note(self, text: str) -> None:
+        self.bar.set_postfix_str(text, refresh=False)
 
-        durations[name] = round(renderer.time, 3)
-        durations_file.write_text(json.dumps(durations, indent=2))
-        movie = getattr(renderer.file_writer, "movie_file_path", None)
-        took = time.monotonic() - self._pg_start
-        tqdm.write(f"✔ {key}: {renderer.time:.2f}s of video in {took:.0f}s"
-                   + (f" → {movie}" if movie else ""))
-        return result
+    def close(self, output: str | Path | None = None, ok: bool = True) -> None:
+        self._write(force=True, done=True)
+        self.bar.close()
+        took = time.monotonic() - self.t0
+        mark = "✔" if ok else "✘"
+        tqdm.write(f"{mark} {self.name}: {self.n}/{self.total or self.n} {self.unit} in {took:.0f}s"
+                   + (f" → {output}" if output else ""))
 
-    # ── internals ─────────────────────────────────────────────────
-    def _pg_sync(self, force: bool = False, done: bool = False) -> None:
-        if getattr(self, "_pg_paused", False) and not done:
-            return  # e.g. a NarratedScene silently replaying earlier scenes
-        frames = round(self.renderer.time * config.frame_rate)
-        bar = self._pg_bar
-        if bar.total is not None and frames > bar.total:
-            bar.total = frames  # the scene ran longer than expected
-        if frames > bar.n:
-            bar.update(frames - bar.n)
+    def __enter__(self) -> "Progress":
+        return self
 
+    def __exit__(self, exc_type, *_):
+        self.close(ok=exc_type is None)
+
+    def _write(self, force: bool = False, done: bool = False) -> None:
         now = time.monotonic()
-        if not force and now - self._pg_last_write < 1.0:
+        if not force and now - self._last < 1.0:
             return
-        self._pg_last_write = now
-        elapsed = now - self._pg_start
-        total = bar.total
-        rate = frames / elapsed if elapsed > 0 else 0.0
-        eta = (total - frames) / rate if (total and rate) else None
-        status = {
-            "scene": type(self).__name__,
-            "quality": f"{config.pixel_height}p{config.frame_rate:g}",
-            "frames": frames,
-            "total_frames": total,
-            "percent": round(100 * frames / total, 1) if total else None,
-            "elapsed_s": round(elapsed, 1),
-            "eta_s": round(eta, 1) if eta is not None else None,
-            "done": done,
-        }
-        self._pg_status.write_text(json.dumps(status))
+        self._last = now
+        elapsed = now - self.t0
+        fresh = self.n - self.initial
+        rate = fresh / elapsed if elapsed > 0 else 0.0
+        eta = (self.total - self.n) / rate if (self.total and rate) else None
+        self.status.write_text(json.dumps({
+            "name": self.name, "unit": self.unit, "frames": self.n, "total_frames": self.total,
+            "percent": round(100 * self.n / self.total, 1) if self.total else None,
+            "elapsed_s": round(elapsed, 1), "eta_s": round(eta, 1) if eta is not None else None,
+            "done": done, "updated": time.time(),
+        }))
 
-    @staticmethod
-    def _read_json(path: Path) -> dict:
+
+def read_status(name: str | None = None) -> list[dict]:
+    """All progress JSONs (newest first), or the one for `name`."""
+    files = [status_path(name)] if name else sorted(
+        media_dir("progress").glob("*.json"), key=lambda p: p.stat().st_mtime, reverse=True)
+    out = []
+    for f in files:
         try:
-            return json.loads(path.read_text())
+            out.append(json.loads(f.read_text()))
         except (OSError, ValueError):
-            return {}
+            pass
+    return out
 
 
-class ProgressScene(RenderProgressMixin, Scene):
-    """Drop-in replacement for manim.Scene with a whole-render progress bar."""
+# ── raw-Manim exploration scenes ─────────────────────────────────────────────
+
+def _progress_scene_classes():
+    from manim import Scene, ThreeDScene, config
+
+    class _Mixin:
+        TOTAL_DURATION: float | None = None
+
+        def render(self, preview: bool = False):
+            fps = config.frame_rate
+            total = round(self.TOTAL_DURATION * fps) if self.TOTAL_DURATION else None
+            name = type(self).__name__
+            bar = Progress(name, total, desc=f"{name}@{config.pixel_height}p{fps:g}")
+            renderer = self.renderer
+            add_frame, play = renderer.add_frame, renderer.play
+
+            def sync():
+                bar.set(round(renderer.time * fps))
+
+            def _add_frame(*a, **k):
+                add_frame(*a, **k)
+                sync()
+
+            def _play(*a, **k):
+                play(*a, **k)
+                sync()
+
+            renderer.add_frame, renderer.play = _add_frame, _play
+            ok = False
+            try:
+                result = super().render(preview)
+                ok = True
+            finally:
+                renderer.add_frame, renderer.play = add_frame, play
+                bar.close(getattr(renderer.file_writer, "movie_file_path", None), ok=ok)
+            return result
+
+    class ProgressScene(_Mixin, Scene):
+        """manim.Scene with one whole-render progress bar (set TOTAL_DURATION)."""
+
+    class ProgressThreeDScene(_Mixin, ThreeDScene):
+        """manim.ThreeDScene with one whole-render progress bar."""
+
+    return ProgressScene, ProgressThreeDScene
 
 
-class ProgressThreeDScene(RenderProgressMixin, ThreeDScene):
-    """Drop-in replacement for manim.ThreeDScene with a whole-render progress bar."""
+def __getattr__(name: str):
+    if name in ("ProgressScene", "ProgressThreeDScene"):
+        a, b = _progress_scene_classes()
+        globals().update(ProgressScene=a, ProgressThreeDScene=b)
+        return globals()[name]
+    raise AttributeError(name)

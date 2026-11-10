@@ -30,3 +30,15 @@ videos/*/assets/*.wav
 .DS_Store
 .vscode/
 .idea/
+
+# Secrets and third-party installs
+.env
+.env.*
+!.env.example
+**/node_modules/
+Eleven Labs/
+
+# aion caches; golden test frames and doc images are tracked
+.aion-cache/
+!tests/golden/**/*.png
+!docs/img/**/*.png

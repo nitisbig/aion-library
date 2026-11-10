@@ -1,0 +1,1328 @@
+
+
+<!-- ===== AGENTS.md ===== -->
+
+# AGENTS.md: working in aion
+
+aion turns narration into premium math explainer video. Pipeline:
+`voiceover.md → (ElevenLabs) audio + word cues → beats.py → @scene layers → GPU comp → render → mux → audit`.
+
+## Reading order (stop as soon as you know enough)
+1. **CHEATSHEET.md**: every common pattern on one page. Usually enough.
+2. **`uv run aion catalog <word>`**: signatures + one-line docs. `--full` adds examples. Never read aion source to learn the API.
+3. **`uv run aion docs <topic>`**: pipeline, timing, layers, fx, sim, render, voice, perf, troubleshooting, recipes.
+4. **llms.txt** is the compact index. **llms-full.txt** has everything in one file (only if you must load it all).
+
+Skip: `videos/001-*`…`003-*` and `lab/` (legacy, pre-v2 API, do not copy), `media/`, `.aion-cache/`, `out/`.
+
+## Hard rules
+1. **Time is absolute audio seconds.** Every layer is a pure function of `t`. No state carried between frames.
+2. **Timing comes from beats only.** `at=T.name`, never `at=12.3`. Beats live in `beats.py`, resolved in order from the SRT.
+3. **`at=` lands on the beat.** Motion starts `lead` (theme, 0.15 s) earlier. `lead=0` starts exactly on it.
+4. **Manim inside aion:** `m = s.manim()` then `m.add / m.play(anim, at=) / m.seq / m.drive / m.redraw / m.remove`. Never `self.play`, `self.wait` or `add_updater`.
+5. **Colors and sizes come from the theme:** `C.<role>`. Define per-video math colors in `theme.py` (`BASE.extend(x=..., fx=...)`). One object keeps one color for the whole video.
+6. **Math is computed, never eyeballed.** Use numpy/sympy, and `aion.maths` (fourier…).
+7. **Seed everything.** `rng(seed)`, `Sim(seed=...)`.
+8. **Look before you render:** `aion still … --at <beat>`, then view the PNG. Then `aion preview`. Only then `aion render --final --bg`.
+9. **Storyboard first** (`storyboard.md`, user approval) for production work. Exploration goes in `lab/<date-idea>/` with a NOTES.md.
+10. Run `aion audit <video>` before calling a video done (add `--delivery` after the final render).
+
+## Commands (`uv run aion …`, from the repo root)
+| task | command |
+|---|---|
+| check machine | `doctor` |
+| new video | `new <slug>` |
+| narration | `voice <v> --dry-run`, then `voice <v>` (asks before spending credits) |
+| narration structure | `plan <v>` (phrases, silences, suggested `cut(...)`) |
+| beat table | `beats <v> [--md]` |
+| frame check | `still <v> <scene> --at <beat or s> [--layers]` / `sheet <v> <scene>` |
+| preview (480p15) | `preview <v> [scene…] [--range A B]` |
+| final (1080p60) | `render <v> --bg` then `status` / `--4k` |
+| checks | `audit <v> [--design] [--delivery]` |
+| API lookup | `catalog [query] [--full]` / `docs [topic]` |
+| cache | `cache ls` / `cache prune --older 7` |
+
+## Video folder
+`videos/NNN-slug/`: `video.py` (Video(theme, fps)), `theme.py`, `beats.py` (T), `voiceover.md`, `voice.toml`,
+`storyboard.md`, `scenes/sNN_name.py` (one `@scene` per storyboard section), `shaders/` (optional GLSL),
+`assets/` (audio.wav/mp3, cue-per-word.srt, words.json, subtitles.srt), `out/` (renders, stills; gitignored).
+
+## When you change aion itself
+Add the name to the subpackage's `EXPORTS`, give it a docstring (one-line summary + `Example:`), add a test,
+then run `uv run aion docs --build` and `uv run pytest`.
+
+
+<!-- ===== CHEATSHEET.md ===== -->
+
+# aion cheatsheet
+
+Every `python` block here is checked by `tests/test_docs.py`: it must compile and use only real names.
+
+## 1 · Beats (`videos/NNN-x/beats.py`)
+```python
+from aion import beats, cut, end, w
+
+T = beats(
+    grid="imagine a grid",                 # start of phrase; each search starts after the previous beat
+    arrow="this arrow",
+    stretch=w("stretches", offset=-0.1),   # nudged earlier
+    settled=end("its own span"),           # END of the phrase
+    cut1=cut("its own span", "now watch"), # scene boundary in the real silence, frame-snapped
+    lam="lambda",
+)
+# T.grid → Beat (a float, seconds); T.grid.end; T.start; T.end (= audio length); T.cuts
+```
+
+## 2 · A scene (`scenes/s02_stretch.py`)
+```python
+from aion import *
+from beats import T
+
+@scene(T.cut1, T.cut2)                                   # absolute range; must tile the audio exactly
+def s02_stretch(s):
+    s.gradient(C.bg2, C.bg)                              # backdrop (z=-100)
+    m = s.manim()                                        # transparent Manim layer
+    grid = NumberPlane()
+    v = Arrow(ORIGIN, [2, 1, 0], buff=0, color=C.vec)
+    m.add(grid)                                          # visible from the scene start
+    m.play(GrowArrow(v), at=T.arrow)                     # lands on the beat
+    m.play(ApplyMatrix([[2, 0], [0, 1]], VGroup(grid, v)), at=T.stretch, dur=1.4, ease="easy_ease")
+    eq = Eqn(r"A\vec v = \lambda \vec v", colors={r"\lambda": C.vec})
+    m.seq(at=T.lam).play(Write(eq.to_edge(UP))).wait(0.2).play(Indicate(eq.part(r"\lambda")))
+    s.camera.push(T.stretch, zoom=1.12, dur=2.5)         # crisp: vector layers re-render through the camera
+    s.fx(Bloom(C.bloom), Lens(vignette=C.vignette, grain=C.grain))
+```
+
+## 3 · Animate anything with Tracks (pure functions of t)
+```python
+from aion import *
+
+opacity = fade(5.0, out=9.0)                     # 0→1 landing at 5 s, back to 0 landing at 9 s
+zoom = key(5.0, 1.0, 1.2, dur=2, ease="snap")    # hold a, move to b, hold b
+glow = 0.2 + pulse(7.0, 0.8)                     # tracks support + - * /
+m2 = key(5.0, [[1, 0], [0, 1]], [[2, 1], [0, 1]])  # arrays interpolate elementwise
+spin = Clock(rate=keys((4.0, 1.0), (6.0, 0.1), (8.0, 1.0)), start=4.0)  # slow-mo via an integrated rate
+breathe = wave(freq=0.5, amp=0.05, base=1.0)
+```
+
+## 4 · Manim score API (inside a scene, `m = s.manim()`)
+```python
+from aion import *
+
+def build(s, T):
+    m = s.manim()
+    dot = Dot(color=C.accent)
+    m.add(dot, at=T.start)                                            # exact time, no lead
+    m.drive(dot, lambda d, t: d.move_to([np.cos(t), np.sin(t), 0]), during=(T.a, T.b))  # pure f(t)
+    m.redraw(lambda t: Line(ORIGIN, [np.cos(t), np.sin(t), 0], color=C.muted), during=(T.a, T.b))
+    m.play(FadeOut(dot), at=T.b)
+    m.remove(dot, at=T.b + 1.0)
+```
+
+## 5 · GPU layers
+```python
+from aion import *
+
+def build(s, T, cache):
+    s.shader("layers/domain_coloring.frag", z=-1, u_frame=(14.22, 8), u_origin=(0, 0), u_unit=1.5,
+             u_theta=key(T.turn, 0.0, PI / 2), u_opacity=1.0, u_sat=0.8)        # u_* = uniforms (Tracks OK)
+    s.image("assets/images/portrait.png", height=4, pos=(-3, 0), opacity=fade(T.who))
+    s.add(PointsLayer(lambda t: cache.at(t)["pos"], color=C.accent, size=2.5, glow=0.6))
+    s.add(FieldLayer(lambda t: cache.at(t)["h"], cmap="diverging", vmin=-0.2, vmax=0.2, contours=10))
+    s.solid(C.bg, z=-200)
+```
+Shader contract: `in vec2 v_uv` (0–1), `in vec2 v_pos` (Manim units, camera applied), `out vec4 frag` (linear RGB, straight alpha).
+Auto uniforms: `u_time u_local u_res u_frame u_frame_index u_seed u_view u_view_inv`. `#include "common/color.glsl"`.
+Video-specific shaders go in `videos/NNN-x/shaders/`.
+
+## 6 · Effects (layer: `fx=[...]`; frame: `s.fx(...)`)
+```python
+from aion import *
+
+layer_fx = [Glow(C.accent, strength=1.2, radius=4), Blur(radius=key(10.0, 3.0, 0.0))]
+frame_fx = [Bloom(0.35, threshold=0.75), Grade(contrast=1.06, saturation=0.95),
+            Vignette(0.25), Grain(0.02), ChromaticAberration(0.2), ZoomBlur(amount=pulse(12.0, 0.2))]
+```
+Blend modes: `blend="add" | "screen" | "multiply" | "overlay" | "soft_light" | "difference" | "lighten" | "darken" | "color_dodge"`.
+Mattes: `layer(matte=other_layer, matte_mode="alpha" | "alpha_inv" | "luma" | "luma_inv")`.
+
+## 7 · Camera (2.5D, pure f(t))
+```python
+from aion import *
+
+def build(s, T):
+    s.camera.push(T.zoom_in, zoom=1.3, dur=2)                   # dolly
+    s.camera.pan(T.detail, to=(2, 1), dur=1.5)                  # world point to centre
+    s.camera.frame(T.both, center=(0, 0), zoom=1.0)             # pan + zoom together
+    s.camera.rotate(T.twist, 0.05)
+    s.camera.shake(T.impact, amp=0.03, dur=0.5)
+    s.solid(C.bg, z=-200, parallax=0.0)                         # parallax: 0 HUD, <1 background, 1 world
+```
+
+## 8 · Simulations (Taichi, baked once, cached)
+```python
+from aion import *
+
+def build(s, T):
+    flow = bake(Particles(n=30000, flow=0.6, seed=1), s.start, s.end)
+    s.add(PointsLayer(lambda t: flow.at(t)["pos"], values=lambda t: flow.at(t)["speed"], cmap="inferno", vmax=0.8))
+    waves = bake(Wave2D(drops=[(T.drop - s.start, 0.5, 0.5, 1.0)]), s.start, s.end)
+    s.add(FieldLayer(lambda t: waves.at(t)["h"], cmap="diverging", vmin=-0.2, vmax=0.2))
+```
+Also: `NBody`, `Heat2D`, `Springs`. Custom: subclass `Sim` (fields, setup, step(dt), sample()).
+
+## 9 · Theme (`theme.py`)
+```python
+from aion import BASE
+
+theme = BASE.extend(x="#58c4dd", fx="#f2c14e", vec="#ff7a59", bloom=0.4)
+# tokens: C.bg C.bg2 C.text C.muted C.faint C.accent C.accent2 C.good C.bad C.font C.display_font
+#         C.body_size C.label_size C.title_size C.tex_size C.stroke C.margin C.lead C.fade C.bloom ...
+```
+
+## 10 · Loop
+`still --at <beat>` (look at it) → fix → `preview <scene>` → `render --bg` → `status` → `audit --delivery`.
+
+
+<!-- ===== docs/audit.md ===== -->
+
+# Audit
+
+`uv run aion audit <video>` runs the source and timing checks. Add `--design` (per-beat layout) and
+`--delivery` (the final mp4). `--file path.mp4` audits any file. Findings: ✘ error, ⚠ warn, · info.
+
+| check | catches |
+|---|---|
+| source | raw hex colors (use `C.*`), `add_updater`, `self.play`/`self.wait`, `at=<number>`, unseeded `np.random` |
+| timing | scenes that don't tile the audio, gaps or overlaps, soft cuts with no silence, scenes < 2 s |
+| design | Text smaller than ~26 px at 1080p, mobjects crossing the safe margin, > 3 animations at once (checked 0.8 s after each beat) |
+| delivery | pix_fmt ≠ yuv420p, missing bt709 tag, video ≠ audio duration (> 1 frame), loudness far from −14 LUFS, true peak > −1 dBTP, black spans ≥ 0.5 s, no motion for ≥ 4 s (info) |
+
+The narration master is −16 LUFS. YouTube normalises to −14, so a ±2 LU difference is reported as info only.
+`--design` builds the scenes and evaluates the score, so it takes a few seconds per scene.
+
+
+<!-- ===== docs/fx.md ===== -->
+
+# Effects, camera, finishing
+
+Effects run on the GPU in linear light. Attach them to a **layer** (`fx=[…]` on any layer or
+`s.manim(fx=[Glow(C.x)])`) or to the **frame** (`s.fx(...)`, applied after compositing, in order).
+Every parameter accepts a Track, e.g. `Blur(radius=key(T.focus, 6, 0))`.
+
+| effect | what it does | added cost per changed frame @1080p (R4) |
+|---|---|---|
+| `Bloom(strength, threshold, knee, radius, tint)` | highlights bleed light, dual-Kawase pyramid | +35 ms |
+| `Glow(color, strength, radius)` | coloured halo from a layer's own shapes | +51 ms |
+| `Blur(radius)` | Kawase blur; 0 = off (focus pulls) | +35 ms (r=4) |
+| `Grade(exposure, contrast, saturation, lift, gamma, gain, tint, lut, lut_mix)` | primary grade + `.cube` LUT | +10 ms |
+| `Lens(vignette, ca, grain, grain_size, roundness)` | vignette + chromatic aberration + grain, one pass | +14 ms |
+| `Vignette(v)`, `Grain(g)`, `ChromaticAberration(c)` | shortcuts for `Lens` | +14 ms |
+| `ZoomBlur(amount, center, taps)` | radial whoosh; animate `amount` with `pulse` | +17 ms |
+
+Costs were measured as frame-level effects over a 37 ms baseline frame (gradient + readback). They apply only to
+frames that change; hold frames are reused for free unless something animates every frame (grain, `wave`). Combine Vignette/Grain/CA into one `Lens(...)`.
+
+Recommended finishing stack for the channel look:
+```python
+s.fx(Bloom(C.bloom, threshold=0.8), Lens(vignette=C.vignette, grain=C.grain))   # one Lens pass, not two
+```
+Grain is deterministic but **changes every frame**, so with `grain > 0` hold frames are no longer free: each one
+re-composites and re-runs the frame fx (layer rasters, e.g. Manim, are still reused). For long holds on a slow
+machine, drop grain, or keep it at 0 and add it in the final pass only.
+
+## Camera (`s.camera`, 2.5D)
+`push(at, zoom, dur, ease="easy_ease")`, `pan(at, to=(x, y))`, `rotate(at, angle)`,
+`frame(at, center, zoom)` (pan + zoom together), `shake(at, amp, dur, freq, seed)`.
+Moves chain: each starts from where the previous one ended. Layer `parallax` scales how much a layer follows
+(0 = HUD, 0.3 = distant backdrop, 1 = world).
+
+## Transitions (today)
+There is no `transition_out` helper yet. Build transitions from tracks:
+- crossfade: overlap two layers with `opacity=fade(T.cut, out=…)`;
+- whoosh: `ZoomBlur(amount=pulse(T.cut, 0.25, dur=0.5))` + `camera.push(T.cut, zoom=1.15, dur=0.5)`;
+- focus change: `Blur(radius=key(T.cut, 0, 8, dur=0.4))` on the outgoing layer.
+Prefer continuity (transform objects across the cut) over effects. See storyboard principles in CLAUDE.md.
+
+## Not implemented yet
+Motion blur, depth of field and the `transition_out` / light-leak / glitch presets. Use the recipes above.
+
+
+<!-- ===== docs/layers.md ===== -->
+
+# Layers and the compositor
+
+A scene is a stack of layers composited on the GPU (moderngl, linear light, RGBA16F, premultiplied
+alpha), then graded and encoded. The builder `s` inside `@scene` creates them:
+
+| builder call | layer | use |
+|---|---|---|
+| `s.solid(color)` | `Solid` | flat fill (z=-200 typical) |
+| `s.gradient(a, b, radial=True, radius=…)` | `Gradient` | backdrop, z=-100 by default |
+| `s.manim()` | `ManimLayer` | equations, geometry, axes, transforms (see manim-layer.md) |
+| `s.shader("file.frag", u_x=…)` | `ShaderLayer` | per-pixel: fields, domain coloring, fractals |
+| `s.image(path, height=)` | `ImageLayer` | PNG/JPG placed in world units |
+| `s.add(ArrayLayer(rgba))` | `ArrayLayer` | numpy RGBA (skia/pyvista/matplotlib output) |
+| `s.add(PointsLayer(fn))` | `PointsLayer` | 10³–10⁵ glowing points (sims, samples) |
+| `s.add(FieldLayer(fn))` | `FieldLayer` | 2-D scalar field with colormap + contour lines |
+| `s.precomp(build)` | `Comp` | nested group with its own fx / blend |
+
+## Common layer parameters (all accept Tracks)
+`z` (draw order), `start` / `end` (visibility window, default the scene), `opacity`, `blend`, `fx=[…]`,
+`matte=<layer>` + `matte_mode` (`alpha`, `alpha_inv`, `luma`, `luma_inv`), `parallax` (1 world,
+0 HUD/locked to screen, 0.3 distant background), `pos=(x, y)`, `scale`, `rotation`, `name`.
+
+Blend modes: `normal`, `add`, `screen` (fast GL) and `multiply`, `overlay`, `soft_light`, `difference`,
+`lighten`, `darken`, `color_dodge` (shader ping-pong, a little slower).
+
+## Coordinates
+World units match Manim: frame height 8, width 8·aspect (14.22 at 16:9), origin at the centre, y up.
+The 2.5D camera (`s.camera`) transforms every layer by its parallax. Vector layers (`ManimLayer`) are
+re-rasterized through the camera, so zooms stay crisp. Raster layers are resampled with mipmaps.
+
+## Shader layers
+```glsl
+#include "common/color.glsl"
+in vec2 v_uv;            // 0..1 over the frame
+in vec2 v_pos;           // world units, camera applied
+out vec4 frag;           // LINEAR rgb, STRAIGHT alpha
+uniform float u_time;    // absolute seconds (also u_local = t - scene start)
+uniform float u_glow;    // any u_* kwarg you pass
+void main() { frag = vec4(srgb2lin(vec3(v_uv, 0.5)), 1.0); }
+```
+Automatic uniforms: `u_time u_local u_res u_frame u_frame_index u_seed u_view u_view_inv`. Search path:
+`videos/<v>/shaders/` first, then `aion/shaders/`. `#include "…"` works. Pass `scale_res=0.5` to render
+expensive shaders at half resolution. Pass `animated=False` if the output depends only on uniforms, so it's
+cached while they hold still. Uniform names you pass that the shader doesn't use print a warning once.
+
+## Static detection (why holds are free)
+Each layer reports `changes(t0, t1)` from its Tracks and events. If nothing in the comp changed since the
+last frame, the previous frame is reused without any GL work. Keep this cheap: avoid always-on
+`wave()`/grain on big layers unless the shot needs it.
+
+## Raw arrays from other libraries
+skia-python, pyvista (`plotter.screenshot(return_img=True, transparent_background=True)`), matplotlib:
+render to an RGBA uint8 array, then `ArrayLayer(rgba, height=…)`. For per-frame output, cache it by `t` in your
+own function and keep it pure in `t`.
+
+
+<!-- ===== docs/manim-layer.md ===== -->
+
+# ManimLayer: Manim as a score, not a script
+
+`m = s.manim()` gives a transparent layer rendered by Manim's Cairo camera **inside aion's clock**.
+You don't call `self.play` or `self.wait`. You write a *score*: events placed at absolute beat times.
+Any frame can be evaluated directly, holds are deduplicated, and render chunks run in parallel.
+
+```python
+m = s.manim(z=0)
+ax = Axes(x_range=[-3, 3], y_range=[-1, 9], x_length=8, y_length=5)
+f = ax.plot(lambda x: x**2, color=C.fx)
+m.add(ax)                                         # present from the scene start
+m.play(Create(f), at=T.curve, dur=1.2)            # lands on the beat (starts lead earlier)
+m.seq(at=T.eq).play(Write(eq)).wait(0.3).play(Indicate(eq.part("x")))
+m.drive(dot, lambda d, t: d.move_to(ax.c2p(x(t), x(t)**2)), during=(T.slide, T.slide.end))
+m.redraw(lambda t: ax.get_secant_slope_group(x(t), f, dx=h(t)), during=(T.a, T.b))
+m.play(FadeOut(VGroup(ax, f)), at=T.cut2 - 0.6)
+m.remove(ax, f, at=T.cut2)
+```
+
+| call | effect |
+|---|---|
+| `add(*mobs, at=-inf)` | add (exact time, no lead) |
+| `remove(*mobs, at=)` | remove |
+| `play(*anims, at=, dur=None, ease=None, lead=None) → end` | any Manim Animation: Transform, TransformMatchingTex, LaggedStart, `.animate`, Succession… `dur` defaults to the animation's run_time, `ease` to its rate_func |
+| `seq(at=)` → `.play(...)`, `.wait(s)`, `.end` | chained plays, each starting when the previous ends (or at its own `at=`) |
+| `drive(mob, fn(mob, t), during=)` | set state from t each frame (replaces updaters). Must be absolute: set positions, don't increment |
+| `redraw(fn(t) → Mobject, during=)` | rebuild a mobject from t each frame (always_redraw replacement) |
+
+## Rules
+- **No `add_updater`, no `always_redraw`.** They carry state between frames and break random access.
+  `aion audit --source` flags them.
+- `drive`/`redraw` functions must be pure in `t`, so recompute positions from scratch every call.
+- One built score evaluates **forward only** (`BackwardSeek` otherwise). Stills, chunks and workers each build
+  a fresh score from the scene function, so any frame is still reachable directly.
+- Put rarely changing things (grids, axes) and busy things in **separate layers** when a scene is heavy:
+  the static layer is rasterized once and reused while it holds.
+- Colors and sizes come from `C.*` tokens (`Eqn`, `Label`, `Title` in `aion.components` apply them).
+
+## Equations
+```python
+eq = Eqn(r"f(x) = x^2", colors={"x": C.x, "f(x)": C.fx})
+m.play(Write(eq), at=T.eq)
+m.play(Indicate(eq.part("f(x)")), at=T.fx)
+```
+`colors` keys are isolated as their own submobjects so they can be indexed, colored and transformed.
+`TransformMatchingTex` works between `Eqn`s that share keys.
+
+## Escape hatch
+The global Manim `config` is set by aion for the render size. Plain Manim scenes for experiments in
+`lab/` should inherit `aion.progress.ProgressScene` and run with `uv run manim -ql …`.
+
+
+<!-- ===== docs/perf.md ===== -->
+
+# Performance on this machine (AMD A6-9225, 2 cores, Radeon R4, 3.7 GB RAM)
+
+Measured with aion 2.0.0.dev0. Numbers are steady state, after shader compilation (the first frame takes about 1 s).
+
+| workload | resolution | ms / frame |
+|---|---|---|
+| s01 demo: gradient + Manim text/shapes + bloom + vignette (scene average, holds included) | 1920×1080 | **31** (≈ 32 fps) |
+| same scene, plain `manim -qh` (Cairo, Scene.play) | 1920×1080 | ≈ 200 |
+| s02 demo: shader + Glow + MathTex + camera zoom | 1920×1080 | 72.5 |
+| typical preview frames | 854×480 | 25–28 |
+| 40k particles + field + cloth + bloom + grain | 1280×720 | ≈ 96 |
+| hold frames (nothing changes) | any | ≈ 0 (previous frame reused) |
+| changed frame, gradient only (comp + readback) | 1920×1080 | 37 |
+| + Bloom / Glow / Blur(4) / Grade / Lens / ZoomBlur | 1920×1080 | +35 / +51 / +35 / +10 / +14 / +17 |
+
+So aion renders the same Manim content about 6× faster than plain Manim, mostly because:
+holds skip rasterization, the background/fx run on the GPU, and Manim only rasterizes the vector layer.
+
+Effect costs are the main lever on changed frames: a full Bloom + Lens finish roughly doubles the frame cost.
+Optimising the blur pyramid (half-res prefilter, fewer levels) is an open item.
+
+## Other timings
+- `aion plan` on a 10-minute narration: 31 s the first time (decode + silence scan), cached afterwards.
+- Workers: with ~0.8 GB free RAM, `suggested_workers()` returns 1. Each worker holds its own GL context, Manim
+  and LaTeX state, and the rule allows one worker per 0.75 GB free. Add `-j 2` only when `aion doctor` reports enough free memory.
+
+## Budget guide for a 1080p60 final (10 min ≈ 36 000 frames)
+At 50 ms/frame average that is ≈ 30 min. Heavy shader/sim scenes at 100+ ms/frame dominate, so preview them
+with `--range` and render the final in the background.
+
+
+<!-- ===== docs/pipeline.md ===== -->
+
+# Pipeline: from script to delivered video
+
+```
+voiceover.md ──aion voice──▶ assets/audio.wav, audio.mp3, cue-per-word.srt, words.json, subtitles.srt
+                                     │
+           aion plan / aion beats ◀──┘   phrases, silences, suggested cut(...) lines
+                                     │
+beats.py  T = beats(name="phrase", cut1=cut("a", "b"), …)    absolute seconds, resolved in order
+storyboard.md  (user approves)       one section per scene, beats per section
+scenes/sNN_*.py  @scene(T.cutA, T.cutB) def sNN(s): layers + score + camera + fx
+                                     │
+aion still --at <beat>  → look → fix → aion preview → aion render --bg → aion status
+                                     │
+out/final.mp4  (chunks concatenated + audio muxed, duration = audio ±1 frame)
+aion audit <v> --delivery           codec, bt709, A/V sync, loudness, black/frozen spans
+```
+
+## Steps
+1. `uv run aion new 004-eigen --title "Eigenvectors"` scaffolds `videos/004-eigen/`.
+2. Write `voiceover.md` (plain paragraphs; `#` headings, `>` notes and `<!-- -->` are stripped).
+   `aion voice 004 --dry-run` shows chunks, cache hits and billable characters. Then run `aion voice 004`,
+   which asks before spending credits. If audio comes from elsewhere instead, drop `audio.mp3` +
+   `cue-per-word.srt` (one word per cue) into `assets/`.
+3. `aion plan 004` prints phrases, real silences and suggested `cut("…", "…")` scene boundaries.
+4. Write `beats.py` (see `docs/timing.md`), then `aion beats 004 --md` to paste the table into the storyboard.
+5. Write `storyboard.md`: per scene its range, narration, visual idea (why it explains), beats, transitions,
+   layers. **Get approval before building long scenes.**
+6. Write `scenes/sNN_name.py`, one `@scene` per storyboard section. Scenes must tile `[T.start, T.end)`
+   exactly (`aion audit --timing` checks this).
+7. `aion still 004 s02_stretch --at stretch --at lam+0.5`, then view the PNGs in `out/stills/`.
+8. `aion preview 004 [scene]` (480p15 + audio) to check sync by ear.
+9. `aion render 004 --bg` (1080p60 by default), then `aion status` for the ETA.
+10. `aion audit 004 --delivery` and fix anything marked ✘.
+
+## Refs
+A video can be named by full slug, number prefix (`004`) or path. Commands run from the repo root.
+
+
+<!-- ===== docs/recipes.md ===== -->
+
+# Recipes: concept → technique
+
+Pick the cheapest technique that makes the idea visible.
+
+| concept | technique | layers |
+|---|---|---|
+| linear map / matrix | `ApplyMatrix` on `NumberPlane` + basis arrows; matrix as `key(T.x, I, A)` for shaders | manim |
+| eigenvectors | as above + lines along eigenvectors that stay put while the plane shears; `Indicate` on λ | manim |
+| derivative | secant → tangent with `redraw(lambda t: secant(h(t)))`, `h = key(T.limit, 1, 0.01)`, camera `push` into the point | manim + camera |
+| integral / area | `ax.get_riemann_rectangles` via `redraw` with dx from a Track, then `get_area` | manim |
+| Fourier series | `aion.maths.fourier` coefficients → epicycles via `drive`; trail via `redraw` of a computed path | manim + Glow |
+| complex functions | `layers/domain_coloring.frag` with `u_theta`/`u_unit` tracks + Manim grid overlay | shader + manim |
+| gradient descent | height field shader (or `FieldLayer` of f) + contours + a dot whose path is precomputed with numpy | field + manim |
+| heat / wave PDE | `bake(Heat2D/Wave2D)` → `FieldLayer(contours=…)`, with the equation in Manim | sim + field |
+| gravity / orbits | `bake(NBody)` → `PointsLayer(additive, glow)` + Bloom | sim + points |
+| phase space / flows | `bake(Particles)` or numpy RK4 trajectories → `PointsLayer(values=speed, cmap)` | points |
+| convolution | two `ax.plot`s, the sliding one via `drive`, the product area via `redraw`, result traced live | manim |
+| neural network | `VGroup` of nodes/edges; activations as edge opacity `drive`; Glow on active path | manim + Glow |
+| probability / sampling | seeded `rng(seed)` samples → `PointsLayer`; histogram bars `redraw`n from counts up to t | points + manim |
+
+## Patterns
+- **Limit process:** drive the parameter with `key(T.x, a, b, ease="easy_ease")` or `Clock` and redraw
+  the construction from it. Pair it with a camera push towards the point where things converge.
+- **"Notice this":** `pulse(T.notice)` on a Glow strength, or `Indicate`, plus a dim on everything else
+  (`opacity=key(T.notice, 1, 0.35)` on the other layer).
+- **Equation ↔ picture link:** same `C.*` color for a term and its object; `Indicate` both on the same beat.
+- **Reveal complexity gradually:** add layers on successive beats; never show the final picture first.
+
+
+<!-- ===== docs/render.md ===== -->
+
+# Rendering
+
+| command | output | notes |
+|---|---|---|
+| `aion still <v> <scene> --at <beat|s|beat+0.3>` | `out/stills/*.png` | repeat `--at`; `--layers` dumps every layer alone |
+| `aion sheet <v> <scene>` | `out/stills/<scene>_sheet.png` | contact sheet at the scene's beats |
+| `aion preview <v> [scenes] [--range A B]` | `out/preview*.mp4` | 854×480@15 with audio |
+| `aion render <v> [scenes] [--range A B]` | `out/final.mp4` | 1920×1080@60 |
+| `aion render <v> --4k` / `--draft` / `--low` / `--res 1280x720 --fps 30` | `out/<quality>.mp4` | quality presets |
+| `aion render <v> --bg` | detached | then `aion status` (percent, ETA) |
+
+## How a render runs
+1. `load_video` imports `video.py`, `theme.py`, `beats.py` and `scenes/s*.py`, and checks that the scenes tile the audio.
+2. The timeline is split into **2 s chunks** per scene (`--chunk`). Each chunk's file name contains a hash of
+   the video source, aion, theme, size, fps and frame range: `out/.chunks/1080p60-final/s02_0120_0240_<key>.mp4`.
+3. Missing chunks render (in parallel with `-j N`; the default is what free RAM allows, which is 1 on this machine).
+   **A killed render resumes**: finished chunks are reused. Editing one scene re-renders only its chunks.
+4. Chunks are concatenated (stream copy) and the narration is muxed (AAC 320k). The duration equals the audio.
+
+Final encodes use libx264 `-preset slow -tune animation -crf 16`, yuv420p, with BT.709 conversion and tags.
+Previews use `-preset ultrafast -crf 23`.
+
+## Progress
+Every render prints one bar with an ETA and writes `media/progress/<name>.json` (`frames`, `total_frames`,
+`percent`, `elapsed_s`, `eta_s`, `done`). `aion status` reads them. Raw Manim scenes in `lab/` use
+`aion.progress.ProgressScene` / `ProgressThreeDScene`. Custom frame loops use `aion.progress.Progress`.
+
+## Speed tips (R4 / 2 cores)
+- Iterate with `still`, then `preview --range`. Render finals with `--bg`.
+- Split heavy Manim content: static parts in one `manim()` layer, moving parts in another.
+- Expensive shaders: `scale_res=0.5`. Sims: bake once (cached).
+- 4K is local-only for fx-light scenes. Kaggle bundling is not implemented yet.
+
+
+<!-- ===== docs/sim.md ===== -->
+
+# Simulations (Taichi, baked)
+
+Physics runs **once** ahead of rendering and is stored in `.aion-cache/sim/*.npz`. Layers read
+interpolated samples with `cache.at(t)`, so frames stay pure in `t` and parallel-safe. Taichi tries
+Vulkan on the Radeon R4 first, then falls back to CPU.
+
+```python
+flow = bake(Particles(n=30000, flow=0.6, seed=1), s.start, s.end, rate=60)
+s.add(PointsLayer(lambda t: flow.at(t)["pos"], values=lambda t: flow.at(t)["speed"], cmap="inferno"))
+```
+`bake(sim, start, end, rate=60)` caches by the sim's class source, its parameters, the time range and the rate. Change
+any of them and it re-bakes with a progress bar. `cache.at(t)` returns a dict of arrays. Times outside the range clamp.
+
+| sim | samples | notes |
+|---|---|---|
+| `Particles(n, flow, scale, gravity, drag, box, seed)` | `pos (n,2)`, `speed (n,)` | curl-noise flow; wraps in the frame box |
+| `NBody(n, g, soft, radius, spin, dim, seed)` | `pos`, `vel` | leapfrog; `.energy()` for checks |
+| `Wave2D(nx, ny, c, damping, drops, seed)` | `h (ny,nx)` | drops `(t_local, x_uv, y_uv, amp)`, CFL-safe substeps |
+| `Heat2D(nx, ny, k, init, seed)` | `u (ny,nx)` | `init='spot'` or `'bars'` |
+| `Springs(nx, ny, size, stiffness, gravity, wind, seed)` | `pos (nx·ny,2)` | cloth, top row pinned |
+
+Times inside a sim (`drops`) are **local**: seconds since `start`. Write `T.drop - s.start`.
+
+## Custom sims
+```python
+import numpy as np
+from aion import Sim, bake
+
+class Drop(Sim):
+    fields = ("pos",)
+    substeps = 4                       # steps per sample (raise for stiff systems)
+    def setup(self):                   # constructor kwargs are attributes: Drop(g=9.8) → self.g
+        self.x = np.zeros((1, 2)); self.v = np.zeros((1, 2))
+    def step(self, dt):
+        self.v[:, 1] -= self.g * dt; self.x += self.v * dt
+    def sample(self):
+        return {"pos": self.x.copy()}
+
+cache = bake(Drop(g=9.8, seed=0), 0.0, 3.0)
+```
+`step` may use numpy or Taichi kernels. Do **not** add `from __future__ import annotations` to modules that
+define Taichi kernels, because Taichi needs real annotation objects. Seed every RNG from `self.seed`.
+
+## Showing fields and points
+`FieldLayer(fn, cmap="diverging"|"inferno"|"viridis"|"ramp", vmin, vmax, contours=N, extent, center)`.
+`PointsLayer(fn, values=, cmap=, color=, size=, glow=, additive=True)`. Both upload once per changed frame.
+At 720p, 40k particles + field + cloth + bloom take ≈ 96 ms/frame on the R4.
+
+
+<!-- ===== docs/timing.md ===== -->
+
+# Timing: beats, tracks, lead
+
+## The model
+Every value on screen is a pure function of **absolute audio time `t`** (seconds from the start of
+`audio.wav`). Scenes are windows `[start, end)` on that timeline. Nothing accumulates frame to frame, so
+any frame can be rendered alone, in any order, by any worker. Holds cost nothing.
+
+## Beats (`beats.py`)
+```python
+from aion import beats, cut, end, w
+T = beats(
+    intro="today we",               # str = start of the phrase
+    grid=w("grid", offset=-0.2),    # w() = start, with options (offset, nth)
+    done=end("for every vector"),   # end() = end of the phrase
+    cut1=cut("every vector", "now consider"),   # boundary in the middle of the silence between
+    lam="lambda",
+)
+```
+- Specs resolve **in order**: each search begins after the previous beat. A repeated word just works:
+  the second `"x"` finds the next occurrence. Use `nth=2` to skip matches.
+- Unknown phrases fail with the closest matches (`KeyError: 'eigen vector' … did you mean 'eigenvector'`).
+- `T.name` is a `Beat` (a float) with `.end` (end of the phrase) and `.text`. `T.start = 0`, `T.end` = audio
+  length (decoded samples, exact). `T.cuts` lists the cut beats.
+- `cut()` snaps to the frame grid at `fps` (60 by default). If no real silence is nearby it still works
+  but is marked `.soft`, and `aion audit --timing` warns (audible jump at the cut).
+- `aion beats <v>` prints the resolved table; `--md` prints markdown for the storyboard.
+
+## Lead: `at=` lands on the beat
+`m.play(anim, at=T.x)`, `key(T.x, a, b)`, `fade(T.x)` and camera moves all **end their ease-in on the
+beat**: motion starts `lead` (theme `lead`, default 0.15 s) early, so the viewer sees it as the word is
+heard. Pass `lead=0` to start exactly on the beat. `pulse(T.x)` peaks exactly on the beat. `m.add(at=)` is exact.
+
+## Tracks
+`Track` = a function of `t` that knows when it changes (so static frames are skipped).
+
+| maker | meaning |
+|---|---|
+| `const(v)` / plain numbers | constant |
+| `key(at, a, b, dur, ease)` | hold a → move → hold b |
+| `keys((t, v[, ease]), …)` | multi-keyframe |
+| `fade(at, to=1, out=None)` | opacity in (and out) |
+| `pulse(at, amp, dur, base)` | bump that peaks on the beat |
+| `ramp(t0, t1, a, b)` | linear segment |
+| `wave(freq, amp, phase, base, during)` | oscillation |
+| `Clock(rate, start)` | ∫ rate dt: slow-motion / speed ramps with continuous position |
+
+Tracks compose with `+ - * /`, `.map(f)`, `.delay(s)`, `.clamp(lo, hi)`. Values may be numbers, tuples or
+numpy arrays (matrices interpolate elementwise). Any layer parameter, effect parameter or `u_*` uniform accepts a Track.
+
+## Easing
+`ease=` accepts a name or a callable: `smooth` (default), `smoother`, `linear`, `in_cubic`, `out_cubic`,
+`in_out_cubic`, `out_quint`, `out_expo`, `in_out_sine`, `out_back`, `out_elastic`, `there_and_back`,
+`easy_ease` (After Effects' default), `easy_ease_in`, `easy_ease_out`, `snap`, `spring`, plus factories
+`spring(k, damping)`, `steps(n)` and `cubic_bezier(x1, y1, x2, y2)`.
+Guidance: `easy_ease` for camera, `smooth` for most motion, `out_back` for small pops, avoid `linear`
+except for clocks and continuous rotation.
+
+## Checks
+- An event whose `at` lies outside its scene raises at build time (wrong beat).
+- An animation that runs more than 0.5 s past its scene end raises (shorten `dur` or move the cut).
+- `aion audit <v> --timing` covers contiguity, soft cuts and scenes under 2 s.
+
+
+<!-- ===== docs/troubleshooting.md ===== -->
+
+# Troubleshooting
+
+| symptom | cause | fix |
+|---|---|---|
+| `KeyError: phrase 'x' not found after 12.3s` | beats resolve in order; earlier beat jumped past it, or a typo | reorder specs, check `aion beats`, use `nth=` |
+| `scene s02: event at 40.1s outside [12.0, 30.5)` | wrong beat used in a scene | use a beat inside the scene's range |
+| `an animation runs until … past the scene end` | `dur` too long near a cut | shorten `dur` or move the cut |
+| scenes don't tile the audio | gap/overlap between `@scene` ranges | ranges must chain `T.start → T.cut1 → … → T.end` |
+| `BackwardSeek` | one built comp was asked for an earlier time (custom loop) | build a fresh comp: `vid.scene(name).comp(size, fps)` |
+| a `drive()`d object jumps | fn increments state instead of computing from t | make it absolute: `mob.move_to(f(t))` |
+| shader uniform warning `u_foo unused` | GLSL compiler removed the uniform | use it in the shader, or drop the kwarg |
+| black output from a shader | wrote sRGB or premultiplied alpha | output linear RGB, straight alpha (`srgb2lin`) |
+| LaTeX error | missing package | `uv run tlmgr install <pkg>`; always run via `uv run` |
+| `ELEVENLABS_API_KEY missing` | key not in root `.env` | add it; `aion doctor` confirms |
+| render slow / swapping | too many workers for RAM | `-j 1`; `aion doctor` shows suggested workers |
+| Taichi `TaichiSyntaxError` on annotations | `from __future__ import annotations` in a sim module | remove it there |
+| Wave sim explodes | custom PDE violates CFL | use substeps (see `Wave2D`) |
+| colors look washed out / too dark | mixing sRGB and linear values | pass hex colors / `C.*`; aion converts |
+| changes not visible after an edit | stale chunk? | chunk keys hash all sources; `aion cache ls`, delete `out/.chunks` to force |
+
+
+<!-- ===== docs/voice.md ===== -->
+
+# Voice (ElevenLabs)
+
+`aion voice <video>` turns `voiceover.md` into narration plus word-level timing in one step.
+
+**Setup:** put the key in the repo-root `.env` (gitignored): `ELEVENLABS_API_KEY=…`. `aion doctor` only
+reports whether it is present and never prints it.
+
+```bash
+uv run aion voice 004 --dry-run     # chunks, cache hits, billable characters. Free
+uv run aion voice 004               # asks before spending credits (--yes to skip)
+```
+
+Outputs in `assets/`:
+
+| file | content |
+|---|---|
+| `audio.wav` | master, 44.1 kHz, loudness-normalised (−16 LUFS, `--loudness 0` = off) |
+| `audio.mp3` | 192 kbps copy |
+| `cue-per-word.srt` | one word per cue, `HH:MM:SS,mmm`: what `beats()` reads |
+| `words.json` | same words with float times |
+| `subtitles.srt` | readable captions (≤ 42 chars per line) for YouTube |
+
+## How it works
+- The script is cleaned (headings, `>` notes, HTML comments and emphasis are stripped), linted, and split into chunks
+  of at most 2500 characters at paragraph boundaries.
+- Each chunk calls `/v1/text-to-speech/{voice}/with-timestamps` with `previous_text` / `next_text` for
+  natural prosody across chunks. 429/5xx errors are retried. The key is redacted in any error text.
+- Every chunk is cached by its text, voice, model, settings and neighbours. Editing a paragraph re-bills its chunk and
+  the chunks right before and after it (their context changed). Everything else is a cache hit.
+- Chunks are decoded to PCM and joined there. Word offsets come from **decoded sample counts**, so there is
+  no MP3 encoder-delay drift.
+
+## voice.toml
+```toml
+voice_id = "s3TPKV1kjDlVtZbl4Ksh"
+model_id = "eleven_v4"
+output_format = "mp3_44100_128"
+seed = 7
+[settings]
+stability = 0.5
+similarity_boost = 0.75
+speed = 1.0
+```
+
+## Writing for the ear
+Short sentences. Name the thing before you use the symbol. Put a paragraph break where a scene should
+cut, since paragraph pauses become the real silences that `cut()` snaps to. Spell out symbols the TTS might
+misread ("x squared", not "x^2").
+
+
+<!-- ===== API reference (generated) ===== -->
+
+## BLEND_MODES  [comp.blend]
+
+Layer `blend=` names: normal, add, screen (fast GL) + multiply, overlay, soft_light, difference, lighten, darken, color_dodge (shader).
+
+Example:
+    s.add(PointsLayer(fn, blend="add"))
+
+## Camera(moves: 'dict[str, list[_Move]]' = …, base: 'dict[str, float]' = …, shakes: 'list[tuple[float, float, float, float, int]]' = …) -> None  [comp.camera]
+
+Keyframed camera. Moves chain: each starts from where the previous ended.
+
+Example:
+    s.camera.push(T.zoom, zoom=1.3, dur=2); s.camera.shake(T.hit, amp=0.03)
+
+## Comp(size: 'tuple[int, int]' = (1920, 1080), fps: 'float' = 60, background=None, layers: 'Iterable[Layer]' = (), fx=(), camera: 'Camera | None' = None, frame_height: 'float' = 8.0, seed: 'int' = 0, **layer_kw)  [comp.comp]
+
+Layer stack → frame. A Comp is itself a Layer (use it as a precomp).
+
+Example:
+    comp = Comp((1280, 720), 30, C.bg, layers=[Gradient(C.bg2, C.bg)], fx=[Bloom()])
+    img = comp.frame(1.0)            # HxWx3 uint8
+
+## hex_to_linear(c) -> 'tuple[float, float, float]'  [comp.comp]
+
+'#rrggbb' / (r, g, b) sRGB 0-1 / ManimColor → linear RGB.
+
+Example:
+    r, g, b = hex_to_linear(C.accent)
+
+## Eqn(tex: 'str', colors: 'dict[str, str] | None' = None, size: 'float | None' = None, **kw)  [components.text]
+
+MathTex with named terms isolated and colored by the theme (same color as their visuals).
+
+Example:
+    eq = Eqn(r"f(x) = x^2", colors={"x": C.x, "f(x)": C.fx}); eq.part("f(x)")
+
+## Label(text: 'str', size: 'float | None' = None, color=None, weight: 'str' = 'NORMAL', **kw)  [components.text]
+
+Body-font text at a phone-legible size.
+
+Example:
+    Label("slope = 2", color=C.accent).next_to(line, UP)
+
+## Title(text: 'str', size: 'float | None' = None, color=None, **kw)  [components.text]
+
+Display-font title placed inside the top safe margin.
+
+Example:
+    m.play(FadeIn(Title("Fourier series")), at=T.title)
+
+## Clock(rate=1.0, start: 'float' = 0.0, end: 'float | None' = None, step: 'float' = 0.0020833333333333333)  [core.clock]
+
+Integrated time: clock(t) = ∫ rate(τ) dτ from `start` (0 before start).
+
+Example:
+    c = Clock(rate=0.5, start=2.0); c(4.0)  # 1.0
+
+## EASES  [core.ease]
+
+Named easing curves accepted by every `ease=`: smooth, easy_ease, snap, out_back, spring, …
+
+Example:
+    sorted(EASES)
+
+## cubic_bezier(x1: 'float', y1: 'float', x2: 'float', y2: 'float') -> 'Ease'  [core.ease]
+
+CSS / After Effects cubic-bezier timing curve (solved by lookup table).
+
+Example:
+    key(T.x, 0, 1, ease=cubic_bezier(0.2, 0, 0, 1))
+
+## ease(e: 'str | Ease | None') -> 'Ease'  [core.ease]
+
+Resolve a name / callable / None (→ smooth) to an easing function.
+
+Example:
+    ease("out_back")(0.8)
+
+## spring(damping: 'float' = 0.55, freq: 'float' = 2.2) -> 'Ease'  [core.ease]
+
+Damped spring settling at 1 (natural overshoot). damping in (0, 1).
+
+Example:
+    m.play(FadeIn(dot), at=T.pop, ease=spring(damping=0.4, freq=3))
+
+## steps(n: 'int') -> 'Ease'  [core.ease]
+
+Hold-frame staircase with n steps (stop-motion / counters).
+
+Example:
+    key(T.count, 0, 10, dur=2, ease=steps(10))
+
+## fbm1(x: 'float', seed: 'int' = 0, octaves: 'int' = 4) -> 'float'  [core.noise]
+
+Fractal sum of noise1 (roughly in [-1, 1]).
+
+Example:
+    wobble = track(lambda t: 0.1 * fbm1(t * 2, seed=3))
+
+## hash01(*ints: 'int') -> 'float'  [core.noise]
+
+Stateless integer hash → [0, 1).
+
+Example:
+    jitter = hash01(i, 7)            # stable per index
+
+## noise1(x: 'float', seed: 'int' = 0) -> 'float'  [core.noise]
+
+Smooth 1D value noise in [-1, 1] (quintic interpolation of hashed lattice).
+
+Example:
+    y = noise1(t * 1.5, seed=1)
+
+## rng(*seed: 'int') -> 'np.random.Generator'  [core.noise]
+
+Seeded numpy Generator (use for scene setup; never at render time without a seed).
+
+Example:
+    pts = rng(42).normal(size=(500, 2))
+
+## shake(t: 'float', amp: 'float' = 0.02, freq: 'float' = 9.0, seed: 'int' = 0) -> 'tuple[float, float]'  [core.noise]
+
+Handheld-style 2D offset at time t (pure).
+
+Example:
+    dx, dy = shake(t, amp=0.03)
+
+## simplex2(x: 'float', y: 'float', seed: 'int' = 0) -> 'float'  [core.noise]
+
+2-D OpenSimplex noise in [-1, 1] (deterministic per seed).
+
+Example:
+    h = simplex2(x * 0.5, y * 0.5, seed=2)
+
+## simplex3(x: 'float', y: 'float', z: 'float', seed: 'int' = 0) -> 'float'  [core.noise]
+
+3-D OpenSimplex noise in [-1, 1]; use z = time for evolving 2-D noise.
+
+Example:
+    h = simplex3(x, y, t * 0.3, seed=2)
+
+## FrameGrid(fps: 'float' = 60) -> None  [core.time]
+
+Maps between seconds and frame indices at `fps`.
+
+Example:
+    FrameGrid(60).snap(1.2345)  # 1.2333…
+
+## TimeRange(start: 'float', end: 'float') -> None  [core.time]
+
+Half-open [start, end) interval in seconds.
+
+Example:
+    TimeRange(2, 5).local(3.5)  # 0.5
+
+## set_lead(seconds: 'float') -> 'None'  [core.time]
+
+Change the global default lead used by `at=` everywhere.
+
+Example:
+    set_lead(0.1)   # usually set by the theme's `lead` token instead
+
+## Track(fn: 'Callable[[float], Any]', active: 'Sequence[tuple[float, float]] | None' = None, label: 'str' = '')  [core.track]
+
+Callable value-over-time with known change intervals.
+
+Example:
+    tr = key(2.0, 0, 1, dur=1, lead=0); tr(2.5)  # 0.5
+
+## const(v) -> 'Track'  [core.track]
+
+A value that never changes.
+
+Example:
+    s.solid(C.bg, opacity=const(0.5))
+
+## fade(at: 'float', to: 'float' = 1.0, dur: 'float' = 0.6, out: 'float | None' = None, out_dur: 'float | None' = None, ease='smooth', lead: 'float | None' = None) -> 'Track'  [core.track]
+
+0 → `to` landing on `at`; optionally back to 0 landing on `out`.
+
+Example:
+    opacity=fade(T.field, out=T.next_idea)
+
+## key(at: 'float', a, b, dur: 'float' = 1.0, ease='smooth', lead: 'float | None' = None) -> 'Track'  [core.track]
+
+Hold `a`, move to `b` over `dur` seconds landing on beat `at`, then hold `b`.
+
+Example:
+    key(T.stretch, 1.0, 1.2, dur=1.4, ease="easy_ease")
+
+## keys(*frames: 'tuple', default_ease='smooth', dur: 'float | None' = None, lead: 'float | None' = None) -> 'Track'  [core.track]
+
+Keyframes `(t, value[, ease])` sorted by time; values interpolate between keys.
+
+With `dur`, each key is a `key()` move of that length landing on its time
+(holds between moves). Without, values interpolate across whole gaps.
+
+Example:
+    keys((T.a, 0), (T.b, 1, "out_back"), (T.c, 0.3), dur=0.8)
+
+## lerp(a, b, u)  [core.track]
+
+Linear interpolation that works for scalars, arrays and nested lists.
+
+Example:
+    lerp([0, 0], [2, 1], 0.5)   # → [1.0, 0.5]
+
+## pulse(at: 'float', amp: 'float' = 1.0, dur: 'float' = 0.6, base: 'float' = 0.0) -> 'Track'  [core.track]
+
+A bump base → base+amp → base, peaking exactly on the beat.
+
+Example:
+    u_glow = 0.2 + pulse(T.lam, 0.8)
+
+## ramp(t0: 'float', t1: 'float', a: 'float' = 0.0, b: 'float' = 1.0, ease='linear') -> 'Track'  [core.track]
+
+a → b between absolute times t0 and t1 (no lead; for long continuous motion).
+
+Example:
+    u = ramp(T.a, T.b, 0.0, 1.0)
+
+## track(x) -> 'Track'  [core.track]
+
+Coerce a number / array / callable(t) / Track into a Track.
+
+Example:
+    glow = track(lambda t: 0.5 + 0.5 * np.sin(t))
+
+## wave(freq: 'float' = 1.0, amp: 'float' = 1.0, phase: 'float' = 0.0, base: 'float' = 0.0, during: 'tuple[float, float] | None' = None) -> 'Track'  [core.track]
+
+base + amp·sin(2π·freq·t + phase): idle breathing / oscillation (pure in t).
+
+Example:
+    breathe = wave(freq=0.5, amp=0.05, base=1.0)
+
+## Effect(**params)  [fx.base]
+
+Base effect. Subclasses implement apply(); params given as Tracks.
+
+Example:
+    class Desat(Effect):
+        def __init__(self, amount=1.0): super().__init__(amount=amount)
+        def apply(self, rt, t, rc):
+            return gpu_pass("fx/grade.frag", rt.size, u_src=(rt.tex, 0), u_sat=1 - self.p("amount", t))
+
+## Bloom(strength=0.35, threshold=0.8, knee=0.4, radius=5, tint='#ffffff')  [fx.effects]
+
+Highlights bleed light (dual-Kawase pyramid).
+
+Example:
+    s.fx(Bloom(0.35, threshold=0.7))
+
+## Blur(radius=2.0)  [fx.effects]
+
+Gaussian-like blur; radius 0 = off (animate for focus pulls).
+
+Example:
+    Blur(radius=key(T.focus, 3, 0))
+
+## ChromaticAberration(amount=0.3) -> 'Lens'  [fx.effects]
+
+RGB fringing toward the edges (use sparingly: impact moments).
+
+Example:
+    s.fx(ChromaticAberration(pulse(T.hit, 0.6)))
+
+## Glow(color=None, strength=1.0, radius=4)  [fx.effects]
+
+Coloured halo from the layer's own shapes (neon / emphasis).
+
+Example:
+    m = s.manim(fx=[Glow(C.accent, strength=1.5, radius=4)])
+
+## Grade(exposure=0.0, contrast=1.0, saturation=1.0, lift=0.0, gamma=1.0, gain=1.0, tint=(1.0, 1.0, 1.0), lut: 'str | None' = None, lut_mix=1.0)  [fx.effects]
+
+Primary colour grade in linear light, optional .cube LUT.
+
+Example:
+    Grade(contrast=1.08, saturation=0.95, gain=(1.0, 0.98, 0.95), lut="assets/luts/teal.cube")
+
+## Grain(amount=0.025, size=1.0) -> 'Lens'  [fx.effects]
+
+Film grain, deterministic per frame index.
+
+Example:
+    s.fx(Grain(C.grain))
+
+## Lens(vignette=0.0, ca=0.0, grain=0.0, grain_size=1.0, roundness=1.0)  [fx.effects]
+
+Vignette + chromatic aberration + grain in one pass (cheapest finish).
+
+Example:
+    s.fx(Lens(vignette=0.3, grain=0.02, ca=0.1))
+
+## Vignette(amount=0.25, roundness=1.0) -> 'Lens'  [fx.effects]
+
+Darken the frame edges (draws the eye to the centre).
+
+Example:
+    s.fx(Vignette(C.vignette))
+
+## ZoomBlur(amount=0.15, center=(0.5, 0.5), taps: 'int' = 16)  [fx.effects]
+
+Radial blur from `center` (uv). amount 0 = off; animate for whoosh transitions.
+
+Example:
+    s.fx(ZoomBlur(amount=pulse(T.cut1, 0.25, dur=0.5)))
+
+## gl()  [gpu.context]
+
+The process-wide moderngl context (created on first call).
+
+Example:
+    ctx = gl(); tex = ctx.texture((64, 64), 4)
+
+## Layer(*, z: 'float' = 0.0, start: 'float' = -inf, end: 'float' = inf, opacity=1.0, blend: 'str' = 'normal', fx=(), matte: "'Layer | None'" = None, matte_mode: 'str' = 'alpha', parallax: 'float' = 1.0, pos=(0.0, 0.0), scale…)  [layers.base]
+
+Base layer. See module docstring for shared parameters.
+
+Example:
+    Solid("#0e1116", z=-10)
+
+## Surface(tex: 'Any', enc: 'int' = 0, extent: 'tuple[float, float] | None' = None, screen_rot: 'float' = 0.0) -> None  [layers.base]
+
+A layer's pixels for one frame.
+
+tex: moderngl texture. enc: ENC_* colour encoding. extent: (w, h) in Manim
+units for a positioned quad, or None for a full-frame surface already in
+screen space (vector layers drawn through the camera; `screen_rot` is any
+camera roll the layer could not apply itself).
+
+Example:
+    return Surface(rt.tex, ENC_LINEAR)      # from a custom Layer.draw()
+
+## ManimLayer(**kw)  [layers.manim]
+
+Transparent Manim layer driven by a score of timed events. See module docstring.
+
+Example:
+    m = ManimLayer(); m.add(Circle()); m.play(Create(sq), at=2.0)
+
+## ArrayLayer(rgba: 'np.ndarray', height: 'float' = 8.0, premultiplied: 'bool' = False, **kw)  [layers.media]
+
+An RGBA uint8 numpy image (sRGB, straight alpha unless premultiplied=True).
+
+Example:
+    ArrayLayer(np_rgba, height=3, pos=(2, 0))
+
+## ImageLayer(path: 'str | Path', height: 'float' = 4.0, **kw)  [layers.media]
+
+An image file (PNG/JPG) placed in world space, `height` in Manim units.
+
+Example:
+    ImageLayer("assets/images/portrait.png", height=5, pos=(-3, 0), opacity=fade(T.who))
+
+## FieldLayer(field: 'Callable[[float], np.ndarray]', cmap: 'str' = 'inferno', vmin: 'float' = 0.0, vmax: 'float' = 1.0, extent=(14.222, 8.0), center=(0.0, 0.0), colors=('#2b6cb0', '#0d1117', '#ff7a59'), alpha=1.0, contours: 'floa…)  [layers.points]
+
+A scalar field `field(t)` → (ny, nx) array (row 0 = bottom) shown with a colormap.
+
+Example:
+    FieldLayer(lambda t: w.at(t)["h"], cmap="diverging", vmin=-.3, vmax=.3, contours=12)
+
+## PointsLayer(positions: 'Callable[[float], np.ndarray]', values: 'Callable | None' = None, color='#58c4dd', size: 'float' = 3.0, glow: 'float' = 0.4, alpha=1.0, cmap: 'str | None' = None, vmin: 'float' = 0.0, vmax: 'float' = 1.0,…)  [layers.points]
+
+Point sprites at world positions from `positions(t)` → (N, 2|3) array.
+
+Example:
+    PointsLayer(lambda t: cache.at(t)["pos"], color=C.accent, size=3, glow=0.5)
+
+## ShaderLayer(frag: 'str', *, scale_res: 'float' = 1.0, animated: 'bool | None' = None, **kw)  [layers.shader]
+
+Full-frame GLSL layer. `animated` is auto-detected from u_time/u_local use.
+
+Example:
+    ShaderLayer("layers/domain_coloring.frag", u_theta=key(T.turn, 0, 1.57), u_sat=0.8)
+
+## Gradient(a='#1a2330', b='#06080b', radial: 'bool' = True, center=(0.0, 0.0), radius: 'float' = 8.0, direction=(0.0, 1.0), alpha: 'float' = 1.0, **kw)  [layers.solid]
+
+Linear or radial gradient between two sRGB colors (world space, Manim units).
+
+Example:
+    Gradient("#16202a", "#07090c", radial=True, radius=9, z=-100)
+
+## Solid(color='#000000', **kw)  [layers.solid]
+
+Flat color filling the frame (linear-light compositing of an sRGB color).
+
+Example:
+    Solid("#101418", z=-100)
+
+## Encoder(path: 'str | Path', size: 'tuple[int, int]', fps: 'float', codec: 'str' = 'final', alpha: 'bool' = False, crf: 'int' = 16, audio: 'str | Path | None' = None, audio_offset: 'float' = 0.0, duration: 'float | None' = No…)  [render.encode]
+
+Stream RGB(A) frames into ffmpeg (x264 final / ultrafast preview / ffv1 / png), optionally muxing audio.
+
+Example:
+    with Encoder("out.mp4", (1280, 720), 30, codec="preview") as enc:
+        for i in range(90): enc.write(comp.frame(i / 30, i))
+
+## Video(theme: 'object' = None, fps: 'float' = 60, size: 'tuple[int, int]' = (1920, 1080), title: 'str' = '', background: 'str | None' = None, extra: 'dict' = …) -> None  [render.project]
+
+Declared in videos/<slug>/video.py.
+
+Example:
+    video = Video(theme=theme, fps=60)
+
+## load_video(ref, size: 'tuple[int, int] | None' = None, fps: 'float | None' = None, only: 'list[str] | None' = None) -> 'LoadedVideo'  [render.project]
+
+Import a video folder. `only` limits which scene files are imported (by prefix).
+
+Example:
+    vid = load_video("004", size=(854, 480), fps=15); vid.check()
+
+## SceneBuilder(sd: 'SceneDef', comp: 'Comp')  [render.scenes]
+
+Passed to every @scene function. Adds layers clipped to the scene's range.
+
+Example:
+    @scene(T.start, T.cut1)
+    def s01(s): s.gradient(C.bg2, C.bg); m = s.manim(); s.fx(Bloom())
+
+## scene(start: 'float', end: 'float', **options)  [render.scenes]
+
+Register a scene covering absolute audio times [start, end).
+
+Example:
+    @scene(T.start, T.cut1)
+    def s01(s): ...
+
+## Sim(seed: 'int' = 0, **params)  [sim.bake]
+
+Base simulation. Params are constructor kwargs (stored for the cache key).
+
+Example:
+    class Drop(Sim):
+        fields = ("pos",)
+        def setup(self): self.x = np.zeros((1, 2)); self.v = np.zeros((1, 2))
+        def step(self, dt): self.v[:, 1] -= 9.8 * dt; self.x += self.v * dt
+        def sample(self): return {"pos": self.x.copy()}
+
+## SimCache(data: 'dict[str, np.ndarray]', start: 'float', rate: 'float') -> None  [sim.bake]
+
+Baked samples: arrays shaped (n_samples, ...) on a regular time grid.
+
+Example:
+    h = waves.at(T.drop + 0.5)["h"]
+
+## bake(sim: 'Sim', start: 'float', end: 'float', rate: 'float' = 60, name: 'str | None' = None) -> 'SimCache'  [sim.bake]
+
+Run `sim` from `start` to `end`, sampling `rate` times per second (cached).
+
+Example:
+    flow = bake(Particles(n=30000, seed=1), s.start, s.end)
+
+## Heat2D(nx=256, ny=144, k: float = 0.2, init: str = 'spot', seed: int = 0)  [sim.builtin]
+
+Explicit heat diffusion from an initial hot pattern (`init`: 'spot' | 'bars').
+
+Example:
+    heat = bake(Heat2D(init="bars", k=0.3), s.start, s.end)
+    s.add(FieldLayer(lambda t: heat.at(t)["u"], cmap="inferno"))
+
+## NBody(n: int = 256, g: float = 0.6, soft: float = 0.08, radius: float = 3.0, spin: float = 0.6, dim: int = 2, seed: int = 0)  [sim.builtin]
+
+Softened Newtonian gravity in 2D (or 3D with dim=3), leapfrog integrator.
+
+Example:
+    sky = bake(NBody(n=400, seed=2), s.start, s.end)
+    s.add(PointsLayer(lambda t: sky.at(t)["pos"], additive=True, glow=0.8))
+
+## Particles(n: int = 20000, flow: float = 0.6, scale: float = 0.35, gravity: float = 0.0, drag: float = 0.6, box=(7.1, 4.0), seed: int = 0)  [sim.builtin]
+
+Many particles advected by curl noise + gravity + drag, wrapped in the frame box.
+
+Example:
+    flow = bake(Particles(n=30000, flow=0.6, seed=1), s.start, s.end)
+    s.add(PointsLayer(lambda t: flow.at(t)["pos"], values=lambda t: flow.at(t)["speed"], cmap="inferno"))
+
+## Springs(nx: int = 24, ny: int = 16, size=(6.0, 4.0), stiffness: float = 900.0, gravity: float = 4.0, wind: float = 1.2, seed: int = 0)  [sim.builtin]
+
+Mass-spring cloth (structural + shear springs), Verlet, top row pinned, wind gusts.
+
+Example:
+    cloth = bake(Springs(wind=2.0), s.start, s.end)
+    s.add(PointsLayer(lambda t: cloth.at(t)["pos"], size=4))
+
+## Wave2D(nx=256, ny=144, c: float = 0.45, damping: float = 0.15, drops=((0.0, 0.5, 0.5, 1.0),), seed: int = 0)  [sim.builtin]
+
+Damped wave equation; `drops` = [(t, x_uv, y_uv, amp)] pluck the surface.
+
+Example:
+    waves = bake(Wave2D(drops=[(T.drop - s.start, 0.5, 0.5, 1.0)]), s.start, s.end)
+    s.add(FieldLayer(lambda t: waves.at(t)["h"], cmap="diverging", vmin=-0.2, vmax=0.2))
+
+## Beat(t: 'float', name: 'str' = '', end: 'float | None' = None, text: 'str' = '', soft: 'bool' = False)  [sync.beats]
+
+A time in seconds that remembers which words it came from.
+
+Example:
+    T.grid, T.grid.end, T.grid.text      # start s, end s, matched words
+
+## Beats(items: 'dict[str, Beat]', duration: 'float', fps: 'float' = 60, cue: 'Cue | None' = None, source: 'str' = '') -> None  [sync.beats]
+
+Resolved beat table. Attribute access: `T.name`. Also `T.start`, `T.end`, `T.cuts`.
+
+Example:
+    T = beats(grid="imagine a grid"); print(T.markdown())
+
+## beats(_cue: 'Cue | str | Path | None' = None, *, fps: 'float' = 60, audio: 'str | Path | None' = None, _video=None, **specs: 'str | Spec') -> 'Beats'  [sync.beats]
+
+Resolve named beats in order. See module docstring.
+
+Example:
+    T = beats(grid="imagine a grid", cut2=cut("its span", "now watch"))
+
+## cut(before: 'str', after: 'str') -> 'Spec'  [sync.beats]
+
+Scene boundary between the end of `before` and the start of `after`, placed in
+the middle of the real audio silence there and snapped to the frame grid.
+
+Example:
+    cut1=cut("every vector", "now consider")
+
+## end(text: 'str', offset: 'float' = 0.0, nth: 'int' = 1) -> 'Spec'  [sync.beats]
+
+End of phrase `text` (+offset).
+
+Example:
+    done=end("for every vector")
+
+## sec(t: 'float') -> 'Spec'  [sync.beats]
+
+An explicit time in seconds (avoid: prefer words).
+
+Example:
+    intro_hold=sec(2.0)
+
+## w(text: 'str', offset: 'float' = 0.0, nth: 'int' = 1) -> 'Spec'  [sync.beats]
+
+Start of phrase `text` (+offset). `nth` skips earlier matches after the cursor.
+
+Example:
+    grid=w("grid", offset=-0.2, nth=2)
+
+## Cue(words: 'list[Word]')  [sync.cue]
+
+Indexed word timeline loaded from a word-level SRT or words.json, with in-order phrase search.
+
+Example:
+    cue = Cue.load("assets/cue-per-word.srt"); cue.at("eigenvector"); cue.phrase("for every vector")
+
+## Cursor(cue: 'Cue', after: 'float' = 0.0)  [sync.cue]
+
+Ordered lookups: each `at()` searches after the previous match's start.
+
+Example:
+    c = cue.cursor(); a = c.at("matrix"); b = c.at("matrix")  # second occurrence
+
+## Word(text: 'str', start: 'float', end: 'float') -> None  [sync.cue]
+
+One narrated word with absolute start/end seconds.
+
+Example:
+    cue.word_at(12.3)   # Word(text='matrix', start=12.21, end=12.6)
+
+## norm(word: 'str') -> 'str'  [sync.cue]
+
+Matching key: lowercase, letters/digits only ("Don't," → "dont").
+
+Example:
+    norm("Don't,")   # → 'dont'
+
+## check_contiguous(ranges: 'list[tuple[str, float, float]]', duration: 'float', fps: 'float' = 60) -> 'None'  [sync.cuts]
+
+Raise if scene ranges `(name, start, end)` leave gaps/overlaps or miss the audio ends.
+
+Example:
+    check_contiguous([("s01", 0, 4.2), ("s02", 4.2, 9.0)], duration=9.0)
+
+## suggest_cuts(cue: 'Cue', sil: 'list[tuple[float, float]]', min_silence: 'float' = 0.3) -> 'list[dict]'  [sync.cuts]
+
+Sentence ends followed by a real silence ≥ min_silence: natural scene boundaries.
+
+Example:
+    suggest_cuts(cue, silences(audio), min_silence=0.4)
+
+## audio_duration(path: 'str | Path') -> 'float'  [sync.silence]
+
+Duration in seconds, from decoded sample count (cached by file hash).
+
+Example:
+    audio_duration("assets/audio.wav")   # exact, from decoded samples
+
+## load_audio(path: 'str | Path', rate: 'int' = 16000) -> 'np.ndarray'  [sync.silence]
+
+Decode any audio file to mono float32 at `rate` Hz (PyAV).
+
+Example:
+    x = load_audio("assets/audio.wav")   # mono float32 @16 kHz
+
+## silences(path: 'str | Path', db: 'float' = -38.0, min_len: 'float' = 0.18, rate: 'int' = 16000, win: 'float' = 0.01) -> 'list[tuple[float, float]]'  [sync.silence]
+
+Spans quieter than `db` dBFS (relative to the 99th-percentile level) lasting ≥ min_len s.
+
+Example:
+    for a, b in silences("assets/audio.wav", db=-40): ...
+
+## BASE  [theme.tokens]
+
+Semantic design tokens (colors are sRGB hex).
+
+Example:
+    theme = BASE.extend(x="#58c4dd", fx="#f2c14e", bloom=0.4)   # C.x, C.fx
+
+## C  [theme.tokens]
+
+Active theme tokens: C.bg, C.text, C.accent, C.<your role>, sizes, lead, bloom… (read at call time).
+
+Example:
+    Dot(color=C.accent); Text("hi", font_size=C.label_size)
+
+## Theme(bg: 'str' = '#0d1117', bg2: 'str' = '#161b22', text: 'str' = '#e6edf3', muted: 'str' = '#8b949e', faint: 'str' = '#30363d', accent: 'str' = '#58c4dd', accent2: 'str' = '#f2c14e', good: 'str' = '#7ee787', bad: 'str' =…)  [theme.tokens]
+
+Semantic design tokens (colors are sRGB hex).
+
+Example:
+    theme = BASE.extend(x="#58c4dd", fx="#f2c14e", bloom=0.4)   # C.x, C.fx
+
+## VoiceSettings(voice_id: 'str' = 's3TPKV1kjDlVtZbl4Ksh', model_id: 'str' = 'eleven_v4', output_format: 'str' = 'mp3_44100_128', stitch: 'bool' = True, seed: 'int | None' = 7, settings: 'dict' = …) -> None  [voice.elevenlabs]
+
+Voice/model choice. Override per video in `videos/<slug>/voice.toml`.
+
+Example:
+    VoiceSettings(voice_id="s3TPKV1kjDlVtZbl4Ksh", model_id="eleven_v4")
