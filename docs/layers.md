@@ -25,6 +25,7 @@ Blend modes: `normal`, `add`, `screen` (fast GL) and `multiply`, `overlay`, `sof
 
 ## Coordinates
 World units match Manim: frame height 8, width 8·aspect (14.22 at 16:9), origin at the centre, y up.
+Portrait videos (`Video(size=(1080, 1920))`) use frame width 8 and height 14.22 instead.
 The 2.5D camera (`s.camera`) transforms every layer by its parallax. Vector layers (`ManimLayer`) are
 re-rasterized through the camera, so zooms stay crisp. Raster layers are resampled with mipmaps.
 

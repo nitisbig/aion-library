@@ -22,6 +22,7 @@ def cli(video, scene, every, cols, quality, res, fps):
 
     q, size, f = resolve_quality(quality, res, fps, "preview")
     vid = load_video(video, size, f)
+    size = vid.size
     sd = vid.scene(scene)
     if every:
         n = int((sd.end - sd.start) / every)

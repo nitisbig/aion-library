@@ -269,6 +269,7 @@ class ManimLayer(Layer):
             z = st.zoom ** self.parallax
             cam.frame_center = np.array([st.x * self.parallax, st.y * self.parallax, 0.0])
             cam.frame_width, cam.frame_height = rc.frame_units[0] / z, rc.frame_units[1] / z
+        cam.pixel_array_to_cairo_context.clear()   # Manim caches the frame matrix per pixel array: drop it so pans/zooms apply
         cam.reset()
         cam.capture_mobjects(self._scene.mobjects)
         img = cam.pixel_array

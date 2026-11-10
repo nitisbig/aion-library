@@ -17,6 +17,7 @@ def run(video, scenes, quality, res, fps, time_range, workers, chunk, default_qu
 
     q, size, f = resolve_quality(quality, res, fps, default_quality)
     vid = load_video(video, size, f)
+    size = vid.size
     if not vid.scenes:
         raise click.ClickException(f"no @scene functions in {vid.paths.scenes}")
     if not scenes and not time_range:

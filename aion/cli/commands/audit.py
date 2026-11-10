@@ -26,7 +26,7 @@ def cli(video, source, timing, design, deliver, file):
     if timing:
         found += checks.timing(vid)
     if design:
-        found += checks.design(vid)
+        found += checks.design(vid, vid.size, 30)
     if deliver:
         mp4 = Path(file) if file else vid.paths.out / "final.mp4"
         found += checks.delivery(mp4, vid.duration)

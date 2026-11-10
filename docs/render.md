@@ -9,6 +9,16 @@
 | `aion render <v> --4k` / `--draft` / `--low` / `--res 1280x720 --fps 30` | `out/<quality>.mp4` | quality presets |
 | `aion render <v> --bg` | detached | then `aion status` (percent, ETA) |
 
+## Vertical video (9:16 Shorts / Reels / TikTok)
+Declare the orientation once in `video.py`; every quality preset follows it, so `still`, `preview`, `render --final`
+and `--4k` all come out portrait (1080×1920, 480×854 for previews, 2160×3840):
+```python
+video = Video(theme=theme, fps=60, size=(1080, 1920))
+```
+The Manim frame is then **8 units wide × 14.2 tall** (the 16:9 frame turned on its side), so pixels per unit,
+font sizes and stroke widths stay the same as in landscape. Keep text inside |x| < 3.3 and clear of the bottom
+~20 % (platform UI). Put HUD elements in a `s.manim(parallax=0)` layer so camera moves do not drag them.
+
 ## How a render runs
 1. `load_video` imports `video.py`, `theme.py`, `beats.py` and `scenes/s*.py`, and checks that the scenes tile the audio.
 2. The timeline is split into **2 s chunks** per scene (`--chunk`). Each chunk's file name contains a hash of

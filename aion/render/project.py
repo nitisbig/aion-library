@@ -51,6 +51,7 @@ class LoadedVideo:
     video: Video
     scenes: list
     duration: float
+    size: tuple[int, int] = (1920, 1080)   # resolved render size (orientation follows Video.size)
 
     @property
     def slug(self) -> str:
@@ -73,9 +74,23 @@ class LoadedVideo:
                          cache.tree_hash(PKG), [str(self.paths.srt and cache.file_hash(self.paths.srt))])
 
 
-def configure_manim(size: tuple[int, int], fps: float, frame_height: float = 8.0) -> None:
+def orient(size: tuple[int, int], like: tuple[int, int]) -> tuple[int, int]:
+    """Give a (landscape) quality-preset size the orientation of the video's declared size.
+
+    Example:
+        orient((1920, 1080), (1080, 1920))   # -> (1080, 1920)
+    """
+    if like[1] > like[0] and size[0] > size[1]:
+        return (size[1], size[0])
+    return (size[0], size[1])
+
+
+def configure_manim(size: tuple[int, int], fps: float, frame_height: float | None = None) -> None:
     """Set Manim's global frame so mobject layout (to_edge, etc.) matches the comp."""
     from manim import config
+
+    if frame_height is None:   # portrait keeps 8 units across (same px per unit as 16:9)
+        frame_height = 8.0 if size[0] >= size[1] else 8.0 * size[1] / size[0]
 
     config.pixel_width, config.pixel_height = size
     config.frame_rate = fps
@@ -117,7 +132,8 @@ def load_video(ref, size: tuple[int, int] | None = None, fps: float | None = Non
     video = _import(vfile, "video").video if vfile.exists() else Video()
     if video.theme is not None:
         activate(video.theme)
-    configure_manim(size or video.size, fps or video.fps)
+    size = orient(size, video.size) if size else tuple(video.size)
+    configure_manim(size, fps or video.fps)
     from aion.theme.manim import apply
     from aion.theme.tokens import current
 
@@ -131,4 +147,4 @@ def load_video(ref, size: tuple[int, int] | None = None, fps: float | None = Non
         _import(f, f"scenes_{f.stem}")
     scenes = sorted(scene_mod.REGISTRY, key=lambda s: s.start)
     duration = audio_duration(paths.audio) if paths.audio else (scenes[-1].end if scenes else 0.0)
-    return LoadedVideo(paths, video, scenes, duration)
+    return LoadedVideo(paths, video, scenes, duration, size)

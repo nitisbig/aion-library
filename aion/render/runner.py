@@ -45,7 +45,7 @@ def plan_chunks(vid, size, fps, codec: str, scenes: list[str] | None = None,
                 time_range: tuple[float, float] | None = None, chunk_sec: float = 2.0,
                 tag: str = "") -> list[Chunk]:
     src = vid.source_hash()
-    d = vid.paths.out / ".chunks" / (tag or f"{size[1]}p{fps:g}-{codec}")
+    d = vid.paths.out / ".chunks" / (tag or f"{min(size)}p{fps:g}-{codec}{'-v' if size[1] > size[0] else ''}")
     d.mkdir(parents=True, exist_ok=True)
     per = max(1, round(chunk_sec * fps))
     out = []
@@ -93,7 +93,7 @@ def _render_run(args):
         tmp = ch.path.with_name(f".{ch.path.stem}.{os.getpid()}.tmp.mp4")
         with Encoder(tmp, size, fps, codec=codec) as enc:
             for k in range(ch.f0, ch.f1):
-                enc.write(comp.frame(k / fps, k))
+                enc.write(comp.frame(max(k / fps, sd.start), k))   # a cut off the fps grid can sample just before the scene starts
                 if q is not None:
                     q.put(1)
         os.replace(tmp, ch.path)

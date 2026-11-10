@@ -31,7 +31,21 @@ def Eqn(tex: str, colors: dict[str, str] | None = None, size: float | None = Non
     colors = colors or {}
     m = MathTex(tex, substrings_to_isolate=list(colors), tex_to_color_map=dict(colors),
                 font_size=size or th.tex_size, color=kw.pop("color", th.text), **kw)
-    m.part = lambda key, i=0: m.get_parts_by_tex(key)[i]
+
+    def part(key: str, i: int = 0):
+        """The i-th isolated term equal to `key` (works on Manim >= 0.20, which dropped get_parts_by_tex)."""
+        ids = [mid for sub, mid in getattr(m, "matched_strings_and_ids", []) if sub == key]
+        if ids:
+            return m.id_to_vgroup_dict[ids[min(i, len(ids) - 1)]]
+        hits = [p for p in m.submobjects if getattr(p, "tex_string", None) == key]
+        if hits:
+            return hits[i]
+        g = m.get_part_by_tex(key) if hasattr(m, "get_part_by_tex") else None
+        if g is None:
+            raise KeyError(f"{key!r} is not an isolated term of {tex!r}; pass it in colors={{...}}")
+        return g
+
+    m.part = part
     return m
 
 

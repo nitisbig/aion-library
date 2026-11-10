@@ -101,7 +101,8 @@ def design(vid, size=(1280, 720), fps=30, min_font_px_1080: float = 26) -> list[
     except Exception:
         beats_all = []
     th = current()
-    fw, fh = 8.0 * size[0] / size[1], 8.0
+    fh = 8.0 if size[0] >= size[1] else 8.0 * size[1] / size[0]
+    fw = fh * size[0] / size[1]
     m = th.margin
     for sd in vid.scenes:
         times = sorted({float(b) + 0.8 for b in beats_all if sd.start <= b < sd.end - 0.8} | {sd.end - 0.05})
@@ -112,7 +113,7 @@ def design(vid, size=(1280, 720), fps=30, min_font_px_1080: float = 26) -> list[
             for mob in mobs:
                 for sub in mob.get_family():
                     if isinstance(sub, (Text, MathTex, Tex)) and sub.height > 0:
-                        px = sub.height / fh * 1080
+                        px = sub.height * 135   # 135 px per unit at 1080p
                         if isinstance(sub, Text) and 0 < px < min_font_px_1080 * 0.7 and len(sub.text) > 2:
                             out.append(Finding("warn", f"{sd.name}@{t:.1f}s", f"text {sub.text[:20]!r} is ~{px:.0f}px "
                                                                           f"tall at 1080p (hard to read on phones)"))

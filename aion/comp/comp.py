@@ -57,10 +57,12 @@ class Comp(Layer):
 
     def __init__(self, size: tuple[int, int] = (1920, 1080), fps: float = 60, background=None,
                  layers: Iterable[Layer] = (), fx=(), camera: Camera | None = None,
-                 frame_height: float = 8.0, seed: int = 0, **layer_kw):
+                 frame_height: float | None = None, seed: int = 0, **layer_kw):
         super().__init__(**layer_kw)
         self.size = (int(size[0]), int(size[1]))
         self.fps = fps
+        if frame_height is None:   # 16:9 → 14.22x8 units; portrait → 8 units wide (same px per unit)
+            frame_height = 8.0 if self.size[0] >= self.size[1] else 8.0 * self.size[1] / self.size[0]
         self.frame_units = (frame_height * self.size[0] / self.size[1], frame_height)
         self.background = None if background is None else hex_to_linear(background)
         self.layers: list[Layer] = []

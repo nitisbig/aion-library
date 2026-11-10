@@ -21,6 +21,7 @@ def cli(video, scene, ats, quality, res, fps, layers):
 
     q, size, f = resolve_quality(quality, res, fps, "draft")
     vid = load_video(video, size, f)
+    size = vid.size
     sd = vid.scene(scene)
     times = sorted(parse_time(vid, a) for a in ats)
     outdir = vid.paths.out / "stills"

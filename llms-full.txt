@@ -277,6 +277,7 @@ Blend modes: `normal`, `add`, `screen` (fast GL) and `multiply`, `overlay`, `sof
 
 ## Coordinates
 World units match Manim: frame height 8, width 8·aspect (14.22 at 16:9), origin at the centre, y up.
+Portrait videos (`Video(size=(1080, 1920))`) use frame width 8 and height 14.22 instead.
 The 2.5D camera (`s.camera`) transforms every layer by its parallax. Vector layers (`ManimLayer`) are
 re-rasterized through the camera, so zooms stay crisp. Raster layers are resampled with mipmaps.
 
@@ -476,6 +477,16 @@ Pick the cheapest technique that makes the idea visible.
 | `aion render <v> [scenes] [--range A B]` | `out/final.mp4` | 1920×1080@60 |
 | `aion render <v> --4k` / `--draft` / `--low` / `--res 1280x720 --fps 30` | `out/<quality>.mp4` | quality presets |
 | `aion render <v> --bg` | detached | then `aion status` (percent, ETA) |
+
+## Vertical video (9:16 Shorts / Reels / TikTok)
+Declare the orientation once in `video.py`; every quality preset follows it, so `still`, `preview`, `render --final`
+and `--4k` all come out portrait (1080×1920, 480×854 for previews, 2160×3840):
+```python
+video = Video(theme=theme, fps=60, size=(1080, 1920))
+```
+The Manim frame is then **8 units wide × 14.2 tall** (the 16:9 frame turned on its side), so pixels per unit,
+font sizes and stroke widths stay the same as in landscape. Keep text inside |x| < 3.3 and clear of the bottom
+~20 % (platform UI). Put HUD elements in a `s.manim(parallax=0)` layer so camera moves do not drag them.
 
 ## How a render runs
 1. `load_video` imports `video.py`, `theme.py`, `beats.py` and `scenes/s*.py`, and checks that the scenes tile the audio.
@@ -707,7 +718,7 @@ Keyframed camera. Moves chain: each starts from where the previous ended.
 Example:
     s.camera.push(T.zoom, zoom=1.3, dur=2); s.camera.shake(T.hit, amp=0.03)
 
-## Comp(size: 'tuple[int, int]' = (1920, 1080), fps: 'float' = 60, background=None, layers: 'Iterable[Layer]' = (), fx=(), camera: 'Camera | None' = None, frame_height: 'float' = 8.0, seed: 'int' = 0, **layer_kw)  [comp.comp]
+## Comp(size: 'tuple[int, int]' = (1920, 1080), fps: 'float' = 60, background=None, layers: 'Iterable[Layer]' = (), fx=(), camera: 'Camera | None' = None, frame_height: 'float | None' = None, seed: 'int' = 0, **layer_kw)  [comp.comp]
 
 Layer stack → frame. A Comp is itself a Layer (use it as a precomp).
 

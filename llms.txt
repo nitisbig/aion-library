@@ -31,7 +31,7 @@ Everything is importable with `from aion import *` (which also re-exports Manim)
 ### aion.comp
 - `BLEND_MODES`: Layer `blend=` names: normal, add, screen (fast GL) + multiply, overlay, soft_light, difference, lighten, darken, color_dodge (shader).
 - `Camera(moves: 'dict[str, list[_Move]]' = …, base: 'dict[str, float]' = …, shakes: 'list[tuple[float, float, float, float, int]]' = …) -> None`: Keyframed camera. Moves chain: each starts from where the previous ended.
-- `Comp(size: 'tuple[int, int]' = (1920, 1080), fps: 'float' = 60, background=None, layers: 'Iterable[Layer]' = (), fx=(), camera: 'Camera | None' = None, frame_height: 'float' = 8.0, seed: 'int' = 0, **layer_kw)`: Layer stack → frame. A Comp is itself a Layer (use it as a precomp).
+- `Comp(size: 'tuple[int, int]' = (1920, 1080), fps: 'float' = 60, background=None, layers: 'Iterable[Layer]' = (), fx=(), camera: 'Camera | None' = None, frame_height: 'float | None' = None, seed: 'int' = 0, **layer_kw)`: Layer stack → frame. A Comp is itself a Layer (use it as a precomp).
 - `hex_to_linear(c) -> 'tuple[float, float, float]'`: '#rrggbb' / (r, g, b) sRGB 0-1 / ManimColor → linear RGB.
 
 ### aion.components
