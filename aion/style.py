@@ -78,3 +78,29 @@ FONT = "Inter Variable"   # captions and labels (Text); math stays LaTeX
 LABEL_WEIGHT = "LIGHT"    # thin, professional labels (Inter Light); headings pass weight= themselves
 # math typeface: Libertinus text + maths: thin, refined, professional
 TEX_PREAMBLE = r"\usepackage{libertinus-type1}\usepackage{libertinust1math}"
+
+# Fourier series (video 003). Fixed meaning for the whole video. Aliases 002 where
+# the meaning matches: blue = positive, orange = negative, green = "found it".
+# Final pass (2026-11-09): brighter, more saturated hues for contrast on pure black, and the
+# circles (slate rims, colored speeds) kept apart from the text (pure white / light grey).
+INK = "#FFD21F"         # the pen tip and every wave / drawing it leaves (gold)
+FWD = "#3DA2FF"         # positive speed: counterclockwise circles, bars above the axis (blue)
+BWD = "#FF8A12"         # negative speed: clockwise circles (orange)
+STILL = "#2BFF8E"       # speed zero, balance point, frozen circle, c_n (green)
+PHASE = "#B98CFF"       # starting angle (phase) arcs (violet)
+ARM = "#8C9DB8"         # circle rims and arms (slate: cooler and darker than any text); rims at RIM_OPACITY
+RIM_OPACITY = 0.6
+LABEL = "#FFFFFF"       # every caption and equation term on screen (never a circle color)
+LABEL_MUTED = "#C3CBD6" # secondary captions (names, units, counts)
+# vivid rims (video 003 intro / finale spectacle): each circle in a chain gets its own hue, cycled
+# by chain order, so neighbours never match. No gold (that is the ink) and no red (Gibbs only).
+RIM_HUES = ("#3DA2FF", "#2BFF8E", "#FF8A12", "#B98CFF", "#1FE6F2", "#FF4FB0")
+RIM_VIVID_OPACITY = 0.85  # rim alpha at full vividness (big circles); small ones fade below RIM_FADE_PX
+RIM_FADE_PX = 22.0
+RIM_BOOST = 1.9          # Manim circle rims: every scene rim opacity × this (capped at 1), brighter rims
+GL_BLOOM_SCALE = 0.65     # video 003 GL plates: every bloom × this (sharper lines, less haze)
+GL_GRAIN_MAX = 0.012      # … and grain capped here (grain softens thin lines)
+GL_VIGNETTE_MAX = 0.35        # rims smaller than this radius (1080p px) fade out, so the pen's cluster stays crisp
+GHOST_LINE = "#7D8AA0"  # target / ghost shapes, dashed (brighter than the 002 grid ghost)
+SPIKE = "#FF3355"       # Gibbs spike and the "expensive corner" marker only (red)
+HEAT_RAMP = ("#1B2A6B", "#7A2BB8", "#FF5A1F", "#FFE9C7")   # Ch3 only: ice → ember → white-hot

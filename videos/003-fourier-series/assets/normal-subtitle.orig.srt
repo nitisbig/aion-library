@@ -1,0 +1,1316 @@
+1
+00:00:00,010 --> 00:00:00,900
+What you're looking at
+
+2
+00:00:00,900 --> 00:00:02,470
+is a chain of circles.
+
+3
+00:00:02,840 --> 00:00:04,240
+Each one rides on the edge
+
+4
+00:00:04,240 --> 00:00:05,510
+of the one before,
+
+5
+00:00:05,510 --> 00:00:07,710
+spinning at its own steady speed.
+
+6
+00:00:08,690 --> 00:00:10,460
+Follow the tip of the very last
+
+7
+00:00:10,460 --> 00:00:12,740
+circle, and it draws a treble clef.
+
+8
+00:00:13,840 --> 00:00:15,670
+Here's what I find strange about this.
+
+9
+00:00:16,000 --> 00:00:17,260
+A circle is about the
+
+10
+00:00:17,260 --> 00:00:18,490
+roundest thing there is.
+
+11
+00:00:18,740 --> 00:00:21,020
+No corners, no straight edges.
+
+12
+00:00:21,020 --> 00:00:22,140
+And yet the right circles
+
+13
+00:00:22,140 --> 00:00:23,540
+can draw sharp turns,
+
+14
+00:00:23,790 --> 00:00:26,140
+even a square with four perfect corners.
+
+15
+00:00:26,860 --> 00:00:27,940
+So how does something that
+
+16
+00:00:27,940 --> 00:00:30,030
+only goes round draw a corner?
+
+17
+00:00:30,920 --> 00:00:33,220
+The answer is something called a Fourier
+
+18
+00:00:33,220 --> 00:00:35,340
+series, named after Joseph Fourier,
+
+19
+00:00:35,340 --> 00:00:37,260
+who found it about two hundred years ago
+
+20
+00:00:37,260 --> 00:00:39,520
+while studying, of all things, heat.
+
+21
+00:00:39,900 --> 00:00:41,430
+And it makes a bold claim.
+
+22
+00:00:41,840 --> 00:00:43,600
+Almost any loop you could draw can
+
+23
+00:00:43,600 --> 00:00:45,510
+be built out of spinning circles.
+
+24
+00:00:46,300 --> 00:00:47,930
+Think of a chord on a piano.
+
+25
+00:00:48,240 --> 00:00:49,980
+You hear one sound, but it's really
+
+26
+00:00:49,980 --> 00:00:51,550
+a few notes played together.
+
+27
+00:00:52,060 --> 00:00:54,200
+A Fourier series lets you take a shape
+
+28
+00:00:54,200 --> 00:00:56,000
+and pick out the circles inside it.
+
+29
+00:00:56,780 --> 00:00:58,060
+By the end, you and I will
+
+30
+00:00:58,060 --> 00:00:59,440
+have a recipe that finds the
+
+31
+00:00:59,440 --> 00:01:00,890
+circles for any drawing.
+
+32
+00:01:01,250 --> 00:01:02,460
+I'll put it on screen now,
+
+33
+00:01:02,460 --> 00:01:03,900
+just so you'll recognize it later.
+
+34
+00:01:04,680 --> 00:01:05,840
+As with anything new,
+
+35
+00:01:05,840 --> 00:01:07,210
+it's best to start easy.
+
+36
+00:01:07,480 --> 00:01:09,580
+So let's begin with a single circle.
+
+37
+00:01:10,290 --> 00:01:11,520
+Picture an arrow pinned at
+
+38
+00:01:11,520 --> 00:01:13,220
+the center, turning steadily.
+
+39
+00:01:13,720 --> 00:01:15,160
+For now, ignore everything
+
+40
+00:01:15,160 --> 00:01:16,960
+except how high its tip is.
+
+41
+00:01:17,440 --> 00:01:17,820
+Up,
+
+42
+00:01:18,020 --> 00:01:19,090
+down, up,
+
+43
+00:01:19,290 --> 00:01:19,730
+down.
+
+44
+00:01:20,430 --> 00:01:22,150
+Now let time move to the right,
+
+45
+00:01:22,410 --> 00:01:24,080
+and let that height leave a trail.
+
+46
+00:01:24,780 --> 00:01:26,580
+What you get is a sine wave.
+
+47
+00:01:26,850 --> 00:01:28,100
+It's the simplest wave there
+
+48
+00:01:28,100 --> 00:01:30,040
+is, and really, it's just a
+
+49
+00:01:30,040 --> 00:01:31,220
+circle seen from the side.
+
+50
+00:01:31,890 --> 00:01:34,210
+A spinning circle has only three settings.
+
+51
+00:01:34,480 --> 00:01:35,460
+There's its size.
+
+52
+00:01:35,670 --> 00:01:37,620
+A bigger circle makes a taller wave.
+
+53
+00:01:38,310 --> 00:01:39,330
+There's its speed.
+
+54
+00:01:39,530 --> 00:01:40,680
+Spin twice as fast,
+
+55
+00:01:40,680 --> 00:01:42,570
+and the wave wiggles twice as often.
+
+56
+00:01:43,240 --> 00:01:44,810
+And there's where it starts.
+
+57
+00:01:45,110 --> 00:01:47,080
+Start the arrow a quarter turn ahead,
+
+58
+00:01:47,080 --> 00:01:48,940
+and the whole wave slides over.
+
+59
+00:01:49,650 --> 00:01:51,760
+Size, speed, and starting point.
+
+60
+00:01:52,080 --> 00:01:53,950
+That's everything one circle can do.
+
+61
+00:01:54,610 --> 00:01:56,200
+There's another view I really like.
+
+62
+00:01:56,500 --> 00:01:58,460
+Slide the circle forward through time,
+
+63
+00:01:58,460 --> 00:02:00,550
+and its tip traces out a spring.
+
+64
+00:02:01,030 --> 00:02:02,160
+From the side, the spring
+
+65
+00:02:02,160 --> 00:02:03,280
+looks like a sine wave.
+
+66
+00:02:03,590 --> 00:02:04,760
+From above, it looks like
+
+67
+00:02:04,760 --> 00:02:06,290
+its twin, the cosine.
+
+68
+00:02:06,730 --> 00:02:08,870
+Two shadows of one turning motion.
+
+69
+00:02:09,650 --> 00:02:11,990
+One circle gives you one smooth wave.
+
+70
+00:02:12,240 --> 00:02:13,500
+So let's add a second.
+
+71
+00:02:14,200 --> 00:02:15,460
+Put a smaller circle on the
+
+72
+00:02:15,460 --> 00:02:16,340
+tip of the first,
+
+73
+00:02:16,340 --> 00:02:18,530
+and let it spin three times as fast.
+
+74
+00:02:18,880 --> 00:02:20,600
+Now the tip rides on two motions
+
+75
+00:02:20,600 --> 00:02:22,360
+at once, so its height is the
+
+76
+00:02:22,360 --> 00:02:24,030
+first height plus the second.
+
+77
+00:02:24,790 --> 00:02:26,610
+The wave picks up a little ripple.
+
+78
+00:02:27,330 --> 00:02:28,990
+Now let's be more deliberate.
+
+79
+00:02:29,370 --> 00:02:31,440
+Make the first circle a little taller
+
+80
+00:02:31,440 --> 00:02:32,770
+than the wave we're aiming for.
+
+81
+00:02:32,980 --> 00:02:34,960
+The second spins three times as
+
+82
+00:02:34,960 --> 00:02:36,980
+fast, at one third the size.
+
+83
+00:02:37,380 --> 00:02:38,030
+The next,
+
+84
+00:02:38,210 --> 00:02:40,290
+five times as fast, at one fifth.
+
+85
+00:02:40,690 --> 00:02:42,930
+Then seven times, at one seventh.
+
+86
+00:02:44,110 --> 00:02:45,250
+Before I keep going,
+
+87
+00:02:45,250 --> 00:02:46,400
+take a moment to guess.
+
+88
+00:02:46,700 --> 00:02:48,260
+What do you think this is turning into?
+
+89
+00:02:49,330 --> 00:02:50,800
+Watch the top flatten out,
+
+90
+00:02:50,800 --> 00:02:52,250
+and the sides get steeper.
+
+91
+00:02:52,450 --> 00:02:54,290
+Here it is with ten circles...
+
+92
+00:02:54,740 --> 00:02:55,370
+fifty...
+
+93
+00:02:55,970 --> 00:02:56,850
+two hundred.
+
+94
+00:02:57,780 --> 00:02:58,900
+It's a square wave.
+
+95
+00:02:59,180 --> 00:03:01,240
+Flat on top, flat on the bottom,
+
+96
+00:03:01,240 --> 00:03:02,910
+with straight walls in between.
+
+97
+00:03:03,180 --> 00:03:04,300
+Smooth circles,
+
+98
+00:03:04,300 --> 00:03:05,940
+adding up to sharp corners.
+
+99
+00:03:06,480 --> 00:03:08,110
+But look closely at a corner.
+
+100
+00:03:08,460 --> 00:03:09,880
+Right before every jump,
+
+101
+00:03:09,880 --> 00:03:11,160
+there's a small spike.
+
+102
+00:03:11,360 --> 00:03:13,320
+Add more circles, and the spike gets
+
+103
+00:03:13,320 --> 00:03:15,630
+thinner, but it never gets any shorter.
+
+104
+00:03:15,630 --> 00:03:16,885
+It stays at about nine
+
+105
+00:03:16,885 --> 00:03:17,980
+percent of the jump.
+
+106
+00:03:18,630 --> 00:03:20,560
+This is called the Gibbs phenomenon,
+
+107
+00:03:20,560 --> 00:03:21,790
+and it's telling us something.
+
+108
+00:03:22,090 --> 00:03:24,170
+Sharp corners are expensive.
+
+109
+00:03:25,060 --> 00:03:26,540
+Now you might be wondering why
+
+110
+00:03:26,540 --> 00:03:27,820
+anyone would build waves out of
+
+111
+00:03:27,820 --> 00:03:29,170
+circles in the first place.
+
+112
+00:03:29,490 --> 00:03:31,180
+The short answer is heat.
+
+113
+00:03:31,910 --> 00:03:33,020
+In eighteen oh seven,
+
+114
+00:03:33,020 --> 00:03:34,500
+Fourier was trying to describe
+
+115
+00:03:34,500 --> 00:03:36,230
+how heat spreads through a solid.
+
+116
+00:03:36,680 --> 00:03:37,700
+Take a metal ring,
+
+117
+00:03:37,700 --> 00:03:39,380
+heat one half with a flame,
+
+118
+00:03:39,610 --> 00:03:40,580
+cool the other half with
+
+119
+00:03:40,580 --> 00:03:41,970
+ice, and let it go.
+
+120
+00:03:42,670 --> 00:03:44,840
+Hot on one side, cold on the other.
+
+121
+00:03:45,220 --> 00:03:46,260
+Unroll the ring,
+
+122
+00:03:46,260 --> 00:03:47,730
+and that's our square wave.
+
+123
+00:03:48,530 --> 00:03:50,200
+Fourier's move was to break the
+
+124
+00:03:50,200 --> 00:03:51,960
+temperature into simple waves.
+
+125
+00:03:51,960 --> 00:03:53,740
+One that goes around the ring once,
+
+126
+00:03:53,910 --> 00:03:55,100
+one that goes around three
+
+127
+00:03:55,100 --> 00:03:57,140
+times, then five, and so on.
+
+128
+00:03:57,830 --> 00:03:58,920
+Each of those waves does
+
+129
+00:03:58,920 --> 00:04:00,120
+something very simple.
+
+130
+00:04:00,370 --> 00:04:02,850
+It keeps its shape, and it just fades.
+
+131
+00:04:02,850 --> 00:04:04,310
+And the wigglier the wave,
+
+132
+00:04:04,310 --> 00:04:05,560
+the faster it fades.
+
+133
+00:04:05,890 --> 00:04:07,120
+Three times the wiggles,
+
+134
+00:04:07,120 --> 00:04:08,460
+nine times as fast.
+
+135
+00:04:09,200 --> 00:04:11,350
+So the sharp edges melt away first,
+
+136
+00:04:11,540 --> 00:04:13,720
+the ring settles into one gentle wave,
+
+137
+00:04:13,920 --> 00:04:15,760
+and then into an even warmth.
+
+138
+00:04:16,580 --> 00:04:17,730
+But for this to work,
+
+139
+00:04:17,730 --> 00:04:19,080
+any starting temperature,
+
+140
+00:04:19,080 --> 00:04:20,700
+even one with sudden jumps,
+
+141
+00:04:20,700 --> 00:04:23,050
+had to be a sum of smooth waves.
+
+142
+00:04:23,050 --> 00:04:24,520
+Some of the best mathematicians
+
+143
+00:04:24,520 --> 00:04:26,100
+of his day didn't buy it.
+
+144
+00:04:26,830 --> 00:04:28,950
+Well, you and I just watched it happen.
+
+145
+00:04:29,750 --> 00:04:30,980
+Now let's bring all this
+
+146
+00:04:30,980 --> 00:04:32,000
+back to our drawing.
+
+147
+00:04:32,560 --> 00:04:33,940
+So far, we've only watched
+
+148
+00:04:33,940 --> 00:04:35,220
+the height of the tip.
+
+149
+00:04:35,220 --> 00:04:36,990
+But it also moves left and right.
+
+150
+00:04:37,160 --> 00:04:38,400
+So let's use both,
+
+151
+00:04:38,400 --> 00:04:39,460
+and let the tip draw
+
+152
+00:04:39,460 --> 00:04:40,440
+right on the page.
+
+153
+00:04:41,140 --> 00:04:43,360
+This picture is actually very old.
+
+154
+00:04:43,360 --> 00:04:45,420
+Nearly two thousand years ago,
+
+155
+00:04:45,420 --> 00:04:46,820
+astronomers tracked the planets
+
+156
+00:04:46,820 --> 00:04:48,970
+with circles riding on circles.
+
+157
+00:04:48,970 --> 00:04:51,160
+They were wrong about how the sky works.
+
+158
+00:04:51,160 --> 00:04:53,130
+But they were right about the circles.
+
+159
+00:04:53,130 --> 00:04:54,250
+With enough of them,
+
+160
+00:04:54,250 --> 00:04:56,130
+you can follow almost any path.
+
+161
+00:04:56,790 --> 00:04:59,090
+On a page, direction matters.
+
+162
+00:04:59,090 --> 00:05:01,380
+A circle can turn counterclockwise,
+
+163
+00:05:01,380 --> 00:05:02,960
+which we'll call a positive speed,
+
+164
+00:05:03,230 --> 00:05:05,090
+or clockwise, a negative speed.
+
+165
+00:05:05,620 --> 00:05:07,140
+A circle with speed zero
+
+166
+00:05:07,140 --> 00:05:08,210
+doesn't turn at all.
+
+167
+00:05:08,210 --> 00:05:10,170
+It just sets where the drawing sits.
+
+168
+00:05:11,370 --> 00:05:12,500
+Here's a friendly example
+
+169
+00:05:12,500 --> 00:05:13,740
+we'll keep coming back to.
+
+170
+00:05:14,260 --> 00:05:16,730
+Take a big circle turning forward once,
+
+171
+00:05:16,900 --> 00:05:18,050
+and add a small one,
+
+172
+00:05:18,050 --> 00:05:19,380
+one ninth the size,
+
+173
+00:05:19,380 --> 00:05:21,540
+turning backward three times as fast.
+
+174
+00:05:22,790 --> 00:05:25,180
+The tip traces out a rounded square.
+
+175
+00:05:26,060 --> 00:05:27,290
+And the square from the beginning?
+
+176
+00:05:27,500 --> 00:05:30,200
+Its first two circles are exactly these.
+
+177
+00:05:31,230 --> 00:05:32,820
+In general, we line up circles
+
+178
+00:05:32,820 --> 00:05:34,410
+of every whole number speed.
+
+179
+00:05:34,680 --> 00:05:36,760
+Zero, one, minus one,
+
+180
+00:05:36,760 --> 00:05:38,630
+two, minus two, and so on.
+
+181
+00:05:39,140 --> 00:05:41,120
+Each has two settings left to choose,
+
+182
+00:05:41,300 --> 00:05:43,180
+its size and its starting angle.
+
+183
+00:05:44,230 --> 00:05:45,620
+So here's the real question.
+
+184
+00:05:45,910 --> 00:05:47,380
+If I hand you a drawing,
+
+185
+00:05:47,380 --> 00:05:49,080
+how do you find the size and
+
+186
+00:05:49,080 --> 00:05:50,760
+starting angle of every circle?
+
+187
+00:05:51,850 --> 00:05:53,720
+Let's warm up with the easiest circle,
+
+188
+00:05:53,890 --> 00:05:54,850
+speed zero.
+
+189
+00:05:55,790 --> 00:05:57,560
+It never moves, so it should sit
+
+190
+00:05:57,560 --> 00:05:58,880
+at the center of the drawing.
+
+191
+00:05:59,170 --> 00:06:00,900
+But what does center even mean,
+
+192
+00:06:00,900 --> 00:06:02,470
+for a squiggly shape like this?
+
+193
+00:06:03,350 --> 00:06:04,580
+Here's a natural answer.
+
+194
+00:06:04,940 --> 00:06:06,660
+Spread dots along the path,
+
+195
+00:06:06,660 --> 00:06:08,360
+evenly in time, and average
+
+196
+00:06:08,360 --> 00:06:09,380
+all their positions.
+
+197
+00:06:09,790 --> 00:06:11,480
+That average is the balance point
+
+198
+00:06:11,480 --> 00:06:13,200
+of the drawing, and it's exactly
+
+199
+00:06:13,200 --> 00:06:15,010
+where the speed zero circle sits.
+
+200
+00:06:15,940 --> 00:06:17,640
+That's because every other circle
+
+201
+00:06:17,640 --> 00:06:19,130
+spins all the way around,
+
+202
+00:06:19,130 --> 00:06:21,450
+and a full turn averages out to nothing.
+
+203
+00:06:22,580 --> 00:06:24,190
+That gives us the key idea.
+
+204
+00:06:24,560 --> 00:06:26,820
+Things that spin average out to zero.
+
+205
+00:06:27,100 --> 00:06:28,870
+Things that stand still don't.
+
+206
+00:06:29,750 --> 00:06:32,000
+Now, the speed one circle spins,
+
+207
+00:06:32,000 --> 00:06:33,330
+so the average can't see it.
+
+208
+00:06:33,770 --> 00:06:35,620
+Unless we can make it stand still.
+
+209
+00:06:36,540 --> 00:06:37,540
+Here's the trick.
+
+210
+00:06:37,540 --> 00:06:40,000
+As the pen goes around, turn the whole
+
+211
+00:06:40,000 --> 00:06:42,530
+drawing backward, one full turn per loop.
+
+212
+00:06:43,000 --> 00:06:44,600
+The speed one circle was turning
+
+213
+00:06:44,600 --> 00:06:46,720
+forward once, and now it's also
+
+214
+00:06:46,720 --> 00:06:48,750
+turned backward once, so it stops.
+
+215
+00:06:49,650 --> 00:06:51,630
+Every other circle is still spinning,
+
+216
+00:06:51,630 --> 00:06:53,680
+so when we average, they all wash out.
+
+217
+00:06:54,140 --> 00:06:55,800
+What's left is the speed one
+
+218
+00:06:55,800 --> 00:06:57,500
+circle, frozen in place.
+
+219
+00:06:58,470 --> 00:07:00,580
+As a sanity check, let's try our rounded
+
+220
+00:07:00,580 --> 00:07:02,110
+square, where we know the answer.
+
+221
+00:07:02,560 --> 00:07:04,360
+Turn it backward once and average,
+
+222
+00:07:04,360 --> 00:07:05,800
+and the balance point lands right
+
+223
+00:07:05,800 --> 00:07:07,350
+on the tip of the big circle.
+
+224
+00:07:08,060 --> 00:07:09,590
+Turn it forward three times,
+
+225
+00:07:09,590 --> 00:07:11,060
+and it finds the small circle,
+
+226
+00:07:11,060 --> 00:07:13,110
+one ninth the size, just as it should.
+
+227
+00:07:13,910 --> 00:07:15,120
+Try speed two,
+
+228
+00:07:15,120 --> 00:07:16,820
+and the average falls to zero.
+
+229
+00:07:17,010 --> 00:07:18,260
+There's no circle there.
+
+230
+00:07:19,170 --> 00:07:20,920
+If you hold on to just one idea
+
+231
+00:07:20,920 --> 00:07:22,860
+from this video, make it this one.
+
+232
+00:07:23,240 --> 00:07:25,720
+To find any circle, spin the drawing
+
+233
+00:07:25,720 --> 00:07:27,430
+against it, and take the average.
+
+234
+00:07:27,640 --> 00:07:28,800
+Now we can read the line
+
+235
+00:07:28,800 --> 00:07:29,680
+from the beginning.
+
+236
+00:07:30,130 --> 00:07:31,500
+C n equals the
+
+237
+00:07:31,500 --> 00:07:32,380
+integral from zero
+
+238
+00:07:32,380 --> 00:07:34,260
+to one, of f of t,
+
+239
+00:07:34,260 --> 00:07:35,480
+times e to the minus
+
+240
+00:07:35,480 --> 00:07:37,864
+two pi i n t, d t.
+
+241
+00:07:38,220 --> 00:07:39,240
+It looks dense,
+
+242
+00:07:39,240 --> 00:07:41,110
+but it's really just two steps.
+
+243
+00:07:41,570 --> 00:07:42,900
+F of t is the pen's
+
+244
+00:07:42,900 --> 00:07:44,210
+position at time t.
+
+245
+00:07:44,720 --> 00:07:46,460
+Multiplying by e to the minus
+
+246
+00:07:46,460 --> 00:07:48,960
+two pi i n t turns the drawing
+
+247
+00:07:48,960 --> 00:07:50,780
+backward, n times per loop.
+
+248
+00:07:50,780 --> 00:07:52,660
+If you saw our video on complex
+
+249
+00:07:52,660 --> 00:07:54,180
+numbers, that's just a point
+
+250
+00:07:54,180 --> 00:07:55,300
+turning around a circle.
+
+251
+00:07:55,730 --> 00:07:57,820
+Then the integral from zero to one
+
+252
+00:07:57,820 --> 00:08:00,050
+takes the average over one trip around.
+
+253
+00:08:00,470 --> 00:08:02,100
+Spin, then average.
+
+254
+00:08:02,270 --> 00:08:03,370
+That's all it says.
+
+255
+00:08:03,760 --> 00:08:05,370
+So let's give it a real test.
+
+256
+00:08:05,750 --> 00:08:06,820
+Here's our treble clef,
+
+257
+00:08:06,820 --> 00:08:08,440
+as one continuous line.
+
+258
+00:08:08,840 --> 00:08:10,340
+We place a thousand dots along
+
+259
+00:08:10,340 --> 00:08:11,980
+it, and for every speed from
+
+260
+00:08:11,980 --> 00:08:13,174
+minus one hundred to one
+
+261
+00:08:13,174 --> 00:08:15,200
+hundred, we spin and average.
+
+262
+00:08:15,630 --> 00:08:17,810
+Out come two hundred and one circles.
+
+263
+00:08:18,240 --> 00:08:19,920
+Sort them from biggest to smallest,
+
+264
+00:08:19,920 --> 00:08:21,480
+and chain them tip to tail.
+
+265
+00:08:22,000 --> 00:08:23,770
+With one circle, we get a loop.
+
+266
+00:08:24,050 --> 00:08:25,680
+With five, a rough blob.
+
+267
+00:08:26,070 --> 00:08:27,990
+By twenty, you can start to see it.
+
+268
+00:08:28,340 --> 00:08:29,540
+And with two hundred,
+
+269
+00:08:29,540 --> 00:08:30,600
+the circles trace the
+
+270
+00:08:30,600 --> 00:08:32,240
+clef almost perfectly.
+
+271
+00:08:32,700 --> 00:08:34,840
+Up close, even the tiniest circles
+
+272
+00:08:34,840 --> 00:08:36,770
+are adding detail the others can't.
+
+273
+00:08:37,200 --> 00:08:38,460
+Remember how I said sharp
+
+274
+00:08:38,460 --> 00:08:39,670
+corners are expensive?
+
+275
+00:08:39,980 --> 00:08:41,160
+Smooth curves come from
+
+276
+00:08:41,160 --> 00:08:42,530
+the first few circles.
+
+277
+00:08:42,750 --> 00:08:44,730
+Sharp turns need all the rest.
+
+278
+00:08:45,140 --> 00:08:46,900
+When the pen jumps, like in the square
+
+279
+00:08:46,900 --> 00:08:48,970
+wave, the circles shrink slowly.
+
+280
+00:08:49,190 --> 00:08:49,980
+One third,
+
+281
+00:08:50,180 --> 00:08:50,850
+one fifth.
+
+282
+00:08:51,120 --> 00:08:52,960
+When the pen only turns a corner,
+
+283
+00:08:52,960 --> 00:08:55,380
+like our square, they shrink much faster.
+
+284
+00:08:55,600 --> 00:08:57,361
+One ninth, one twenty fifth.
+
+285
+00:08:57,760 --> 00:08:58,990
+The smoother the shape,
+
+286
+00:08:58,990 --> 00:09:00,590
+the fewer circles it takes.
+
+287
+00:09:01,000 --> 00:09:03,300
+That's why this idea shows up everywhere.
+
+288
+00:09:03,300 --> 00:09:05,060
+Think back to the piano chord.
+
+289
+00:09:05,060 --> 00:09:06,770
+A sound is a wave,
+
+290
+00:09:06,770 --> 00:09:08,100
+so it has circles too.
+
+291
+00:09:08,270 --> 00:09:10,040
+A singer and a violin playing
+
+292
+00:09:10,040 --> 00:09:11,960
+the same note spin their slowest
+
+293
+00:09:11,960 --> 00:09:13,640
+circle at the same speed.
+
+294
+00:09:13,640 --> 00:09:15,500
+It's the faster circles on top
+
+295
+00:09:15,500 --> 00:09:16,720
+that make them sound different.
+
+296
+00:09:17,100 --> 00:09:18,820
+And your phone uses a cousin of this
+
+297
+00:09:18,820 --> 00:09:20,980
+idea to shrink photos and music,
+
+298
+00:09:20,980 --> 00:09:22,640
+keeping the big circles and dropping
+
+299
+00:09:22,640 --> 00:09:24,330
+the tiny ones you won't notice.
+
+300
+00:09:24,680 --> 00:09:25,820
+So let's step back and
+
+301
+00:09:25,820 --> 00:09:26,920
+look at what we've built.
+
+302
+00:09:27,200 --> 00:09:28,560
+One spinning circle gives you
+
+303
+00:09:28,560 --> 00:09:30,800
+the simplest wave, with a size,
+
+304
+00:09:30,800 --> 00:09:32,470
+a speed, and a starting point.
+
+305
+00:09:32,830 --> 00:09:34,420
+Stack circles tip to tail,
+
+306
+00:09:34,420 --> 00:09:35,950
+and their motions add up.
+
+307
+00:09:35,950 --> 00:09:37,970
+With the right sizes and speeds,
+
+308
+00:09:37,970 --> 00:09:40,400
+smooth circles can build sharp corners.
+
+309
+00:09:40,760 --> 00:09:43,000
+Fourier's insight was that almost any
+
+310
+00:09:43,000 --> 00:09:44,800
+repeating shape can be built this way.
+
+311
+00:09:44,800 --> 00:09:47,050
+And once the tip moves in two directions,
+
+312
+00:09:47,250 --> 00:09:49,000
+those waves become drawings.
+
+313
+00:09:49,380 --> 00:09:51,220
+To find the circles, you spin the
+
+314
+00:09:51,220 --> 00:09:53,250
+drawing backward and take the average.
+
+315
+00:09:53,700 --> 00:09:55,360
+Whatever stands still is the
+
+316
+00:09:55,360 --> 00:09:56,620
+circle you were looking for.
+
+317
+00:09:57,190 --> 00:09:58,120
+There's one thing we
+
+318
+00:09:58,120 --> 00:09:59,440
+quietly assumed, though.
+
+319
+00:09:59,780 --> 00:10:01,440
+Our drawings repeat.
+
+320
+00:10:01,440 --> 00:10:03,100
+The pen always comes back
+
+321
+00:10:03,100 --> 00:10:04,050
+to where it started.
+
+322
+00:10:04,640 --> 00:10:06,740
+What about a sound that never repeats?
+
+323
+00:10:07,060 --> 00:10:09,480
+Then you need circles of every possible
+
+324
+00:10:09,480 --> 00:10:11,230
+speed, not just whole numbers.
+
+325
+00:10:11,610 --> 00:10:13,480
+That's the Fourier transform,
+
+326
+00:10:13,480 --> 00:10:14,840
+and it's where we'll go next.
+
+327
+00:10:15,260 --> 00:10:17,490
+For now, let's watch it one more time.
+
+328
+00:10:17,830 --> 00:10:19,650
+Just circles, going round.
+
+329
+00:10:20,340 --> 00:10:21,190
+Thanks for watching.
+

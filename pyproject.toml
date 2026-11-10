@@ -3,11 +3,14 @@ name = "aion"
 version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
+    "fonttools>=4.68.0",
     "manim>=0.22.1",
     "moderngl>=5.13.0",
     "pytinytex>=0.5.1",
     "pyvista>=0.49.2",
+    "scipy>=1.18.1",
     "skia-python>=144.1",
+    "taichi>=1.7.4",
 ]
 
 [tool.uv]
@@ -16,6 +19,11 @@ required-environments = ["sys_platform == 'linux' and platform_machine == 'x86_6
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
 
 [tool.hatch.build.targets.wheel]
 packages = ["aion"]

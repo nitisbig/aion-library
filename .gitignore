@@ -13,6 +13,7 @@ lab/**/out/
 kaggle/
 sfx/
 *.mp4
+*.png
 *.mov
 *.webm
 *.gif
