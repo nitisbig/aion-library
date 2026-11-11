@@ -21,7 +21,7 @@ from aion.project import VideoPaths
 from aion.voice.align import words_from_alignment, write_subtitles, write_word_srt, write_words_json
 from aion.voice.elevenlabs import VoiceSettings, is_cached, tts_with_timestamps
 from aion.voice.pacing import Pacing, silences, snap_words, stretch
-from aion.voice.script import chunk, lint, read_script, read_sections
+from aion.voice.script import chunk, lint, read_marked, read_script, read_sections
 
 __all__ = ["VoicePlan", "plan", "generate", "decode_pcm"]
 
@@ -34,10 +34,14 @@ class VoicePlan:
     settings: VoiceSettings
     cached: list[bool]
     warnings: list[str]
+    inserts: list = None            # [(base paragraph index it goes before, [(text, prev, next)], [cached])]
 
     @property
     def chars_to_bill(self) -> int:
-        return sum(len(c) for c, hit in zip(self.chunks, self.cached) if not hit)
+        n = sum(len(c) for c, hit in zip(self.chunks, self.cached) if not hit)
+        for _, parts, hits in self.inserts or []:
+            n += sum(len(t) for (t, _, _), hit in zip(parts, hits) if not hit)
+        return n
 
 
 def _neighbours(chunks: list[str], i: int) -> tuple[str | None, str | None]:
@@ -45,11 +49,52 @@ def _neighbours(chunks: list[str], i: int) -> tuple[str | None, str | None]:
 
 
 def plan(video: VideoPaths, script: Path | None = None) -> VoicePlan:
-    paras = read_script(script or video.dir / "voiceover.md")
-    chunks = chunk(paras)
+    marked = read_marked(script or video.dir / "voiceover.md")
+    base = [p for p, _, ins in marked if not ins]
+    chunks = chunk(base)                                  # the original narration: same chunks, same cache hits
     vs = VoiceSettings.load(video.dir / "voice.toml")
     cached = [is_cached(c, *_neighbours(chunks, i), vs) for i, c in enumerate(chunks)]
-    return VoicePlan(chunks, vs, cached, lint(paras))
+    inserts, n_base, i = [], 0, 0
+    while i < len(marked):                                # each run of inserted paragraphs is synthesised alone
+        if not marked[i][2]:
+            n_base, i = n_base + 1, i + 1
+            continue
+        j = i
+        while j < len(marked) and marked[j][2]:
+            j += 1
+        texts = chunk([p for p, _, _ in marked[i:j]])
+        before = marked[i - 1][0] if i else None
+        after = marked[j][0] if j < len(marked) else None
+        parts = [(t, texts[k - 1] if k else before, texts[k + 1] if k + 1 < len(texts) else after)
+                 for k, t in enumerate(texts)]
+        inserts.append((n_base, parts, [is_cached(*part, vs) for part in parts]))
+        i = j
+    return VoicePlan(chunks, vs, cached, lint([p for p, _, _ in marked]), inserts)
+
+
+def _splice(audio: np.ndarray, words: list, k: int, extra: np.ndarray, extra_words: list, rate: int = RATE):
+    """Insert `extra` (with its words, timed from 0) before word k, cutting inside the real pause there."""
+    from dataclasses import replace
+
+    if k >= len(words):
+        cut = len(audio)
+    else:
+        ends = [(a, b) for a, b in silences(audio, rate, min_len=0.08) if abs(b - words[k].start) < 0.25]
+        t = 0.5 * sum(min(ends, key=lambda ab: abs(ab[1] - words[k].start))) if ends else \
+            0.5 * (words[k - 1].end + words[k].start)
+        cut = int(round(t * rate))
+    fade = int(rate * 0.008)
+    head, tail = audio[:cut].copy(), audio[cut:].copy()
+    if len(head) > fade:
+        head[-fade:] *= np.linspace(1.0, 0.0, fade, dtype=audio.dtype)
+    if len(tail) > fade:
+        tail[:fade] *= np.linspace(0.0, 1.0, fade, dtype=audio.dtype)
+    pad = np.zeros(int(rate * 0.3), audio.dtype)          # a breath on each side; the pacing pass widens it
+    block = np.concatenate([pad, extra, pad])
+    t0, dt = (cut + len(pad)) / rate, len(block) / rate
+    mid = [replace(w, start=w.start + t0, end=w.end + t0) for w in extra_words]
+    late = [replace(w, start=w.start + dt, end=w.end + dt) for w in words[k:]]
+    return np.concatenate([head, block, tail]), words[:k] + mid + late
 
 
 def decode_pcm(data: bytes, rate: int = RATE) -> np.ndarray:
@@ -132,6 +177,17 @@ def generate(video: VideoPaths, script: Path | None = None, loudness: float | No
         bar.close(video.assets)
 
     audio = np.concatenate(pcm)
+    base_words = [len(p.split()) for p, _, ins in read_marked(script or video.dir / "voiceover.md") if not ins]
+    for n_base, parts, _ in reversed(vp.inserts or []):   # last first, so earlier word indices stay valid
+        xs, xw, off = [], [], 0
+        for part in parts:
+            a, align = tts_with_timestamps(*part, vp.settings)
+            x = decode_pcm(a)
+            xw += words_from_alignment(align, off / RATE)
+            xs.append(x)
+            off += len(x)
+        audio, words = _splice(audio, words, sum(base_words[:n_base]), np.concatenate(xs), xw)
+    offset = len(audio)
     pacing = Pacing.load(video.dir / "voice.toml")
     paced = {}
     if pacing.active and words:

@@ -4,6 +4,8 @@ Rules for voiceover.md (checked by `lint`):
 - Plain prose, one paragraph per idea; blank lines separate paragraphs.
 - Lines starting with `#`, `>` and HTML comments `<!-- -->` are notes (not spoken).
 - Write numbers and symbols the way they should be *said* ("two pi", "x squared").
+- Text added after the narration was generated goes between `> [insert]` and `> [/insert]` note lines:
+  it is synthesised on its own and spliced into the existing audio, so nothing already paid for is re-billed.
 """
 
 from __future__ import annotations
@@ -11,7 +13,7 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-__all__ = ["read_script", "read_sections", "chunk", "lint", "MAX_CHARS"]
+__all__ = ["read_script", "read_sections", "read_marked", "chunk", "lint", "MAX_CHARS"]
 
 MAX_CHARS = 2500
 
@@ -23,11 +25,19 @@ def read_script(path: str | Path) -> list[str]:
 
 def read_sections(path: str | Path) -> list[tuple[str, bool]]:
     """(paragraph, starts_section) pairs; a paragraph starts a section when a `# heading` precedes it."""
+    return [(p, sec) for p, sec, _ in read_marked(path)]
+
+
+def read_marked(path: str | Path) -> list[tuple[str, bool, bool]]:
+    """(paragraph, starts_section, inserted) triples; `inserted` is True between `> [insert]` … `> [/insert]`."""
     text = Path(path).read_text(encoding="utf-8")
     text = re.sub(r"<!--.*?-->", "", text, flags=re.S)
-    paras, heading = [], False
+    paras, heading, inserted = [], False, False
     for block in re.split(r"\n\s*\n", text):
         heading = heading or any(l.lstrip().startswith("#") for l in block.splitlines())
+        for l in block.splitlines():
+            if l.lstrip().startswith(">"):
+                inserted = True if "[insert]" in l else (False if "[/insert]" in l else inserted)
         lines = [l.strip() for l in block.splitlines()
                  if l.strip() and not l.lstrip().startswith(("#", ">", "---"))]
         if not lines:
@@ -37,7 +47,7 @@ def read_sections(path: str | Path) -> list[tuple[str, bool]]:
         p = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", p)  # links → text
         p = re.sub(r"\s+", " ", p).strip()
         if p:
-            paras.append((p, heading))
+            paras.append((p, heading, inserted))
             heading = False
     return paras
 

@@ -59,6 +59,28 @@ Now look from directly above. This is the picture we will use from here on. A ma
 
 So the question becomes precise. Exactly what curve does the light follow?
 
+> [insert]
+
+# DEEPER 1: spacetime (undergraduate level; the main story continues without it)
+
+Here is a deeper look, for those who want it. If you would rather keep things simple, hold on for one minute. Everything after this still makes sense.
+
+That funnel showed curved space. But Einstein's theory curves time as well. Space and time, woven together.
+
+So let us draw a different map. Distance from the mass runs across. Time runs upward. Every point on it is an event. A place, and a moment.
+
+On this map, a flash of light traces a cone. Far from the mass, every cone stands upright. Light moves outward and inward equally easily.
+
+The colour shows how fast time runs. Far away, clocks run at full speed. Closer in, they tick more slowly. And the cones begin to tip, leaning toward the mass.
+
+At the Schwarzschild radius, the cone has tipped so far that its outer edge points straight up. Light aimed outward just hovers there. Inside, every possible path leads inward.
+
+All of this is packed into one formula, called the metric. It measures the separation between two nearby events. And for light, that separation is always zero.
+
+Set it to zero, follow the light around the mass, and after a page of calculus, the path obeys one short equation. That is where we are going next.
+
+> [/insert]
+
 # CHAPTER 3: The equation
 
 To describe the path, we need two numbers for each point on it. The angle around the mass, called phi. And the distance from the mass, called r.
@@ -102,6 +124,24 @@ The orbit is unstable, like a pencil balanced on its tip. A ray that arrives the
 So every ray has one of three fates. It escapes, it orbits, or it is captured. And what decides its fate, is how far off centre it was aimed. The dividing line sits at about two point six times the Schwarzschild radius.
 
 That number matters. It means the dark region is bigger than the hole itself. Any light aimed inside that circle never comes back out.
+
+> [insert]
+
+# DEEPER 2: the potential hill (undergraduate level)
+
+One more deeper look. Why exactly three fates?
+
+Rewrite the equation as a ball rolling over a landscape. The height of the land depends on the distance from the hole. It rises to a single peak, and that peak sits exactly at the photon sphere.
+
+A ray of light comes in from far away, like a ball rolling toward the hill. How high it rides depends on its aim. A wide aim means a low ball. It climbs, stops, and rolls back out. That ray escapes.
+
+Aim closer, and the ball rides higher. At one precise height, it reaches the very top, and balances there. That is the orbit.
+
+Any higher, and it clears the peak, and falls down the far side, into the hole. Captured.
+
+One hill. Three outcomes. And the height of that peak is what sets the number two point six.
+
+> [/insert]
 
 We now have everything we need. One equation, and three fates. Let us build the picture.
 

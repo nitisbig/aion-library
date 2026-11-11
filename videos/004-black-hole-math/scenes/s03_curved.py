@@ -56,13 +56,13 @@ def grid(t, opacity):
     return g
 
 
-@scene(T.cut_ch2, T.cut_ch3)
+@scene(T.cut_ch2, T.cut_deep1)
 def s03_curved(s):
     glow = s.manim(fx=[glow_fx()], z=2)
     m = s.manim()
     brief(m, badge_rs(), T.cut_ch2 + 2.6)                 # chapter 1's results leave: a clean stage
     brief(m, badge_newton(), T.cut_ch2 + 2.6)
-    breathe(s, T.cut_ch2 + 3.5, T.cut_ch3)
+    breathe(s, T.cut_ch2 + 3.5, T.cut_deep1)
     starfield(s)
 
     # ── light goes straight. Always. Gravity does not pull on it ─────────
@@ -194,4 +194,4 @@ def s03_curved(s):
     light = VMobject(stroke_color=C.light, stroke_width=C.stroke)
     light.set_points_as_corners([[x, y - 0.1, 0.0] for x, y in pts])
     glow.play(Create(light), at=T.picture2d + 0.3, dur=2.6, ease="easy_ease")
-    photons(glow, light.get_all_points()[::3], T.picture2d + 2.9, T.cut_ch3)
+    photons(glow, light.get_all_points()[::3], T.picture2d + 2.9, T.cut_deep1)

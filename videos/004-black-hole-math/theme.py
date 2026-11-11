@@ -14,6 +14,7 @@ for the whole video, whichever design is active.
     newton    the thrown-ball (Newtonian) prediction
     disk      the accretion disk in diagrams
     grid      the space grid / funnel wireframe
+    time_*    how fast clocks run on the spacetime map: fast (far) → mid → slow (near the horizon)
 """
 import os
 
@@ -32,6 +33,7 @@ DESIGNS = {
         text="#f4f1ea", muted="#9a958a", faint="#2e2b27",
         light="#ffc94a", mass="#ff5a1f", horizon="#a78bfa", ring="#22d3ee", shadow="#ffffff",
         newton="#8f98a3", disk="#f0a050", grid="#3d4a63", bad="#ff4d4d",
+        time_fast="#22d3ee", time_mid="#8b5cf6", time_slow="#ff3d81",
         bh_T=4900.0, bh_beam=2.6, bh_shift=0.7, bh_gain=0.55),
     # 2 · NEON — crisp RGB primaries with a tight glow. Technical, high energy.
     2: BASE.extend(
@@ -42,6 +44,7 @@ DESIGNS = {
         text="#ffffff", muted="#8a94a6", faint="#1f2937",
         light="#ffe600", mass="#ff2d55", horizon="#8b5cf6", ring="#00f5d4", shadow="#ffffff",
         newton="#94a3b8", disk="#ff8a00", grid="#2f3fa3", bad="#ff3b30",
+        time_fast="#00f5d4", time_mid="#7c3aed", time_slow="#ff2d55",
         bh_T=6800.0, bh_beam=3.2, bh_shift=0.9, bh_gain=0.34),
     # 3 · OBSERVATORY — cool and editorial. Serif type, pale light, amber mass, deep blue horizon.
     3: BASE.extend(
@@ -52,6 +55,7 @@ DESIGNS = {
         text="#eef2f7", muted="#8d99ab", faint="#263041",
         light="#fff3c4", mass="#ffa62b", horizon="#4d9fff", ring="#5eead4", shadow="#ffffff",
         newton="#7f8ea3", disk="#e8b46a", grid="#33415c", bad="#fb7185",
+        time_fast="#5eead4", time_mid="#4d9fff", time_slow="#ff8a5c",
         bh_T=4200.0, bh_beam=2.2, bh_shift=0.6, bh_gain=0.7),
 }
 

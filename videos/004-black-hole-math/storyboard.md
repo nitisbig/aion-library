@@ -136,6 +136,29 @@ All eight scenes are built and tile the audio. Where the build differs from the 
 
 Disk gas: `disk_rate` and `disk_t0` keep the Keplerian shear from winding the texture into grooves.
 
+## Deeper looks (added for undergraduate viewers; the main story works without them)
+
+Audio is now 732.46 s (12:12). Both sections were added as `> [insert]` narration, spliced into the
+existing audio. Each opens by telling casual viewers they can coast, and shows a small ring that
+empties over its duration.
+
+### s03b_spacetime · T.cut_deep1 → T.cut_ch3  (3:43–5:06, 83 s)
+- **Idea:** a spacetime map, r across and t up, in ingoing Eddington–Finkelstein coordinates. Colour is the
+  clock rate √(1 − r_s/r) (tokens `C.time_fast/mid/slow`); dashes climb each world-line at that rate.
+  Light cones stand upright far away, tip toward the mass, have a vertical outer edge at r_s, and point
+  wholly inward inside. Then the Schwarzschild metric, ds² = 0 for light, and the light-path equation.
+- **Layers:** `spacetime.frag` shader · manim (cones, clocks, axes, equations) · starfield
+
+### s05b_hill · T.cut_deep2 → T.cut_ready  (8:45–9:42, 57 s)
+- **Idea:** the radial motion as a ball on V(r) = (1 − r_s/r)/r², peak 4/27 at 1.5 r_s. The ball's level is
+  1/b² with b read out live: b = 4 turns back (escape), b = 2.60 balances on the summit (orbit), b = 2.35
+  rolls over into the hole (capture). An inset draws the matching ray round the hole for each run.
+- **Layers:** manim · starfield
+
+### s05c_ready · T.cut_ready → T.cut_ch5  (9:42–9:49, 7 s)
+- **Idea:** "one equation, three fates": the equation, three rays round one hole, then the shadow circle
+  chapter 5 starts from. (This was the end of s05 before the hill was inserted.)
+
 ## Beats (from `uv run aion beats 004 --md`)
 
 | beat | time | end | words |

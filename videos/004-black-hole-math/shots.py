@@ -147,3 +147,39 @@ def badge_eq():
     FR = r"\frac{3GM}{c^2}"
     eq = Eqn(r"u'' + u = " + FR + r"\,u^2", colors={"u": C.light, FR: C.mass}, size=76)
     return eq.scale(0.5).move_to([0.9, 3.15, 0])
+
+
+def funnel_icon():
+    """A small Flamm funnel: rings at fixed radii dropped by the exact height, plus four profile lines."""
+    g, rs, k = VGroup(), 0.22, 0.95
+    drop = lambda r: k * 0.55 * float(S.flamm(1.3, rs) - S.flamm(r, rs))            # noqa: E731
+    for r in (1.3, 0.95, 0.65, 0.42, 0.27):
+        g.add(Ellipse(width=2 * k * r, height=2 * k * r * 0.36, color=C.muted, stroke_width=C.thin)
+              .move_to([0, -drop(r), 0]))
+    for a in (0.0, PI):
+        rr = np.linspace(0.27, 1.3, 24)
+        g.add(VMobject(stroke_color=C.muted, stroke_width=C.thin).set_points_as_corners(
+            [[k * r * np.cos(a), -drop(r), 0] for r in rr]))
+    g.add(VMobject(stroke_color=C.light, stroke_width=C.thin + 1).set_points_smoothly(
+        [[-1.2, 0.03, 0], [-0.55, -0.18, 0], [0.15, -0.3, 0], [0.75, -0.08, 0], [1.2, 0.18, 0]]))
+    return g
+
+
+def ray_path(b, hc, k, r_far=9.0, half=(3.0, 1.6), turns=2.2):
+    """Screen polyline of the ray aimed b (in r_s) off-centre, round a hole at `hc` drawn k units per r_s.
+    Clipped to a box of half-size `half`; the critical ray is cut after `turns` laps. Returns (points, fate)."""
+    ph, u, fate = S.orbit(abs(b), 1.0, phi_max=10 * PI)
+    keep = u > 1.0 / r_far
+    on = np.where(np.abs(u - 2 / 3) < 0.004)[0]
+    if len(on) > 200:                                   # hugging the photon sphere: stop while it circles
+        keep &= (ph <= ph[on[0]] + turns * TAU) & (np.arange(len(u)) <= on[-1])
+    r = 1.0 / np.maximum(u[keep], 1e-9)
+    hc = np.asarray(hc, float)
+    p = np.column_stack([hc[0] - k * r * np.cos(ph[keep]), hc[1] + np.sign(b) * k * r * np.sin(ph[keep]),
+                         np.zeros(int(keep.sum()))])
+    ok = (np.abs(p[:, 0] - hc[0]) < half[0]) & (np.abs(p[:, 1] - hc[1]) < half[1])
+    if not ok.any():
+        return p[:2], fate
+    i0 = int(np.argmax(ok))                               # skip the part still outside the box on the way in
+    bad = np.where(~ok[i0:])[0]
+    return (p[i0: i0 + bad[0]] if len(bad) else p[i0:]), fate

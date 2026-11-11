@@ -51,3 +51,25 @@ def test_pacing_config_and_sections(tmp_path):
     assert p.snap and p.section_gap == 1.5 and p.active and not Pacing().active
     (tmp_path / "v.md").write_text("# Title\n\nFirst para.\n\nSecond para.\n\n# CHAPTER 2\n\nThird para.\n")
     assert read_sections(tmp_path / "v.md") == [("First para.", True), ("Second para.", False), ("Third para.", True)]
+
+
+def test_inserted_paragraphs_are_planned_alone_and_spliced_in_place(tmp_path):
+    """Text between `> [insert]` notes never changes the original chunks, and lands before the right word."""
+    from aion.voice.master import _splice
+    from aion.voice.script import chunk, read_marked
+
+    (tmp_path / "v.md").write_text("One two.\n\n> [insert]\n\nNew words here.\n\n> [/insert]\n\nThree four.\n")
+    marked = read_marked(tmp_path / "v.md")
+    assert [(p, ins) for p, _, ins in marked] == [("One two.", False), ("New words here.", True), ("Three four.", False)]
+    assert chunk([p for p, _, ins in marked if not ins]) == ["One two.\n\nThree four."]     # base chunk untouched
+
+    x = tone(0.0, 1.0, 3.0) + tone(1.6, 2.6, 3.0)
+    words = [Word("one", 0.0, 0.5), Word("two.", 0.5, 1.0), Word("three", 1.6, 2.1), Word("four.", 2.1, 2.6)]
+    extra = tone(0.0, 0.8, 0.8)
+    y, out = _splice(x, words, 2, extra, [Word("new", 0.0, 0.4), Word("words", 0.4, 0.8)], rate=RATE)
+    assert [w.text for w in out] == ["one", "two.", "new", "words", "three", "four."]
+    assert abs(len(y) - len(x) - len(extra) - 2 * int(RATE * 0.3)) <= 2
+    assert abs(out[2].start - 1.6) < 0.02 and abs(out[4].start - (1.6 + 0.8 + 0.6)) < 0.02
+    for w in out:                                                   # speech is still under every cue
+        seg = y[int((w.start + 0.05) * RATE):int((w.start + 0.25) * RATE)]
+        assert np.sqrt((seg ** 2).mean()) > 0.2

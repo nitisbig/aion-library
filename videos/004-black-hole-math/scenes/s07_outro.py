@@ -4,7 +4,7 @@ from aion import *
 from aion.maths import schwarzschild as S
 
 from beats import T
-from shots import badge_eq, badge_rs, bh_look
+from shots import badge_eq, badge_rs, bh_look, funnel_icon
 
 INC, FOV = 84.0, 36.0
 DIST = key(T.cut_outro + 0.2, 44.0, 54.0, dur=3.0, ease="easy_ease", lead=0)       # ease back: room for the badges
@@ -15,22 +15,6 @@ OUT = 1.0 - key(T.next_video + 1.5, 0.0, 1.0, dur=1.9, lead=0)                  
 
 def shadow_radius(dist):
     return float(np.tan(np.arcsin(S.B_C * np.sqrt(1 - 2 / dist) / dist)) / np.tan(np.radians(FOV / 2)) * 4.0)
-
-
-def funnel_icon():
-    """A small Flamm funnel: rings at fixed radii dropped by the exact height, plus four profile lines."""
-    g, rs, k = VGroup(), 0.22, 0.95
-    drop = lambda r: k * 0.55 * float(S.flamm(1.3, rs) - S.flamm(r, rs))            # noqa: E731
-    for r in (1.3, 0.95, 0.65, 0.42, 0.27):
-        g.add(Ellipse(width=2 * k * r, height=2 * k * r * 0.36, color=C.muted, stroke_width=C.thin)
-              .move_to([0, -drop(r), 0]))
-    for a in (0.0, PI):
-        rr = np.linspace(0.27, 1.3, 24)
-        g.add(VMobject(stroke_color=C.muted, stroke_width=C.thin).set_points_as_corners(
-            [[k * r * np.cos(a), -drop(r), 0] for r in rr]))
-    g.add(VMobject(stroke_color=C.light, stroke_width=C.thin + 1).set_points_smoothly(
-        [[-1.2, 0.03, 0], [-0.55, -0.18, 0], [0.15, -0.3, 0], [0.75, -0.08, 0], [1.2, 0.18, 0]]))
-    return g
 
 
 @scene(T.cut_outro, T.end)

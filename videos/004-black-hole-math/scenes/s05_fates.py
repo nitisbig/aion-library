@@ -46,14 +46,14 @@ def poly(p, color, width=None, opacity=1.0):
         .set_points_as_corners(p if len(p) > 1 else [HC, HC + 1e-3 * UP])
 
 
-@scene(T.cut_ch4, T.cut_ch5)
+@scene(T.cut_ch4, T.cut_deep2)
 def s05_fates(s):
     glow = s.manim(fx=[glow_fx()], z=2)
     m = s.manim(z=3)
     eq_badge = badge_eq()                                   # the equation returns when it is needed
     m.play(FadeIn(eq_badge, shift=0.2 * DOWN), at=T.where - 1.7, dur=0.7)
     m.play(FadeOut(eq_badge), at=T.perfect_circle + 1.2, dur=0.6)
-    breathe(s, T.cut_ch4 + 2.0, T.cut_ch5)
+    breathe(s, T.cut_ch4 + 2.0, T.cut_deep2)
 
     # the black hole left at the end of chapter 3 moves to the centre
     hole = Circle(radius=0.34, stroke_color=C.horizon, stroke_width=C.stroke, fill_color=C.bg, fill_opacity=1.0)
@@ -131,7 +131,7 @@ def s05_fates(s):
     # ── three fates: a whole fan of rays, coloured by what happens to them ──
     esc_b = [4.9, 4.1, 3.5, 3.05, 2.75]
     cap_b = [2.3, 1.8, 1.25, 0.7, 0.2]
-    fan_out = T.everything - 0.4
+    fan_out = T.cut_deep2 - 1.3
 
     def fan(bs, color, t0, lag, r_out=6.5, hug=False, t_gone=fan_out, dim=True):
         g = VGroup()
@@ -179,5 +179,4 @@ def s05_fates(s):
 
     # one equation, three fates → hand over to chapter 5
     m.play(FadeOut(names), FadeOut(axis), FadeOut(brace), FadeOut(b_val), FadeOut(sizes), at=fan_out, dur=0.8)
-    last = badge_eq()
-    m.play(FadeIn(last, shift=0.2 * DOWN), at=T.everything + 1.0, dur=0.8)
+    # (the hand-over to chapter 5 now happens in s05c, after the deeper look at the potential hill)
