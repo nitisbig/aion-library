@@ -57,6 +57,22 @@ def photons(layer, pts, t0, t1, speed=2.6, gap=3.2, radius=0.055, color=None):
     return h
 
 
+def starfield(s, amount=0.5, **kw):
+    """The intro's sky, quiet, behind a diagram scene (additive, so black stays black)."""
+    return s.shader("stars.frag", z=-50, blend="add", u_amt=amount, **kw)
+
+
+def readout(value, unit, color=None, decimals=0, size=0.8):
+    """A live number with its unit: `11.2 km/s`. Rebuild it every frame inside a redraw."""
+    num = DecimalNumber(value, num_decimal_places=decimals, group_with_commas=True,
+                        font_size=C.tex_size * size, color=color or C.text)
+    if not unit:
+        return VGroup(num)
+    lab = Label(unit, color=C.muted, size=C.label_size * size * 0.9)
+    lab.next_to(num, RIGHT, buff=0.14).align_to(num, DOWN)
+    return VGroup(num, lab)
+
+
 def hero_camera():
     """Camera tracks for the opening: eased push-in (log distance), slow orbit, a look to the side."""
     # key() starts moving at `at`: begin at t = 0 and arrive at SETTLE

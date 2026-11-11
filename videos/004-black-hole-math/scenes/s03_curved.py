@@ -4,7 +4,7 @@ from aion import *
 from aion.maths import schwarzschild as S
 
 from beats import T
-from shots import badge_newton, badge_rs, breathe, brief, glow_fx, photons
+from shots import badge_newton, badge_rs, breathe, brief, glow_fx, photons, readout, starfield
 
 RS, RG = 0.6, 6.0                      # funnel: Schwarzschild radius and grid half-size (world units)
 AZ0, D, S0 = 0.52, 30.0, 0.54          # view: azimuth (rad), perspective distance, world → frame scale
@@ -63,6 +63,7 @@ def s03_curved(s):
     brief(m, badge_rs(), T.cut_ch2 + 2.6)                 # chapter 1's results leave: a clean stage
     brief(m, badge_newton(), T.cut_ch2 + 2.6)
     breathe(s, T.cut_ch2 + 3.5, T.cut_ch3)
+    starfield(s)
 
     # ── light goes straight. Always. Gravity does not pull on it ─────────
     ray = Line([-7.4, 0.7, 0], [7.4, 0.7, 0], color=C.light, stroke_width=C.stroke)
@@ -101,11 +102,51 @@ def s03_curved(s):
     flat_line(1.7, T.sheet + 3.4)
     flat_line(-1.7, T.side_by_side - 1.3)
 
+    # the distance between them, measured live as a gauge slides along: it never changes
+    t_g0, t_g1 = T.side_by_side + 0.5, T.mass_in - 1.3
+
+    def gauge(t):
+        op = float(fade(t_g0, dur=0.5, out=t_g1, lead=0)(t))
+        x = 4.2 * np.sin(1.1 * (t - t_g0) - 1.2)
+        a, b = project([x, 1.7, 0], t)[0], project([x, -1.7, 0], t)[0]
+        bar = VGroup(Line(a, b, color=C.text, stroke_width=C.thin + 1, stroke_opacity=op),
+                     Dot(a, radius=0.06, color=C.text, fill_opacity=op), Dot(b, radius=0.06, color=C.text, fill_opacity=op))
+        num = VGroup(Eqn("d", size=40), Eqn("=", size=40), readout(3.40, "", decimals=2)).arrange(RIGHT, buff=0.15)
+        num.set_opacity(op).move_to((a + b) / 2 + [0.95, 0.25, 0])
+        return VGroup(bar, num)
+    h_g = m.redraw(gauge, during=(t_g0 - 0.6, t_g1 + 0.1))
+    m.remove(h_g, at=t_g1 + 0.1)
+
     star = Dot(radius=0.17, color=C.mass)
     m.add(star, at=T.mass_in - 0.1)
     m.drive(star, lambda d, t: d.move_to(project([0, 0, height(RS, 0, t)], t)[0]).set_opacity(
         float(key(T.mass_in - 0.1, 0, 1, dur=0.5, lead=0)(t) * (1.0 - key(T.above + 3.6, 0.0, 1.0, dur=0.8, lead=0)(t)))),
         during=(T.mass_in - 0.1, T.picture2d + 0.6))
+
+    # "near the mass, distances stretch": a ruler slides inward; one step in r costs more and more real length
+    t_r0, t_r1 = T.stretch - 1.4, T.computed - 0.5
+    r_probe = key(t_r0 + 0.4, 5.4, 0.72, dur=3.6, ease="easy_ease", lead=0)
+    ang = np.radians(205.0)
+    law = Eqn(r"\frac{dl}{dr} = \frac{1}{\sqrt{1 - r_s/r}}", colors={"r_s": C.horizon}, size=44)
+    law.move_to([-4.6, -2.95, 0])
+    m.play(FadeIn(law, shift=0.15 * UP), at=t_r0, dur=0.6)
+    m.play(FadeOut(law), at=t_r1, dur=0.5)
+
+    def ruler(t):
+        op = float(fade(t_r0 + 0.2, dur=0.5, out=t_r1, lead=0)(t))
+        r = float(r_probe(t))
+        rr = np.linspace(r, r + 0.9, 10)
+        seg = np.column_stack([rr * np.cos(ang), rr * np.sin(ang), [height(q * np.cos(ang), q * np.sin(ang), t) for q in rr]])
+        tick = VGroup(polyline(seg, t, stroke_color=C.text, stroke_width=C.stroke + 2, stroke_opacity=op),
+                      Dot(project(seg[0], t)[0], radius=0.07, color=C.text, fill_opacity=op),
+                      Dot(project(seg[-1], t)[0], radius=0.07, color=C.text, fill_opacity=op))
+        val = readout(1.0 / np.sqrt(1.0 - RS / (r + 0.45)), "", decimals=2, size=1.0)
+        val.set_opacity(op).next_to(law, RIGHT, buff=0.3)
+        eq_sign = Eqn("=", size=44).set_opacity(op).next_to(law, RIGHT, buff=0.3)
+        val.next_to(eq_sign, RIGHT, buff=0.2)
+        return VGroup(tick, eq_sign, val)
+    h_r = m.redraw(ruler, during=(t_r0, t_r1 + 0.6))
+    m.remove(h_r, at=t_r1 + 0.6)
 
     shape = Eqn(r"z = 2\sqrt{r_s\,(r - r_s)}", colors={"z": C.text}, size=50).move_to([-4.3, -3.0, 0])
     m.play(FadeIn(shape, shift=0.2 * UP), at=T.computed, dur=0.8)
@@ -125,6 +166,25 @@ def s03_curved(s):
                             stroke_opacity=float(1.0 - key(T.picture2d - 1.3, 0, 1, dur=0.9, lead=0)(t)))
         h = glow.redraw(geo, during=(T.two_rays, T.picture2d - 0.3))
         glow.remove(h, at=T.picture2d - 0.3)
+
+        # the heading of the path, measured as it goes: it never steers, yet the number climbs
+        head = np.unwrap(np.arctan2(np.gradient(g3[:, 1]), np.gradient(g3[:, 0])))
+        turn = np.degrees(np.abs(head - head[0]))
+
+        def bend(t, g3=g3, r3=r3, turn=turn, b0=b0):
+            u = np.clip((t - T.two_rays) / (T.bend + 0.6 - T.two_rays), 0.0, 1.0)
+            n = min(max(int(u * len(g3)), 2), len(g3)) - 1
+            op = float(fade(T.two_rays + 0.3, dur=0.5, out=T.picture2d - 1.3, lead=0)(t))
+            p = project([g3[n, 0], g3[n, 1], float(SINK(t)) * (S.flamm(r3[n], RS) - Z_RIM)], t)[0]
+            dot = Dot(p, radius=0.07, color=C.text, fill_opacity=op)
+            if b0 < 0:                                       # one readout is enough: the two paths mirror each other
+                return VGroup(dot)
+            tag = DecimalNumber(float(turn[n]), num_decimal_places=1, unit=r"^{\circ}", font_size=C.tex_size * 0.8,
+                                color=C.text)
+            tag.set_opacity(op).move_to(p + [0.0, 0.42, 0])
+            return VGroup(dot, tag)
+        hb = m.redraw(bend, during=(T.two_rays, T.picture2d - 0.3))
+        m.remove(hb, at=T.picture2d - 0.3)
 
     # ── from directly above: the 2D picture used from here on ────────────
     mass = Dot(radius=0.2, color=C.mass).move_to([0, -0.1, 0])
