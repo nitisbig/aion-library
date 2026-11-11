@@ -7,6 +7,7 @@
 | `aion preview <v> [scenes] [--range A B]` | `out/preview*.mp4` | 854×480@15 with audio |
 | `aion render <v> [scenes] [--range A B]` | `out/final.mp4` | 1920×1080@60 |
 | `aion render <v> --4k` / `--draft` / `--low` / `--res 1280x720 --fps 30` | `out/<quality>.mp4` | quality presets |
+| `aion render <v> --quality 4k --fps 30 --design 2` | `out/4k_d2.mp4` | quality by name, frame rate, and design system N from the video's `theme.py` |
 | `aion render <v> --bg` | detached | then `aion status` (percent, ETA) |
 
 ## Vertical video (9:16 Shorts / Reels / TikTok)

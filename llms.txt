@@ -76,6 +76,7 @@ Everything is importable with `from aion import *` (which also re-exports Manim)
 - `Grade(exposure=0.0, contrast=1.0, saturation=1.0, lift=0.0, gamma=1.0, gain=1.0, tint=(1.0, 1.0, 1.0), lut: 'str | None' = None, lut_mix=1.0)`: Primary colour grade in linear light, optional .cube LUT.
 - `Grain(amount=0.025, size=1.0) -> 'Lens'`: Film grain, deterministic per frame index.
 - `Lens(vignette=0.0, ca=0.0, grain=0.0, grain_size=1.0, roundness=1.0)`: Vignette + chromatic aberration + grain in one pass (cheapest finish).
+- `Tonemap(exposure=0.0)`: ACES filmic curve for HDR content (bright disks, bloom): highlights roll off, black stays black.
 - `Vignette(amount=0.25, roundness=1.0) -> 'Lens'`: Darken the frame edges (draws the eye to the centre).
 - `ZoomBlur(amount=0.15, center=(0.5, 0.5), taps: 'int' = 16)`: Radial blur from `center` (uv). amount 0 = off; animate for whoosh transitions.
 
@@ -85,6 +86,7 @@ Everything is importable with `from aion import *` (which also re-exports Manim)
 ### aion.layers
 - `Layer(*, z: 'float' = 0.0, start: 'float' = -inf, end: 'float' = inf, opacity=1.0, blend: 'str' = 'normal', fx=(), matte: "'Layer | None'" = None, matte_mode: 'str' = 'alpha', parallax: 'float' = 1.0, pos=(0.0, 0.0), scale…)`: Base layer. See module docstring for shared parameters.
 - `Surface(tex: 'Any', enc: 'int' = 0, extent: 'tuple[float, float] | None' = None, screen_rot: 'float' = 0.0) -> None`: A layer's pixels for one frame.
+- `BlackHoleLayer(*, dist=30.0, inclination=84.0, azimuth=0.0, roll=0.0, fov=36.0, yaw=0.0, pitch=0.0, target_y=0.0, sky: 'str' = 'galaxy', sky_center=(84.0, 190.0), disk_rate: 'float' = 15.0, disk_t0: 'float' = 0.0, ring_temp: 'float…)`: Ray-traced Schwarzschild black hole with thin accretion disk, photon ring and lensed sky.
 - `ManimLayer(**kw)`: Transparent Manim layer driven by a score of timed events. See module docstring.
 - `ArrayLayer(rgba: 'np.ndarray', height: 'float' = 8.0, premultiplied: 'bool' = False, **kw)`: An RGBA uint8 numpy image (sRGB, straight alpha unless premultiplied=True).
 - `ImageLayer(path: 'str | Path', height: 'float' = 4.0, **kw)`: An image file (PNG/JPG) placed in world space, `height` in Manim units.

@@ -11,17 +11,23 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-__all__ = ["read_script", "chunk", "lint", "MAX_CHARS"]
+__all__ = ["read_script", "read_sections", "chunk", "lint", "MAX_CHARS"]
 
 MAX_CHARS = 2500
 
 
 def read_script(path: str | Path) -> list[str]:
     """Spoken paragraphs from a markdown voiceover file."""
+    return [p for p, _ in read_sections(path)]
+
+
+def read_sections(path: str | Path) -> list[tuple[str, bool]]:
+    """(paragraph, starts_section) pairs; a paragraph starts a section when a `# heading` precedes it."""
     text = Path(path).read_text(encoding="utf-8")
     text = re.sub(r"<!--.*?-->", "", text, flags=re.S)
-    paras = []
+    paras, heading = [], False
     for block in re.split(r"\n\s*\n", text):
+        heading = heading or any(l.lstrip().startswith("#") for l in block.splitlines())
         lines = [l.strip() for l in block.splitlines()
                  if l.strip() and not l.lstrip().startswith(("#", ">", "---"))]
         if not lines:
@@ -31,7 +37,8 @@ def read_script(path: str | Path) -> list[str]:
         p = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", p)  # links → text
         p = re.sub(r"\s+", " ", p).strip()
         if p:
-            paras.append(p)
+            paras.append((p, heading))
+            heading = False
     return paras
 
 

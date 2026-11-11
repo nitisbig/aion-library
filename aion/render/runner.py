@@ -44,8 +44,12 @@ def _frame_range(sd, fps: float) -> tuple[int, int]:
 def plan_chunks(vid, size, fps, codec: str, scenes: list[str] | None = None,
                 time_range: tuple[float, float] | None = None, chunk_sec: float = 2.0,
                 tag: str = "") -> list[Chunk]:
+    import os
+
     src = vid.source_hash()
-    d = vid.paths.out / ".chunks" / (tag or f"{min(size)}p{fps:g}-{codec}{'-v' if size[1] > size[0] else ''}")
+    design = os.environ.get("AION_DESIGN", "")            # --design N: its own chunks, never mixed with another look
+    d = vid.paths.out / ".chunks" / (tag or f"{min(size)}p{fps:g}-{codec}{'-v' if size[1] > size[0] else ''}"
+                                     f"{'-d' + design if design else ''}")
     d.mkdir(parents=True, exist_ok=True)
     per = max(1, round(chunk_sec * fps))
     out = []
@@ -57,7 +61,7 @@ def plan_chunks(vid, size, fps, codec: str, scenes: list[str] | None = None,
             a, b = max(a, math.floor(time_range[0] * fps)), min(b, math.ceil(time_range[1] * fps))
         if b <= a:
             continue
-        k = cache.key(src, sd.name, size, fps, codec)
+        k = cache.key(src, sd.name, size, fps, codec, design)
         # chunk grid anchored at the scene start so chunks stay stable when a range is requested
         s0 = round(sd.start * fps)
         g0 = s0 + ((a - s0) // per) * per

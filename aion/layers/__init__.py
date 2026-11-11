@@ -8,5 +8,6 @@ EXPORTS: dict[str, str] = {
     "ShaderLayer": "shader", "ManimLayer": "manim",
     "ImageLayer": "media", "ArrayLayer": "media",
     "PointsLayer": "points", "FieldLayer": "points",
+    "BlackHoleLayer": "blackhole",
 }
 __getattr__, __dir__, __all__ = lazy(__name__, EXPORTS)

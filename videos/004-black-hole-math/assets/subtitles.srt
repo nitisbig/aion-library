@@ -1,0 +1,1147 @@
+1
+00:00:04,000 --> 00:00:05,490
+This is a black hole.
+
+2
+00:00:06,360 --> 00:00:07,390
+Nobody painted it.
+
+3
+00:00:07,810 --> 00:00:09,620
+Nobody photographed it.
+
+4
+00:00:10,200 --> 00:00:12,280
+Every point of light you see was placed
+
+5
+00:00:12,400 --> 00:00:13,580
+there by a calculation.
+
+6
+00:00:15,370 --> 00:00:17,540
+And the whole picture comes from one
+
+7
+00:00:17,620 --> 00:00:18,220
+equation.
+
+8
+00:00:18,510 --> 00:00:20,980
+A single line of math, that tells a ray of
+
+9
+00:00:21,140 --> 00:00:21,930
+light where to go.
+
+10
+00:00:22,770 --> 00:00:24,760
+By the end of this video, you will be able
+
+11
+00:00:24,840 --> 00:00:26,333
+to read that equation.
+
+12
+00:00:26,387 --> 00:00:28,360
+And you will know why this image looks the
+
+13
+00:00:28,440 --> 00:00:29,040
+way it does.
+
+14
+00:00:30,010 --> 00:00:32,070
+Because it is stranger than it seems.
+
+15
+00:00:32,570 --> 00:00:34,540
+Look at this bright arc, curving over the
+
+16
+00:00:34,540 --> 00:00:34,930
+top.
+
+17
+00:00:35,280 --> 00:00:37,100
+You would think it is a second ring of
+
+18
+00:00:37,340 --> 00:00:39,090
+gas, standing upright behind the hole.
+
+19
+00:00:39,660 --> 00:00:40,753
+It is not.
+
+20
+00:00:40,753 --> 00:00:43,020
+There is only one flat disk here, and you
+
+21
+00:00:43,100 --> 00:00:44,700
+are seeing it in a way that should be
+
+22
+00:00:44,780 --> 00:00:45,510
+impossible.
+
+23
+00:00:46,500 --> 00:00:48,667
+To understand how, we will start with a
+
+24
+00:00:48,773 --> 00:00:50,880
+single ray of light, and end by building
+
+25
+00:00:50,960 --> 00:00:52,940
+this image, one pixel at a time.
+
+26
+00:00:54,890 --> 00:00:56,630
+Let us begin with a simpler question.
+
+27
+00:00:57,070 --> 00:00:58,280
+Can light be trapped?
+
+28
+00:00:59,160 --> 00:01:01,280
+Throw a ball upward, and it falls back.
+
+29
+00:01:01,700 --> 00:01:03,520
+Throw it faster, and it climbs higher
+
+30
+00:01:03,680 --> 00:01:05,067
+before it returns.
+
+31
+00:01:05,067 --> 00:01:06,800
+But there is a speed at which it never
+
+32
+00:01:07,040 --> 00:01:07,710
+returns at all.
+
+33
+00:01:08,120 --> 00:01:09,890
+That is the escape velocity.
+
+34
+00:01:10,190 --> 00:01:11,920
+For the Earth, it is about eleven
+
+35
+00:01:12,000 --> 00:01:13,280
+kilometres every second.
+
+36
+00:01:14,240 --> 00:01:15,260
+The formula is short.
+
+37
+00:01:15,550 --> 00:01:17,620
+The escape velocity depends on the mass
+
+38
+00:01:17,700 --> 00:01:19,620
+you are leaving, and on how far you are
+
+39
+00:01:19,700 --> 00:01:20,340
+from its centre.
+
+40
+00:01:20,820 --> 00:01:23,220
+More mass, or less distance, and you need
+
+41
+00:01:23,340 --> 00:01:23,810
+more speed.
+
+42
+00:01:24,880 --> 00:01:26,840
+So here is a thought, first written down
+
+43
+00:01:26,960 --> 00:01:28,220
+in seventeen eighty three.
+
+44
+00:01:28,650 --> 00:01:31,080
+Squeeze a mass into a smaller and smaller
+
+45
+00:01:31,080 --> 00:01:31,420
+ball.
+
+46
+00:01:31,690 --> 00:01:33,960
+The escape velocity at its surface keeps
+
+47
+00:01:34,040 --> 00:01:34,440
+rising.
+
+48
+00:01:34,730 --> 00:01:36,840
+At some point, it reaches the speed of
+
+49
+00:01:36,920 --> 00:01:37,130
+light.
+
+50
+00:01:38,110 --> 00:01:40,140
+Set the escape velocity equal to the speed
+
+51
+00:01:40,220 --> 00:01:42,300
+of light, solve for the radius, and you
+
+52
+00:01:42,380 --> 00:01:42,950
+get this.
+
+53
+00:01:43,420 --> 00:01:46,140
+Two times G times the mass, divided by the
+
+54
+00:01:46,220 --> 00:01:47,230
+speed of light squared.
+
+55
+00:01:47,590 --> 00:01:49,610
+It is called the Schwarzschild radius.
+
+56
+00:01:50,460 --> 00:01:52,480
+For the Earth, that radius is nine
+
+57
+00:01:52,560 --> 00:01:53,160
+millimetres.
+
+58
+00:01:53,460 --> 00:01:55,650
+The whole planet, pressed into a marble.
+
+59
+00:01:56,070 --> 00:01:58,000
+For the Sun, it is three kilometres.
+
+60
+00:01:58,780 --> 00:02:00,660
+Anything squeezed inside its own
+
+61
+00:02:00,740 --> 00:02:03,300
+Schwarzschild radius is a black hole.
+
+62
+00:02:03,300 --> 00:02:05,690
+And that sphere is the edge of no return.
+
+63
+00:02:06,600 --> 00:02:08,600
+But this argument has a problem.
+
+64
+00:02:08,600 --> 00:02:10,603
+It treats light like a thrown ball, and
+
+65
+00:02:10,760 --> 00:02:12,030
+light has no mass.
+
+66
+00:02:12,320 --> 00:02:14,413
+If you push the same reasoning further,
+
+67
+00:02:14,467 --> 00:02:16,280
+and ask how much a passing ray of light
+
+68
+00:02:16,360 --> 00:02:18,190
+should bend, you do get an answer.
+
+69
+00:02:18,450 --> 00:02:21,160
+And that answer is wrong, by a factor of
+
+70
+00:02:21,320 --> 00:02:22,150
+exactly two.
+
+71
+00:02:22,670 --> 00:02:23,480
+Remember that number.
+
+72
+00:02:23,740 --> 00:02:24,410
+It comes back.
+
+73
+00:02:25,300 --> 00:02:27,420
+To get it right, we need a better idea of
+
+74
+00:02:27,500 --> 00:02:28,460
+what gravity is.
+
+75
+00:02:30,280 --> 00:02:31,140
+Here is the idea.
+
+76
+00:02:31,600 --> 00:02:33,820
+Light always travels in a straight line.
+
+77
+00:02:34,230 --> 00:02:34,800
+Always.
+
+78
+00:02:35,220 --> 00:02:36,580
+Gravity does not pull on it.
+
+79
+00:02:37,450 --> 00:02:40,140
+What gravity does, is change what straight
+
+80
+00:02:40,150 --> 00:02:40,600
+means.
+
+81
+00:02:41,490 --> 00:02:43,840
+Picture a flat sheet, with a grid drawn on
+
+82
+00:02:43,920 --> 00:02:44,030
+it.
+
+83
+00:02:44,360 --> 00:02:47,040
+On this sheet, a straight line is exactly
+
+84
+00:02:47,120 --> 00:02:48,000
+what you expect.
+
+85
+00:02:48,220 --> 00:02:50,750
+Two lines that start side by side, stay
+
+86
+00:02:51,040 --> 00:02:52,450
+side by side forever.
+
+87
+00:02:53,420 --> 00:02:55,100
+Now put a mass in the middle.
+
+88
+00:02:55,260 --> 00:02:57,160
+The sheet is no longer flat.
+
+89
+00:02:57,560 --> 00:02:59,980
+Near the mass, distances stretch.
+
+90
+00:03:00,580 --> 00:03:02,620
+And this funnel is not a cartoon.
+
+91
+00:03:02,660 --> 00:03:03,940
+Its shape is computed.
+
+92
+00:03:04,170 --> 00:03:06,580
+It is the real geometry of a slice of
+
+93
+00:03:06,780 --> 00:03:07,810
+space around a star.
+
+94
+00:03:08,870 --> 00:03:11,360
+Send two rays across this surface.
+
+95
+00:03:11,400 --> 00:03:13,480
+Each one goes as straight as it possibly
+
+96
+00:03:13,560 --> 00:03:14,240
+can.
+
+97
+00:03:14,280 --> 00:03:16,360
+It never turns left, and it never turns
+
+98
+00:03:16,593 --> 00:03:16,940
+right.
+
+99
+00:03:17,190 --> 00:03:19,790
+And yet, the paths bend toward the mass.
+
+100
+00:03:20,580 --> 00:03:22,260
+Nothing pulled on them.
+
+101
+00:03:22,300 --> 00:03:24,160
+The space they moved through was curved,
+
+102
+00:03:24,450 --> 00:03:26,580
+so the straightest possible path was a
+
+103
+00:03:26,620 --> 00:03:26,940
+curve.
+
+104
+00:03:28,150 --> 00:03:29,970
+Now look from directly above.
+
+105
+00:03:30,180 --> 00:03:31,760
+This is the picture we will use from here
+
+106
+00:03:31,840 --> 00:03:32,533
+on.
+
+107
+00:03:32,587 --> 00:03:34,907
+A mass at the centre, and a ray of light,
+
+108
+00:03:34,933 --> 00:03:36,030
+bending as it passes.
+
+109
+00:03:36,940 --> 00:03:39,060
+So the question becomes precise.
+
+110
+00:03:39,380 --> 00:03:41,940
+Exactly what curve does the light follow?
+
+111
+00:03:43,440 --> 00:03:45,520
+To describe the path, we need two numbers
+
+112
+00:03:45,640 --> 00:03:47,120
+for each point on it.
+
+113
+00:03:47,120 --> 00:03:49,140
+The angle around the mass, called phi.
+
+114
+00:03:49,490 --> 00:03:51,580
+And the distance from the mass, called r.
+
+115
+00:03:52,660 --> 00:03:54,420
+There is one trick that makes everything
+
+116
+00:03:54,460 --> 00:03:54,820
+simpler.
+
+117
+00:03:55,070 --> 00:03:57,380
+Instead of the distance, we track one
+
+118
+00:03:57,500 --> 00:03:58,670
+divided by the distance.
+
+119
+00:03:58,930 --> 00:03:59,590
+Call it u.
+
+120
+00:03:59,920 --> 00:04:02,580
+When the light is far away, u is almost
+
+121
+00:04:02,940 --> 00:04:03,210
+zero.
+
+122
+00:04:03,440 --> 00:04:05,320
+When it comes close, u grows.
+
+123
+00:04:06,320 --> 00:04:08,893
+First, take the mass away completely.
+
+124
+00:04:08,947 --> 00:04:10,400
+The light goes perfectly straight.
+
+125
+00:04:10,680 --> 00:04:13,180
+And if you plot u against the angle, that
+
+126
+00:04:13,400 --> 00:04:15,640
+straight line becomes a pure sine wave.
+
+127
+00:04:15,870 --> 00:04:18,440
+It rises as the light approaches, peaks at
+
+128
+00:04:18,520 --> 00:04:20,330
+the closest point, and falls again.
+
+129
+00:04:21,440 --> 00:04:23,260
+A sine wave obeys a famous little
+
+130
+00:04:23,380 --> 00:04:24,260
+equation.
+
+131
+00:04:24,300 --> 00:04:26,860
+Its second derivative, plus itself, equals
+
+132
+00:04:27,480 --> 00:04:27,980
+zero.
+
+133
+00:04:27,980 --> 00:04:29,820
+So this is the equation of a straight
+
+134
+00:04:29,900 --> 00:04:30,700
+line.
+
+135
+00:04:30,780 --> 00:04:33,280
+U double prime, plus u, equals zero.
+
+136
+00:04:34,320 --> 00:04:35,620
+Now bring the mass back.
+
+137
+00:04:36,140 --> 00:04:38,240
+Einstein's theory changes this equation in
+
+138
+00:04:38,400 --> 00:04:40,120
+exactly one place.
+
+139
+00:04:40,160 --> 00:04:42,920
+The zero on the right becomes a new term.
+
+140
+00:04:42,920 --> 00:04:45,280
+Three times G times the mass, over the
+
+141
+00:04:45,360 --> 00:04:47,480
+speed of light squared, times u squared.
+
+142
+00:04:48,190 --> 00:04:49,630
+That is it.
+
+143
+00:04:49,700 --> 00:04:51,780
+That is the equation behind every black
+
+144
+00:04:51,900 --> 00:04:52,390
+hole image.
+
+145
+00:04:53,440 --> 00:04:54,820
+Look at what the new term does.
+
+146
+00:04:55,150 --> 00:04:56,600
+It contains u squared.
+
+147
+00:04:56,850 --> 00:04:59,560
+Far from the mass, u is tiny, and u
+
+148
+00:04:59,640 --> 00:05:02,200
+squared is far tinier, so the term does
+
+149
+00:05:02,480 --> 00:05:04,560
+nothing, and the light goes straight.
+
+150
+00:05:04,600 --> 00:05:06,760
+Only close to the mass does it wake up,
+
+151
+00:05:06,840 --> 00:05:07,940
+and bend the path inward.
+
+152
+00:05:08,980 --> 00:05:10,407
+Let us test it.
+
+153
+00:05:10,407 --> 00:05:12,460
+A ray of starlight, just grazing the edge
+
+154
+00:05:12,540 --> 00:05:13,020
+of the Sun.
+
+155
+00:05:13,250 --> 00:05:15,740
+The equation says it bends by one point
+
+156
+00:05:15,940 --> 00:05:17,700
+seven five arc seconds.
+
+157
+00:05:17,740 --> 00:05:19,740
+That is the width of a small coin, seen
+
+158
+00:05:19,860 --> 00:05:21,000
+from two kilometres away.
+
+159
+00:05:21,860 --> 00:05:24,000
+And it is exactly twice what the thrown
+
+160
+00:05:24,080 --> 00:05:25,260
+ball argument predicted.
+
+161
+00:05:25,600 --> 00:05:28,080
+In nineteen nineteen, astronomers measured
+
+162
+00:05:28,160 --> 00:05:29,560
+it during a solar eclipse.
+
+163
+00:05:29,800 --> 00:05:32,240
+The stars near the Sun had shifted, by
+
+164
+00:05:32,320 --> 00:05:33,200
+just this amount.
+
+165
+00:05:34,010 --> 00:05:36,430
+So the equation works for a gentle bend.
+
+166
+00:05:37,060 --> 00:05:38,980
+But the Sun is far larger than its
+
+167
+00:05:39,020 --> 00:05:40,090
+Schwarzschild radius.
+
+168
+00:05:40,330 --> 00:05:42,180
+What happens when we aim the light at
+
+169
+00:05:42,380 --> 00:05:44,340
+something much smaller, and pass much
+
+170
+00:05:44,420 --> 00:05:44,850
+closer?
+
+171
+00:05:47,050 --> 00:05:49,360
+Here is a black hole, and a ray of light
+
+172
+00:05:49,480 --> 00:05:51,067
+passing far from it.
+
+173
+00:05:51,067 --> 00:05:52,570
+It bends a little, and moves on.
+
+174
+00:05:53,700 --> 00:05:54,390
+Aim closer.
+
+175
+00:05:54,880 --> 00:05:55,850
+The bend grows.
+
+176
+00:05:56,250 --> 00:05:57,190
+Ninety degrees.
+
+177
+00:05:57,650 --> 00:05:58,380
+Then more than that.
+
+178
+00:05:58,650 --> 00:06:00,500
+The light swings around the back of the
+
+179
+00:06:00,580 --> 00:06:02,460
+hole, and heads home the way it came.
+
+180
+00:06:03,580 --> 00:06:05,880
+Closer still, and the ray makes a full
+
+181
+00:06:05,960 --> 00:06:07,260
+loop before it escapes.
+
+182
+00:06:08,300 --> 00:06:10,540
+Before we go on, make a guess.
+
+183
+00:06:10,540 --> 00:06:13,020
+If we keep aiming closer, what is the last
+
+184
+00:06:13,100 --> 00:06:14,850
+thing the light does before it falls in?
+
+185
+00:06:16,130 --> 00:06:16,920
+It does this.
+
+186
+00:06:17,330 --> 00:06:18,180
+It circles.
+
+187
+00:06:18,430 --> 00:06:20,960
+There is one exact distance at which light
+
+188
+00:06:21,040 --> 00:06:23,690
+can orbit a black hole, around and around.
+
+189
+00:06:24,470 --> 00:06:26,220
+And our equation tells us where.
+
+190
+00:06:26,760 --> 00:06:28,980
+On a perfect circle, the distance never
+
+191
+00:06:29,060 --> 00:06:29,530
+changes.
+
+192
+00:06:29,880 --> 00:06:31,860
+So u never changes, and its second
+
+193
+00:06:31,940 --> 00:06:33,020
+derivative is zero.
+
+194
+00:06:33,430 --> 00:06:34,290
+Cross that term out.
+
+195
+00:06:34,600 --> 00:06:37,140
+What remains is simple algebra, and it
+
+196
+00:06:37,180 --> 00:06:39,300
+gives a radius of one and a half times the
+
+197
+00:06:39,340 --> 00:06:40,380
+Schwarzschild radius.
+
+198
+00:06:41,270 --> 00:06:42,880
+This is the photon sphere.
+
+199
+00:06:43,150 --> 00:06:44,850
+A shell of orbiting light.
+
+200
+00:06:45,640 --> 00:06:48,060
+The orbit is unstable, like a pencil
+
+201
+00:06:48,140 --> 00:06:49,660
+balanced on its tip.
+
+202
+00:06:49,660 --> 00:06:51,340
+A ray that arrives the slightest bit
+
+203
+00:06:51,420 --> 00:06:52,830
+outside, spirals away.
+
+204
+00:06:53,100 --> 00:06:55,580
+The slightest bit inside, and it spirals
+
+205
+00:06:55,660 --> 00:06:56,690
+in, and is gone.
+
+206
+00:06:57,730 --> 00:07:00,130
+So every ray has one of three fates.
+
+207
+00:07:00,500 --> 00:07:03,480
+It escapes, it orbits, or it is captured.
+
+208
+00:07:03,760 --> 00:07:06,320
+And what decides its fate, is how far off
+
+209
+00:07:06,480 --> 00:07:07,310
+centre it was aimed.
+
+210
+00:07:07,820 --> 00:07:09,920
+The dividing line sits at about two point
+
+211
+00:07:10,000 --> 00:07:12,347
+six times the Schwarzschild radius.
+
+212
+00:07:12,847 --> 00:07:14,300
+That number matters.
+
+213
+00:07:14,340 --> 00:07:16,260
+It means the dark region is bigger than
+
+214
+00:07:16,300 --> 00:07:17,130
+the hole itself.
+
+215
+00:07:17,690 --> 00:07:20,100
+Any light aimed inside that circle never
+
+216
+00:07:20,220 --> 00:07:20,780
+comes back out.
+
+217
+00:07:21,800 --> 00:07:23,400
+We now have everything we need.
+
+218
+00:07:23,730 --> 00:07:25,620
+One equation, and three fates.
+
+219
+00:07:25,920 --> 00:07:27,050
+Let us build the picture.
+
+220
+00:07:29,110 --> 00:07:30,970
+Put a camera near the black hole.
+
+221
+00:07:31,190 --> 00:07:33,300
+Each pixel of its image looks out in one
+
+222
+00:07:33,780 --> 00:07:34,287
+direction.
+
+223
+00:07:34,313 --> 00:07:36,500
+And for each pixel, we ask one question.
+
+224
+00:07:36,920 --> 00:07:38,470
+What light arrives from there?
+
+225
+00:07:39,440 --> 00:07:41,500
+To answer, we run the light backwards.
+
+226
+00:07:41,730 --> 00:07:44,200
+Start a ray at the pixel, send it out from
+
+227
+00:07:44,240 --> 00:07:46,530
+the camera, and let the equation bend it.
+
+228
+00:07:46,750 --> 00:07:48,150
+Then we see where it ends up.
+
+229
+00:07:49,130 --> 00:07:50,810
+Some rays fall into the hole.
+
+230
+00:07:51,200 --> 00:07:53,020
+No light can come from there, so those
+
+231
+00:07:53,220 --> 00:07:54,940
+pixels stay black.
+
+232
+00:07:54,940 --> 00:07:56,700
+Together they form the shadow, and its
+
+233
+00:07:56,780 --> 00:07:58,660
+edge is that dividing line from before.
+
+234
+00:07:59,440 --> 00:08:01,830
+Some rays escape to the distant stars.
+
+235
+00:08:02,100 --> 00:08:04,560
+But they arrive bent, so the pixel shows a
+
+236
+00:08:04,640 --> 00:08:06,420
+star from a different part of the sky.
+
+237
+00:08:06,980 --> 00:08:08,960
+Around the hole, the whole sky is
+
+238
+00:08:09,040 --> 00:08:11,080
+stretched, and wrapped into rings.
+
+239
+00:08:12,140 --> 00:08:13,330
+Now add the disk.
+
+240
+00:08:13,630 --> 00:08:16,580
+A flat, thin ring of glowing gas, circling
+
+241
+00:08:16,620 --> 00:08:17,000
+the hole.
+
+242
+00:08:17,970 --> 00:08:19,720
+Rays that hit the front of the disk give
+
+243
+00:08:19,800 --> 00:08:21,380
+this bright band across the middle.
+
+244
+00:08:21,780 --> 00:08:22,720
+Nothing surprising yet.
+
+245
+00:08:23,820 --> 00:08:25,660
+But follow a ray that leaves the camera
+
+246
+00:08:25,740 --> 00:08:27,200
+aimed just above the hole.
+
+247
+00:08:27,540 --> 00:08:30,500
+It bends over the top, comes down behind,
+
+248
+00:08:30,540 --> 00:08:32,420
+and lands on the far side of the disk.
+
+249
+00:08:32,930 --> 00:08:35,100
+So above the hole, you see the back of the
+
+250
+00:08:35,340 --> 00:08:36,580
+disk, lifted into view.
+
+251
+00:08:37,490 --> 00:08:39,170
+That is the arc from the beginning.
+
+252
+00:08:39,400 --> 00:08:40,310
+Not a second ring.
+
+253
+00:08:40,770 --> 00:08:43,000
+The same disk, seen over the top of the
+
+254
+00:08:43,040 --> 00:08:43,290
+hole.
+
+255
+00:08:43,700 --> 00:08:45,840
+And beneath it, the underside, seen from
+
+256
+00:08:45,840 --> 00:08:46,190
+below.
+
+257
+00:08:47,220 --> 00:08:49,780
+Hugging the shadow is one more line, thin
+
+258
+00:08:49,900 --> 00:08:50,390
+and sharp.
+
+259
+00:08:50,790 --> 00:08:52,660
+That is light that circled the photon
+
+260
+00:08:52,740 --> 00:08:54,560
+sphere, before escaping toward us.
+
+261
+00:08:55,450 --> 00:08:57,290
+And one side is brighter than the other.
+
+262
+00:08:57,740 --> 00:08:59,960
+The gas on that side is rushing toward the
+
+263
+00:09:00,240 --> 00:09:02,040
+camera, at a large fraction of the speed
+
+264
+00:09:02,120 --> 00:09:02,410
+of light.
+
+265
+00:09:02,840 --> 00:09:04,520
+And motion toward you makes light
+
+266
+00:09:04,640 --> 00:09:04,880
+brighter.
+
+267
+00:09:05,840 --> 00:09:07,560
+Every feature has a reason now.
+
+268
+00:09:09,570 --> 00:09:11,720
+In twenty nineteen, a telescope the size
+
+269
+00:09:11,800 --> 00:09:13,680
+of the Earth took a real picture of a
+
+270
+00:09:13,720 --> 00:09:16,200
+black hole, fifty five million light years
+
+271
+00:09:16,280 --> 00:09:16,570
+away.
+
+272
+00:09:17,040 --> 00:09:19,480
+It showed a dark shadow, wrapped in a ring
+
+273
+00:09:19,600 --> 00:09:20,180
+of bent light.
+
+274
+00:09:20,500 --> 00:09:21,820
+Just as the equation said.
+
+275
+00:09:22,780 --> 00:09:25,020
+So here is what a picture of a black hole
+
+276
+00:09:25,100 --> 00:09:25,780
+really is.
+
+277
+00:09:26,160 --> 00:09:28,460
+It is a map of where straight lines go, in
+
+278
+00:09:28,700 --> 00:09:29,900
+a space that is curved.
+
+279
+00:09:30,810 --> 00:09:32,590
+A speed limit gave us the radius.
+
+280
+00:09:32,980 --> 00:09:34,660
+Curved space gave us the idea.
+
+281
+00:09:35,060 --> 00:09:36,940
+One extra term gave us the path.
+
+282
+00:09:37,220 --> 00:09:38,810
+And the path gave us the picture.
+
+283
+00:09:39,780 --> 00:09:40,700
+One thing we left out.
+
+284
+00:09:41,130 --> 00:09:43,620
+Real black holes spin, and a spinning hole
+
+285
+00:09:43,700 --> 00:09:44,950
+drags space around with it.
+
+286
+00:09:45,310 --> 00:09:46,780
+The shadow becomes lopsided.
+
+287
+00:09:47,170 --> 00:09:49,810
+That is a story for the next video.

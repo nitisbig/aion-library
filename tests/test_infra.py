@@ -67,3 +67,30 @@ def test_lazy_exports_do_not_import_manim():
     code = "import aion, sys; aion.registry(); print('manim' in sys.modules)"
     out = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True).stdout
     assert out.strip() == "False"
+
+
+def test_quality_and_design_options(monkeypatch):
+    """`--quality 4k --fps 30 --design 2` resolves like the flags and exports the design for theme.py."""
+    import os
+
+    import click
+    from click.testing import CliRunner
+
+    from aion.cli._common import design_suffix, quality_opts, resolve_quality
+
+    monkeypatch.setenv("AION_DESIGN", "")              # registered with monkeypatch, so teardown restores it
+    monkeypatch.delenv("AION_DESIGN")
+    seen = {}
+
+    @click.command()
+    @quality_opts
+    def cmd(quality, res, fps):
+        seen.update(q=resolve_quality(quality, res, fps, "final"), design=os.environ.get("AION_DESIGN"),
+                    suffix=design_suffix())
+
+    r = CliRunner().invoke(cmd, ["--quality", "4K", "--fps", "30", "--design", "2"])
+    assert r.exit_code == 0, r.output
+    assert seen == {"q": ("4k", (3840, 2160), 30.0), "design": "2", "suffix": "_d2"}
+    monkeypatch.delenv("AION_DESIGN", raising=False)
+    assert CliRunner().invoke(cmd, ["--quality", "1080p"]).exit_code == 0 and seen["q"] == ("final", (1920, 1080), 60)
+    assert seen["suffix"] == "" and CliRunner().invoke(cmd, ["--quality", "nope"]).exit_code != 0

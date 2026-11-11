@@ -476,6 +476,7 @@ Pick the cheapest technique that makes the idea visible.
 | `aion preview <v> [scenes] [--range A B]` | `out/preview*.mp4` | 854×480@15 with audio |
 | `aion render <v> [scenes] [--range A B]` | `out/final.mp4` | 1920×1080@60 |
 | `aion render <v> --4k` / `--draft` / `--low` / `--res 1280x720 --fps 30` | `out/<quality>.mp4` | quality presets |
+| `aion render <v> --quality 4k --fps 30 --design 2` | `out/4k_d2.mp4` | quality by name, frame rate, and design system N from the video's `theme.py` |
 | `aion render <v> --bg` | detached | then `aion status` (percent, ETA) |
 
 ## Vertical video (9:16 Shorts / Reels / TikTok)
@@ -998,6 +999,13 @@ Vignette + chromatic aberration + grain in one pass (cheapest finish).
 Example:
     s.fx(Lens(vignette=0.3, grain=0.02, ca=0.1))
 
+## Tonemap(exposure=0.0)  [fx.effects]
+
+ACES filmic curve for HDR content (bright disks, bloom): highlights roll off, black stays black.
+
+Example:
+    s.fx(Bloom(0.05, threshold=0.9), Tonemap(exposure=0.0))
+
 ## Vignette(amount=0.25, roundness=1.0) -> 'Lens'  [fx.effects]
 
 Darken the frame edges (draws the eye to the centre).
@@ -1037,6 +1045,13 @@ camera roll the layer could not apply itself).
 
 Example:
     return Surface(rt.tex, ENC_LINEAR)      # from a custom Layer.draw()
+
+## BlackHoleLayer(*, dist=30.0, inclination=84.0, azimuth=0.0, roll=0.0, fov=36.0, yaw=0.0, pitch=0.0, target_y=0.0, sky: 'str' = 'galaxy', sky_center=(84.0, 190.0), disk_rate: 'float' = 15.0, disk_t0: 'float' = 0.0, ring_temp: 'float…)  [layers.blackhole]
+
+Ray-traced Schwarzschild black hole with thin accretion disk, photon ring and lensed sky.
+
+Example:
+    s.add(BlackHoleLayer(dist=30, inclination=84, azimuth=10, sky="galaxy", scale_res=2))
 
 ## ManimLayer(**kw)  [layers.manim]
 

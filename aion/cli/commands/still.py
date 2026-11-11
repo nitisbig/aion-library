@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import click
 
-from aion.cli._common import parse_time, quality_opts, resolve_quality
+from aion.cli._common import design_suffix, parse_time, quality_opts, resolve_quality
 
 
 @click.command()
@@ -31,7 +31,7 @@ def cli(video, scene, ats, quality, res, fps, layers):
         if not sd.start <= t < sd.end:
             click.echo(f"⚠ {t:.2f}s is outside {sd.name} [{sd.start:.2f}, {sd.end:.2f})")
         img = comp.frame(t, round(t * f))
-        p = outdir / f"{sd.name}@{t:07.2f}.png"
+        p = outdir / f"{sd.name}@{t:07.2f}{design_suffix()}.png"
         Image.fromarray(img).save(p)
         click.echo(str(p))
     if layers:

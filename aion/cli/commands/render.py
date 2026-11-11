@@ -7,7 +7,7 @@ import sys
 
 import click
 
-from aion.cli._common import quality_opts, resolve_quality
+from aion.cli._common import design_suffix, quality_opts, resolve_quality
 
 
 def run(video, scenes, quality, res, fps, time_range, workers, chunk, default_quality, keep_going=True):
@@ -26,7 +26,7 @@ def run(video, scenes, quality, res, fps, time_range, workers, chunk, default_qu
     chunks = render(vid, size, f, codec, list(scenes) or None, time_range, workers, chunk)
     if not chunks:
         raise click.ClickException("nothing to render (check scene names / range)")
-    suffix = ""
+    suffix = design_suffix()
     if scenes:
         suffix += "_" + "-".join(scenes)
     if time_range:

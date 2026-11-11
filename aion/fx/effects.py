@@ -18,7 +18,7 @@ from aion.comp.comp import hex_to_linear
 from aion.fx.base import Effect, gpu_pass
 from aion.gpu import pool
 
-__all__ = ["Bloom", "Glow", "Blur", "Grade", "Vignette", "Grain", "ChromaticAberration", "Lens", "ZoomBlur",
+__all__ = ["Bloom", "Glow", "Blur", "Grade", "Vignette", "Grain", "ChromaticAberration", "Lens", "ZoomBlur", "Tonemap",
            "kawase_blur"]
 
 
@@ -76,6 +76,20 @@ class Bloom(Effect):
                        u_alpha_w=0.0)
         pool.release(blur)
         return out
+
+
+class Tonemap(Effect):
+    """ACES filmic curve for HDR content (bright disks, bloom): highlights roll off, black stays black.
+
+    Example:
+        s.fx(Bloom(0.05, threshold=0.9), Tonemap(exposure=0.0))
+    """
+
+    def __init__(self, exposure=0.0):
+        super().__init__(exposure=exposure)
+
+    def apply(self, rt, t, rc):
+        return gpu_pass("fx/tonemap.frag", rt.size, u_src=(rt.tex, 0), u_exposure=float(self.p("exposure", t)))
 
 
 class Glow(Effect):

@@ -15,10 +15,44 @@ QUALITY_OPTS = [
 ]
 
 
+QUALITY_ALIASES = {"480p": "low", "720p": "draft", "1080p": "final", "hd": "final", "2160p": "4k", "uhd": "4k"}
+EXTRA_OPTS = [
+    click.option("--quality", "quality_name", default=None, metavar="[preview|low|draft|final|4k]",
+                 help="Quality by name (same as the flags; also 480p/720p/1080p/2160p). Combine with --fps 30."),
+    click.option("--design", type=int, default=None, metavar="N",
+                 help="Design system N from the video's theme.py (sets AION_DESIGN; outputs get a _dN suffix)."),
+]
+
+
+def design_suffix() -> str:
+    """'_d2' when a design system was chosen with --design / AION_DESIGN, else ''."""
+    import os
+
+    d = os.environ.get("AION_DESIGN", "")
+    return f"_d{d}" if d else ""
+
+
 def quality_opts(f):
-    for opt in reversed(QUALITY_OPTS):
-        f = opt(f)
-    return f
+    """Shared options: --preview/--low/--draft/--final/--4k, --quality NAME, --res, --fps, --design N."""
+    import functools
+    import os
+
+    @functools.wraps(f)
+    def inner(*args, quality_name=None, design=None, **kw):
+        if quality_name:
+            q = QUALITY_ALIASES.get(quality_name.lower(), quality_name.lower())
+            from aion.render.project import QUALITY
+
+            if q not in QUALITY:
+                raise click.BadParameter(f"{quality_name!r}: choose from {', '.join(QUALITY)}", param_hint="--quality")
+            kw["quality"] = q
+        if design is not None:
+            os.environ["AION_DESIGN"] = str(design)      # read by the video's theme.py; inherited by workers
+        return f(*args, **kw)
+
+    for opt in reversed(QUALITY_OPTS + EXTRA_OPTS):
+        inner = opt(inner)
+    return inner
 
 
 def resolve_quality(quality: str | None, res: int | None, fps: float | None, default: str):

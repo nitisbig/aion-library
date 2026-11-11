@@ -20,7 +20,8 @@ import numpy as np
 from aion.project import VideoPaths
 from aion.voice.align import words_from_alignment, write_subtitles, write_word_srt, write_words_json
 from aion.voice.elevenlabs import VoiceSettings, is_cached, tts_with_timestamps
-from aion.voice.script import chunk, lint, read_script
+from aion.voice.pacing import Pacing, silences, snap_words, stretch
+from aion.voice.script import chunk, lint, read_script, read_sections
 
 __all__ = ["VoicePlan", "plan", "generate", "decode_pcm"]
 
@@ -88,6 +89,28 @@ def _loudnorm(src: Path, dst: Path, target: float = -16.0) -> None:
                     "-ac", "1", "-c:a", "pcm_s16le", str(dst)], check=True)
 
 
+def _pace(audio: np.ndarray, words: list, sections: list[tuple[str, bool]], pacing: Pacing):
+    """Apply voice.toml [pacing]: snap cues to speech onsets, then widen paragraph / section pauses."""
+    sil = silences(audio, RATE)
+    info: dict = {}
+    if pacing.snap:
+        words, info["cues_snapped"] = snap_words(words, sil)
+    breaks, k = [], 0
+    for text, section in sections:                     # k = index of the paragraph's first word
+        if k:
+            breaks.append((k, pacing.section_gap if section else pacing.paragraph_gap))
+        k += len(text.split())
+    if k != len(words):                                # alignment and script disagree: don't guess
+        info["pacing_skipped"] = f"script has {k} words, alignment {len(words)}"
+        breaks = []
+    n0 = len(audio)
+    audio, words, info["seconds_added"] = stretch(audio, words, RATE, breaks, pacing.lead_in,
+                                                   silences(audio, RATE, min_len=0.08), pacing.tail)
+    info["breaks"] = len(breaks)
+    info["duration_added"] = (len(audio) - n0) / RATE
+    return audio, words, info
+
+
 def generate(video: VideoPaths, script: Path | None = None, loudness: float | None = -16.0,
              progress: bool = True) -> dict:
     """Run TTS for every chunk (cached), then write assets/{audio.wav, audio.mp3,
@@ -108,10 +131,17 @@ def generate(video: VideoPaths, script: Path | None = None, loudness: float | No
     finally:
         bar.close(video.assets)
 
+    audio = np.concatenate(pcm)
+    pacing = Pacing.load(video.dir / "voice.toml")
+    paced = {}
+    if pacing.active and words:
+        audio, words, paced = _pace(audio, words, read_sections(script or video.dir / "voiceover.md"), pacing)
+        offset = len(audio)
+
     assets = video.assets
     assets.mkdir(exist_ok=True)
     raw = assets / ".audio.raw.wav"
-    _write_wav(np.concatenate(pcm), raw)
+    _write_wav(audio, raw)
     wav = assets / "audio.wav"
     if loudness is not None:
         _loudnorm(raw, wav, loudness)
@@ -124,4 +154,4 @@ def generate(video: VideoPaths, script: Path | None = None, loudness: float | No
     write_words_json(words, assets / "words.json")
     write_subtitles(words, assets / "subtitles.srt")
     return {"chunks": len(vp.chunks), "words": len(words), "duration": offset / RATE,
-            "billed_chars": vp.chars_to_bill, "warnings": vp.warnings}
+            "billed_chars": vp.chars_to_bill, "warnings": vp.warnings, **paced}
