@@ -13,7 +13,7 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-__all__ = ["read_script", "read_sections", "read_marked", "chunk", "lint", "MAX_CHARS"]
+__all__ = ["read_script", "read_sections", "read_marked", "read_pauses", "chunk", "lint", "MAX_CHARS"]
 
 MAX_CHARS = 2500
 
@@ -50,6 +50,27 @@ def read_marked(path: str | Path) -> list[tuple[str, bool, bool]]:
             paras.append((p, heading, inserted))
             heading = False
     return paras
+
+
+def read_pauses(path: str | Path) -> list[float]:
+    """Extra silence (seconds) requested before each paragraph with a `> [pause N]` line, one entry per paragraph.
+
+    `>` lines never reach the TTS, so adding or changing a pause never re-bills; the pacing pass applies it.
+    Example:
+        > [pause 4]          (in voiceover.md, between two paragraphs: 4 s more silence before the next one)
+    """
+    text = re.sub(r"<!--.*?-->", "", Path(path).read_text(encoding="utf-8"), flags=re.S)
+    out, pending = [], 0.0
+    for block in re.split(r"\n\s*\n", text):
+        for l in block.splitlines():
+            m = re.match(r"\s*>\s*\[pause\s+([0-9.]+)\s*s?\]", l)
+            if m:
+                pending += float(m.group(1))
+        lines = [l for l in block.splitlines() if l.strip() and not l.lstrip().startswith(("#", ">", "---"))]
+        if lines and re.sub(r"\s+", "", re.sub(r"(\*\*|__|\*|`)", "", " ".join(lines))):
+            out.append(pending)
+            pending = 0.0
+    return out
 
 
 def _sentences(p: str) -> list[str]:

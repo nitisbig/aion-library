@@ -69,3 +69,13 @@ def test_panel_mode_places_the_image_in_a_positioned_quad():
     cols = np.where(img.max(0) > 30)[0]
     left = W * (3.0 - 4.0 * 16 / 9 / 2 + 7.111) / 14.222           # the panel's left edge in pixels
     assert cols.min() >= left - 1 and cols.max() < W           # the disk lives inside the right-hand panel
+
+
+def test_shader_defines_are_float_literals():
+    # integer-looking defines make log(T_MAX / T_MIN) a log(int), which NVIDIA's GLSL compiler rejects
+    import re
+
+    from aion.layers.blackhole import _source
+
+    for name, val in re.findall(r"^#define (\w+) (\S+)$", _source(), re.M):
+        assert any(c in val for c in ".e"), f"{name} = {val} is an int literal"

@@ -125,7 +125,7 @@ class PointsLayer(Layer):
         self.alpha = track(alpha)
         self.cmap_id, self.cols = _cm(cmap if values is not None else None, colors)
         self.vmin, self.vmax = vmin, vmax
-        self.animated = animated
+        self.animated, self.additive = animated, additive
         self._rt = self._vbo = self._vao = None
         self._n = 0
 
@@ -155,7 +155,8 @@ class PointsLayer(Layer):
                      u_alpha=float(self.alpha(t)))
         self._rt.use()
         ctx.enable(moderngl.BLEND | moderngl.PROGRAM_POINT_SIZE)
-        ctx.blend_func = moderngl.ONE, moderngl.ONE
+        # premultiplied output: additive sums overlaps (glowy); otherwise later points sit over earlier ones
+        ctx.blend_func = (moderngl.ONE, moderngl.ONE) if self.additive else (moderngl.ONE, moderngl.ONE_MINUS_SRC_ALPHA)
         self._vao.render(moderngl.POINTS, vertices=len(p))
         ctx.disable(moderngl.BLEND)
         return Surface(self._rt.tex, ENC_LINEAR, None)

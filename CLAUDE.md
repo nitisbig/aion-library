@@ -88,7 +88,9 @@ and double-check formulas shown on screen. `aion.maths` holds verified helpers (
 
 The theme is code: `aion/theme/tokens.py` (`BASE`), extended per video in `theme.py`. Scenes use `C.<token>` only;
 `aion audit` flags raw hex colors.
-- Dark, slightly blue background (`C.bg`), restrained semantic accents. **Each math object keeps one color for
+- The default `BASE` is the Classic look: pure black (`C.bg`), crisp unglowed lines, a bright blue grid
+  (`C.grid` over `C.grid_minor`, white `C.axis`), Computer Modern math, no bloom/grain/vignette, restrained
+  semantic accents. `MODERN` keeps the earlier blue-black glow look (video 004/005 use it). **Each math object keeps one color for
   the whole video** (define roles: `BASE.extend(x=…, fx=…)`).
 - Equations via `Eqn(tex, colors={term: C.role})`, colored to match their visuals.
 - Safe margin (`C.margin`), uncluttered frames, text legible on a phone at 1080p (audit `--design`).

@@ -54,13 +54,19 @@ def _tables():
     return _TEX
 
 
+def _glsl_float(v) -> str:
+    """A GLSL float literal ('800' is an int: NVIDIA rejects log(int), Mesa converts it silently)."""
+    s = f"{float(v):.10g}"
+    return s if any(c in s for c in ".en") else s + ".0"
+
+
 def _source() -> str:
     from aion.maths import schwarzschild as S
 
     d = {"B_C": S.B_C, "EPS": S.EPS, "Y0": S.Y0, "Y1": S.Y1, "PHI_MAX": S.PHI_MAX, "U_CMAX": S.U_CMAX,
          "NB": S.NB, "NPHI": S.NPHI, "NU": S.NU, "R_IN": R_IN, "R_OUT": R_OUT,
          "T_MIN": S.T_MIN, "T_MAX": S.T_MAX, "N_T": S.N_T}
-    head = "#version 330\n" + "".join(f"#define {k} {float(v):.10g}\n" for k, v in d.items())
+    head = "#version 330\n" + "".join(f"#define {k} {_glsl_float(v)}\n" for k, v in d.items())
     return head + load_source("layers/blackhole.frag")
 
 

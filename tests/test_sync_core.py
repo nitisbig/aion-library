@@ -104,6 +104,16 @@ def test_beats_ordered_and_cuts(fixture_video):
         T.arow
 
 
+def test_cut_offset_moves_the_boundary_within_the_silence(fixture_video):
+    kw = dict(audio=fixture_video / "assets" / "audio.wav")
+    srt = fixture_video / "assets" / "cue-per-word.srt"
+    base = beats(srt, c1=cut("stretches", "now watch"), **kw).c1
+    later = beats(srt, c1=cut("stretches", "now watch", offset=0.1), **kw).c1
+    far = beats(srt, c1=cut("stretches", "now watch", offset=50.0), **kw).c1
+    assert abs(later - base - 0.1) < 1 / 60 + 1e-9
+    assert later < far < 4.7                             # clamped before "now watch" starts
+
+
 def test_beats_from_caller_folder(fixture_video):
     (fixture_video / "beats.py").write_text(
         "from aion.sync.beats import beats, cut\nT = beats(a=cut('lines', 'this'))\n")

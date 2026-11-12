@@ -77,14 +77,17 @@ def end(text: str, offset: float = 0.0, nth: int = 1) -> Spec:
     return Spec("end", text, offset=offset, nth=nth)
 
 
-def cut(before: str, after: str) -> Spec:
+def cut(before: str, after: str, offset: float = 0.0) -> Spec:
     """Scene boundary between the end of `before` and the start of `after`, placed in
     the middle of the real audio silence there and snapped to the frame grid.
+    `offset` moves it within that silence (+ gives the earlier scene more of the pause);
+    it is clamped to stay between the two words.
 
     Example:
         cut1=cut("every vector", "now consider")
+        cut2=cut("its span", "now watch", offset=2.0)   # most of a long pause stays with the scene before
     """
-    return Spec("cut", before, after)
+    return Spec("cut", before, after, offset=offset)
 
 
 def sec(t: float) -> Spec:
@@ -214,7 +217,10 @@ def beats(_cue: Cue | str | Path | None = None, *, fps: float = 60, audio: str |
             elif spec.kind == "cut":
                 i, j = cue.find(spec.text, pos)
                 k, m = cue.find(spec.text2, cue.words[i].start + 1e-4)
-                t, soft = cut_time(cue.words[j - 1].end, cue.words[k].start, sil, grid)
+                eb, sa = cue.words[j - 1].end, cue.words[k].start
+                t, soft = cut_time(eb, sa, sil, grid)
+                if spec.offset:
+                    t = grid.snap(min(max(t + spec.offset, eb + 0.05), max(sa - 0.05, eb + 0.05)))
                 b = Beat(t, name, t, f"{spec.text} ✂ {spec.text2}", soft)
                 cut_names.add(name)
                 pos = cue.words[k].start

@@ -67,3 +67,24 @@ def test_points_and_field_layers_render():
     comp.add(PointsLayer(lambda t: p.at(t)["pos"], size=2))
     img = comp.frame(0.4)
     assert img.std() > 5
+
+
+@pytest.mark.gpu
+def test_points_non_additive_overlap_keeps_last_colour():
+    """Many overlapping points with additive=False show the last point's colour instead of saturating."""
+    from aion.comp.comp import Comp
+    from aion.layers.points import PointsLayer
+
+    n = 400
+    pos = np.zeros((n, 2))
+    vals = np.zeros(n)
+    vals[-1] = 1.0                                     # the last point drawn is the far end of the ramp
+
+    def frame(additive):
+        comp = Comp((320, 180), fps=30, background="#000000")
+        comp.add(PointsLayer(lambda t: pos, values=lambda t: vals, cmap="ramp", vmin=0, vmax=1, size=40, glow=0,
+                             colors=("#2040ff", "#808080", "#ff4020"), additive=additive))
+        return comp.frame(0.0)[90, 160].astype(float)
+    over, add = frame(False), frame(True)
+    assert over[0] > over[2]                           # red end on top, not summed blue
+    assert add.min() > 200                             # additive saturates toward white

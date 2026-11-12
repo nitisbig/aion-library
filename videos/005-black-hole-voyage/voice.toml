@@ -1,0 +1,18 @@
+# Same voice as video 004, slower and steadier for a calm, poetic read
+voice_id = "s3TPKV1kjDlVtZbl4Ksh"
+model_id = "eleven_v4"
+output_format = "mp3_44100_128"
+stitch = true
+seed = 7
+[settings]
+stability = 0.65
+similarity_boost = 0.75
+speed = 0.85
+
+# Pacing pass (free: applied to cached audio, never re-bills). lead_in + line + tail = clip length
+[pacing]
+snap = true
+lead_in = 9.0
+paragraph_gap = 0.5
+section_gap = 1.5
+tail = 7.8

@@ -119,9 +119,12 @@ Also: `NBody`, `Heat2D`, `Springs`. Custom: subclass `Sim` (fields, setup, step(
 ```python
 from aion import BASE
 
-theme = BASE.extend(x="#58c4dd", fx="#f2c14e", vec="#ff7a59", bloom=0.4)
+theme = BASE.extend(x="#58c4dd", fx="#ffe94a", vec="#fc6255")
+# BASE = Classic (default): pure black, crisp lines, no bloom/grain/vignette, Computer Modern math.
+# MODERN = the earlier blue-black look with soft bloom and grain (`from aion import MODERN`).
 # tokens: C.bg C.bg2 C.text C.muted C.faint C.accent C.accent2 C.good C.bad C.font C.display_font
-#         C.body_size C.label_size C.title_size C.tex_size C.stroke C.margin C.lead C.fade C.bloom ...
+#         C.body_size C.label_size C.title_size C.tex_size C.stroke C.thin C.margin C.lead C.fade C.bloom ...
+#         C.grid C.grid_minor C.axis C.ghost C.frame (classic grid colours, part of BASE)
 ```
 
 ## 10 · Loop

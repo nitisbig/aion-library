@@ -2,5 +2,5 @@
 
 from aion._lazy import lazy
 
-EXPORTS: dict[str, str] = {"Theme": "tokens", "BASE": "tokens", "C": "tokens"}
+EXPORTS: dict[str, str] = {"Theme": "tokens", "BASE": "tokens", "MODERN": "tokens", "C": "tokens"}
 __getattr__, __dir__, __all__ = lazy(__name__, EXPORTS)

@@ -1,0 +1,911 @@
+1
+00:00:01,500 --> 00:00:02,420
+Take a matrix.
+
+2
+00:00:02,700 --> 00:00:04,410
+Two rows, two columns.
+
+3
+00:00:04,710 --> 00:00:05,530
+Four numbers.
+
+4
+00:00:06,320 --> 00:00:08,400
+At some point, someone told you to
+
+5
+00:00:08,640 --> 00:00:10,690
+multiply them in a cross, and subtract.
+
+6
+00:00:11,250 --> 00:00:13,620
+A times D, minus B times C.
+
+7
+00:00:13,950 --> 00:00:16,120
+They called the answer the determinant.
+
+8
+00:00:16,910 --> 00:00:18,690
+And you probably learned to compute it,
+
+9
+00:00:18,910 --> 00:00:21,060
+long before anyone told you what it is.
+
+10
+00:00:21,910 --> 00:00:23,780
+You would think it is just a recipe.
+
+11
+00:00:24,050 --> 00:00:25,060
+A piece of bookkeeping.
+
+12
+00:00:25,630 --> 00:00:26,170
+But watch.
+
+13
+00:00:26,960 --> 00:00:29,660
+This one number knows how much a matrix
+
+14
+00:00:29,740 --> 00:00:30,830
+stretches space.
+
+15
+00:00:31,060 --> 00:00:32,860
+It knows whether space has been flipped
+
+16
+00:00:33,020 --> 00:00:33,200
+over.
+
+17
+00:00:33,450 --> 00:00:35,580
+And when it reaches zero, it is telling
+
+18
+00:00:35,660 --> 00:00:37,660
+you that something has been destroyed, and
+
+19
+00:00:37,740 --> 00:00:38,840
+can never be recovered.
+
+20
+00:00:40,130 --> 00:00:42,000
+By the end of this video, you will look at
+
+21
+00:00:42,080 --> 00:00:44,640
+A times D, minus B times C, and see a
+
+22
+00:00:44,720 --> 00:00:46,190
+picture instead of a formula.
+
+23
+00:00:47,080 --> 00:00:49,260
+We will start with a single square, and
+
+24
+00:00:49,460 --> 00:00:51,890
+end by flattening three dimensional space.
+
+25
+00:00:58,050 --> 00:01:00,510
+First, we need to see what a matrix does.
+
+26
+00:01:01,480 --> 00:01:03,710
+Start with a flat grid, and two arrows.
+
+27
+00:01:04,100 --> 00:01:06,040
+One points to the right, one unit long.
+
+28
+00:01:06,370 --> 00:01:07,230
+Call it i hat.
+
+29
+00:01:07,580 --> 00:01:09,220
+The other points straight up.
+
+30
+00:01:09,490 --> 00:01:10,280
+Call it j hat.
+
+31
+00:01:11,190 --> 00:01:13,400
+A matrix is a set of instructions for
+
+32
+00:01:13,480 --> 00:01:14,650
+moving this whole grid.
+
+33
+00:01:14,940 --> 00:01:16,760
+And the instructions are surprisingly
+
+34
+00:01:17,450 --> 00:01:17,720
+short.
+
+35
+00:01:17,720 --> 00:01:19,740
+The first column says where i hat lands.
+
+36
+00:01:20,060 --> 00:01:22,170
+The second column says where j hat lands.
+
+37
+00:01:23,170 --> 00:01:24,170
+Take this matrix.
+
+38
+00:01:24,530 --> 00:01:26,460
+Its first column is three, one.
+
+39
+00:01:26,680 --> 00:01:30,007
+So i hat moves to the point three, one.
+
+40
+00:01:30,007 --> 00:01:31,690
+Its second column is one, two.
+
+41
+00:01:31,910 --> 00:01:33,160
+So j hat goes there.
+
+42
+00:01:33,930 --> 00:01:35,740
+And everything else follows along.
+
+43
+00:01:36,250 --> 00:01:37,390
+Grid lines stay straight.
+
+44
+00:01:37,690 --> 00:01:40,293
+They stay parallel, and evenly spaced.
+
+45
+00:01:40,347 --> 00:01:42,760
+The whole plane leans and stretches,
+
+46
+00:01:42,800 --> 00:01:44,210
+carried by those two arrows.
+
+47
+00:01:45,130 --> 00:01:46,970
+That is all a matrix is.
+
+48
+00:01:47,270 --> 00:01:48,590
+A movement of space.
+
+49
+00:01:49,090 --> 00:01:51,060
+And once you see it that way, a natural
+
+50
+00:01:51,220 --> 00:01:51,920
+question appears.
+
+51
+00:01:52,260 --> 00:01:54,010
+How much did space just stretch?
+
+52
+00:01:56,040 --> 00:01:58,080
+To measure it, watch one small piece of
+
+53
+00:01:58,120 --> 00:01:58,500
+the grid.
+
+54
+00:01:58,740 --> 00:02:01,600
+The square that sits on i hat and j hat.
+
+55
+00:02:01,600 --> 00:02:03,920
+Each side has length one, so its area is
+
+56
+00:02:04,000 --> 00:02:04,740
+exactly one.
+
+57
+00:02:05,570 --> 00:02:07,290
+Now apply the matrix again.
+
+58
+00:02:07,600 --> 00:02:09,513
+The square leans over into a
+
+59
+00:02:09,647 --> 00:02:10,140
+parallelogram.
+
+60
+00:02:10,510 --> 00:02:12,610
+Count it up, and its area is five.
+
+61
+00:02:13,470 --> 00:02:14,990
+One became five.
+
+62
+00:02:15,470 --> 00:02:17,060
+And here is what makes this useful.
+
+63
+00:02:17,390 --> 00:02:18,930
+It is not just that square.
+
+64
+00:02:19,340 --> 00:02:21,080
+Every square on the grid was treated the
+
+65
+00:02:21,200 --> 00:02:23,640
+same way, so every one of them grew five
+
+66
+00:02:23,720 --> 00:02:24,420
+times larger.
+
+67
+00:02:25,240 --> 00:02:28,260
+And any shape you like, a circle, a leaf,
+
+68
+00:02:28,300 --> 00:02:30,220
+the outline of a country, can be filled
+
+69
+00:02:30,300 --> 00:02:31,410
+with tiny squares.
+
+70
+00:02:31,610 --> 00:02:33,790
+Each tiny square grows by five.
+
+71
+00:02:34,060 --> 00:02:35,680
+So the whole shape grows by five.
+
+72
+00:02:36,650 --> 00:02:39,040
+That factor, the amount by which a matrix
+
+73
+00:02:39,120 --> 00:02:41,430
+scales every area, is the determinant.
+
+74
+00:02:41,710 --> 00:02:44,200
+For this matrix, the determinant is five.
+
+75
+00:02:45,170 --> 00:02:46,240
+Let us test the idea.
+
+76
+00:02:46,660 --> 00:02:48,660
+This matrix stretches space by two
+
+77
+00:02:48,740 --> 00:02:50,460
+sideways, and by three upward.
+
+78
+00:02:50,850 --> 00:02:53,180
+A one by one square becomes two by three.
+
+79
+00:02:53,520 --> 00:02:54,900
+The determinant is six.
+
+80
+00:02:55,800 --> 00:02:57,320
+Now try to predict this one.
+
+81
+00:02:57,650 --> 00:02:59,050
+It is called a shear.
+
+82
+00:02:59,550 --> 00:03:01,560
+The top of the grid slides to the right,
+
+83
+00:03:01,640 --> 00:03:02,820
+while the bottom stays put.
+
+84
+00:03:03,420 --> 00:03:04,690
+Everything looks distorted.
+
+85
+00:03:05,160 --> 00:03:06,530
+So what is the determinant?
+
+86
+00:03:07,610 --> 00:03:08,240
+It is one.
+
+87
+00:03:08,700 --> 00:03:10,780
+The square leans, but its base and its
+
+88
+00:03:10,860 --> 00:03:12,080
+height never change.
+
+89
+00:03:12,490 --> 00:03:14,700
+Shapes are bent, and yet not a drop of
+
+90
+00:03:14,780 --> 00:03:16,430
+area is gained or lost.
+
+91
+00:03:18,260 --> 00:03:20,120
+So where does the formula come from?
+
+92
+00:03:20,460 --> 00:03:22,980
+Why A times D, minus B times C?
+
+93
+00:03:23,900 --> 00:03:25,310
+Write the matrix with letters.
+
+94
+00:03:25,660 --> 00:03:27,450
+i hat lands at A, C.
+
+95
+00:03:27,890 --> 00:03:29,710
+j hat lands at B, D.
+
+96
+00:03:29,940 --> 00:03:31,980
+And the parallelogram between them is the
+
+97
+00:03:32,140 --> 00:03:32,730
+area we want.
+
+98
+00:03:33,610 --> 00:03:34,930
+Here is a lovely trick.
+
+99
+00:03:35,280 --> 00:03:37,150
+Draw a rectangle around the whole thing.
+
+100
+00:03:37,570 --> 00:03:39,110
+Its width is A plus B.
+
+101
+00:03:39,460 --> 00:03:41,030
+Its height is C plus D.
+
+102
+00:03:41,950 --> 00:03:43,550
+That rectangle is too big.
+
+103
+00:03:43,910 --> 00:03:45,510
+So remove what does not belong.
+
+104
+00:03:45,880 --> 00:03:48,260
+Two triangles here, which together make A
+
+105
+00:03:48,420 --> 00:03:48,900
+times C.
+
+106
+00:03:49,350 --> 00:03:51,650
+Two more triangles, which make B times D.
+
+107
+00:03:51,860 --> 00:03:54,000
+And two small rectangles in the corners,
+
+108
+00:03:54,250 --> 00:03:55,790
+each one B times C.
+
+109
+00:03:56,620 --> 00:03:59,000
+Expand, subtract, and almost everything
+
+110
+00:03:59,080 --> 00:03:59,600
+cancels.
+
+111
+00:04:00,000 --> 00:04:02,760
+What survives is A times D, minus B times
+
+112
+00:04:02,920 --> 00:04:03,180
+C.
+
+113
+00:04:04,010 --> 00:04:05,950
+So the formula was never arbitrary.
+
+114
+00:04:06,250 --> 00:04:08,460
+It is the area of a parallelogram, written
+
+115
+00:04:08,540 --> 00:04:09,730
+out in four numbers.
+
+116
+00:04:10,570 --> 00:04:11,790
+Try it on our matrix.
+
+117
+00:04:12,160 --> 00:04:13,710
+Three times two is six.
+
+118
+00:04:14,040 --> 00:04:15,440
+One times one is one.
+
+119
+00:04:15,770 --> 00:04:16,840
+Six minus one.
+
+120
+00:04:17,250 --> 00:04:17,670
+Five.
+
+121
+00:04:18,050 --> 00:04:19,360
+The same five we counted.
+
+122
+00:04:21,240 --> 00:04:23,410
+But a subtraction can fall below zero.
+
+123
+00:04:23,620 --> 00:04:25,260
+And an area cannot be negative.
+
+124
+00:04:25,730 --> 00:04:27,660
+So what would a determinant of negative
+
+125
+00:04:27,820 --> 00:04:28,260
+five mean?
+
+126
+00:04:29,120 --> 00:04:31,470
+Take our matrix, and swap its two columns.
+
+127
+00:04:31,790 --> 00:04:34,720
+Now i hat lands where j hat used to, and j
+
+128
+00:04:34,840 --> 00:04:36,220
+hat lands where i hat was.
+
+129
+00:04:36,630 --> 00:04:38,640
+The parallelogram is the same shape.
+
+130
+00:04:38,720 --> 00:04:39,550
+The same area.
+
+131
+00:04:39,770 --> 00:04:41,860
+But the formula gives negative five.
+
+132
+00:04:42,700 --> 00:04:43,560
+Look at the arrows.
+
+133
+00:04:43,900 --> 00:04:46,180
+On the original grid, j hat sits to the
+
+134
+00:04:46,260 --> 00:04:47,110
+left of i hat.
+
+135
+00:04:47,560 --> 00:04:49,560
+After this matrix, it sits to the right.
+
+136
+00:04:50,050 --> 00:04:52,100
+Space has been turned over, like a sheet
+
+137
+00:04:52,180 --> 00:04:53,760
+of paper flipped onto its back.
+
+138
+00:04:54,170 --> 00:04:56,100
+Any writing on it now reads in mirror
+
+139
+00:04:56,180 --> 00:04:56,600
+image.
+
+140
+00:04:57,410 --> 00:04:59,070
+That is what the sign records.
+
+141
+00:04:59,320 --> 00:05:01,320
+The size of the determinant is how much
+
+142
+00:05:01,400 --> 00:05:02,260
+area scales.
+
+143
+00:05:02,520 --> 00:05:04,200
+The sign tells you whether space was
+
+144
+00:05:04,280 --> 00:05:04,630
+flipped.
+
+145
+00:05:05,410 --> 00:05:07,050
+And you can watch the sign change.
+
+146
+00:05:07,360 --> 00:05:09,570
+Swing j hat slowly toward i hat.
+
+147
+00:05:10,030 --> 00:05:11,740
+The parallelogram gets thinner, and the
+
+148
+00:05:11,780 --> 00:05:12,850
+determinant falls.
+
+149
+00:05:13,130 --> 00:05:15,420
+Then the two arrows line up, and for one
+
+150
+00:05:15,500 --> 00:05:17,190
+instant, it is exactly zero.
+
+151
+00:05:17,610 --> 00:05:19,260
+Keep going, and it comes out the other
+
+152
+00:05:19,290 --> 00:05:20,410
+side, negative.
+
+153
+00:05:21,210 --> 00:05:23,270
+Zero is the doorway between the two.
+
+154
+00:05:23,550 --> 00:05:25,640
+And zero is the most important value a
+
+155
+00:05:25,680 --> 00:05:26,700
+determinant can take.
+
+156
+00:05:28,490 --> 00:05:30,300
+When the determinant is zero, the two
+
+157
+00:05:30,380 --> 00:05:32,220
+arrows land on the same line.
+
+158
+00:05:32,300 --> 00:05:34,167
+And everything else goes with them.
+
+159
+00:05:34,167 --> 00:05:36,140
+The whole plane is squashed onto that
+
+160
+00:05:36,220 --> 00:05:36,500
+line.
+
+161
+00:05:37,360 --> 00:05:39,280
+Every shape now has zero area.
+
+162
+00:05:39,620 --> 00:05:41,050
+But something worse has happened.
+
+163
+00:05:41,390 --> 00:05:42,300
+Look at these points.
+
+164
+00:05:42,640 --> 00:05:44,290
+They started in different places.
+
+165
+00:05:44,640 --> 00:05:46,350
+Now they sit on top of each other.
+
+166
+00:05:47,160 --> 00:05:48,820
+So suppose I show you where a point
+
+167
+00:05:48,900 --> 00:05:51,010
+landed, and ask you where it came from.
+
+168
+00:05:51,570 --> 00:05:52,640
+You cannot tell me.
+
+169
+00:05:52,990 --> 00:05:55,460
+A whole line of starting points all ended
+
+170
+00:05:55,540 --> 00:05:55,910
+up there.
+
+171
+00:05:56,440 --> 00:05:58,040
+The information is gone.
+
+172
+00:05:59,110 --> 00:06:01,560
+That is why a matrix with determinant zero
+
+173
+00:06:01,800 --> 00:06:03,040
+has no inverse.
+
+174
+00:06:03,470 --> 00:06:04,900
+There is no way to undo it.
+
+175
+00:06:05,220 --> 00:06:07,640
+You cannot unsquash a line back into a
+
+176
+00:06:07,720 --> 00:06:08,070
+plane.
+
+177
+00:06:09,100 --> 00:06:11,100
+And it is why this is the first thing to
+
+178
+00:06:11,180 --> 00:06:12,460
+check when you solve a system of
+
+179
+00:06:12,540 --> 00:06:13,190
+equations.
+
+180
+00:06:13,470 --> 00:06:16,380
+A nonzero determinant means exactly one
+
+181
+00:06:16,580 --> 00:06:16,830
+answer.
+
+182
+00:06:17,020 --> 00:06:19,660
+A determinant of zero means the answer is
+
+183
+00:06:19,780 --> 00:06:21,980
+either missing, or there are infinitely
+
+184
+00:06:21,980 --> 00:06:22,290
+many.
+
+185
+00:06:24,310 --> 00:06:26,200
+Everything we have said survives the move
+
+186
+00:06:26,280 --> 00:06:27,350
+into three dimensions.
+
+187
+00:06:27,710 --> 00:06:30,080
+Only one word changes.
+
+188
+00:06:30,080 --> 00:06:32,440
+Now there are three arrows, and a three by
+
+189
+00:06:32,520 --> 00:06:34,700
+three matrix tells each one where to land.
+
+190
+00:06:35,340 --> 00:06:37,800
+Instead of a unit square, follow a unit
+
+191
+00:06:37,880 --> 00:06:38,230
+cube.
+
+192
+00:06:38,640 --> 00:06:41,293
+It is carried into a slanted box.
+
+193
+00:06:41,293 --> 00:06:43,440
+The determinant is the volume of that box.
+
+194
+00:06:43,650 --> 00:06:45,560
+The factor by which every volume is
+
+195
+00:06:45,570 --> 00:06:46,020
+scaled.
+
+196
+00:06:47,030 --> 00:06:49,580
+The sign still means a flip.
+
+197
+00:06:49,580 --> 00:06:51,860
+Space is turned into its own mirror image,
+
+198
+00:06:51,900 --> 00:06:53,620
+and a right hand becomes a left hand.
+
+199
+00:06:54,680 --> 00:06:56,670
+And zero still means collapse.
+
+200
+00:06:57,120 --> 00:06:59,830
+All of space pressed flat, onto a plane.
+
+201
+00:07:00,140 --> 00:07:01,160
+Volume zero.
+
+202
+00:07:01,480 --> 00:07:03,510
+And once again, no way back.
+
+203
+00:07:05,430 --> 00:07:06,550
+Now for the payoff.
+
+204
+00:07:06,810 --> 00:07:08,330
+There is a rule you may have met.
+
+205
+00:07:08,820 --> 00:07:10,780
+The determinant of a product, is the
+
+206
+00:07:10,980 --> 00:07:12,200
+product of the determinants.
+
+207
+00:07:12,480 --> 00:07:14,540
+Prove it with algebra, and you will fill a
+
+208
+00:07:14,540 --> 00:07:14,990
+page.
+
+209
+00:07:15,800 --> 00:07:18,097
+But look at it as a picture.
+
+210
+00:07:18,160 --> 00:07:20,570
+Apply one matrix, and areas grow by five.
+
+211
+00:07:20,970 --> 00:07:23,440
+Apply another, and they grow by two.
+
+212
+00:07:23,440 --> 00:07:25,760
+Do both, one after the other, and areas
+
+213
+00:07:25,840 --> 00:07:26,930
+have grown by ten.
+
+214
+00:07:27,450 --> 00:07:28,290
+Of course they have.
+
+215
+00:07:28,660 --> 00:07:30,010
+There is nothing left to prove.
+
+216
+00:07:31,980 --> 00:07:33,570
+So let us gather what we found.
+
+217
+00:07:34,660 --> 00:07:36,300
+A matrix moves space.
+
+218
+00:07:36,580 --> 00:07:38,640
+The determinant measures how much that
+
+219
+00:07:38,720 --> 00:07:39,950
+movement scales area.
+
+220
+00:07:40,230 --> 00:07:42,797
+Or in three dimensions, volume.
+
+221
+00:07:43,380 --> 00:07:45,060
+Its sign tells you whether space was
+
+222
+00:07:45,100 --> 00:07:45,450
+flipped.
+
+223
+00:07:46,170 --> 00:07:49,107
+And when it is zero, space has collapsed,
+
+224
+00:07:49,133 --> 00:07:50,870
+and the matrix cannot be undone.
+
+225
+00:07:51,800 --> 00:07:54,100
+A times D, minus B times C.
+
+226
+00:07:54,530 --> 00:07:55,760
+It was never a recipe.
+
+227
+00:07:56,200 --> 00:07:58,100
+It is the area of a parallelogram.
+
+228
+00:07:58,490 --> 00:08:00,700
+And now, you can see it.

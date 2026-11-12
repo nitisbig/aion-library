@@ -175,9 +175,12 @@ Also: `NBody`, `Heat2D`, `Springs`. Custom: subclass `Sim` (fields, setup, step(
 ```python
 from aion import BASE
 
-theme = BASE.extend(x="#58c4dd", fx="#f2c14e", vec="#ff7a59", bloom=0.4)
+theme = BASE.extend(x="#58c4dd", fx="#ffe94a", vec="#fc6255")
+# BASE = Classic (default): pure black, crisp lines, no bloom/grain/vignette, Computer Modern math.
+# MODERN = the earlier blue-black look with soft bloom and grain (`from aion import MODERN`).
 # tokens: C.bg C.bg2 C.text C.muted C.faint C.accent C.accent2 C.good C.bad C.font C.display_font
-#         C.body_size C.label_size C.title_size C.tex_size C.stroke C.margin C.lead C.fade C.bloom ...
+#         C.body_size C.label_size C.title_size C.tex_size C.stroke C.thin C.margin C.lead C.fade C.bloom ...
+#         C.grid C.grid_minor C.axis C.ghost C.frame (classic grid colours, part of BASE)
 ```
 
 ## 10 · Loop
@@ -1233,13 +1236,16 @@ Resolve named beats in order. See module docstring.
 Example:
     T = beats(grid="imagine a grid", cut2=cut("its span", "now watch"))
 
-## cut(before: 'str', after: 'str') -> 'Spec'  [sync.beats]
+## cut(before: 'str', after: 'str', offset: 'float' = 0.0) -> 'Spec'  [sync.beats]
 
 Scene boundary between the end of `before` and the start of `after`, placed in
 the middle of the real audio silence there and snapped to the frame grid.
+`offset` moves it within that silence (+ gives the earlier scene more of the pause);
+it is clamped to stay between the two words.
 
 Example:
     cut1=cut("every vector", "now consider")
+    cut2=cut("its span", "now watch", offset=2.0)   # most of a long pause stays with the scene before
 
 ## end(text: 'str', offset: 'float' = 0.0, nth: 'int' = 1) -> 'Spec'  [sync.beats]
 
@@ -1339,7 +1345,14 @@ Active theme tokens: C.bg, C.text, C.accent, C.<your role>, sizes, lead, bloom�
 Example:
     Dot(color=C.accent); Text("hi", font_size=C.label_size)
 
-## Theme(bg: 'str' = '#0d1117', bg2: 'str' = '#161b22', text: 'str' = '#e6edf3', muted: 'str' = '#8b949e', faint: 'str' = '#30363d', accent: 'str' = '#58c4dd', accent2: 'str' = '#f2c14e', good: 'str' = '#7ee787', bad: 'str' =…)  [theme.tokens]
+## MODERN  [theme.tokens]
+
+Semantic design tokens (colors are sRGB hex).
+
+Example:
+    theme = BASE.extend(x="#58c4dd", fx="#f2c14e", bloom=0.4)   # C.x, C.fx
+
+## Theme(bg: 'str' = '#000000', bg2: 'str' = '#161616', text: 'str' = '#ffffff', muted: 'str' = '#a6a6a6', faint: 'str' = '#3a3a3a', accent: 'str' = '#58c4dd', accent2: 'str' = '#ffe94a', good: 'str' = '#83c167', bad: 'str' =…)  [theme.tokens]
 
 Semantic design tokens (colors are sRGB hex).
 

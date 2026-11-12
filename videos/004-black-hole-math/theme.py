@@ -18,7 +18,7 @@ for the whole video, whichever design is active.
 """
 import os
 
-from aion import BASE
+from aion import MODERN as BASE   # this video was designed on the earlier default look
 
 # shared by all designs: pure black, no grain or vignette (they lift the black), tight bloom
 _COMMON = dict(bg="#000000", bg2="#000000", grain=0.0, vignette=0.0, bloom=0.05, margin=0.4)

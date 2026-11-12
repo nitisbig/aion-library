@@ -107,3 +107,26 @@ def test_live_elevenlabs_smoke(tmp_path):
     audio, align = tts_with_timestamps("Imagine a grid of lines. This arrow stretches.", None, None, VoiceSettings())
     words = words_from_alignment(align)
     assert [w.text for w in words][:2] == ["Imagine", "a"] and len(master.decode_pcm(audio)) > 44100
+
+
+def test_pause_markers_add_silence_before_the_next_paragraph(tmp_path):
+    """`> [pause N]` asks for N extra seconds before the following paragraph; it is not spoken."""
+    import numpy as np
+
+    from aion.voice.master import _pace
+    from aion.voice.pacing import Pacing
+    from aion.voice.script import read_pauses, read_script, read_sections
+
+    p = tmp_path / "v.md"
+    p.write_text("# Intro\n\nOne two three.\n\n> [pause 4]\n\n# Next\n\nFour five.\n")
+    assert read_script(p) == ["One two three.", "Four five."]
+    assert read_pauses(p) == [0.0, 4.0]
+    rate = 44100
+    tone = np.sin(np.linspace(0, 2000, rate)).astype(np.float32) * 0.5
+    gap = np.zeros(rate // 2, np.float32)
+    audio = np.concatenate([tone, gap, tone])
+    from aion.sync.cue import Word
+    words = [Word(w, s_, s_ + 0.3) for w, s_ in
+             (("One", 0.0), ("two", 0.3), ("three.", 0.6), ("Four", 1.5), ("five.", 1.8))]
+    _, out, _ = _pace(audio, words, read_sections(p), Pacing(section_gap=1.0), read_pauses(p))
+    assert abs((out[3].start - 1.5) - 5.0) < 0.05     # section gap 1 s + pause 4 s

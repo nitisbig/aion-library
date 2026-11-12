@@ -117,7 +117,7 @@ Everything is importable with `from aion import *` (which also re-exports Manim)
 - `Beat(t: 'float', name: 'str' = '', end: 'float | None' = None, text: 'str' = '', soft: 'bool' = False)`: A time in seconds that remembers which words it came from.
 - `Beats(items: 'dict[str, Beat]', duration: 'float', fps: 'float' = 60, cue: 'Cue | None' = None, source: 'str' = '') -> None`: Resolved beat table. Attribute access: `T.name`. Also `T.start`, `T.end`, `T.cuts`.
 - `beats(_cue: 'Cue | str | Path | None' = None, *, fps: 'float' = 60, audio: 'str | Path | None' = None, _video=None, **specs: 'str | Spec') -> 'Beats'`: Resolve named beats in order. See module docstring.
-- `cut(before: 'str', after: 'str') -> 'Spec'`: Scene boundary between the end of `before` and the start of `after`, placed in the middle of the real audio silence there and snapped to the frame grid.
+- `cut(before: 'str', after: 'str', offset: 'float' = 0.0) -> 'Spec'`: Scene boundary between the end of `before` and the start of `after`, placed in the middle of the real audio silence there and snapped to the frame grid. `offset` moves it within that silence (+ gives the earlier scene more of the pause); it is clamped to stay between the two words.
 - `end(text: 'str', offset: 'float' = 0.0, nth: 'int' = 1) -> 'Spec'`: End of phrase `text` (+offset).
 - `sec(t: 'float') -> 'Spec'`: An explicit time in seconds (avoid: prefer words).
 - `w(text: 'str', offset: 'float' = 0.0, nth: 'int' = 1) -> 'Spec'`: Start of phrase `text` (+offset). `nth` skips earlier matches after the cursor.
@@ -134,7 +134,8 @@ Everything is importable with `from aion import *` (which also re-exports Manim)
 ### aion.theme
 - `BASE`: Semantic design tokens (colors are sRGB hex).
 - `C`: Active theme tokens: C.bg, C.text, C.accent, C.<your role>, sizes, lead, bloom… (read at call time).
-- `Theme(bg: 'str' = '#0d1117', bg2: 'str' = '#161b22', text: 'str' = '#e6edf3', muted: 'str' = '#8b949e', faint: 'str' = '#30363d', accent: 'str' = '#58c4dd', accent2: 'str' = '#f2c14e', good: 'str' = '#7ee787', bad: 'str' =…)`: Semantic design tokens (colors are sRGB hex).
+- `MODERN`: Semantic design tokens (colors are sRGB hex).
+- `Theme(bg: 'str' = '#000000', bg2: 'str' = '#161616', text: 'str' = '#ffffff', muted: 'str' = '#a6a6a6', faint: 'str' = '#3a3a3a', accent: 'str' = '#58c4dd', accent2: 'str' = '#ffe94a', good: 'str' = '#83c167', bad: 'str' =…)`: Semantic design tokens (colors are sRGB hex).
 
 ### aion.voice
 - `VoiceSettings(voice_id: 'str' = 's3TPKV1kjDlVtZbl4Ksh', model_id: 'str' = 'eleven_v4', output_format: 'str' = 'mp3_44100_128', stitch: 'bool' = True, seed: 'int | None' = 7, settings: 'dict' = …) -> None`: Voice/model choice. Override per video in `videos/<slug>/voice.toml`.

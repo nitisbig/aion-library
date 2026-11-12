@@ -21,7 +21,7 @@ from aion.project import VideoPaths
 from aion.voice.align import words_from_alignment, write_subtitles, write_word_srt, write_words_json
 from aion.voice.elevenlabs import VoiceSettings, is_cached, tts_with_timestamps
 from aion.voice.pacing import Pacing, silences, snap_words, stretch
-from aion.voice.script import chunk, lint, read_marked, read_script, read_sections
+from aion.voice.script import chunk, lint, read_marked, read_pauses, read_script, read_sections
 
 __all__ = ["VoicePlan", "plan", "generate", "decode_pcm"]
 
@@ -134,16 +134,19 @@ def _loudnorm(src: Path, dst: Path, target: float = -16.0) -> None:
                     "-ac", "1", "-c:a", "pcm_s16le", str(dst)], check=True)
 
 
-def _pace(audio: np.ndarray, words: list, sections: list[tuple[str, bool]], pacing: Pacing):
-    """Apply voice.toml [pacing]: snap cues to speech onsets, then widen paragraph / section pauses."""
+def _pace(audio: np.ndarray, words: list, sections: list[tuple[str, bool]], pacing: Pacing,
+          pauses: list[float] | None = None):
+    """Apply voice.toml [pacing]: snap cues to speech onsets, then widen paragraph / section pauses
+    (plus any `> [pause N]` asked for in the script)."""
     sil = silences(audio, RATE)
     info: dict = {}
     if pacing.snap:
         words, info["cues_snapped"] = snap_words(words, sil)
     breaks, k = [], 0
-    for text, section in sections:                     # k = index of the paragraph's first word
+    pauses = pauses if pauses and len(pauses) == len(sections) else [0.0] * len(sections)
+    for (text, section), extra in zip(sections, pauses):   # k = index of the paragraph's first word
         if k:
-            breaks.append((k, pacing.section_gap if section else pacing.paragraph_gap))
+            breaks.append((k, (pacing.section_gap if section else pacing.paragraph_gap) + extra))
         k += len(text.split())
     if k != len(words):                                # alignment and script disagree: don't guess
         info["pacing_skipped"] = f"script has {k} words, alignment {len(words)}"
@@ -191,7 +194,8 @@ def generate(video: VideoPaths, script: Path | None = None, loudness: float | No
     pacing = Pacing.load(video.dir / "voice.toml")
     paced = {}
     if pacing.active and words:
-        audio, words, paced = _pace(audio, words, read_sections(script or video.dir / "voiceover.md"), pacing)
+        src = script or video.dir / "voiceover.md"
+        audio, words, paced = _pace(audio, words, read_sections(src), pacing, read_pauses(src))
         offset = len(audio)
 
     assets = video.assets
