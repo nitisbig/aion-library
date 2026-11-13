@@ -45,19 +45,55 @@ def write_words_json(words: list[Word], path: Path) -> None:
                     encoding="utf-8")
 
 
+def _balanced_split(ws: list[Word], max_chars: int) -> list[list[Word]]:
+    """Split one sentence into the fewest cues of ≤ max_chars, evening out their lengths (no orphan tail word)."""
+    n = len(ws)
+    size = lambda i, j: sum(len(w.text) for w in ws[i:j]) + (j - i - 1)  # noqa: E731  chars of ws[i:j]
+    if n <= 1 or size(0, n) <= max_chars:
+        return [ws]
+    INF = float("inf")
+    for k in range(2, n + 1):
+        # best[j][i] = smallest possible longest cue when the first i words make j cues; cut[j][i] = last cue start
+        best = [[INF] * (n + 1) for _ in range(k + 1)]
+        cut = [[0] * (n + 1) for _ in range(k + 1)]
+        best[0][0] = 0
+        for j in range(1, k + 1):
+            for i in range(1, n + 1):
+                for s in range(j - 1, i):
+                    piece = size(s, i)
+                    if piece > max_chars and i - s > 1:
+                        continue
+                    v = max(best[j - 1][s], piece)
+                    if v < best[j][i]:
+                        best[j][i], cut[j][i] = v, s
+        if best[k][n] < INF:
+            out, i = [], n
+            for j in range(k, 0, -1):
+                s = cut[j][i]
+                out.append(ws[s:i])
+                i = s
+            return out[::-1]
+    return [[w] for w in ws]
+
+
 def write_subtitles(words: list[Word], path: Path, max_chars: int = 42) -> None:
-    """Viewer captions: cues of ≤ max_chars, breaking after sentence punctuation."""
-    cues, cur = [], []
+    """Viewer captions: one cue per sentence, long sentences split evenly into cues of ≤ max_chars.
+
+    Splitting is balanced (fewest cues, lengths evened out), so a sentence never ends in a flash cue holding
+    one stray word.
+
+    Example:
+        write_subtitles(words, Path("assets/subtitles.srt"))
+    """
+    sentences, cur = [], []
     for w in words:
-        if cur and len(" ".join(x.text for x in cur + [w])) > max_chars:
-            cues.append(cur)
-            cur = []
         cur.append(w)
         if w.ends_sentence:
-            cues.append(cur)
+            sentences.append(cur)
             cur = []
     if cur:
-        cues.append(cur)
+        sentences.append(cur)
+    cues = [c for s in sentences for c in _balanced_split(s, max_chars)]
     path.write_text("\n".join(
         f"{i}\n{fmt_srt_time(c[0].start)} --> {fmt_srt_time(c[-1].end)}\n{' '.join(x.text for x in c)}\n"
         for i, c in enumerate(cues, 1)), encoding="utf-8")

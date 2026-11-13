@@ -10,7 +10,8 @@ from aion.project import VideoPaths
 from aion.sync.cue import Cue
 from aion.sync.silence import audio_duration
 from aion.voice import master
-from aion.voice.align import words_from_alignment
+from aion.sync.cue import Word
+from aion.voice.align import words_from_alignment, write_subtitles
 from aion.voice.script import chunk, lint, read_script
 
 SCRIPT = """# Title (note, not spoken)
@@ -130,3 +131,13 @@ def test_pause_markers_add_silence_before_the_next_paragraph(tmp_path):
              (("One", 0.0), ("two", 0.3), ("three.", 0.6), ("Four", 1.5), ("five.", 1.8))]
     _, out, _ = _pace(audio, words, read_sections(p), Pacing(section_gap=1.0), read_pauses(p))
     assert abs((out[3].start - 1.5) - 5.0) < 0.05     # section gap 1 s + pause 4 s
+
+
+def test_subtitles_split_evenly_without_orphan_words(tmp_path):
+    text = "You have probably seen it written another way. It is not."
+    words = [Word(t, i * 0.3, i * 0.3 + 0.25) for i, t in enumerate(text.split())]
+    out = tmp_path / "subs.srt"
+    write_subtitles(words, out, max_chars=42)
+    cues = [b.split("\n")[2] for b in out.read_text().strip().split("\n\n")]
+    assert cues == ["You have probably seen", "it written another way.", "It is not."]
+    assert all(len(c) <= 42 for c in cues)

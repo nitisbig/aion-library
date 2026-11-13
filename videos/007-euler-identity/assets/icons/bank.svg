@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="#ffffff" stroke-width="3" stroke-linejoin="round">
+  <!-- A classical bank: pediment, entablature, four columns, two steps. Line art, recolored in code. -->
+  <path d="M 8 33 L 50 9 L 92 33 Z"/>
+  <path d="M 11 33 L 89 33 L 89 41 L 11 41 Z"/>
+  <path d="M 18 45 L 28 45 L 28 79 L 18 79 Z"/>
+  <path d="M 36 45 L 46 45 L 46 79 L 36 79 Z"/>
+  <path d="M 54 45 L 64 45 L 64 79 L 54 79 Z"/>
+  <path d="M 72 45 L 82 45 L 82 79 L 72 79 Z"/>
+  <path d="M 11 82 L 89 82 L 89 87 L 11 87 Z"/>
+  <path d="M 5 90 L 95 90 L 95 95 L 5 95 Z"/>
+</svg>

@@ -1,0 +1,9794 @@
+[
+{
+"id": "w0",
+"text": "e",
+"start": 1.5,
+"end": 1.62
+},
+{
+"id": "w1",
+"text": "to",
+"start": 1.74,
+"end": 1.8
+},
+{
+"id": "w2",
+"text": "the",
+"start": 1.82,
+"end": 1.953
+},
+{
+"id": "w3",
+"text": "i",
+"start": 1.98,
+"end": 2.06
+},
+{
+"id": "w4",
+"text": "pi",
+"start": 2.22,
+"end": 2.46
+},
+{
+"id": "w5",
+"text": "equals",
+"start": 2.62,
+"end": 3.18
+},
+{
+"id": "w6",
+"text": "negative",
+"start": 3.26,
+"end": 3.58
+},
+{
+"id": "w7",
+"text": "one.",
+"start": 3.66,
+"end": 3.96
+},
+{
+"id": "w8",
+"text": "You",
+"start": 4.78,
+"end": 4.83
+},
+{
+"id": "w9",
+"text": "have",
+"start": 5.12,
+"end": 5.2
+},
+{
+"id": "w10",
+"text": "probably",
+"start": 5.28,
+"end": 5.68
+},
+{
+"id": "w11",
+"text": "seen",
+"start": 5.76,
+"end": 5.84
+},
+{
+"id": "w12",
+"text": "it",
+"start": 5.88,
+"end": 5.92
+},
+{
+"id": "w13",
+"text": "written",
+"start": 6.0,
+"end": 6.24
+},
+{
+"id": "w14",
+"text": "another",
+"start": 6.32,
+"end": 6.64
+},
+{
+"id": "w15",
+"text": "way.",
+"start": 6.72,
+"end": 6.94
+},
+{
+"id": "w16",
+"text": "e",
+"start": 7.43,
+"end": 7.59
+},
+{
+"id": "w17",
+"text": "to",
+"start": 7.68,
+"end": 7.72
+},
+{
+"id": "w18",
+"text": "the",
+"start": 7.76,
+"end": 7.84
+},
+{
+"id": "w19",
+"text": "i",
+"start": 8.0,
+"end": 8.16
+},
+{
+"id": "w20",
+"text": "pi,",
+"start": 8.32,
+"end": 8.64
+},
+{
+"id": "w21",
+"text": "plus",
+"start": 8.72,
+"end": 8.96
+},
+{
+"id": "w22",
+"text": "one,",
+"start": 9.12,
+"end": 9.44
+},
+{
+"id": "w23",
+"text": "equals",
+"start": 9.52,
+"end": 9.84
+},
+{
+"id": "w24",
+"text": "zero.",
+"start": 9.92,
+"end": 10.3
+},
+{
+"id": "w25",
+"text": "Five",
+"start": 10.71,
+"end": 10.87
+},
+{
+"id": "w26",
+"text": "of",
+"start": 11.2,
+"end": 11.28
+},
+{
+"id": "w27",
+"text": "the",
+"start": 11.4,
+"end": 11.52
+},
+{
+"id": "w28",
+"text": "most",
+"start": 11.64,
+"end": 11.76
+},
+{
+"id": "w29",
+"text": "important",
+"start": 11.84,
+"end": 12.24
+},
+{
+"id": "w30",
+"text": "numbers",
+"start": 12.32,
+"end": 12.56
+},
+{
+"id": "w31",
+"text": "in",
+"start": 12.6,
+"end": 12.64
+},
+{
+"id": "w32",
+"text": "mathematics,",
+"start": 12.72,
+"end": 13.6
+},
+{
+"id": "w33",
+"text": "in",
+"start": 13.72,
+"end": 13.84
+},
+{
+"id": "w34",
+"text": "one",
+"start": 13.96,
+"end": 14.08
+},
+{
+"id": "w35",
+"text": "short",
+"start": 14.24,
+"end": 14.48
+},
+{
+"id": "w36",
+"text": "line.",
+"start": 14.56,
+"end": 14.88
+},
+{
+"id": "w37",
+"text": "People",
+"start": 15.19,
+"end": 15.35
+},
+{
+"id": "w38",
+"text": "call",
+"start": 15.76,
+"end": 15.84
+},
+{
+"id": "w39",
+"text": "it",
+"start": 15.92,
+"end": 16.0
+},
+{
+"id": "w40",
+"text": "the",
+"start": 16.08,
+"end": 16.16
+},
+{
+"id": "w41",
+"text": "most",
+"start": 16.32,
+"end": 16.48
+},
+{
+"id": "w42",
+"text": "beautiful",
+"start": 16.68,
+"end": 16.88
+},
+{
+"id": "w43",
+"text": "equation",
+"start": 16.96,
+"end": 17.52
+},
+{
+"id": "w44",
+"text": "ever",
+"start": 17.6,
+"end": 17.84
+},
+{
+"id": "w45",
+"text": "written.",
+"start": 18.0,
+"end": 18.23
+},
+{
+"id": "w46",
+"text": "But",
+"start": 19.24,
+"end": 19.4
+},
+{
+"id": "w47",
+"text": "read",
+"start": 19.63,
+"end": 19.71
+},
+{
+"id": "w48",
+"text": "it",
+"start": 19.86,
+"end": 20.02
+},
+{
+"id": "w49",
+"text": "slowly,",
+"start": 20.18,
+"end": 20.767
+},
+{
+"id": "w50",
+"text": "and",
+"start": 20.793,
+"end": 20.82
+},
+{
+"id": "w51",
+"text": "it",
+"start": 20.9,
+"end": 21.06
+},
+{
+"id": "w52",
+"text": "stops",
+"start": 21.22,
+"end": 21.38
+},
+{
+"id": "w53",
+"text": "making",
+"start": 21.54,
+"end": 21.7
+},
+{
+"id": "w54",
+"text": "sense.",
+"start": 21.78,
+"end": 22.22
+},
+{
+"id": "w55",
+"text": "e",
+"start": 22.69,
+"end": 23.01
+},
+{
+"id": "w56",
+"text": "is",
+"start": 23.14,
+"end": 23.22
+},
+{
+"id": "w57",
+"text": "about",
+"start": 23.38,
+"end": 23.54
+},
+{
+"id": "w58",
+"text": "two",
+"start": 23.58,
+"end": 23.62
+},
+{
+"id": "w59",
+"text": "point",
+"start": 23.78,
+"end": 24.02
+},
+{
+"id": "w60",
+"text": "seven.",
+"start": 24.14,
+"end": 24.39
+},
+{
+"id": "w61",
+"text": "Raising",
+"start": 24.82,
+"end": 25.1
+},
+{
+"id": "w62",
+"text": "a",
+"start": 25.18,
+"end": 25.22
+},
+{
+"id": "w63",
+"text": "number",
+"start": 25.3,
+"end": 25.46
+},
+{
+"id": "w64",
+"text": "to",
+"start": 25.54,
+"end": 25.62
+},
+{
+"id": "w65",
+"text": "a",
+"start": 25.7,
+"end": 25.78
+},
+{
+"id": "w66",
+"text": "power",
+"start": 26.02,
+"end": 26.26
+},
+{
+"id": "w67",
+"text": "means",
+"start": 26.34,
+"end": 26.58
+},
+{
+"id": "w68",
+"text": "multiplying",
+"start": 26.74,
+"end": 27.14
+},
+{
+"id": "w69",
+"text": "it",
+"start": 27.22,
+"end": 27.3
+},
+{
+"id": "w70",
+"text": "by",
+"start": 27.34,
+"end": 27.38
+},
+{
+"id": "w71",
+"text": "itself.",
+"start": 27.5,
+"end": 27.94
+},
+{
+"id": "w72",
+"text": "So",
+"start": 28.27,
+"end": 28.43
+},
+{
+"id": "w73",
+"text": "what",
+"start": 28.9,
+"end": 28.98
+},
+{
+"id": "w74",
+"text": "would",
+"start": 29.02,
+"end": 29.06
+},
+{
+"id": "w75",
+"text": "it",
+"start": 29.14,
+"end": 29.22
+},
+{
+"id": "w76",
+"text": "mean",
+"start": 29.3,
+"end": 29.46
+},
+{
+"id": "w77",
+"text": "to",
+"start": 29.54,
+"end": 29.62
+},
+{
+"id": "w78",
+"text": "multiply",
+"start": 29.9,
+"end": 30.18
+},
+{
+"id": "w79",
+"text": "e",
+"start": 30.26,
+"end": 30.42
+},
+{
+"id": "w80",
+"text": "by",
+"start": 30.5,
+"end": 30.58
+},
+{
+"id": "w81",
+"text": "itself",
+"start": 30.66,
+"end": 31.22
+},
+{
+"id": "w82",
+"text": "i",
+"start": 31.3,
+"end": 31.46
+},
+{
+"id": "w83",
+"text": "pi",
+"start": 31.54,
+"end": 31.78
+},
+{
+"id": "w84",
+"text": "times?",
+"start": 31.86,
+"end": 32.31
+},
+{
+"id": "w85",
+"text": "An",
+"start": 32.76,
+"end": 32.81
+},
+{
+"id": "w86",
+"text": "imaginary",
+"start": 33.02,
+"end": 33.46
+},
+{
+"id": "w87",
+"text": "number",
+"start": 33.54,
+"end": 33.7
+},
+{
+"id": "w88",
+"text": "of",
+"start": 33.78,
+"end": 33.86
+},
+{
+"id": "w89",
+"text": "times?",
+"start": 34.06,
+"end": 34.3
+},
+{
+"id": "w90",
+"text": "You",
+"start": 35.23,
+"end": 35.28
+},
+{
+"id": "w91",
+"text": "might",
+"start": 35.4,
+"end": 35.48
+},
+{
+"id": "w92",
+"text": "expect",
+"start": 35.64,
+"end": 35.8
+},
+{
+"id": "w93",
+"text": "the",
+"start": 35.84,
+"end": 35.88
+},
+{
+"id": "w94",
+"text": "answer",
+"start": 35.96,
+"end": 36.2
+},
+{
+"id": "w95",
+"text": "to",
+"start": 36.28,
+"end": 36.36
+},
+{
+"id": "w96",
+"text": "be",
+"start": 36.4,
+"end": 36.44
+},
+{
+"id": "w97",
+"text": "a",
+"start": 36.48,
+"end": 36.52
+},
+{
+"id": "w98",
+"text": "clever",
+"start": 36.6,
+"end": 36.92
+},
+{
+"id": "w99",
+"text": "trick",
+"start": 36.96,
+"end": 37.16
+},
+{
+"id": "w100",
+"text": "with",
+"start": 37.24,
+"end": 37.32
+},
+{
+"id": "w101",
+"text": "symbols.",
+"start": 37.38,
+"end": 37.83
+},
+{
+"id": "w102",
+"text": "It",
+"start": 38.27,
+"end": 38.32
+},
+{
+"id": "w103",
+"text": "is",
+"start": 38.36,
+"end": 38.52
+},
+{
+"id": "w104",
+"text": "not.",
+"start": 38.52,
+"end": 38.87
+},
+{
+"id": "w105",
+"text": "It",
+"start": 39.29,
+"end": 39.45
+},
+{
+"id": "w106",
+"text": "is",
+"start": 39.56,
+"end": 39.64
+},
+{
+"id": "w107",
+"text": "a",
+"start": 39.8,
+"end": 40.093
+},
+{
+"id": "w108",
+"text": "picture.",
+"start": 40.093,
+"end": 40.26
+},
+{
+"id": "w109",
+"text": "e",
+"start": 41.2,
+"end": 41.333
+},
+{
+"id": "w110",
+"text": "is",
+"start": 41.62,
+"end": 41.66
+},
+{
+"id": "w111",
+"text": "a",
+"start": 41.82,
+"end": 41.86
+},
+{
+"id": "w112",
+"text": "story",
+"start": 41.9,
+"end": 42.22
+},
+{
+"id": "w113",
+"text": "about",
+"start": 42.3,
+"end": 42.54
+},
+{
+"id": "w114",
+"text": "growth.",
+"start": 42.55,
+"end": 43.0
+},
+{
+"id": "w115",
+"text": "i",
+"start": 43.49,
+"end": 43.89
+},
+{
+"id": "w116",
+"text": "is",
+"start": 43.94,
+"end": 43.98
+},
+{
+"id": "w117",
+"text": "a",
+"start": 44.14,
+"end": 44.247
+},
+{
+"id": "w118",
+"text": "story",
+"start": 44.353,
+"end": 44.46
+},
+{
+"id": "w119",
+"text": "about",
+"start": 44.54,
+"end": 44.78
+},
+{
+"id": "w120",
+"text": "turning.",
+"start": 44.9,
+"end": 45.21
+},
+{
+"id": "w121",
+"text": "And",
+"start": 45.56,
+"end": 45.64
+},
+{
+"id": "w122",
+"text": "pi",
+"start": 45.94,
+"end": 46.14
+},
+{
+"id": "w123",
+"text": "is",
+"start": 46.22,
+"end": 46.3
+},
+{
+"id": "w124",
+"text": "a",
+"start": 46.46,
+"end": 46.78
+},
+{
+"id": "w125",
+"text": "distance.",
+"start": 46.78,
+"end": 47.02
+},
+{
+"id": "w126",
+"text": "Put",
+"start": 47.44,
+"end": 47.493
+},
+{
+"id": "w127",
+"text": "them",
+"start": 47.66,
+"end": 47.74
+},
+{
+"id": "w128",
+"text": "together,",
+"start": 47.82,
+"end": 48.327
+},
+{
+"id": "w129",
+"text": "and",
+"start": 48.353,
+"end": 48.38
+},
+{
+"id": "w130",
+"text": "you",
+"start": 48.46,
+"end": 48.5
+},
+{
+"id": "w131",
+"text": "get",
+"start": 48.54,
+"end": 48.62
+},
+{
+"id": "w132",
+"text": "a",
+"start": 48.78,
+"end": 48.913
+},
+{
+"id": "w133",
+"text": "point",
+"start": 49.047,
+"end": 49.18
+},
+{
+"id": "w134",
+"text": "walking",
+"start": 49.26,
+"end": 49.5
+},
+{
+"id": "w135",
+"text": "around",
+"start": 49.58,
+"end": 49.74
+},
+{
+"id": "w136",
+"text": "a",
+"start": 49.9,
+"end": 50.113
+},
+{
+"id": "w137",
+"text": "circle,",
+"start": 50.327,
+"end": 50.62
+},
+{
+"id": "w138",
+"text": "until",
+"start": 50.7,
+"end": 50.78
+},
+{
+"id": "w139",
+"text": "it",
+"start": 50.82,
+"end": 50.86
+},
+{
+"id": "w140",
+"text": "lands",
+"start": 50.94,
+"end": 51.18
+},
+{
+"id": "w141",
+"text": "exactly",
+"start": 51.26,
+"end": 51.9
+},
+{
+"id": "w142",
+"text": "on",
+"start": 51.98,
+"end": 52.06
+},
+{
+"id": "w143",
+"text": "negative",
+"start": 52.14,
+"end": 52.46
+},
+{
+"id": "w144",
+"text": "one.",
+"start": 52.54,
+"end": 52.77
+},
+{
+"id": "w145",
+"text": "By",
+"start": 53.7,
+"end": 53.75
+},
+{
+"id": "w146",
+"text": "the",
+"start": 53.84,
+"end": 53.92
+},
+{
+"id": "w147",
+"text": "end",
+"start": 54.0,
+"end": 54.08
+},
+{
+"id": "w148",
+"text": "of",
+"start": 54.12,
+"end": 54.16
+},
+{
+"id": "w149",
+"text": "this",
+"start": 54.24,
+"end": 54.32
+},
+{
+"id": "w150",
+"text": "video,",
+"start": 54.4,
+"end": 54.907
+},
+{
+"id": "w151",
+"text": "you",
+"start": 54.933,
+"end": 54.96
+},
+{
+"id": "w152",
+"text": "will",
+"start": 55.08,
+"end": 55.2
+},
+{
+"id": "w153",
+"text": "not",
+"start": 55.32,
+"end": 55.44
+},
+{
+"id": "w154",
+"text": "need",
+"start": 55.52,
+"end": 55.6
+},
+{
+"id": "w155",
+"text": "to",
+"start": 55.68,
+"end": 55.76
+},
+{
+"id": "w156",
+"text": "memorize",
+"start": 55.84,
+"end": 56.16
+},
+{
+"id": "w157",
+"text": "this",
+"start": 56.24,
+"end": 56.32
+},
+{
+"id": "w158",
+"text": "equation.",
+"start": 56.44,
+"end": 56.85
+},
+{
+"id": "w159",
+"text": "You",
+"start": 57.18,
+"end": 57.23
+},
+{
+"id": "w160",
+"text": "will",
+"start": 57.4,
+"end": 57.52
+},
+{
+"id": "w161",
+"text": "see",
+"start": 57.6,
+"end": 57.76
+},
+{
+"id": "w162",
+"text": "it.",
+"start": 57.76,
+"end": 58.01
+},
+{
+"id": "w163",
+"text": "We",
+"start": 58.91,
+"end": 58.96
+},
+{
+"id": "w164",
+"text": "will",
+"start": 59.06,
+"end": 59.14
+},
+{
+"id": "w165",
+"text": "start",
+"start": 59.22,
+"end": 59.46
+},
+{
+"id": "w166",
+"text": "with",
+"start": 59.58,
+"end": 59.7
+},
+{
+"id": "w167",
+"text": "one",
+"start": 59.78,
+"end": 59.86
+},
+{
+"id": "w168",
+"text": "dollar",
+"start": 59.94,
+"end": 60.18
+},
+{
+"id": "w169",
+"text": "in",
+"start": 60.22,
+"end": 60.26
+},
+{
+"id": "w170",
+"text": "a",
+"start": 60.34,
+"end": 60.38
+},
+{
+"id": "w171",
+"text": "bank,",
+"start": 60.42,
+"end": 60.98
+},
+{
+"id": "w172",
+"text": "and",
+"start": 61.06,
+"end": 61.14
+},
+{
+"id": "w173",
+"text": "end",
+"start": 61.22,
+"end": 61.46
+},
+{
+"id": "w174",
+"text": "with",
+"start": 61.54,
+"end": 61.62
+},
+{
+"id": "w175",
+"text": "a",
+"start": 61.78,
+"end": 61.86
+},
+{
+"id": "w176",
+"text": "half",
+"start": 61.94,
+"end": 62.02
+},
+{
+"id": "w177",
+"text": "turn",
+"start": 62.1,
+"end": 62.34
+},
+{
+"id": "w178",
+"text": "of",
+"start": 62.42,
+"end": 62.5
+},
+{
+"id": "w179",
+"text": "the",
+"start": 62.58,
+"end": 62.66
+},
+{
+"id": "w180",
+"text": "whole",
+"start": 62.82,
+"end": 62.98
+},
+{
+"id": "w181",
+"text": "plane.",
+"start": 63.8,
+"end": 64.18
+},
+{
+"id": "w182",
+"text": "First,",
+"start": 68.68,
+"end": 68.88
+},
+{
+"id": "w183",
+"text": "we",
+"start": 68.92,
+"end": 69.0
+},
+{
+"id": "w184",
+"text": "need",
+"start": 69.04,
+"end": 69.08
+},
+{
+"id": "w185",
+"text": "to",
+"start": 69.16,
+"end": 69.24
+},
+{
+"id": "w186",
+"text": "see",
+"start": 69.32,
+"end": 69.56
+},
+{
+"id": "w187",
+"text": "e",
+"start": 69.64,
+"end": 69.8
+},
+{
+"id": "w188",
+"text": "for",
+"start": 69.88,
+"end": 69.96
+},
+{
+"id": "w189",
+"text": "what",
+"start": 70.04,
+"end": 70.12
+},
+{
+"id": "w190",
+"text": "it",
+"start": 70.2,
+"end": 70.28
+},
+{
+"id": "w191",
+"text": "really",
+"start": 70.36,
+"end": 70.6
+},
+{
+"id": "w192",
+"text": "is.",
+"start": 70.68,
+"end": 70.99
+},
+{
+"id": "w193",
+"text": "Not",
+"start": 71.28,
+"end": 71.333
+},
+{
+"id": "w194",
+"text": "a",
+"start": 71.52,
+"end": 71.56
+},
+{
+"id": "w195",
+"text": "decimal.",
+"start": 71.6,
+"end": 72.05
+},
+{
+"id": "w196",
+"text": "A",
+"start": 72.45,
+"end": 72.5
+},
+{
+"id": "w197",
+"text": "kind",
+"start": 72.6,
+"end": 72.76
+},
+{
+"id": "w198",
+"text": "of",
+"start": 72.84,
+"end": 72.92
+},
+{
+"id": "w199",
+"text": "growth.",
+"start": 73.0,
+"end": 73.43
+},
+{
+"id": "w200",
+"text": "Imagine",
+"start": 74.32,
+"end": 74.453
+},
+{
+"id": "w201",
+"text": "a",
+"start": 74.78,
+"end": 74.86
+},
+{
+"id": "w202",
+"text": "bank",
+"start": 74.98,
+"end": 75.1
+},
+{
+"id": "w203",
+"text": "that",
+"start": 75.18,
+"end": 75.26
+},
+{
+"id": "w204",
+"text": "pays",
+"start": 75.3,
+"end": 75.58
+},
+{
+"id": "w205",
+"text": "one",
+"start": 75.66,
+"end": 75.74
+},
+{
+"id": "w206",
+"text": "hundred",
+"start": 75.82,
+"end": 75.98
+},
+{
+"id": "w207",
+"text": "percent",
+"start": 76.06,
+"end": 76.38
+},
+{
+"id": "w208",
+"text": "interest",
+"start": 76.58,
+"end": 76.78
+},
+{
+"id": "w209",
+"text": "per",
+"start": 76.9,
+"end": 77.02
+},
+{
+"id": "w210",
+"text": "year.",
+"start": 77.1,
+"end": 77.31
+},
+{
+"id": "w211",
+"text": "Put",
+"start": 77.75,
+"end": 77.803
+},
+{
+"id": "w212",
+"text": "in",
+"start": 77.98,
+"end": 78.06
+},
+{
+"id": "w213",
+"text": "one",
+"start": 78.14,
+"end": 78.22
+},
+{
+"id": "w214",
+"text": "dollar,",
+"start": 78.3,
+"end": 78.86
+},
+{
+"id": "w215",
+"text": "and",
+"start": 78.94,
+"end": 79.02
+},
+{
+"id": "w216",
+"text": "after",
+"start": 79.1,
+"end": 79.26
+},
+{
+"id": "w217",
+"text": "a",
+"start": 79.34,
+"end": 79.42
+},
+{
+"id": "w218",
+"text": "year,",
+"start": 79.5,
+"end": 79.927
+},
+{
+"id": "w219",
+"text": "you",
+"start": 79.953,
+"end": 79.98
+},
+{
+"id": "w220",
+"text": "have",
+"start": 80.06,
+"end": 80.14
+},
+{
+"id": "w221",
+"text": "two.",
+"start": 80.22,
+"end": 80.45
+},
+{
+"id": "w222",
+"text": "Now",
+"start": 81.35,
+"end": 81.59
+},
+{
+"id": "w223",
+"text": "a",
+"start": 81.76,
+"end": 81.84
+},
+{
+"id": "w224",
+"text": "better",
+"start": 81.96,
+"end": 82.08
+},
+{
+"id": "w225",
+"text": "bank",
+"start": 82.16,
+"end": 82.4
+},
+{
+"id": "w226",
+"text": "pays",
+"start": 82.48,
+"end": 82.72
+},
+{
+"id": "w227",
+"text": "half",
+"start": 82.8,
+"end": 83.04
+},
+{
+"id": "w228",
+"text": "that",
+"start": 83.12,
+"end": 83.2
+},
+{
+"id": "w229",
+"text": "interest",
+"start": 83.28,
+"end": 83.6
+},
+{
+"id": "w230",
+"text": "every",
+"start": 83.68,
+"end": 84.0
+},
+{
+"id": "w231",
+"text": "six",
+"start": 84.12,
+"end": 84.24
+},
+{
+"id": "w232",
+"text": "months.",
+"start": 84.32,
+"end": 84.68
+},
+{
+"id": "w233",
+"text": "After",
+"start": 84.97,
+"end": 85.21
+},
+{
+"id": "w234",
+"text": "six",
+"start": 85.4,
+"end": 85.52
+},
+{
+"id": "w235",
+"text": "months,",
+"start": 85.72,
+"end": 85.947
+},
+{
+"id": "w236",
+"text": "you",
+"start": 85.973,
+"end": 86.0
+},
+{
+"id": "w237",
+"text": "have",
+"start": 86.08,
+"end": 86.24
+},
+{
+"id": "w238",
+"text": "one",
+"start": 86.28,
+"end": 86.32
+},
+{
+"id": "w239",
+"text": "dollar",
+"start": 86.4,
+"end": 86.64
+},
+{
+"id": "w240",
+"text": "fifty.",
+"start": 86.72,
+"end": 87.03
+},
+{
+"id": "w241",
+"text": "Then",
+"start": 87.36,
+"end": 87.52
+},
+{
+"id": "w242",
+"text": "that",
+"start": 87.88,
+"end": 88.0
+},
+{
+"id": "w243",
+"text": "whole",
+"start": 88.08,
+"end": 88.24
+},
+{
+"id": "w244",
+"text": "amount",
+"start": 88.32,
+"end": 88.64
+},
+{
+"id": "w245",
+"text": "earns",
+"start": 88.68,
+"end": 88.88
+},
+{
+"id": "w246",
+"text": "interest.",
+"start": 88.91,
+"end": 89.36
+},
+{
+"id": "w247",
+"text": "You",
+"start": 89.68,
+"end": 89.733
+},
+{
+"id": "w248",
+"text": "end",
+"start": 89.92,
+"end": 90.0
+},
+{
+"id": "w249",
+"text": "the",
+"start": 90.04,
+"end": 90.08
+},
+{
+"id": "w250",
+"text": "year",
+"start": 90.16,
+"end": 90.4
+},
+{
+"id": "w251",
+"text": "with",
+"start": 90.52,
+"end": 90.64
+},
+{
+"id": "w252",
+"text": "two",
+"start": 90.72,
+"end": 90.88
+},
+{
+"id": "w253",
+"text": "twenty",
+"start": 91.04,
+"end": 91.2
+},
+{
+"id": "w254",
+"text": "five.",
+"start": 91.2,
+"end": 91.56
+},
+{
+"id": "w255",
+"text": "Pay",
+"start": 92.33,
+"end": 92.38
+},
+{
+"id": "w256",
+"text": "it",
+"start": 92.58,
+"end": 92.74
+},
+{
+"id": "w257",
+"text": "four",
+"start": 92.82,
+"end": 92.9
+},
+{
+"id": "w258",
+"text": "times",
+"start": 92.98,
+"end": 93.22
+},
+{
+"id": "w259",
+"text": "a",
+"start": 93.26,
+"end": 93.3
+},
+{
+"id": "w260",
+"text": "year,",
+"start": 93.46,
+"end": 93.647
+},
+{
+"id": "w261",
+"text": "and",
+"start": 93.673,
+"end": 93.7
+},
+{
+"id": "w262",
+"text": "you",
+"start": 93.78,
+"end": 93.86
+},
+{
+"id": "w263",
+"text": "get",
+"start": 93.9,
+"end": 93.94
+},
+{
+"id": "w264",
+"text": "about",
+"start": 94.02,
+"end": 94.26
+},
+{
+"id": "w265",
+"text": "two",
+"start": 94.38,
+"end": 94.5
+},
+{
+"id": "w266",
+"text": "forty",
+"start": 94.58,
+"end": 94.74
+},
+{
+"id": "w267",
+"text": "four.",
+"start": 94.74,
+"end": 95.04
+},
+{
+"id": "w268",
+"text": "Every",
+"start": 95.4,
+"end": 95.64
+},
+{
+"id": "w269",
+"text": "month,",
+"start": 95.69,
+"end": 96.01
+},
+{
+"id": "w270",
+"text": "two",
+"start": 96.3,
+"end": 96.46
+},
+{
+"id": "w271",
+"text": "sixty",
+"start": 96.62,
+"end": 96.82
+},
+{
+"id": "w272",
+"text": "one.",
+"start": 96.9,
+"end": 97.1
+},
+{
+"id": "w273",
+"text": "Every",
+"start": 97.5,
+"end": 97.74
+},
+{
+"id": "w274",
+"text": "single",
+"start": 97.86,
+"end": 98.18
+},
+{
+"id": "w275",
+"text": "day,",
+"start": 98.46,
+"end": 98.54
+},
+{
+"id": "w276",
+"text": "two",
+"start": 98.77,
+"end": 99.01
+},
+{
+"id": "w277",
+"text": "seventy",
+"start": 99.14,
+"end": 99.54
+},
+{
+"id": "w278",
+"text": "one.",
+"start": 99.62,
+"end": 99.79
+},
+{
+"id": "w279",
+"text": "Keep",
+"start": 100.65,
+"end": 100.89
+},
+{
+"id": "w280",
+"text": "splitting",
+"start": 101.0,
+"end": 101.24
+},
+{
+"id": "w281",
+"text": "the",
+"start": 101.32,
+"end": 101.4
+},
+{
+"id": "w282",
+"text": "year",
+"start": 101.56,
+"end": 101.72
+},
+{
+"id": "w283",
+"text": "finer",
+"start": 101.8,
+"end": 102.12
+},
+{
+"id": "w284",
+"text": "and",
+"start": 102.24,
+"end": 102.36
+},
+{
+"id": "w285",
+"text": "finer,",
+"start": 102.48,
+"end": 102.973
+},
+{
+"id": "w286",
+"text": "and",
+"start": 103.027,
+"end": 103.08
+},
+{
+"id": "w287",
+"text": "the",
+"start": 103.12,
+"end": 103.16
+},
+{
+"id": "w288",
+"text": "total",
+"start": 103.24,
+"end": 103.48
+},
+{
+"id": "w289",
+"text": "does",
+"start": 103.6,
+"end": 103.72
+},
+{
+"id": "w290",
+"text": "not",
+"start": 103.8,
+"end": 103.96
+},
+{
+"id": "w291",
+"text": "run",
+"start": 104.04,
+"end": 104.12
+},
+{
+"id": "w292",
+"text": "off",
+"start": 104.2,
+"end": 104.28
+},
+{
+"id": "w293",
+"text": "to",
+"start": 104.36,
+"end": 104.44
+},
+{
+"id": "w294",
+"text": "infinity.",
+"start": 104.46,
+"end": 104.91
+},
+{
+"id": "w295",
+"text": "It",
+"start": 105.33,
+"end": 105.383
+},
+{
+"id": "w296",
+"text": "settles",
+"start": 105.56,
+"end": 105.96
+},
+{
+"id": "w297",
+"text": "on",
+"start": 106.08,
+"end": 106.2
+},
+{
+"id": "w298",
+"text": "one",
+"start": 106.28,
+"end": 106.44
+},
+{
+"id": "w299",
+"text": "number.",
+"start": 106.44,
+"end": 106.81
+},
+{
+"id": "w300",
+"text": "Two",
+"start": 107.2,
+"end": 107.44
+},
+{
+"id": "w301",
+"text": "point",
+"start": 107.56,
+"end": 107.8
+},
+{
+"id": "w302",
+"text": "seven",
+"start": 107.88,
+"end": 108.2
+},
+{
+"id": "w303",
+"text": "one",
+"start": 108.32,
+"end": 108.44
+},
+{
+"id": "w304",
+"text": "eight.",
+"start": 108.44,
+"end": 108.74
+},
+{
+"id": "w305",
+"text": "That",
+"start": 109.04,
+"end": 109.2
+},
+{
+"id": "w306",
+"text": "number",
+"start": 109.6,
+"end": 109.72
+},
+{
+"id": "w307",
+"text": "is",
+"start": 109.92,
+"end": 110.16
+},
+{
+"id": "w308",
+"text": "e.",
+"start": 110.28,
+"end": 110.45
+},
+{
+"id": "w309",
+"text": "Here",
+"start": 111.33,
+"end": 111.57
+},
+{
+"id": "w310",
+"text": "is",
+"start": 111.7,
+"end": 111.74
+},
+{
+"id": "w311",
+"text": "what",
+"start": 111.82,
+"end": 111.9
+},
+{
+"id": "w312",
+"text": "makes",
+"start": 111.98,
+"end": 112.14
+},
+{
+"id": "w313",
+"text": "it",
+"start": 112.18,
+"end": 112.22
+},
+{
+"id": "w314",
+"text": "special.",
+"start": 112.38,
+"end": 112.71
+},
+{
+"id": "w315",
+"text": "When",
+"start": 112.94,
+"end": 113.1
+},
+{
+"id": "w316",
+"text": "interest",
+"start": 113.42,
+"end": 113.58
+},
+{
+"id": "w317",
+"text": "is",
+"start": 113.66,
+"end": 113.74
+},
+{
+"id": "w318",
+"text": "paid",
+"start": 113.86,
+"end": 113.98
+},
+{
+"id": "w319",
+"text": "continuously,",
+"start": 114.18,
+"end": 115.06
+},
+{
+"id": "w320",
+"text": "your",
+"start": 115.1,
+"end": 115.18
+},
+{
+"id": "w321",
+"text": "money",
+"start": 115.26,
+"end": 115.5
+},
+{
+"id": "w322",
+"text": "grows",
+"start": 115.54,
+"end": 115.74
+},
+{
+"id": "w323",
+"text": "at",
+"start": 115.82,
+"end": 115.9
+},
+{
+"id": "w324",
+"text": "a",
+"start": 115.98,
+"end": 116.087
+},
+{
+"id": "w325",
+"text": "rate",
+"start": 116.193,
+"end": 116.3
+},
+{
+"id": "w326",
+"text": "equal",
+"start": 116.38,
+"end": 116.7
+},
+{
+"id": "w327",
+"text": "to",
+"start": 116.74,
+"end": 116.78
+},
+{
+"id": "w328",
+"text": "the",
+"start": 116.86,
+"end": 116.94
+},
+{
+"id": "w329",
+"text": "money",
+"start": 117.06,
+"end": 117.18
+},
+{
+"id": "w330",
+"text": "you",
+"start": 117.26,
+"end": 117.34
+},
+{
+"id": "w331",
+"text": "have.",
+"start": 117.42,
+"end": 117.61
+},
+{
+"id": "w332",
+"text": "Hold",
+"start": 118.03,
+"end": 118.11
+},
+{
+"id": "w333",
+"text": "one",
+"start": 118.38,
+"end": 118.46
+},
+{
+"id": "w334",
+"text": "dollar,",
+"start": 118.54,
+"end": 118.98
+},
+{
+"id": "w335",
+"text": "and",
+"start": 119.02,
+"end": 119.1
+},
+{
+"id": "w336",
+"text": "you",
+"start": 119.18,
+"end": 119.26
+},
+{
+"id": "w337",
+"text": "gain",
+"start": 119.38,
+"end": 119.5
+},
+{
+"id": "w338",
+"text": "one",
+"start": 119.58,
+"end": 119.74
+},
+{
+"id": "w339",
+"text": "dollar",
+"start": 119.78,
+"end": 119.98
+},
+{
+"id": "w340",
+"text": "per",
+"start": 120.06,
+"end": 120.22
+},
+{
+"id": "w341",
+"text": "year.",
+"start": 120.22,
+"end": 120.47
+},
+{
+"id": "w342",
+"text": "Hold",
+"start": 120.82,
+"end": 121.06
+},
+{
+"id": "w343",
+"text": "two,",
+"start": 121.34,
+"end": 121.607
+},
+{
+"id": "w344",
+"text": "and",
+"start": 121.633,
+"end": 121.66
+},
+{
+"id": "w345",
+"text": "you",
+"start": 121.74,
+"end": 121.82
+},
+{
+"id": "w346",
+"text": "gain",
+"start": 121.94,
+"end": 122.06
+},
+{
+"id": "w347",
+"text": "two.",
+"start": 122.06,
+"end": 122.32
+},
+{
+"id": "w348",
+"text": "Draw",
+"start": 123.16,
+"end": 123.24
+},
+{
+"id": "w349",
+"text": "it",
+"start": 123.44,
+"end": 123.52
+},
+{
+"id": "w350",
+"text": "as",
+"start": 123.6,
+"end": 123.68
+},
+{
+"id": "w351",
+"text": "a",
+"start": 123.76,
+"end": 123.8
+},
+{
+"id": "w352",
+"text": "graph,",
+"start": 123.84,
+"end": 124.347
+},
+{
+"id": "w353",
+"text": "and",
+"start": 124.373,
+"end": 124.4
+},
+{
+"id": "w354",
+"text": "you",
+"start": 124.48,
+"end": 124.56
+},
+{
+"id": "w355",
+"text": "get",
+"start": 124.68,
+"end": 124.8
+},
+{
+"id": "w356",
+"text": "e",
+"start": 124.88,
+"end": 125.04
+},
+{
+"id": "w357",
+"text": "to",
+"start": 125.12,
+"end": 125.2
+},
+{
+"id": "w358",
+"text": "the",
+"start": 125.28,
+"end": 125.36
+},
+{
+"id": "w359",
+"text": "t.",
+"start": 125.44,
+"end": 125.67
+},
+{
+"id": "w360",
+"text": "At",
+"start": 125.93,
+"end": 126.09
+},
+{
+"id": "w361",
+"text": "every",
+"start": 126.32,
+"end": 126.56
+},
+{
+"id": "w362",
+"text": "point,",
+"start": 126.76,
+"end": 127.013
+},
+{
+"id": "w363",
+"text": "the",
+"start": 127.067,
+"end": 127.12
+},
+{
+"id": "w364",
+"text": "slope",
+"start": 127.2,
+"end": 127.44
+},
+{
+"id": "w365",
+"text": "of",
+"start": 127.48,
+"end": 127.52
+},
+{
+"id": "w366",
+"text": "the",
+"start": 127.6,
+"end": 127.68
+},
+{
+"id": "w367",
+"text": "curve",
+"start": 127.84,
+"end": 128.0
+},
+{
+"id": "w368",
+"text": "equals",
+"start": 128.08,
+"end": 128.32
+},
+{
+"id": "w369",
+"text": "its",
+"start": 128.4,
+"end": 128.56
+},
+{
+"id": "w370",
+"text": "height.",
+"start": 128.56,
+"end": 128.78
+},
+{
+"id": "w371",
+"text": "Or",
+"start": 129.73,
+"end": 129.97
+},
+{
+"id": "w372",
+"text": "picture",
+"start": 130.1,
+"end": 130.34
+},
+{
+"id": "w373",
+"text": "it",
+"start": 130.38,
+"end": 130.42
+},
+{
+"id": "w374",
+"text": "as",
+"start": 130.5,
+"end": 130.66
+},
+{
+"id": "w375",
+"text": "motion.",
+"start": 130.66,
+"end": 131.09
+},
+{
+"id": "w376",
+"text": "A",
+"start": 131.37,
+"end": 131.45
+},
+{
+"id": "w377",
+"text": "point",
+"start": 131.82,
+"end": 131.94
+},
+{
+"id": "w378",
+"text": "on",
+"start": 131.98,
+"end": 132.02
+},
+{
+"id": "w379",
+"text": "a",
+"start": 132.1,
+"end": 132.18
+},
+{
+"id": "w380",
+"text": "line,",
+"start": 132.34,
+"end": 132.553
+},
+{
+"id": "w381",
+"text": "whose",
+"start": 132.607,
+"end": 132.66
+},
+{
+"id": "w382",
+"text": "velocity",
+"start": 132.74,
+"end": 133.3
+},
+{
+"id": "w383",
+"text": "is",
+"start": 133.42,
+"end": 133.54
+},
+{
+"id": "w384",
+"text": "always",
+"start": 133.62,
+"end": 133.94
+},
+{
+"id": "w385",
+"text": "equal",
+"start": 134.02,
+"end": 134.26
+},
+{
+"id": "w386",
+"text": "to",
+"start": 134.3,
+"end": 134.34
+},
+{
+"id": "w387",
+"text": "its",
+"start": 134.42,
+"end": 134.5
+},
+{
+"id": "w388",
+"text": "position.",
+"start": 134.57,
+"end": 135.02
+},
+{
+"id": "w389",
+"text": "The",
+"start": 135.25,
+"end": 135.303
+},
+{
+"id": "w390",
+"text": "farther",
+"start": 135.62,
+"end": 135.78
+},
+{
+"id": "w391",
+"text": "it",
+"start": 135.86,
+"end": 135.94
+},
+{
+"id": "w392",
+"text": "gets,",
+"start": 136.22,
+"end": 136.553
+},
+{
+"id": "w393",
+"text": "the",
+"start": 136.607,
+"end": 136.66
+},
+{
+"id": "w394",
+"text": "faster",
+"start": 136.74,
+"end": 137.06
+},
+{
+"id": "w395",
+"text": "it",
+"start": 137.14,
+"end": 137.22
+},
+{
+"id": "w396",
+"text": "runs.",
+"start": 137.22,
+"end": 137.63
+},
+{
+"id": "w397",
+"text": "Hold",
+"start": 138.49,
+"end": 138.57
+},
+{
+"id": "w398",
+"text": "on",
+"start": 138.84,
+"end": 138.92
+},
+{
+"id": "w399",
+"text": "to",
+"start": 138.96,
+"end": 139.0
+},
+{
+"id": "w400",
+"text": "that",
+"start": 139.08,
+"end": 139.16
+},
+{
+"id": "w401",
+"text": "sentence.",
+"start": 139.24,
+"end": 139.69
+},
+{
+"id": "w402",
+"text": "Velocity",
+"start": 140.02,
+"end": 140.66
+},
+{
+"id": "w403",
+"text": "equals",
+"start": 140.76,
+"end": 141.08
+},
+{
+"id": "w404",
+"text": "position.",
+"start": 141.16,
+"end": 141.67
+},
+{
+"id": "w405",
+"text": "It",
+"start": 142.04,
+"end": 142.09
+},
+{
+"id": "w406",
+"text": "is",
+"start": 142.2,
+"end": 142.28
+},
+{
+"id": "w407",
+"text": "the",
+"start": 142.36,
+"end": 142.44
+},
+{
+"id": "w408",
+"text": "heart",
+"start": 142.52,
+"end": 142.76
+},
+{
+"id": "w409",
+"text": "of",
+"start": 142.84,
+"end": 142.92
+},
+{
+"id": "w410",
+"text": "e.",
+"start": 143.0,
+"end": 143.18
+},
+{
+"id": "w411",
+"text": "And",
+"start": 143.45,
+"end": 143.503
+},
+{
+"id": "w412",
+"text": "we",
+"start": 143.76,
+"end": 143.8
+},
+{
+"id": "w413",
+"text": "are",
+"start": 143.84,
+"end": 143.88
+},
+{
+"id": "w414",
+"text": "about",
+"start": 143.96,
+"end": 144.12
+},
+{
+"id": "w415",
+"text": "to",
+"start": 144.2,
+"end": 144.28
+},
+{
+"id": "w416",
+"text": "change",
+"start": 144.36,
+"end": 144.68
+},
+{
+"id": "w417",
+"text": "just",
+"start": 144.76,
+"end": 145.0
+},
+{
+"id": "w418",
+"text": "one",
+"start": 145.08,
+"end": 145.32
+},
+{
+"id": "w419",
+"text": "word",
+"start": 145.4,
+"end": 145.48
+},
+{
+"id": "w420",
+"text": "of",
+"start": 145.56,
+"end": 145.64
+},
+{
+"id": "w421",
+"text": "it.",
+"start": 145.64,
+"end": 145.72
+},
+{
+"id": "w422",
+"text": "Now",
+"start": 147.7,
+"end": 148.02
+},
+{
+"id": "w423",
+"text": "for",
+"start": 148.18,
+"end": 148.26
+},
+{
+"id": "w424",
+"text": "i.",
+"start": 148.42,
+"end": 148.6
+},
+{
+"id": "w425",
+"text": "Forget",
+"start": 148.92,
+"end": 149.027
+},
+{
+"id": "w426",
+"text": "the",
+"start": 149.38,
+"end": 149.42
+},
+{
+"id": "w427",
+"text": "idea",
+"start": 149.46,
+"end": 149.78
+},
+{
+"id": "w428",
+"text": "that",
+"start": 149.86,
+"end": 150.02
+},
+{
+"id": "w429",
+"text": "i",
+"start": 150.18,
+"end": 150.22
+},
+{
+"id": "w430",
+"text": "is",
+"start": 150.26,
+"end": 150.34
+},
+{
+"id": "w431",
+"text": "a",
+"start": 150.5,
+"end": 150.58
+},
+{
+"id": "w432",
+"text": "number",
+"start": 150.66,
+"end": 150.74
+},
+{
+"id": "w433",
+"text": "that",
+"start": 150.82,
+"end": 150.9
+},
+{
+"id": "w434",
+"text": "cannot",
+"start": 150.98,
+"end": 151.22
+},
+{
+"id": "w435",
+"text": "exist.",
+"start": 151.3,
+"end": 151.76
+},
+{
+"id": "w436",
+"text": "Instead,",
+"start": 152.0,
+"end": 152.693
+},
+{
+"id": "w437",
+"text": "think",
+"start": 152.927,
+"end": 152.98
+},
+{
+"id": "w438",
+"text": "of",
+"start": 153.06,
+"end": 153.14
+},
+{
+"id": "w439",
+"text": "numbers",
+"start": 153.34,
+"end": 153.54
+},
+{
+"id": "w440",
+"text": "as",
+"start": 153.66,
+"end": 153.78
+},
+{
+"id": "w441",
+"text": "actions.",
+"start": 153.86,
+"end": 154.37
+},
+{
+"id": "w442",
+"text": "Lay",
+"start": 155.2,
+"end": 155.387
+},
+{
+"id": "w443",
+"text": "every",
+"start": 155.56,
+"end": 155.8
+},
+{
+"id": "w444",
+"text": "number",
+"start": 155.92,
+"end": 156.04
+},
+{
+"id": "w445",
+"text": "out",
+"start": 156.12,
+"end": 156.28
+},
+{
+"id": "w446",
+"text": "on",
+"start": 156.32,
+"end": 156.36
+},
+{
+"id": "w447",
+"text": "a",
+"start": 156.44,
+"end": 156.52
+},
+{
+"id": "w448",
+"text": "line.",
+"start": 156.52,
+"end": 156.85
+},
+{
+"id": "w449",
+"text": "Multiplying",
+"start": 157.17,
+"end": 157.517
+},
+{
+"id": "w450",
+"text": "by",
+"start": 157.92,
+"end": 158.04
+},
+{
+"id": "w451",
+"text": "two",
+"start": 158.2,
+"end": 158.36
+},
+{
+"id": "w452",
+"text": "is",
+"start": 158.44,
+"end": 158.52
+},
+{
+"id": "w453",
+"text": "an",
+"start": 158.56,
+"end": 158.6
+},
+{
+"id": "w454",
+"text": "action.",
+"start": 158.68,
+"end": 159.0
+},
+{
+"id": "w455",
+"text": "It",
+"start": 159.34,
+"end": 159.393
+},
+{
+"id": "w456",
+"text": "stretches",
+"start": 159.56,
+"end": 159.96
+},
+{
+"id": "w457",
+"text": "the",
+"start": 160.0,
+"end": 160.04
+},
+{
+"id": "w458",
+"text": "line,",
+"start": 160.12,
+"end": 160.573
+},
+{
+"id": "w459",
+"text": "pushing",
+"start": 160.627,
+"end": 160.84
+},
+{
+"id": "w460",
+"text": "everything",
+"start": 160.92,
+"end": 161.32
+},
+{
+"id": "w461",
+"text": "twice",
+"start": 161.4,
+"end": 161.64
+},
+{
+"id": "w462",
+"text": "as",
+"start": 161.72,
+"end": 161.8
+},
+{
+"id": "w463",
+"text": "far",
+"start": 161.88,
+"end": 162.04
+},
+{
+"id": "w464",
+"text": "from",
+"start": 162.12,
+"end": 162.2
+},
+{
+"id": "w465",
+"text": "zero.",
+"start": 162.28,
+"end": 162.6
+},
+{
+"id": "w466",
+"text": "Multiplying",
+"start": 162.85,
+"end": 163.117
+},
+{
+"id": "w467",
+"text": "by",
+"start": 163.48,
+"end": 163.64
+},
+{
+"id": "w468",
+"text": "one",
+"start": 163.72,
+"end": 163.8
+},
+{
+"id": "w469",
+"text": "half",
+"start": 163.88,
+"end": 164.2
+},
+{
+"id": "w470",
+"text": "squeezes",
+"start": 164.28,
+"end": 164.68
+},
+{
+"id": "w471",
+"text": "it.",
+"start": 164.68,
+"end": 164.79
+},
+{
+"id": "w472",
+"text": "And",
+"start": 165.68,
+"end": 165.76
+},
+{
+"id": "w473",
+"text": "multiplying",
+"start": 165.82,
+"end": 166.3
+},
+{
+"id": "w474",
+"text": "by",
+"start": 166.38,
+"end": 166.46
+},
+{
+"id": "w475",
+"text": "negative",
+"start": 166.54,
+"end": 166.86
+},
+{
+"id": "w476",
+"text": "one?",
+"start": 166.94,
+"end": 167.52
+},
+{
+"id": "w477",
+"text": "Three",
+"start": 167.78,
+"end": 167.94
+},
+{
+"id": "w478",
+"text": "goes",
+"start": 168.22,
+"end": 168.46
+},
+{
+"id": "w479",
+"text": "to",
+"start": 168.5,
+"end": 168.54
+},
+{
+"id": "w480",
+"text": "negative",
+"start": 168.7,
+"end": 169.02
+},
+{
+"id": "w481",
+"text": "three.",
+"start": 169.1,
+"end": 169.37
+},
+{
+"id": "w482",
+"text": "Negative",
+"start": 169.77,
+"end": 170.09
+},
+{
+"id": "w483",
+"text": "two",
+"start": 170.22,
+"end": 170.46
+},
+{
+"id": "w484",
+"text": "goes",
+"start": 170.62,
+"end": 170.78
+},
+{
+"id": "w485",
+"text": "to",
+"start": 170.86,
+"end": 170.94
+},
+{
+"id": "w486",
+"text": "two.",
+"start": 171.02,
+"end": 171.28
+},
+{
+"id": "w487",
+"text": "Every",
+"start": 171.51,
+"end": 171.75
+},
+{
+"id": "w488",
+"text": "number",
+"start": 172.22,
+"end": 172.54
+},
+{
+"id": "w489",
+"text": "swings",
+"start": 172.62,
+"end": 173.02
+},
+{
+"id": "w490",
+"text": "to",
+"start": 173.06,
+"end": 173.1
+},
+{
+"id": "w491",
+"text": "the",
+"start": 173.18,
+"end": 173.34
+},
+{
+"id": "w492",
+"text": "other",
+"start": 173.42,
+"end": 173.58
+},
+{
+"id": "w493",
+"text": "side",
+"start": 173.66,
+"end": 173.9
+},
+{
+"id": "w494",
+"text": "of",
+"start": 173.94,
+"end": 173.98
+},
+{
+"id": "w495",
+"text": "zero.",
+"start": 174.06,
+"end": 174.44
+},
+{
+"id": "w496",
+"text": "It",
+"start": 174.71,
+"end": 174.76
+},
+{
+"id": "w497",
+"text": "is",
+"start": 174.94,
+"end": 175.02
+},
+{
+"id": "w498",
+"text": "a",
+"start": 175.18,
+"end": 175.287
+},
+{
+"id": "w499",
+"text": "half",
+"start": 175.393,
+"end": 175.5
+},
+{
+"id": "w500",
+"text": "turn.",
+"start": 175.5,
+"end": 175.88
+},
+{
+"id": "w501",
+"text": "Remember",
+"start": 176.76,
+"end": 176.893
+},
+{
+"id": "w502",
+"text": "that.",
+"start": 177.63,
+"end": 177.96
+},
+{
+"id": "w503",
+"text": "Negative",
+"start": 177.96,
+"end": 178.16
+},
+{
+"id": "w504",
+"text": "one",
+"start": 178.24,
+"end": 178.56
+},
+{
+"id": "w505",
+"text": "is",
+"start": 178.6,
+"end": 178.64
+},
+{
+"id": "w506",
+"text": "a",
+"start": 178.88,
+"end": 178.987
+},
+{
+"id": "w507",
+"text": "half",
+"start": 179.093,
+"end": 179.2
+},
+{
+"id": "w508",
+"text": "turn.",
+"start": 179.2,
+"end": 179.57
+},
+{
+"id": "w509",
+"text": "It",
+"start": 179.93,
+"end": 179.98
+},
+{
+"id": "w510",
+"text": "is",
+"start": 180.08,
+"end": 180.16
+},
+{
+"id": "w511",
+"text": "going",
+"start": 180.24,
+"end": 180.48
+},
+{
+"id": "w512",
+"text": "to",
+"start": 180.52,
+"end": 180.56
+},
+{
+"id": "w513",
+"text": "matter.",
+"start": 180.64,
+"end": 180.95
+},
+{
+"id": "w514",
+"text": "Now",
+"start": 181.82,
+"end": 181.9
+},
+{
+"id": "w515",
+"text": "here",
+"start": 182.34,
+"end": 182.42
+},
+{
+"id": "w516",
+"text": "is",
+"start": 182.5,
+"end": 182.58
+},
+{
+"id": "w517",
+"text": "the",
+"start": 182.62,
+"end": 182.66
+},
+{
+"id": "w518",
+"text": "question",
+"start": 182.74,
+"end": 183.06
+},
+{
+"id": "w519",
+"text": "that",
+"start": 183.14,
+"end": 183.3
+},
+{
+"id": "w520",
+"text": "i",
+"start": 183.46,
+"end": 183.5
+},
+{
+"id": "w521",
+"text": "answers.",
+"start": 183.54,
+"end": 184.03
+},
+{
+"id": "w522",
+"text": "What",
+"start": 184.53,
+"end": 184.65
+},
+{
+"id": "w523",
+"text": "action,",
+"start": 184.9,
+"end": 185.54
+},
+{
+"id": "w524",
+"text": "done",
+"start": 185.62,
+"end": 185.7
+},
+{
+"id": "w525",
+"text": "twice,",
+"start": 185.78,
+"end": 186.46
+},
+{
+"id": "w526",
+"text": "gives",
+"start": 186.5,
+"end": 186.58
+},
+{
+"id": "w527",
+"text": "a",
+"start": 186.74,
+"end": 186.78
+},
+{
+"id": "w528",
+"text": "half",
+"start": 186.82,
+"end": 186.98
+},
+{
+"id": "w529",
+"text": "turn?",
+"start": 187.06,
+"end": 187.37
+},
+{
+"id": "w530",
+"text": "Not",
+"start": 188.33,
+"end": 188.41
+},
+{
+"id": "w531",
+"text": "a",
+"start": 188.76,
+"end": 188.84
+},
+{
+"id": "w532",
+"text": "stretch.",
+"start": 188.92,
+"end": 189.32
+},
+{
+"id": "w533",
+"text": "Two",
+"start": 189.65,
+"end": 189.703
+},
+{
+"id": "w534",
+"text": "stretches",
+"start": 189.88,
+"end": 190.36
+},
+{
+"id": "w535",
+"text": "only",
+"start": 190.44,
+"end": 190.6
+},
+{
+"id": "w536",
+"text": "stretch",
+"start": 190.68,
+"end": 190.92
+},
+{
+"id": "w537",
+"text": "further.",
+"start": 191.0,
+"end": 191.35
+},
+{
+"id": "w538",
+"text": "But",
+"start": 191.61,
+"end": 191.69
+},
+{
+"id": "w539",
+"text": "a",
+"start": 192.12,
+"end": 192.227
+},
+{
+"id": "w540",
+"text": "quarter",
+"start": 192.333,
+"end": 192.44
+},
+{
+"id": "w541",
+"text": "turn,",
+"start": 192.52,
+"end": 193.0
+},
+{
+"id": "w542",
+"text": "done",
+"start": 193.08,
+"end": 193.16
+},
+{
+"id": "w543",
+"text": "twice,",
+"start": 193.28,
+"end": 193.827
+},
+{
+"id": "w544",
+"text": "is",
+"start": 193.853,
+"end": 193.88
+},
+{
+"id": "w545",
+"text": "a",
+"start": 194.12,
+"end": 194.2
+},
+{
+"id": "w546",
+"text": "half",
+"start": 194.28,
+"end": 194.36
+},
+{
+"id": "w547",
+"text": "turn.",
+"start": 194.44,
+"end": 194.71
+},
+{
+"id": "w548",
+"text": "So",
+"start": 195.6,
+"end": 195.653
+},
+{
+"id": "w549",
+"text": "let",
+"start": 196.14,
+"end": 196.22
+},
+{
+"id": "w550",
+"text": "the",
+"start": 196.3,
+"end": 196.38
+},
+{
+"id": "w551",
+"text": "line",
+"start": 196.5,
+"end": 196.62
+},
+{
+"id": "w552",
+"text": "become",
+"start": 196.7,
+"end": 196.94
+},
+{
+"id": "w553",
+"text": "a",
+"start": 197.02,
+"end": 197.06
+},
+{
+"id": "w554",
+"text": "plane,",
+"start": 197.1,
+"end": 197.47
+},
+{
+"id": "w555",
+"text": "where",
+"start": 197.71,
+"end": 197.79
+},
+{
+"id": "w556",
+"text": "numbers",
+"start": 198.06,
+"end": 198.22
+},
+{
+"id": "w557",
+"text": "can",
+"start": 198.3,
+"end": 198.38
+},
+{
+"id": "w558",
+"text": "point",
+"start": 198.46,
+"end": 198.7
+},
+{
+"id": "w559",
+"text": "in",
+"start": 198.78,
+"end": 198.94
+},
+{
+"id": "w560",
+"text": "any",
+"start": 199.02,
+"end": 199.18
+},
+{
+"id": "w561",
+"text": "direction.",
+"start": 199.29,
+"end": 199.74
+},
+{
+"id": "w562",
+"text": "i",
+"start": 200.3,
+"end": 200.38
+},
+{
+"id": "w563",
+"text": "is",
+"start": 200.7,
+"end": 200.78
+},
+{
+"id": "w564",
+"text": "the",
+"start": 200.86,
+"end": 200.94
+},
+{
+"id": "w565",
+"text": "quarter",
+"start": 201.1,
+"end": 201.26
+},
+{
+"id": "w566",
+"text": "turn.",
+"start": 201.34,
+"end": 201.61
+},
+{
+"id": "w567",
+"text": "One",
+"start": 202.08,
+"end": 202.32
+},
+{
+"id": "w568",
+"text": "goes",
+"start": 202.5,
+"end": 202.62
+},
+{
+"id": "w569",
+"text": "to",
+"start": 202.7,
+"end": 202.78
+},
+{
+"id": "w570",
+"text": "i,",
+"start": 202.94,
+"end": 203.367
+},
+{
+"id": "w571",
+"text": "straight",
+"start": 203.473,
+"end": 203.58
+},
+{
+"id": "w572",
+"text": "up.",
+"start": 203.66,
+"end": 203.9
+},
+{
+"id": "w573",
+"text": "i",
+"start": 204.12,
+"end": 204.2
+},
+{
+"id": "w574",
+"text": "goes",
+"start": 204.7,
+"end": 204.86
+},
+{
+"id": "w575",
+"text": "to",
+"start": 204.94,
+"end": 205.02
+},
+{
+"id": "w576",
+"text": "negative",
+"start": 205.22,
+"end": 205.42
+},
+{
+"id": "w577",
+"text": "one.",
+"start": 205.5,
+"end": 205.66
+},
+{
+"id": "w578",
+"text": "Negative",
+"start": 205.91,
+"end": 206.23
+},
+{
+"id": "w579",
+"text": "one",
+"start": 206.62,
+"end": 206.78
+},
+{
+"id": "w580",
+"text": "goes",
+"start": 206.86,
+"end": 207.1
+},
+{
+"id": "w581",
+"text": "down",
+"start": 207.18,
+"end": 207.42
+},
+{
+"id": "w582",
+"text": "to",
+"start": 207.5,
+"end": 207.58
+},
+{
+"id": "w583",
+"text": "negative",
+"start": 207.66,
+"end": 207.98
+},
+{
+"id": "w584",
+"text": "i,",
+"start": 208.22,
+"end": 208.487
+},
+{
+"id": "w585",
+"text": "and",
+"start": 208.513,
+"end": 208.54
+},
+{
+"id": "w586",
+"text": "then",
+"start": 208.62,
+"end": 208.86
+},
+{
+"id": "w587",
+"text": "back",
+"start": 208.98,
+"end": 209.1
+},
+{
+"id": "w588",
+"text": "to",
+"start": 209.18,
+"end": 209.26
+},
+{
+"id": "w589",
+"text": "one.",
+"start": 209.34,
+"end": 209.9
+},
+{
+"id": "w590",
+"text": "i",
+"start": 210.63,
+"end": 210.68
+},
+{
+"id": "w591",
+"text": "times",
+"start": 210.88,
+"end": 211.2
+},
+{
+"id": "w592",
+"text": "i",
+"start": 211.44,
+"end": 211.6
+},
+{
+"id": "w593",
+"text": "is",
+"start": 211.72,
+"end": 211.84
+},
+{
+"id": "w594",
+"text": "negative",
+"start": 212.04,
+"end": 212.24
+},
+{
+"id": "w595",
+"text": "one.",
+"start": 212.32,
+"end": 212.5
+},
+{
+"id": "w596",
+"text": "Not",
+"start": 212.9,
+"end": 212.953
+},
+{
+"id": "w597",
+"text": "as",
+"start": 213.24,
+"end": 213.28
+},
+{
+"id": "w598",
+"text": "a",
+"start": 213.44,
+"end": 213.52
+},
+{
+"id": "w599",
+"text": "rule",
+"start": 213.6,
+"end": 213.68
+},
+{
+"id": "w600",
+"text": "to",
+"start": 213.76,
+"end": 213.84
+},
+{
+"id": "w601",
+"text": "memorize,",
+"start": 213.92,
+"end": 214.587
+},
+{
+"id": "w602",
+"text": "but",
+"start": 214.613,
+"end": 214.64
+},
+{
+"id": "w603",
+"text": "because",
+"start": 214.72,
+"end": 215.12
+},
+{
+"id": "w604",
+"text": "two",
+"start": 215.24,
+"end": 215.36
+},
+{
+"id": "w605",
+"text": "quarter",
+"start": 215.52,
+"end": 215.68
+},
+{
+"id": "w606",
+"text": "turns",
+"start": 215.88,
+"end": 216.12
+},
+{
+"id": "w607",
+"text": "make",
+"start": 216.16,
+"end": 216.24
+},
+{
+"id": "w608",
+"text": "a",
+"start": 216.4,
+"end": 216.48
+},
+{
+"id": "w609",
+"text": "half",
+"start": 216.56,
+"end": 216.64
+},
+{
+"id": "w610",
+"text": "turn.",
+"start": 216.72,
+"end": 216.95
+},
+{
+"id": "w611",
+"text": "And",
+"start": 217.69,
+"end": 217.743
+},
+{
+"id": "w612",
+"text": "multiplying",
+"start": 218.26,
+"end": 218.66
+},
+{
+"id": "w613",
+"text": "by",
+"start": 218.78,
+"end": 218.9
+},
+{
+"id": "w614",
+"text": "i",
+"start": 219.06,
+"end": 219.3
+},
+{
+"id": "w615",
+"text": "turns",
+"start": 219.38,
+"end": 219.673
+},
+{
+"id": "w616",
+"text": "the",
+"start": 219.727,
+"end": 219.78
+},
+{
+"id": "w617",
+"text": "whole",
+"start": 219.86,
+"end": 220.1
+},
+{
+"id": "w618",
+"text": "plane.",
+"start": 220.18,
+"end": 220.5
+},
+{
+"id": "w619",
+"text": "Every",
+"start": 220.9,
+"end": 221.22
+},
+{
+"id": "w620",
+"text": "arrow,",
+"start": 221.38,
+"end": 221.82
+},
+{
+"id": "w621",
+"text": "rotated",
+"start": 221.86,
+"end": 222.34
+},
+{
+"id": "w622",
+"text": "ninety",
+"start": 222.42,
+"end": 222.58
+},
+{
+"id": "w623",
+"text": "degrees.",
+"start": 222.66,
+"end": 223.15
+},
+{
+"id": "w624",
+"text": "Now",
+"start": 225.06,
+"end": 225.22
+},
+{
+"id": "w625",
+"text": "we",
+"start": 225.4,
+"end": 225.44
+},
+{
+"id": "w626",
+"text": "can",
+"start": 225.52,
+"end": 225.68
+},
+{
+"id": "w627",
+"text": "read",
+"start": 225.84,
+"end": 226.0
+},
+{
+"id": "w628",
+"text": "e",
+"start": 226.08,
+"end": 226.24
+},
+{
+"id": "w629",
+"text": "to",
+"start": 226.32,
+"end": 226.4
+},
+{
+"id": "w630",
+"text": "the",
+"start": 226.48,
+"end": 226.56
+},
+{
+"id": "w631",
+"text": "i",
+"start": 226.64,
+"end": 226.8
+},
+{
+"id": "w632",
+"text": "t.",
+"start": 226.88,
+"end": 227.11
+},
+{
+"id": "w633",
+"text": "Remember",
+"start": 228.16,
+"end": 228.48
+},
+{
+"id": "w634",
+"text": "the",
+"start": 228.58,
+"end": 228.66
+},
+{
+"id": "w635",
+"text": "rule",
+"start": 228.78,
+"end": 228.9
+},
+{
+"id": "w636",
+"text": "for",
+"start": 228.98,
+"end": 229.06
+},
+{
+"id": "w637",
+"text": "e",
+"start": 229.1,
+"end": 229.14
+},
+{
+"id": "w638",
+"text": "to",
+"start": 229.22,
+"end": 229.3
+},
+{
+"id": "w639",
+"text": "the",
+"start": 229.38,
+"end": 229.46
+},
+{
+"id": "w640",
+"text": "t.",
+"start": 229.46,
+"end": 229.7
+},
+{
+"id": "w641",
+"text": "Velocity",
+"start": 230.01,
+"end": 230.57
+},
+{
+"id": "w642",
+"text": "equals",
+"start": 230.74,
+"end": 231.06
+},
+{
+"id": "w643",
+"text": "position.",
+"start": 231.11,
+"end": 231.56
+},
+{
+"id": "w644",
+"text": "For",
+"start": 231.9,
+"end": 232.06
+},
+{
+"id": "w645",
+"text": "e",
+"start": 232.42,
+"end": 232.5
+},
+{
+"id": "w646",
+"text": "to",
+"start": 232.54,
+"end": 232.58
+},
+{
+"id": "w647",
+"text": "the",
+"start": 232.66,
+"end": 232.82
+},
+{
+"id": "w648",
+"text": "i",
+"start": 232.9,
+"end": 232.98
+},
+{
+"id": "w649",
+"text": "t,",
+"start": 233.06,
+"end": 233.34
+},
+{
+"id": "w650",
+"text": "the",
+"start": 233.55,
+"end": 233.603
+},
+{
+"id": "w651",
+"text": "rule",
+"start": 233.82,
+"end": 233.94
+},
+{
+"id": "w652",
+"text": "picks",
+"start": 234.02,
+"end": 234.18
+},
+{
+"id": "w653",
+"text": "up",
+"start": 234.26,
+"end": 234.34
+},
+{
+"id": "w654",
+"text": "a",
+"start": 234.58,
+"end": 234.713
+},
+{
+"id": "w655",
+"text": "single",
+"start": 234.847,
+"end": 234.98
+},
+{
+"id": "w656",
+"text": "i.",
+"start": 235.06,
+"end": 235.25
+},
+{
+"id": "w657",
+"text": "Velocity",
+"start": 235.5,
+"end": 236.06
+},
+{
+"id": "w658",
+"text": "equals",
+"start": 236.34,
+"end": 236.74
+},
+{
+"id": "w659",
+"text": "i",
+"start": 236.9,
+"end": 237.14
+},
+{
+"id": "w660",
+"text": "times",
+"start": 237.22,
+"end": 237.46
+},
+{
+"id": "w661",
+"text": "position.",
+"start": 238.25,
+"end": 238.553
+},
+{
+"id": "w662",
+"text": "And",
+"start": 238.553,
+"end": 238.58
+},
+{
+"id": "w663",
+"text": "we",
+"start": 238.66,
+"end": 238.74
+},
+{
+"id": "w664",
+"text": "know",
+"start": 238.82,
+"end": 238.9
+},
+{
+"id": "w665",
+"text": "what",
+"start": 238.98,
+"end": 239.06
+},
+{
+"id": "w666",
+"text": "i",
+"start": 239.14,
+"end": 239.22
+},
+{
+"id": "w667",
+"text": "does.",
+"start": 239.3,
+"end": 239.62
+},
+{
+"id": "w668",
+"text": "It",
+"start": 239.89,
+"end": 239.97
+},
+{
+"id": "w669",
+"text": "turns",
+"start": 240.1,
+"end": 240.34
+},
+{
+"id": "w670",
+"text": "an",
+"start": 240.42,
+"end": 240.5
+},
+{
+"id": "w671",
+"text": "arrow",
+"start": 240.66,
+"end": 240.82
+},
+{
+"id": "w672",
+"text": "by",
+"start": 240.9,
+"end": 240.98
+},
+{
+"id": "w673",
+"text": "a",
+"start": 241.02,
+"end": 241.06
+},
+{
+"id": "w674",
+"text": "quarter",
+"start": 241.14,
+"end": 241.46
+},
+{
+"id": "w675",
+"text": "turn.",
+"start": 242.05,
+"end": 242.34
+},
+{
+"id": "w676",
+"text": "So",
+"start": 242.34,
+"end": 242.42
+},
+{
+"id": "w677",
+"text": "the",
+"start": 242.46,
+"end": 242.5
+},
+{
+"id": "w678",
+"text": "velocity",
+"start": 242.82,
+"end": 243.14
+},
+{
+"id": "w679",
+"text": "is",
+"start": 243.22,
+"end": 243.46
+},
+{
+"id": "w680",
+"text": "always",
+"start": 243.54,
+"end": 243.78
+},
+{
+"id": "w681",
+"text": "the",
+"start": 243.86,
+"end": 243.94
+},
+{
+"id": "w682",
+"text": "position,",
+"start": 244.3,
+"end": 244.74
+},
+{
+"id": "w683",
+"text": "turned",
+"start": 244.82,
+"end": 244.9
+},
+{
+"id": "w684",
+"text": "ninety",
+"start": 244.98,
+"end": 245.22
+},
+{
+"id": "w685",
+"text": "degrees.",
+"start": 245.29,
+"end": 245.74
+},
+{
+"id": "w686",
+"text": "Let",
+"start": 246.65,
+"end": 246.7
+},
+{
+"id": "w687",
+"text": "us",
+"start": 246.84,
+"end": 247.0
+},
+{
+"id": "w688",
+"text": "watch.",
+"start": 247.0,
+"end": 247.35
+},
+{
+"id": "w689",
+"text": "Start",
+"start": 247.74,
+"end": 247.9
+},
+{
+"id": "w690",
+"text": "at",
+"start": 248.16,
+"end": 248.28
+},
+{
+"id": "w691",
+"text": "one,",
+"start": 248.36,
+"end": 248.72
+},
+{
+"id": "w692",
+"text": "on",
+"start": 248.76,
+"end": 248.84
+},
+{
+"id": "w693",
+"text": "the",
+"start": 248.92,
+"end": 249.0
+},
+{
+"id": "w694",
+"text": "real",
+"start": 249.12,
+"end": 249.24
+},
+{
+"id": "w695",
+"text": "line.",
+"start": 249.73,
+"end": 249.933
+},
+{
+"id": "w696",
+"text": "The",
+"start": 249.933,
+"end": 249.96
+},
+{
+"id": "w697",
+"text": "position",
+"start": 250.04,
+"end": 250.44
+},
+{
+"id": "w698",
+"text": "arrow",
+"start": 250.52,
+"end": 250.76
+},
+{
+"id": "w699",
+"text": "points",
+"start": 250.84,
+"end": 251.08
+},
+{
+"id": "w700",
+"text": "right.",
+"start": 251.16,
+"end": 251.34
+},
+{
+"id": "w701",
+"text": "So",
+"start": 251.6,
+"end": 251.68
+},
+{
+"id": "w702",
+"text": "the",
+"start": 251.92,
+"end": 251.96
+},
+{
+"id": "w703",
+"text": "velocity",
+"start": 252.04,
+"end": 252.6
+},
+{
+"id": "w704",
+"text": "points",
+"start": 252.68,
+"end": 252.92
+},
+{
+"id": "w705",
+"text": "straight",
+"start": 253.0,
+"end": 253.24
+},
+{
+"id": "w706",
+"text": "up.",
+"start": 253.32,
+"end": 253.55
+},
+{
+"id": "w707",
+"text": "The",
+"start": 254.38,
+"end": 254.433
+},
+{
+"id": "w708",
+"text": "point",
+"start": 254.74,
+"end": 254.94
+},
+{
+"id": "w709",
+"text": "moves",
+"start": 255.02,
+"end": 255.26
+},
+{
+"id": "w710",
+"text": "up.",
+"start": 255.34,
+"end": 255.59
+},
+{
+"id": "w711",
+"text": "As",
+"start": 255.85,
+"end": 255.93
+},
+{
+"id": "w712",
+"text": "it",
+"start": 256.3,
+"end": 256.46
+},
+{
+"id": "w713",
+"text": "moves,",
+"start": 256.66,
+"end": 256.913
+},
+{
+"id": "w714",
+"text": "its",
+"start": 256.967,
+"end": 257.02
+},
+{
+"id": "w715",
+"text": "position",
+"start": 257.1,
+"end": 257.5
+},
+{
+"id": "w716",
+"text": "arrow",
+"start": 257.58,
+"end": 257.82
+},
+{
+"id": "w717",
+"text": "tilts,",
+"start": 257.94,
+"end": 258.23
+},
+{
+"id": "w718",
+"text": "so",
+"start": 258.43,
+"end": 258.48
+},
+{
+"id": "w719",
+"text": "the",
+"start": 258.62,
+"end": 258.7
+},
+{
+"id": "w720",
+"text": "velocity",
+"start": 258.98,
+"end": 259.26
+},
+{
+"id": "w721",
+"text": "tilts",
+"start": 259.34,
+"end": 259.66
+},
+{
+"id": "w722",
+"text": "too.",
+"start": 259.66,
+"end": 259.91
+},
+{
+"id": "w723",
+"text": "Always",
+"start": 260.39,
+"end": 260.71
+},
+{
+"id": "w724",
+"text": "at",
+"start": 260.86,
+"end": 260.94
+},
+{
+"id": "w725",
+"text": "a",
+"start": 260.98,
+"end": 261.02
+},
+{
+"id": "w726",
+"text": "right",
+"start": 261.1,
+"end": 261.26
+},
+{
+"id": "w727",
+"text": "angle.",
+"start": 261.34,
+"end": 261.79
+},
+{
+"id": "w728",
+"text": "Always",
+"start": 262.01,
+"end": 262.33
+},
+{
+"id": "w729",
+"text": "pushing",
+"start": 262.5,
+"end": 262.7
+},
+{
+"id": "w730",
+"text": "sideways,",
+"start": 262.78,
+"end": 263.54
+},
+{
+"id": "w731",
+"text": "never",
+"start": 263.58,
+"end": 263.82
+},
+{
+"id": "w732",
+"text": "outward.",
+"start": 263.9,
+"end": 264.23
+},
+{
+"id": "w733",
+"text": "A",
+"start": 265.04,
+"end": 265.09
+},
+{
+"id": "w734",
+"text": "push",
+"start": 265.52,
+"end": 265.68
+},
+{
+"id": "w735",
+"text": "that",
+"start": 265.76,
+"end": 265.84
+},
+{
+"id": "w736",
+"text": "is",
+"start": 265.96,
+"end": 266.08
+},
+{
+"id": "w737",
+"text": "always",
+"start": 266.16,
+"end": 266.4
+},
+{
+"id": "w738",
+"text": "sideways",
+"start": 266.48,
+"end": 266.96
+},
+{
+"id": "w739",
+"text": "can",
+"start": 267.08,
+"end": 267.2
+},
+{
+"id": "w740",
+"text": "never",
+"start": 267.32,
+"end": 267.44
+},
+{
+"id": "w741",
+"text": "bring",
+"start": 267.52,
+"end": 267.6
+},
+{
+"id": "w742",
+"text": "you",
+"start": 267.68,
+"end": 267.76
+},
+{
+"id": "w743",
+"text": "closer,",
+"start": 267.84,
+"end": 268.44
+},
+{
+"id": "w744",
+"text": "or",
+"start": 268.48,
+"end": 268.64
+},
+{
+"id": "w745",
+"text": "carry",
+"start": 268.76,
+"end": 268.88
+},
+{
+"id": "w746",
+"text": "you",
+"start": 268.96,
+"end": 269.12
+},
+{
+"id": "w747",
+"text": "farther",
+"start": 269.2,
+"end": 269.44
+},
+{
+"id": "w748",
+"text": "away.",
+"start": 269.52,
+"end": 269.78
+},
+{
+"id": "w749",
+"text": "So",
+"start": 270.06,
+"end": 270.11
+},
+{
+"id": "w750",
+"text": "the",
+"start": 270.48,
+"end": 270.56
+},
+{
+"id": "w751",
+"text": "point",
+"start": 270.64,
+"end": 270.88
+},
+{
+"id": "w752",
+"text": "stays",
+"start": 270.96,
+"end": 271.2
+},
+{
+"id": "w753",
+"text": "exactly",
+"start": 271.28,
+"end": 272.0
+},
+{
+"id": "w754",
+"text": "one",
+"start": 272.08,
+"end": 272.24
+},
+{
+"id": "w755",
+"text": "unit",
+"start": 272.32,
+"end": 272.48
+},
+{
+"id": "w756",
+"text": "from",
+"start": 272.56,
+"end": 272.64
+},
+{
+"id": "w757",
+"text": "the",
+"start": 272.72,
+"end": 272.8
+},
+{
+"id": "w758",
+"text": "center.",
+"start": 272.8,
+"end": 273.16
+},
+{
+"id": "w759",
+"text": "It",
+"start": 273.55,
+"end": 273.63
+},
+{
+"id": "w760",
+"text": "traces",
+"start": 273.76,
+"end": 274.16
+},
+{
+"id": "w761",
+"text": "a",
+"start": 274.24,
+"end": 274.32
+},
+{
+"id": "w762",
+"text": "circle.",
+"start": 274.4,
+"end": 274.73
+},
+{
+"id": "w763",
+"text": "And",
+"start": 275.67,
+"end": 275.72
+},
+{
+"id": "w764",
+"text": "how",
+"start": 275.86,
+"end": 276.02
+},
+{
+"id": "w765",
+"text": "fast",
+"start": 276.1,
+"end": 276.26
+},
+{
+"id": "w766",
+"text": "does",
+"start": 276.34,
+"end": 276.42
+},
+{
+"id": "w767",
+"text": "it",
+"start": 276.5,
+"end": 276.58
+},
+{
+"id": "w768",
+"text": "go?",
+"start": 277.05,
+"end": 277.38
+},
+{
+"id": "w769",
+"text": "The",
+"start": 277.38,
+"end": 277.42
+},
+{
+"id": "w770",
+"text": "velocity",
+"start": 277.46,
+"end": 278.02
+},
+{
+"id": "w771",
+"text": "has",
+"start": 278.1,
+"end": 278.18
+},
+{
+"id": "w772",
+"text": "the",
+"start": 278.26,
+"end": 278.42
+},
+{
+"id": "w773",
+"text": "same",
+"start": 278.58,
+"end": 278.74
+},
+{
+"id": "w774",
+"text": "length",
+"start": 278.86,
+"end": 278.98
+},
+{
+"id": "w775",
+"text": "as",
+"start": 279.06,
+"end": 279.14
+},
+{
+"id": "w776",
+"text": "the",
+"start": 279.18,
+"end": 279.22
+},
+{
+"id": "w777",
+"text": "position.",
+"start": 279.3,
+"end": 279.72
+},
+{
+"id": "w778",
+"text": "One.",
+"start": 280.07,
+"end": 280.43
+},
+{
+"id": "w779",
+"text": "So",
+"start": 280.7,
+"end": 280.78
+},
+{
+"id": "w780",
+"text": "the",
+"start": 281.14,
+"end": 281.22
+},
+{
+"id": "w781",
+"text": "point",
+"start": 281.38,
+"end": 281.54
+},
+{
+"id": "w782",
+"text": "walks",
+"start": 281.62,
+"end": 281.86
+},
+{
+"id": "w783",
+"text": "around",
+"start": 281.98,
+"end": 282.1
+},
+{
+"id": "w784",
+"text": "the",
+"start": 282.14,
+"end": 282.18
+},
+{
+"id": "w785",
+"text": "circle",
+"start": 282.26,
+"end": 282.66
+},
+{
+"id": "w786",
+"text": "at",
+"start": 282.82,
+"end": 282.98
+},
+{
+"id": "w787",
+"text": "one",
+"start": 283.06,
+"end": 283.14
+},
+{
+"id": "w788",
+"text": "unit",
+"start": 283.22,
+"end": 283.38
+},
+{
+"id": "w789",
+"text": "of",
+"start": 283.46,
+"end": 283.54
+},
+{
+"id": "w790",
+"text": "distance,",
+"start": 283.86,
+"end": 284.233
+},
+{
+"id": "w791",
+"text": "per",
+"start": 284.287,
+"end": 284.34
+},
+{
+"id": "w792",
+"text": "unit",
+"start": 284.42,
+"end": 284.66
+},
+{
+"id": "w793",
+"text": "of",
+"start": 284.74,
+"end": 284.82
+},
+{
+"id": "w794",
+"text": "time.",
+"start": 284.82,
+"end": 285.14
+},
+{
+"id": "w795",
+"text": "Let",
+"start": 286.1,
+"end": 286.153
+},
+{
+"id": "w796",
+"text": "the",
+"start": 286.36,
+"end": 286.52
+},
+{
+"id": "w797",
+"text": "whole",
+"start": 286.64,
+"end": 286.76
+},
+{
+"id": "w798",
+"text": "plane",
+"start": 286.84,
+"end": 287.16
+},
+{
+"id": "w799",
+"text": "follow",
+"start": 287.24,
+"end": 287.4
+},
+{
+"id": "w800",
+"text": "the",
+"start": 287.48,
+"end": 287.64
+},
+{
+"id": "w801",
+"text": "same",
+"start": 287.76,
+"end": 287.88
+},
+{
+"id": "w802",
+"text": "rule.",
+"start": 287.96,
+"end": 288.18
+},
+{
+"id": "w803",
+"text": "Ordinary",
+"start": 288.69,
+"end": 289.09
+},
+{
+"id": "w804",
+"text": "growth",
+"start": 289.24,
+"end": 289.56
+},
+{
+"id": "w805",
+"text": "sends",
+"start": 289.6,
+"end": 289.88
+},
+{
+"id": "w806",
+"text": "every",
+"start": 289.96,
+"end": 290.2
+},
+{
+"id": "w807",
+"text": "point",
+"start": 290.28,
+"end": 290.6
+},
+{
+"id": "w808",
+"text": "flying",
+"start": 290.68,
+"end": 291.0
+},
+{
+"id": "w809",
+"text": "outward.",
+"start": 291.08,
+"end": 291.41
+},
+{
+"id": "w810",
+"text": "Turn",
+"start": 291.7,
+"end": 291.86
+},
+{
+"id": "w811",
+"text": "the",
+"start": 292.16,
+"end": 292.2
+},
+{
+"id": "w812",
+"text": "growth",
+"start": 292.28,
+"end": 292.52
+},
+{
+"id": "w813",
+"text": "part",
+"start": 292.6,
+"end": 292.76
+},
+{
+"id": "w814",
+"text": "of",
+"start": 292.8,
+"end": 292.84
+},
+{
+"id": "w815",
+"text": "the",
+"start": 292.92,
+"end": 293.0
+},
+{
+"id": "w816",
+"text": "way,",
+"start": 293.2,
+"end": 293.427
+},
+{
+"id": "w817",
+"text": "and",
+"start": 293.453,
+"end": 293.48
+},
+{
+"id": "w818",
+"text": "the",
+"start": 293.56,
+"end": 293.64
+},
+{
+"id": "w819",
+"text": "points",
+"start": 293.72,
+"end": 294.04
+},
+{
+"id": "w820",
+"text": "spiral.",
+"start": 294.12,
+"end": 294.44
+},
+{
+"id": "w821",
+"text": "Turn",
+"start": 294.73,
+"end": 294.81
+},
+{
+"id": "w822",
+"text": "it",
+"start": 295.16,
+"end": 295.32
+},
+{
+"id": "w823",
+"text": "all",
+"start": 295.4,
+"end": 295.56
+},
+{
+"id": "w824",
+"text": "the",
+"start": 295.64,
+"end": 295.72
+},
+{
+"id": "w825",
+"text": "way,",
+"start": 295.88,
+"end": 296.08
+},
+{
+"id": "w826",
+"text": "to",
+"start": 296.12,
+"end": 296.28
+},
+{
+"id": "w827",
+"text": "i,",
+"start": 296.85,
+"end": 296.97
+},
+{
+"id": "w828",
+"text": "and",
+"start": 297.02,
+"end": 297.08
+},
+{
+"id": "w829",
+"text": "every",
+"start": 297.16,
+"end": 297.4
+},
+{
+"id": "w830",
+"text": "point",
+"start": 297.48,
+"end": 297.8
+},
+{
+"id": "w831",
+"text": "circles",
+"start": 297.88,
+"end": 298.28
+},
+{
+"id": "w832",
+"text": "forever.",
+"start": 298.44,
+"end": 298.79
+},
+{
+"id": "w833",
+"text": "So",
+"start": 299.62,
+"end": 299.86
+},
+{
+"id": "w834",
+"text": "e",
+"start": 300.06,
+"end": 300.14
+},
+{
+"id": "w835",
+"text": "to",
+"start": 300.22,
+"end": 300.26
+},
+{
+"id": "w836",
+"text": "the",
+"start": 300.3,
+"end": 300.46
+},
+{
+"id": "w837",
+"text": "i",
+"start": 300.54,
+"end": 300.7
+},
+{
+"id": "w838",
+"text": "t",
+"start": 300.78,
+"end": 301.02
+},
+{
+"id": "w839",
+"text": "has",
+"start": 301.1,
+"end": 301.18
+},
+{
+"id": "w840",
+"text": "a",
+"start": 301.34,
+"end": 301.38
+},
+{
+"id": "w841",
+"text": "simple",
+"start": 301.42,
+"end": 301.74
+},
+{
+"id": "w842",
+"text": "meaning.",
+"start": 302.36,
+"end": 302.62
+},
+{
+"id": "w843",
+"text": "Walk",
+"start": 302.62,
+"end": 302.7
+},
+{
+"id": "w844",
+"text": "along",
+"start": 302.78,
+"end": 302.94
+},
+{
+"id": "w845",
+"text": "the",
+"start": 303.02,
+"end": 303.1
+},
+{
+"id": "w846",
+"text": "unit",
+"start": 303.22,
+"end": 303.34
+},
+{
+"id": "w847",
+"text": "circle,",
+"start": 303.357,
+"end": 303.73
+},
+{
+"id": "w848",
+"text": "a",
+"start": 303.94,
+"end": 303.993
+},
+{
+"id": "w849",
+"text": "distance",
+"start": 304.38,
+"end": 304.62
+},
+{
+"id": "w850",
+"text": "t.",
+"start": 304.7,
+"end": 304.89
+},
+{
+"id": "w851",
+"text": "Now,",
+"start": 305.81,
+"end": 306.25
+},
+{
+"id": "w852",
+"text": "pause",
+"start": 306.4,
+"end": 306.72
+},
+{
+"id": "w853",
+"text": "and",
+"start": 306.8,
+"end": 306.88
+},
+{
+"id": "w854",
+"text": "predict.",
+"start": 306.88,
+"end": 307.33
+},
+{
+"id": "w855",
+"text": "We",
+"start": 307.73,
+"end": 307.783
+},
+{
+"id": "w856",
+"text": "start",
+"start": 308.0,
+"end": 308.16
+},
+{
+"id": "w857",
+"text": "at",
+"start": 308.24,
+"end": 308.32
+},
+{
+"id": "w858",
+"text": "one.",
+"start": 308.4,
+"end": 308.59
+},
+{
+"id": "w859",
+"text": "How",
+"start": 309.0,
+"end": 309.08
+},
+{
+"id": "w860",
+"text": "far",
+"start": 309.36,
+"end": 309.44
+},
+{
+"id": "w861",
+"text": "do",
+"start": 309.52,
+"end": 309.6
+},
+{
+"id": "w862",
+"text": "we",
+"start": 309.64,
+"end": 309.68
+},
+{
+"id": "w863",
+"text": "have",
+"start": 309.76,
+"end": 309.84
+},
+{
+"id": "w864",
+"text": "to",
+"start": 309.92,
+"end": 310.0
+},
+{
+"id": "w865",
+"text": "walk",
+"start": 310.08,
+"end": 310.32
+},
+{
+"id": "w866",
+"text": "to",
+"start": 310.36,
+"end": 310.4
+},
+{
+"id": "w867",
+"text": "reach",
+"start": 310.48,
+"end": 310.72
+},
+{
+"id": "w868",
+"text": "negative",
+"start": 310.88,
+"end": 311.04
+},
+{
+"id": "w869",
+"text": "one?",
+"start": 311.12,
+"end": 311.26
+},
+{
+"id": "w870",
+"text": "Halfway",
+"start": 314.2,
+"end": 314.52
+},
+{
+"id": "w871",
+"text": "around",
+"start": 314.74,
+"end": 314.98
+},
+{
+"id": "w872",
+"text": "a",
+"start": 315.06,
+"end": 315.1
+},
+{
+"id": "w873",
+"text": "circle",
+"start": 315.14,
+"end": 315.46
+},
+{
+"id": "w874",
+"text": "of",
+"start": 315.54,
+"end": 315.7
+},
+{
+"id": "w875",
+"text": "radius",
+"start": 315.9,
+"end": 316.1
+},
+{
+"id": "w876",
+"text": "one.",
+"start": 316.18,
+"end": 316.38
+},
+{
+"id": "w877",
+"text": "The",
+"start": 316.77,
+"end": 316.93
+},
+{
+"id": "w878",
+"text": "full",
+"start": 317.06,
+"end": 317.22
+},
+{
+"id": "w879",
+"text": "way",
+"start": 317.3,
+"end": 317.38
+},
+{
+"id": "w880",
+"text": "around",
+"start": 317.58,
+"end": 317.78
+},
+{
+"id": "w881",
+"text": "is",
+"start": 317.86,
+"end": 318.02
+},
+{
+"id": "w882",
+"text": "two",
+"start": 318.1,
+"end": 318.26
+},
+{
+"id": "w883",
+"text": "pi.",
+"start": 318.26,
+"end": 318.58
+},
+{
+"id": "w884",
+"text": "So",
+"start": 318.86,
+"end": 319.02
+},
+{
+"id": "w885",
+"text": "halfway,",
+"start": 319.22,
+"end": 319.9
+},
+{
+"id": "w886",
+"text": "is",
+"start": 319.94,
+"end": 320.1
+},
+{
+"id": "w887",
+"text": "pi.",
+"start": 320.68,
+"end": 320.98
+},
+{
+"id": "w888",
+"text": "After",
+"start": 320.98,
+"end": 321.22
+},
+{
+"id": "w889",
+"text": "walking",
+"start": 321.38,
+"end": 321.54
+},
+{
+"id": "w890",
+"text": "a",
+"start": 321.58,
+"end": 321.62
+},
+{
+"id": "w891",
+"text": "distance",
+"start": 321.7,
+"end": 322.02
+},
+{
+"id": "w892",
+"text": "pi,",
+"start": 322.1,
+"end": 322.37
+},
+{
+"id": "w893",
+"text": "the",
+"start": 322.59,
+"end": 322.67
+},
+{
+"id": "w894",
+"text": "point",
+"start": 322.82,
+"end": 323.06
+},
+{
+"id": "w895",
+"text": "lands",
+"start": 323.14,
+"end": 323.38
+},
+{
+"id": "w896",
+"text": "on",
+"start": 323.46,
+"end": 323.62
+},
+{
+"id": "w897",
+"text": "negative",
+"start": 323.7,
+"end": 324.02
+},
+{
+"id": "w898",
+"text": "one.",
+"start": 324.1,
+"end": 324.29
+},
+{
+"id": "w899",
+"text": "e",
+"start": 324.71,
+"end": 324.87
+},
+{
+"id": "w900",
+"text": "to",
+"start": 325.02,
+"end": 325.06
+},
+{
+"id": "w901",
+"text": "the",
+"start": 325.14,
+"end": 325.3
+},
+{
+"id": "w902",
+"text": "i",
+"start": 325.38,
+"end": 325.54
+},
+{
+"id": "w903",
+"text": "pi",
+"start": 325.62,
+"end": 326.02
+},
+{
+"id": "w904",
+"text": "equals",
+"start": 326.1,
+"end": 326.42
+},
+{
+"id": "w905",
+"text": "negative",
+"start": 326.5,
+"end": 326.82
+},
+{
+"id": "w906",
+"text": "one.",
+"start": 326.9,
+"end": 327.07
+},
+{
+"id": "w907",
+"text": "A",
+"start": 327.37,
+"end": 327.42
+},
+{
+"id": "w908",
+"text": "half",
+"start": 327.54,
+"end": 327.78
+},
+{
+"id": "w909",
+"text": "turn.",
+"start": 327.86,
+"end": 328.08
+},
+{
+"id": "w910",
+"text": "Which",
+"start": 328.29,
+"end": 328.343
+},
+{
+"id": "w911",
+"text": "is",
+"start": 328.7,
+"end": 328.74
+},
+{
+"id": "w912",
+"text": "exactly",
+"start": 328.82,
+"end": 329.3
+},
+{
+"id": "w913",
+"text": "what",
+"start": 329.38,
+"end": 329.46
+},
+{
+"id": "w914",
+"text": "we",
+"start": 329.54,
+"end": 329.62
+},
+{
+"id": "w915",
+"text": "said",
+"start": 329.7,
+"end": 329.94
+},
+{
+"id": "w916",
+"text": "negative",
+"start": 330.02,
+"end": 330.34
+},
+{
+"id": "w917",
+"text": "one",
+"start": 330.42,
+"end": 330.66
+},
+{
+"id": "w918",
+"text": "is.",
+"start": 330.66,
+"end": 330.96
+},
+{
+"id": "w919",
+"text": "That",
+"start": 331.84,
+"end": 332.0
+},
+{
+"id": "w920",
+"text": "is",
+"start": 332.28,
+"end": 332.36
+},
+{
+"id": "w921",
+"text": "the",
+"start": 332.4,
+"end": 332.44
+},
+{
+"id": "w922",
+"text": "picture.",
+"start": 332.52,
+"end": 332.85
+},
+{
+"id": "w923",
+"text": "But",
+"start": 333.23,
+"end": 333.28
+},
+{
+"id": "w924",
+"text": "a",
+"start": 333.48,
+"end": 333.613
+},
+{
+"id": "w925",
+"text": "picture",
+"start": 333.747,
+"end": 333.88
+},
+{
+"id": "w926",
+"text": "can",
+"start": 334.0,
+"end": 334.12
+},
+{
+"id": "w927",
+"text": "fool",
+"start": 334.16,
+"end": 334.36
+},
+{
+"id": "w928",
+"text": "you.",
+"start": 334.36,
+"end": 334.5
+},
+{
+"id": "w929",
+"text": "So",
+"start": 334.79,
+"end": 334.87
+},
+{
+"id": "w930",
+"text": "let",
+"start": 335.04,
+"end": 335.08
+},
+{
+"id": "w931",
+"text": "us",
+"start": 335.16,
+"end": 335.32
+},
+{
+"id": "w932",
+"text": "check",
+"start": 335.4,
+"end": 335.48
+},
+{
+"id": "w933",
+"text": "it,",
+"start": 335.48,
+"end": 335.58
+},
+{
+"id": "w934",
+"text": "twice,",
+"start": 335.87,
+"end": 336.37
+},
+{
+"id": "w935",
+"text": "using",
+"start": 336.58,
+"end": 336.9
+},
+{
+"id": "w936",
+"text": "nothing",
+"start": 337.16,
+"end": 337.32
+},
+{
+"id": "w937",
+"text": "but",
+"start": 337.36,
+"end": 337.4
+},
+{
+"id": "w938",
+"text": "arithmetic.",
+"start": 337.48,
+"end": 338.28
+},
+{
+"id": "w939",
+"text": "Go",
+"start": 339.7,
+"end": 339.86
+},
+{
+"id": "w940",
+"text": "back",
+"start": 339.94,
+"end": 340.1
+},
+{
+"id": "w941",
+"text": "to",
+"start": 340.18,
+"end": 340.26
+},
+{
+"id": "w942",
+"text": "the",
+"start": 340.3,
+"end": 340.34
+},
+{
+"id": "w943",
+"text": "bank.",
+"start": 340.42,
+"end": 340.82
+},
+{
+"id": "w944",
+"text": "e",
+"start": 341.38,
+"end": 341.62
+},
+{
+"id": "w945",
+"text": "came",
+"start": 341.78,
+"end": 341.94
+},
+{
+"id": "w946",
+"text": "from",
+"start": 342.02,
+"end": 342.1
+},
+{
+"id": "w947",
+"text": "compounding.",
+"start": 342.18,
+"end": 342.85
+},
+{
+"id": "w948",
+"text": "One",
+"start": 343.3,
+"end": 343.54
+},
+{
+"id": "w949",
+"text": "plus",
+"start": 343.78,
+"end": 343.94
+},
+{
+"id": "w950",
+"text": "one",
+"start": 344.1,
+"end": 344.18
+},
+{
+"id": "w951",
+"text": "over",
+"start": 344.26,
+"end": 344.34
+},
+{
+"id": "w952",
+"text": "n,",
+"start": 344.5,
+"end": 344.86
+},
+{
+"id": "w953",
+"text": "raised",
+"start": 344.98,
+"end": 345.22
+},
+{
+"id": "w954",
+"text": "to",
+"start": 345.3,
+"end": 345.34
+},
+{
+"id": "w955",
+"text": "the",
+"start": 345.38,
+"end": 345.46
+},
+{
+"id": "w956",
+"text": "n.",
+"start": 345.54,
+"end": 345.79
+},
+{
+"id": "w957",
+"text": "So",
+"start": 346.11,
+"end": 346.27
+},
+{
+"id": "w958",
+"text": "e",
+"start": 346.74,
+"end": 346.9
+},
+{
+"id": "w959",
+"text": "to",
+"start": 346.98,
+"end": 347.06
+},
+{
+"id": "w960",
+"text": "the",
+"start": 347.1,
+"end": 347.14
+},
+{
+"id": "w961",
+"text": "i",
+"start": 347.3,
+"end": 347.46
+},
+{
+"id": "w962",
+"text": "pi",
+"start": 347.54,
+"end": 347.94
+},
+{
+"id": "w963",
+"text": "should",
+"start": 348.1,
+"end": 348.26
+},
+{
+"id": "w964",
+"text": "come",
+"start": 348.34,
+"end": 348.42
+},
+{
+"id": "w965",
+"text": "from",
+"start": 348.5,
+"end": 348.58
+},
+{
+"id": "w966",
+"text": "compounding",
+"start": 348.66,
+"end": 349.22
+},
+{
+"id": "w967",
+"text": "i",
+"start": 349.3,
+"end": 349.46
+},
+{
+"id": "w968",
+"text": "pi.",
+"start": 349.54,
+"end": 349.91
+},
+{
+"id": "w969",
+"text": "One",
+"start": 350.38,
+"end": 350.54
+},
+{
+"id": "w970",
+"text": "plus",
+"start": 350.82,
+"end": 351.06
+},
+{
+"id": "w971",
+"text": "i",
+"start": 351.22,
+"end": 351.3
+},
+{
+"id": "w972",
+"text": "pi",
+"start": 351.38,
+"end": 351.62
+},
+{
+"id": "w973",
+"text": "over",
+"start": 351.7,
+"end": 351.86
+},
+{
+"id": "w974",
+"text": "n,",
+"start": 352.02,
+"end": 352.3
+},
+{
+"id": "w975",
+"text": "raised",
+"start": 352.42,
+"end": 352.66
+},
+{
+"id": "w976",
+"text": "to",
+"start": 352.74,
+"end": 352.82
+},
+{
+"id": "w977",
+"text": "the",
+"start": 352.86,
+"end": 352.9
+},
+{
+"id": "w978",
+"text": "n.",
+"start": 353.06,
+"end": 353.24
+},
+{
+"id": "w979",
+"text": "Start",
+"start": 354.26,
+"end": 354.5
+},
+{
+"id": "w980",
+"text": "crude.",
+"start": 354.76,
+"end": 355.23
+},
+{
+"id": "w981",
+"text": "Let",
+"start": 355.6,
+"end": 355.76
+},
+{
+"id": "w982",
+"text": "n",
+"start": 355.88,
+"end": 356.04
+},
+{
+"id": "w983",
+"text": "be",
+"start": 356.12,
+"end": 356.2
+},
+{
+"id": "w984",
+"text": "one.",
+"start": 356.36,
+"end": 356.64
+},
+{
+"id": "w985",
+"text": "One",
+"start": 357.04,
+"end": 357.2
+},
+{
+"id": "w986",
+"text": "plus",
+"start": 357.48,
+"end": 357.64
+},
+{
+"id": "w987",
+"text": "i",
+"start": 357.8,
+"end": 357.88
+},
+{
+"id": "w988",
+"text": "pi.",
+"start": 357.96,
+"end": 358.29
+},
+{
+"id": "w989",
+"text": "That",
+"start": 358.53,
+"end": 358.69
+},
+{
+"id": "w990",
+"text": "is",
+"start": 359.16,
+"end": 359.24
+},
+{
+"id": "w991",
+"text": "a",
+"start": 359.32,
+"end": 359.36
+},
+{
+"id": "w992",
+"text": "point",
+"start": 359.4,
+"end": 359.64
+},
+{
+"id": "w993",
+"text": "far",
+"start": 359.8,
+"end": 360.04
+},
+{
+"id": "w994",
+"text": "up",
+"start": 360.12,
+"end": 360.28
+},
+{
+"id": "w995",
+"text": "and",
+"start": 360.36,
+"end": 360.44
+},
+{
+"id": "w996",
+"text": "to",
+"start": 360.48,
+"end": 360.52
+},
+{
+"id": "w997",
+"text": "the",
+"start": 360.6,
+"end": 360.64
+},
+{
+"id": "w998",
+"text": "right.",
+"start": 360.68,
+"end": 360.93
+},
+{
+"id": "w999",
+"text": "Nowhere",
+"start": 361.32,
+"end": 361.64
+},
+{
+"id": "w1000",
+"text": "near",
+"start": 361.88,
+"end": 362.04
+},
+{
+"id": "w1001",
+"text": "negative",
+"start": 362.12,
+"end": 362.36
+},
+{
+"id": "w1002",
+"text": "one.",
+"start": 362.44,
+"end": 362.7
+},
+{
+"id": "w1003",
+"text": "Let",
+"start": 363.77,
+"end": 363.93
+},
+{
+"id": "w1004",
+"text": "n",
+"start": 364.06,
+"end": 364.14
+},
+{
+"id": "w1005",
+"text": "be",
+"start": 364.22,
+"end": 364.3
+},
+{
+"id": "w1006",
+"text": "two.",
+"start": 364.38,
+"end": 364.72
+},
+{
+"id": "w1007",
+"text": "Multiplying",
+"start": 365.3,
+"end": 365.86
+},
+{
+"id": "w1008",
+"text": "by",
+"start": 365.98,
+"end": 366.06
+},
+{
+"id": "w1009",
+"text": "one",
+"start": 366.22,
+"end": 366.38
+},
+{
+"id": "w1010",
+"text": "plus",
+"start": 366.46,
+"end": 366.7
+},
+{
+"id": "w1011",
+"text": "i",
+"start": 366.78,
+"end": 366.94
+},
+{
+"id": "w1012",
+"text": "pi",
+"start": 367.02,
+"end": 367.18
+},
+{
+"id": "w1013",
+"text": "over",
+"start": 367.26,
+"end": 367.42
+},
+{
+"id": "w1014",
+"text": "two",
+"start": 367.5,
+"end": 367.74
+},
+{
+"id": "w1015",
+"text": "turns",
+"start": 368.06,
+"end": 368.38
+},
+{
+"id": "w1016",
+"text": "the",
+"start": 368.42,
+"end": 368.46
+},
+{
+"id": "w1017",
+"text": "plane",
+"start": 368.54,
+"end": 368.7
+},
+{
+"id": "w1018",
+"text": "a",
+"start": 368.74,
+"end": 368.78
+},
+{
+"id": "w1019",
+"text": "little,",
+"start": 368.86,
+"end": 369.06
+},
+{
+"id": "w1020",
+"text": "and",
+"start": 369.27,
+"end": 369.35
+},
+{
+"id": "w1021",
+"text": "stretches",
+"start": 369.5,
+"end": 369.9
+},
+{
+"id": "w1022",
+"text": "it",
+"start": 369.94,
+"end": 369.98
+},
+{
+"id": "w1023",
+"text": "a",
+"start": 370.06,
+"end": 370.1
+},
+{
+"id": "w1024",
+"text": "little.",
+"start": 370.14,
+"end": 370.38
+},
+{
+"id": "w1025",
+"text": "Do",
+"start": 370.75,
+"end": 370.83
+},
+{
+"id": "w1026",
+"text": "that",
+"start": 371.18,
+"end": 371.26
+},
+{
+"id": "w1027",
+"text": "twice,",
+"start": 371.34,
+"end": 371.98
+},
+{
+"id": "w1028",
+"text": "and",
+"start": 372.02,
+"end": 372.06
+},
+{
+"id": "w1029",
+"text": "we",
+"start": 372.14,
+"end": 372.22
+},
+{
+"id": "w1030",
+"text": "land",
+"start": 372.3,
+"end": 372.38
+},
+{
+"id": "w1031",
+"text": "up",
+"start": 372.46,
+"end": 372.54
+},
+{
+"id": "w1032",
+"text": "here.",
+"start": 372.62,
+"end": 372.89
+},
+{
+"id": "w1033",
+"text": "Four",
+"start": 374.01,
+"end": 374.17
+},
+{
+"id": "w1034",
+"text": "steps.",
+"start": 374.4,
+"end": 374.87
+},
+{
+"id": "w1035",
+"text": "Each",
+"start": 375.39,
+"end": 375.55
+},
+{
+"id": "w1036",
+"text": "one",
+"start": 375.68,
+"end": 375.92
+},
+{
+"id": "w1037",
+"text": "a",
+"start": 375.96,
+"end": 376.0
+},
+{
+"id": "w1038",
+"text": "smaller",
+"start": 376.16,
+"end": 376.48
+},
+{
+"id": "w1039",
+"text": "turn,",
+"start": 376.56,
+"end": 377.04
+},
+{
+"id": "w1040",
+"text": "and",
+"start": 377.08,
+"end": 377.12
+},
+{
+"id": "w1041",
+"text": "a",
+"start": 377.16,
+"end": 377.2
+},
+{
+"id": "w1042",
+"text": "smaller",
+"start": 377.28,
+"end": 377.6
+},
+{
+"id": "w1043",
+"text": "stretch.",
+"start": 377.68,
+"end": 378.16
+},
+{
+"id": "w1044",
+"text": "The",
+"start": 378.63,
+"end": 378.71
+},
+{
+"id": "w1045",
+"text": "path",
+"start": 378.8,
+"end": 379.12
+},
+{
+"id": "w1046",
+"text": "begins",
+"start": 379.2,
+"end": 379.52
+},
+{
+"id": "w1047",
+"text": "to",
+"start": 379.6,
+"end": 379.68
+},
+{
+"id": "w1048",
+"text": "bend.",
+"start": 379.76,
+"end": 380.06
+},
+{
+"id": "w1049",
+"text": "Eight",
+"start": 381.21,
+"end": 381.37
+},
+{
+"id": "w1050",
+"text": "steps.",
+"start": 381.46,
+"end": 381.94
+},
+{
+"id": "w1051",
+"text": "Sixteen.",
+"start": 382.45,
+"end": 383.19
+},
+{
+"id": "w1052",
+"text": "A",
+"start": 383.72,
+"end": 383.8
+},
+{
+"id": "w1053",
+"text": "hundred.",
+"start": 383.94,
+"end": 384.36
+},
+{
+"id": "w1054",
+"text": "The",
+"start": 384.8,
+"end": 384.88
+},
+{
+"id": "w1055",
+"text": "stretches",
+"start": 385.22,
+"end": 385.7
+},
+{
+"id": "w1056",
+"text": "shrink",
+"start": 385.78,
+"end": 386.02
+},
+{
+"id": "w1057",
+"text": "toward",
+"start": 386.1,
+"end": 386.34
+},
+{
+"id": "w1058",
+"text": "nothing.",
+"start": 386.42,
+"end": 386.85
+},
+{
+"id": "w1059",
+"text": "The",
+"start": 387.1,
+"end": 387.18
+},
+{
+"id": "w1060",
+"text": "turns",
+"start": 387.46,
+"end": 387.86
+},
+{
+"id": "w1061",
+"text": "add",
+"start": 387.94,
+"end": 388.02
+},
+{
+"id": "w1062",
+"text": "up",
+"start": 388.1,
+"end": 388.26
+},
+{
+"id": "w1063",
+"text": "closer",
+"start": 388.34,
+"end": 388.74
+},
+{
+"id": "w1064",
+"text": "and",
+"start": 388.82,
+"end": 388.9
+},
+{
+"id": "w1065",
+"text": "closer",
+"start": 388.98,
+"end": 389.38
+},
+{
+"id": "w1066",
+"text": "to",
+"start": 389.46,
+"end": 389.54
+},
+{
+"id": "w1067",
+"text": "a",
+"start": 389.58,
+"end": 389.62
+},
+{
+"id": "w1068",
+"text": "half",
+"start": 389.7,
+"end": 389.86
+},
+{
+"id": "w1069",
+"text": "turn.",
+"start": 389.94,
+"end": 390.66
+},
+{
+"id": "w1070",
+"text": "And",
+"start": 390.7,
+"end": 390.74
+},
+{
+"id": "w1071",
+"text": "the",
+"start": 390.82,
+"end": 390.9
+},
+{
+"id": "w1072",
+"text": "path",
+"start": 390.98,
+"end": 391.3
+},
+{
+"id": "w1073",
+"text": "hugs",
+"start": 391.46,
+"end": 391.7
+},
+{
+"id": "w1074",
+"text": "the",
+"start": 391.78,
+"end": 391.86
+},
+{
+"id": "w1075",
+"text": "unit",
+"start": 391.94,
+"end": 392.1
+},
+{
+"id": "w1076",
+"text": "circle,",
+"start": 392.18,
+"end": 392.82
+},
+{
+"id": "w1077",
+"text": "sliding",
+"start": 392.9,
+"end": 393.3
+},
+{
+"id": "w1078",
+"text": "into",
+"start": 393.38,
+"end": 393.54
+},
+{
+"id": "w1079",
+"text": "its",
+"start": 393.62,
+"end": 393.7
+},
+{
+"id": "w1080",
+"text": "final",
+"start": 393.86,
+"end": 394.1
+},
+{
+"id": "w1081",
+"text": "spot.",
+"start": 394.18,
+"end": 394.44
+},
+{
+"id": "w1082",
+"text": "Negative",
+"start": 395.49,
+"end": 395.69
+},
+{
+"id": "w1083",
+"text": "one.",
+"start": 396.04,
+"end": 396.28
+},
+{
+"id": "w1084",
+"text": "Compounding",
+"start": 397.39,
+"end": 397.83
+},
+{
+"id": "w1085",
+"text": "a",
+"start": 398.02,
+"end": 398.06
+},
+{
+"id": "w1086",
+"text": "rate",
+"start": 398.14,
+"end": 398.22
+},
+{
+"id": "w1087",
+"text": "of",
+"start": 398.3,
+"end": 398.38
+},
+{
+"id": "w1088",
+"text": "growth",
+"start": 398.46,
+"end": 398.86
+},
+{
+"id": "w1089",
+"text": "gives",
+"start": 398.9,
+"end": 399.1
+},
+{
+"id": "w1090",
+"text": "e.",
+"start": 399.26,
+"end": 399.49
+},
+{
+"id": "w1091",
+"text": "Compounding",
+"start": 399.97,
+"end": 400.33
+},
+{
+"id": "w1092",
+"text": "a",
+"start": 400.54,
+"end": 400.58
+},
+{
+"id": "w1093",
+"text": "rate",
+"start": 400.62,
+"end": 400.7
+},
+{
+"id": "w1094",
+"text": "of",
+"start": 400.78,
+"end": 400.86
+},
+{
+"id": "w1095",
+"text": "turning",
+"start": 400.94,
+"end": 401.5
+},
+{
+"id": "w1096",
+"text": "gives",
+"start": 401.553,
+"end": 401.66
+},
+{
+"id": "w1097",
+"text": "a",
+"start": 401.74,
+"end": 401.82
+},
+{
+"id": "w1098",
+"text": "walk",
+"start": 401.94,
+"end": 402.06
+},
+{
+"id": "w1099",
+"text": "around",
+"start": 402.18,
+"end": 402.3
+},
+{
+"id": "w1100",
+"text": "the",
+"start": 402.34,
+"end": 402.38
+},
+{
+"id": "w1101",
+"text": "circle.",
+"start": 402.46,
+"end": 402.82
+},
+{
+"id": "w1102",
+"text": "There",
+"start": 404.81,
+"end": 404.86
+},
+{
+"id": "w1103",
+"text": "is",
+"start": 405.0,
+"end": 405.08
+},
+{
+"id": "w1104",
+"text": "a",
+"start": 405.16,
+"end": 405.24
+},
+{
+"id": "w1105",
+"text": "second",
+"start": 405.4,
+"end": 405.56
+},
+{
+"id": "w1106",
+"text": "way",
+"start": 405.64,
+"end": 405.72
+},
+{
+"id": "w1107",
+"text": "to",
+"start": 405.8,
+"end": 405.88
+},
+{
+"id": "w1108",
+"text": "compute",
+"start": 406.04,
+"end": 406.2
+},
+{
+"id": "w1109",
+"text": "e",
+"start": 406.28,
+"end": 406.44
+},
+{
+"id": "w1110",
+"text": "to",
+"start": 406.48,
+"end": 406.52
+},
+{
+"id": "w1111",
+"text": "the",
+"start": 406.6,
+"end": 406.68
+},
+{
+"id": "w1112",
+"text": "x.",
+"start": 406.76,
+"end": 407.07
+},
+{
+"id": "w1113",
+"text": "An",
+"start": 407.4,
+"end": 407.45
+},
+{
+"id": "w1114",
+"text": "infinite",
+"start": 407.64,
+"end": 408.04
+},
+{
+"id": "w1115",
+"text": "sum.",
+"start": 408.12,
+"end": 408.68
+},
+{
+"id": "w1116",
+"text": "One,",
+"start": 409.02,
+"end": 409.5
+},
+{
+"id": "w1117",
+"text": "plus",
+"start": 409.76,
+"end": 409.88
+},
+{
+"id": "w1118",
+"text": "x,",
+"start": 410.04,
+"end": 410.52
+},
+{
+"id": "w1119",
+"text": "plus",
+"start": 410.6,
+"end": 410.68
+},
+{
+"id": "w1120",
+"text": "x",
+"start": 410.84,
+"end": 410.92
+},
+{
+"id": "w1121",
+"text": "squared",
+"start": 410.96,
+"end": 411.16
+},
+{
+"id": "w1122",
+"text": "over",
+"start": 411.24,
+"end": 411.48
+},
+{
+"id": "w1123",
+"text": "two,",
+"start": 411.6,
+"end": 412.04
+},
+{
+"id": "w1124",
+"text": "plus",
+"start": 412.16,
+"end": 412.28
+},
+{
+"id": "w1125",
+"text": "x",
+"start": 412.36,
+"end": 412.52
+},
+{
+"id": "w1126",
+"text": "cubed",
+"start": 412.56,
+"end": 412.76
+},
+{
+"id": "w1127",
+"text": "over",
+"start": 412.84,
+"end": 413.08
+},
+{
+"id": "w1128",
+"text": "six,",
+"start": 413.24,
+"end": 413.64
+},
+{
+"id": "w1129",
+"text": "and",
+"start": 413.72,
+"end": 413.8
+},
+{
+"id": "w1130",
+"text": "so",
+"start": 413.88,
+"end": 413.96
+},
+{
+"id": "w1131",
+"text": "on.",
+"start": 414.45,
+"end": 414.92
+},
+{
+"id": "w1132",
+"text": "Each",
+"start": 414.92,
+"end": 415.08
+},
+{
+"id": "w1133",
+"text": "term",
+"start": 415.16,
+"end": 415.48
+},
+{
+"id": "w1134",
+"text": "is",
+"start": 415.56,
+"end": 415.72
+},
+{
+"id": "w1135",
+"text": "x",
+"start": 415.8,
+"end": 415.96
+},
+{
+"id": "w1136",
+"text": "to",
+"start": 416.0,
+"end": 416.04
+},
+{
+"id": "w1137",
+"text": "the",
+"start": 416.12,
+"end": 416.2
+},
+{
+"id": "w1138",
+"text": "n,",
+"start": 416.28,
+"end": 416.653
+},
+{
+"id": "w1139",
+"text": "over",
+"start": 416.707,
+"end": 416.76
+},
+{
+"id": "w1140",
+"text": "n",
+"start": 416.92,
+"end": 417.0
+},
+{
+"id": "w1141",
+"text": "factorial.",
+"start": 417.08,
+"end": 417.72
+},
+{
+"id": "w1142",
+"text": "Plug",
+"start": 418.65,
+"end": 418.73
+},
+{
+"id": "w1143",
+"text": "in",
+"start": 419.18,
+"end": 419.34
+},
+{
+"id": "w1144",
+"text": "i",
+"start": 419.46,
+"end": 419.58
+},
+{
+"id": "w1145",
+"text": "pi,",
+"start": 419.74,
+"end": 420.06
+},
+{
+"id": "w1146",
+"text": "and",
+"start": 420.14,
+"end": 420.22
+},
+{
+"id": "w1147",
+"text": "treat",
+"start": 420.3,
+"end": 420.46
+},
+{
+"id": "w1148",
+"text": "each",
+"start": 420.54,
+"end": 420.7
+},
+{
+"id": "w1149",
+"text": "term",
+"start": 420.78,
+"end": 421.02
+},
+{
+"id": "w1150",
+"text": "as",
+"start": 421.1,
+"end": 421.18
+},
+{
+"id": "w1151",
+"text": "an",
+"start": 421.26,
+"end": 421.34
+},
+{
+"id": "w1152",
+"text": "arrow,",
+"start": 421.42,
+"end": 421.9
+},
+{
+"id": "w1153",
+"text": "laid",
+"start": 421.98,
+"end": 422.14
+},
+{
+"id": "w1154",
+"text": "tip",
+"start": 422.22,
+"end": 422.38
+},
+{
+"id": "w1155",
+"text": "to",
+"start": 422.46,
+"end": 422.54
+},
+{
+"id": "w1156",
+"text": "tail.",
+"start": 422.7,
+"end": 422.85
+},
+{
+"id": "w1157",
+"text": "The",
+"start": 423.86,
+"end": 423.94
+},
+{
+"id": "w1158",
+"text": "first",
+"start": 424.12,
+"end": 424.24
+},
+{
+"id": "w1159",
+"text": "term",
+"start": 424.4,
+"end": 424.56
+},
+{
+"id": "w1160",
+"text": "is",
+"start": 424.64,
+"end": 424.8
+},
+{
+"id": "w1161",
+"text": "one.",
+"start": 424.88,
+"end": 425.14
+},
+{
+"id": "w1162",
+"text": "A",
+"start": 425.35,
+"end": 425.43
+},
+{
+"id": "w1163",
+"text": "step",
+"start": 425.72,
+"end": 425.84
+},
+{
+"id": "w1164",
+"text": "to",
+"start": 425.88,
+"end": 425.92
+},
+{
+"id": "w1165",
+"text": "the",
+"start": 426.0,
+"end": 426.08
+},
+{
+"id": "w1166",
+"text": "right.",
+"start": 426.08,
+"end": 426.27
+},
+{
+"id": "w1167",
+"text": "The",
+"start": 427.36,
+"end": 427.44
+},
+{
+"id": "w1168",
+"text": "second",
+"start": 427.74,
+"end": 427.94
+},
+{
+"id": "w1169",
+"text": "is",
+"start": 428.02,
+"end": 428.18
+},
+{
+"id": "w1170",
+"text": "i",
+"start": 428.26,
+"end": 428.42
+},
+{
+"id": "w1171",
+"text": "pi.",
+"start": 428.62,
+"end": 428.81
+},
+{
+"id": "w1172",
+"text": "The",
+"start": 429.14,
+"end": 429.22
+},
+{
+"id": "w1173",
+"text": "i",
+"start": 429.62,
+"end": 429.94
+},
+{
+"id": "w1174",
+"text": "turns",
+"start": 430.06,
+"end": 430.207
+},
+{
+"id": "w1175",
+"text": "it",
+"start": 430.233,
+"end": 430.26
+},
+{
+"id": "w1176",
+"text": "a",
+"start": 430.34,
+"end": 430.42
+},
+{
+"id": "w1177",
+"text": "quarter",
+"start": 430.5,
+"end": 430.74
+},
+{
+"id": "w1178",
+"text": "turn,",
+"start": 430.82,
+"end": 431.3
+},
+{
+"id": "w1179",
+"text": "so",
+"start": 431.34,
+"end": 431.38
+},
+{
+"id": "w1180",
+"text": "we",
+"start": 431.46,
+"end": 431.54
+},
+{
+"id": "w1181",
+"text": "step",
+"start": 431.62,
+"end": 431.86
+},
+{
+"id": "w1182",
+"text": "straight",
+"start": 431.94,
+"end": 432.18
+},
+{
+"id": "w1183",
+"text": "up,",
+"start": 432.26,
+"end": 432.607
+},
+{
+"id": "w1184",
+"text": "a",
+"start": 432.633,
+"end": 432.66
+},
+{
+"id": "w1185",
+"text": "distance",
+"start": 432.74,
+"end": 433.14
+},
+{
+"id": "w1186",
+"text": "pi.",
+"start": 433.3,
+"end": 433.45
+},
+{
+"id": "w1187",
+"text": "The",
+"start": 434.57,
+"end": 434.65
+},
+{
+"id": "w1188",
+"text": "third",
+"start": 434.92,
+"end": 435.08
+},
+{
+"id": "w1189",
+"text": "has",
+"start": 435.16,
+"end": 435.4
+},
+{
+"id": "w1190",
+"text": "i",
+"start": 435.48,
+"end": 435.64
+},
+{
+"id": "w1191",
+"text": "squared,",
+"start": 435.68,
+"end": 436.2
+},
+{
+"id": "w1192",
+"text": "which",
+"start": 436.32,
+"end": 436.44
+},
+{
+"id": "w1193",
+"text": "turns",
+"start": 436.56,
+"end": 436.76
+},
+{
+"id": "w1194",
+"text": "twice.",
+"start": 436.84,
+"end": 437.507
+},
+{
+"id": "w1195",
+"text": "So",
+"start": 437.533,
+"end": 437.56
+},
+{
+"id": "w1196",
+"text": "it",
+"start": 437.64,
+"end": 437.72
+},
+{
+"id": "w1197",
+"text": "points",
+"start": 437.88,
+"end": 438.04
+},
+{
+"id": "w1198",
+"text": "left.",
+"start": 438.12,
+"end": 438.45
+},
+{
+"id": "w1199",
+"text": "Pi",
+"start": 438.7,
+"end": 438.86
+},
+{
+"id": "w1200",
+"text": "squared",
+"start": 439.0,
+"end": 439.32
+},
+{
+"id": "w1201",
+"text": "over",
+"start": 439.48,
+"end": 439.64
+},
+{
+"id": "w1202",
+"text": "two.",
+"start": 439.64,
+"end": 439.86
+},
+{
+"id": "w1203",
+"text": "About",
+"start": 440.27,
+"end": 440.377
+},
+{
+"id": "w1204",
+"text": "four",
+"start": 440.64,
+"end": 440.68
+},
+{
+"id": "w1205",
+"text": "point",
+"start": 440.84,
+"end": 441.0
+},
+{
+"id": "w1206",
+"text": "nine.",
+"start": 441.08,
+"end": 441.32
+},
+{
+"id": "w1207",
+"text": "The",
+"start": 442.25,
+"end": 442.303
+},
+{
+"id": "w1208",
+"text": "next",
+"start": 442.86,
+"end": 443.02
+},
+{
+"id": "w1209",
+"text": "turns",
+"start": 443.14,
+"end": 443.3
+},
+{
+"id": "w1210",
+"text": "again,",
+"start": 443.34,
+"end": 443.873
+},
+{
+"id": "w1211",
+"text": "and",
+"start": 443.927,
+"end": 443.98
+},
+{
+"id": "w1212",
+"text": "points",
+"start": 444.14,
+"end": 444.3
+},
+{
+"id": "w1213",
+"text": "down.",
+"start": 444.3,
+"end": 444.67
+},
+{
+"id": "w1214",
+"text": "Then",
+"start": 444.99,
+"end": 445.15
+},
+{
+"id": "w1215",
+"text": "right.",
+"start": 445.34,
+"end": 445.51
+},
+{
+"id": "w1216",
+"text": "Then",
+"start": 445.83,
+"end": 445.99
+},
+{
+"id": "w1217",
+"text": "up.",
+"start": 446.14,
+"end": 446.37
+},
+{
+"id": "w1218",
+"text": "Each",
+"start": 446.89,
+"end": 447.13
+},
+{
+"id": "w1219",
+"text": "new",
+"start": 447.26,
+"end": 447.34
+},
+{
+"id": "w1220",
+"text": "step",
+"start": 447.42,
+"end": 447.74
+},
+{
+"id": "w1221",
+"text": "turns",
+"start": 447.9,
+"end": 448.1
+},
+{
+"id": "w1222",
+"text": "one",
+"start": 448.14,
+"end": 448.3
+},
+{
+"id": "w1223",
+"text": "more",
+"start": 448.42,
+"end": 448.54
+},
+{
+"id": "w1224",
+"text": "quarter.",
+"start": 448.62,
+"end": 448.91
+},
+{
+"id": "w1225",
+"text": "At",
+"start": 449.89,
+"end": 449.943
+},
+{
+"id": "w1226",
+"text": "first,",
+"start": 450.16,
+"end": 450.6
+},
+{
+"id": "w1227",
+"text": "the",
+"start": 450.64,
+"end": 450.72
+},
+{
+"id": "w1228",
+"text": "steps",
+"start": 450.8,
+"end": 451.12
+},
+{
+"id": "w1229",
+"text": "grow,",
+"start": 451.36,
+"end": 451.627
+},
+{
+"id": "w1230",
+"text": "and",
+"start": 451.653,
+"end": 451.68
+},
+{
+"id": "w1231",
+"text": "the",
+"start": 451.76,
+"end": 451.84
+},
+{
+"id": "w1232",
+"text": "path",
+"start": 452.0,
+"end": 452.16
+},
+{
+"id": "w1233",
+"text": "swings",
+"start": 452.2,
+"end": 452.56
+},
+{
+"id": "w1234",
+"text": "far",
+"start": 452.64,
+"end": 452.8
+},
+{
+"id": "w1235",
+"text": "away.",
+"start": 452.88,
+"end": 453.17
+},
+{
+"id": "w1236",
+"text": "But",
+"start": 453.44,
+"end": 453.49
+},
+{
+"id": "w1237",
+"text": "the",
+"start": 453.84,
+"end": 453.92
+},
+{
+"id": "w1238",
+"text": "factorials",
+"start": 454.16,
+"end": 454.64
+},
+{
+"id": "w1239",
+"text": "grow",
+"start": 454.8,
+"end": 454.96
+},
+{
+"id": "w1240",
+"text": "faster",
+"start": 455.0,
+"end": 455.36
+},
+{
+"id": "w1241",
+"text": "than",
+"start": 455.44,
+"end": 455.6
+},
+{
+"id": "w1242",
+"text": "any",
+"start": 455.68,
+"end": 455.84
+},
+{
+"id": "w1243",
+"text": "power",
+"start": 455.92,
+"end": 456.16
+},
+{
+"id": "w1244",
+"text": "of",
+"start": 456.24,
+"end": 456.32
+},
+{
+"id": "w1245",
+"text": "pi.",
+"start": 456.4,
+"end": 456.68
+},
+{
+"id": "w1246",
+"text": "Soon",
+"start": 456.97,
+"end": 457.21
+},
+{
+"id": "w1247",
+"text": "the",
+"start": 457.68,
+"end": 457.76
+},
+{
+"id": "w1248",
+"text": "steps",
+"start": 457.84,
+"end": 458.16
+},
+{
+"id": "w1249",
+"text": "shrink,",
+"start": 458.2,
+"end": 458.76
+},
+{
+"id": "w1250",
+"text": "and",
+"start": 458.8,
+"end": 458.88
+},
+{
+"id": "w1251",
+"text": "the",
+"start": 458.92,
+"end": 458.96
+},
+{
+"id": "w1252",
+"text": "path",
+"start": 459.04,
+"end": 459.36
+},
+{
+"id": "w1253",
+"text": "spirals",
+"start": 459.44,
+"end": 459.92
+},
+{
+"id": "w1254",
+"text": "inward,",
+"start": 460.0,
+"end": 460.29
+},
+{
+"id": "w1255",
+"text": "closer",
+"start": 460.55,
+"end": 461.03
+},
+{
+"id": "w1256",
+"text": "and",
+"start": 461.2,
+"end": 461.28
+},
+{
+"id": "w1257",
+"text": "closer",
+"start": 461.36,
+"end": 461.76
+},
+{
+"id": "w1258",
+"text": "to",
+"start": 461.88,
+"end": 462.0
+},
+{
+"id": "w1259",
+"text": "one",
+"start": 462.08,
+"end": 462.24
+},
+{
+"id": "w1260",
+"text": "point.",
+"start": 462.32,
+"end": 462.52
+},
+{
+"id": "w1261",
+"text": "Negative",
+"start": 463.53,
+"end": 463.73
+},
+{
+"id": "w1262",
+"text": "one,",
+"start": 464.1,
+"end": 464.46
+},
+{
+"id": "w1263",
+"text": "again.",
+"start": 464.5,
+"end": 464.8
+},
+{
+"id": "w1264",
+"text": "And",
+"start": 466.01,
+"end": 466.063
+},
+{
+"id": "w1265",
+"text": "look",
+"start": 466.24,
+"end": 466.28
+},
+{
+"id": "w1266",
+"text": "at",
+"start": 466.36,
+"end": 466.4
+},
+{
+"id": "w1267",
+"text": "the",
+"start": 466.44,
+"end": 466.52
+},
+{
+"id": "w1268",
+"text": "horizontal",
+"start": 466.6,
+"end": 467.16
+},
+{
+"id": "w1269",
+"text": "steps.",
+"start": 467.24,
+"end": 468.253
+},
+{
+"id": "w1270",
+"text": "Together,",
+"start": 468.467,
+"end": 468.733
+},
+{
+"id": "w1271",
+"text": "they",
+"start": 468.787,
+"end": 468.84
+},
+{
+"id": "w1272",
+"text": "add",
+"start": 468.92,
+"end": 469.0
+},
+{
+"id": "w1273",
+"text": "up",
+"start": 469.08,
+"end": 469.16
+},
+{
+"id": "w1274",
+"text": "to",
+"start": 469.2,
+"end": 469.24
+},
+{
+"id": "w1275",
+"text": "the",
+"start": 469.32,
+"end": 469.4
+},
+{
+"id": "w1276",
+"text": "cosine",
+"start": 469.56,
+"end": 469.8
+},
+{
+"id": "w1277",
+"text": "of",
+"start": 469.88,
+"end": 469.96
+},
+{
+"id": "w1278",
+"text": "pi.",
+"start": 470.04,
+"end": 470.27
+},
+{
+"id": "w1279",
+"text": "The",
+"start": 470.77,
+"end": 470.85
+},
+{
+"id": "w1280",
+"text": "vertical",
+"start": 471.12,
+"end": 471.32
+},
+{
+"id": "w1281",
+"text": "steps",
+"start": 471.4,
+"end": 471.72
+},
+{
+"id": "w1282",
+"text": "add",
+"start": 471.8,
+"end": 471.88
+},
+{
+"id": "w1283",
+"text": "up",
+"start": 471.96,
+"end": 472.04
+},
+{
+"id": "w1284",
+"text": "to",
+"start": 472.08,
+"end": 472.12
+},
+{
+"id": "w1285",
+"text": "the",
+"start": 472.2,
+"end": 472.28
+},
+{
+"id": "w1286",
+"text": "sine",
+"start": 472.36,
+"end": 472.52
+},
+{
+"id": "w1287",
+"text": "of",
+"start": 472.6,
+"end": 472.68
+},
+{
+"id": "w1288",
+"text": "pi.",
+"start": 472.68,
+"end": 472.96
+},
+{
+"id": "w1289",
+"text": "Which",
+"start": 473.22,
+"end": 473.273
+},
+{
+"id": "w1290",
+"text": "is",
+"start": 473.48,
+"end": 473.56
+},
+{
+"id": "w1291",
+"text": "zero.",
+"start": 473.73,
+"end": 474.17
+},
+{
+"id": "w1292",
+"text": "Pi",
+"start": 476.01,
+"end": 476.25
+},
+{
+"id": "w1293",
+"text": "was",
+"start": 476.42,
+"end": 476.66
+},
+{
+"id": "w1294",
+"text": "never",
+"start": 476.78,
+"end": 476.9
+},
+{
+"id": "w1295",
+"text": "special.",
+"start": 476.98,
+"end": 477.967
+},
+{
+"id": "w1296",
+"text": "Walk",
+"start": 478.073,
+"end": 478.18
+},
+{
+"id": "w1297",
+"text": "any",
+"start": 478.26,
+"end": 478.42
+},
+{
+"id": "w1298",
+"text": "distance",
+"start": 478.62,
+"end": 478.82
+},
+{
+"id": "w1299",
+"text": "theta,",
+"start": 478.9,
+"end": 479.327
+},
+{
+"id": "w1300",
+"text": "and",
+"start": 479.353,
+"end": 479.38
+},
+{
+"id": "w1301",
+"text": "you",
+"start": 479.46,
+"end": 479.54
+},
+{
+"id": "w1302",
+"text": "land",
+"start": 479.66,
+"end": 479.78
+},
+{
+"id": "w1303",
+"text": "somewhere",
+"start": 479.86,
+"end": 480.18
+},
+{
+"id": "w1304",
+"text": "on",
+"start": 480.22,
+"end": 480.26
+},
+{
+"id": "w1305",
+"text": "the",
+"start": 480.34,
+"end": 480.42
+},
+{
+"id": "w1306",
+"text": "circle.",
+"start": 480.99,
+"end": 481.38
+},
+{
+"id": "w1307",
+"text": "How",
+"start": 481.88,
+"end": 482.04
+},
+{
+"id": "w1308",
+"text": "far",
+"start": 482.16,
+"end": 482.28
+},
+{
+"id": "w1309",
+"text": "right",
+"start": 482.36,
+"end": 482.44
+},
+{
+"id": "w1310",
+"text": "are",
+"start": 482.52,
+"end": 482.6
+},
+{
+"id": "w1311",
+"text": "you?",
+"start": 482.68,
+"end": 482.78
+},
+{
+"id": "w1312",
+"text": "That",
+"start": 483.07,
+"end": 483.23
+},
+{
+"id": "w1313",
+"text": "is",
+"start": 483.48,
+"end": 483.56
+},
+{
+"id": "w1314",
+"text": "the",
+"start": 483.6,
+"end": 483.64
+},
+{
+"id": "w1315",
+"text": "cosine",
+"start": 483.72,
+"end": 484.04
+},
+{
+"id": "w1316",
+"text": "of",
+"start": 484.12,
+"end": 484.2
+},
+{
+"id": "w1317",
+"text": "theta.",
+"start": 484.28,
+"end": 484.49
+},
+{
+"id": "w1318",
+"text": "How",
+"start": 484.89,
+"end": 484.97
+},
+{
+"id": "w1319",
+"text": "far",
+"start": 485.16,
+"end": 485.4
+},
+{
+"id": "w1320",
+"text": "up?",
+"start": 485.4,
+"end": 485.61
+},
+{
+"id": "w1321",
+"text": "The",
+"start": 485.95,
+"end": 486.03
+},
+{
+"id": "w1322",
+"text": "sine",
+"start": 486.16,
+"end": 486.28
+},
+{
+"id": "w1323",
+"text": "of",
+"start": 486.36,
+"end": 486.44
+},
+{
+"id": "w1324",
+"text": "theta.",
+"start": 486.52,
+"end": 486.75
+},
+{
+"id": "w1325",
+"text": "So",
+"start": 487.05,
+"end": 487.29
+},
+{
+"id": "w1326",
+"text": "e",
+"start": 487.72,
+"end": 487.88
+},
+{
+"id": "w1327",
+"text": "to",
+"start": 487.92,
+"end": 487.96
+},
+{
+"id": "w1328",
+"text": "the",
+"start": 488.04,
+"end": 488.2
+},
+{
+"id": "w1329",
+"text": "i",
+"start": 488.28,
+"end": 488.44
+},
+{
+"id": "w1330",
+"text": "theta",
+"start": 488.52,
+"end": 488.92
+},
+{
+"id": "w1331",
+"text": "equals",
+"start": 489.0,
+"end": 489.32
+},
+{
+"id": "w1332",
+"text": "cosine",
+"start": 489.48,
+"end": 489.8
+},
+{
+"id": "w1333",
+"text": "theta,",
+"start": 489.8,
+"end": 490.07
+},
+{
+"id": "w1334",
+"text": "plus",
+"start": 490.28,
+"end": 490.6
+},
+{
+"id": "w1335",
+"text": "i",
+"start": 490.76,
+"end": 490.92
+},
+{
+"id": "w1336",
+"text": "times",
+"start": 491.0,
+"end": 491.32
+},
+{
+"id": "w1337",
+"text": "sine",
+"start": 491.4,
+"end": 491.64
+},
+{
+"id": "w1338",
+"text": "theta.",
+"start": 492.29,
+"end": 492.64
+},
+{
+"id": "w1339",
+"text": "This",
+"start": 492.64,
+"end": 492.84
+},
+{
+"id": "w1340",
+"text": "is",
+"start": 492.92,
+"end": 493.08
+},
+{
+"id": "w1341",
+"text": "Euler's",
+"start": 493.12,
+"end": 493.48
+},
+{
+"id": "w1342",
+"text": "formula.",
+"start": 493.48,
+"end": 493.85
+},
+{
+"id": "w1343",
+"text": "Now",
+"start": 494.81,
+"end": 494.93
+},
+{
+"id": "w1344",
+"text": "let",
+"start": 495.3,
+"end": 495.42
+},
+{
+"id": "w1345",
+"text": "time",
+"start": 495.62,
+"end": 495.82
+},
+{
+"id": "w1346",
+"text": "run,",
+"start": 496.02,
+"end": 496.3
+},
+{
+"id": "w1347",
+"text": "and",
+"start": 496.38,
+"end": 496.46
+},
+{
+"id": "w1348",
+"text": "spread",
+"start": 496.54,
+"end": 496.7
+},
+{
+"id": "w1349",
+"text": "the",
+"start": 496.78,
+"end": 496.86
+},
+{
+"id": "w1350",
+"text": "walk",
+"start": 496.98,
+"end": 497.1
+},
+{
+"id": "w1351",
+"text": "out",
+"start": 497.18,
+"end": 497.34
+},
+{
+"id": "w1352",
+"text": "along",
+"start": 497.42,
+"end": 497.58
+},
+{
+"id": "w1353",
+"text": "a",
+"start": 497.74,
+"end": 497.82
+},
+{
+"id": "w1354",
+"text": "third",
+"start": 497.9,
+"end": 497.98
+},
+{
+"id": "w1355",
+"text": "direction.",
+"start": 498.04,
+"end": 498.49
+},
+{
+"id": "w1356",
+"text": "The",
+"start": 498.75,
+"end": 498.91
+},
+{
+"id": "w1357",
+"text": "point",
+"start": 499.34,
+"end": 499.5
+},
+{
+"id": "w1358",
+"text": "traces",
+"start": 499.54,
+"end": 499.82
+},
+{
+"id": "w1359",
+"text": "a",
+"start": 499.9,
+"end": 500.06
+},
+{
+"id": "w1360",
+"text": "spiral,",
+"start": 500.14,
+"end": 500.51
+},
+{
+"id": "w1361",
+"text": "a",
+"start": 500.75,
+"end": 500.803
+},
+{
+"id": "w1362",
+"text": "helix.",
+"start": 501.06,
+"end": 501.49
+},
+{
+"id": "w1363",
+"text": "Look",
+"start": 501.75,
+"end": 501.83
+},
+{
+"id": "w1364",
+"text": "from",
+"start": 502.3,
+"end": 502.38
+},
+{
+"id": "w1365",
+"text": "the",
+"start": 502.46,
+"end": 502.54
+},
+{
+"id": "w1366",
+"text": "side,",
+"start": 502.74,
+"end": 502.967
+},
+{
+"id": "w1367",
+"text": "and",
+"start": 502.993,
+"end": 503.02
+},
+{
+"id": "w1368",
+"text": "you",
+"start": 503.1,
+"end": 503.18
+},
+{
+"id": "w1369",
+"text": "see",
+"start": 503.22,
+"end": 503.26
+},
+{
+"id": "w1370",
+"text": "a",
+"start": 503.42,
+"end": 503.447
+},
+{
+"id": "w1371",
+"text": "sine",
+"start": 503.473,
+"end": 503.74
+},
+{
+"id": "w1372",
+"text": "wave.",
+"start": 503.74,
+"end": 504.02
+},
+{
+"id": "w1373",
+"text": "Look",
+"start": 504.34,
+"end": 504.393
+},
+{
+"id": "w1374",
+"text": "from",
+"start": 504.62,
+"end": 504.7
+},
+{
+"id": "w1375",
+"text": "below,",
+"start": 504.743,
+"end": 505.09
+},
+{
+"id": "w1376",
+"text": "a",
+"start": 505.3,
+"end": 505.35
+},
+{
+"id": "w1377",
+"text": "cosine",
+"start": 505.5,
+"end": 505.9
+},
+{
+"id": "w1378",
+"text": "wave.",
+"start": 505.98,
+"end": 506.16
+},
+{
+"id": "w1379",
+"text": "Look",
+"start": 506.4,
+"end": 506.56
+},
+{
+"id": "w1380",
+"text": "head",
+"start": 506.98,
+"end": 507.1
+},
+{
+"id": "w1381",
+"text": "on,",
+"start": 507.18,
+"end": 507.62
+},
+{
+"id": "w1382",
+"text": "and",
+"start": 507.66,
+"end": 507.7
+},
+{
+"id": "w1383",
+"text": "it",
+"start": 507.74,
+"end": 507.82
+},
+{
+"id": "w1384",
+"text": "collapses",
+"start": 507.94,
+"end": 508.46
+},
+{
+"id": "w1385",
+"text": "back",
+"start": 508.54,
+"end": 508.7
+},
+{
+"id": "w1386",
+"text": "into",
+"start": 508.82,
+"end": 508.94
+},
+{
+"id": "w1387",
+"text": "the",
+"start": 508.98,
+"end": 509.02
+},
+{
+"id": "w1388",
+"text": "circle.",
+"start": 509.1,
+"end": 509.39
+},
+{
+"id": "w1389",
+"text": "This",
+"start": 510.29,
+"end": 510.45
+},
+{
+"id": "w1390",
+"text": "is",
+"start": 510.72,
+"end": 510.8
+},
+{
+"id": "w1391",
+"text": "why",
+"start": 510.88,
+"end": 511.04
+},
+{
+"id": "w1392",
+"text": "circles",
+"start": 511.12,
+"end": 511.44
+},
+{
+"id": "w1393",
+"text": "hide",
+"start": 511.52,
+"end": 511.68
+},
+{
+"id": "w1394",
+"text": "inside",
+"start": 511.92,
+"end": 512.16
+},
+{
+"id": "w1395",
+"text": "so",
+"start": 512.24,
+"end": 512.4
+},
+{
+"id": "w1396",
+"text": "much",
+"start": 512.48,
+"end": 512.64
+},
+{
+"id": "w1397",
+"text": "of",
+"start": 512.72,
+"end": 512.8
+},
+{
+"id": "w1398",
+"text": "physics",
+"start": 512.88,
+"end": 513.12
+},
+{
+"id": "w1399",
+"text": "and",
+"start": 513.2,
+"end": 513.28
+},
+{
+"id": "w1400",
+"text": "engineering.",
+"start": 513.37,
+"end": 513.82
+},
+{
+"id": "w1401",
+"text": "Springs,",
+"start": 514.16,
+"end": 514.987
+},
+{
+"id": "w1402",
+"text": "alternating",
+"start": 515.333,
+"end": 515.68
+},
+{
+"id": "w1403",
+"text": "current,",
+"start": 516.16,
+"end": 516.4
+},
+{
+"id": "w1404",
+"text": "sound.",
+"start": 516.4,
+"end": 517.387
+},
+{
+"id": "w1405",
+"text": "Wherever",
+"start": 517.493,
+"end": 517.76
+},
+{
+"id": "w1406",
+"text": "something",
+"start": 517.92,
+"end": 518.08
+},
+{
+"id": "w1407",
+"text": "oscillates,",
+"start": 518.16,
+"end": 518.827
+},
+{
+"id": "w1408",
+"text": "there",
+"start": 518.853,
+"end": 518.88
+},
+{
+"id": "w1409",
+"text": "is",
+"start": 518.96,
+"end": 519.12
+},
+{
+"id": "w1410",
+"text": "often",
+"start": 519.2,
+"end": 519.44
+},
+{
+"id": "w1411",
+"text": "a",
+"start": 519.68,
+"end": 519.76
+},
+{
+"id": "w1412",
+"text": "turning",
+"start": 519.84,
+"end": 520.08
+},
+{
+"id": "w1413",
+"text": "arrow",
+"start": 520.16,
+"end": 520.4
+},
+{
+"id": "w1414",
+"text": "underneath.",
+"start": 520.48,
+"end": 520.93
+},
+{
+"id": "w1415",
+"text": "Now",
+"start": 521.72,
+"end": 521.88
+},
+{
+"id": "w1416",
+"text": "try",
+"start": 521.94,
+"end": 522.1
+},
+{
+"id": "w1417",
+"text": "a",
+"start": 522.18,
+"end": 522.26
+},
+{
+"id": "w1418",
+"text": "few",
+"start": 522.34,
+"end": 522.5
+},
+{
+"id": "w1419",
+"text": "special",
+"start": 522.58,
+"end": 522.9
+},
+{
+"id": "w1420",
+"text": "values.",
+"start": 522.98,
+"end": 523.57
+},
+{
+"id": "w1421",
+"text": "Theta",
+"start": 524.08,
+"end": 524.4
+},
+{
+"id": "w1422",
+"text": "equals",
+"start": 524.58,
+"end": 524.82
+},
+{
+"id": "w1423",
+"text": "pi",
+"start": 524.9,
+"end": 525.14
+},
+{
+"id": "w1424",
+"text": "over",
+"start": 525.22,
+"end": 525.38
+},
+{
+"id": "w1425",
+"text": "two,",
+"start": 525.54,
+"end": 525.83
+},
+{
+"id": "w1426",
+"text": "a",
+"start": 526.09,
+"end": 526.14
+},
+{
+"id": "w1427",
+"text": "quarter",
+"start": 526.34,
+"end": 526.58
+},
+{
+"id": "w1428",
+"text": "of",
+"start": 526.62,
+"end": 526.66
+},
+{
+"id": "w1429",
+"text": "the",
+"start": 526.74,
+"end": 526.78
+},
+{
+"id": "w1430",
+"text": "way",
+"start": 526.82,
+"end": 526.9
+},
+{
+"id": "w1431",
+"text": "around,",
+"start": 527.14,
+"end": 527.54
+},
+{
+"id": "w1432",
+"text": "and",
+"start": 527.58,
+"end": 527.62
+},
+{
+"id": "w1433",
+"text": "you",
+"start": 527.7,
+"end": 527.78
+},
+{
+"id": "w1434",
+"text": "land",
+"start": 527.86,
+"end": 528.1
+},
+{
+"id": "w1435",
+"text": "on",
+"start": 528.18,
+"end": 528.26
+},
+{
+"id": "w1436",
+"text": "i.",
+"start": 528.42,
+"end": 528.69
+},
+{
+"id": "w1437",
+"text": "Theta",
+"start": 529.12,
+"end": 529.36
+},
+{
+"id": "w1438",
+"text": "equals",
+"start": 529.7,
+"end": 529.94
+},
+{
+"id": "w1439",
+"text": "pi,",
+"start": 530.1,
+"end": 530.46
+},
+{
+"id": "w1440",
+"text": "halfway,",
+"start": 530.76,
+"end": 531.33
+},
+{
+"id": "w1441",
+"text": "and",
+"start": 531.59,
+"end": 531.64
+},
+{
+"id": "w1442",
+"text": "you",
+"start": 531.7,
+"end": 531.78
+},
+{
+"id": "w1443",
+"text": "land",
+"start": 531.86,
+"end": 532.1
+},
+{
+"id": "w1444",
+"text": "on",
+"start": 532.18,
+"end": 532.26
+},
+{
+"id": "w1445",
+"text": "negative",
+"start": 532.34,
+"end": 532.66
+},
+{
+"id": "w1446",
+"text": "one.",
+"start": 532.74,
+"end": 533.04
+},
+{
+"id": "w1447",
+"text": "Theta",
+"start": 533.44,
+"end": 533.68
+},
+{
+"id": "w1448",
+"text": "equals",
+"start": 534.02,
+"end": 534.26
+},
+{
+"id": "w1449",
+"text": "two",
+"start": 534.42,
+"end": 534.58
+},
+{
+"id": "w1450",
+"text": "pi,",
+"start": 534.66,
+"end": 535.03
+},
+{
+"id": "w1451",
+"text": "all",
+"start": 535.35,
+"end": 535.43
+},
+{
+"id": "w1452",
+"text": "the",
+"start": 535.54,
+"end": 535.62
+},
+{
+"id": "w1453",
+"text": "way",
+"start": 535.7,
+"end": 535.78
+},
+{
+"id": "w1454",
+"text": "around,",
+"start": 535.98,
+"end": 536.23
+},
+{
+"id": "w1455",
+"text": "and",
+"start": 536.48,
+"end": 536.56
+},
+{
+"id": "w1456",
+"text": "you",
+"start": 536.62,
+"end": 536.66
+},
+{
+"id": "w1457",
+"text": "are",
+"start": 536.74,
+"end": 536.82
+},
+{
+"id": "w1458",
+"text": "back",
+"start": 536.98,
+"end": 537.14
+},
+{
+"id": "w1459",
+"text": "at",
+"start": 537.22,
+"end": 537.38
+},
+{
+"id": "w1460",
+"text": "one.",
+"start": 537.46,
+"end": 537.76
+},
+{
+"id": "w1461",
+"text": "And",
+"start": 538.8,
+"end": 538.88
+},
+{
+"id": "w1462",
+"text": "multiplying",
+"start": 539.24,
+"end": 539.64
+},
+{
+"id": "w1463",
+"text": "by",
+"start": 539.72,
+"end": 539.8
+},
+{
+"id": "w1464",
+"text": "e",
+"start": 539.96,
+"end": 540.04
+},
+{
+"id": "w1465",
+"text": "to",
+"start": 540.12,
+"end": 540.2
+},
+{
+"id": "w1466",
+"text": "the",
+"start": 540.28,
+"end": 540.36
+},
+{
+"id": "w1467",
+"text": "i",
+"start": 540.44,
+"end": 540.52
+},
+{
+"id": "w1468",
+"text": "theta",
+"start": 540.68,
+"end": 541.0
+},
+{
+"id": "w1469",
+"text": "does",
+"start": 541.08,
+"end": 541.24
+},
+{
+"id": "w1470",
+"text": "not",
+"start": 541.4,
+"end": 541.56
+},
+{
+"id": "w1471",
+"text": "just",
+"start": 541.64,
+"end": 541.72
+},
+{
+"id": "w1472",
+"text": "move",
+"start": 541.8,
+"end": 542.04
+},
+{
+"id": "w1473",
+"text": "one",
+"start": 542.12,
+"end": 542.28
+},
+{
+"id": "w1474",
+"text": "point.",
+"start": 542.36,
+"end": 542.65
+},
+{
+"id": "w1475",
+"text": "It",
+"start": 542.86,
+"end": 542.94
+},
+{
+"id": "w1476",
+"text": "turns",
+"start": 543.24,
+"end": 543.48
+},
+{
+"id": "w1477",
+"text": "the",
+"start": 543.56,
+"end": 543.64
+},
+{
+"id": "w1478",
+"text": "entire",
+"start": 543.72,
+"end": 544.2
+},
+{
+"id": "w1479",
+"text": "plane",
+"start": 544.36,
+"end": 544.76
+},
+{
+"id": "w1480",
+"text": "by",
+"start": 544.84,
+"end": 544.92
+},
+{
+"id": "w1481",
+"text": "theta.",
+"start": 545.0,
+"end": 545.35
+},
+{
+"id": "w1482",
+"text": "e",
+"start": 545.68,
+"end": 545.84
+},
+{
+"id": "w1483",
+"text": "to",
+"start": 546.2,
+"end": 546.24
+},
+{
+"id": "w1484",
+"text": "the",
+"start": 546.28,
+"end": 546.36
+},
+{
+"id": "w1485",
+"text": "i",
+"start": 546.44,
+"end": 546.6
+},
+{
+"id": "w1486",
+"text": "pi",
+"start": 546.68,
+"end": 547.0
+},
+{
+"id": "w1487",
+"text": "turns",
+"start": 547.16,
+"end": 547.48
+},
+{
+"id": "w1488",
+"text": "everything",
+"start": 547.56,
+"end": 548.04
+},
+{
+"id": "w1489",
+"text": "by",
+"start": 548.12,
+"end": 548.2
+},
+{
+"id": "w1490",
+"text": "half",
+"start": 548.36,
+"end": 548.52
+},
+{
+"id": "w1491",
+"text": "a",
+"start": 548.6,
+"end": 548.64
+},
+{
+"id": "w1492",
+"text": "turn.",
+"start": 548.68,
+"end": 549.01
+},
+{
+"id": "w1493",
+"text": "Move",
+"start": 549.95,
+"end": 550.19
+},
+{
+"id": "w1494",
+"text": "the",
+"start": 550.5,
+"end": 550.54
+},
+{
+"id": "w1495",
+"text": "one",
+"start": 550.62,
+"end": 550.7
+},
+{
+"id": "w1496",
+"text": "across,",
+"start": 550.78,
+"end": 551.42
+},
+{
+"id": "w1497",
+"text": "and",
+"start": 551.46,
+"end": 551.5
+},
+{
+"id": "w1498",
+"text": "you",
+"start": 551.54,
+"end": 551.58
+},
+{
+"id": "w1499",
+"text": "get",
+"start": 551.66,
+"end": 551.74
+},
+{
+"id": "w1500",
+"text": "the",
+"start": 551.82,
+"end": 551.9
+},
+{
+"id": "w1501",
+"text": "famous",
+"start": 551.98,
+"end": 552.3
+},
+{
+"id": "w1502",
+"text": "form.",
+"start": 552.38,
+"end": 552.78
+},
+{
+"id": "w1503",
+"text": "e",
+"start": 553.23,
+"end": 553.31
+},
+{
+"id": "w1504",
+"text": "to",
+"start": 553.42,
+"end": 553.5
+},
+{
+"id": "w1505",
+"text": "the",
+"start": 553.58,
+"end": 553.66
+},
+{
+"id": "w1506",
+"text": "i",
+"start": 553.74,
+"end": 553.82
+},
+{
+"id": "w1507",
+"text": "pi,",
+"start": 553.9,
+"end": 554.3
+},
+{
+"id": "w1508",
+"text": "plus",
+"start": 554.51,
+"end": 554.75
+},
+{
+"id": "w1509",
+"text": "one,",
+"start": 554.86,
+"end": 555.17
+},
+{
+"id": "w1510",
+"text": "equals",
+"start": 555.4,
+"end": 555.56
+},
+{
+"id": "w1511",
+"text": "zero.",
+"start": 555.74,
+"end": 556.12
+},
+{
+"id": "w1512",
+"text": "So",
+"start": 558.31,
+"end": 558.39
+},
+{
+"id": "w1513",
+"text": "let",
+"start": 558.52,
+"end": 558.6
+},
+{
+"id": "w1514",
+"text": "us",
+"start": 558.64,
+"end": 558.68
+},
+{
+"id": "w1515",
+"text": "read",
+"start": 558.76,
+"end": 558.92
+},
+{
+"id": "w1516",
+"text": "the",
+"start": 558.96,
+"end": 559.0
+},
+{
+"id": "w1517",
+"text": "equation",
+"start": 559.08,
+"end": 559.56
+},
+{
+"id": "w1518",
+"text": "one",
+"start": 559.72,
+"end": 559.88
+},
+{
+"id": "w1519",
+"text": "last",
+"start": 559.96,
+"end": 560.12
+},
+{
+"id": "w1520",
+"text": "time.",
+"start": 560.2,
+"end": 560.52
+},
+{
+"id": "w1521",
+"text": "e",
+"start": 561.72,
+"end": 561.96
+},
+{
+"id": "w1522",
+"text": "is",
+"start": 562.14,
+"end": 562.22
+},
+{
+"id": "w1523",
+"text": "growth",
+"start": 562.38,
+"end": 562.78
+},
+{
+"id": "w1524",
+"text": "whose",
+"start": 562.94,
+"end": 563.1
+},
+{
+"id": "w1525",
+"text": "rate",
+"start": 563.18,
+"end": 563.5
+},
+{
+"id": "w1526",
+"text": "equals",
+"start": 563.58,
+"end": 563.82
+},
+{
+"id": "w1527",
+"text": "its",
+"start": 563.9,
+"end": 563.98
+},
+{
+"id": "w1528",
+"text": "size.",
+"start": 564.06,
+"end": 564.56
+},
+{
+"id": "w1529",
+"text": "i",
+"start": 565.05,
+"end": 565.29
+},
+{
+"id": "w1530",
+"text": "is",
+"start": 565.5,
+"end": 565.58
+},
+{
+"id": "w1531",
+"text": "a",
+"start": 565.62,
+"end": 565.66
+},
+{
+"id": "w1532",
+"text": "quarter",
+"start": 565.74,
+"end": 565.98
+},
+{
+"id": "w1533",
+"text": "turn.",
+"start": 566.06,
+"end": 566.4
+},
+{
+"id": "w1534",
+"text": "Put",
+"start": 566.75,
+"end": 566.91
+},
+{
+"id": "w1535",
+"text": "them",
+"start": 567.14,
+"end": 567.18
+},
+{
+"id": "w1536",
+"text": "together,",
+"start": 567.26,
+"end": 567.82
+},
+{
+"id": "w1537",
+"text": "and",
+"start": 567.86,
+"end": 567.9
+},
+{
+"id": "w1538",
+"text": "the",
+"start": 567.98,
+"end": 568.02
+},
+{
+"id": "w1539",
+"text": "growth",
+"start": 568.06,
+"end": 568.38
+},
+{
+"id": "w1540",
+"text": "turns",
+"start": 568.54,
+"end": 568.86
+},
+{
+"id": "w1541",
+"text": "sideways.",
+"start": 568.94,
+"end": 569.57
+},
+{
+"id": "w1542",
+"text": "Instead",
+"start": 569.78,
+"end": 570.02
+},
+{
+"id": "w1543",
+"text": "of",
+"start": 570.3,
+"end": 570.38
+},
+{
+"id": "w1544",
+"text": "running",
+"start": 570.5,
+"end": 570.62
+},
+{
+"id": "w1545",
+"text": "away,",
+"start": 570.82,
+"end": 571.07
+},
+{
+"id": "w1546",
+"text": "the",
+"start": 571.31,
+"end": 571.36
+},
+{
+"id": "w1547",
+"text": "point",
+"start": 571.42,
+"end": 571.66
+},
+{
+"id": "w1548",
+"text": "walks",
+"start": 571.82,
+"end": 572.06
+},
+{
+"id": "w1549",
+"text": "around",
+"start": 572.14,
+"end": 572.38
+},
+{
+"id": "w1550",
+"text": "a",
+"start": 572.42,
+"end": 572.46
+},
+{
+"id": "w1551",
+"text": "circle,",
+"start": 572.54,
+"end": 572.97
+},
+{
+"id": "w1552",
+"text": "at",
+"start": 573.22,
+"end": 573.3
+},
+{
+"id": "w1553",
+"text": "speed",
+"start": 573.5,
+"end": 573.66
+},
+{
+"id": "w1554",
+"text": "one.",
+"start": 573.74,
+"end": 574.02
+},
+{
+"id": "w1555",
+"text": "Pi",
+"start": 575.02,
+"end": 575.34
+},
+{
+"id": "w1556",
+"text": "is",
+"start": 575.68,
+"end": 575.76
+},
+{
+"id": "w1557",
+"text": "the",
+"start": 575.84,
+"end": 575.92
+},
+{
+"id": "w1558",
+"text": "distance.",
+"start": 576.0,
+"end": 576.51
+},
+{
+"id": "w1559",
+"text": "Walk",
+"start": 576.85,
+"end": 577.09
+},
+{
+"id": "w1560",
+"text": "pi,",
+"start": 577.2,
+"end": 577.68
+},
+{
+"id": "w1561",
+"text": "and",
+"start": 577.72,
+"end": 577.76
+},
+{
+"id": "w1562",
+"text": "you",
+"start": 577.84,
+"end": 577.88
+},
+{
+"id": "w1563",
+"text": "have",
+"start": 577.92,
+"end": 578.0
+},
+{
+"id": "w1564",
+"text": "gone",
+"start": 578.12,
+"end": 578.24
+},
+{
+"id": "w1565",
+"text": "halfway",
+"start": 578.32,
+"end": 578.72
+},
+{
+"id": "w1566",
+"text": "around.",
+"start": 578.96,
+"end": 579.2
+},
+{
+"id": "w1567",
+"text": "And",
+"start": 579.52,
+"end": 579.6
+},
+{
+"id": "w1568",
+"text": "a",
+"start": 579.88,
+"end": 579.92
+},
+{
+"id": "w1569",
+"text": "half",
+"start": 580.0,
+"end": 580.16
+},
+{
+"id": "w1570",
+"text": "turn",
+"start": 580.24,
+"end": 580.56
+},
+{
+"id": "w1571",
+"text": "is",
+"start": 580.64,
+"end": 580.72
+},
+{
+"id": "w1572",
+"text": "exactly",
+"start": 580.8,
+"end": 581.36
+},
+{
+"id": "w1573",
+"text": "what",
+"start": 581.44,
+"end": 581.52
+},
+{
+"id": "w1574",
+"text": "negative",
+"start": 581.6,
+"end": 581.92
+},
+{
+"id": "w1575",
+"text": "one",
+"start": 582.0,
+"end": 582.08
+},
+{
+"id": "w1576",
+"text": "means.",
+"start": 582.16,
+"end": 582.59
+},
+{
+"id": "w1577",
+"text": "The",
+"start": 583.44,
+"end": 583.52
+},
+{
+"id": "w1578",
+"text": "bank,",
+"start": 583.86,
+"end": 584.42
+},
+{
+"id": "w1579",
+"text": "the",
+"start": 584.46,
+"end": 584.5
+},
+{
+"id": "w1580",
+"text": "infinite",
+"start": 584.58,
+"end": 584.98
+},
+{
+"id": "w1581",
+"text": "sum,",
+"start": 585.06,
+"end": 585.46
+},
+{
+"id": "w1582",
+"text": "and",
+"start": 585.54,
+"end": 585.62
+},
+{
+"id": "w1583",
+"text": "the",
+"start": 585.66,
+"end": 585.7
+},
+{
+"id": "w1584",
+"text": "picture",
+"start": 585.78,
+"end": 586.18
+},
+{
+"id": "w1585",
+"text": "all",
+"start": 586.42,
+"end": 586.58
+},
+{
+"id": "w1586",
+"text": "agree.",
+"start": 586.78,
+"end": 587.01
+},
+{
+"id": "w1587",
+"text": "e",
+"start": 587.64,
+"end": 587.8
+},
+{
+"id": "w1588",
+"text": "to",
+"start": 588.02,
+"end": 588.1
+},
+{
+"id": "w1589",
+"text": "the",
+"start": 588.4,
+"end": 588.44
+},
+{
+"id": "w1590",
+"text": "i",
+"start": 588.6,
+"end": 588.68
+},
+{
+"id": "w1591",
+"text": "pi",
+"start": 588.76,
+"end": 589.08
+},
+{
+"id": "w1592",
+"text": "equals",
+"start": 589.32,
+"end": 589.56
+},
+{
+"id": "w1593",
+"text": "negative",
+"start": 589.72,
+"end": 590.04
+},
+{
+"id": "w1594",
+"text": "one.",
+"start": 590.12,
+"end": 590.35
+},
+{
+"id": "w1595",
+"text": "Not",
+"start": 590.82,
+"end": 590.98
+},
+{
+"id": "w1596",
+"text": "a",
+"start": 591.12,
+"end": 591.16
+},
+{
+"id": "w1597",
+"text": "coincidence",
+"start": 591.24,
+"end": 591.64
+},
+{
+"id": "w1598",
+"text": "of",
+"start": 591.72,
+"end": 591.8
+},
+{
+"id": "w1599",
+"text": "symbols.",
+"start": 591.88,
+"end": 592.34
+},
+{
+"id": "w1600",
+"text": "A",
+"start": 592.67,
+"end": 592.75
+},
+{
+"id": "w1601",
+"text": "half",
+"start": 592.84,
+"end": 593.08
+},
+{
+"id": "w1602",
+"text": "turn.",
+"start": 593.16,
+"end": 593.5
+},
+{
+"id": "w1603",
+"text": "If",
+"start": 594.61,
+"end": 594.69
+},
+{
+"id": "w1604",
+"text": "you",
+"start": 594.74,
+"end": 594.78
+},
+{
+"id": "w1605",
+"text": "want",
+"start": 594.86,
+"end": 594.94
+},
+{
+"id": "w1606",
+"text": "to",
+"start": 594.98,
+"end": 595.02
+},
+{
+"id": "w1607",
+"text": "see",
+"start": 595.1,
+"end": 595.18
+},
+{
+"id": "w1608",
+"text": "what",
+"start": 595.22,
+"end": 595.26
+},
+{
+"id": "w1609",
+"text": "happens",
+"start": 595.34,
+"end": 595.74
+},
+{
+"id": "w1610",
+"text": "when",
+"start": 595.86,
+"end": 595.98
+},
+{
+"id": "w1611",
+"text": "many",
+"start": 596.1,
+"end": 596.22
+},
+{
+"id": "w1612",
+"text": "of",
+"start": 596.26,
+"end": 596.3
+},
+{
+"id": "w1613",
+"text": "these",
+"start": 596.38,
+"end": 596.46
+},
+{
+"id": "w1614",
+"text": "turning",
+"start": 596.54,
+"end": 596.78
+},
+{
+"id": "w1615",
+"text": "arrows",
+"start": 596.86,
+"end": 597.1
+},
+{
+"id": "w1616",
+"text": "are",
+"start": 597.18,
+"end": 597.26
+},
+{
+"id": "w1617",
+"text": "added",
+"start": 597.38,
+"end": 597.5
+},
+{
+"id": "w1618",
+"text": "together,",
+"start": 597.58,
+"end": 597.97
+},
+{
+"id": "w1619",
+"text": "that",
+"start": 598.29,
+"end": 598.41
+},
+{
+"id": "w1620",
+"text": "is",
+"start": 598.7,
+"end": 598.78
+},
+{
+"id": "w1621",
+"text": "the",
+"start": 598.86,
+"end": 598.94
+},
+{
+"id": "w1622",
+"text": "Fourier",
+"start": 599.02,
+"end": 599.42
+},
+{
+"id": "w1623",
+"text": "series,",
+"start": 599.66,
+"end": 599.91
+},
+{
+"id": "w1624",
+"text": "and",
+"start": 600.17,
+"end": 600.29
+},
+{
+"id": "w1625",
+"text": "that",
+"start": 600.54,
+"end": 600.7
+},
+{
+"id": "w1626",
+"text": "is",
+"start": 600.78,
+"end": 600.86
+},
+{
+"id": "w1627",
+"text": "where",
+"start": 600.94,
+"end": 601.02
+},
+{
+"id": "w1628",
+"text": "we",
+"start": 601.06,
+"end": 601.1
+},
+{
+"id": "w1629",
+"text": "are",
+"start": 601.18,
+"end": 601.26
+},
+{
+"id": "w1630",
+"text": "going",
+"start": 601.38,
+"end": 601.5
+},
+{
+"id": "w1631",
+"text": "next.",
+"start": 601.58,
+"end": 602.22
+}
+]

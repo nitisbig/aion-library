@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="#ffffff" stroke-width="4">
+  <!-- A coin: rim and inner ring. The $ is set in TeX on top, so it shares the video's typeface. -->
+  <circle cx="50" cy="50" r="45"/>
+  <circle cx="50" cy="50" r="36"/>
+</svg>
