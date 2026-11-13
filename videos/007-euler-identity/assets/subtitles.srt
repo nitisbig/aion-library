@@ -23,7 +23,7 @@ Five of the most important numbers
 in mathematics, in one short line.
 
 7
-00:00:15,190 --> 00:00:16,480
+00:00:15,190 --> 00:00:16,640
 People call it the most
 
 8
@@ -51,7 +51,7 @@ Raising a number to a power
 means multiplying it by itself.
 
 14
-00:00:28,270 --> 00:00:29,620
+00:00:28,270 --> 00:00:29,860
 So what would it mean to
 
 15
@@ -127,7 +127,7 @@ in a bank, and end with a
 half turn of the whole plane.
 
 33
-00:01:08,680 --> 00:01:09,800
+00:01:09,140 --> 00:01:09,800
 We need to see e
 
 34
@@ -227,7 +227,7 @@ That number is e.
 Here is what makes it special.
 
 58
-00:01:52,940 --> 00:01:53,980
+00:01:52,940 --> 00:01:54,140
 When interest is paid
 
 59
@@ -403,7 +403,7 @@ But a quarter turn, done
 twice, is a half turn.
 
 102
-00:03:15,600 --> 00:03:17,790
+00:03:15,600 --> 00:03:18,020
 So let the line become a plane, where
 
 103
@@ -467,7 +467,7 @@ Remember the rule for e to the t.
 Velocity equals position.
 
 118
-00:03:51,900 --> 00:03:53,603
+00:03:51,900 --> 00:03:53,780
 For e to the i t, the
 
 119
@@ -487,7 +487,7 @@ And we know what i does.
 It turns an arrow by a quarter turn.
 
 123
-00:04:02,340 --> 00:04:03,940
+00:04:02,340 --> 00:04:04,260
 So the velocity is always the
 
 124
@@ -591,7 +591,7 @@ Ordinary growth sends
 every point flying outward.
 
 149
-00:04:51,700 --> 00:04:53,000
+00:04:51,700 --> 00:04:53,160
 Turn the growth part of the
 
 150
@@ -919,7 +919,7 @@ faster than any power of pi.
 Soon the steps shrink, and the
 
 231
-00:07:39,040 --> 00:07:41,030
+00:07:39,040 --> 00:07:41,160
 path spirals inward, closer
 
 232
@@ -931,7 +931,7 @@ and closer to one point.
 Negative one, again.
 
 234
-00:07:46,010 --> 00:07:48,253
+00:07:46,010 --> 00:07:48,427
 And look at the horizontal steps.
 
 235
@@ -1063,7 +1063,7 @@ Theta equals pi, halfway,
 and you land on negative one.
 
 267
-00:08:53,440 --> 00:08:55,780
+00:08:53,440 --> 00:08:55,940
 Theta equals two pi, all the way
 
 268
