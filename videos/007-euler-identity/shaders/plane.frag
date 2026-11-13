@@ -13,12 +13,16 @@ uniform float u_theta;    // turn of the whole plane (radians)
 uniform float u_opacity;  // output alpha
 uniform float u_sat;      // saturation
 uniform float u_value;    // peak brightness (sRGB)
+uniform vec4  u_clip;   // (x0, y0, x1, y1) world box; outside it nothing is drawn (all zeros: no clip)
 in vec2 v_pos;
 out vec4 frag;
 
 const float TAU = 6.28318530718;
 
 void main() {
+    if (u_clip.z > u_clip.x && (v_pos.x < u_clip.x || v_pos.x > u_clip.z || v_pos.y < u_clip.y || v_pos.y > u_clip.w)) {
+        frag = vec4(0.0); return;
+    }
     vec2 z = (v_pos - u_origin) / u_unit;
     float c = cos(-u_theta), s = sin(-u_theta);
     vec2 w = vec2(c * z.x - s * z.y, s * z.x + c * z.y);

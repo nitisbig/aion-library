@@ -128,7 +128,7 @@ half turn of the whole plane.
 
 33
 00:01:08,680 --> 00:01:09,800
-First, we need to see e
+We need to see e
 
 34
 00:01:09,880 --> 00:01:10,990

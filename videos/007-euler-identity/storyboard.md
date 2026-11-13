@@ -118,11 +118,16 @@ Rules for every scene:
   riding it. `turning`: the grid turns a quarter turn about 0 and a red arc carries 1 → i. `distance`: a green arc
   measures along the circle. `together` brings the **hero shot**: the domain-colored plane fades in under a ghost
   grid, the yellow point walks the circle leaving a green arc, and the camera pushes in. On `lands` the point
-  reaches −1 just as the color wheel finishes its half turn, and the equation snaps in beneath. On `dollar` a gold
-  `$1` glyph appears; on `half_plane` a red half-turn arrow appears. The progress rail draws in during the held
-  pause.
+  reaches −1 just as the color wheel finishes its half turn, and the equation snaps in beneath. On `by_end` the hero
+  shrinks into the last tile of a **3 × 2 chapter-preview grid** (`tiles.py`) while the other five tiles arrive,
+  each playing its chapter's key picture live: compounding staircases settling on e^t under a ceiling e; the 3D
+  plane (`plane3d.frag`, clipped) with an arrow turning by quarter turns; x and v = ix at a right angle in a
+  circling field; the chain (1 + iπ/n)^n closing on −1; the series (iπ)^n/n! spiralling onto −1. Each tile has a
+  small number and title. e^{iπ} = −1 rises to a header and pulses on `see_it`. On `dollar` tile 1 lights and $1
+  drops in; a light sweeps 1 → 6 and on `half_plane` tile 6's plane turns another half turn. In the held pause
+  every tile flies into its progress-rail tick.
 - **Beats:** `growth` `turning` `distance` `together` `walking` `lands` `by_end` `see_it` `dollar` `half_plane`
-- **In / out:** in from s00's circle. Out: everything collapses to the `$1` glyph, which becomes the s01 money axis.
+- **In / out:** in from s00's circle. Out: the grid collapses into the six rail ticks; the header fades to black.
 - **Layers:** shader `domain_coloring.frag` (`u_theta=key(...)`, low saturation) · manim · 2.5D camera.
 
 ### s01_bank · T.cut_ch1 → T.cut_growth (1:09–1:51, 42 s) — Ch1 What e really is
@@ -171,13 +176,17 @@ Rules for every scene:
   negative i, and then back to one. i times i is negative one… two quarter turns make a half turn… multiplying
   by i turns the whole plane… rotated ninety degrees."
 - **Visual idea:** `? · ? = −1`. On `not_stretch`/`further` two stretches are tried and the line only gets longer.
-  On `quarter` a 90° turn, done twice, raises the line vertical and then lays it flat, reversed. On `plane` the grid
-  draws outward from 0 into the full complex plane. On `one_i`, `i_neg1`, `neg_i` and `back_one` the cycle
+  On `quarter` a 90° turn, done twice, raises the line vertical and then lays it flat, reversed. On `plane` the
+  flat number line tilts away into a **3D perspective plane** that unrolls outward from 0 (grid first, then the
+  color wheel), fading toward the horizon; the camera keeps drifting slowly round it. Arrows float just above the
+  plane with crisp shadows; labels stand up as billboards. On `one_i`, `i_neg1`, `neg_i` and `back_one` the cycle
   1 → i → −1 → −i runs with red quarter arcs. On `ii` the equation `i · i = −1` builds. On `whole`/`ninety` the whole
-  plane turns 90° (z ↦ iz) with a fan of yellow arrows riding along, over the domain coloring turning by π/2.
-  Badge `×i = ↺90°`.
+  plane turns 90° (z ↦ iz) with a fan of yellow arrows riding along, over the domain coloring turning by π/2:
+  the camera cranes to a low hero angle and a thin vertical axis marks what it turns about, then it rises as the
+  plane fades. Badge `×i = ↺90°`.
 - **Beats:** `question` `twice` `not_stretch` `further` `quarter` `plane` `any_dir` `i_quarter` `one_i` `i_neg1` `neg_i` `back_one` `ii` `not_rule` `two_quarters` `whole` `ninety`
-- **Layers:** manim (ComplexPlane) · shader `domain_coloring.frag` (low opacity, `u_theta` 0 → π/2).
+- **Layers:** shader `plane3d.frag` (ray-cast perspective plane: grid, colors, depth fade, reveal disc;
+  `u_theta` 0 → π/2) · manim overlays warped through the same camera (`shots3d.Cam3`) · HUD.
 
 ### s05_sideways · T.cut_ch3 → T.cut_walk (3:44–4:59, 75 s) — Ch3 Growth turned sideways
 - **Narration:** "Now we can read e to the i t… Velocity equals position… picks up a single i. Velocity equals i times
@@ -269,13 +278,15 @@ Rules for every scene:
 - **Narration:** "a few special values. Theta equals pi over two… you land on i. Theta equals pi… negative one. Theta
   equals two pi… back at one… multiplying by e to the i theta does not just move one point. It turns the entire
   plane… e to the i pi turns everything by half a turn. Move the one across… e to the i pi, plus one, equals zero."
-- **Visual idea:** on `land_i`, `land_neg1` and `back_at_one` the point lands at each value and its label stamps in
-  (`out_back`). Then the **hero callback**: on `mult_theta`/`entire` the domain-colored plane fills the screen under
-  the grid, and on `half_all` the grid and color wheel turn together through π, the half turn of the whole plane
-  promised in the intro. On `move_one`/`final_eq` the −1 moves across (TransformMatchingTex) to give
+- **Visual idea:** the 3D plane from s04 returns: it opens flat on the intro's hero frame and tilts away on
+  `special_vals`. On `land_i`, `land_neg1` and `back_at_one` the point lands at each value and its label stamps in
+  (`out_back`). Then the **hero callback**: on `mult_theta`/`entire` the camera cranes low and the domain-colored plane
+  fills the screen under the grid, and on `half_all` the grid and color wheel turn together through π, the half turn of the whole plane
+  promised in the intro, about a thin vertical axis. On `move_one` the camera rises back to the flat hero frame and/`final_eq` the −1 moves across (TransformMatchingTex) to give
   e^{iπ} + 1 = 0, and the five constants light.
 - **Beats:** `special_vals` `th_half` `land_i` `th_pi` `land_neg1` `th_2pi` `back_at_one` `mult_theta` `not_just` `entire` `half_all` `move_one` `famous` `final_eq`
-- **Layers:** shader `domain_coloring.frag` (`u_theta` = the same θ Track that rotates the manim grid) · manim.
+- **Layers:** shader `plane3d.frag` (`u_theta` = the same θ Track that turns the fan) · manim overlays through
+  `shots3d.Cam3` · HUD.
 
 ### s12_outro · T.cut_outro → T.end (9:17–10:05, 48 s)
 - **Narration:** "So let us read the equation one last time. e is growth… i is a quarter turn… the growth turns sideways…
