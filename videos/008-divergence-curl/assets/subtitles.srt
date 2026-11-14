@@ -1,0 +1,1431 @@
+1
+00:00:01,500 --> 00:00:03,300
+Drop a pinch of dust into a moving
+
+2
+00:00:03,340 --> 00:00:06,020
+stream, and keep your eyes on two places.
+
+3
+00:00:07,000 --> 00:00:08,890
+Here, the dust spreads apart.
+
+4
+00:00:09,260 --> 00:00:11,360
+Grains that started as neighbors drift
+
+5
+00:00:11,480 --> 00:00:13,360
+away from each other, as if water were
+
+6
+00:00:13,440 --> 00:00:14,990
+welling up from somewhere underneath.
+
+7
+00:00:15,990 --> 00:00:18,320
+And here, the dust starts to turn.
+
+8
+00:00:18,620 --> 00:00:20,500
+The little cloud swings around, as
+
+9
+00:00:20,580 --> 00:00:22,220
+if it caught the edge of a whirlpool.
+
+10
+00:00:23,340 --> 00:00:24,860
+Those two motions have names.
+
+11
+00:00:25,290 --> 00:00:26,750
+The first is divergence.
+
+12
+00:00:27,130 --> 00:00:28,400
+The second is curl.
+
+13
+00:00:29,420 --> 00:00:30,540
+Most of us meet them as a
+
+14
+00:00:30,660 --> 00:00:32,010
+row of partial derivatives.
+
+15
+00:00:32,220 --> 00:00:34,220
+Partial P, partial x,
+
+16
+00:00:34,340 --> 00:00:36,080
+plus partial Q, partial y.
+
+17
+00:00:36,630 --> 00:00:37,900
+You learn the pattern, you get
+
+18
+00:00:37,940 --> 00:00:39,580
+the right answers on the exam, and
+
+19
+00:00:39,660 --> 00:00:41,340
+the picture never quite shows up.
+
+20
+00:00:42,340 --> 00:00:43,720
+So let's put the picture first.
+
+21
+00:00:44,180 --> 00:00:45,840
+Each of these is really a question you
+
+22
+00:00:45,920 --> 00:00:48,220
+can ask about any single point in a flow.
+
+23
+00:00:48,660 --> 00:00:49,850
+Is stuff leaving this point?
+
+24
+00:00:50,230 --> 00:00:51,810
+And is stuff turning around it?
+
+25
+00:00:52,840 --> 00:00:54,700
+Answer the first question everywhere,
+
+26
+00:00:54,740 --> 00:00:55,940
+and you get a map of where the
+
+27
+00:00:56,020 --> 00:00:57,920
+flow is born and where it disappears.
+
+28
+00:00:58,360 --> 00:01:00,340
+Answer the second, and you find every
+
+29
+00:01:00,500 --> 00:01:02,260
+hidden spin, even in places where
+
+30
+00:01:02,340 --> 00:01:03,810
+the arrows look perfectly straight.
+
+31
+00:01:04,780 --> 00:01:06,280
+Then something nice happens when
+
+32
+00:01:06,360 --> 00:01:08,130
+you add up all those tiny answers.
+
+33
+00:01:08,520 --> 00:01:09,960
+Two of the biggest theorems in
+
+34
+00:01:10,080 --> 00:01:11,980
+calculus fall out, almost for free.
+
+35
+00:01:12,950 --> 00:01:14,060
+We will start with arrows on
+
+36
+00:01:14,140 --> 00:01:15,900
+a page, and end with the four
+
+37
+00:01:16,020 --> 00:01:18,210
+equations behind every radio, every
+
+38
+00:01:18,300 --> 00:01:20,000
+motor, and every beam of light.
+
+39
+00:01:25,060 --> 00:01:26,267
+Pick a point in the plane,
+
+40
+00:01:26,293 --> 00:01:27,410
+and attach an arrow to it.
+
+41
+00:01:27,900 --> 00:01:29,150
+The arrow could mean anything.
+
+42
+00:01:29,570 --> 00:01:31,120
+The speed of the wind, the pull of
+
+43
+00:01:31,480 --> 00:01:33,430
+gravity, the push of an electric charge.
+
+44
+00:01:34,360 --> 00:01:35,940
+Do that at every point, and
+
+45
+00:01:36,020 --> 00:01:37,300
+you have a vector field.
+
+46
+00:01:37,640 --> 00:01:38,820
+A rule that hands each
+
+47
+00:01:39,100 --> 00:01:40,250
+location its own arrow.
+
+48
+00:01:41,210 --> 00:01:43,450
+A weather map of the wind is exactly this.
+
+49
+00:01:43,850 --> 00:01:45,110
+Every town gets an arrow,
+
+50
+00:01:45,330 --> 00:01:46,440
+telling you which way the air
+
+51
+00:01:46,520 --> 00:01:48,070
+is moving there, and how fast.
+
+52
+00:01:49,020 --> 00:01:50,380
+To write it down, split
+
+53
+00:01:50,460 --> 00:01:51,920
+each arrow into two parts.
+
+54
+00:01:52,310 --> 00:01:54,540
+How far it points to the right, we call P.
+
+55
+00:01:55,000 --> 00:01:57,060
+How far it points up, we call Q.
+
+56
+00:01:57,520 --> 00:01:59,050
+Both depend on where you are.
+
+57
+00:01:59,420 --> 00:02:01,580
+So the field is F of x y
+
+58
+00:02:01,780 --> 00:02:03,790
+equals P of x y, Q of x y.
+
+59
+00:02:04,820 --> 00:02:06,330
+Arrows alone are hard to read.
+
+60
+00:02:06,630 --> 00:02:07,960
+So let them carry something.
+
+61
+00:02:08,380 --> 00:02:10,480
+Sprinkle dust everywhere, and let each
+
+62
+00:02:10,560 --> 00:02:12,290
+grain move along the arrow underneath it.
+
+63
+00:02:13,240 --> 00:02:14,720
+Now the field is a flow.
+
+64
+00:02:15,120 --> 00:02:16,660
+The arrows give the velocity of the
+
+65
+00:02:16,820 --> 00:02:18,660
+water at each point, and the dust
+
+66
+00:02:18,740 --> 00:02:20,160
+shows you where the water goes.
+
+67
+00:02:21,110 --> 00:02:22,610
+Three flows will keep us company.
+
+68
+00:02:23,050 --> 00:02:24,520
+In the first, every arrow
+
+69
+00:02:24,680 --> 00:02:25,870
+points away from the center.
+
+70
+00:02:26,240 --> 00:02:27,290
+Call it the source.
+
+71
+00:02:27,690 --> 00:02:29,240
+In the second, every arrow
+
+72
+00:02:29,400 --> 00:02:30,410
+points around the center.
+
+73
+00:02:30,740 --> 00:02:31,710
+Call it the whirl.
+
+74
+00:02:32,100 --> 00:02:33,640
+And in the third, water comes
+
+75
+00:02:33,720 --> 00:02:35,400
+in from above and below, and
+
+76
+00:02:35,480 --> 00:02:36,730
+leaves to the left and right.
+
+77
+00:02:37,150 --> 00:02:38,340
+That one is a saddle.
+
+78
+00:02:39,300 --> 00:02:40,340
+Keep an eye on the saddle.
+
+79
+00:02:40,600 --> 00:02:41,930
+It is going to fool us in a minute.
+
+80
+00:02:43,680 --> 00:02:44,900
+Here is the first question.
+
+81
+00:02:45,190 --> 00:02:47,480
+Drop a small circle of dye into the
+
+82
+00:02:47,760 --> 00:02:49,800
+flow, and ask what happens to its area.
+
+83
+00:02:50,880 --> 00:02:52,460
+In the source, every grain
+
+84
+00:02:52,540 --> 00:02:53,990
+runs away from every other.
+
+85
+00:02:54,440 --> 00:02:55,460
+The circle grows.
+
+86
+00:02:55,840 --> 00:02:58,330
+Before long, its area has nearly tripled.
+
+87
+00:02:59,460 --> 00:03:01,200
+In the whirl, the circle swings
+
+88
+00:03:01,280 --> 00:03:02,480
+around the center, but it
+
+89
+00:03:02,560 --> 00:03:03,960
+never gets bigger or smaller.
+
+90
+00:03:04,360 --> 00:03:06,320
+Its area stays exactly the same.
+
+91
+00:03:07,440 --> 00:03:08,270
+Now the saddle.
+
+92
+00:03:08,760 --> 00:03:10,500
+The dye gets pulled out sideways
+
+93
+00:03:10,580 --> 00:03:12,380
+and squeezed from above and below.
+
+94
+00:03:12,820 --> 00:03:14,540
+Before you watch, make a guess.
+
+95
+00:03:14,900 --> 00:03:16,680
+Does the area grow, or shrink?
+
+96
+00:03:19,740 --> 00:03:20,600
+It does neither.
+
+97
+00:03:21,030 --> 00:03:22,280
+The circle stretches into
+
+98
+00:03:22,440 --> 00:03:23,800
+a long, thin ellipse.
+
+99
+00:03:24,180 --> 00:03:25,110
+It looks dramatic.
+
+100
+00:03:25,480 --> 00:03:27,800
+But it gets longer exactly as fast as
+
+101
+00:03:27,840 --> 00:03:30,110
+it gets thinner, and the area stays put.
+
+102
+00:03:31,040 --> 00:03:32,760
+That is what divergence measures.
+
+103
+00:03:33,070 --> 00:03:34,630
+Not how wild the flow looks.
+
+104
+00:03:35,000 --> 00:03:36,860
+Only how fast a tiny drop is
+
+105
+00:03:36,940 --> 00:03:38,520
+swelling, compared to its size.
+
+106
+00:03:38,950 --> 00:03:40,670
+Positive means the drop grows.
+
+107
+00:03:41,000 --> 00:03:42,430
+Negative means it shrinks.
+
+108
+00:03:42,800 --> 00:03:45,160
+Zero means the flow only rearranges it.
+
+109
+00:03:46,190 --> 00:03:48,160
+To turn that into a formula, shrink
+
+110
+00:03:48,200 --> 00:03:49,920
+the drop to a tiny square, and
+
+111
+00:03:50,000 --> 00:03:51,600
+count the water crossing its edges.
+
+112
+00:03:51,990 --> 00:03:53,080
+Whatever flows out,
+
+113
+00:03:53,120 --> 00:03:54,380
+minus whatever flows in.
+
+114
+00:03:55,300 --> 00:03:57,010
+Start with the left and right edges.
+
+115
+00:03:57,390 --> 00:03:58,740
+Only the sideways part of the
+
+116
+00:03:58,820 --> 00:04:01,140
+arrows, P, carries water across them.
+
+117
+00:04:01,560 --> 00:04:03,700
+If P is a little bigger on the right edge
+
+118
+00:04:03,780 --> 00:04:06,250
+than on the left, more leaves than enters.
+
+119
+00:04:06,630 --> 00:04:08,260
+That difference, divided by the
+
+120
+00:04:08,340 --> 00:04:09,940
+width of the square, is the partial
+
+121
+00:04:10,020 --> 00:04:12,120
+derivative of P with respect to x.
+
+122
+00:04:13,020 --> 00:04:14,600
+The top and bottom edges work the
+
+123
+00:04:14,720 --> 00:04:17,373
+same way, with the upward part, Q.
+
+124
+00:04:17,373 --> 00:04:18,440
+More leaving through the top
+
+125
+00:04:18,520 --> 00:04:19,720
+than entering through the bottom
+
+126
+00:04:19,760 --> 00:04:21,570
+gives partial Q, partial y.
+
+127
+00:04:22,470 --> 00:04:24,650
+Add the two, and that is the divergence.
+
+128
+00:04:24,950 --> 00:04:27,260
+Del dot F equals partial P partial
+
+129
+00:04:27,580 --> 00:04:29,440
+x, plus partial Q partial y.
+
+130
+00:04:30,400 --> 00:04:31,730
+Check it on our three flows.
+
+131
+00:04:32,090 --> 00:04:33,760
+The source gives one plus one.
+
+132
+00:04:34,130 --> 00:04:34,430
+Two.
+
+133
+00:04:34,820 --> 00:04:36,600
+The whirl gives zero plus zero.
+
+134
+00:04:36,890 --> 00:04:39,040
+And the saddle gives one, minus one.
+
+135
+00:04:39,330 --> 00:04:39,800
+Zero.
+
+136
+00:04:40,200 --> 00:04:41,760
+The formula sees exactly
+
+137
+00:04:41,800 --> 00:04:42,770
+what the dye showed us.
+
+138
+00:04:43,680 --> 00:04:45,220
+Now do it at every point,
+
+139
+00:04:45,300 --> 00:04:46,120
+and color the plane.
+
+140
+00:04:46,430 --> 00:04:47,780
+Warm where the divergence is
+
+141
+00:04:48,140 --> 00:04:49,740
+positive, cool where it is negative.
+
+142
+00:04:50,150 --> 00:04:51,820
+The warm spots are sources,
+
+143
+00:04:51,860 --> 00:04:52,810
+where the flow comes from.
+
+144
+00:04:53,150 --> 00:04:54,780
+The cool spots are sinks,
+
+145
+00:04:54,820 --> 00:04:55,630
+where it drains away.
+
+146
+00:04:56,020 --> 00:04:57,170
+And the dust agrees.
+
+147
+00:04:57,450 --> 00:04:59,420
+It spreads out over the warm patches,
+
+148
+00:04:59,460 --> 00:05:01,330
+and crowds together over the cool ones.
+
+149
+00:05:02,250 --> 00:05:04,360
+One more flow, and this one matters later.
+
+150
+00:05:04,740 --> 00:05:06,440
+The arrows all point away from the
+
+151
+00:05:06,520 --> 00:05:08,600
+center again, but they shrink as you move
+
+152
+00:05:08,680 --> 00:05:10,720
+outward, like light fading from a lamp.
+
+153
+00:05:11,550 --> 00:05:12,940
+Everything points outward.
+
+154
+00:05:13,210 --> 00:05:15,030
+So the divergence must be positive.
+
+155
+00:05:15,300 --> 00:05:15,530
+Right?
+
+156
+00:05:18,410 --> 00:05:19,720
+The map stays dark.
+
+157
+00:05:19,930 --> 00:05:21,520
+Everywhere, except the
+
+158
+00:05:21,600 --> 00:05:22,970
+single point at the center.
+
+159
+00:05:23,350 --> 00:05:24,890
+Look at a circle around it.
+
+160
+00:05:25,320 --> 00:05:27,307
+Make the circle twice as wide,
+
+161
+00:05:27,333 --> 00:05:29,653
+and its edge is twice as long.
+
+162
+00:05:29,653 --> 00:05:31,660
+But the arrows out there are half as long.
+
+163
+00:05:32,070 --> 00:05:34,400
+The two effects cancel, so the same
+
+164
+00:05:34,480 --> 00:05:36,440
+amount of water crosses every circle.
+
+165
+00:05:36,710 --> 00:05:38,460
+Nothing is created out here.
+
+166
+00:05:38,960 --> 00:05:40,960
+All of it comes from that one point.
+
+167
+00:05:41,890 --> 00:05:42,700
+Hold on to that.
+
+168
+00:05:43,100 --> 00:05:43,770
+It comes back.
+
+169
+00:05:45,900 --> 00:05:47,130
+Now the second question.
+
+170
+00:05:47,660 --> 00:05:50,110
+This time, drop in a tiny paddle wheel,
+
+171
+00:05:50,370 --> 00:05:52,280
+pinned in place so it can only spin.
+
+172
+00:05:53,090 --> 00:05:54,830
+In the whirl, it turns.
+
+173
+00:05:55,150 --> 00:05:57,460
+Steadily, counterclockwise, at the
+
+174
+00:05:57,580 --> 00:05:59,180
+same rate no matter where you put it.
+
+175
+00:06:00,340 --> 00:06:01,260
+Now a river.
+
+176
+00:06:01,830 --> 00:06:03,630
+Every arrow points straight to the right.
+
+177
+00:06:03,990 --> 00:06:05,880
+But the water near the top moves
+
+178
+00:06:05,920 --> 00:06:07,480
+faster than the water near the bottom.
+
+179
+00:06:08,010 --> 00:06:08,860
+Will the wheel spin?
+
+180
+00:06:12,000 --> 00:06:13,127
+It does.
+
+181
+00:06:13,127 --> 00:06:14,860
+The top paddles get pushed harder than the
+
+182
+00:06:14,940 --> 00:06:17,370
+bottom ones, so the wheel turns clockwise.
+
+183
+00:06:17,690 --> 00:06:19,670
+Straight arrows, and still a spin.
+
+184
+00:06:20,700 --> 00:06:21,980
+The reverse can happen too.
+
+185
+00:06:22,440 --> 00:06:23,390
+Here is a drain.
+
+186
+00:06:23,650 --> 00:06:25,040
+The arrows go around in
+
+187
+00:06:25,160 --> 00:06:26,700
+circles, faster near the middle.
+
+188
+00:06:26,990 --> 00:06:28,800
+Pin a wheel anywhere away from
+
+189
+00:06:28,880 --> 00:06:31,200
+the center, and it does not turn.
+
+190
+00:06:31,200 --> 00:06:32,480
+Let it float with the water, and
+
+191
+00:06:32,520 --> 00:06:33,840
+it travels all the way around
+
+192
+00:06:33,920 --> 00:06:35,410
+the drain, but stays upright,
+
+193
+00:06:35,680 --> 00:06:36,990
+like a car on a Ferris wheel.
+
+194
+00:06:37,350 --> 00:06:39,280
+The fast water on the inside
+
+195
+00:06:39,320 --> 00:06:40,400
+and the slow water on the
+
+196
+00:06:40,480 --> 00:06:42,320
+outside balance out perfectly.
+
+197
+00:06:43,350 --> 00:06:44,980
+So curl is not about whether
+
+198
+00:06:45,060 --> 00:06:46,260
+the arrows go in circles.
+
+199
+00:06:46,470 --> 00:06:48,527
+It is about whether a tiny wheel,
+
+200
+00:06:48,553 --> 00:06:50,140
+sitting right here, would turn.
+
+201
+00:06:50,550 --> 00:06:51,380
+And how fast.
+
+202
+00:06:52,250 --> 00:06:54,680
+To measure it, walk once around a tiny
+
+203
+00:06:54,760 --> 00:06:57,240
+square, counterclockwise, and add up how
+
+204
+00:06:57,360 --> 00:06:59,030
+much the flow pushes you along the way.
+
+205
+00:06:59,550 --> 00:07:01,580
+That total is called the circulation.
+
+206
+00:07:02,610 --> 00:07:04,300
+Along the bottom edge you walk to the
+
+207
+00:07:04,380 --> 00:07:06,990
+right, so the sideways part, P, helps you.
+
+208
+00:07:07,330 --> 00:07:08,940
+Along the top you walk to the
+
+209
+00:07:09,020 --> 00:07:11,740
+left, so P works against you.
+
+210
+00:07:11,740 --> 00:07:13,420
+If P is bigger on top, you
+
+211
+00:07:13,500 --> 00:07:14,730
+lose more than you gain.
+
+212
+00:07:15,010 --> 00:07:16,220
+That difference becomes
+
+213
+00:07:16,420 --> 00:07:18,030
+minus partial P, partial y.
+
+214
+00:07:19,090 --> 00:07:20,930
+On the right edge you walk up, and
+
+215
+00:07:21,000 --> 00:07:22,933
+on the left edge you walk down.
+
+216
+00:07:22,987 --> 00:07:24,720
+So the upward part, Q, gives
+
+217
+00:07:24,800 --> 00:07:26,440
+you partial Q, partial x.
+
+218
+00:07:27,390 --> 00:07:28,090
+Put them together.
+
+219
+00:07:28,330 --> 00:07:30,340
+The curl is partial Q partial
+
+220
+00:07:30,580 --> 00:07:32,710
+x, minus partial P partial y.
+
+221
+00:07:33,120 --> 00:07:35,140
+Circulation, per unit of area.
+
+222
+00:07:36,150 --> 00:07:36,490
+Check it.
+
+223
+00:07:36,840 --> 00:07:39,410
+The whirl gives one, minus negative one.
+
+224
+00:07:39,910 --> 00:07:40,210
+Two.
+
+225
+00:07:40,550 --> 00:07:42,680
+The river gives zero, minus one.
+
+226
+00:07:42,910 --> 00:07:43,550
+Negative one.
+
+227
+00:07:43,950 --> 00:07:45,510
+Clockwise, just like the wheel.
+
+228
+00:07:45,840 --> 00:07:47,880
+The source and the saddle give zero.
+
+229
+00:07:48,120 --> 00:07:49,000
+No spin at all.
+
+230
+00:07:49,970 --> 00:07:51,990
+In three dimensions, a wheel can tilt.
+
+231
+00:07:52,230 --> 00:07:53,820
+So the curl becomes a vector.
+
+232
+00:07:54,080 --> 00:07:55,980
+It points along the axle that makes
+
+233
+00:07:56,060 --> 00:07:57,740
+the wheel spin fastest, and the
+
+234
+00:07:57,820 --> 00:07:59,980
+right hand rule picks the direction.
+
+235
+00:07:59,980 --> 00:08:01,660
+Curl your fingers with the spin, and
+
+236
+00:08:01,780 --> 00:08:03,230
+your thumb points along the curl.
+
+237
+00:08:04,120 --> 00:08:05,520
+Our flat curl was only
+
+238
+00:08:05,600 --> 00:08:06,800
+one piece of that vector.
+
+239
+00:08:07,050 --> 00:08:08,320
+The piece pointing straight
+
+240
+00:08:08,400 --> 00:08:09,520
+up, out of the page.
+
+241
+00:08:10,600 --> 00:08:11,380
+There is a famous
+
+242
+00:08:11,460 --> 00:08:12,620
+shorthand for all of this.
+
+243
+00:08:12,850 --> 00:08:15,480
+Write del as a list of three derivatives.
+
+244
+00:08:15,860 --> 00:08:18,430
+Partial x, partial y, partial z.
+
+245
+00:08:18,730 --> 00:08:20,580
+Take its dot product with F,
+
+246
+00:08:20,870 --> 00:08:21,990
+and you get the divergence.
+
+247
+00:08:22,400 --> 00:08:23,727
+Take its cross product,
+
+248
+00:08:23,753 --> 00:08:25,140
+and you get the curl.
+
+249
+00:08:25,140 --> 00:08:27,210
+It is a memory trick, not a meaning.
+
+250
+00:08:27,720 --> 00:08:29,140
+The meaning is the drop of
+
+251
+00:08:29,180 --> 00:08:30,500
+dye, and the paddle wheel.
+
+252
+00:08:32,480 --> 00:08:34,540
+So far, everything has been tiny.
+
+253
+00:08:35,000 --> 00:08:36,120
+Now let's zoom out.
+
+254
+00:08:36,980 --> 00:08:38,660
+Take a whole region, and
+
+255
+00:08:38,740 --> 00:08:40,130
+cut it into small squares.
+
+256
+00:08:40,360 --> 00:08:42,953
+Each square has its own outflow.
+
+257
+00:08:43,007 --> 00:08:44,750
+Its divergence, times its area.
+
+258
+00:08:45,670 --> 00:08:48,093
+Look at two neighboring squares.
+
+259
+00:08:48,227 --> 00:08:49,400
+Whatever leaves the first through
+
+260
+00:08:49,480 --> 00:08:51,360
+their shared edge enters the second.
+
+261
+00:08:51,840 --> 00:08:53,530
+Out for one, in for the other.
+
+262
+00:08:53,620 --> 00:08:56,040
+Add them, and that edge cancels.
+
+263
+00:08:56,800 --> 00:08:59,210
+That happens on every inside edge.
+
+264
+00:08:59,520 --> 00:09:01,130
+Every single one cancels.
+
+265
+00:09:01,390 --> 00:09:03,100
+The only edges left are the
+
+266
+00:09:03,220 --> 00:09:04,350
+ones on the outer boundary.
+
+267
+00:09:05,090 --> 00:09:06,720
+So adding up the divergence
+
+268
+00:09:06,800 --> 00:09:08,880
+inside a region gives you exactly
+
+269
+00:09:08,960 --> 00:09:10,600
+the flow out through its boundary.
+
+270
+00:09:11,190 --> 00:09:12,880
+In three dimensions, the squares
+
+271
+00:09:12,960 --> 00:09:14,480
+become little cubes, and the
+
+272
+00:09:14,720 --> 00:09:16,960
+boundary becomes a closed surface.
+
+273
+00:09:16,960 --> 00:09:18,540
+This is the divergence theorem.
+
+274
+00:09:19,550 --> 00:09:21,690
+And now the lamp from earlier pays off.
+
+275
+00:09:21,970 --> 00:09:24,340
+In three dimensions, its arrows fade
+
+276
+00:09:24,420 --> 00:09:26,300
+with the square of the distance.
+
+277
+00:09:26,340 --> 00:09:28,340
+The same amount crosses every sphere
+
+278
+00:09:28,420 --> 00:09:30,260
+around the center, so every bit of
+
+279
+00:09:30,380 --> 00:09:32,410
+divergence sits at that one point.
+
+280
+00:09:32,630 --> 00:09:34,660
+That is exactly how the electric
+
+281
+00:09:34,740 --> 00:09:36,330
+field of a point charge behaves.
+
+282
+00:09:37,270 --> 00:09:38,740
+Curl adds up the same way.
+
+283
+00:09:39,270 --> 00:09:41,000
+Give each small square its own
+
+284
+00:09:41,160 --> 00:09:42,420
+little loop of circulation.
+
+285
+00:09:42,960 --> 00:09:44,343
+Where two squares meet, their
+
+286
+00:09:44,520 --> 00:09:45,880
+loops run along the shared
+
+287
+00:09:45,960 --> 00:09:47,450
+edge in opposite directions.
+
+288
+00:09:47,760 --> 00:09:48,600
+They cancel again.
+
+289
+00:09:49,670 --> 00:09:51,300
+Only the outer loop survives.
+
+290
+00:09:51,580 --> 00:09:53,620
+The total curl inside equals
+
+291
+00:09:53,740 --> 00:09:55,350
+the circulation around the edge.
+
+292
+00:09:55,680 --> 00:09:57,090
+That is Green's theorem.
+
+293
+00:09:58,090 --> 00:10:00,000
+Lift it into space, and the region
+
+294
+00:10:00,080 --> 00:10:01,920
+can be any surface stretched across
+
+295
+00:10:02,000 --> 00:10:04,400
+a loop of wire, like a soap film.
+
+296
+00:10:04,400 --> 00:10:05,920
+Push the film out into a bubble,
+
+297
+00:10:06,200 --> 00:10:07,720
+and the answer does not change.
+
+298
+00:10:08,010 --> 00:10:09,330
+Only the wire matters.
+
+299
+00:10:09,670 --> 00:10:11,100
+This is Stokes' theorem.
+
+300
+00:10:12,020 --> 00:10:13,600
+Two theorems, one idea.
+
+301
+00:10:13,830 --> 00:10:16,420
+Add up the tiny answers inside, and
+
+302
+00:10:16,500 --> 00:10:18,430
+everything cancels except the edge.
+
+303
+00:10:20,380 --> 00:10:21,760
+Now, those four equations
+
+304
+00:10:21,840 --> 00:10:22,420
+from the beginning.
+
+305
+00:10:22,870 --> 00:10:24,587
+They are Maxwell's equations,
+
+306
+00:10:24,613 --> 00:10:25,880
+and you can read them now.
+
+307
+00:10:26,590 --> 00:10:29,120
+Del dot E equals rho over epsilon naught.
+
+308
+00:10:29,740 --> 00:10:31,380
+Electric charges are the sources
+
+309
+00:10:31,460 --> 00:10:32,860
+and sinks of the electric field.
+
+310
+00:10:33,980 --> 00:10:35,650
+Del dot B equals zero.
+
+311
+00:10:35,860 --> 00:10:38,800
+The magnetic field has no sources at all.
+
+312
+00:10:38,840 --> 00:10:40,650
+Its lines never start or end.
+
+313
+00:10:40,910 --> 00:10:42,080
+They only loop back.
+
+314
+00:10:42,880 --> 00:10:44,780
+Del cross E equals minus
+
+315
+00:10:44,860 --> 00:10:46,240
+the rate of change of B.
+
+316
+00:10:46,520 --> 00:10:48,300
+A changing magnetic field
+
+317
+00:10:48,380 --> 00:10:50,050
+stirs up an electric whirl.
+
+318
+00:10:50,320 --> 00:10:52,940
+Spin a magnet near a coil of wire, and
+
+319
+00:10:53,020 --> 00:10:54,980
+that whirl pushes a current around it.
+
+320
+00:10:55,330 --> 00:10:56,620
+That is how most of our
+
+321
+00:10:56,700 --> 00:10:57,830
+electricity is made.
+
+322
+00:10:59,030 --> 00:11:02,060
+Del cross B equals mu naught J, plus
+
+323
+00:11:02,160 --> 00:11:04,240
+a term for a changing electric field.
+
+324
+00:11:04,490 --> 00:11:06,160
+Currents wrap themselves
+
+325
+00:11:06,240 --> 00:11:07,370
+in magnetic whirls.
+
+326
+00:11:07,880 --> 00:11:10,160
+And together, the last two equations let
+
+327
+00:11:10,240 --> 00:11:13,120
+a changing E make B, and a changing B
+
+328
+00:11:13,280 --> 00:11:16,150
+make E, so the pair can travel on its own.
+
+329
+00:11:16,630 --> 00:11:17,840
+That is light.
+
+330
+00:11:18,880 --> 00:11:20,180
+The same two questions show
+
+331
+00:11:20,260 --> 00:11:21,590
+up far from electricity.
+
+332
+00:11:21,860 --> 00:11:24,100
+Water barely compresses, so
+
+333
+00:11:24,180 --> 00:11:25,980
+its flow has zero divergence.
+
+334
+00:11:26,120 --> 00:11:27,700
+And a hurricane, seen from
+
+335
+00:11:27,780 --> 00:11:30,280
+space, is a giant patch of curl.
+
+336
+00:11:32,370 --> 00:11:33,120
+Let's go back to the
+
+337
+00:11:33,200 --> 00:11:34,150
+stream we started with.
+
+338
+00:11:35,360 --> 00:11:36,420
+Here is the divergence
+
+339
+00:11:36,500 --> 00:11:38,010
+map, laid over the flow.
+
+340
+00:11:38,350 --> 00:11:39,940
+The place where the dust spread
+
+341
+00:11:40,060 --> 00:11:42,140
+apart sits right on a warm spot.
+
+342
+00:11:42,540 --> 00:11:44,020
+And here is the curl.
+
+343
+00:11:44,280 --> 00:11:45,940
+The place where the dust started
+
+344
+00:11:46,060 --> 00:11:47,780
+turning is this green swirl.
+
+345
+00:11:48,840 --> 00:11:50,600
+Divergence asks how much is
+
+346
+00:11:50,680 --> 00:11:52,710
+leaving a point, per unit of area.
+
+347
+00:11:53,380 --> 00:11:55,670
+Curl asks how much is turning around it.
+
+348
+00:11:56,100 --> 00:11:58,170
+Add up either one over a region,
+
+349
+00:11:58,390 --> 00:12:00,160
+and only the boundary is left.
+
+350
+00:12:01,180 --> 00:12:02,380
+The formulas you memorized
+
+351
+00:12:02,460 --> 00:12:03,500
+were never the point.
+
+352
+00:12:03,980 --> 00:12:05,420
+They are the drop of dye and the
+
+353
+00:12:05,500 --> 00:12:07,460
+paddle wheel, written in symbols.
+
+354
+00:12:08,440 --> 00:12:09,640
+Next time, we will take the
+
+355
+00:12:09,680 --> 00:12:11,080
+divergence of a gradient.
+
+356
+00:12:11,370 --> 00:12:13,480
+It is called the Laplacian, and it
+
+357
+00:12:13,520 --> 00:12:15,920
+is hiding inside heat, sound, and
+
+358
+00:12:16,000 --> 00:12:18,320
+almost every equation in physics.

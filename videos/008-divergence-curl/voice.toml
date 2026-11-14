@@ -1,0 +1,18 @@
+# ElevenLabs settings: same voice as videos 004–007, slowed for a calm tutorial read
+voice_id = "s3TPKV1kjDlVtZbl4Ksh"
+model_id = "eleven_v4"
+output_format = "mp3_44100_128"
+stitch = true
+seed = 7
+[settings]
+stability = 0.55
+similarity_boost = 0.75
+speed = 0.92
+
+# Pacing pass (free: applied to cached audio, never re-bills). See aion/voice/pacing.py
+[pacing]
+snap = true
+lead_in = 1.5
+paragraph_gap = 0.5
+section_gap = 1.5
+tail = 3.0
