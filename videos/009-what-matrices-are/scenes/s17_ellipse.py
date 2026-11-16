@@ -6,7 +6,7 @@ from scipy.spatial.transform import Rotation
 from aion import *
 
 from beats import T
-from shots import (A, FRAME, I2, I3, Cam, Mat, arrow, backdrop, backing, finish, grid_lines, live, pt, rail, rot2,
+from shots import (A, FRAME, I2, I3, Cam, Mat, arrow, backdrop, backing, finish, grid_lines, live, pt, rot2,
                    shade, tex)
 
 E = "smooth"
@@ -46,8 +46,6 @@ def s17_ellipse(s):
     end = keys((T.cut_photo_svd - 0.7, 1.0), (T.cut_photo_svd - 0.05, 0.0), lead=0)
     hb = s.manim(z=4.9, parallax=0.0, opacity=end)
     hud = s.manim(z=5, parallax=0.0, opacity=end)
-    rl = s.manim(z=5.1, parallax=0.0)
-    rail(rl, 6)
 
     ghost.play(FadeIn(grid_lines(I2, O, U_, FRAME, color=C.ghost)), at=T.cut_ch7 + 0.4, dur=0.8)
 

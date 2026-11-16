@@ -4,7 +4,7 @@ from aion import *
 
 from beats import T
 from shots import (FRAME, I2, QUARTER, SHEAR, Mat, arrow, backdrop, backing, basis_arrows, finish, grid_lines, hat_at,
-                   live, pt, rail, rot2, tex)
+                   live, pt, rot2, tex)
 
 O, U = (1.9, -1.9), 1.1
 E = "smooth"
@@ -21,7 +21,6 @@ def s08_compose(s):
     veil = s.manim(z=4.5)                              # dims the grid for the derivation
     hb = s.manim(z=4.9, parallax=0.0)
     hud = s.manim(z=5, parallax=0.0)
-    rail(hud, 3)
 
     # ── the score: u1 = how far the shear has gone, u2 = how far the turn has gone; M = R(u2) S(u1) ──
     a0 = T.shear_rot + 0.2; a1 = a0 + 1.6             # shear the plane

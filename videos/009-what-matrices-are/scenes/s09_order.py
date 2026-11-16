@@ -3,7 +3,7 @@ and a real die agrees: forward-then-side shows 4 on top, side-then-forward shows
 from aion import *
 
 from beats import T
-from shots import (I2, QUARTER, SHEAR, Cam, arrow, backdrop, die_height, die_rgba, finish, grid_lines, panel, pt, rail,
+from shots import (I2, QUARTER, SHEAR, Cam, arrow, backdrop, die_height, die_rgba, finish, grid_lines, panel, pt,
                    rot2, rot3, tex, top_face)
 
 E = "smooth"
@@ -19,7 +19,6 @@ def s09_order(s):
     m = s.manim(z=1, opacity=keys((T.real - 0.15, 1.0), (T.real + 0.45, 0.0), lead=0))   # the two framed grids
     g = s.manim(z=3)                                   # arrows, top-face outlines
     hud = s.manim(z=5, parallax=0.0)
-    rail(hud, 3)
 
     # ── RS: written R on the left because R acts second, like f(g(x)) ──
     R_, S_ = tex("R", size=96), tex("S", size=96)

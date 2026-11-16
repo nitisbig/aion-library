@@ -4,7 +4,7 @@ from aion import *
 
 from beats import T
 from shots import (FRAME, GENTLE, I2, O3, U3, VEC, Mat, arrow, backdrop, backing, basis_arrows, finish, grid_lines,
-                   live, pt, rail, tex)
+                   live, pt, tex)
 
 O, U = O3, U3
 E = "smooth"
@@ -30,7 +30,6 @@ def s06_columns(s):
     hb = s.manim(z=4.9, parallax=0.0)                 # the panel behind the product (its own layer, always below)
     hud = s.manim(z=5, parallax=0.0)                  # the matrix and the product
 
-    rail(hud, 2)
 
     # ── the score: one move, landing as "the grid lines stay parallel" ──
     t0, t1 = T.apply + 0.55, T.apply + 2.55

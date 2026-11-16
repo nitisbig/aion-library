@@ -5,7 +5,7 @@ from aion import *
 
 from beats import T
 from shots import (A, FRAME, I2, I3, Cam, Mat, arrow, backdrop, backing, die_height, die_rgba, finish, grid_lines, live,
-                   pt, rail, rot2, rot3, tex)
+                   pt, rot2, rot3, tex)
 
 E = "smooth"
 O, U = (1.6, -0.5), 0.6
@@ -39,7 +39,6 @@ def s14_eigen(s):
     g = s.manim(z=3, opacity=out2)
     hb = s.manim(z=4.9, parallax=0.0)
     hud = s.manim(z=5, parallax=0.0)
-    rail(hud, 5)
 
     ghost.play(FadeIn(grid_lines(I2, O, U, FRAME, color=C.ghost)), at=T.cut_ch6 + 0.2, dur=0.8)
     circle = Circle(radius=R * U, color=C.faint, stroke_width=C.thin).move_to(pt(O, U, (0, 0)))

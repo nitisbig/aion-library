@@ -4,7 +4,7 @@ would tangle the grid; the linear ones keep lines straight, evenly spaced, and t
 from aion import *
 
 from beats import T
-from shots import (FRAME, GENTLE, I2, VEC, arrow, backdrop, backing, brackets, finish, grid_lines, live, pt, rail,
+from shots import (FRAME, GENTLE, I2, VEC, arrow, backdrop, backing, brackets, finish, grid_lines, live, pt,
                    tangle, tex, warped_grid)
 
 E = "smooth"
@@ -22,8 +22,6 @@ def s04_machine(s):
     g = s.manim(z=3)
     hb = s.manim(z=4.9, parallax=0.0)
     hud = s.manim(z=5, parallax=0.0)
-    rl = s.manim(z=5.1, parallax=0.0)
-    rail(rl, 1)
     z = pt(O, U, (0, 0))
 
     # ── a flat grid, drawn from the center outward ──

@@ -4,7 +4,7 @@ from aion import *
 
 from beats import T
 from shots import (A, FRAME, I2, Cam, Mat, arrow, backdrop, backing, basis_arrows, finish, grid_lines, live, lit_poly,
-                   pt, rail, tex)
+                   pt, tex)
 
 E = "smooth"
 B = np.array([5.0, 6.0])                               # A @ (1, 2)
@@ -46,8 +46,6 @@ def s13_solve(s):
     w3 = s.manim(z=2, opacity=end)
     hb = s.manim(z=4.9, parallax=0.0, opacity=end)
     hud = s.manim(z=5, parallax=0.0, opacity=end)
-    rl = s.manim(z=5.1, parallax=0.0)
-    rail(rl, 4, drop=(5, T.warning + 0.5))
 
     # ── the panel: the three equations from the start, and Ax = b ──
     rows = [tex("x", "+", "y", "+", "z", "=", "4", size=44), tex("x", "-", "y", "+", "2z", "=", "1", size=44),

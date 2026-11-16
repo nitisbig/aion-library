@@ -4,7 +4,7 @@ left is a matrix of coefficients plus a column of right-hand sides, parked in th
 from aion import *
 
 from beats import T
-from shots import Mat, backdrop, finish, parked_system, rail, system_mats, tex
+from shots import Mat, backdrop, finish, parked_system, system_mats, tex
 
 E = "smooth"
 M23 = [[4, -1, 7], [0, 2, 5]]
@@ -19,8 +19,6 @@ def s02_box(s):
     backdrop(s)
     hb = s.manim(z=4.9, parallax=0.0)
     hud = s.manim(z=5, parallax=0.0)
-    rl = s.manim(z=5.1, parallax=0.0, opacity=keys((T.cut_ch1 + 0.3, 0.0), (T.cut_ch1 + 1.1, 1.0), lead=0))
-    rail(rl, 0)
 
     # ── a rectangle of numbers ──
     box = Mat(M23, colors=C.data, size=72, h_buff=1.35, v_buff=1.0).move_to([0, 0.3, 0])

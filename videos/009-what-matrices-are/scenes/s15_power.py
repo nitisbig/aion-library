@@ -3,7 +3,7 @@ it stays on screen), thins into the violet (1, 1) line: everything drifts toward
 from aion import *
 
 from beats import T
-from shots import A, FRAME, I2, backdrop, backing, finish, grid_lines, pt, rail, tex
+from shots import A, FRAME, I2, backdrop, backing, finish, grid_lines, pt, tex
 
 E = "smooth"
 O, U = (1.6, -0.5), 0.6                                # same stage as s14
@@ -32,8 +32,6 @@ def s15_power(s):
     m = s.manim(z=1, opacity=end)
     hb = s.manim(z=4.9, parallax=0.0, opacity=end)
     hud = s.manim(z=5, parallax=0.0, opacity=end)
-    rl = s.manim(z=5.1, parallax=0.0)
-    rail(rl, 5)
 
     ghost.play(FadeIn(grid_lines(I2, O, U, FRAME, color=C.ghost)), at=T.cut_power + 0.1, dur=0.6)
     l1 = full_line(E1, C.eigen, C.stroke, 0.35)

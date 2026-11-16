@@ -6,7 +6,7 @@ from aion import *
 
 from beats import T
 from shots import (FRAME, I2, I3, O3, SHEAR, U3, Cam, arrow, backdrop, die_height, die_rgba, finish, grid_lines,
-                   lattice, live, panel, pt, rail, rot2, rot3z, warped_grid)
+                   lattice, live, panel, pt, rot2, rot3z, warped_grid)
 
 E = "smooth"
 O, U = (-0.5, -0.6), 0.95                               # s04's grid
@@ -84,8 +84,6 @@ def s05_gallery(s):
     g = s.manim(z=3)
     hb = s.manim(z=4.9, parallax=0.0)
     hud = s.manim(z=5, parallax=0.0)
-    rl = s.manim(z=5.1, parallax=0.0)
-    rail(rl, 1, drop=(2, T.numbers_q + 0.6))
     ghost.add(grid_lines(I2, O, U, FRAME, color=C.ghost, axes=False))
 
     # ── the gallery, plus the two moves that break the rules ──

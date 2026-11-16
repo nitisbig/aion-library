@@ -4,7 +4,7 @@ on screen moves. Pointer to video 006 (the determinant)."""
 from aion import *
 
 from beats import T
-from shots import (H3, I3, Cam, Mat, _badges, arrow, backdrop, backing, die_height, die_rgba, finish, lattice, rail,
+from shots import (MINI_Y, H3, I3, Cam, Mat, _badges, mini_x, arrow, backdrop, backing, die_height, die_rgba, finish, lattice,
                    tex)
 
 E = "smooth"
@@ -22,8 +22,6 @@ def s19_outro(s):
     g = s.manim(z=3, opacity=end)                       # arrows
     hb = s.manim(z=4.9, parallax=0.0, opacity=end)
     hud = s.manim(z=5, parallax=0.0, opacity=end)
-    rl = s.manim(z=5.1, parallax=0.0, opacity=end)
-    rail(rl, 7)
     assert np.allclose(PHP, np.round(PHP))
 
     # ── the box, one last time; the chapters gather around it ──
@@ -40,7 +38,7 @@ def s19_outro(s):
             b.scale_to_fit_width(2.4)
         fr = Rectangle(width=b.width + 0.6, height=b.height + 0.45, stroke_color=C.frame, stroke_width=C.thin)
         icon = VGroup(fr, b.move_to(fr)).move_to([*pos, 0])
-        src = icon.copy().scale(0.3).move_to([7.11 - C.margin - 0.31 - (7 - k) * 0.68, 4.0 - C.margin - 0.2, 0])
+        src = icon.copy().scale(0.12).move_to([mini_x(k), MINI_Y + 0.12, 0])    # each flies out of its corner bar
         hud.play(TransformFromCopy(src, icon), at=tt, dur=0.9, ease="out_back")
         icons.add(icon)
     hud.play(Indicate(Hm.cols[0], color=C.ihat, scale_factor=1.12), Indicate(Hm.cols[1], color=C.jhat, scale_factor=1.12),

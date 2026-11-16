@@ -4,7 +4,7 @@ from aion import *
 
 from beats import T
 from shots import (FRAME, GENTLE, H3, I2, I3, O3, U3, QUARTER, Cam, Mat, arrow, backdrop, backing, die_height,
-                   die_rgba, finish, fmt, grid_lines, live, pt, rail, rot2, rot3z, tex)
+                   die_rgba, finish, fmt, grid_lines, live, pt, rot2, rot3z, tex)
 
 O, U = O3, U3
 E = "smooth"
@@ -51,7 +51,6 @@ def s07_read(s):
     lab = s.manim(z=4)                                # hats
     hb = s.manim(z=4.9, parallax=0.0)                 # panels behind the HUD
     hud = s.manim(z=5, parallax=0.0)                  # matrices
-    rail(hud, 2, drop=(3, T.fresh + 0.3))
 
     # ── the 2D score: back to rest after s06, then (after the pause) a quarter turn ──
     r0, r1 = T.cut_read + 0.15, T.cut_read + 1.45

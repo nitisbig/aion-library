@@ -4,7 +4,7 @@ from aion import *
 
 from beats import T
 from nets import accuracy, forward, line, net, spirals
-from shots import Cam, Mat, backdrop, finish, fmt, rail, tex
+from shots import Cam, Mat, backdrop, finish, fmt, tex
 
 E = "smooth"
 OD = np.array([1.7, -0.55])                            # where the data plane's origin sits on screen
@@ -46,7 +46,6 @@ def s10_layers(s):
     backdrop(s)
     g = s.manim(z=1)                                   # riding grid, cut line, plane
     hud = s.manim(z=5, parallax=0.0)
-    rail(hud, 3, drop=(4, T.not_always + 0.35))
 
     # ── one layer: multiply by a matrix, shift, bend ──
     i0 = 41

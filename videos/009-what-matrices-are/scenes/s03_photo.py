@@ -6,8 +6,7 @@ from functools import lru_cache
 from aion import *
 
 from beats import T
-from shots import (H3, I3, Cam, Mat, backdrop, die_height, die_rgba, finish, lattice, live, panel, parked_system, photo,
-                   rail, tex)
+from shots import (H3, I3, Cam, Mat, backdrop, die_height, die_rgba, finish, lattice, live, panel, parked_system, photo, tex)
 
 E = "smooth"
 N = 480
@@ -42,8 +41,6 @@ def s03_photo(s):
     m = s.manim(z=3, opacity=end)
     hb = s.manim(z=4.9, parallax=0.0, opacity=end)
     hud = s.manim(z=5, parallax=0.0, opacity=end)
-    rl = s.manim(z=5.1, parallax=0.0)
-    rail(rl, 0, drop=(1, T.watching + 0.5))
     pk, pg = parked_system()                            # the equations stay parked from s02
     hb.add(pk, at=T.cut_photo)
     hud.add(pg, at=T.cut_photo)

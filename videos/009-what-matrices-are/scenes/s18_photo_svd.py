@@ -6,7 +6,7 @@ from functools import lru_cache
 from aion import *
 
 from beats import T
-from shots import backdrop, finish, photo, photo_svd, rail, rank_k, tex
+from shots import backdrop, finish, photo, photo_svd, rank_k, tex
 
 PH = 3.3                                               # picture height on screen
 PL, PR, Y = (-4.4, 0.6), (3.3, 0.6), 0.6
@@ -62,8 +62,6 @@ def s18_photo_svd(s):
     m = s.manim(z=1, opacity=end)
     g = s.manim(z=3, opacity=end)
     hud = s.manim(z=5, parallax=0.0, opacity=end)
-    rl = s.manim(z=5.1, parallax=0.0)
-    rail(rl, 6, drop=(7, T.matter + 0.7))
     U, s_, Vt = photo_svd()
 
     # ── the picture, and it's a matrix too ──

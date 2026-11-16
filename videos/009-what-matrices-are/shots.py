@@ -421,7 +421,8 @@ def backdrop(s):
 
 
 def finish(s):
-    """Frame finish from the theme. The Classic design sets every term to zero, so lines stay crisp."""
+    """Frame finish from the theme (the Classic design sets every term to zero), plus the chapter progress bars."""
+    progress(s)
     fx = []
     if C.bloom > 0:
         fx.append(Bloom(C.bloom, threshold=0.8))
@@ -477,37 +478,12 @@ def rot3z(deg):
     return R
 
 
-# ---------------------------------------------------------------- progress rail (top-right, one badge per chapter)
+# ---------------------------------------------------------------- chapter symbols (the outro's ring)
 def _badges():
     return [tex(r"[\;\,]", size=26), tex(r"\#", size=24, color=C.grid),
             tex(r"\hat{\imath}", r"\hat{\jmath}", r"\hat{k}", size=22, colors={0: C.ihat, 1: C.jhat, 2: C.khat}),
             tex("AB", size=24), tex(r"A^{-1}", size=24), tex(r"\lambda", size=26, color=C.eigen),
             tex(r"U\Sigma V^{\top}", size=20, color=C.sigma)]
-
-
-def badge(k):
-    """Badge k (1-7) of the progress rail, in its rail slot: a thin frame with the chapter's symbol."""
-    b = _badges()[k - 1]
-    fr = Rectangle(width=0.62, height=0.4, stroke_color=C.frame, stroke_width=1.0)
-    b.scale_to_fit_width(min(b.width, 0.52))
-    if b.height > 0.3:
-        b.scale_to_fit_height(0.3)
-    g = VGroup(fr, b.move_to(fr))
-    x1, y1 = 7.11 - C.margin, 4.0 - C.margin
-    g.move_to([x1 - 0.31 - (7 - k) * 0.68, y1 - 0.2, 0])      # fixed slots, read left to right
-    return g
-
-
-def rail(m, have, drop=None):
-    """Badges 1..`have` sit in the rail (top-right, seven fixed slots); `drop=(k, t)` springs badge k in at t."""
-    slots = VGroup(*[badge(k)[0].set_stroke(C.faint) for k in range(have + 1, 8)])   # empty slots, faint
-    out = VGroup(*[badge(k) for k in range(1, have + 1)])
-    m.add(slots, out)
-    if drop:
-        k, t = drop
-        b = badge(k)
-        m.play(FadeIn(b, shift=0.35 * DOWN), at=t, dur=0.7, ease="out_back")
-    return out
 
 
 # ---------------------------------------------------------------- the picture (s03, s18)
@@ -592,3 +568,147 @@ def warped_grid(M, w, origin, unit, n=9):
             (axis if k == 0 else major).add(mob.set_stroke(C.axis if k == 0 else C.grid,
                                                            C.thin * (1.5 if k == 0 else 1.0)))
     return VGroup(major, axis)
+
+
+# ---------------------------------------------------------------- chapter progress: a quiet strip that opens at cuts
+# During a chapter the seven bars are a small strip in the bottom-left corner (dim = upcoming, filling blue =
+# running, white = done). Approaching each chapter cut the strip grows into a row of seven boxes along the bottom:
+# the chapter's last frame shrinks into its box, the finished chapters show as thumbnails, the next chapter's first
+# frame pops out of its box and fills the screen, and the row folds back into the corner. The thumbnails are real
+# frames (`chapter_frames.py` renders them with AION_NO_PROGRESS=1, so they never contain this overlay).
+CHAPTER_CUTS = ["cut_ch1", "cut_ch2", "cut_ch3", "cut_ch4", "cut_ch5", "cut_ch6", "cut_ch7", "cut_outro"]
+BAR_W, BAR_H, BAR_GAP, BAR_Y = 1.5, 0.05, 0.18, -3.8          # the open row
+MINI_W, MINI_H, MINI_GAP, MINI_Y, MINI_L = 0.26, 0.032, 0.06, -3.8, -6.75  # the corner strip (left edge MINI_L)
+THUMB = BAR_W / (8 * 16 / 9)                          # a full frame scaled to a box
+BOX_H = BAR_W * 9 / 16
+FRAMES = Path(__file__).parent / "out" / "chapter_frames"
+SHRINK, HOLD, POP = 0.85, 1.55, 0.9                   # transition: shrink, show progress, pop (seconds)
+OPEN, FOLD = 0.7, 0.7                                 # the strip opens before the shrink, folds after the pop
+
+
+def bar_x(k):
+    """Centre x of chapter k's bar in the open row (k = 1..7)."""
+    return (k - 4) * (BAR_W + BAR_GAP)
+
+
+def mini_x(k):
+    """Centre x of chapter k's bar in the corner strip."""
+    return MINI_L + (k - 1) * (MINI_W + MINI_GAP) + MINI_W / 2
+
+
+def card_pos(k):
+    """Centre of chapter k's box, just above its bar (k = 8: the outro, centred)."""
+    return (0.0 if k > 7 else bar_x(k), BAR_Y + 0.16 + THUMB * 4)
+
+
+def bar_geom(k, e):
+    """(centre x, y, width, height) of bar k with the strip opened by e (0 corner strip → 1 open row)."""
+    return (mini_x(k) + e * (bar_x(k) - mini_x(k)), MINI_Y + e * (BAR_Y - MINI_Y), MINI_W + e * (BAR_W - MINI_W),
+            MINI_H + e * (BAR_H - MINI_H))
+
+
+def transition(i):
+    """Times of the transition at CHAPTER_CUTS[i]: chapter i ends (i ≥ 1), chapter i + 1 (or the outro) starts."""
+    from beats import T
+    c = float(getattr(T, CHAPTER_CUTS[i]))
+    ts = c - 1.35                                      # the shrink starts (this frame is end_<i>.png)
+    te = ts + SHRINK
+    p0 = te + HOLD                                     # the pop starts
+    return dict(c=c, ts=ts, te=te, p0=p0, p1=p0 + POP)  # p1: the next chapter is live (start_<i+1>.png)
+
+
+@lru_cache(maxsize=24)
+def chapter_frame(name, w=1920):
+    """RGBA uint8 of out/chapter_frames/<name>.png at width w (a dim placeholder card if it isn't rendered yet)."""
+    from PIL import Image
+    f = FRAMES / f"{name}.png"
+    h = w * 9 // 16
+    if not f.exists():
+        print(f"[progress] missing {f.name}: run `uv run python videos/009-what-matrices-are/chapter_frames.py`")
+        img = np.zeros((h, w, 4), np.uint8)
+        img[..., 3] = 255
+        img[:, :, :3] = 24
+        return img
+    return np.asarray(Image.open(f).convert("RGBA").resize((w, h), Image.LANCZOS))
+
+
+def _swatch(color):
+    img = np.zeros((2, 60, 4), np.uint8)               # 30:1, so height BAR_H gives width BAR_W
+    img[...] = (*[int(255 * c) for c in ManimColor(color).to_rgb()], 255)
+    return img
+
+
+def progress(s):
+    """The chapter strip and the chapter-cut transitions, for whatever part of them falls in this scene."""
+    import os
+    if os.environ.get("AION_NO_PROGRESS"):
+        return
+    from beats import T
+    a, b = s.start, s.end
+    tr = [transition(i) for i in range(8)]
+    show0, show1 = tr[0]["c"] - 1.2, float(T.thought) + 0.6
+    if b <= show0 or a >= show1:
+        return
+    # e(t): 0 = corner strip, 1 = open row (opens before each cut, folds after the pop)
+    ks = []
+    for i, d in enumerate(tr):
+        o0 = (d["c"] - 1.2) if i == 0 else d["ts"] - OPEN
+        ks += [(o0, 0.0), (o0 + OPEN, 1.0, "easy_ease"), (d["p1"] + 0.1, 1.0), (d["p1"] + 0.1 + FOLD, 0.0, "easy_ease")]
+    e = keys(*ks, lead=0)
+    hide = keys((show0, 0.0), (show0 + 0.5, 1.0), (show1 - 0.6, 1.0), (show1, 0.0), lead=0)
+    quiet = lambda t: float(hide(t)) * (0.75 + 0.25 * float(e(t)))   # noqa: E731  (a touch dimmer in the corner)
+
+    def bar_layer(img, k, z, frac=None, **kw):
+        def pos(t):
+            x, y, w, _ = bar_geom(k, float(e(t)))
+            f = 1.0 if frac is None else frac(t)
+            return (x - w / 2 + f * w / 2, y)
+
+        def scale(t):
+            _, _, w, h = bar_geom(k, float(e(t)))
+            f = 1.0 if frac is None else frac(t)
+            return (max(f, 1e-3) * w / BAR_W, h / BAR_H)
+        s.add(ArrayLayer(img, height=BAR_H, z=z, parallax=0.0, pos=pos, scale=scale, **kw))
+    grey, blue, white = _swatch(C.faint), _swatch(C.grid), _swatch(C.text)
+    for k in range(1, 8):
+        bar_layer(grey, k, 9.0, opacity=quiet)
+        run0, run1, done = tr[k - 1]["p1"], tr[k]["ts"], tr[k]["te"]
+        if b > run0 and a < done + 0.1:                 # running: the bar fills with the chapter
+            frac = lambda t, r0=run0, r1=run1: float(np.clip((t - r0) / (r1 - r0), 0.0, 1.0))  # noqa: E731
+            bar_layer(blue, k, 9.1, frac=frac, start=run0, end=done + 0.1, opacity=quiet)
+        if b > done:                                    # done: white
+            op = lambda t, dn=done: quiet(t) * float(np.clip((t - dn) / 0.25, 0, 1))  # noqa: E731
+            bar_layer(white, k, 9.2, start=done, opacity=op)
+
+    # the transitions that touch this scene
+    for i, d in enumerate(tr):
+        o0 = (d["c"] - 1.2) if i == 0 else d["ts"] - OPEN
+        f1 = d["p1"] + 0.1 + FOLD
+        if b <= o0 or a >= f1:
+            continue
+        box_op = keys((o0 + 0.3, 0.0), (o0 + OPEN, 1.0), (d["p1"] + 0.1, 1.0), (d["p1"] + 0.45, 0.0), lead=0)
+        boxes = s.manim(z=8.6, parallax=0.0, opacity=box_op)
+        for k in range(1, 8):                           # seven boxes: done, next, upcoming
+            cx, cy = card_pos(k)
+            col, w = (C.frame, 1.2) if k <= i else ((C.grid, 2.0) if k == i + 1 else (C.faint, 1.0))
+            boxes.add(Rectangle(width=BAR_W, height=BOX_H, stroke_color=col, stroke_width=w).move_to([cx, cy, 0]))
+        cov0 = d["ts"] if i > 0 else d["c"] - 0.6
+        s.solid(C.bg, z=8, start=cov0, end=d["p1"],
+                opacity=keys((cov0, 0.0 if i == 0 else 1.0), (cov0 + (0.5 if i == 0 else 0.01), 1.0), lead=0))
+        th_op = keys((d["te"] - 0.35, 0.0), (d["te"], 1.0), (d["p1"] + 0.1, 1.0), (d["p1"] + 0.45, 0.0), lead=0)
+        for k in range(1, i):                           # the chapters finished earlier, already in their boxes
+            s.add(ArrayLayer(chapter_frame(f"end_{k}", 480), height=8 * THUMB, pos=card_pos(k), z=8.5,
+                             parallax=0.0, start=d["te"] - 0.35, end=f1, opacity=th_op))
+        if i > 0:                                       # this chapter's last frame shrinks into its box
+            s.add(ArrayLayer(chapter_frame(f"end_{i}"), height=8.0, z=8.5, parallax=0.0, start=d["ts"], end=f1,
+                             pos=keys((d["ts"], (0.0, 0.0)), (d["te"], card_pos(i), "easy_ease"), lead=0),
+                             scale=keys((d["ts"], (1.0, 1.0)), (d["te"], (THUMB, THUMB), "easy_ease"), lead=0),
+                             opacity=keys((d["p1"] + 0.1, 1.0), (d["p1"] + 0.45, 0.0), lead=0)))
+        # the next chapter pops out of its box and fills the screen
+        src = card_pos(i + 1)
+        q = d["p0"] + 0.3
+        s.add(ArrayLayer(chapter_frame(f"start_{i + 1}"), height=8.0, z=8.7, parallax=0.0, start=d["p0"],
+                         end=d["p1"],
+                         pos=keys((d["p0"], src), (q + 0.05, src), (d["p1"], (0.0, 0.0), "easy_ease"), lead=0),
+                         scale=keys((d["p0"], (0.02, 0.02)), (q, (THUMB, THUMB), "out_back"),
+                                    (q + 0.05, (THUMB, THUMB)), (d["p1"], (1.0, 1.0), "easy_ease"), lead=0)))

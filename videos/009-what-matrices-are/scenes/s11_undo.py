@@ -3,7 +3,7 @@ A⁻¹A = I. The unit square's area grows by 4: the determinant. What if it were
 from aion import *
 
 from beats import T
-from shots import (A, FRAME, I2, O5, U5, Mat, backdrop, backing, basis_arrows, finish, grid_lines, live, pt, rail,
+from shots import (A, FRAME, I2, O5, U5, Mat, backdrop, backing, basis_arrows, finish, grid_lines, live, pt,
                    tex, unit_square)
 
 E = "smooth"
@@ -19,7 +19,6 @@ def s11_undo(s):
     g = s.manim(z=3)
     hb = s.manim(z=4.9, parallax=0.0)
     hud = s.manim(z=5, parallax=0.0)
-    rail(hud, 4)
 
     # ── the score: forward, backward, forward + backward, then forward with the square, then rest ──
     f0 = T.tilts_grid + 0.2; f1 = f0 + 2.0

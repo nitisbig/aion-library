@@ -5,7 +5,7 @@ from aion import *
 
 from beats import T
 from shots import (COLLAPSE, FRAME, I2, I3, O5, U5, Cam, Mat, arrow, backdrop, backing, basis_arrows, die_height,
-                   die_rgba, finish, grid_lines, live, pt, rail, tex, unit_square)
+                   die_rgba, finish, grid_lines, live, pt, tex, unit_square)
 
 E = "smooth"
 NULL = np.array([1.0, -2.0])                           # COLLAPSE @ NULL = 0
@@ -39,8 +39,6 @@ def s12_collapse(s):
     g = s.manim(z=3, opacity=out2)
     hb = s.manim(z=4.9, parallax=0.0, opacity=out2)
     hud = s.manim(z=5, parallax=0.0, opacity=out2)
-    rail_l = s.manim(z=5.1, parallax=0.0)
-    rail(rail_l, 4)
 
     # ── squash: det 0 ──
     c0, c1 = T.nothing + 0.3, T.nothing + 2.3

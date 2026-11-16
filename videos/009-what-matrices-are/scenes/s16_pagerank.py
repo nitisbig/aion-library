@@ -4,7 +4,7 @@ eigenvector of G with eigenvalue 1. B and D each have one incoming link, but B's
 from aion import *
 
 from beats import T
-from shots import backdrop, backing, finish, rail, tex
+from shots import backdrop, backing, finish, tex
 
 NAMES = "ABCDEFG"
 LINKS = {"A": "C", "B": "CG", "C": "AB", "D": "C", "E": "CD", "F": "AE", "G": "FC"}
@@ -68,8 +68,6 @@ def s16_pagerank(s):
     nd = s.manim(z=3, opacity=end)                     # nodes, labels
     hb = s.manim(z=4.9, parallax=0.0, opacity=end)
     hud = s.manim(z=5, parallax=0.0, opacity=end)
-    rl = s.manim(z=5.1, parallax=0.0)
-    rail(rl, 5, drop=(6, T.counts + 0.9))
 
     P = {k: np.array([*v, 0.0]) for k, v in POS.items()}
     boxes = {k: RoundedRectangle(corner_radius=0.12, width=NODE, height=NODE, stroke_color=C.frame,
