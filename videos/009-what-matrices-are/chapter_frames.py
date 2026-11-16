@@ -2,7 +2,7 @@
 
 For every chapter cut: the last frame of the chapter that ends (end_<k>.png, at the shrink start) and the first
 live frame of the chapter that begins (start_<k>.png, when the pop has filled the screen; start_8 is the outro).
-They are rendered at 1080p with AION_NO_PROGRESS=1, so they never contain the bars or another transition.
+They are rendered at 4K with AION_NO_PROGRESS=1, so they never contain the bars or another transition.
 Re-run after editing a scene near a chapter cut.
 
     uv run python videos/009-what-matrices-are/chapter_frames.py            # all 15
@@ -28,7 +28,7 @@ SIDES = [("s01_preview", "s02_box"), ("s03_photo", "s04_machine"), ("s05_gallery
 
 def still(scene, t, name):
     env = dict(os.environ, AION_NO_PROGRESS="1")
-    out = subprocess.run(["uv", "run", "aion", "still", VIDEO, scene, "--at", f"{t:.3f}", "--final"], env=env,
+    out = subprocess.run(["uv", "run", "aion", "still", VIDEO, scene, "--at", f"{t:.3f}", "--quality", "4k"], env=env,
                          cwd=HERE.parent.parent, capture_output=True, text=True, check=True).stdout
     png = [ln.strip() for ln in out.splitlines() if ln.strip().endswith(".png")][-1]
     FRAMES.mkdir(parents=True, exist_ok=True)

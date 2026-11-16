@@ -618,9 +618,14 @@ def transition(i):
 
 
 @lru_cache(maxsize=24)
-def chapter_frame(name, w=1920):
-    """RGBA uint8 of out/chapter_frames/<name>.png at width w (a dim placeholder card if it isn't rendered yet)."""
+def chapter_frame(name, w=None):
+    """RGBA uint8 of out/chapter_frames/<name>.png at width w (a dim placeholder card if it isn't rendered yet).
+
+    w defaults to $AION_THUMB_W or 1920 (the 4K render sets 3840, so a frame filling the screen is never upscaled).
+    """
+    import os
     from PIL import Image
+    w = int(w or os.environ.get("AION_THUMB_W", 1920))
     f = FRAMES / f"{name}.png"
     h = w * 9 // 16
     if not f.exists():

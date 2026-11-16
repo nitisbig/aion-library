@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>What Matrices Actually Are: Notes</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+@font-face { font-family: "Inter"; src: url("InterVariable.ttf"); font-weight: 100 900; }
+@page { size: A4; margin: 0; }
+:root {
+  --bg: #050506; --panel: #0f0f12; --panel2: #141418; --line: #26262c; --text: #ececec; --muted: #9a9aa4;
+  --faint: #5c5c66; --ih: #83c167; --jh: #fc6255; --kh: #58c4dd; --vec: #ffe94a; --target: #ff8a6b;
+  --area: #f0ac5f; --null: #ff4fa3; --eigen: #b78cf2; --sigma: #5cd0b3; --grid: #2b6f99;
+  --serif: "KaTeX_Main", "Latin Modern Roman", Georgia, serif;
+}
+* { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); }
+body { font-family: "Inter", sans-serif; font-size: 10.4pt; line-height: 1.5; font-feature-settings: "cv11", "ss01"; }
+.page { width: 210mm; height: 297mm; position: relative; overflow: hidden; background: var(--bg);
+        padding: 20mm 19mm 20mm; page-break-after: always; break-after: page; }
+.page:last-child { page-break-after: auto; break-after: auto; }
+.foot { position: absolute; left: 19mm; right: 19mm; bottom: 10mm; display: flex; justify-content: space-between;
+        font-size: 7.5pt; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); }
+.foot b { color: var(--muted); font-weight: 500; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; letter-spacing: -.005em; }
+p { margin: 0 0 3mm; color: #cfcfd4; }
+.kicker { font-size: 7.6pt; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.muted { color: var(--muted); }
+.serif { font-family: var(--serif); }
+.ih { color: var(--ih); } .jh { color: var(--jh); } .kh { color: var(--kh); } .ev { color: var(--eigen); }
+.nl { color: var(--null); } .ar { color: var(--area); } .sg { color: var(--sigma); } .vc { color: var(--vec); }
+
+/* chapter opener */
+.ch-head { display: grid; grid-template-columns: 30mm 1fr; align-items: end; gap: 4mm; margin-bottom: 7mm; }
+.ch-num { font-family: var(--serif); font-style: italic; font-size: 64pt; line-height: .8; color: #2e2e36; }
+.ch-head h1 { font-size: 27pt; line-height: 1.08; }
+.ch-head .kicker { margin-bottom: 2.5mm; }
+.big-idea { font-family: var(--serif); font-size: 15pt; line-height: 1.38; color: var(--text); margin: 0 0 7mm;
+            padding-left: 5mm; border-left: 2px solid var(--accent, var(--ih)); }
+figure { margin: 0; }
+.shot { width: 100%; border-radius: 3mm; border: 1px solid var(--line); display: block; }
+figcaption { font-size: 7.8pt; color: var(--faint); margin-top: 2mm; letter-spacing: .02em; }
+
+/* key points */
+.points { display: grid; gap: 4.2mm; margin-top: 8mm; }
+.pt { display: grid; grid-template-columns: 9mm 1fr; align-items: baseline; }
+.pt .n { font-family: var(--serif); font-size: 15pt; color: var(--accent, var(--ih)); line-height: 1; }
+.pt h3 { font-size: 13pt; margin-bottom: .8mm; }
+.pt p { margin: 0; color: var(--muted); }
+
+/* cards */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 3mm; padding: 5mm 5.5mm; }
+.card .kicker { margin-bottom: 2.5mm; display: block; }
+.card p:last-child { margin-bottom: 0; }
+.formula { background: var(--panel); border: 1px solid var(--line); border-radius: 3mm; padding: 6mm 5mm;
+           text-align: center; font-size: 14pt; margin: 5mm 0; }
+.formula .katex { font-size: 1.15em; }
+.formula small { display: block; font-family: "Inter"; font-size: 8pt; color: var(--muted); margin-top: 3mm; letter-spacing: .02em; }
+.callout { border-left: 2px solid var(--c, var(--vec)); background: linear-gradient(90deg, rgba(255,255,255,.035), transparent);
+           padding: 4mm 5mm; border-radius: 0 3mm 3mm 0; margin: 5mm 0; }
+.callout .kicker { color: var(--c, var(--vec)); display: block; margin-bottom: 1.5mm; }
+.callout p { margin: 0; }
+.mini { display: flex; flex-direction: column; align-items: center; gap: 2mm; }
+.mini img { width: 100%; border-radius: 2mm; border: 1px solid var(--line); }
+.mini .lbl { font-family: var(--serif); font-size: 12pt; }
+.mini .m { font-size: 9.5pt; }
+.sec { font-family: var(--serif); font-size: 17pt; margin: 0 0 4mm; }
+.sec-sm { font-family: var(--serif); font-size: 13.5pt; margin: 0 0 2.5mm; }
+.rule { height: 1px; background: var(--line); margin: 7mm 0; }
+.row { display: flex; gap: 5mm; align-items: center; }
+table.bars { width: 100%; border-collapse: collapse; font-size: 9pt; }
+table.bars td { padding: 1.1mm 0; }
+.bar { height: 3.2mm; background: var(--eigen); border-radius: 1mm; opacity: .9; }
+.strip { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2.5mm; }
+.strip img { width: 100%; border-radius: 1.5mm; border: 1px solid var(--line); display: block; }
+.strip div { text-align: center; font-size: 8.5pt; color: var(--muted); }
+
+/* cover */
+.cover { padding: 0; }
+.cover .art { position: absolute; inset: 0; background: url("figs/cover.png") 54% 42% / 215% auto no-repeat; }
+.cover .shade { position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(5,5,6,.92) 0%, rgba(5,5,6,.15) 30%, rgba(5,5,6,.1) 55%, rgba(5,5,6,.96) 80%); }
+.cover .top { position: absolute; top: 20mm; left: 20mm; right: 20mm; display: flex; justify-content: space-between; }
+.cover .title { position: absolute; left: 20mm; right: 20mm; bottom: 30mm; }
+.cover h1 { font-size: 46pt; line-height: 1.02; margin-bottom: 6mm; }
+.cover .sub { font-family: var(--serif); font-size: 15pt; color: #c9c9cf; font-style: italic; }
+.cover .bar7 { display: flex; gap: 2mm; margin-top: 11mm; }
+.cover .bar7 span { height: 1.2mm; flex: 1; border-radius: 1mm; background: #2a2a31; }
+.cover .bar7 span:nth-child(1) { background: var(--ih); } .cover .bar7 span:nth-child(2) { background: var(--jh); }
+.cover .bar7 span:nth-child(3) { background: var(--kh); } .cover .bar7 span:nth-child(4) { background: var(--vec); }
+.cover .bar7 span:nth-child(5) { background: var(--null); } .cover .bar7 span:nth-child(6) { background: var(--eigen); }
+.cover .bar7 span:nth-child(7) { background: var(--sigma); }
+
+/* contents */
+.toc { display: grid; gap: 0; margin-top: 8mm; }
+.toc a { display: grid; grid-template-columns: 14mm 1fr 28mm; align-items: center; padding: 4.2mm 0;
+         border-top: 1px solid var(--line); color: inherit; text-decoration: none; }
+.toc a:last-child { border-bottom: 1px solid var(--line); }
+.toc .n { font-family: var(--serif); font-style: italic; font-size: 17pt; color: var(--faint); }
+.toc .t { font-family: var(--serif); font-size: 14pt; }
+.toc .t small { display: block; font-family: "Inter"; font-size: 8.4pt; color: var(--muted); margin-top: .5mm; }
+.toc .s { text-align: right; font-size: 13pt; }
+.quote { font-family: var(--serif); font-size: 25pt; line-height: 1.22; margin: 3mm 0 4mm; }
+
+/* cheat sheet */
+.cheat { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+.cheat .card { padding: 4.2mm 5mm; }
+.cheat .card .f { font-size: 11.5pt; margin: 1.5mm 0 1.5mm; }
+.cheat .card p { font-size: 8.8pt; color: var(--muted); margin: 0; }
+.q { display: grid; grid-template-columns: 9mm 1fr; padding: 4.2mm 0; border-top: 1px solid var(--line); }
+.q .n { font-family: var(--serif); font-size: 14pt; color: var(--vec); }
+.q p { margin: 0; }
+.ans { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- ───────────────────────────── COVER -->
+<section class="page cover">
+  <div class="art"></div><div class="shade"></div>
+  <div class="top"><span class="kicker">Companion notes</span><span class="kicker">Linear algebra, visually</span></div>
+  <div class="title">
+    <div class="kicker" style="margin-bottom:5mm">The notes for the video</div>
+    <h1>What Matrices<br>Actually Are</h1>
+    <div class="sub">A table you read, or a move you make?</div>
+    <div class="bar7"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  </div>
+</section>
+
+<!-- ───────────────────────────── THE ONE IDEA + CONTENTS -->
+<section class="page">
+  <div class="kicker">The one idea</div>
+  <div class="quote">A matrix is not a table you read.<br>It is a <span class="vc">move</span> you make to space.</div>
+  <p class="muted" style="max-width:150mm">The numbers only record where the axes land. Every rule you were taught follows from that one picture.
+  These notes follow the video chapter by chapter: one idea per page, the pictures that make it obvious, and the few formulas worth keeping.</p>
+  <div class="toc">
+    <a><span class="n">1</span><span class="t">Nine numbers in a box<small>What a matrix is, and what it can hold</small></span><span class="s">$[\;\,]$</span></a>
+    <a><span class="n">2</span><span class="t">A machine that moves space<small>Linear moves: the three rules</small></span><span class="s">$\boxplus$</span></a>
+    <a><span class="n">3</span><span class="t">The columns are the whole story<small>Where $\hat\imath$ and $\hat\jmath$ land</small></span><span class="s">$\color{#83c167}{\hat\imath}\,\color{#fc6255}{\hat\jmath}$</span></a>
+    <a><span class="n">4</span><span class="t">One move after another<small>Multiplication, order, neural networks</small></span><span class="s">$AB$</span></a>
+    <a><span class="n">5</span><span class="t">The moves you can't undo<small>Inverse, determinant, null space, solving $A\mathbf{x}=\mathbf{b}$</small></span><span class="s">$A^{-1}$</span></a>
+    <a><span class="n">6</span><span class="t">The directions that don't turn<small>Eigenvectors, repetition, PageRank</small></span><span class="s ev">$\lambda$</span></a>
+    <a><span class="n">7</span><span class="t">A rotation, a stretch, and a rotation<small>The SVD, and a photo taken apart</small></span><span class="s sg">$U\Sigma V^{\mathsf T}$</span></a>
+  </div>
+  <div class="grid3" style="margin-top:9mm">
+    <div><div class="kicker" style="margin-bottom:1.5mm">Then</div><p class="muted" style="font-size:9pt">A one-page cheat sheet with everything at a glance.</p></div>
+    <div><div class="kicker" style="margin-bottom:1.5mm">Then</div><p class="muted" style="font-size:9pt">Seven practice questions to test the picture in your head.</p></div>
+    <div><div class="kicker" style="margin-bottom:1.5mm">Colour code</div><p style="font-size:9pt"><span class="ih">●&nbsp;$\hat\imath$</span>&ensp;<span class="jh">●&nbsp;$\hat\jmath$</span>&ensp;<span class="kh">●&nbsp;$\hat k$</span>&ensp;<span class="ev">●&nbsp;eigen</span>&ensp;<span class="nl">●&nbsp;null</span>&ensp;<span class="sg">●&nbsp;σ</span></p></div>
+  </div>
+  <div class="foot"><span>What Matrices Actually Are</span><b>02</b></div>
+</section>
+
+<!-- ───────────────────────────── CH 1 -->
+<section class="page" style="--accent: var(--ih)">
+  <div class="ch-head"><div class="ch-num">01</div><div><div class="kicker">Chapter one</div><h1>Nine numbers<br>in a box</h1></div></div>
+  <div class="big-idea">A matrix is a rectangle of numbers. Because it is so plain, it can hold almost anything.</div>
+  <figure><img class="shot" src="figs/anatomy.png"><figcaption>Size is rows × columns. Every entry has an address.</figcaption></figure>
+  <div class="points">
+    <div class="pt"><span class="n">1</span><div><h3>Size: rows, then columns</h3><p>A matrix with 2 rows and 3 columns is a $2\times 3$ matrix.</p></div></div>
+    <div class="pt"><span class="n">2</span><div><h3>Every entry has an address</h3><p>$a_{ij}$ sits in row $i$, column $j$. So $a_{23}$ is row 2, column 3.</p></div></div>
+    <div class="pt"><span class="n">3</span><div><h3>It can hold anything</h3><p>Equations, pixels, grades, prices. And, as we'll see, a move.</p></div></div>
+  </div>
+  <div class="foot"><span>01 · Nine numbers in a box</span><b>03</b></div>
+</section>
+
+<section class="page" style="--accent: var(--ih)">
+  <div class="sec">Two things a matrix can hold</div>
+  <div class="grid2">
+    <div class="card"><span class="kicker">A system of equations</span>
+      <div style="text-align:center;font-size:11pt;margin:2mm 0 3mm">$\begin{aligned} x+y+z&=4\\ x-y+2z&=1\\ 2x+y-z&=3\end{aligned}$</div>
+      <p class="muted" style="font-size:9pt">Strip away the letters, keep the numbers in front of them:</p>
+      <div style="text-align:center;font-size:11pt">$\begin{bmatrix}1&1&1\\1&-1&2\\2&1&-1\end{bmatrix}$</div>
+      <p class="muted" style="font-size:8.6pt;margin-top:3mm">We solve these in chapter 5.</p>
+    </div>
+    <div class="card"><span class="kicker">A picture</span>
+      <img src="figs/svd_full.png" style="width:100%;border-radius:2mm;display:block;margin-bottom:3mm">
+      <p class="muted" style="font-size:9pt">Each pixel is one number: its brightness, from $0$ (black) to $255$ (white). This photo is $480\times480$: <b style="color:var(--text)">230,400 numbers</b>.</p>
+    </div>
+  </div>
+  <figure style="margin-top:6mm"><img class="shot" src="figs/pixels.png"><figcaption>Zoom in far enough and the picture breaks into squares, each one a number.</figcaption></figure>
+  <div class="callout" style="--c: var(--vec)"><span class="kicker">The question that drives the video</span>
+    <p>A table of grades can't rotate anything. So how can nine numbers pick up a whole space and turn it? To answer that, stop <i>reading</i> the numbers and watch what they <i>do</i>.</p></div>
+  <div class="foot"><span>01 · Nine numbers in a box</span><b>04</b></div>
+</section>
+
+<!-- ───────────────────────────── CH 2 -->
+<section class="page" style="--accent: var(--kh)">
+  <div class="ch-head"><div class="ch-num">02</div><div><div class="kicker">Chapter two</div><h1>A machine that<br>moves space</h1></div></div>
+  <div class="big-idea">Feed the machine an arrow and it hands back another arrow. Feed it every arrow at once and the whole grid moves.</div>
+  <figure><img class="shot" src="figs/rules.png"><figcaption>Evenly spaced points stay evenly spaced after a linear move.</figcaption></figure>
+  <div class="sec-sm" style="margin-top:7mm">The three rules of a linear move</div>
+  <div class="grid3">
+    <div class="card"><span class="kicker">Rule 1</span><p>Straight lines stay <b>straight</b>.</p></div>
+    <div class="card"><span class="kicker">Rule 2</span><p>Evenly spaced lines stay <b>evenly spaced</b>.</p></div>
+    <div class="card"><span class="kicker">Rule 3</span><p>The origin <b>stays put</b>.</p></div>
+  </div>
+  <p class="muted" style="margin-top:5mm;font-size:9.4pt">A vector is an arrow from the origin, named by its tip: $\color{#ffe94a}{(2,1)}$ means two steps over, one step up.</p>
+  <div class="foot"><span>02 · A machine that moves space</span><b>05</b></div>
+</section>
+
+<section class="page" style="--accent: var(--kh)">
+  <div class="sec">The gallery of moves</div>
+  <p class="muted" style="font-size:9.4pt;margin-bottom:5mm">Grey is the grid before, blue is after. The <span class="ih">green</span> and <span class="jh">red</span> arrows show where $\hat\imath$ and $\hat\jmath$ land.</p>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:3.5mm">
+    <div class="mini"><img src="figs/mini_rotate.svg"><span class="lbl">Rotate</span><span class="m">$\begin{bmatrix}\cos\theta&-\sin\theta\\ \sin\theta&\cos\theta\end{bmatrix}$</span></div>
+    <div class="mini"><img src="figs/mini_stretch.svg"><span class="lbl">Stretch</span><span class="m">$\begin{bmatrix}1.6&0\\0&0.6\end{bmatrix}$</span></div>
+    <div class="mini"><img src="figs/mini_shear.svg"><span class="lbl">Shear</span><span class="m">$\begin{bmatrix}1&1\\0&1\end{bmatrix}$</span></div>
+    <div class="mini"><img src="figs/mini_flip.svg"><span class="lbl">Flip</span><span class="m">$\begin{bmatrix}-1&0\\0&1\end{bmatrix}$</span></div>
+    <div class="mini"><img src="figs/mini_squash.svg"><span class="lbl">Squash</span><span class="m">$\begin{bmatrix}1&0\\0&0\end{bmatrix}$</span></div>
+  </div>
+  <div class="grid2" style="margin-top:7mm">
+    <figure><img class="shot" src="figs/shear.png"><figcaption>A shear slides each row a bit further, like a deck of cards.</figcaption></figure>
+    <figure><img class="shot" src="figs/die3d.png"><figcaption>The same moves in 3D: space moves with the die, cell for cell.</figcaption></figure>
+  </div>
+  <div class="callout" style="--c: var(--null)"><span class="kicker">Not linear</span>
+    <p>Bending grid lines into curves, or sliding the whole plane off its centre ($x \mapsto x + 1$). Neither one is a matrix.</p></div>
+  <div class="foot"><span>02 · A machine that moves space</span><b>06</b></div>
+</section>
+
+<!-- ───────────────────────────── CH 3 -->
+<section class="page" style="--accent: var(--ih)">
+  <div class="ch-head"><div class="ch-num">03</div><div><div class="kicker">Chapter three</div><h1>The columns are<br>the whole story</h1></div></div>
+  <div class="big-idea">To know where <i>every</i> point goes, follow just two arrows. Where they land is the matrix.</div>
+  <figure><img class="shot" src="figs/columns.png"><figcaption>First column: where $\hat\imath$ lands. Second column: where $\hat\jmath$ lands.</figcaption></figure>
+  <div class="formula">
+    $\begin{bmatrix}\color{#83c167}a&\color{#fc6255}b\\\color{#83c167}c&\color{#fc6255}d\end{bmatrix}\begin{bmatrix}x\\y\end{bmatrix} = x\color{#83c167}\begin{bmatrix}a\\c\end{bmatrix} + y\color{#fc6255}\begin{bmatrix}b\\d\end{bmatrix}$
+    <small>Scale each column by the matching number of the vector, then add.</small>
+  </div>
+  <p class="muted" style="font-size:9.4pt">Why it works: any arrow is a recipe, $(x, y) = x\,\color{#83c167}{\hat\imath} + y\,\color{#fc6255}{\hat\jmath}$. A linear move keeps grid lines parallel and evenly spaced, so the recipe survives the move.</p>
+  <div class="foot"><span>03 · The columns are the whole story</span><b>07</b></div>
+</section>
+
+<section class="page" style="--accent: var(--ih)">
+  <div class="sec">Reading a matrix like a map</div>
+  <div class="card"><span class="kicker">Worked example</span>
+    <div style="font-size:12.5pt;text-align:center;margin:2mm 0">$\begin{bmatrix}\color{#83c167}3&\color{#fc6255}1\\\color{#83c167}2&\color{#fc6255}2\end{bmatrix}\begin{bmatrix}2\\1\end{bmatrix} = 2\color{#83c167}\begin{bmatrix}3\\2\end{bmatrix} + 1\color{#fc6255}\begin{bmatrix}1\\2\end{bmatrix} = \color{#ffe94a}\begin{bmatrix}7\\6\end{bmatrix}$</div>
+  </div>
+  <div class="row" style="margin-top:7mm;align-items:flex-start">
+    <div class="mini" style="width:46mm;flex:none"><img src="figs/mini_quarter.svg"><span class="m">$\begin{bmatrix}\color{#83c167}0&\color{#fc6255}-1\\\color{#83c167}1&\color{#fc6255}0\end{bmatrix}$</span></div>
+    <div>
+      <div class="sec-sm">Predict, then check</div>
+      <p>Column 1 says $\hat\imath$ lands pointing <b>up</b>. Column 2 says $\hat\jmath$ lands pointing <b>left</b>.</p>
+      <p class="muted">So the whole plane turns a <b style="color:var(--text)">quarter turn counter-clockwise</b>. You can read the move straight off the columns, without computing anything.</p>
+    </div>
+  </div>
+  <div class="rule"></div>
+  <div class="grid2">
+    <figure><img class="shot" src="figs/box3d.png"><figcaption>The opening box, decoded: three columns, three arrows.</figcaption></figure>
+    <div>
+      <div class="sec-sm">In 3D: three columns</div>
+      <div style="font-size:11.5pt;margin:2mm 0 3mm">$\begin{bmatrix}\color{#83c167}2&\color{#fc6255}1&\color{#58c4dd}0\\\color{#83c167}0&\color{#fc6255}1&\color{#58c4dd}1\\\color{#83c167}1&\color{#fc6255}0&\color{#58c4dd}1\end{bmatrix}$</div>
+      <p class="muted" style="font-size:9.2pt">Where <span class="ih">$\hat\imath$</span>, <span class="jh">$\hat\jmath$</span> and <span class="kh">$\hat k$</span> land. Nine numbers, three arrows.</p>
+    </div>
+  </div>
+  <div class="callout" style="--c: var(--kh)"><span class="kicker">In the wild · video games</span>
+    <p>A 3D character is thousands of corner points. To turn it, every point is multiplied by the same small matrix, fresh for every frame.</p></div>
+  <div class="foot"><span>03 · The columns are the whole story</span><b>08</b></div>
+</section>
+
+<!-- ───────────────────────────── CH 4 -->
+<section class="page" style="--accent: var(--vec)">
+  <div class="ch-head"><div class="ch-num">04</div><div><div class="kicker">Chapter four</div><h1>One move<br>after another</h1></div></div>
+  <div class="big-idea">Two moves in a row are a single move with its own matrix. Multiplying matrices means doing one move, then the other.</div>
+  <figure><img class="shot" src="figs/compose.png"><figcaption>Shear, then rotate: follow $\hat\imath$ and $\hat\jmath$ through both moves.</figcaption></figure>
+  <div class="formula">
+    $\underbrace{\begin{bmatrix}0&-1\\1&0\end{bmatrix}}_{R\text{ (second)}}\underbrace{\begin{bmatrix}1&1\\0&1\end{bmatrix}}_{S\text{ (first)}} = \begin{bmatrix}\color{#83c167}0&\color{#fc6255}-1\\\color{#83c167}1&\color{#fc6255}1\end{bmatrix}$
+    <small>Each column of the product is a column of $S$, pushed through $R$. Read right to left, like $f(g(x))$.</small>
+  </div>
+  <div class="callout" style="--c: var(--vec)"><span class="kicker">Where the row × column rule comes from</span>
+    <p>Pushing a column through the second matrix, written out in numbers, <i>is</i> the row-times-column rule: $(AB)_{ij} = \text{row } i \text{ of } A \cdot \text{column } j \text{ of } B$. Nobody invented it to torture students.</p></div>
+  <div class="foot"><span>04 · One move after another</span><b>09</b></div>
+</section>
+
+<section class="page" style="--accent: var(--vec)">
+  <div class="sec">Order matters</div>
+  <div class="row" style="gap:6mm;align-items:flex-start">
+    <div class="mini" style="width:40mm;flex:none"><img src="figs/mini_rsh.svg"><span class="lbl" style="font-size:10.5pt">shear, then rotate</span><span class="m">$RS=\begin{bmatrix}0&-1\\1&1\end{bmatrix}$</span></div>
+    <div class="mini" style="width:40mm;flex:none"><img src="figs/mini_shr.svg"><span class="lbl" style="font-size:10.5pt">rotate, then shear</span><span class="m">$SR=\begin{bmatrix}1&-1\\1&0\end{bmatrix}$</span></div>
+    <div style="padding-top:2mm">
+      <div class="formula" style="margin:0 0 4mm;padding:4mm">$RS \neq SR$</div>
+      <p class="muted" style="font-size:9.2pt">Real objects agree. Give a die a quarter turn forward, then one to the side, and <b style="color:var(--text)">4</b> ends up on top. Do it in the other order and you get <b style="color:var(--text)">2</b>.</p>
+    </div>
+  </div>
+  <figure style="margin-top:6mm"><img class="shot" src="figs/order.png"><figcaption>The same two quarter turns, in two orders: different faces on top.</figcaption></figure>
+  <div class="rule"></div>
+  <div class="grid2">
+    <div>
+      <div class="sec-sm">In the wild · neural networks</div>
+      <p style="font-size:9.4pt">A layer is a matrix, a shift, and a <b>bend</b>:</p>
+      <div style="font-size:11.5pt;margin:1mm 0 3mm">$\mathbf{x} \;\mapsto\; \tanh(W\mathbf{x} + \mathbf{b})$</div>
+      <p class="muted" style="font-size:9pt">Without the bend, ten layers multiply into <i>one</i> matrix, a single straight move. That can't untangle two spirals (67% at best). With bends, each layer folds space a little, and the spirals come apart (100%).</p>
+    </div>
+    <figure><img class="shot" src="figs/spirals.png"><figcaption>After the folds, one straight cut separates the two colours.</figcaption></figure>
+  </div>
+  <div class="foot"><span>04 · One move after another</span><b>10</b></div>
+</section>
+
+<!-- ───────────────────────────── CH 5 -->
+<section class="page" style="--accent: var(--null)">
+  <div class="ch-head"><div class="ch-num">05</div><div><div class="kicker">Chapter five</div><h1>The moves you<br>can't undo</h1></div></div>
+  <div class="big-idea">The determinant measures how much a move stretches area. When it is zero, space is crushed, and nothing can bring it back.</div>
+  <figure><img class="shot" src="figs/det.png"><figcaption>The unit square's area grows by a factor of 4: $\det A = 4$.</figcaption></figure>
+  <div class="grid2" style="margin-top:6mm">
+    <div class="card"><span class="kicker">The inverse: play it backwards</span>
+      <div style="font-size:11pt;margin:2mm 0">$A=\begin{bmatrix}3&1\\2&2\end{bmatrix},\quad A^{-1}=\tfrac14\begin{bmatrix}2&-1\\-2&3\end{bmatrix}$</div>
+      <p class="muted" style="font-size:9pt">$A^{-1}A = I$: do the move, then its inverse, and every point comes home.</p></div>
+    <div class="card"><span class="kicker">The determinant: area factor</span>
+      <div style="font-size:11pt;margin:2mm 0">$\det\begin{bmatrix}a&b\\c&d\end{bmatrix} = ad - bc$</div>
+      <p class="muted" style="font-size:9pt">$3\cdot2-1\cdot2 = \color{#f0ac5f}{4}$. A negative sign means the move also flips space over.</p></div>
+  </div>
+  <div class="foot"><span>05 · The moves you can't undo</span><b>11</b></div>
+</section>
+
+<section class="page" style="--accent: var(--null)">
+  <div class="sec">When the determinant is zero</div>
+  <div class="row" style="gap:6mm;align-items:flex-start">
+    <figure style="flex:1.35"><img class="shot" src="figs/collapse.png"><figcaption>$\begin{bmatrix}2&1\\2&1\end{bmatrix}$ squashes the plane onto one line.</figcaption></figure>
+    <div style="flex:1">
+      <p style="font-size:9.4pt"><b class="nl">Null space</b>: the points crushed into the origin. Here, the line through $(1,-2)$.</p>
+      <p style="font-size:9.4pt"><b>Column space</b>: everywhere the move can reach. Here, the line through $(1,1)$.</p>
+      <p class="muted" style="font-size:9pt">Many inputs share one output, so no move can undo it.</p>
+    </div>
+  </div>
+  <div class="callout" style="--c: var(--null)"><span class="kicker">You've seen this · shadows</span>
+    <p>Sunlight flattens a 3D die onto the ground. Every point along one ray lands on the same spot of shadow: the light's direction is the null space. That's why you can't rebuild the die from its shadow.</p></div>
+  <div class="rule" style="margin:5mm 0"></div>
+  <div class="sec-sm">Solving $A\mathbf{x}=\mathbf{b}$: which arrow lands on $\mathbf b$?</div>
+  <div class="grid2">
+    <figure><img class="shot" src="figs/planes.png"><figcaption>Three equations, three planes, one meeting point.</figcaption></figure>
+    <div>
+      <p style="font-size:9.2pt">2D: $\begin{bmatrix}3&1\\2&2\end{bmatrix}\mathbf x = \begin{bmatrix}5\\6\end{bmatrix}\Rightarrow \mathbf x = \begin{bmatrix}1\\2\end{bmatrix}$</p>
+      <p style="font-size:9.2pt">3D: the system from chapter 1 has $\det = 7$, so the three planes meet at one point, $(1, 2, 1)$.</p>
+      <p class="muted" style="font-size:9pt">If $\det = 0$, the planes share a whole line of points, or miss each other completely. Either way, you can't just run the move backwards.</p>
+    </div>
+  </div>
+  <div class="foot"><span>05 · The moves you can't undo</span><b>12</b></div>
+</section>
+
+<!-- ───────────────────────────── CH 6 -->
+<section class="page" style="--accent: var(--eigen)">
+  <div class="ch-head"><div class="ch-num">06</div><div><div class="kicker">Chapter six</div><h1>The directions<br>that don't turn</h1></div></div>
+  <div class="big-idea">Most arrows get knocked off their line. A few only stretch. Those directions are the skeleton of the move.</div>
+  <figure><img class="shot" src="figs/eigen.png"><figcaption>Sweep an arrow around the circle: on two lines, input and output agree.</figcaption></figure>
+  <div class="formula">$A\color{#b78cf2}{\mathbf v} = \color{#b78cf2}{\lambda}\color{#b78cf2}{\mathbf v}$
+    <small>$\mathbf v$ is an eigenvector; $\lambda$, its eigenvalue, is how much it stretches.</small></div>
+  <div class="grid2">
+    <div class="card"><span class="kicker">Our matrix</span>
+      <p style="font-size:10pt">$A\begin{bmatrix}1\\1\end{bmatrix} = \begin{bmatrix}4\\4\end{bmatrix}$, so $\lambda = \color{#b78cf2}4$</p>
+      <p style="font-size:10pt">$A\begin{bmatrix}1\\-2\end{bmatrix} = \begin{bmatrix}1\\-2\end{bmatrix}$, so $\lambda = \color{#b78cf2}1$</p></div>
+    <div class="card"><span class="kicker">Rotations</span>
+      <p style="font-size:9.2pt">In 2D, every arrow turns: <b>no</b> eigenvectors. In 3D, every rotation has an <b>axis</b> that stays put, an eigenvector with $\lambda = 1$.</p></div>
+  </div>
+  <div class="foot"><span>06 · The directions that don't turn</span><b>13</b></div>
+</section>
+
+<section class="page" style="--accent: var(--eigen)">
+  <div class="sec">Apply it again, and again</div>
+  <p style="font-size:9.4pt">Each multiplication favours the direction with the biggest stretch a little more. Repeat a matrix and everything drifts toward its <b class="ev">dominant eigenvector</b>.</p>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3.5mm;margin-top:4mm">
+    <div class="mini"><img src="figs/power_0.svg"><span class="m">start</span></div>
+    <div class="mini"><img src="figs/power_1.svg"><span class="m">$A\mathbf x$</span></div>
+    <div class="mini"><img src="figs/power_2.svg"><span class="m">$A^2\mathbf x$</span></div>
+    <div class="mini"><img src="figs/power_3.svg"><span class="m">$A^3\mathbf x$</span></div>
+  </div>
+  <p class="muted" style="font-size:8pt;margin-top:2mm">260 random points under our $A$, rescaled each round. The dashed line is the eigenvector $(1,1)$ with $\lambda = 4$.</p>
+  <div class="rule" style="margin:6mm 0"></div>
+  <div class="sec-sm">In the wild · PageRank</div>
+  <p class="muted" style="font-size:9.2pt">Seven pages and thousands of random readers. Each round of clicks is one multiplication by the click matrix $G$ (85% follow a link, 15% jump anywhere). The crowd settles on the same split from any start: $G\mathbf p = \mathbf p$, an eigenvector with $\lambda = 1$.</p>
+  <div class="grid2" style="margin-top:4mm;align-items:center">
+    <figure><img class="shot" src="figs/pagerank.png"></figure>
+    <table class="bars">
+      <tr><td style="width:7mm" class="serif">C</td><td><div class="bar" style="width:100%"></div></td><td style="width:11mm;text-align:right">.368</td></tr>
+      <tr><td class="serif">A</td><td><div class="bar" style="width:55.4%"></div></td><td style="text-align:right">.204</td></tr>
+      <tr><td class="serif">B</td><td><div class="bar" style="width:48.4%"></div></td><td style="text-align:right">.178</td></tr>
+      <tr><td class="serif">G</td><td><div class="bar" style="width:26.4%"></div></td><td style="text-align:right">.097</td></tr>
+      <tr><td class="serif">F</td><td><div class="bar" style="width:17.1%"></div></td><td style="text-align:right">.063</td></tr>
+      <tr><td class="serif">E</td><td><div class="bar" style="width:13.0%"></div></td><td style="text-align:right">.048</td></tr>
+      <tr><td class="serif">D</td><td><div class="bar" style="width:11.4%"></div></td><td style="text-align:right">.042</td></tr>
+    </table>
+  </div>
+  <div class="callout" style="--c: var(--eigen)"><span class="kicker">Notice</span>
+    <p>B and D each have one incoming link. B's comes from C, the most popular page, so B ends up with about 4× D's rank.</p></div>
+  <div class="foot"><span>06 · The directions that don't turn</span><b>14</b></div>
+</section>
+
+<!-- ───────────────────────────── CH 7 -->
+<section class="page" style="--accent: var(--sigma)">
+  <div class="ch-head"><div class="ch-num">07</div><div><div class="kicker">Chapter seven</div><h1>A rotation, a stretch,<br>and a rotation</h1></div></div>
+  <div class="big-idea">Every matrix, however messy its numbers, turns a circle into an ellipse, in three simple steps.</div>
+  <figure><img class="shot" src="figs/svd.png"><figcaption>Rotate, stretch along the grid, rotate again.</figcaption></figure>
+  <div class="formula">$A = U\,\color{#5cd0b3}{\Sigma}\,V^{\mathsf T}$
+    <small>$V^{\mathsf T}$ rotates · $\Sigma$ stretches by the singular values $\sigma_1 \ge \sigma_2 \ge \dots$ · $U$ rotates (a turn may include a mirror flip)</small></div>
+  <div class="grid3">
+    <div class="card"><span class="kicker">1 · Rotate</span><p class="serif" style="font-size:14pt">$-30.1^\circ$</p></div>
+    <div class="card"><span class="kicker">2 · Stretch</span><p class="serif" style="font-size:14pt">$\color{#5cd0b3}{4.131},\ \color{#5cd0b3}{0.968}$</p></div>
+    <div class="card"><span class="kicker">3 · Rotate</span><p class="serif" style="font-size:14pt">$+41.4^\circ$</p></div>
+  </div>
+  <p class="muted" style="font-size:8.8pt;margin-top:4mm">For our $A = \begin{bmatrix}3&1\\2&2\end{bmatrix}$. Check: $4.131 \times 0.968 = 4 = \det A$. It works for every matrix, any shape; in 3D a sphere becomes an ellipsoid.</p>
+  <div class="foot"><span>07 · A rotation, a stretch, and a rotation</span><b>15</b></div>
+</section>
+
+<section class="page" style="--accent: var(--sigma)">
+  <div class="sec">The payoff: a photo, taken apart</div>
+  <p class="muted" style="font-size:9.4pt">The picture from chapter 1 is a matrix, so it has an SVD too. Each singular value adds one <b style="color:var(--text)">layer</b>, a single column times a single row:</p>
+  <div class="formula" style="font-size:12.5pt">$A = \color{#5cd0b3}{\sigma_1}\,\mathbf u_1\mathbf v_1^{\mathsf T} + \color{#5cd0b3}{\sigma_2}\,\mathbf u_2\mathbf v_2^{\mathsf T} + \color{#5cd0b3}{\sigma_3}\,\mathbf u_3\mathbf v_3^{\mathsf T} + \cdots$</div>
+  <div class="strip">
+    <div><img src="figs/svd_k1.png">$k=1$</div><div><img src="figs/svd_k2.png">$k=2$</div><div><img src="figs/svd_k5.png">$k=5$</div>
+    <div><img src="figs/svd_k10.png">$k=10$</div><div><img src="figs/svd_k30.png">$k=30$</div><div><img src="figs/svd_full.png">all 480</div>
+  </div>
+  <div class="grid2" style="margin-top:7mm">
+    <div class="card"><span class="kicker">Storage</span>
+      <p style="font-size:10pt">30 layers $\times$ $(480 + 480 + 1)$ numbers</p>
+      <p class="serif" style="font-size:20pt;margin:1mm 0">$\approx \color{#5cd0b3}{12.5\%}$</p>
+      <p class="muted" style="font-size:9pt">of the 230,400 pixels, about an eighth, and it keeps 99.8% of the image's energy.</p></div>
+    <figure><img class="shot" src="figs/layers.png"><figcaption>The small stretches were mostly fine detail and noise.</figcaption></figure>
+  </div>
+  <div class="callout" style="--c: var(--sigma)"><span class="kicker">The whole video in one line</span>
+    <p>The table and the machine were never two different things. A grid of numbers <i>is</i> a move, and its biggest stretches are what matter most.</p></div>
+  <div class="foot"><span>07 · A rotation, a stretch, and a rotation</span><b>16</b></div>
+</section>
+
+<!-- ───────────────────────────── CHEAT SHEET -->
+<section class="page">
+  <div class="kicker">At a glance</div>
+  <h1 style="font-size:26pt;margin:2mm 0 7mm">Cheat sheet</h1>
+  <div class="cheat">
+    <div class="card" style="border-top:2px solid var(--ih)"><span class="kicker">Columns</span><div class="f">$A = \begin{bmatrix}\color{#83c167}{A\hat\imath} & \color{#fc6255}{A\hat\jmath}\end{bmatrix}$</div><p>The columns are where the basis arrows land.</p></div>
+    <div class="card" style="border-top:2px solid var(--vec)"><span class="kicker">Matrix × vector</span><div class="f">$A\begin{bmatrix}x\\y\end{bmatrix} = x\,\color{#83c167}{\text{col}_1} + y\,\color{#fc6255}{\text{col}_2}$</div><p>Scale the columns, then add.</p></div>
+    <div class="card" style="border-top:2px solid var(--vec)"><span class="kicker">Matrix × matrix</span><div class="f">$AB$: first $B$, then $A$</div><p>One move after another. $AB \ne BA$ in general.</p></div>
+    <div class="card" style="border-top:2px solid var(--kh)"><span class="kicker">Linear</span><div class="f">straight · even · origin fixed</div><p>The three rules every matrix move obeys.</p></div>
+    <div class="card" style="border-top:2px solid var(--area)"><span class="kicker">Determinant</span><div class="f">$\det\begin{bmatrix}a&b\\c&d\end{bmatrix} = ad-bc$</div><p>Area (volume) scale factor. Negative: flipped.</p></div>
+    <div class="card" style="border-top:2px solid var(--area)"><span class="kicker">Inverse</span><div class="f">$A^{-1}A = I$</div><p>Exists exactly when $\det A \ne 0$.</p></div>
+    <div class="card" style="border-top:2px solid var(--null)"><span class="kicker">Null & column space</span><div class="f">$A\mathbf x = \mathbf 0$ · range of $A$</div><p>What gets crushed to $\mathbf 0$ · everywhere the move can reach.</p></div>
+    <div class="card" style="border-top:2px solid var(--target)"><span class="kicker">Solving</span><div class="f">$A\mathbf x = \mathbf b$</div><p>Which input lands on $\mathbf b$? Unique iff $\det A \ne 0$.</p></div>
+    <div class="card" style="border-top:2px solid var(--eigen)"><span class="kicker">Eigenvectors</span><div class="f">$A\mathbf v = \lambda \mathbf v$</div><p>Directions that only stretch. Repetition drifts toward the biggest $|\lambda|$.</p></div>
+    <div class="card" style="border-top:2px solid var(--sigma)"><span class="kicker">SVD</span><div class="f">$A = U\Sigma V^{\mathsf T}$</div><p>Rotate, stretch, rotate. Keep the big $\sigma$'s to compress.</p></div>
+  </div>
+  <div class="foot"><span>Cheat sheet</span><b>17</b></div>
+</section>
+
+<!-- ───────────────────────────── PRACTICE -->
+<section class="page">
+  <div class="kicker">Test the picture in your head</div>
+  <h1 style="font-size:26pt;margin:2mm 0 3mm">Practice</h1>
+  <p class="muted" style="margin-bottom:5mm">Try to <i>see</i> each answer before you compute it. Answers are on the next page.</p>
+  <div class="q"><span class="n">1</span><p>Where does $\begin{bmatrix}2&0\\0&3\end{bmatrix}$ send the arrow $(1, 1)$? Describe the move in words.</p></div>
+  <div class="q"><span class="n">2</span><p>Write the matrix that turns the plane a quarter turn <b>clockwise</b>. (Hint: where do $\hat\imath$ and $\hat\jmath$ land?)</p></div>
+  <div class="q"><span class="n">3</span><p>Apply the counter-clockwise quarter turn $\begin{bmatrix}0&-1\\1&0\end{bmatrix}$ twice. What single move is that? Check it by multiplying.</p></div>
+  <div class="q"><span class="n">4</span><p>Compute $\begin{bmatrix}1&2\\3&4\end{bmatrix}\begin{bmatrix}0&1\\1&0\end{bmatrix}$. What did the second matrix do to $\hat\imath$ and $\hat\jmath$ first?</p></div>
+  <div class="q"><span class="n">5</span><p>$\det\begin{bmatrix}1&2\\3&4\end{bmatrix} = \;?$ What do its size and its sign tell you about the move?</p></div>
+  <div class="q"><span class="n">6</span><p>Find the eigenvectors and eigenvalues of $\begin{bmatrix}2&1\\1&2\end{bmatrix}$. (Try the diagonals.)</p></div>
+  <div class="q" style="border-bottom:1px solid var(--line)"><span class="n">7</span><p>Is the move $(x, y) \mapsto (x + 1,\ y)$ linear? Which rule decides it?</p></div>
+  <div class="foot"><span>Practice</span><b>18</b></div>
+</section>
+
+<section class="page">
+  <div class="kicker">Answers</div>
+  <h1 style="font-size:26pt;margin:2mm 0 6mm">Answers</h1>
+  <div class="q"><span class="n">1</span><p>$(2, 3)$. It stretches $x$ by 2 and $y$ by 3: a stretch along the axes.</p></div>
+  <div class="q"><span class="n">2</span><p>$\hat\imath \to (0,-1)$, $\hat\jmath \to (1, 0)$, so $\begin{bmatrix}0&1\\-1&0\end{bmatrix}$.</p></div>
+  <div class="q"><span class="n">3</span><p>$\begin{bmatrix}-1&0\\0&-1\end{bmatrix}$: a half turn. Every arrow points the opposite way.</p></div>
+  <div class="q"><span class="n">4</span><p>$\begin{bmatrix}2&1\\4&3\end{bmatrix}$. The second matrix swaps $\hat\imath$ and $\hat\jmath$, so the product is $A$ with its columns swapped.</p></div>
+  <div class="q"><span class="n">5</span><p>$1\cdot4 - 2\cdot3 = -2$. Areas double, and the negative sign says the plane is flipped over.</p></div>
+  <div class="q"><span class="n">6</span><p>$(1,1)$ with $\lambda = 3$, and $(1,-1)$ with $\lambda = 1$.</p></div>
+  <div class="q" style="border-bottom:1px solid var(--line)"><span class="n">7</span><p>No. It moves the origin to $(1, 0)$, breaking rule 3. No matrix can do that.</p></div>
+  <div class="callout" style="--c: var(--eigen);margin-top:9mm"><span class="kicker">Going further</span>
+    <p>The determinant gets a whole video of its own: why area scales by $ad - bc$, and what a negative or zero area really means.</p></div>
+  <div class="foot"><span>Answers</span><b>19</b></div>
+</section>
+
+<!-- ───────────────────────────── BACK -->
+<section class="page cover">
+  <div class="art" style="background-image:url('figs/outro.png');background-size:220% auto;background-position:-127mm -22mm"></div>
+  <div class="shade" style="background:linear-gradient(180deg, rgba(5,5,6,.2) 0%, rgba(5,5,6,.35) 45%, rgba(5,5,6,.97) 75%)"></div>
+  <div class="title">
+    <div class="quote" style="font-size:30pt">The numbers change.<br><span class="vc">The move doesn't.</span></div>
+    <p class="muted" style="max-width:140mm">Nine numbers are what a move looks like from where we stand, measured along our own $\hat\imath$, $\hat\jmath$, $\hat k$. Pick three different arrows and the very same move gets nine different numbers.</p>
+    <div class="bar7"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  renderMathInElement(document.body, { delimiters: [{ left: "$", right: "$", display: false }], throwOnError: false });
+  document.fonts.ready.then(() => { document.body.dataset.ready = "1"; });
+});
+</script>
+</body>
+</html>
