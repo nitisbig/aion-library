@@ -1,0 +1,18 @@
+# Voice requested for this video: calm, cinematic read
+voice_id = "XxR1oG87tbJnnecXwla6"
+model_id = "eleven_v4"
+output_format = "mp3_44100_128"
+stitch = true
+seed = 23
+[settings]
+stability = 0.62
+similarity_boost = 0.75
+speed = 0.85
+
+# Pacing (free, applied to cached audio): long breaths between ideas, pauses after questions
+[pacing]
+snap = true
+lead_in = 3.5
+paragraph_gap = 1.25
+section_gap = 3.0
+tail = 7.0

@@ -10,7 +10,7 @@ pytestmark = pytest.mark.gpu
 
 from aion.comp.comp import Comp
 from aion.core.track import key
-from aion.layers.media import ArrayLayer
+from aion.layers.media import ArrayLayer, FramesLayer
 from aion.layers.shader import ShaderLayer
 from aion.layers.solid import Gradient, Solid
 
@@ -104,3 +104,15 @@ def test_encoder_roundtrip(tmp_path):
                           "stream=nb_read_frames,color_space", "-of", "csv=p=0", str(tmp_path / "a.mp4")],
                          capture_output=True, text=True).stdout.strip()
     assert out.startswith("15") or out.endswith("15") and "bt709" in out
+
+
+def test_frames_layer_animates_only_inside_its_window():
+    def frame(t):                                               # red before 1 s, green from 1 s on
+        rgba = np.zeros((8, 8, 4), np.uint8)
+        rgba[..., 0 if t < 1.0 else 1], rgba[..., 3] = 255, 255
+        return rgba
+    lay = FramesLayer(frame, height=8, during=[(0.5, 1.5)])
+    assert not lay.content_changes(0.0, 0.4) and lay.content_changes(0.4, 0.6) and not lay.content_changes(1.6, 3.0)
+    comp = Comp((W, H), background="#000000")
+    comp.add(lay)
+    assert px(comp.frame(0.2))[0] > 250 and px(comp.frame(1.2))[1] > 250

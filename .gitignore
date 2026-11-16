@@ -17,6 +17,11 @@ sfx/
 *.mov
 *.webm
 *.gif
+*.npz
+*.frag
+*.mp3
+*.vert
+*.wav
 frames/
 
 # Production inputs (large audio; keep SRT/scripts tracked)

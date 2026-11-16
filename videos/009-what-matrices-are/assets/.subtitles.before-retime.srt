@@ -1,0 +1,1903 @@
+1
+00:00:01,500 --> 00:00:03,880
+Nine numbers, arranged in a box.
+
+2
+00:00:04,690 --> 00:00:06,240
+It might be the most useful
+
+3
+00:00:06,320 --> 00:00:08,130
+object in all of mathematics.
+
+4
+00:00:08,620 --> 00:00:10,070
+It also looks like the most boring.
+
+5
+00:00:11,010 --> 00:00:12,020
+But give it something to
+
+6
+00:00:12,100 --> 00:00:13,800
+act on, and it comes alive.
+
+7
+00:00:14,290 --> 00:00:15,840
+Each column becomes an arrow.
+
+8
+00:00:16,190 --> 00:00:18,740
+Space itself tilts, stretches, and
+
+9
+00:00:18,780 --> 00:00:20,660
+folds, and anything living in that
+
+10
+00:00:20,900 --> 00:00:22,180
+space goes along for the ride.
+
+11
+00:00:23,320 --> 00:00:25,933
+Every photo on your phone is, underneath,
+
+12
+00:00:25,987 --> 00:00:27,960
+a grid of numbers like this one.
+
+13
+00:00:27,960 --> 00:00:29,080
+Every frame of a video
+
+14
+00:00:29,160 --> 00:00:30,720
+game is drawn with them.
+
+15
+00:00:30,720 --> 00:00:31,800
+One of them helped Google
+
+16
+00:00:31,920 --> 00:00:33,453
+rank the entire web.
+
+17
+00:00:33,453 --> 00:00:35,320
+And a modern neural network is, for the
+
+18
+00:00:35,400 --> 00:00:37,520
+most part, a very long stack of them.
+
+19
+00:00:38,530 --> 00:00:39,980
+And yet, most of us first
+
+20
+00:00:40,060 --> 00:00:41,740
+meet matrices as bookkeeping.
+
+21
+00:00:41,980 --> 00:00:44,300
+Rows and columns, and a strange rule
+
+22
+00:00:44,380 --> 00:00:46,340
+for multiplying them that you practice,
+
+23
+00:00:46,380 --> 00:00:48,420
+use on an exam, and quietly forget.
+
+24
+00:00:49,340 --> 00:00:50,400
+The rule works.
+
+25
+00:00:50,660 --> 00:00:52,850
+It just hides what a matrix actually is.
+
+26
+00:00:53,850 --> 00:00:55,140
+So here is the claim this
+
+27
+00:00:55,300 --> 00:00:56,280
+video is going to earn.
+
+28
+00:00:56,560 --> 00:00:58,940
+A matrix is not a table you read.
+
+29
+00:00:59,340 --> 00:01:00,540
+It is a move you make.
+
+30
+00:01:00,760 --> 00:01:02,860
+A way of picking up all of space,
+
+31
+00:01:02,900 --> 00:01:04,440
+and setting it down somewhere new.
+
+32
+00:01:05,480 --> 00:01:06,840
+Once you see it that way, the
+
+33
+00:01:06,920 --> 00:01:08,710
+strange rules stop being strange.
+
+34
+00:01:08,980 --> 00:01:10,840
+Multiplying two matrices means
+
+35
+00:01:11,000 --> 00:01:12,570
+doing one move, and then another.
+
+36
+00:01:12,910 --> 00:01:14,800
+Some moves crush space flat,
+
+37
+00:01:14,840 --> 00:01:16,010
+and can never be undone.
+
+38
+00:01:16,430 --> 00:01:17,800
+Some leave a few special
+
+39
+00:01:18,040 --> 00:01:18,880
+directions untouched.
+
+40
+00:01:19,140 --> 00:01:21,000
+And every one of them, however
+
+41
+00:01:21,120 --> 00:01:22,440
+messy its numbers look, is
+
+42
+00:01:22,520 --> 00:01:24,310
+built from three simple motions.
+
+43
+00:01:25,270 --> 00:01:27,020
+We'll start with two arrows on a flat
+
+44
+00:01:27,100 --> 00:01:29,180
+grid, and end by taking a photograph
+
+45
+00:01:29,300 --> 00:01:31,130
+apart, one stretch at a time.
+
+46
+00:01:36,150 --> 00:01:37,530
+First, the plain facts.
+
+47
+00:01:37,870 --> 00:01:40,020
+A matrix is a rectangle of numbers.
+
+48
+00:01:40,260 --> 00:01:42,240
+We give its size as rows, then
+
+49
+00:01:42,560 --> 00:01:45,200
+columns, so this one is two by three.
+
+50
+00:01:45,200 --> 00:01:47,230
+And every entry has an address: which
+
+51
+00:01:47,360 --> 00:01:48,950
+row it sits in, and which column.
+
+52
+00:01:49,950 --> 00:01:51,700
+Because it's so plain, a matrix
+
+53
+00:01:51,780 --> 00:01:53,050
+can hold almost anything.
+
+54
+00:01:53,380 --> 00:01:54,740
+Take three equations that
+
+55
+00:01:54,820 --> 00:01:56,320
+share the same three unknowns.
+
+56
+00:01:56,650 --> 00:01:58,340
+Strip away the letters, keep only
+
+57
+00:01:58,420 --> 00:01:59,400
+the numbers in front of them,
+
+58
+00:01:59,660 --> 00:02:01,230
+and what's left is a matrix.
+
+59
+00:02:01,690 --> 00:02:03,130
+Remember these three equations.
+
+60
+00:02:03,370 --> 00:02:04,400
+We'll come back and solve them.
+
+61
+00:02:05,300 --> 00:02:06,260
+Or take a picture.
+
+62
+00:02:06,710 --> 00:02:07,800
+This one is a single
+
+63
+00:02:07,960 --> 00:02:08,920
+frame from a moment ago.
+
+64
+00:02:09,220 --> 00:02:10,960
+Zoom in far enough and it breaks
+
+65
+00:02:11,000 --> 00:02:13,400
+into tiny squares, and each square is
+
+66
+00:02:13,480 --> 00:02:15,030
+just a number for how bright it is.
+
+67
+00:02:15,310 --> 00:02:17,480
+A black and white picture is a matrix with
+
+68
+00:02:17,560 --> 00:02:19,670
+hundreds of rows and hundreds of columns.
+
+69
+00:02:20,010 --> 00:02:21,090
+Keep this one in mind, too.
+
+70
+00:02:22,040 --> 00:02:23,900
+So a matrix can be a table.
+
+71
+00:02:24,220 --> 00:02:25,840
+But that leaves a strange question.
+
+72
+00:02:26,130 --> 00:02:27,580
+A table of exam grades
+
+73
+00:02:27,660 --> 00:02:28,750
+can't rotate anything.
+
+74
+00:02:29,000 --> 00:02:31,110
+A list of prices can't tilt a die.
+
+75
+00:02:31,380 --> 00:02:33,180
+So how did nine numbers, at
+
+76
+00:02:33,220 --> 00:02:34,540
+the start of this video, pick
+
+77
+00:02:34,620 --> 00:02:36,270
+up a whole space and turn it?
+
+78
+00:02:37,280 --> 00:02:38,480
+To answer that, we have to
+
+79
+00:02:38,560 --> 00:02:40,000
+stop reading the numbers, and
+
+80
+00:02:40,080 --> 00:02:41,320
+start watching what they do.
+
+81
+00:02:43,130 --> 00:02:44,940
+Picture a flat grid, and an
+
+82
+00:02:45,100 --> 00:02:46,420
+arrow starting from its center.
+
+83
+00:02:46,950 --> 00:02:49,020
+That arrow is a vector, and you can
+
+84
+00:02:49,100 --> 00:02:50,890
+describe it by where its tip sits.
+
+85
+00:02:51,040 --> 00:02:53,380
+Two steps over, one step up.
+
+86
+00:02:54,410 --> 00:02:55,740
+Now imagine a machine.
+
+87
+00:02:55,990 --> 00:02:57,600
+You feed it an arrow, and it
+
+88
+00:02:57,680 --> 00:02:59,070
+hands you back a different arrow.
+
+89
+00:02:59,590 --> 00:03:01,260
+Arrow in, arrow out.
+
+90
+00:03:02,290 --> 00:03:04,847
+Watching one arrow at a time gets slow.
+
+91
+00:03:04,873 --> 00:03:05,940
+So let's feed the machine
+
+92
+00:03:06,020 --> 00:03:07,280
+every arrow at once.
+
+93
+00:03:07,850 --> 00:03:09,860
+Every point on the grid slides to its new
+
+94
+00:03:09,940 --> 00:03:12,020
+home, and the grid lines travel with them.
+
+95
+00:03:13,040 --> 00:03:14,440
+Most machines would tangle
+
+96
+00:03:14,480 --> 00:03:15,620
+the grid into a mess.
+
+97
+00:03:15,930 --> 00:03:17,160
+The ones that matrices
+
+98
+00:03:17,480 --> 00:03:18,950
+describe follow three rules.
+
+99
+00:03:19,330 --> 00:03:20,960
+Straight lines stay straight.
+
+100
+00:03:21,490 --> 00:03:24,147
+Evenly spaced lines stay evenly spaced.
+
+101
+00:03:24,173 --> 00:03:25,740
+And the center stays where it is.
+
+102
+00:03:26,210 --> 00:03:28,100
+Moves like these are called linear.
+
+103
+00:03:29,110 --> 00:03:30,540
+Inside those rules, there's a
+
+104
+00:03:30,620 --> 00:03:31,820
+surprising amount of freedom.
+
+105
+00:03:32,230 --> 00:03:33,860
+You can rotate the whole plane.
+
+106
+00:03:34,310 --> 00:03:35,740
+You can stretch it, more in
+
+107
+00:03:35,820 --> 00:03:36,900
+one direction than the other.
+
+108
+00:03:37,360 --> 00:03:39,180
+You can shear it, sliding each
+
+109
+00:03:39,260 --> 00:03:40,460
+row a little further than the
+
+110
+00:03:40,540 --> 00:03:42,250
+one below, like a deck of cards.
+
+111
+00:03:42,670 --> 00:03:44,390
+You can flip it, as if in a mirror.
+
+112
+00:03:44,840 --> 00:03:46,060
+You can even squash it
+
+113
+00:03:46,140 --> 00:03:47,750
+flat, onto a single line.
+
+114
+00:03:48,680 --> 00:03:50,400
+What you can't do is bend the grid
+
+115
+00:03:50,480 --> 00:03:52,400
+lines into curves, or drag the
+
+116
+00:03:52,480 --> 00:03:54,030
+whole plane away from its center.
+
+117
+00:03:54,980 --> 00:03:56,180
+And all of this carries
+
+118
+00:03:56,260 --> 00:03:57,550
+over to three dimensions.
+
+119
+00:03:57,960 --> 00:04:00,700
+A die can be turned, stretched, sheared,
+
+120
+00:04:00,740 --> 00:04:02,740
+and flattened, and the grid of space
+
+121
+00:04:02,820 --> 00:04:04,950
+moves right along with it, cell for cell.
+
+122
+00:04:05,940 --> 00:04:07,130
+So that's the machine.
+
+123
+00:04:07,500 --> 00:04:08,860
+But where do the numbers come in?
+
+124
+00:04:10,770 --> 00:04:12,420
+This is the idea that everything
+
+125
+00:04:12,500 --> 00:04:13,830
+else in this video grows out of.
+
+126
+00:04:14,870 --> 00:04:16,430
+Look at two special arrows.
+
+127
+00:04:16,830 --> 00:04:18,740
+One step to the right, called i hat.
+
+128
+00:04:19,140 --> 00:04:21,020
+And one step up, called j hat.
+
+129
+00:04:21,510 --> 00:04:22,840
+Every other arrow can be
+
+130
+00:04:22,960 --> 00:04:23,990
+built out of these two.
+
+131
+00:04:24,410 --> 00:04:26,440
+Our arrow from before is two copies
+
+132
+00:04:26,520 --> 00:04:28,730
+of i hat, plus one copy of j hat.
+
+133
+00:04:29,680 --> 00:04:30,840
+Now apply a move.
+
+134
+00:04:31,250 --> 00:04:32,860
+Because the grid lines stay parallel
+
+135
+00:04:32,940 --> 00:04:35,470
+and evenly spaced, that recipe survives.
+
+136
+00:04:35,860 --> 00:04:37,820
+The new arrow is still two copies
+
+137
+00:04:37,900 --> 00:04:39,740
+of wherever i hat landed, plus
+
+138
+00:04:39,820 --> 00:04:41,690
+one copy of wherever j hat landed.
+
+139
+00:04:42,610 --> 00:04:44,200
+Think about how much that gives you.
+
+140
+00:04:44,590 --> 00:04:45,840
+To know where every single
+
+141
+00:04:45,920 --> 00:04:47,330
+point in the plane goes, you
+
+142
+00:04:47,440 --> 00:04:49,300
+only need to follow two arrows.
+
+143
+00:04:50,160 --> 00:04:51,570
+So write down where they land.
+
+144
+00:04:51,960 --> 00:04:52,900
+Where i hat lands
+
+145
+00:04:52,980 --> 00:04:54,270
+becomes the first column.
+
+146
+00:04:54,480 --> 00:04:56,290
+Where j hat lands becomes the second.
+
+147
+00:04:56,690 --> 00:04:58,600
+Those two columns are the matrix.
+
+148
+00:04:58,860 --> 00:05:00,390
+Nothing more, nothing less.
+
+149
+00:05:01,260 --> 00:05:03,480
+And multiplying a matrix by a vector is
+
+150
+00:05:03,560 --> 00:05:05,440
+just that recipe, written in numbers.
+
+151
+00:05:05,810 --> 00:05:07,080
+Scale the first column by
+
+152
+00:05:07,120 --> 00:05:08,240
+the vector's first number.
+
+153
+00:05:08,620 --> 00:05:09,720
+Scale the second column
+
+154
+00:05:09,800 --> 00:05:10,630
+by its second number.
+
+155
+00:05:11,020 --> 00:05:11,610
+Add the two.
+
+156
+00:05:11,960 --> 00:05:13,380
+That's where the arrow lands.
+
+157
+00:05:14,160 --> 00:05:15,500
+Which means you can now read a
+
+158
+00:05:15,740 --> 00:05:17,250
+matrix the way you'd read a map.
+
+159
+00:05:17,780 --> 00:05:18,410
+Try this one.
+
+160
+00:05:18,670 --> 00:05:20,780
+Its first column says i hat
+
+161
+00:05:20,860 --> 00:05:22,410
+lands pointing straight up.
+
+162
+00:05:22,740 --> 00:05:26,087
+Its second says j hat lands pointing left.
+
+163
+00:05:26,193 --> 00:05:27,070
+Before the grid moves,
+
+164
+00:05:27,330 --> 00:05:28,230
+what do you think it does?
+
+165
+00:05:31,890 --> 00:05:33,380
+It turns the whole plane a
+
+166
+00:05:33,540 --> 00:05:35,290
+quarter turn, counterclockwise.
+
+167
+00:05:36,210 --> 00:05:38,280
+Three dimensions work exactly the same
+
+168
+00:05:38,360 --> 00:05:40,820
+way, with three arrows and three columns.
+
+169
+00:05:41,280 --> 00:05:42,680
+So now we can decode the
+
+170
+00:05:42,840 --> 00:05:44,060
+box from the very beginning.
+
+171
+00:05:44,330 --> 00:05:46,600
+The first column is where i hat goes.
+
+172
+00:05:46,950 --> 00:05:48,430
+The second, j hat.
+
+173
+00:05:48,730 --> 00:05:50,120
+The third is where k hat
+
+174
+00:05:50,200 --> 00:05:51,900
+goes, the arrow pointing up.
+
+175
+00:05:52,320 --> 00:05:53,560
+Nine numbers.
+
+176
+00:05:53,640 --> 00:05:54,640
+Three arrows.
+
+177
+00:05:55,180 --> 00:05:56,140
+This is how a video
+
+178
+00:05:56,260 --> 00:05:57,230
+game turns a character.
+
+179
+00:05:57,460 --> 00:05:59,340
+The character is built from thousands
+
+180
+00:05:59,420 --> 00:06:01,100
+of corner points, and every one
+
+181
+00:06:01,140 --> 00:06:02,860
+of them gets multiplied by the same
+
+182
+00:06:02,940 --> 00:06:05,180
+small matrix, fresh for every frame.
+
+183
+00:06:07,110 --> 00:06:08,120
+What happens if you make
+
+184
+00:06:08,200 --> 00:06:09,640
+one move, and then another?
+
+185
+00:06:10,130 --> 00:06:12,680
+Shear the plane, and then rotate it.
+
+186
+00:06:13,180 --> 00:06:14,610
+The grid still ends up straight,
+
+187
+00:06:14,960 --> 00:06:16,490
+evenly spaced, and centered.
+
+188
+00:06:16,900 --> 00:06:19,100
+So the combined motion is itself a
+
+189
+00:06:19,260 --> 00:06:21,590
+single move, and it has its own matrix.
+
+190
+00:06:21,810 --> 00:06:23,100
+To find it, we just
+
+191
+00:06:23,180 --> 00:06:24,560
+follow i hat and j hat.
+
+192
+00:06:25,530 --> 00:06:27,600
+The shear leaves i hat where it is, and
+
+193
+00:06:27,680 --> 00:06:29,470
+then the rotation sends it straight up.
+
+194
+00:06:29,690 --> 00:06:30,960
+That's the first column
+
+195
+00:06:31,040 --> 00:06:31,940
+of the combined move.
+
+196
+00:06:32,450 --> 00:06:34,160
+The shear tips j hat onto the
+
+197
+00:06:34,240 --> 00:06:36,240
+diagonal, and the rotation carries
+
+198
+00:06:36,320 --> 00:06:38,060
+that diagonal up and to the left.
+
+199
+00:06:38,270 --> 00:06:39,590
+That's the second column.
+
+200
+00:06:40,470 --> 00:06:42,153
+Look at what we just did.
+
+201
+00:06:42,153 --> 00:06:43,680
+To get each column of the result,
+
+202
+00:06:43,970 --> 00:06:45,460
+we pushed a column of the first
+
+203
+00:06:45,740 --> 00:06:47,020
+matrix through the second one.
+
+204
+00:06:47,420 --> 00:06:48,820
+Write that out with numbers, and
+
+205
+00:06:48,900 --> 00:06:50,340
+out comes the row times column
+
+206
+00:06:50,420 --> 00:06:51,730
+rule from the start of the video.
+
+207
+00:06:52,120 --> 00:06:53,220
+Nobody invented that
+
+208
+00:06:53,300 --> 00:06:54,847
+rule to torture students.
+
+209
+00:06:54,873 --> 00:06:56,180
+It's simply what two moves in
+
+210
+00:06:56,220 --> 00:06:57,740
+a row look like, written down.
+
+211
+00:06:58,650 --> 00:06:59,800
+We write the rotation on the
+
+212
+00:07:00,000 --> 00:07:01,720
+left, because it acts second, the
+
+213
+00:07:01,840 --> 00:07:03,750
+same way you'd write f of g of x.
+
+214
+00:07:04,160 --> 00:07:05,580
+Which raises a fair question.
+
+215
+00:07:05,980 --> 00:07:06,900
+Does the order matter?
+
+216
+00:07:07,340 --> 00:07:09,747
+If you rotate first and shear second,
+
+217
+00:07:09,773 --> 00:07:11,030
+do you end up in the same place?
+
+218
+00:07:14,550 --> 00:07:14,990
+You don't.
+
+219
+00:07:15,250 --> 00:07:17,580
+The two grids land in different places.
+
+220
+00:07:17,970 --> 00:07:19,787
+And real objects agree.
+
+221
+00:07:19,787 --> 00:07:21,627
+Turn a die a quarter turn forward,
+
+222
+00:07:21,653 --> 00:07:23,060
+and then a quarter turn to the side.
+
+223
+00:07:23,480 --> 00:07:24,640
+Now start over, and do
+
+224
+00:07:24,720 --> 00:07:25,630
+it in the other order.
+
+225
+00:07:25,890 --> 00:07:27,820
+A different face ends up on top.
+
+226
+00:07:28,710 --> 00:07:30,260
+With matrices, the order
+
+227
+00:07:30,340 --> 00:07:31,440
+is part of the move.
+
+228
+00:07:32,310 --> 00:07:34,400
+This idea, stacking moves, is
+
+229
+00:07:34,520 --> 00:07:35,930
+the heart of a neural network.
+
+230
+00:07:36,360 --> 00:07:38,320
+Each layer takes a list of numbers,
+
+231
+00:07:38,360 --> 00:07:40,360
+multiplies it by a matrix, shifts it
+
+232
+00:07:40,400 --> 00:07:42,440
+a little, and then bends the result,
+
+233
+00:07:42,520 --> 00:07:44,280
+squashing the largest values.
+
+234
+00:07:44,700 --> 00:07:46,900
+That bend matters more than it looks.
+
+235
+00:07:47,110 --> 00:07:49,500
+Without it, ten layers of matrices
+
+236
+00:07:49,620 --> 00:07:51,260
+would multiply together into just
+
+237
+00:07:51,420 --> 00:07:53,870
+one matrix, a single straight move.
+
+238
+00:07:54,160 --> 00:07:55,980
+And no single straight move
+
+239
+00:07:56,100 --> 00:07:57,820
+can untangle these two spirals.
+
+240
+00:07:58,900 --> 00:08:00,560
+With the bends, each layer
+
+241
+00:08:00,640 --> 00:08:01,820
+folds space a little.
+
+242
+00:08:02,370 --> 00:08:04,240
+Fold by fold, the spirals pull
+
+243
+00:08:04,400 --> 00:08:06,000
+apart, until the two colors
+
+244
+00:08:06,080 --> 00:08:07,510
+can be cleanly told apart.
+
+245
+00:08:08,600 --> 00:08:10,020
+Every move we've made so far
+
+246
+00:08:10,100 --> 00:08:11,200
+could be played backwards.
+
+247
+00:08:11,490 --> 00:08:13,860
+But that isn't always possible.
+
+248
+00:08:15,360 --> 00:08:16,400
+Here's the matrix we'll carry
+
+249
+00:08:16,480 --> 00:08:17,560
+through the rest of the video.
+
+250
+00:08:17,990 --> 00:08:20,587
+It tilts and stretches the grid.
+
+251
+00:08:20,587 --> 00:08:22,240
+To undo it, you play the move in
+
+252
+00:08:22,320 --> 00:08:24,587
+reverse, and that reverse move has a
+
+253
+00:08:24,693 --> 00:08:26,670
+matrix of its own, called the inverse.
+
+254
+00:08:26,920 --> 00:08:29,080
+Do the move, then the inverse,
+
+255
+00:08:29,290 --> 00:08:31,467
+and every point comes home.
+
+256
+00:08:31,653 --> 00:08:32,720
+Together they make the move that
+
+257
+00:08:32,880 --> 00:08:34,740
+does nothing at all, the identity.
+
+258
+00:08:35,960 --> 00:08:37,140
+Now watch the little unit
+
+259
+00:08:37,220 --> 00:08:38,660
+square during the move.
+
+260
+00:08:38,660 --> 00:08:40,800
+Its area grows by a factor of four.
+
+261
+00:08:41,350 --> 00:08:43,220
+That one number, the stretch in
+
+262
+00:08:43,300 --> 00:08:45,040
+area, is called the determinant.
+
+263
+00:08:45,270 --> 00:08:47,487
+It has a whole video of its own.
+
+264
+00:08:47,987 --> 00:08:49,620
+For now, one question matters.
+
+265
+00:08:50,020 --> 00:08:51,890
+What happens when that number is zero?
+
+266
+00:08:52,880 --> 00:08:54,900
+Then the area becomes nothing.
+
+267
+00:08:55,310 --> 00:08:56,380
+The whole plane gets
+
+268
+00:08:56,460 --> 00:08:58,807
+squashed onto a single line.
+
+269
+00:08:58,913 --> 00:09:00,000
+And something is lost.
+
+270
+00:09:00,450 --> 00:09:01,610
+Look at these different points.
+
+271
+00:09:01,970 --> 00:09:04,240
+They all land on exactly the same spot.
+
+272
+00:09:04,580 --> 00:09:06,380
+Once they're there, nothing can tell
+
+273
+00:09:06,420 --> 00:09:08,830
+them apart again, so no move can undo it.
+
+274
+00:09:09,750 --> 00:09:11,920
+One entire line of points gets
+
+275
+00:09:12,000 --> 00:09:13,640
+crushed into the center itself.
+
+276
+00:09:13,900 --> 00:09:16,200
+That line is called the null space.
+
+277
+00:09:16,410 --> 00:09:18,320
+And everything that survives lands
+
+278
+00:09:18,400 --> 00:09:20,240
+on the output line, called the column
+
+279
+00:09:20,320 --> 00:09:22,600
+space: every place the move can reach.
+
+280
+00:09:23,570 --> 00:09:24,953
+You've seen this happen.
+
+281
+00:09:25,007 --> 00:09:26,930
+A shadow is exactly this kind of move.
+
+282
+00:09:27,280 --> 00:09:29,460
+Sunlight flattens a three dimensional
+
+283
+00:09:29,620 --> 00:09:31,380
+die onto the ground, and every
+
+284
+00:09:31,460 --> 00:09:32,980
+point along a single ray of light
+
+285
+00:09:33,240 --> 00:09:35,753
+ends up on the same spot of shadow.
+
+286
+00:09:35,753 --> 00:09:36,500
+The direction of the
+
+287
+00:09:36,660 --> 00:09:37,790
+light is the null space.
+
+288
+00:09:38,070 --> 00:09:39,300
+That's why you can't rebuild
+
+289
+00:09:39,380 --> 00:09:41,513
+the die from its shadow alone.
+
+290
+00:09:41,567 --> 00:09:42,580
+A photograph does something
+
+291
+00:09:42,660 --> 00:09:44,527
+similar, which is why depth in a
+
+292
+00:09:44,633 --> 00:09:46,100
+single photo has to be inferred
+
+293
+00:09:46,220 --> 00:09:48,220
+from clues, never read off directly.
+
+294
+00:09:49,170 --> 00:09:50,280
+Now, about those three
+
+295
+00:09:50,400 --> 00:09:51,290
+equations from the start.
+
+296
+00:09:51,600 --> 00:09:53,000
+Solving them is really
+
+297
+00:09:53,080 --> 00:09:54,440
+a question about a move.
+
+298
+00:09:54,710 --> 00:09:57,080
+Some matrix moves space, and we
+
+299
+00:09:57,160 --> 00:09:58,370
+know where an arrow ended up.
+
+300
+00:09:58,730 --> 00:10:00,680
+Which arrow was sent there?
+
+301
+00:10:01,180 --> 00:10:02,460
+In two dimensions, each
+
+302
+00:10:02,580 --> 00:10:04,140
+equation is a line, and the
+
+303
+00:10:04,220 --> 00:10:05,770
+answer is where the lines cross.
+
+304
+00:10:06,080 --> 00:10:08,220
+Seen as a move, it's the one arrow
+
+305
+00:10:08,300 --> 00:10:10,010
+that lands exactly on the target.
+
+306
+00:10:11,130 --> 00:10:12,960
+With three unknowns, each equation
+
+307
+00:10:13,040 --> 00:10:15,680
+becomes a flat plane in space, and three
+
+308
+00:10:15,920 --> 00:10:17,910
+planes usually meet at a single point.
+
+309
+00:10:18,150 --> 00:10:19,660
+That point is the solution.
+
+310
+00:10:20,400 --> 00:10:21,540
+But if the determinant is
+
+311
+00:10:21,740 --> 00:10:23,810
+zero, space has been flattened.
+
+312
+00:10:24,110 --> 00:10:26,100
+Then the planes either share infinitely
+
+313
+00:10:26,180 --> 00:10:28,340
+many points, or they miss each other
+
+314
+00:10:28,500 --> 00:10:30,460
+entirely, and there's no answer at all.
+
+315
+00:10:30,800 --> 00:10:32,740
+Either way, you can't simply
+
+316
+00:10:32,820 --> 00:10:33,920
+run the move backwards.
+
+317
+00:10:34,330 --> 00:10:35,860
+That's what a zero determinant has
+
+318
+00:10:35,940 --> 00:10:37,510
+been warning you about all along.
+
+319
+00:10:39,640 --> 00:10:40,890
+Back to our running example.
+
+320
+00:10:40,990 --> 00:10:43,120
+This time, watch single arrows
+
+321
+00:10:43,280 --> 00:10:44,640
+instead of the whole grid.
+
+322
+00:10:44,860 --> 00:10:46,080
+Most arrows get knocked
+
+323
+00:10:46,160 --> 00:10:47,090
+off their own line.
+
+324
+00:10:47,420 --> 00:10:48,840
+They come out pointing somewhere new.
+
+325
+00:10:49,670 --> 00:10:50,900
+But sweep around the
+
+326
+00:10:51,180 --> 00:10:52,450
+circle, and watch closely.
+
+327
+00:10:53,010 --> 00:10:55,590
+Here, the output lines up with the input.
+
+328
+00:10:56,110 --> 00:10:57,300
+This arrow only gets
+
+329
+00:10:57,380 --> 00:10:59,460
+stretched, by a factor of four.
+
+330
+00:10:59,680 --> 00:11:00,520
+And here's another one.
+
+331
+00:11:00,910 --> 00:11:02,460
+This one isn't stretched at all.
+
+332
+00:11:03,610 --> 00:11:05,400
+These special directions are called
+
+333
+00:11:05,480 --> 00:11:07,320
+eigenvectors, and how much each
+
+334
+00:11:07,400 --> 00:11:09,370
+one stretches is its eigenvalue.
+
+335
+00:11:09,600 --> 00:11:11,320
+They're the skeleton of the move.
+
+336
+00:11:11,730 --> 00:11:13,880
+Along them, a complicated matrix
+
+337
+00:11:14,000 --> 00:11:15,720
+behaves like plain multiplication
+
+338
+00:11:15,760 --> 00:11:16,650
+by a single number.
+
+339
+00:11:17,790 --> 00:11:18,790
+A quick test.
+
+340
+00:11:19,040 --> 00:11:20,990
+Take a rotation of the flat plane.
+
+341
+00:11:21,290 --> 00:11:23,110
+Which arrows stay on their own line?
+
+342
+00:11:26,740 --> 00:11:27,290
+None of them.
+
+343
+00:11:27,670 --> 00:11:28,870
+Every arrow turns.
+
+344
+00:11:29,200 --> 00:11:31,913
+But in three dimensions, it's different.
+
+345
+00:11:31,913 --> 00:11:33,060
+Remember the die, turned
+
+346
+00:11:33,140 --> 00:11:34,170
+one way and then the other?
+
+347
+00:11:34,550 --> 00:11:36,900
+Those two quarter turns combine into
+
+348
+00:11:37,140 --> 00:11:39,280
+a single turn, about a tilted axis.
+
+349
+00:11:39,500 --> 00:11:42,060
+Arrows along that axis don't move at all.
+
+350
+00:11:42,410 --> 00:11:44,100
+Every rotation in space
+
+351
+00:11:44,180 --> 00:11:45,370
+has an axis like this.
+
+352
+00:11:45,620 --> 00:11:47,480
+The axis is an eigenvector,
+
+353
+00:11:47,710 --> 00:11:49,300
+with an eigenvalue of one.
+
+354
+00:11:50,300 --> 00:11:51,800
+Eigenvectors also tell you
+
+355
+00:11:51,880 --> 00:11:53,060
+where things are heading.
+
+356
+00:11:53,350 --> 00:11:55,000
+Take a cloud of points, and apply
+
+357
+00:11:55,120 --> 00:11:57,920
+the same matrix again, and again.
+
+358
+00:11:57,960 --> 00:11:59,640
+Each time, the direction with the
+
+359
+00:11:59,720 --> 00:12:02,120
+biggest stretch wins a little more.
+
+360
+00:12:02,120 --> 00:12:03,640
+After just a few rounds, the
+
+361
+00:12:03,720 --> 00:12:06,277
+whole cloud has lined up along it.
+
+362
+00:12:06,333 --> 00:12:08,240
+Apply a matrix over and over,
+
+363
+00:12:08,280 --> 00:12:09,560
+and everything drifts toward
+
+364
+00:12:09,640 --> 00:12:11,020
+its strongest eigenvector.
+
+365
+00:12:11,510 --> 00:12:13,080
+That simple fact once
+
+366
+00:12:13,160 --> 00:12:14,760
+organized the entire web.
+
+367
+00:12:15,820 --> 00:12:17,420
+Here's a tiny web of seven
+
+368
+00:12:17,780 --> 00:12:19,580
+pages, and thousands of imaginary
+
+369
+00:12:19,660 --> 00:12:21,210
+readers clicking links at random.
+
+370
+00:12:21,590 --> 00:12:23,820
+Every so often, a reader gets bored
+
+371
+00:12:23,900 --> 00:12:26,010
+and jumps to a random page instead.
+
+372
+00:12:26,730 --> 00:12:28,240
+Each round of clicks is one
+
+373
+00:12:28,400 --> 00:12:30,000
+multiplication by a matrix that
+
+374
+00:12:30,080 --> 00:12:31,690
+shuffles readers between pages.
+
+375
+00:12:32,150 --> 00:12:33,870
+Run it, and the crowd settles.
+
+376
+00:12:34,180 --> 00:12:36,320
+Some pages end up holding far more
+
+377
+00:12:36,400 --> 00:12:37,947
+readers than others, and it doesn't
+
+378
+00:12:38,053 --> 00:12:39,180
+matter where everyone started.
+
+379
+00:12:40,190 --> 00:12:41,700
+That settled crowd is an
+
+380
+00:12:41,780 --> 00:12:43,647
+eigenvector of the click matrix,
+
+381
+00:12:43,673 --> 00:12:45,090
+with an eigenvalue of one.
+
+382
+00:12:45,490 --> 00:12:47,200
+The shuffle no longer changes it.
+
+383
+00:12:47,570 --> 00:12:49,060
+This was the idea behind
+
+384
+00:12:49,140 --> 00:12:50,140
+Google's PageRank.
+
+385
+00:12:50,650 --> 00:12:51,910
+And look at these two pages.
+
+386
+00:12:52,320 --> 00:12:54,820
+Each has just one incoming link.
+
+387
+00:12:54,820 --> 00:12:55,940
+But one of those links comes
+
+388
+00:12:56,020 --> 00:12:57,753
+from the most popular page, and
+
+389
+00:12:57,940 --> 00:12:59,570
+that makes it count for far more.
+
+390
+00:13:01,480 --> 00:13:03,120
+There's one more thing to see, and
+
+391
+00:13:03,160 --> 00:13:05,390
+it's the deepest idea in this video.
+
+392
+00:13:06,210 --> 00:13:07,727
+Draw a circle of arrows,
+
+393
+00:13:07,753 --> 00:13:09,230
+and apply our matrix.
+
+394
+00:13:09,510 --> 00:13:11,140
+The circle becomes an ellipse.
+
+395
+00:13:11,640 --> 00:13:12,850
+That's no accident.
+
+396
+00:13:13,060 --> 00:13:14,420
+Every matrix like this one
+
+397
+00:13:14,500 --> 00:13:16,740
+turns a circle into an ellipse.
+
+398
+00:13:17,240 --> 00:13:18,440
+An ellipse has a longest
+
+399
+00:13:18,720 --> 00:13:20,160
+direction and a shortest one,
+
+400
+00:13:20,200 --> 00:13:21,450
+at right angles to each other.
+
+401
+00:13:21,590 --> 00:13:23,800
+Follow them back, and you find two
+
+402
+00:13:23,880 --> 00:13:26,093
+input arrows, also at right angles,
+
+403
+00:13:26,147 --> 00:13:28,090
+that land exactly on those axes.
+
+404
+00:13:28,930 --> 00:13:30,380
+So here's what the matrix
+
+405
+00:13:30,460 --> 00:13:32,090
+really does, in three steps.
+
+406
+00:13:32,650 --> 00:13:35,180
+First, rotate, so those two input
+
+407
+00:13:35,260 --> 00:13:37,260
+arrows line up with the grid.
+
+408
+00:13:37,260 --> 00:13:39,280
+Then stretch along the grid, more
+
+409
+00:13:39,420 --> 00:13:40,970
+in one direction than the other.
+
+410
+00:13:41,240 --> 00:13:42,860
+Then rotate again, into
+
+411
+00:13:42,940 --> 00:13:44,120
+the final position.
+
+412
+00:13:44,460 --> 00:13:46,490
+Rotate, stretch, rotate.
+
+413
+00:13:46,830 --> 00:13:49,020
+Sometimes one of those turns includes a
+
+414
+00:13:49,140 --> 00:13:51,070
+mirror flip, but that's the whole story.
+
+415
+00:13:51,910 --> 00:13:53,920
+This is called the singular value
+
+416
+00:13:54,000 --> 00:13:55,840
+decomposition, and the amounts of
+
+417
+00:13:55,920 --> 00:13:58,400
+stretch are called singular values.
+
+418
+00:13:58,400 --> 00:13:59,880
+It works for every matrix,
+
+419
+00:13:59,920 --> 00:14:01,340
+of any shape or size.
+
+420
+00:14:01,630 --> 00:14:04,000
+In three dimensions, a sphere becomes an
+
+421
+00:14:04,080 --> 00:14:06,960
+ellipsoid with three perpendicular axes.
+
+422
+00:14:07,120 --> 00:14:08,720
+However messy the numbers, the move
+
+423
+00:14:08,800 --> 00:14:11,350
+underneath is always this simple.
+
+424
+00:14:12,130 --> 00:14:13,460
+Now, remember the picture from the
+
+425
+00:14:13,580 --> 00:14:15,680
+beginning, the grid of brightness values?
+
+426
+00:14:15,880 --> 00:14:17,460
+It's a matrix too, so it
+
+427
+00:14:17,580 --> 00:14:18,640
+has this same structure.
+
+428
+00:14:18,870 --> 00:14:20,900
+Two rotations, and a list of
+
+429
+00:14:20,980 --> 00:14:23,020
+stretches, from biggest to smallest.
+
+430
+00:14:23,780 --> 00:14:25,400
+Each stretch contributes
+
+431
+00:14:25,480 --> 00:14:26,540
+one layer to the picture.
+
+432
+00:14:26,780 --> 00:14:28,680
+And each layer is about as simple
+
+433
+00:14:28,760 --> 00:14:30,920
+as an image can be: a single column
+
+434
+00:14:30,960 --> 00:14:32,660
+of numbers, times a single row.
+
+435
+00:14:33,140 --> 00:14:34,940
+Here's the biggest layer on its own.
+
+436
+00:14:35,190 --> 00:14:36,400
+Just a soft blur.
+
+437
+00:14:37,080 --> 00:14:39,110
+Add the second, and the third.
+
+438
+00:14:39,420 --> 00:14:41,120
+By ten, you can make out the die.
+
+439
+00:14:41,410 --> 00:14:44,440
+By thirty, it's close to the original.
+
+440
+00:14:44,440 --> 00:14:46,280
+Thirty layers out of hundreds, using
+
+441
+00:14:46,360 --> 00:14:48,387
+about an eighth of the numbers.
+
+442
+00:14:48,387 --> 00:14:49,320
+The small stretches were
+
+443
+00:14:49,520 --> 00:14:51,130
+mostly fine detail, and noise.
+
+444
+00:14:51,950 --> 00:14:54,887
+This is a classic way to compress images,
+
+445
+00:14:54,913 --> 00:14:56,620
+and the same idea finds the patterns
+
+446
+00:14:56,700 --> 00:14:59,313
+hiding in huge tables of measurements.
+
+447
+00:14:59,367 --> 00:15:00,700
+So the table and the machine
+
+448
+00:15:00,820 --> 00:15:02,190
+were never two different things.
+
+449
+00:15:02,440 --> 00:15:05,150
+A grid of numbers is a move.
+
+450
+00:15:05,153 --> 00:15:06,380
+And its biggest stretches
+
+451
+00:15:06,420 --> 00:15:07,360
+are what matter most.
+
+452
+00:15:09,310 --> 00:15:10,760
+Let's look at that box of
+
+453
+00:15:10,880 --> 00:15:12,947
+nine numbers one last time.
+
+454
+00:15:13,447 --> 00:15:15,740
+Its columns are where the axes land.
+
+455
+00:15:15,740 --> 00:15:17,340
+Multiplying it by another matrix
+
+456
+00:15:17,420 --> 00:15:18,990
+means one move after another.
+
+457
+00:15:19,350 --> 00:15:21,580
+Its determinant tells you how much volume
+
+458
+00:15:21,660 --> 00:15:23,780
+grows, and whether the move can be undone.
+
+459
+00:15:24,050 --> 00:15:26,060
+Its eigenvectors are the directions
+
+460
+00:15:26,140 --> 00:15:27,390
+it leaves on their own line.
+
+461
+00:15:27,610 --> 00:15:30,010
+And underneath it all, it's a rotation,
+
+462
+00:15:30,270 --> 00:15:32,230
+a stretch, and another rotation.
+
+463
+00:15:33,210 --> 00:15:33,920
+One last thought.
+
+464
+00:15:34,580 --> 00:15:35,920
+These nine numbers aren't
+
+465
+00:15:36,000 --> 00:15:37,150
+really the move itself.
+
+466
+00:15:37,360 --> 00:15:39,040
+They're what the move looks like from
+
+467
+00:15:39,160 --> 00:15:41,360
+where we're standing, measured along our
+
+468
+00:15:41,440 --> 00:15:45,040
+own choice of i hat, j hat, and k hat.
+
+469
+00:15:45,040 --> 00:15:47,040
+Pick three different arrows, and the very
+
+470
+00:15:47,120 --> 00:15:49,380
+same move gets nine different numbers.
+
+471
+00:15:50,140 --> 00:15:51,130
+The numbers change.
+
+472
+00:15:51,490 --> 00:15:52,520
+The move doesn't.
+
+473
+00:15:53,740 --> 00:15:54,840
+If you'd like to see one of those
+
+474
+00:15:55,000 --> 00:15:56,600
+numbers up close, the determinant,
+
+475
+00:15:56,970 --> 00:15:58,320
+that video is right here.
+
+476
+00:15:58,900 --> 00:15:59,960
+Thanks for watching.

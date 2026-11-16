@@ -6,7 +6,7 @@ EXPORTS: dict[str, str] = {
     "Layer": "base", "Surface": "base",
     "Solid": "solid", "Gradient": "solid",
     "ShaderLayer": "shader", "ManimLayer": "manim",
-    "ImageLayer": "media", "ArrayLayer": "media",
+    "ImageLayer": "media", "ArrayLayer": "media", "FramesLayer": "media",
     "PointsLayer": "points", "FieldLayer": "points",
     "BlackHoleLayer": "blackhole",
 }

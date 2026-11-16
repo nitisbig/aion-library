@@ -1070,6 +1070,15 @@ An RGBA uint8 numpy image (sRGB, straight alpha unless premultiplied=True).
 Example:
     ArrayLayer(np_rgba, height=3, pos=(2, 0))
 
+## FramesLayer(frame, height: 'float' = 8.0, during=None, premultiplied: 'bool' = False, **kw)  [layers.media]
+
+Animated RGBA uint8 images: `frame(t)` returns the array for time t (pyvista, skia, numpy renders).
+
+`frame` must be a pure function of t. It is only called again inside the `during` windows; outside them the
+last image is held for free, so pass the windows in which the picture actually moves.
+Example:
+    FramesLayer(lambda t: die_rgba(spin(t)), height=4, pos=(3, 0), during=[(T.turn, T.turn + 2)])
+
 ## ImageLayer(path: 'str | Path', height: 'float' = 4.0, **kw)  [layers.media]
 
 An image file (PNG/JPG) placed in world space, `height` in Manim units.

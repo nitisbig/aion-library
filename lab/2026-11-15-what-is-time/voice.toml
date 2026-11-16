@@ -1,0 +1,18 @@
+# Voice chosen for this video only, slower and steadier for a calm, cinematic read
+voice_id = "XxR1oG87tbJnnecXwla6"
+model_id = "eleven_v4"
+output_format = "mp3_44100_128"
+stitch = true
+seed = 11
+[settings]
+stability = 0.6
+similarity_boost = 0.75
+speed = 0.86
+
+# Pacing (free, applied to cached audio): long breaths between ideas
+[pacing]
+snap = true
+lead_in = 3.0
+paragraph_gap = 1.1
+section_gap = 2.4
+tail = 5.0
