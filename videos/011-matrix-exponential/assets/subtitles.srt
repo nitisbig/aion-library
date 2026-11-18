@@ -1,0 +1,1176 @@
+1
+00:00:01,500 --> 00:00:05,140
+Leave a cup of coffee on your desk,
+and it cools quickly at first,
+
+2
+00:00:05,190 --> 00:00:09,140
+then more and more slowly,
+as if it's losing interest.
+
+3
+00:00:09,200 --> 00:00:12,710
+The hotter it is compared to the room,
+the faster it cools.
+
+4
+00:00:12,790 --> 00:00:16,500
+How fast something changes depends
+on how much of it there is.
+
+5
+00:00:16,990 --> 00:00:18,910
+That rule turns up everywhere.
+
+6
+00:00:18,960 --> 00:00:24,360
+Money earning interest on its interest.
+Bacteria, where every cell splits in two.
+
+7
+00:00:24,410 --> 00:00:25,670
+Radioactive rock,
+
+8
+00:00:25,720 --> 00:00:29,830
+where every atom has the same small
+chance of decaying each second.
+
+9
+00:00:29,890 --> 00:00:34,870
+Different worlds, one equation,
+and one answer: e to the k t.
+
+10
+00:00:35,380 --> 00:00:37,860
+People found that answer
+by following money.
+
+11
+00:00:37,930 --> 00:00:41,810
+In sixteen eighty-three,
+Jacob Bernoulli asked a banker's question.
+
+12
+00:00:41,860 --> 00:00:44,820
+If an account pays a hundred
+percent a year, what happens
+
+13
+00:00:44,860 --> 00:00:49,490
+when the interest is added twice a year,
+then monthly, then every instant?
+
+14
+00:00:49,540 --> 00:00:51,670
+The balance doesn't run off to infinity.
+
+15
+00:00:51,720 --> 00:00:55,510
+It creeps toward a ceiling,
+about two point seven one eight.
+
+16
+00:00:55,560 --> 00:00:58,510
+Euler later gave that number its letter:
+e.
+
+17
+00:00:59,090 --> 00:01:02,570
+But real things rarely change alone.
+Swallow a pill.
+
+18
+00:01:02,620 --> 00:01:04,230
+The medicine seeps from your stomach
+
+19
+00:01:04,280 --> 00:01:07,260
+into your blood, while your body
+clears it out of the blood.
+
+20
+00:01:07,310 --> 00:01:11,240
+How much is in your blood depends on how
+much is still waiting in your stomach.
+
+21
+00:01:11,290 --> 00:01:13,480
+Two amounts, tangled together.
+
+22
+00:01:13,950 --> 00:01:16,960
+Heat moving between rooms,
+currents in a circuit,
+
+23
+00:01:17,010 --> 00:01:21,300
+a tall building swaying in the wind:
+they all tangle the same way.
+
+24
+00:01:21,350 --> 00:01:24,680
+Write down how they change,
+and you get one shape of equation.
+
+25
+00:01:24,730 --> 00:01:28,680
+The rate of change of a list of numbers
+is a matrix, times that list.
+
+26
+00:01:29,120 --> 00:01:32,580
+Next to the one-number version,
+the resemblance is hard to ignore.
+
+27
+00:01:32,630 --> 00:01:35,140
+There, the answer was e to the k t.
+
+28
+00:01:35,190 --> 00:01:38,790
+So it's tempting to say
+the answer here is e to the t A.
+
+29
+00:01:38,840 --> 00:01:41,290
+e, raised to the power of a matrix.
+
+30
+00:01:41,340 --> 00:01:44,330
+Which, if you stop and think,
+means nothing at all.
+
+31
+00:01:44,380 --> 00:01:48,080
+You can't multiply e by itself
+a grid of numbers times.
+
+32
+00:01:48,530 --> 00:01:50,500
+Mathematicians wrote it down anyway.
+
+33
+00:01:50,550 --> 00:01:54,170
+Edmond Laguerre put the exponential
+of a matrix in print in eighteen
+
+34
+00:01:54,220 --> 00:01:56,440
+sixty-seven, as an infinite series.
+
+35
+00:01:56,490 --> 00:01:57,807
+About twenty years later,
+
+36
+00:01:57,833 --> 00:02:02,450
+Giuseppe Peano used series like it
+to solve exactly these tangled systems,
+
+37
+00:02:02,500 --> 00:02:06,400
+while Sophus Lie built a theory
+of continuous symmetry on the same idea.
+
+38
+00:02:06,450 --> 00:02:09,543
+Today it runs quietly
+inside flight software,
+
+39
+00:02:09,593 --> 00:02:14,350
+robot controllers, circuit simulators,
+drug-dosing models, and quantum computers.
+
+40
+00:02:14,800 --> 00:02:16,400
+So what does it mean?
+
+41
+00:02:16,450 --> 00:02:19,860
+The obvious guess is to raise
+e to each entry on its own.
+
+42
+00:02:19,910 --> 00:02:23,660
+Try it on a small matrix,
+with pi and minus pi off the diagonal.
+
+43
+00:02:23,710 --> 00:02:26,230
+Exponentiate every entry, use the result
+
+44
+00:02:26,280 --> 00:02:29,910
+to move the plane, and everything
+gets flattened onto a single line.
+
+45
+00:02:29,960 --> 00:02:33,070
+Whatever solves those equations,
+it isn't this.
+
+46
+00:02:33,420 --> 00:02:35,770
+The real answer is far nicer.
+
+47
+00:02:35,930 --> 00:02:40,970
+e to this matrix is minus the identity:
+every point swings around to the opposite
+
+48
+00:02:41,020 --> 00:02:43,130
+side, a clean half turn.
+
+49
+00:02:43,180 --> 00:02:45,530
+If you've met e to the i pi equals
+
+50
+00:02:45,580 --> 00:02:48,910
+minus one, this is the same
+fact in a different outfit.
+
+51
+00:02:49,700 --> 00:02:51,730
+Here's the picture I'd
+like you to leave with.
+
+52
+00:02:51,780 --> 00:02:56,470
+A matrix can describe motion,
+a velocity for every point in space.
+
+53
+00:02:56,690 --> 00:03:00,320
+e to the matrix is where everything
+ends up once that motion has run.
+
+54
+00:03:00,370 --> 00:03:02,830
+And along the way,
+one of the most familiar
+
+55
+00:03:02,880 --> 00:03:05,150
+rules of exponents is going to break.
+
+56
+00:03:05,540 --> 00:03:07,590
+We'll start on a single number line,
+
+57
+00:03:07,640 --> 00:03:10,700
+and finish with the whole
+planet turning under your feet.
+
+58
+00:03:15,020 --> 00:03:18,270
+Let's go back to the simplest
+case and look at it sideways.
+
+59
+00:03:18,390 --> 00:03:22,140
+Give every point on the number line
+a velocity equal to where it sits.
+
+60
+00:03:22,190 --> 00:03:25,030
+The point at two heads right at speed two.
+
+61
+00:03:25,080 --> 00:03:28,250
+The point at minus one
+drifts left at speed one.
+
+62
+00:03:28,300 --> 00:03:29,880
+Zero stays put.
+
+63
+00:03:30,610 --> 00:03:32,380
+Press play for one second.
+
+64
+00:03:32,630 --> 00:03:37,370
+The point at one lands on e.
+The point at two lands on two e.
+
+65
+00:03:37,420 --> 00:03:40,253
+Everything got multiplied
+by the same number.
+
+66
+00:03:40,253 --> 00:03:43,690
+So e is the stretch you get
+from one second of this flow.
+
+67
+00:03:44,370 --> 00:03:49,950
+Speed the flow up by r, and t seconds
+of it multiply everything by e to the r t.
+
+68
+00:03:50,000 --> 00:03:54,760
+Make r negative, and the line drains
+toward zero, like the coffee's extra heat.
+
+69
+00:03:55,520 --> 00:03:59,390
+You can also build that flow from small
+steps, the way Bernoulli's banker did.
+
+70
+00:03:59,440 --> 00:04:01,950
+Split the second into n pieces.
+
+71
+00:04:02,000 --> 00:04:05,550
+In each one, a point moves
+by its velocity times the step,
+
+72
+00:04:05,600 --> 00:04:08,550
+so it's multiplied by one plus one over n.
+
+73
+00:04:08,630 --> 00:04:12,890
+Do that n times, and as n grows,
+you close in on the true flow.
+
+74
+00:04:12,940 --> 00:04:16,290
+Multiply it all out,
+and the familiar series appears.
+
+75
+00:04:16,830 --> 00:04:23,250
+So e to the x has three faces: a flow,
+a pile of tiny steps, and an infinite sum.
+
+76
+00:04:23,350 --> 00:04:25,640
+All three make the jump to matrices.
+
+77
+00:04:27,330 --> 00:04:28,820
+Now add a dimension.
+
+78
+00:04:28,870 --> 00:04:30,990
+A point in the plane is a vector,
+
+79
+00:04:31,040 --> 00:04:33,860
+and a matrix turns vectors
+into other vectors.
+
+80
+00:04:33,910 --> 00:04:39,460
+So let it hand out velocities:
+at the point v, the velocity is A times v.
+
+81
+00:04:40,130 --> 00:04:41,520
+Here's a matrix to play with.
+
+82
+00:04:41,570 --> 00:04:44,850
+It turns every vector a quarter
+turn counterclockwise.
+
+83
+00:04:44,900 --> 00:04:46,690
+As a velocity, that means
+
+84
+00:04:46,740 --> 00:04:50,470
+every point moves at right angles
+to the line joining it to the center.
+
+85
+00:04:51,090 --> 00:04:53,980
+Now drop in a whole grid,
+and watch the lines.
+
+86
+00:04:54,030 --> 00:04:57,100
+They stay straight,
+parallel, and evenly spaced.
+
+87
+00:04:57,150 --> 00:04:58,640
+That's no coincidence.
+
+88
+00:04:58,680 --> 00:05:00,467
+The velocity rule is linear,
+
+89
+00:05:00,493 --> 00:05:04,400
+so if two points flow, their sum
+flows to the sum of where they went.
+
+90
+00:05:04,460 --> 00:05:06,150
+At every moment, the flow has
+
+91
+00:05:06,200 --> 00:05:11,080
+done a linear transformation to the plane,
+and a linear transformation is a matrix.
+
+92
+00:05:11,430 --> 00:05:14,330
+That matrix is e to the t A.
+
+93
+00:05:14,440 --> 00:05:17,940
+If you keep one definition
+from this video, make it this one:
+
+94
+00:05:18,180 --> 00:05:23,430
+e to the t A is where the flow of A has
+carried every point after time t.
+
+95
+00:05:23,480 --> 00:05:27,670
+A is the velocity.
+e to the t A is the trip.
+
+96
+00:05:28,210 --> 00:05:29,780
+Its numbers are easy to read.
+
+97
+00:05:29,830 --> 00:05:35,570
+Wherever i-hat lands is the first column,
+and wherever j-hat lands is the second.
+
+98
+00:05:35,570 --> 00:05:37,800
+Here, both have turned through an angle t,
+
+99
+00:05:37,840 --> 00:05:40,750
+so the columns fill up
+with cosines and sines.
+
+100
+00:05:41,240 --> 00:05:44,850
+Before I let it run any further:
+where will the grid be when the flow
+
+101
+00:05:44,900 --> 00:05:46,900
+has run for exactly pi?
+
+102
+00:05:50,100 --> 00:05:51,450
+Halfway around.
+
+103
+00:05:51,500 --> 00:05:54,677
+i-hat points left, and j-hat points down.
+
+104
+00:05:54,727 --> 00:05:57,950
+That's minus the identity,
+the answer from the start.
+
+105
+00:05:58,000 --> 00:06:02,950
+e to the i pi equals minus one is nothing
+more mysterious than a half turn.
+
+106
+00:06:04,530 --> 00:06:07,920
+Pictures are lovely,
+but sooner or later you want numbers.
+
+107
+00:06:07,960 --> 00:06:09,950
+So let's borrow Bernoulli's trick.
+
+108
+00:06:10,350 --> 00:06:11,540
+A short time step,
+
+109
+00:06:11,580 --> 00:06:16,230
+of length t over n, moves a point
+v by its velocity times the step.
+
+110
+00:06:16,280 --> 00:06:21,120
+So the new point is the identity
+plus t A over n, applied to v.
+
+111
+00:06:21,170 --> 00:06:22,540
+Do that n times,
+
+112
+00:06:22,580 --> 00:06:26,730
+and you've applied the identity
+plus t A over n, to the nth power.
+
+113
+00:06:27,340 --> 00:06:32,190
+With four steps, the path is a lopsided
+square that spirals away from the circle,
+
+114
+00:06:32,240 --> 00:06:35,560
+because a straight step always
+lands a little outside a curve.
+
+115
+00:06:35,830 --> 00:06:39,240
+Eight steps do better.
+Thirty-two hug the circle.
+
+116
+00:06:39,280 --> 00:06:41,660
+In the limit, the error disappears.
+
+117
+00:06:42,080 --> 00:06:44,060
+Now expand that power.
+
+118
+00:06:44,100 --> 00:06:45,490
+Each term comes from choosing
+
+119
+00:06:45,540 --> 00:06:49,320
+which of the n steps used A,
+while the rest used the identity.
+
+120
+00:06:49,430 --> 00:06:51,340
+One step: n choices,
+
+121
+00:06:51,380 --> 00:06:54,780
+each weighing t over n,
+so they add up to t A.
+
+122
+00:06:55,000 --> 00:07:00,540
+Two steps: about n squared over two pairs,
+giving t squared, A squared, over two.
+
+123
+00:07:00,590 --> 00:07:04,370
+Three steps bring a three factorial,
+because the same three nudges could
+
+124
+00:07:04,420 --> 00:07:06,380
+arrive in six different orders.
+
+125
+00:07:06,710 --> 00:07:09,220
+In the limit, that's the series.
+
+126
+00:07:09,270 --> 00:07:11,930
+e to the A is the identity, plus A,
+
+127
+00:07:11,980 --> 00:07:17,500
+plus A squared over two factorial, plus
+A cubed over three factorial, on forever.
+
+128
+00:07:17,550 --> 00:07:19,507
+It's the series for e to the x,
+
+129
+00:07:19,533 --> 00:07:23,370
+with a matrix in place of the number,
+and the identity in place of one.
+
+130
+00:07:23,710 --> 00:07:29,440
+Those powers are matrix powers.
+A squared means do A, then do A again.
+
+131
+00:07:29,490 --> 00:07:32,810
+Watch them as arrows.
+The first term is v.
+
+132
+00:07:32,860 --> 00:07:35,130
+The next is A v, its velocity.
+
+133
+00:07:35,180 --> 00:07:37,460
+Each one after that is the last,
+
+134
+00:07:37,500 --> 00:07:40,610
+pushed through A again and divided
+by the next whole number.
+
+135
+00:07:40,660 --> 00:07:44,500
+Tip to tail, they swing out,
+overshoot, and spiral back in,
+
+136
+00:07:44,540 --> 00:07:47,150
+landing exactly where the flow carried v.
+
+137
+00:07:47,660 --> 00:07:52,267
+For the half turn, the terms grow
+at first, but factorials always win.
+
+138
+00:07:52,293 --> 00:07:55,370
+The terms collapse,
+and the total settles on minus one.
+
+139
+00:07:55,420 --> 00:07:59,830
+That's true for any square matrix:
+the series always converges.
+
+140
+00:08:00,180 --> 00:08:04,930
+That's why the element-wise guess never
+stood a chance: A squared mixes every
+
+141
+00:08:04,980 --> 00:08:06,870
+entry with every other one.
+
+142
+00:08:08,650 --> 00:08:12,990
+Some matrices are easy to exponentiate,
+and they show how the rest work.
+
+143
+00:08:13,700 --> 00:08:15,980
+A diagonal matrix is the easiest.
+
+144
+00:08:16,030 --> 00:08:19,410
+Its flow is two number lines
+minding their own business,
+
+145
+00:08:19,460 --> 00:08:22,103
+growing sideways and shrinking vertically.
+
+146
+00:08:22,153 --> 00:08:26,490
+So e to it is diagonal too:
+just e to each diagonal entry.
+
+147
+00:08:26,540 --> 00:08:31,110
+It's the one time you exponentiate
+entries, and only on the diagonal.
+
+148
+00:08:31,160 --> 00:08:32,940
+The zeros stay zero,
+
+149
+00:08:32,990 --> 00:08:35,600
+where the element-wise guess
+would have made them ones.
+
+150
+00:08:36,270 --> 00:08:38,320
+Most matrices aren't diagonal,
+
+151
+00:08:38,360 --> 00:08:42,490
+but many hide diagonal directions inside:
+their eigenvectors.
+
+152
+00:08:42,540 --> 00:08:43,820
+Here's a saddle.
+
+153
+00:08:43,870 --> 00:08:47,420
+Along one diagonal,
+points grow at rate three halves.
+
+154
+00:08:47,470 --> 00:08:50,620
+Along the other,
+they shrink at rate one half.
+
+155
+00:08:50,880 --> 00:08:53,030
+Every other point is a blend of the two,
+
+156
+00:08:53,080 --> 00:08:56,320
+carried both ways at once,
+along these curves.
+
+157
+00:08:56,360 --> 00:08:58,950
+Find the eigenvectors,
+and the exponential is just
+
+158
+00:08:59,000 --> 00:09:01,820
+e to each eigenvalue, in each direction.
+
+159
+00:09:02,530 --> 00:09:04,780
+What if the eigenvalues are complex?
+
+160
+00:09:04,830 --> 00:09:07,130
+This matrix has eigenvalues minus
+
+161
+00:09:07,180 --> 00:09:11,380
+a quarter, plus or minus i,
+and its flow is a spiral.
+
+162
+00:09:11,420 --> 00:09:13,860
+The real part sets how fast things shrink,
+
+163
+00:09:13,900 --> 00:09:17,020
+and the imaginary part
+sets how fast they turn.
+
+164
+00:09:17,020 --> 00:09:20,420
+Complex eigenvalues are how
+a real flow rotates.
+
+165
+00:09:21,030 --> 00:09:24,740
+And some matrices don't have enough
+eigenvectors, like this shear.
+
+166
+00:09:24,790 --> 00:09:28,693
+Its velocity is horizontal,
+and grows with height.
+
+167
+00:09:28,693 --> 00:09:32,610
+Square it and you get zero,
+so the series stops after two terms:
+
+168
+00:09:32,660 --> 00:09:36,260
+e to the t N is just
+the identity plus t N.
+
+169
+00:09:36,910 --> 00:09:39,140
+One last pattern ties them together.
+
+170
+00:09:39,460 --> 00:09:43,040
+Drop a small patch of points
+into the flow and watch its area.
+
+171
+00:09:43,300 --> 00:09:47,510
+In the spiral, it shrinks.
+In the shear, what do you think happens?
+
+172
+00:09:50,150 --> 00:09:54,250
+Nothing.
+It leans over, but its area never changes.
+
+173
+00:09:54,350 --> 00:09:58,020
+The determinant
+of e to the A is e to the trace of A,
+
+174
+00:09:58,070 --> 00:09:59,660
+the sum of its diagonal.
+
+175
+00:09:59,710 --> 00:10:04,680
+The trace measures how much the field
+spreads out at each point, its divergence.
+
+176
+00:10:04,730 --> 00:10:09,300
+Rotations and shears have zero trace,
+so they never change area.
+
+177
+00:10:10,900 --> 00:10:14,610
+For ordinary numbers, there's
+a rule you've used a thousand times:
+
+178
+00:10:14,660 --> 00:10:18,710
+e to the a plus b equals e to the a,
+times e to the b.
+
+179
+00:10:18,930 --> 00:10:20,800
+Matrices refuse.
+
+180
+00:10:21,420 --> 00:10:22,840
+Take two shears.
+
+181
+00:10:22,890 --> 00:10:26,280
+A slides things sideways,
+and B slides them up and down.
+
+182
+00:10:26,330 --> 00:10:30,310
+Run A for one unit of time,
+then B, and the unit square
+
+183
+00:10:30,360 --> 00:10:32,550
+becomes this parallelogram.
+
+184
+00:10:32,600 --> 00:10:35,340
+Run B first, then A,
+and you get a different one.
+
+185
+00:10:35,390 --> 00:10:38,307
+Run both at once, adding their velocities,
+
+186
+00:10:38,333 --> 00:10:42,880
+and you get e to the A plus B:
+a third shape, unlike either.
+
+187
+00:10:42,920 --> 00:10:46,540
+All three keep the area at one,
+but they're genuinely different.
+
+188
+00:10:46,860 --> 00:10:48,560
+The series says why.
+
+189
+00:10:48,800 --> 00:10:54,780
+Multiply e to the A by e to the B, and you
+get A B among the second-order terms.
+
+190
+00:10:54,780 --> 00:10:59,270
+Expand e to the A plus B instead,
+and that term becomes half of A B,
+
+191
+00:10:59,320 --> 00:11:00,810
+plus half of B A.
+
+192
+00:11:00,860 --> 00:11:04,280
+They match only if A B equals B A.
+
+193
+00:11:04,330 --> 00:11:08,750
+The difference, A B minus B A,
+is called the commutator.
+
+194
+00:11:09,300 --> 00:11:10,460
+And you can watch it.
+
+195
+00:11:10,650 --> 00:11:15,430
+Run A forward for a moment, then B,
+then A backward, then B backward.
+
+196
+00:11:15,480 --> 00:11:18,260
+If they commuted,
+you'd be back where you started.
+
+197
+00:11:18,400 --> 00:11:19,200
+You aren't.
+
+198
+00:11:19,250 --> 00:11:21,470
+The plane comes back squashed one way
+
+199
+00:11:21,520 --> 00:11:24,640
+and stretched the other,
+by exactly the commutator.
+
+200
+00:11:24,690 --> 00:11:28,460
+Two shears in a loop make a stretch
+that neither one contains.
+
+201
+00:11:28,510 --> 00:11:32,480
+It's the same reason you can parallel
+park: drive and steer in a loop,
+
+202
+00:11:32,530 --> 00:11:34,280
+and the car moves sideways.
+
+203
+00:11:34,930 --> 00:11:38,310
+So the old rule survives exactly
+when the matrices commute.
+
+204
+00:11:38,360 --> 00:11:41,020
+Shrinking toward the center
+commutes with turning,
+
+205
+00:11:41,060 --> 00:11:45,720
+which is why that spiral split so neatly
+into a shrink, times a rotation.
+
+206
+00:11:47,400 --> 00:11:49,000
+Now, back to that pill.
+
+207
+00:11:49,200 --> 00:11:51,290
+One number for the medicine
+in your stomach,
+
+208
+00:11:51,340 --> 00:11:53,290
+another for the medicine in your blood.
+
+209
+00:11:53,340 --> 00:11:55,660
+The stomach empties at a steady rate.
+
+210
+00:11:55,710 --> 00:11:59,120
+The blood gains what the stomach loses,
+and your body clears it
+
+211
+00:11:59,160 --> 00:12:01,050
+in proportion to how much is there.
+
+212
+00:12:01,100 --> 00:12:04,160
+As a matrix, the whole story is one line:
+
+213
+00:12:04,210 --> 00:12:09,160
+the state after t hours is e to the t A,
+times the starting state.
+
+214
+00:12:09,840 --> 00:12:14,380
+Each molecule makes its own random hop,
+but the crowd follows that exponential.
+
+215
+00:12:14,430 --> 00:12:17,010
+The level in your blood climbs, peaks,
+
+216
+00:12:17,060 --> 00:12:21,050
+and fades, and the two eigenvalues
+are the two rates behind the curve:
+
+217
+00:12:21,100 --> 00:12:23,920
+how fast you absorb,
+and how fast you clear.
+
+218
+00:12:24,570 --> 00:12:28,977
+Now the most beautiful case,
+and it's happening to you right now.
+
+219
+00:12:29,027 --> 00:12:31,670
+The Earth spins about
+an axis through its poles,
+
+220
+00:12:31,720 --> 00:12:35,940
+and each point moves at right angles
+to both the axis and its own position.
+
+221
+00:12:35,990 --> 00:12:37,790
+That's a cross product.
+
+222
+00:12:37,840 --> 00:12:39,040
+Near the equator,
+
+223
+00:12:39,080 --> 00:12:42,600
+you're being carried along at more
+than sixteen hundred kilometers an hour.
+
+224
+00:12:42,650 --> 00:12:46,040
+At a pole, you'd just turn on the spot.
+
+225
+00:12:46,220 --> 00:12:49,767
+That cross product is a matrix:
+zeros down the diagonal,
+
+226
+00:12:49,793 --> 00:12:53,530
+and the axis coordinates around them,
+each paired with its own negative.
+
+227
+00:12:53,600 --> 00:12:54,730
+Call it K.
+
+228
+00:12:54,780 --> 00:12:59,570
+Every point's velocity is the spin rate,
+times K, times its position.
+
+229
+00:12:59,870 --> 00:13:01,160
+Exponentiate it.
+
+230
+00:13:01,350 --> 00:13:05,430
+K cubed is minus K,
+so the infinite series folds up.
+
+231
+00:13:05,480 --> 00:13:10,000
+The odd powers collapse into plus
+or minus K, the even ones into plus
+
+232
+00:13:10,040 --> 00:13:14,490
+or minus K squared, and the sine
+and cosine series appear on their own.
+
+233
+00:13:14,540 --> 00:13:18,480
+e to the theta K is the identity,
+plus sine theta K,
+
+234
+00:13:18,530 --> 00:13:21,450
+plus one minus cosine theta, K squared.
+
+235
+00:13:21,500 --> 00:13:23,880
+That's Rodrigues' rotation formula,
+
+236
+00:13:23,920 --> 00:13:27,820
+and every rotation in three dimensions
+comes from a matrix like this.
+
+237
+00:13:27,880 --> 00:13:33,120
+After one full turn, theta is two pi,
+and all that's left is the identity.
+
+238
+00:13:34,640 --> 00:13:38,407
+So what is the matrix exponential, really?
+
+239
+00:13:38,507 --> 00:13:43,720
+A matrix can be read as a velocity, a rule
+for how every point is moving right now.
+
+240
+00:13:43,780 --> 00:13:47,700
+e to the matrix is where everything
+ends up after that motion has run.
+
+241
+00:13:47,750 --> 00:13:51,230
+The series computes it,
+nudges of nudges, added up.
+
+242
+00:13:51,280 --> 00:13:55,800
+The eigenvectors give its directions,
+and the trace gives its change in volume.
+
+243
+00:13:55,850 --> 00:13:57,283
+And order matters,
+
+244
+00:13:57,333 --> 00:14:00,990
+because one motion after another
+isn't the same as both at once.
+
+245
+00:14:01,480 --> 00:14:03,820
+The idea doesn't even stop at matrices.
+
+246
+00:14:03,870 --> 00:14:05,380
+In the last video, we put
+
+247
+00:14:05,420 --> 00:14:09,890
+the derivative itself in the exponent,
+and it slid a whole graph sideways.
+
+248
+00:14:09,940 --> 00:14:14,530
+In quantum mechanics, a state moves
+forward in time by e to the minus i
+
+249
+00:14:14,580 --> 00:14:18,540
+H t over h bar, with energy
+playing the part of the matrix.
+
+250
+00:14:19,040 --> 00:14:21,190
+Bernoulli wanted to know
+what happens to money
+
+251
+00:14:21,240 --> 00:14:23,150
+that grows a little every instant.
+
+252
+00:14:23,200 --> 00:14:27,377
+Asked about a matrix, the same question
+describes the medicine in your blood,
+
+253
+00:14:27,427 --> 00:14:30,060
+a turning planet, and a quantum computer.
+
+254
+00:14:30,110 --> 00:14:35,320
+A matrix tells you how things move.
+e to the matrix tells you where they go.

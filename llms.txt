@@ -35,6 +35,11 @@ Everything is importable with `from aion import *` (which also re-exports Manim)
 - `hex_to_linear(c) -> 'tuple[float, float, float]'`: '#rrggbb' / (r, g, b) sRGB 0-1 / ManimColor → linear RGB.
 
 ### aion.components
+- `Mat(rows, colors=None, size=None, h_buff=0.95, v_buff=0.78, pad=0.2, places=2)`: A matrix with hand-set square brackets: entries in a fixed grid, every part addressable.
+- `brackets(height: 'float', gap: 'float', width: 'float | None' = None, hook: 'float' = 0.16, color=None)`: A pair of square matrix brackets drawn as crisp polylines, `gap` apart (inner edges), `height` tall.
+- `fmt(x: 'float', places: 'int' = 2) -> 'str'`: A number for display: integers bare, otherwise up to `places` decimals, and never "-0".
+- `grid_lines(M, center, unit, box, n=14, minor=2, color=None, width=None, opacity=1.0, axes=True)`: The Classic grid after the matrix M, clipped to `box` (x0, y0, x1, y1 in Manim units).
+- `panel(x0, y0, x1, y1, fill=True)`: A framed panel: black inside, thin light border (the Classic look for side-by-side views).
 - `Eqn(tex: 'str', colors: 'dict[str, str] | None' = None, size: 'float | None' = None, **kw)`: MathTex with named terms isolated and colored by the theme (same color as their visuals).
 - `Label(text: 'str', size: 'float | None' = None, color=None, weight: 'str' = 'NORMAL', **kw)`: Body-font text at a phone-legible size.
 - `Title(text: 'str', size: 'float | None' = None, color=None, **kw)`: Display-font title placed inside the top safe margin.

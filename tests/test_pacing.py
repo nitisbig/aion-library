@@ -33,6 +33,15 @@ def test_snap_moves_late_cue_onto_onset():
     assert all(b.start >= a.start for a, b in zip(out, out[1:]))
 
 
+def test_snap_keeps_late_sentence_end_before_the_pause():
+    # "two." was stamped late (1.45 s, right by the onset at 1.6) and "three" later still: the word after the
+    # pause is "three" (it follows the full stop), so "two." must stay before the silence.
+    words = [Word("one", 0.0, 0.5), Word("two.", 1.45, 1.55), Word("three", 1.95, 2.4), Word("four", 3.02, 3.8)]
+    out, _ = snap_words(words, silences(audio(), RATE))
+    assert abs(out[2].start - 1.6) < 0.02 and out[1].end <= 1.0 + 0.02
+    assert all(b.start >= a.start for a, b in zip(out, out[1:]))
+
+
 def test_stretch_adds_silence_inside_the_pause():
     x = audio()
     words = [Word("one", 0.0, 1.0), Word("two", 1.6, 2.4), Word("three", 3.0, 3.8)]

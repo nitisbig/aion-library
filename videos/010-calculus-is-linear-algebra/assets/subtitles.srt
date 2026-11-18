@@ -1,0 +1,1527 @@
+1
+00:00:01,500 --> 00:00:02,570
+Here is a function.
+
+2
+00:00:02,650 --> 00:00:04,890
+e to the x, times sine x.
+
+3
+00:00:05,690 --> 00:00:07,280
+Its first derivative takes
+
+4
+00:00:07,360 --> 00:00:08,600
+one use of the product rule.
+
+5
+00:00:08,860 --> 00:00:10,250
+The second takes two.
+
+6
+00:00:10,800 --> 00:00:12,790
+So what is its hundredth derivative?
+
+7
+00:00:13,810 --> 00:00:15,060
+Grinding through the product rule
+
+8
+00:00:15,140 --> 00:00:17,290
+a hundred times would fill pages.
+
+9
+00:00:17,710 --> 00:00:19,460
+But the answer fits on one line.
+
+10
+00:00:19,930 --> 00:00:21,030
+It's the same function,
+
+11
+00:00:21,240 --> 00:00:22,900
+flipped upside down, and scaled
+
+12
+00:00:22,980 --> 00:00:24,270
+up by two to the fiftieth.
+
+13
+00:00:25,330 --> 00:00:26,180
+And you can see why.
+
+14
+00:00:26,750 --> 00:00:28,520
+Picture a flat plane.
+
+15
+00:00:28,520 --> 00:00:31,030
+One direction means e to the x cosine x.
+
+16
+00:00:31,360 --> 00:00:33,590
+The other means e to the x sine x.
+
+17
+00:00:34,090 --> 00:00:36,170
+Our function is an arrow in that plane.
+
+18
+00:00:36,450 --> 00:00:38,280
+Take its derivative, and the arrow
+
+19
+00:00:38,360 --> 00:00:40,200
+turns by an eighth of a turn, and
+
+20
+00:00:40,280 --> 00:00:41,920
+stretches by the square root of two.
+
+21
+00:00:42,500 --> 00:00:43,480
+Every derivative does
+
+22
+00:00:43,560 --> 00:00:44,800
+exactly the same thing.
+
+23
+00:00:45,850 --> 00:00:47,500
+A hundred eighth turns is twelve
+
+24
+00:00:47,540 --> 00:00:49,580
+and a half full turns, so the arrow
+
+25
+00:00:49,660 --> 00:00:51,170
+ends up pointing straight backwards.
+
+26
+00:00:51,430 --> 00:00:52,940
+And it has been stretched by
+
+27
+00:00:53,060 --> 00:00:54,860
+root two, a hundred times over.
+
+28
+00:00:55,280 --> 00:00:56,630
+That's two to the fiftieth.
+
+29
+00:00:57,630 --> 00:00:59,040
+An operation that turns
+
+30
+00:00:59,120 --> 00:01:00,400
+arrows and stretches them.
+
+31
+00:01:00,990 --> 00:01:02,000
+That's not what calculus
+
+32
+00:01:02,040 --> 00:01:03,020
+is supposed to look like.
+
+33
+00:01:03,410 --> 00:01:04,630
+That's what a matrix does.
+
+34
+00:01:05,610 --> 00:01:06,900
+So here is the claim this
+
+35
+00:01:07,020 --> 00:01:07,940
+video is going to earn.
+
+36
+00:01:08,420 --> 00:01:10,530
+Taking a derivative is a linear map,
+
+37
+00:01:10,750 --> 00:01:12,720
+the same kind of move a matrix makes.
+
+38
+00:01:13,190 --> 00:01:15,140
+Once you see it that way, a surprising
+
+39
+00:01:15,260 --> 00:01:17,060
+amount of calculus turns out to be linear
+
+40
+00:01:17,140 --> 00:01:19,960
+algebra, plus one extra idea: the limit.
+
+41
+00:01:20,850 --> 00:01:22,520
+The plus C you were told never
+
+42
+00:01:22,560 --> 00:01:24,180
+to forget is a null space.
+
+43
+00:01:24,530 --> 00:01:26,520
+Sine and cosine cycle forever
+
+44
+00:01:26,600 --> 00:01:28,430
+because the derivative is a rotation.
+
+45
+00:01:29,040 --> 00:01:30,360
+e to the x is special
+
+46
+00:01:30,520 --> 00:01:31,790
+because it is an eigenvector.
+
+47
+00:01:32,120 --> 00:01:33,480
+And the notes a guitar string
+
+48
+00:01:33,560 --> 00:01:35,400
+can play fall out of a matrix.
+
+49
+00:01:36,300 --> 00:01:37,660
+We'll start by turning a curve
+
+50
+00:01:37,740 --> 00:01:39,660
+into a list of numbers, and end
+
+51
+00:01:39,740 --> 00:01:40,880
+by listening to that string.
+
+52
+00:01:45,840 --> 00:01:47,820
+Take a curve, say a sine wave.
+
+53
+00:01:48,120 --> 00:01:49,920
+Forget the smooth line, and keep only
+
+54
+00:01:50,000 --> 00:01:52,170
+its height at eight evenly spaced points.
+
+55
+00:01:52,500 --> 00:01:53,760
+Eight numbers.
+
+56
+00:01:53,760 --> 00:01:54,840
+Stack them in a column, and you
+
+57
+00:01:54,880 --> 00:01:56,590
+have a vector in eight dimensions.
+
+58
+00:01:57,490 --> 00:01:59,140
+Sample it at fifty points, and
+
+59
+00:01:59,180 --> 00:02:00,680
+the vector has fifty entries.
+
+60
+00:02:01,080 --> 00:02:03,300
+At a thousand, the column is so tall
+
+61
+00:02:03,380 --> 00:02:05,230
+that the dots blur back into a curve.
+
+62
+00:02:05,730 --> 00:02:07,060
+That's how a computer stores a
+
+63
+00:02:07,140 --> 00:02:09,170
+function: as a very long vector.
+
+64
+00:02:10,050 --> 00:02:11,860
+And functions behave like vectors.
+
+65
+00:02:12,190 --> 00:02:13,800
+Add two curves, and you add their
+
+66
+00:02:13,920 --> 00:02:15,640
+heights point by point, exactly
+
+67
+00:02:15,720 --> 00:02:17,020
+the way you add two columns.
+
+68
+00:02:17,370 --> 00:02:19,000
+Scale a curve by three, and
+
+69
+00:02:19,080 --> 00:02:20,470
+every entry scales by three.
+
+70
+00:02:21,340 --> 00:02:22,140
+Now watch what the
+
+71
+00:02:22,260 --> 00:02:23,200
+derivative does with that.
+
+72
+00:02:23,730 --> 00:02:25,020
+The slope of a sum is
+
+73
+00:02:25,100 --> 00:02:26,240
+the sum of the slopes.
+
+74
+00:02:26,490 --> 00:02:27,900
+And the slope of three times a
+
+75
+00:02:27,980 --> 00:02:29,770
+curve is three times the slope.
+
+76
+00:02:30,570 --> 00:02:32,320
+Those two rules are the entire
+
+77
+00:02:32,640 --> 00:02:34,240
+definition of a linear map.
+
+78
+00:02:34,320 --> 00:02:35,360
+They are exactly the
+
+79
+00:02:35,600 --> 00:02:37,100
+rules every matrix obeys.
+
+80
+00:02:37,480 --> 00:02:39,760
+So if functions are vectors, and the
+
+81
+00:02:39,840 --> 00:02:41,860
+derivative respects adding and scaling,
+
+82
+00:02:42,170 --> 00:02:43,880
+the derivative should be a matrix.
+
+83
+00:02:44,440 --> 00:02:44,970
+Let's build it.
+
+84
+00:02:47,220 --> 00:02:49,340
+The slope at a point is roughly the rise
+
+85
+00:02:49,380 --> 00:02:51,330
+to the next point, divided by the step.
+
+86
+00:02:51,580 --> 00:02:53,570
+Next height, minus this height,
+
+87
+00:02:53,840 --> 00:02:54,990
+over the gap between them.
+
+88
+00:02:56,030 --> 00:02:57,280
+Now write that down for
+
+89
+00:02:57,360 --> 00:02:58,480
+every point at once.
+
+90
+00:02:58,780 --> 00:03:00,560
+Each row of the matrix looks at
+
+91
+00:03:00,640 --> 00:03:02,400
+two neighbors: minus one on the
+
+92
+00:03:02,480 --> 00:03:04,320
+diagonal, plus one just to its
+
+93
+00:03:04,400 --> 00:03:06,960
+right, and zeros everywhere else.
+
+94
+00:03:06,960 --> 00:03:08,900
+Then divide everything by the step.
+
+95
+00:03:09,860 --> 00:03:11,780
+Zoom out to a thousand points, and
+
+96
+00:03:11,820 --> 00:03:14,233
+the matrix has a million entries.
+
+97
+00:03:14,367 --> 00:03:15,670
+Almost all of them are zero.
+
+98
+00:03:16,180 --> 00:03:17,967
+What's left is one thin,
+
+99
+00:03:18,073 --> 00:03:19,400
+bright band down the diagonal.
+
+100
+00:03:20,450 --> 00:03:21,520
+Now multiply.
+
+101
+00:03:21,760 --> 00:03:23,320
+Feed it the column for sine
+
+102
+00:03:23,560 --> 00:03:24,870
+x, and a new column comes out.
+
+103
+00:03:25,180 --> 00:03:26,590
+Plot it back as a curve,
+
+104
+00:03:26,800 --> 00:03:27,880
+and it's cosine x.
+
+105
+00:03:28,150 --> 00:03:29,720
+The computer just took a
+
+106
+00:03:29,800 --> 00:03:31,640
+derivative, and all it did was
+
+107
+00:03:31,880 --> 00:03:33,400
+multiply a matrix by a vector.
+
+108
+00:03:33,870 --> 00:03:35,720
+Physics simulations and weather models
+
+109
+00:03:35,800 --> 00:03:38,173
+do calculus in exactly this spirit,
+
+110
+00:03:38,227 --> 00:03:41,293
+with enormous, mostly empty matrices.
+
+111
+00:03:41,847 --> 00:03:43,900
+That matrix is an approximation, and it
+
+112
+00:03:44,020 --> 00:03:45,670
+gets better as the points get closer.
+
+113
+00:03:45,950 --> 00:03:47,820
+But for some functions you don't
+
+114
+00:03:47,900 --> 00:03:49,410
+need an approximation at all.
+
+115
+00:03:50,000 --> 00:03:51,930
+Take the polynomials up to x cubed.
+
+116
+00:03:52,450 --> 00:03:53,660
+Every one of them is a mix
+
+117
+00:03:53,740 --> 00:03:56,100
+of four building blocks: one,
+
+118
+00:03:56,590 --> 00:03:58,140
+x, x squared, and x cubed.
+
+119
+00:03:58,390 --> 00:04:01,553
+So a cubic is really just four numbers.
+
+120
+00:04:01,553 --> 00:04:03,290
+The derivative sends one to zero,
+
+121
+00:04:03,630 --> 00:04:05,830
+x to one, x squared to two x,
+
+122
+00:04:06,080 --> 00:04:08,060
+and x cubed to three x squared.
+
+123
+00:04:08,610 --> 00:04:10,220
+Write where each building block lands
+
+124
+00:04:10,260 --> 00:04:12,220
+as a column, and you get an exact
+
+125
+00:04:12,300 --> 00:04:14,740
+four by four matrix, with one, two,
+
+126
+00:04:14,780 --> 00:04:16,810
+three sitting just above the diagonal.
+
+127
+00:04:17,340 --> 00:04:18,860
+Multiply it by the four numbers
+
+128
+00:04:18,980 --> 00:04:20,780
+of any cubic, and out come the
+
+129
+00:04:20,860 --> 00:04:22,220
+four numbers of its derivative.
+
+130
+00:04:22,590 --> 00:04:23,620
+No limits.
+
+131
+00:04:23,660 --> 00:04:24,590
+No approximation.
+
+132
+00:04:25,020 --> 00:04:27,770
+Calculus, done entirely by a matrix.
+
+133
+00:04:29,670 --> 00:04:31,450
+Look at the first column of this matrix.
+
+134
+00:04:31,790 --> 00:04:32,910
+It's all zeros.
+
+135
+00:04:33,140 --> 00:04:34,520
+Feed it a constant, and
+
+136
+00:04:34,560 --> 00:04:35,820
+it returns nothing at all.
+
+137
+00:04:36,600 --> 00:04:38,860
+In the language of matrices, a whole
+
+138
+00:04:38,940 --> 00:04:41,340
+direction gets crushed to zero.
+
+139
+00:04:41,340 --> 00:04:43,820
+Every constant function, five, minus
+
+140
+00:04:44,020 --> 00:04:46,370
+two, a million, lands on the same point.
+
+141
+00:04:46,660 --> 00:04:49,040
+That direction is called the null space.
+
+142
+00:04:49,850 --> 00:04:51,240
+And a matrix that crushes a
+
+143
+00:04:51,280 --> 00:04:53,090
+direction can never be undone.
+
+144
+00:04:53,380 --> 00:04:54,840
+Its determinant is zero.
+
+145
+00:04:55,330 --> 00:04:56,880
+Once two inputs land on the
+
+146
+00:04:57,000 --> 00:04:58,720
+same output, there is no way to
+
+147
+00:04:58,840 --> 00:05:00,870
+tell which one you started from.
+
+148
+00:05:00,880 --> 00:05:02,480
+x squared plus five, and x squared
+
+149
+00:05:02,560 --> 00:05:05,220
+minus two, both have derivative two x.
+
+150
+00:05:06,060 --> 00:05:06,900
+So think about what
+
+151
+00:05:06,980 --> 00:05:08,530
+integration really asks.
+
+152
+00:05:08,940 --> 00:05:10,100
+Find a function whose
+
+153
+00:05:10,220 --> 00:05:11,440
+derivative is this one.
+
+154
+00:05:11,910 --> 00:05:13,300
+That is solving a matrix
+
+155
+00:05:13,380 --> 00:05:16,080
+equation: D times F equals f.
+
+156
+00:05:16,490 --> 00:05:18,500
+And linear algebra already knows what the
+
+157
+00:05:18,580 --> 00:05:20,400
+answer to a crushed system looks like.
+
+158
+00:05:20,740 --> 00:05:22,483
+One particular solution, plus
+
+159
+00:05:22,820 --> 00:05:24,330
+anything at all from the null space.
+
+160
+00:05:25,200 --> 00:05:27,360
+Here, the null space is the constants.
+
+161
+00:05:27,640 --> 00:05:28,600
+That's the plus C.
+
+162
+00:05:28,940 --> 00:05:30,840
+It isn't a rule to memorize, or
+
+163
+00:05:30,880 --> 00:05:32,410
+a way to lose marks on an exam.
+
+164
+00:05:32,660 --> 00:05:33,960
+It's the null space of the
+
+165
+00:05:34,080 --> 00:05:36,040
+derivative, showing up exactly
+
+166
+00:05:36,120 --> 00:05:37,770
+where linear algebra says it must.
+
+167
+00:05:38,780 --> 00:05:40,910
+This matrix has one more odd habit.
+
+168
+00:05:41,350 --> 00:05:42,960
+Each time you apply it, every
+
+169
+00:05:43,100 --> 00:05:44,950
+coefficient slides one slot up,
+
+170
+00:05:45,210 --> 00:05:46,800
+and the top one falls off the end.
+
+171
+00:05:47,170 --> 00:05:48,540
+Apply it four times,
+
+172
+00:05:48,620 --> 00:05:50,050
+and every cubic is gone.
+
+173
+00:05:50,380 --> 00:05:52,140
+Differentiate a polynomial enough
+
+174
+00:05:52,460 --> 00:05:53,960
+times, and nothing is left.
+
+175
+00:05:55,950 --> 00:05:57,933
+Let's change the building blocks.
+
+176
+00:05:57,933 --> 00:05:59,800
+Instead of powers of x, take just
+
+177
+00:05:59,920 --> 00:06:01,930
+two functions, cosine and sine.
+
+178
+00:06:02,300 --> 00:06:03,960
+Every mix of them, like two
+
+179
+00:06:04,080 --> 00:06:06,280
+cosine x plus sine x, is an arrow
+
+180
+00:06:06,360 --> 00:06:08,280
+in a plane, with cosine along one
+
+181
+00:06:08,360 --> 00:06:10,030
+axis and sine along the other.
+
+182
+00:06:10,880 --> 00:06:12,850
+Cosine's derivative is minus sine.
+
+183
+00:06:13,170 --> 00:06:14,690
+Sine's derivative is cosine.
+
+184
+00:06:14,930 --> 00:06:16,460
+So where does the cosine arrow
+
+185
+00:06:16,540 --> 00:06:17,670
+go when you differentiate it?
+
+186
+00:06:18,070 --> 00:06:19,110
+Pause and predict.
+
+187
+00:06:22,600 --> 00:06:24,540
+Cosine, pointing right, swings
+
+188
+00:06:24,780 --> 00:06:26,330
+down to point at minus sine.
+
+189
+00:06:26,650 --> 00:06:28,580
+Sine, pointing up, swings
+
+190
+00:06:28,660 --> 00:06:29,960
+right to point at cosine.
+
+191
+00:06:30,220 --> 00:06:31,780
+Both arrows turn a quarter
+
+192
+00:06:31,860 --> 00:06:32,990
+turn, the same way.
+
+193
+00:06:33,350 --> 00:06:34,420
+On this plane, the
+
+194
+00:06:34,540 --> 00:06:35,880
+derivative is a rotation.
+
+195
+00:06:36,840 --> 00:06:38,630
+Now the old facts read differently.
+
+196
+00:06:39,020 --> 00:06:40,440
+Differentiate twice, and
+
+197
+00:06:40,520 --> 00:06:41,960
+every arrow has turned halfway
+
+198
+00:06:42,040 --> 00:06:43,510
+around and points backwards.
+
+199
+00:06:43,770 --> 00:06:45,240
+That's why the second derivative
+
+200
+00:06:45,320 --> 00:06:46,720
+of sine is minus sine.
+
+201
+00:06:47,000 --> 00:06:49,000
+Four derivatives make a full turn and
+
+202
+00:06:49,080 --> 00:06:51,840
+bring you home, which is why sine, cosine,
+
+203
+00:06:51,880 --> 00:06:54,540
+minus sine, minus cosine cycle forever.
+
+204
+00:06:54,830 --> 00:06:56,440
+It's the same quarter turn that
+
+205
+00:06:56,560 --> 00:06:58,320
+makes i squared equal minus one.
+
+206
+00:06:59,240 --> 00:07:01,430
+And this is the secret behind the opening.
+
+207
+00:07:01,700 --> 00:07:03,580
+Swap in e to the x cosine
+
+208
+00:07:03,900 --> 00:07:05,520
+x, and e to the x sine x.
+
+209
+00:07:05,790 --> 00:07:07,980
+Now each derivative turns by an eighth
+
+210
+00:07:08,060 --> 00:07:10,160
+of a turn, and stretches by root two.
+
+211
+00:07:10,530 --> 00:07:12,300
+Unlike the polynomial matrix,
+
+212
+00:07:12,380 --> 00:07:13,750
+this one crushes nothing.
+
+213
+00:07:14,030 --> 00:07:15,553
+Its determinant is two,
+
+214
+00:07:15,607 --> 00:07:16,520
+so it can be undone.
+
+215
+00:07:17,320 --> 00:07:18,400
+That gives a trick you
+
+216
+00:07:18,480 --> 00:07:19,210
+might not have seen.
+
+217
+00:07:19,510 --> 00:07:21,200
+The integral of e to the x sine
+
+218
+00:07:21,440 --> 00:07:23,040
+x usually takes integration by
+
+219
+00:07:23,120 --> 00:07:25,300
+parts, twice, and a bit of algebra.
+
+220
+00:07:25,580 --> 00:07:27,280
+Here, it is just the inverse
+
+221
+00:07:27,680 --> 00:07:29,200
+matrix: turn back by an eighth of
+
+222
+00:07:29,240 --> 00:07:31,040
+a turn, and shrink by root two.
+
+223
+00:07:31,330 --> 00:07:33,480
+Out comes one half e to the x,
+
+224
+00:07:33,520 --> 00:07:35,470
+times sine x minus cosine x.
+
+225
+00:07:35,740 --> 00:07:37,360
+Differentiate that, and you get
+
+226
+00:07:37,440 --> 00:07:39,110
+e to the x sine x right back.
+
+227
+00:07:39,390 --> 00:07:40,960
+Add the plus C, and you're done.
+
+228
+00:07:42,830 --> 00:07:45,020
+In linear algebra, the most revealing
+
+229
+00:07:45,220 --> 00:07:47,230
+question you can ask a matrix is this.
+
+230
+00:07:47,850 --> 00:07:49,700
+Which directions does it leave alone?
+
+231
+00:07:50,190 --> 00:07:51,500
+Which vectors does it only
+
+232
+00:07:51,580 --> 00:07:53,010
+stretch, and never turn?
+
+233
+00:07:53,990 --> 00:07:55,660
+So ask the derivative.
+
+234
+00:07:55,930 --> 00:07:57,360
+Which function comes back
+
+235
+00:07:57,440 --> 00:07:58,720
+from differentiation as
+
+236
+00:07:58,800 --> 00:08:00,240
+just a multiple of itself?
+
+237
+00:08:00,830 --> 00:08:01,970
+Pause and predict.
+
+238
+00:08:05,650 --> 00:08:06,390
+Not sine.
+
+239
+00:08:06,740 --> 00:08:08,580
+The derivative turns it into cosine.
+
+240
+00:08:08,990 --> 00:08:10,070
+Not x squared.
+
+241
+00:08:10,330 --> 00:08:11,370
+It loses a power.
+
+242
+00:08:11,790 --> 00:08:13,830
+The answer is e to the x.
+
+243
+00:08:14,140 --> 00:08:15,640
+Its derivative is itself.
+
+244
+00:08:15,980 --> 00:08:18,410
+And e to the two x comes back doubled.
+
+245
+00:08:18,910 --> 00:08:21,560
+e to the minus x comes back flipped.
+
+246
+00:08:21,720 --> 00:08:23,320
+Every function e to the lambda
+
+247
+00:08:23,400 --> 00:08:24,880
+x is an eigenvector of the
+
+248
+00:08:24,920 --> 00:08:27,110
+derivative, with eigenvalue lambda.
+
+249
+00:08:28,110 --> 00:08:29,500
+That's the deepest reason
+
+250
+00:08:29,660 --> 00:08:30,980
+e shows up everywhere.
+
+251
+00:08:31,300 --> 00:08:32,700
+Whenever something changes at
+
+252
+00:08:32,780 --> 00:08:34,500
+a rate proportional to itself,
+
+253
+00:08:34,720 --> 00:08:36,700
+money, populations, radioactive
+
+254
+00:08:36,780 --> 00:08:38,620
+atoms, it is asking for an
+
+255
+00:08:38,660 --> 00:08:40,110
+eigenvector of the derivative.
+
+256
+00:08:40,380 --> 00:08:42,900
+And only one family of functions answers.
+
+257
+00:08:43,970 --> 00:08:45,040
+Differential equations
+
+258
+00:08:45,120 --> 00:08:46,440
+become linear algebra too.
+
+259
+00:08:46,740 --> 00:08:49,040
+Take y double prime plus y equals
+
+260
+00:08:49,120 --> 00:08:51,440
+zero, the equation of a spring.
+
+261
+00:08:51,440 --> 00:08:53,040
+Read it as an operator: D
+
+262
+00:08:53,320 --> 00:08:56,053
+squared plus one sends y to zero.
+
+263
+00:08:56,053 --> 00:08:57,600
+So its solutions are exactly
+
+264
+00:08:57,680 --> 00:08:59,180
+the null space of that operator.
+
+265
+00:08:59,540 --> 00:09:02,320
+A null space is always flat, and this one
+
+266
+00:09:02,360 --> 00:09:05,190
+is a plane: every mix of cosine and sine.
+
+267
+00:09:05,680 --> 00:09:07,973
+Two numbers pick out one solution,
+
+268
+00:09:08,027 --> 00:09:09,200
+and that's why a spring needs
+
+269
+00:09:09,320 --> 00:09:10,880
+two starting conditions, where it
+
+270
+00:09:11,000 --> 00:09:13,280
+begins and how fast it's moving.
+
+271
+00:09:13,280 --> 00:09:14,320
+It also explains a trick
+
+272
+00:09:14,400 --> 00:09:15,490
+from earlier on this channel.
+
+273
+00:09:15,940 --> 00:09:18,240
+The Fourier and Laplace transforms rewrite
+
+274
+00:09:18,280 --> 00:09:20,210
+a function as a mix of exponentials.
+
+275
+00:09:20,450 --> 00:09:22,320
+In that basis, the derivative's
+
+276
+00:09:22,400 --> 00:09:24,480
+own eigenbasis, differentiating
+
+277
+00:09:24,680 --> 00:09:26,120
+stops being calculus.
+
+278
+00:09:26,160 --> 00:09:27,120
+Each piece just gets
+
+279
+00:09:27,240 --> 00:09:29,200
+multiplied by its own number.
+
+280
+00:09:29,200 --> 00:09:30,640
+That is what turning calculus
+
+281
+00:09:30,760 --> 00:09:32,290
+into algebra really means.
+
+282
+00:09:32,620 --> 00:09:34,410
+It's diagonalizing the derivative.
+
+283
+00:09:36,340 --> 00:09:37,500
+Let's put the matrix to work
+
+284
+00:09:37,580 --> 00:09:38,660
+on something you can hear.
+
+285
+00:09:39,540 --> 00:09:42,213
+A guitar string is pinned at both ends.
+
+286
+00:09:42,267 --> 00:09:43,547
+Where it bends more sharply,
+
+287
+00:09:43,573 --> 00:09:44,780
+it gets pulled back harder.
+
+288
+00:09:45,050 --> 00:09:46,720
+And how sharply a curve bends
+
+289
+00:09:46,800 --> 00:09:47,810
+is its second derivative.
+
+290
+00:09:48,670 --> 00:09:49,940
+So build the second
+
+291
+00:09:50,020 --> 00:09:51,350
+derivative as a matrix.
+
+292
+00:09:51,560 --> 00:09:53,390
+Two hundred points along the string.
+
+293
+00:09:53,630 --> 00:09:55,887
+Each row takes a point's two neighbors,
+
+294
+00:09:55,913 --> 00:09:57,730
+and subtracts twice the point itself.
+
+295
+00:09:58,140 --> 00:09:59,840
+One, minus two, one.
+
+296
+00:10:00,210 --> 00:10:01,890
+Pin both ends at zero.
+
+297
+00:10:02,870 --> 00:10:04,600
+Now ask the computer the question
+
+298
+00:10:04,680 --> 00:10:06,340
+linear algebra loves most.
+
+299
+00:10:06,720 --> 00:10:08,750
+What are this matrix's eigenvectors?
+
+300
+00:10:09,040 --> 00:10:10,670
+Which shapes does it only scale?
+
+301
+00:10:11,770 --> 00:10:12,800
+Out come these.
+
+302
+00:10:13,200 --> 00:10:14,080
+A single arch.
+
+303
+00:10:14,400 --> 00:10:15,110
+Two arches.
+
+304
+00:10:15,370 --> 00:10:15,710
+Three.
+
+305
+00:10:16,040 --> 00:10:18,540
+Smooth sine waves, each fitting a whole
+
+306
+00:10:18,620 --> 00:10:20,450
+number of half waves between the pins.
+
+307
+00:10:20,690 --> 00:10:22,700
+Nobody typed in a sine.
+
+308
+00:10:22,780 --> 00:10:23,820
+They fell out of a grid
+
+309
+00:10:23,900 --> 00:10:25,360
+of ones and minus twos.
+
+310
+00:10:25,590 --> 00:10:27,020
+And their eigenvalues match
+
+311
+00:10:27,100 --> 00:10:29,020
+the exact answer, minus k
+
+312
+00:10:29,140 --> 00:10:31,100
+pi squared, to three digits.
+
+313
+00:10:31,520 --> 00:10:33,520
+Each eigenvector is a way the string
+
+314
+00:10:33,640 --> 00:10:35,520
+can vibrate in place, keeping its
+
+315
+00:10:35,720 --> 00:10:37,640
+shape and only growing and shrinking.
+
+316
+00:10:37,740 --> 00:10:40,040
+Its eigenvalue sets how fast.
+
+317
+00:10:40,310 --> 00:10:42,400
+The second shape vibrates twice as
+
+318
+00:10:42,520 --> 00:10:44,320
+fast as the first, one octave up.
+
+319
+00:10:44,560 --> 00:10:46,570
+The third, three times as fast.
+
+320
+00:10:47,630 --> 00:10:49,140
+Pluck the string, and its shape
+
+321
+00:10:49,180 --> 00:10:50,780
+is a mix of these eigenvectors,
+
+322
+00:10:51,090 --> 00:10:52,670
+each ringing at its own speed.
+
+323
+00:10:53,250 --> 00:10:56,127
+That mix is the sound of the note.
+
+324
+00:10:56,127 --> 00:10:57,300
+The overtones you hear are
+
+325
+00:10:57,380 --> 00:10:58,960
+the eigenvectors of a matrix.
+
+326
+00:11:00,930 --> 00:11:01,850
+One last move.
+
+327
+00:11:02,420 --> 00:11:05,087
+For numbers, e to the x is one, plus
+
+328
+00:11:05,520 --> 00:11:08,720
+x, plus x squared over two, and so on.
+
+329
+00:11:08,720 --> 00:11:10,530
+That same series works for matrices.
+
+330
+00:11:10,800 --> 00:11:12,400
+So what happens if you put the
+
+331
+00:11:12,480 --> 00:11:14,270
+derivative itself in the exponent?
+
+332
+00:11:15,450 --> 00:11:18,500
+e to the h D is one, plus h times the
+
+333
+00:11:18,580 --> 00:11:21,060
+derivative, plus h squared over two times
+
+334
+00:11:21,140 --> 00:11:23,860
+the second derivative, and on and on.
+
+335
+00:11:23,860 --> 00:11:25,300
+Apply it to a function, and you
+
+336
+00:11:25,460 --> 00:11:28,060
+get f, plus h f prime, plus h
+
+337
+00:11:28,100 --> 00:11:29,870
+squared over two f double prime.
+
+338
+00:11:30,410 --> 00:11:31,710
+That's the Taylor series.
+
+339
+00:11:32,180 --> 00:11:33,540
+And the Taylor series adds up
+
+340
+00:11:33,660 --> 00:11:35,990
+to f, evaluated at x plus h.
+
+341
+00:11:37,090 --> 00:11:38,440
+So the exponential of the
+
+342
+00:11:38,560 --> 00:11:39,800
+derivative is a shift.
+
+343
+00:11:40,200 --> 00:11:42,740
+It slides the whole graph sideways by h.
+
+344
+00:11:43,290 --> 00:11:45,000
+Tiny changes, added up,
+
+345
+00:11:45,080 --> 00:11:46,400
+become one big move.
+
+346
+00:11:47,460 --> 00:11:48,800
+One honest asterisk.
+
+347
+00:11:49,360 --> 00:11:51,340
+This only works for functions whose Taylor
+
+348
+00:11:51,540 --> 00:11:53,380
+series actually adds back up to them,
+
+349
+00:11:53,420 --> 00:11:56,540
+like polynomials, e to the x, and sine.
+
+350
+00:11:56,620 --> 00:11:58,670
+There are smooth functions where it fails.
+
+351
+00:11:58,980 --> 00:12:01,020
+e to the minus one over x squared is
+
+352
+00:12:01,100 --> 00:12:03,180
+perfectly smooth, yet every one of
+
+353
+00:12:03,260 --> 00:12:05,450
+its derivatives at zero is zero, so
+
+354
+00:12:05,580 --> 00:12:07,470
+its Taylor series there is just zero.
+
+355
+00:12:09,410 --> 00:12:12,030
+So, is calculus secretly linear algebra?
+
+356
+00:12:12,510 --> 00:12:13,690
+Mostly, yes.
+
+357
+00:12:14,060 --> 00:12:16,787
+But the honest answer has a second half.
+
+358
+00:12:17,287 --> 00:12:18,940
+A real function has a value at
+
+359
+00:12:19,020 --> 00:12:20,690
+every point, not just a thousand.
+
+360
+00:12:20,910 --> 00:12:23,020
+It's a vector with infinitely many
+
+361
+00:12:23,100 --> 00:12:25,670
+entries, and infinity changes the rules.
+
+362
+00:12:26,240 --> 00:12:28,220
+The derivative is no longer a finite
+
+363
+00:12:28,580 --> 00:12:30,120
+matrix, and it has no determinant.
+
+364
+00:12:30,410 --> 00:12:32,660
+On the space of all smooth functions,
+
+365
+00:12:32,970 --> 00:12:35,180
+every number is an eigenvalue, because
+
+366
+00:12:35,260 --> 00:12:38,167
+e to the lambda x works for any lambda.
+
+367
+00:12:38,167 --> 00:12:39,500
+And getting from a thousand points
+
+368
+00:12:39,620 --> 00:12:41,150
+to every point takes a limit.
+
+369
+00:12:41,730 --> 00:12:42,700
+That's the part linear
+
+370
+00:12:42,780 --> 00:12:44,040
+algebra can't do for you.
+
+371
+00:12:45,000 --> 00:12:46,880
+Making all of this rigorous is a field
+
+372
+00:12:46,920 --> 00:12:49,020
+of its own, called functional analysis.
+
+373
+00:12:49,260 --> 00:12:50,960
+It's the mathematics underneath
+
+374
+00:12:51,040 --> 00:12:52,640
+quantum mechanics, where every
+
+375
+00:12:52,840 --> 00:12:54,040
+quantity you can measure is an
+
+376
+00:12:54,080 --> 00:12:55,540
+operator, just like the derivative.
+
+377
+00:12:56,680 --> 00:12:57,730
+But the picture holds.
+
+378
+00:12:58,180 --> 00:12:59,840
+Plus C is a null space.
+
+379
+00:13:00,190 --> 00:13:02,390
+Sine and cosine are a rotation.
+
+380
+00:13:02,710 --> 00:13:04,550
+e to the x is an eigenvector.
+
+381
+00:13:04,710 --> 00:13:07,490
+A guitar string is an eigenvector problem.
+
+382
+00:13:07,900 --> 00:13:11,300
+Calculus is linear algebra, plus a limit.

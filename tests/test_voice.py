@@ -133,11 +133,40 @@ def test_pause_markers_add_silence_before_the_next_paragraph(tmp_path):
     assert abs((out[3].start - 1.5) - 5.0) < 0.05     # section gap 1 s + pause 4 s
 
 
+def _cues(path):
+    return [b.split("\n")[2:] for b in path.read_text().strip().split("\n\n")]
+
+
 def test_subtitles_split_evenly_without_orphan_words(tmp_path):
     text = "You have probably seen it written another way. It is not."
     words = [Word(t, i * 0.3, i * 0.3 + 0.25) for i, t in enumerate(text.split())]
     out = tmp_path / "subs.srt"
-    write_subtitles(words, out, max_chars=42)
-    cues = [b.split("\n")[2] for b in out.read_text().strip().split("\n\n")]
+    write_subtitles(words, out, max_chars=42, max_lines=1)
+    cues = [c[0] for c in _cues(out)]
     assert cues == ["You have probably seen", "it written another way.", "It is not."]
     assert all(len(c) <= 42 for c in cues)
+
+
+def test_subtitles_two_lines_break_at_phrases_not_weak_words(tmp_path):
+    text = ("The real answer is far nicer. e to this matrix is minus the identity: every point swings around "
+            "to the opposite side, a clean half turn.")
+    words = [Word(t, i * 0.28, i * 0.28 + 0.24) for i, t in enumerate(text.split())]
+    out = tmp_path / "subs.srt"
+    write_subtitles(words, out)
+    cues = _cues(out)
+    assert all(len(line) <= 42 for c in cues for line in c) and all(len(c) <= 2 for c in cues)
+    ends = [line.split()[-1].lower() for c in cues for line in c]
+    assert not any(e in ("the", "a", "to", "of") for e in ends)       # never "…is minus the | identity"
+    assert any(line.endswith("identity:") for c in cues for line in c)  # breaks at the clause instead
+
+
+def test_subtitles_merge_flash_sentences_and_respect_pauses(tmp_path):
+    seq = [("But", 0.0), ("real", 0.3), ("things", 0.6), ("rarely", 0.9), ("change", 1.2), ("alone.", 1.5),
+           ("Swallow", 2.0), ("a", 2.3), ("pill.", 2.5),                      # an 0.8 s sentence on its own
+           ("Next", 4.0), ("idea.", 4.3)]                                     # after a 1.2 s paragraph pause
+    words = [Word(t, s_, s_ + 0.25) for t, s_ in seq]
+    out = tmp_path / "subs.srt"
+    write_subtitles(words, out)
+    cues = _cues(out)
+    assert cues[0] == ["But real things rarely change alone.", "Swallow a pill."]
+    assert cues[-1] == ["Next idea."]

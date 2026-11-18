@@ -737,6 +737,50 @@ Example:
 Example:
     r, g, b = hex_to_linear(C.accent)
 
+## Mat(rows, colors=None, size=None, h_buff=0.95, v_buff=0.78, pad=0.2, places=2)  [components.linalg]
+
+A matrix with hand-set square brackets: entries in a fixed grid, every part addressable.
+
+`m.br` is the brackets, `m.cols[j]` column j's entries (top to bottom), `m.cell(i, j)` one entry,
+`m.col_box(j, color)` a thin box around column j. Numbers are formatted with `fmt`; strings are TeX.
+Columns default to the theme's `ihat` / `jhat` / `khat` roles when the video defines them (else
+text color). Pass `colors=` (one color, or one per column) to override.
+
+Example:
+    M = Mat([["0", r"-\pi"], [r"\pi", "0"]], colors=C.gen).move_to(UP * 2)
+
+## brackets(height: 'float', gap: 'float', width: 'float | None' = None, hook: 'float' = 0.16, color=None)  [components.linalg]
+
+A pair of square matrix brackets drawn as crisp polylines, `gap` apart (inner edges), `height` tall.
+
+Example:
+    br = brackets(1.6, 2.0)
+
+## fmt(x: 'float', places: 'int' = 2) -> 'str'  [components.linalg]
+
+A number for display: integers bare, otherwise up to `places` decimals, and never "-0".
+
+Example:
+    fmt(2.0) == "2";  fmt(-0.0001) == "0";  fmt(2.718281) == "2.72"
+
+## grid_lines(M, center, unit, box, n=14, minor=2, color=None, width=None, opacity=1.0, axes=True)  [components.linalg]
+
+The Classic grid after the matrix M, clipped to `box` (x0, y0, x1, y1 in Manim units).
+
+Integer lines in `C.grid`, `minor - 1` dim lines between them in `C.grid_minor`, and the two axes in `C.axis`.
+Returns VGroup(minor, major, axes). Pass `color` for a single-color reference grid (minor lines are then
+left out). A singular M collapses its lines onto the image line, which is how a det-0 map looks.
+
+Example:
+    g = grid_lines([[1, 1], [0, 1]], center=(0, 0), unit=1.0, box=(-7.3, -4.2, 7.3, 4.2))
+
+## panel(x0, y0, x1, y1, fill=True)  [components.linalg]
+
+A framed panel: black inside, thin light border (the Classic look for side-by-side views).
+
+Example:
+    left, right = panel(-6.9, -3.7, -0.15, 3.7), panel(0.15, -3.7, 6.9, 3.7)
+
 ## Eqn(tex: 'str', colors: 'dict[str, str] | None' = None, size: 'float | None' = None, **kw)  [components.text]
 
 MathTex with named terms isolated and colored by the theme (same color as their visuals).

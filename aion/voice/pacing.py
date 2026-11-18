@@ -85,6 +85,9 @@ def silences(x: np.ndarray, rate: int, min_len: float = 0.2, drop_db: float = 34
 def snap_words(words: list, sil: list[tuple[float, float]], reach: float = 0.45) -> tuple[list, int]:
     """Move the word that follows each silence onto the real speech onset; keep the word before it out of the silence.
 
+    When several words start near the onset, a word right after punctuation wins, because that's where TTS pauses
+    fall. Aligners often stamp a sentence's last word late, and it must not be pulled across the pause.
+
     Returns (new words, number of cues moved by more than 40 ms).
 
     Example:
@@ -103,6 +106,9 @@ def snap_words(words: list, sil: list[tuple[float, float]], reach: float = 0.45)
         cand = cand[np.abs(starts[cand] - b) <= reach]
         if len(cand) == 0:
             continue
+        after_punct = [i for i in cand if i > 0 and (w[i - 1].ends_sentence or w[i - 1].ends_clause)]
+        if after_punct:          # TTS pauses fall after punctuation: a late-stamped sentence-final word that
+            cand = np.array(after_punct)  # starts near the silence's end must not be pulled across the pause
         n = int(cand[np.argmin(np.abs(starts[cand] - b))])
         d = b - w[n].start
         if abs(d) > 0.04:
