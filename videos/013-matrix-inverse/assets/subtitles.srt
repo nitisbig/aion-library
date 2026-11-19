@@ -1,0 +1,894 @@
+1
+00:00:01,500 --> 00:00:04,010
+Take a key, and lay it on a flat grid.
+
+2
+00:00:04,680 --> 00:00:06,590
+Now pick up the whole plane.
+
+3
+00:00:06,770 --> 00:00:08,230
+Lean it to one side.
+
+4
+00:00:08,400 --> 00:00:09,400
+Pull it upward.
+
+5
+00:00:09,510 --> 00:00:11,600
+Lean it again, and once more.
+
+6
+00:00:12,280 --> 00:00:15,780
+Four moves,
+and together they make a single matrix.
+
+7
+00:00:16,450 --> 00:00:17,580
+So here's the question.
+
+8
+00:00:17,730 --> 00:00:18,800
+Can we put it back?
+
+9
+00:00:19,490 --> 00:00:20,300
+We can.
+
+10
+00:00:20,340 --> 00:00:21,780
+One more matrix,
+
+11
+00:00:21,820 --> 00:00:26,080
+one smooth motion, and every point returns
+to exactly where it started.
+
+12
+00:00:26,250 --> 00:00:28,860
+That second matrix is called the inverse.
+
+13
+00:00:29,520 --> 00:00:32,100
+Now try a matrix
+that looks almost the same.
+
+14
+00:00:32,170 --> 00:00:34,070
+Only its second column is different.
+
+15
+00:00:34,780 --> 00:00:36,240
+The plane falls flat.
+
+16
+00:00:36,480 --> 00:00:39,360
+The whole key is now a streak
+on a single line.
+
+17
+00:00:40,040 --> 00:00:41,130
+Put this one back.
+
+18
+00:00:41,690 --> 00:00:43,250
+There's nothing to hold on to.
+
+19
+00:00:43,410 --> 00:00:45,620
+This streak could have come from this key.
+
+20
+00:00:45,790 --> 00:00:47,560
+Or this one, with a tooth flipped.
+
+21
+00:00:47,720 --> 00:00:50,510
+Four teeth, each pointing up or down:
+
+22
+00:00:50,560 --> 00:00:55,270
+that's sixteen different keys, and all
+sixteen leave exactly the same mark.
+
+23
+00:00:55,890 --> 00:00:59,550
+It's a shadow, and one shadow
+can't tell you which key cast it.
+
+24
+00:01:00,220 --> 00:01:03,660
+Why can one matrix be undone,
+when its near twin can't?
+
+25
+00:01:03,810 --> 00:01:06,710
+The answer decides
+how a video game draws its world,
+
+26
+00:01:06,750 --> 00:01:10,487
+how a drone reads a map,
+how a computer solves an equation,
+
+27
+00:01:10,527 --> 00:01:13,110
+and whether a blurred picture
+can be made sharp again.
+
+28
+00:01:13,740 --> 00:01:16,880
+And by the end,
+we'll do something that sounds impossible.
+
+29
+00:01:17,050 --> 00:01:20,210
+We'll rebuild this key
+from nothing but its shadows.
+
+30
+00:01:21,860 --> 00:01:23,460
+A matrix is a move.
+
+31
+00:01:23,560 --> 00:01:24,420
+Its columns say
+
+32
+00:01:24,460 --> 00:01:27,930
+where the two basic arrows land,
+and the rest of the plane follows them.
+
+33
+00:01:28,590 --> 00:01:30,540
+Some moves are easy to undo.
+
+34
+00:01:30,680 --> 00:01:34,720
+Turn the plane, and the way back turns
+it the same amount in the other direction.
+
+35
+00:01:34,850 --> 00:01:36,900
+Stretch it, and the way back shrinks it.
+
+36
+00:01:37,050 --> 00:01:38,640
+Slide each row sideways,
+
+37
+00:01:38,680 --> 00:01:42,710
+like pushing a deck of cards, and the way
+back pushes the deck the other way.
+
+38
+00:01:43,360 --> 00:01:45,540
+That stretch suggests a shortcut.
+
+39
+00:01:45,700 --> 00:01:48,540
+Two became a half,
+and three became a third.
+
+40
+00:01:48,690 --> 00:01:51,370
+So maybe you just flip
+every number upside down.
+
+41
+00:01:52,000 --> 00:01:54,050
+But the sliding deck has a zero in it,
+
+42
+00:01:54,090 --> 00:01:58,870
+and zero can't be flipped, yet we undid
+that move by changing a single sign.
+
+43
+00:01:59,020 --> 00:02:02,300
+And the matrix
+that crushed our key has no zeros at all.
+
+44
+00:02:02,430 --> 00:02:05,370
+So the numbers,
+read one at a time, won't tell us.
+
+45
+00:02:05,480 --> 00:02:08,460
+We have to watch what
+the whole matrix does to space.
+
+46
+00:02:09,100 --> 00:02:11,287
+Follow one point as the plane moves,
+
+47
+00:02:11,327 --> 00:02:14,100
+and draw a thread from where it started
+to where it landed.
+
+48
+00:02:14,220 --> 00:02:16,390
+Now do the same for every other point.
+
+49
+00:02:17,020 --> 00:02:19,360
+That web of threads is the move.
+
+50
+00:02:19,530 --> 00:02:23,120
+The way back is the same web,
+walked in the opposite direction.
+
+51
+00:02:23,230 --> 00:02:24,850
+That's what an inverse is.
+
+52
+00:02:24,940 --> 00:02:26,690
+Every thread, reversed.
+
+53
+00:02:27,320 --> 00:02:31,720
+Go out along the threads and come back,
+and every point ends up where it began.
+
+54
+00:02:31,870 --> 00:02:35,240
+The round trip, taken as one move,
+does nothing at all.
+
+55
+00:02:35,870 --> 00:02:38,010
+Doing nothing has a matrix too.
+
+56
+00:02:38,050 --> 00:02:40,590
+Its columns leave both arrows at home.
+
+57
+00:02:40,860 --> 00:02:44,190
+We call it the identity,
+and it behaves like the number one:
+
+58
+00:02:44,390 --> 00:02:46,680
+multiply by it, and nothing changes.
+
+59
+00:02:47,450 --> 00:02:52,250
+So the inverse is the matrix that, applied
+after A, leaves you with the identity.
+
+60
+00:02:52,500 --> 00:02:53,873
+Take the way back first,
+
+61
+00:02:53,913 --> 00:02:57,180
+and the threads haven't changed,
+so everyone still gets home.
+
+62
+00:02:57,440 --> 00:02:59,190
+Either order gives the identity.
+
+63
+00:03:01,010 --> 00:03:02,760
+Most moves come in stages.
+
+64
+00:03:02,800 --> 00:03:05,810
+Say we lean the plane,
+then give it a quarter turn.
+
+65
+00:03:05,980 --> 00:03:07,010
+How do we get back?
+
+66
+00:03:07,860 --> 00:03:12,010
+Undo the lean, then undo the turn,
+and the grid doesn't come home.
+
+67
+00:03:12,210 --> 00:03:15,270
+The turn happened last,
+so it has to come off first.
+
+68
+00:03:15,480 --> 00:03:18,770
+Undo the turn, then the lean,
+and everything lines up.
+
+69
+00:03:19,240 --> 00:03:21,420
+It works like a film played backward.
+
+70
+00:03:21,670 --> 00:03:25,790
+The inverse of a chain is the inverse
+of each link, in reverse order.
+
+71
+00:03:26,020 --> 00:03:30,120
+So if a complicated move can be broken
+into simple ones, we can rewind it,
+
+72
+00:03:30,160 --> 00:03:31,880
+one simple move at a time.
+
+73
+00:03:33,580 --> 00:03:38,030
+Let's do that for the matrix that bent
+our key, using only slides and stretches.
+
+74
+00:03:38,710 --> 00:03:41,030
+The first slide pulls one arrow upright.
+
+75
+00:03:41,270 --> 00:03:45,070
+A second slide drops it onto the axis,
+exactly where it belongs.
+
+76
+00:03:45,780 --> 00:03:48,553
+The other arrow is standing
+four times too tall,
+
+77
+00:03:48,593 --> 00:03:50,990
+so we squash the plane
+to a quarter of its height.
+
+78
+00:03:51,730 --> 00:03:53,480
+One last slide straightens it.
+
+79
+00:03:53,700 --> 00:03:55,830
+Four moves, and the key is home.
+
+80
+00:03:56,530 --> 00:03:59,480
+But we never wrote the inverse down
+as a single matrix.
+
+81
+00:03:59,530 --> 00:04:02,300
+So let's play the same four moves
+on a second grid,
+
+82
+00:04:02,380 --> 00:04:04,020
+one that starts untouched.
+
+83
+00:04:04,200 --> 00:04:05,910
+As the bent grid straightens out,
+
+84
+00:04:05,950 --> 00:04:09,320
+the straight grid bends,
+keeping a record of every step.
+
+85
+00:04:09,940 --> 00:04:14,120
+When the first grid reaches the identity,
+the second has become the inverse.
+
+86
+00:04:14,810 --> 00:04:16,330
+If you've learned row reduction,
+
+87
+00:04:16,370 --> 00:04:19,930
+those two blocks of numbers side
+by side are these two grids.
+
+88
+00:04:20,030 --> 00:04:22,560
+One rewinds, and the other records.
+
+89
+00:04:23,190 --> 00:04:24,160
+Let's check it.
+
+90
+00:04:24,200 --> 00:04:26,253
+Multiply the inverse by the original,
+
+91
+00:04:26,293 --> 00:04:30,890
+and the fractions cancel, leaving ones
+on the diagonal and zeros everywhere else.
+
+92
+00:04:31,570 --> 00:04:33,730
+You may also recognize those four moves.
+
+93
+00:04:33,770 --> 00:04:37,430
+They're the same four that bent
+the key at the start, played backward.
+
+94
+00:04:38,110 --> 00:04:40,100
+And there's something hiding in that list.
+
+95
+00:04:40,220 --> 00:04:42,350
+A slide never changes area.
+
+96
+00:04:42,490 --> 00:04:45,390
+So all of the shrinking came
+from that single squash,
+
+97
+00:04:45,430 --> 00:04:46,570
+down to a quarter.
+
+98
+00:04:47,200 --> 00:04:51,090
+Four is exactly how much
+the original matrix grew every area.
+
+99
+00:04:51,210 --> 00:04:52,370
+It's the determinant.
+
+100
+00:04:53,090 --> 00:04:55,880
+Run the same steps with letters
+in place of numbers,
+
+101
+00:04:55,920 --> 00:04:58,880
+and out comes the recipe
+for any two by two matrix.
+
+102
+00:04:58,970 --> 00:05:01,267
+Swap these two, negate those two,
+
+103
+00:05:01,307 --> 00:05:02,800
+and divide by the determinant.
+
+104
+00:05:03,490 --> 00:05:05,600
+Which should make you a little uneasy.
+
+105
+00:05:05,780 --> 00:05:08,010
+What happens when there's nothing
+to divide by?
+
+106
+00:05:09,490 --> 00:05:13,900
+Take our matrix, and slowly tilt
+its second column toward the first.
+
+107
+00:05:13,940 --> 00:05:19,300
+The plane grows thinner, the determinant
+falls, and the inverse has to work harder.
+
+108
+00:05:19,360 --> 00:05:23,960
+To reopen a plane this thin,
+it has to stretch by a factor of ten.
+
+109
+00:05:24,220 --> 00:05:25,460
+Then a hundred.
+
+110
+00:05:25,590 --> 00:05:27,060
+Then a thousand.
+
+111
+00:05:27,670 --> 00:05:30,140
+Keep this nearly flat moment in mind.
+
+112
+00:05:30,190 --> 00:05:31,290
+It's going to matter.
+
+113
+00:05:32,140 --> 00:05:35,400
+When the two columns finally line up,
+the plane is flat,
+
+114
+00:05:35,500 --> 00:05:39,380
+the determinant is zero,
+and the inverse has run off to infinity.
+
+115
+00:05:40,240 --> 00:05:43,730
+Pick one spot on the line,
+and ask which points landed there.
+
+116
+00:05:43,810 --> 00:05:47,010
+The threads come
+in from an entire line of points.
+
+117
+00:05:47,140 --> 00:05:49,550
+These are the rays that cast our shadow.
+
+118
+00:05:50,420 --> 00:05:53,240
+A way back would have to send
+this one spot to all
+
+119
+00:05:53,280 --> 00:05:57,970
+of those points at once, and a matrix
+gives each input just one answer.
+
+120
+00:05:58,790 --> 00:06:00,470
+You can read this in the columns.
+
+121
+00:06:00,510 --> 00:06:03,940
+Here, the first column
+is exactly twice the second,
+
+122
+00:06:03,980 --> 00:06:05,800
+so the second adds nothing new.
+
+123
+00:06:05,840 --> 00:06:08,840
+We say the columns are linearly dependent.
+
+124
+00:06:09,110 --> 00:06:11,960
+And that relationship
+is the crushed arrow itself:
+
+125
+00:06:12,120 --> 00:06:15,640
+one of the first,
+minus two of the second, makes nothing.
+
+126
+00:06:16,480 --> 00:06:19,670
+So these are one fact,
+seen from four sides.
+
+127
+00:06:19,710 --> 00:06:21,820
+The columns depend on each other.
+
+128
+00:06:21,940 --> 00:06:23,690
+The area drops to zero.
+
+129
+00:06:23,830 --> 00:06:25,780
+A whole direction disappears.
+
+130
+00:06:25,820 --> 00:06:27,480
+And there is no way back.
+
+131
+00:06:27,520 --> 00:06:30,480
+If any one of these is true,
+all of them are.
+
+132
+00:06:32,280 --> 00:06:35,830
+Undoing a matrix is also what it means
+to solve an equation.
+
+133
+00:06:36,350 --> 00:06:38,230
+Say you're mixing two powders.
+
+134
+00:06:38,270 --> 00:06:42,120
+A scoop of the first has three grams
+of protein and two of fibre.
+
+135
+00:06:42,160 --> 00:06:45,660
+A scoop of the second has one of protein
+and two of fibre.
+
+136
+00:06:45,700 --> 00:06:48,100
+Those are the columns of our matrix.
+
+137
+00:06:48,140 --> 00:06:50,910
+Give it a number of scoops,
+and it tells you what you get.
+
+138
+00:06:51,770 --> 00:06:54,150
+Usually, though,
+the question runs the other way.
+
+139
+00:06:54,190 --> 00:06:57,390
+You need seven grams
+of protein and six of fibre.
+
+140
+00:06:57,470 --> 00:06:59,390
+How many scoops is that?
+
+141
+00:06:59,680 --> 00:07:03,320
+Geometrically, that asks
+which point landed on this target.
+
+142
+00:07:03,360 --> 00:07:05,100
+And we know the way back.
+
+143
+00:07:05,240 --> 00:07:08,860
+Apply the inverse, follow the thread home,
+and there's the answer:
+
+144
+00:07:09,000 --> 00:07:11,520
+two scoops of the first,
+one of the second.
+
+145
+00:07:12,310 --> 00:07:14,960
+Every linear system asks the same thing.
+
+146
+00:07:15,000 --> 00:07:18,460
+You know where something ended up,
+and you want to know where it started.
+
+147
+00:07:19,260 --> 00:07:23,370
+Now swap in a second powder that's
+exactly half as strong as the first.
+
+148
+00:07:23,410 --> 00:07:26,430
+Every mix you can make falls
+on a single line.
+
+149
+00:07:26,480 --> 00:07:29,940
+Ask for something off that line,
+and no recipe exists.
+
+150
+00:07:29,980 --> 00:07:31,410
+Ask for something on it,
+
+151
+00:07:31,450 --> 00:07:33,180
+and there are endless recipes.
+
+152
+00:07:33,700 --> 00:07:35,540
+No answer, or too many.
+
+153
+00:07:35,760 --> 00:07:40,500
+Those are the two ways a system fails,
+and both are the collapse we just saw.
+
+154
+00:07:42,110 --> 00:07:45,600
+Two observers can describe the same place
+in different ways.
+
+155
+00:07:45,640 --> 00:07:48,270
+To a drone with its own tilted grid,
+
+156
+00:07:48,310 --> 00:07:51,420
+this landmark is two steps ahead
+and one to the side.
+
+157
+00:07:51,560 --> 00:07:55,920
+The matrix built from the drone's
+axes translates that onto the map,
+
+158
+00:07:55,960 --> 00:07:59,750
+and its inverse translates the map
+back into the drone's point of view.
+
+159
+00:08:00,640 --> 00:08:02,910
+A video game does this for every frame.
+
+160
+00:08:02,950 --> 00:08:07,410
+The camera is placed in the world
+by a matrix, and to find out what it sees,
+
+161
+00:08:07,450 --> 00:08:10,740
+the game applies the inverse
+of that matrix to everything else.
+
+162
+00:08:10,780 --> 00:08:14,390
+As far as the computer is concerned,
+you never walk forward.
+
+163
+00:08:14,540 --> 00:08:17,250
+The world gets carried backward, past you.
+
+164
+00:08:18,110 --> 00:08:21,050
+Now here's a picture,
+smeared by a shaking camera.
+
+165
+00:08:21,410 --> 00:08:24,040
+Each blurred pixel is an average
+of its neighbours,
+
+166
+00:08:24,080 --> 00:08:26,970
+and averages are exactly
+what a matrix computes.
+
+167
+00:08:27,010 --> 00:08:29,090
+This blur has an inverse.
+
+168
+00:08:29,300 --> 00:08:31,630
+Apply it, and every edge comes back.
+
+169
+00:08:32,100 --> 00:08:34,320
+But remember that nearly flat plane.
+
+170
+00:08:34,720 --> 00:08:38,120
+Blur squeezes the finest detail almost
+to nothing,
+
+171
+00:08:38,160 --> 00:08:41,070
+so the inverse has to stretch
+it by an enormous amount.
+
+172
+00:08:41,120 --> 00:08:42,920
+Add a trace of noise,
+
+173
+00:08:42,960 --> 00:08:47,170
+too faint to see, and it gets stretched
+too, until the picture is buried.
+
+174
+00:08:48,050 --> 00:08:52,390
+So a matrix can have an inverse,
+and that inverse can still be useless.
+
+175
+00:08:52,430 --> 00:08:57,020
+Real deblurring stops short, and undoes
+only the directions that survived.
+
+176
+00:08:58,900 --> 00:09:03,050
+Which brings us back to the key,
+and the shadow we couldn't undo.
+
+177
+00:09:03,380 --> 00:09:05,430
+From one shadow, that's still true.
+
+178
+00:09:05,700 --> 00:09:07,920
+But nothing stops us from taking another.
+
+179
+00:09:08,280 --> 00:09:09,153
+Turn the light,
+
+180
+00:09:09,193 --> 00:09:13,420
+and a tooth that could have pointed
+either way now falls in a different place.
+
+181
+00:09:13,480 --> 00:09:18,540
+Each new shadow adds new equations,
+and fewer and fewer keys can fit them all.
+
+182
+00:09:19,350 --> 00:09:20,400
+Two shadows.
+
+183
+00:09:20,500 --> 00:09:21,330
+Four.
+
+184
+00:09:21,370 --> 00:09:22,380
+Sixteen.
+
+185
+00:09:22,780 --> 00:09:25,240
+A blur at first, then an outline.
+
+186
+00:09:25,410 --> 00:09:29,510
+With enough angles, the combined
+matrix no longer forgets anything,
+
+187
+00:09:29,700 --> 00:09:34,200
+and here's the key, teeth and all,
+rebuilt from shadows alone.
+
+188
+00:09:34,990 --> 00:09:38,000
+This is how a CT scanner
+sees inside your body.
+
+189
+00:09:38,040 --> 00:09:40,660
+It records shadows
+from hundreds of angles,
+
+190
+00:09:40,700 --> 00:09:42,860
+then solves for what must have cast them.
+
+191
+00:09:43,670 --> 00:09:45,640
+Every matrix moves space.
+
+192
+00:09:45,850 --> 00:09:48,280
+The inverse asks what that move forgot.
+
+193
+00:09:48,890 --> 00:09:50,410
+If it forgot nothing,
+
+194
+00:09:50,470 --> 00:09:53,670
+every point still has a thread
+leading back to where it began,
+
+195
+00:09:53,710 --> 00:09:55,440
+and the way home exists.
+
+196
+00:09:55,490 --> 00:09:57,060
+If it forgot something,
+
+197
+00:09:57,130 --> 00:10:00,680
+that part is gone, and no amount
+of algebra will bring it back.
+
+198
+00:10:00,940 --> 00:10:04,990
+All you can do is go and look again,
+from somewhere new.

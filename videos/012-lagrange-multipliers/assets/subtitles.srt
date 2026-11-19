@@ -1,0 +1,1138 @@
+1
+00:00:01,500 --> 00:00:03,500
+Nearly three thousand years ago,
+
+2
+00:00:03,540 --> 00:00:08,910
+the story goes, a queen in exile named
+Dido landed on the coast of North Africa.
+
+3
+00:00:08,960 --> 00:00:12,120
+She asked the local king
+for land to build a city.
+
+4
+00:00:12,270 --> 00:00:15,210
+He offered her a joke:
+as much ground as she could
+
+5
+00:00:15,260 --> 00:00:18,010
+surround with the hide of a single ox.
+
+6
+00:00:18,600 --> 00:00:22,137
+So she cut the hide into strips,
+thin as thread,
+
+7
+00:00:22,187 --> 00:00:25,110
+and tied them into one enormous rope.
+
+8
+00:00:25,160 --> 00:00:29,100
+Then she walked to the shore, because
+the sea would guard one side for free.
+
+9
+00:00:29,500 --> 00:00:33,340
+Only one question was left.
+What shape should the rope make?
+
+10
+00:00:33,970 --> 00:00:38,620
+That is a very human question.
+Not, what is the best thing in the world?
+
+11
+00:00:38,670 --> 00:00:41,670
+But, what is the best we
+can do with what we have?
+
+12
+00:00:41,780 --> 00:00:44,200
+A fixed length of rope.
+A fixed budget.
+
+13
+00:00:44,250 --> 00:00:48,290
+A bridge that must stand,
+using as little steel as possible.
+
+14
+00:00:48,890 --> 00:00:51,750
+Around sixteen thirty-six,
+Pierre de Fermat found
+
+15
+00:00:51,800 --> 00:00:55,880
+a rule for the easier kind of problem,
+the kind where nothing holds you back.
+
+16
+00:00:55,930 --> 00:00:58,940
+At the very top of a hill,
+the ground goes flat.
+
+17
+00:00:58,990 --> 00:01:02,290
+Find the flat places,
+and you have found your candidates.
+
+18
+00:01:02,800 --> 00:01:04,550
+But limits break that rule.
+
+19
+00:01:04,600 --> 00:01:07,430
+Imagine hiking a trail
+that loops around a mountain.
+
+20
+00:01:07,480 --> 00:01:11,810
+The summit is right there, up the slope,
+but you have to stay on the path.
+
+21
+00:01:11,860 --> 00:01:14,250
+So where on this path are you highest?
+
+22
+00:01:14,300 --> 00:01:17,790
+Stand at that spot,
+and the ground is not flat at all.
+
+23
+00:01:17,840 --> 00:01:21,840
+The mountain still rises beside you.
+You just can't go that way.
+
+24
+00:01:22,530 --> 00:01:25,320
+The person who cracked
+this was a young man from Turin.
+
+25
+00:01:25,370 --> 00:01:29,123
+In seventeen fifty-five,
+at just nineteen, Joseph-Louis
+
+26
+00:01:29,173 --> 00:01:33,017
+Lagrange wrote to Leonhard Euler,
+the leading mathematician of the age,
+
+27
+00:01:33,067 --> 00:01:36,060
+with a new method for problems
+very much like Dido's.
+
+28
+00:01:36,110 --> 00:01:39,497
+Thirty-three years later,
+in his masterpiece on mechanics,
+
+29
+00:01:39,547 --> 00:01:43,040
+he worked out how machines balance
+when their parts hold each other back.
+
+30
+00:01:43,090 --> 00:01:47,390
+And to each of those restrictions,
+he gave one extra unknown number.
+
+31
+00:01:47,860 --> 00:01:50,367
+We call those numbers
+Lagrange multipliers,
+
+32
+00:01:50,393 --> 00:01:52,390
+and today they are everywhere.
+
+33
+00:01:52,440 --> 00:01:56,580
+In the design of wings and bridges.
+In how economists value a budget.
+
+34
+00:01:56,630 --> 00:02:00,940
+In how a network shares out its power,
+how machines learn to draw boundaries,
+
+35
+00:02:00,980 --> 00:02:03,110
+and even in the laws of heat.
+
+36
+00:02:03,610 --> 00:02:06,630
+Lagrange was so confident
+in his algebra that the preface
+
+37
+00:02:06,680 --> 00:02:11,200
+of that book makes a striking promise:
+no figures will be found in this book.
+
+38
+00:02:11,250 --> 00:02:12,730
+Not one picture.
+
+39
+00:02:12,810 --> 00:02:14,790
+Which is a pity, because underneath
+
+40
+00:02:14,840 --> 00:02:18,490
+his algebra is one of the most
+beautiful pictures in mathematics.
+
+41
+00:02:18,980 --> 00:02:20,160
+So let's draw it.
+
+42
+00:02:20,210 --> 00:02:24,250
+We'll see what happens at the highest
+point of that trail, why one arrow
+
+43
+00:02:24,300 --> 00:02:28,277
+is forced to line up with another,
+how that picture becomes a method,
+
+44
+00:02:28,327 --> 00:02:30,700
+and how the method solves real problems.
+
+45
+00:02:30,750 --> 00:02:31,957
+And by the end,
+
+46
+00:02:32,007 --> 00:02:36,120
+that mysterious extra number will turn
+into something surprisingly concrete.
+
+47
+00:02:36,170 --> 00:02:39,330
+On Dido's beach,
+you can measure it with a stick.
+
+48
+00:02:41,030 --> 00:02:43,440
+Let's turn the mountain into mathematics.
+
+49
+00:02:43,490 --> 00:02:47,110
+Give every point on the map a height,
+f of x and y.
+
+50
+00:02:47,160 --> 00:02:50,600
+This is the quantity we want
+to make as large as possible.
+
+51
+00:02:50,650 --> 00:02:52,580
+We call it the objective.
+
+52
+00:02:53,200 --> 00:02:56,030
+With no limits,
+the search is easy to describe.
+
+53
+00:02:56,080 --> 00:02:59,890
+Stand anywhere and ask which
+way is steepest uphill.
+
+54
+00:03:00,010 --> 00:03:04,270
+That direction, with a length that says
+how steep, is the gradient of f.
+
+55
+00:03:04,320 --> 00:03:06,130
+Follow it and you climb.
+
+56
+00:03:06,180 --> 00:03:10,890
+You stop only when the arrow shrinks
+to nothing, when the gradient is zero.
+
+57
+00:03:10,960 --> 00:03:13,230
+That is Fermat's flat ground.
+
+58
+00:03:13,890 --> 00:03:15,440
+Now add the trail.
+
+59
+00:03:15,490 --> 00:03:19,390
+A trail is a rule about where you
+are allowed to be, and we can write
+
+60
+00:03:19,440 --> 00:03:25,310
+that rule as an equation: some function
+g of x and y must equal a constant, c.
+
+61
+00:03:25,360 --> 00:03:28,310
+Points that satisfy
+the rule are on the path.
+
+62
+00:03:28,360 --> 00:03:30,160
+Everything else is forbidden.
+
+63
+00:03:30,760 --> 00:03:32,130
+Look at what that does.
+
+64
+00:03:32,180 --> 00:03:36,980
+You had two directions of freedom,
+and now you have one: forward or back.
+
+65
+00:03:37,080 --> 00:03:40,500
+Sometimes you can write the path
+as a formula and reduce everything
+
+66
+00:03:40,540 --> 00:03:42,060
+to a single variable.
+
+67
+00:03:42,100 --> 00:03:43,887
+But real constraints are tangled,
+
+68
+00:03:43,913 --> 00:03:47,420
+and that substitution quickly
+becomes ugly or impossible.
+
+69
+00:03:47,460 --> 00:03:50,830
+We want a way to find the answer
+without unrolling the trail.
+
+70
+00:03:52,350 --> 00:03:56,560
+So let's look at the mountain the way
+a hiker does: from above, on a map.
+
+71
+00:03:56,610 --> 00:04:02,130
+Slice it at equal heights, and each slice
+leaves a contour line, a level curve of f.
+
+72
+00:04:02,180 --> 00:04:05,760
+Walk along one contour
+and your height never changes.
+
+73
+00:04:06,070 --> 00:04:08,410
+That tells us something
+about the gradient.
+
+74
+00:04:08,490 --> 00:04:10,847
+Moving along a contour gains nothing,
+
+75
+00:04:10,873 --> 00:04:13,640
+so the uphill arrow has
+no part pointing along it.
+
+76
+00:04:13,690 --> 00:04:17,820
+The gradient is always perpendicular
+to the contour beneath your feet.
+
+77
+00:04:18,420 --> 00:04:21,160
+Now walk the trail and watch the contours.
+
+78
+00:04:21,210 --> 00:04:23,350
+Here, the trail cuts across them,
+
+79
+00:04:23,400 --> 00:04:27,050
+one after another,
+and every crossing means you are climbing.
+
+80
+00:04:27,190 --> 00:04:29,440
+Keep going.
+The crossings spread out.
+
+81
+00:04:29,490 --> 00:04:31,230
+The climb is getting gentler.
+
+82
+00:04:31,360 --> 00:04:35,200
+And then, at one special point,
+the trail stops crossing.
+
+83
+00:04:35,250 --> 00:04:39,910
+It touches a contour, runs alongside
+it for an instant, and falls away.
+
+84
+00:04:40,530 --> 00:04:43,610
+That is the top,
+and it has to look like this.
+
+85
+00:04:43,680 --> 00:04:45,860
+If the trail crossed the contour there,
+
+86
+00:04:45,900 --> 00:04:49,150
+one direction would carry you higher,
+and you wouldn't be at the top.
+
+87
+00:04:49,620 --> 00:04:51,190
+Here is another way to see it.
+
+88
+00:04:51,240 --> 00:04:53,250
+Start with a high contour,
+
+89
+00:04:53,300 --> 00:04:56,930
+a small loop near the summit
+that doesn't reach the trail at all.
+
+90
+00:04:56,980 --> 00:04:58,750
+Now lower the height.
+
+91
+00:04:58,800 --> 00:05:03,880
+The loop swells outward until,
+at one moment, it first touches the path.
+
+92
+00:05:03,920 --> 00:05:06,960
+That first touch is the highest
+point you can reach.
+
+93
+00:05:07,480 --> 00:05:12,040
+And here is the quiet insight.
+The trail is itself a contour.
+
+94
+00:05:12,090 --> 00:05:14,510
+It is one level curve of g.
+
+95
+00:05:14,620 --> 00:05:19,010
+So the whole problem is two families
+of curves, and the answer is where one
+
+96
+00:05:19,060 --> 00:05:21,410
+curve from each family just kiss.
+
+97
+00:05:22,850 --> 00:05:25,700
+Two curves that kiss share a tangent line.
+
+98
+00:05:25,750 --> 00:05:29,420
+Each curve's gradient
+is perpendicular to its own contour.
+
+99
+00:05:29,470 --> 00:05:33,707
+So at that point, both gradients
+are perpendicular to the same line,
+
+100
+00:05:33,733 --> 00:05:37,890
+and in the plane, that forces them
+to point along one common direction.
+
+101
+00:05:38,250 --> 00:05:41,180
+One arrow must be a multiple of the other.
+
+102
+00:05:41,230 --> 00:05:44,880
+The gradient of f equals
+lambda times the gradient of g.
+
+103
+00:05:45,260 --> 00:05:48,120
+That Greek letter
+is the Lagrange multiplier.
+
+104
+00:05:48,170 --> 00:05:50,700
+For now, it is just a stretch factor:
+
+105
+00:05:50,750 --> 00:05:53,760
+how many times longer one
+arrow is than the other.
+
+106
+00:05:54,530 --> 00:05:56,620
+Let's feel why this has to be true.
+
+107
+00:05:56,670 --> 00:06:01,100
+Walk the trail carrying the uphill arrow,
+and split it into two parts:
+
+108
+00:06:01,150 --> 00:06:04,030
+one along the trail,
+and one straight across it.
+
+109
+00:06:04,080 --> 00:06:08,480
+The part across the trail is useless,
+because it points somewhere you can't go.
+
+110
+00:06:08,530 --> 00:06:11,730
+The part along the trail
+tells you to keep walking.
+
+111
+00:06:11,780 --> 00:06:15,220
+As long as that part exists,
+you can still do better.
+
+112
+00:06:15,270 --> 00:06:18,970
+You arrive at the best point
+exactly when it vanishes,
+
+113
+00:06:19,020 --> 00:06:22,380
+and all that remains of the gradient
+points straight across the path.
+
+114
+00:06:23,200 --> 00:06:25,340
+Now the proof, in three lines.
+
+115
+00:06:25,390 --> 00:06:29,640
+Describe your walk as a path r of t,
+with velocity r prime.
+
+116
+00:06:29,690 --> 00:06:34,750
+You stay on the trail, so g never changes,
+and the chain rule says the gradient of g
+
+117
+00:06:34,800 --> 00:06:36,530
+dot r prime is zero.
+
+118
+00:06:36,580 --> 00:06:40,670
+At the top, your height has stopped
+changing, so the gradient of f dot
+
+119
+00:06:40,720 --> 00:06:42,440
+r prime is zero too.
+
+120
+00:06:42,770 --> 00:06:46,430
+Both gradients are perpendicular
+to the same velocity, so as long
+
+121
+00:06:46,480 --> 00:06:50,460
+as the gradient of g isn't zero,
+one is a multiple of the other.
+
+122
+00:06:51,080 --> 00:06:52,330
+Count what we have.
+
+123
+00:06:52,380 --> 00:06:55,290
+Two equations from the arrows,
+one from the constraint.
+
+124
+00:06:55,340 --> 00:07:00,840
+Three unknowns: x, y and lambda.
+The picture has become algebra.
+
+125
+00:07:02,470 --> 00:07:05,440
+Lagrange packed all
+of this into a single function.
+
+126
+00:07:05,490 --> 00:07:08,920
+Take the objective and subtract
+lambda times the constraint:
+
+127
+00:07:09,120 --> 00:07:12,580
+L equals f minus lambda times g minus c.
+
+128
+00:07:13,040 --> 00:07:14,210
+Set its derivatives
+
+129
+00:07:14,260 --> 00:07:18,130
+with respect to x and y to zero,
+and you get the arrow equations.
+
+130
+00:07:18,180 --> 00:07:20,860
+Set its derivative
+with respect to lambda to zero,
+
+131
+00:07:20,910 --> 00:07:23,050
+and out comes the constraint itself.
+
+132
+00:07:23,100 --> 00:07:25,050
+A restricted problem has become
+
+133
+00:07:25,100 --> 00:07:27,800
+an unrestricted one,
+with one more variable.
+
+134
+00:07:27,850 --> 00:07:31,760
+Fermat's flat ground has returned,
+in a higher dimension.
+
+135
+00:07:32,330 --> 00:07:36,110
+But be careful.
+That flat point is not a peak of L.
+
+136
+00:07:36,160 --> 00:07:38,270
+Take the smallest possible example:
+
+137
+00:07:38,320 --> 00:07:42,550
+maximize minus x squared,
+with x forced to equal one.
+
+138
+00:07:42,600 --> 00:07:44,650
+Plot L over x and lambda,
+
+139
+00:07:44,700 --> 00:07:49,090
+and the solution sits on a saddle,
+rising one way and falling the other.
+
+140
+00:07:49,140 --> 00:07:52,860
+You can't simply climb to it.
+You have to solve for it.
+
+141
+00:07:54,590 --> 00:07:56,750
+Let's put this to work on Dido's beach.
+
+142
+00:07:56,800 --> 00:08:02,280
+Take forty meters of rope, a straight
+shore, and for now, a rectangular plot.
+
+143
+00:08:02,330 --> 00:08:07,270
+Two sides of length x leave the shore,
+and one side of length y runs along it.
+
+144
+00:08:07,320 --> 00:08:12,670
+We want to maximize the area, x y,
+while two x plus y equals forty.
+
+145
+00:08:13,260 --> 00:08:18,680
+The gradient of the area is y, x.
+The gradient of the rope is two, one.
+
+146
+00:08:18,680 --> 00:08:22,160
+So y equals two lambda,
+and x equals lambda.
+
+147
+00:08:22,210 --> 00:08:25,670
+Put those into the constraint,
+and four lambda equals forty.
+
+148
+00:08:25,720 --> 00:08:27,100
+Lambda is ten.
+
+149
+00:08:27,150 --> 00:08:32,430
+The plot is ten meters deep, twenty wide,
+and encloses two hundred square meters.
+
+150
+00:08:32,540 --> 00:08:34,940
+Hold on to that ten.
+We will need it.
+
+151
+00:08:35,630 --> 00:08:38,450
+Next,
+a case where the picture earns its keep.
+
+152
+00:08:38,500 --> 00:08:41,370
+Find the extremes of x
+squared y on the circle
+
+153
+00:08:41,420 --> 00:08:43,570
+x squared plus y squared equals three.
+
+154
+00:08:43,620 --> 00:08:47,560
+The arrow equations are two
+x y equals two lambda x,
+
+155
+00:08:47,610 --> 00:08:50,050
+and x squared equals two lambda y.
+
+156
+00:08:50,630 --> 00:08:55,230
+The first one splits in two.
+Either x is zero, or lambda equals y.
+
+157
+00:08:55,280 --> 00:08:59,050
+If lambda equals y,
+then x squared is two y squared,
+
+158
+00:08:59,100 --> 00:09:03,430
+so y is plus or minus one,
+and x is plus or minus root two.
+
+159
+00:09:03,480 --> 00:09:08,630
+If x is zero, then y is plus or minus
+root three, and lambda is zero.
+
+160
+00:09:08,970 --> 00:09:13,400
+That is six candidates, and six places
+where a contour kisses the circle.
+
+161
+00:09:13,450 --> 00:09:19,570
+Walk around, and f reads two, zero,
+two, minus two, zero, minus two.
+
+162
+00:09:19,620 --> 00:09:22,830
+The maximum is two.
+The minimum is minus two.
+
+163
+00:09:22,880 --> 00:09:25,860
+The two zeros are only
+local turning points.
+
+164
+00:09:25,910 --> 00:09:28,170
+The equations never
+tell you which is which.
+
+165
+00:09:28,220 --> 00:09:31,240
+They hand you every tangency,
+and you compare.
+
+166
+00:09:32,780 --> 00:09:35,600
+Nothing here depends
+on living on a flat map.
+
+167
+00:09:35,650 --> 00:09:39,150
+In three dimensions,
+level curves become level surfaces.
+
+168
+00:09:39,200 --> 00:09:41,630
+Suppose we want the point on the plane x
+
+169
+00:09:41,680 --> 00:09:45,870
+plus two y plus two z equals nine
+that is closest to the origin.
+
+170
+00:09:45,920 --> 00:09:48,500
+The level surfaces
+of distance are spheres.
+
+171
+00:09:48,550 --> 00:09:51,480
+Inflate a sphere until it
+just touches the plane.
+
+172
+00:09:51,530 --> 00:09:56,180
+At that touch, the two surfaces share
+a tangent plane, their gradients align,
+
+173
+00:09:56,230 --> 00:09:58,360
+and the equation is exactly the same.
+
+174
+00:09:58,410 --> 00:10:02,470
+The point is one, two, two,
+at a distance of three.
+
+175
+00:10:03,050 --> 00:10:04,690
+Now add a second constraint.
+
+176
+00:10:04,740 --> 00:10:09,720
+A cylinder and a tilted plane cut out
+an ellipse, and we want its highest point.
+
+177
+00:10:09,780 --> 00:10:13,967
+We are back on a one-dimensional trail,
+but now it is floating in space,
+
+178
+00:10:13,993 --> 00:10:17,960
+and at every point a whole plane
+of directions is perpendicular to it.
+
+179
+00:10:18,490 --> 00:10:22,310
+So the gradient of f no longer has
+to line up with a single arrow.
+
+180
+00:10:22,360 --> 00:10:26,840
+It only has to lie in the plane spanned
+by the two constraint gradients.
+
+181
+00:10:26,890 --> 00:10:28,390
+The gradient of f equals
+
+182
+00:10:28,440 --> 00:10:32,760
+lambda times the gradient of g,
+plus mu times the gradient of h.
+
+183
+00:10:32,940 --> 00:10:35,460
+Every constraint gets its own multiplier.
+
+184
+00:10:37,050 --> 00:10:39,350
+So what is this number, really?
+
+185
+00:10:39,610 --> 00:10:42,310
+Go back to the rope.
+Lambda was ten.
+
+186
+00:10:42,360 --> 00:10:45,580
+Now add one more meter of rope,
+and solve again.
+
+187
+00:10:45,630 --> 00:10:49,810
+The best area climbs from two
+hundred to about two hundred and ten.
+
+188
+00:10:50,100 --> 00:10:53,280
+Ten more square meters,
+for one more meter of rope.
+
+189
+00:10:53,900 --> 00:10:55,770
+That is no coincidence.
+
+190
+00:10:55,820 --> 00:10:59,027
+As the constraint loosens,
+the best point slides,
+
+191
+00:10:59,053 --> 00:11:03,480
+and the chain rule shows that the best
+value changes at exactly rate lambda.
+
+192
+00:11:03,570 --> 00:11:07,580
+The multiplier is the exchange rate
+between the constraint and the objective.
+
+193
+00:11:08,220 --> 00:11:10,430
+Economists call it a shadow price.
+
+194
+00:11:10,480 --> 00:11:13,557
+It is what one more unit of budget,
+or steel,
+
+195
+00:11:13,607 --> 00:11:18,120
+or machine time would be worth to you,
+even though nobody ever posted that price.
+
+196
+00:11:18,670 --> 00:11:23,940
+In physics, the same number is a force.
+A bead rests at the bottom of a hoop.
+
+197
+00:11:24,040 --> 00:11:26,740
+Gravity pulls it down
+and the hoop pushes back.
+
+198
+00:11:26,790 --> 00:11:29,070
+Minimize the bead's energy on the hoop,
+
+199
+00:11:29,120 --> 00:11:32,800
+and lambda times the gradient
+of g is exactly that push.
+
+200
+00:11:32,850 --> 00:11:36,360
+A constraint, physically,
+is something pushing back.
+
+201
+00:11:36,410 --> 00:11:39,890
+That is the world where Lagrange
+first found these numbers.
+
+202
+00:11:40,420 --> 00:11:42,450
+And then the deepest example.
+
+203
+00:11:42,620 --> 00:11:46,500
+Take a box of gas, with its molecules
+sharing a fixed amount of energy.
+
+204
+00:11:46,550 --> 00:11:49,970
+Of all the ways to share it,
+the overwhelmingly likely one
+
+205
+00:11:50,020 --> 00:11:51,997
+has the highest entropy.
+
+206
+00:11:52,047 --> 00:11:53,517
+So maximize entropy,
+
+207
+00:11:53,567 --> 00:11:57,110
+with the total probability fixed
+and the average energy fixed.
+
+208
+00:11:57,190 --> 00:11:59,620
+Two constraints, two multipliers.
+
+209
+00:11:59,670 --> 00:12:04,490
+Out falls Boltzmann's law: the chance
+of a state with energy E is proportional
+
+210
+00:12:04,540 --> 00:12:06,660
+to e to the minus beta E.
+
+211
+00:12:07,210 --> 00:12:09,550
+Beta is the multiplier on energy.
+
+212
+00:12:09,600 --> 00:12:12,660
+It is the price of energy,
+measured in entropy.
+
+213
+00:12:12,710 --> 00:12:16,640
+And physicists have a name for one
+over that price: temperature.
+
+214
+00:12:18,240 --> 00:12:23,200
+The method does come with fine print.
+We assumed the gradient of g isn't zero.
+
+215
+00:12:23,250 --> 00:12:27,647
+The curve y squared equals x cubed
+has a sharp cusp at the origin,
+
+216
+00:12:27,673 --> 00:12:30,650
+and the smallest x on that curve
+is right at the cusp.
+
+217
+00:12:30,700 --> 00:12:33,410
+But there the gradient of g vanishes,
+
+218
+00:12:33,460 --> 00:12:36,470
+and no multiple of zero can
+equal the gradient of f.
+
+219
+00:12:36,520 --> 00:12:40,630
+The equations have no solution at all,
+and they miss the answer completely.
+
+220
+00:12:40,680 --> 00:12:43,360
+So always check the sharp points by hand.
+
+221
+00:12:44,040 --> 00:12:47,070
+Also,
+tangency only makes a point a candidate.
+
+222
+00:12:47,120 --> 00:12:51,500
+And if the trail runs off to infinity,
+there may be no best point to find.
+
+223
+00:12:51,930 --> 00:12:57,050
+Real limits are often inequalities too:
+spend at most this much.
+
+224
+00:12:57,240 --> 00:12:59,850
+William Karush worked that out
+in his master's thesis
+
+225
+00:12:59,900 --> 00:13:03,490
+in nineteen thirty-nine,
+and Harold Kuhn and Albert Tucker,
+
+226
+00:13:03,540 --> 00:13:07,430
+unaware of his work, reached the same
+result in nineteen fifty-one.
+
+227
+00:13:07,560 --> 00:13:09,140
+The idea is lovely.
+
+228
+00:13:09,190 --> 00:13:12,720
+A limit you aren't pressing
+against has a price of zero.
+
+229
+00:13:14,410 --> 00:13:18,010
+Let's go back to the beach,
+and let the rope take any shape it likes.
+
+230
+00:13:18,060 --> 00:13:23,190
+Apply the same idea along the whole rope,
+with one multiplier for the entire curve,
+
+231
+00:13:23,240 --> 00:13:27,570
+and the answer says the rope must
+bend by the same amount everywhere.
+
+232
+00:13:27,620 --> 00:13:29,060
+That is a circle.
+
+233
+00:13:29,110 --> 00:13:31,790
+Against a straight shore, a semicircle.
+
+234
+00:13:32,270 --> 00:13:34,780
+Forty meters of rope
+now encloses about two
+
+235
+00:13:34,820 --> 00:13:39,350
+hundred and fifty-five square meters, more
+than a quarter better than the rectangle.
+
+236
+00:13:39,850 --> 00:13:42,230
+And the multiplier?
+It is the radius.
+
+237
+00:13:42,280 --> 00:13:44,750
+Each extra meter of rope buys as many
+
+238
+00:13:44,800 --> 00:13:48,270
+square meters as the radius is long,
+about twelve point seven.
+
+239
+00:13:48,320 --> 00:13:52,690
+Lay a stick from the center to the rope,
+and you are holding lambda in your hands.
+
+240
+00:13:53,230 --> 00:13:56,420
+At the best point,
+the only way left to improve is the way
+
+241
+00:13:56,460 --> 00:13:58,050
+you are forbidden to go.
+
+242
+00:13:58,200 --> 00:14:03,060
+Lagrange's number tells you exactly
+what that forbidden direction is worth.
