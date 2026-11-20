@@ -56,13 +56,67 @@ def sky_image():
     shader = skia.GradientShader.MakeLinear([skia.Point(0, 0), skia.Point(0, HZ)], [_col(c) for _, c in stops], [u for u, _ in stops])
     cv.drawRect(skia.Rect(0, 0, W, HZ + 2), skia.Paint(Shader=shader))
     r = rng(21)
-    for _ in range(9):
-        y, x, L = r.uniform(250, 560), r.uniform(-100, W), r.uniform(240, 760)
-        h = r.uniform(5, 15)
-        tone = _mix(C.rose, C.ember, float(np.clip((y - 250) / 310, 0, 1)))
-        cv.drawRoundRect(skia.Rect(x, y, x + L, y + h), h / 2, h / 2, paint(_col(tone, 0.55)))
-        cv.drawRoundRect(skia.Rect(x + L * 0.2, y + h + 5, x + L * 0.82, y + h + 5 + h * 0.6), h / 3, h / 3, paint(_col(tone, 0.34)))
+    for _ in range(11):
+        y, x, L = r.uniform(170, 560), r.uniform(-200, W), r.uniform(320, 900)
+        h = r.uniform(14, 34) * (0.6 + 0.6 * (560 - y) / 390)
+        k = float(np.clip((y - 170) / 390, 0, 1))
+        body = _mix(_mix(C.indigo, C.plum, 0.5), C.rose, k)
+        rim = _mix(C.dusk, C.gold, k)
+        bank = skia.Path()
+        for j in range(7):
+            cx = x + L * (0.08 + 0.84 * r.uniform())
+            w_ = L * r.uniform(0.18, 0.42)
+            hh = h * r.uniform(0.6, 1.25)
+            bank.addOval(skia.Rect(cx - w_ / 2, y - hh / 2, cx + w_ / 2, y + hh / 2))
+        under = skia.Paint(AntiAlias=True, Color=_col(rim, 0.75), MaskFilter=skia.MaskFilter.MakeBlur(skia.kNormal_BlurStyle, 4.0))
+        cv.save()
+        cv.translate(0, h * 0.22)
+        cv.drawPath(bank, under)
+        cv.restore()
+        cv.drawPath(bank, skia.Paint(AntiAlias=True, Color=_col(body, 0.9), MaskFilter=skia.MaskFilter.MakeBlur(skia.kNormal_BlurStyle, 3.0)))
     return sf.makeImageSnapshot()
+
+
+def glow(cv, x, y, r, stops):
+    """A soft radial light, added with a screen blend."""
+    sh = skia.GradientShader.MakeRadial(skia.Point(x, y), r, [_col(c, a) for c, a, _ in stops], [u for _, _, u in stops])
+    p = skia.Paint(AntiAlias=True, Shader=sh)
+    p.setBlendMode(skia.BlendMode.kScreen)
+    cv.drawCircle(x, y, r, p)
+
+
+def rays(cv, x, y, t):
+    """Faint god rays fanning up from the sun."""
+    p = skia.Paint(AntiAlias=True, Color=_col(C.gold, 0.07), MaskFilter=skia.MaskFilter.MakeBlur(skia.kNormal_BlurStyle, 22.0))
+    p.setBlendMode(skia.BlendMode.kScreen)
+    for i, a in enumerate(np.linspace(-2.75, -0.4, 9)):
+        a = a + 0.03 * np.sin(0.3 * t + i)
+        w = 0.035 + 0.02 * np.sin(1.7 * i)
+        L = 1500
+        cv.drawPath(poly_path([(x, y), (x + L * np.cos(a - w), y + L * np.sin(a - w)), (x + L * np.cos(a + w), y + L * np.sin(a + w))]), p)
+
+
+_VIG = None
+
+
+def post(arr):
+    """Bloom from the brightest light, and a soft vignette."""
+    global _VIG
+    from scipy.ndimage import gaussian_filter, zoom as nzoom
+    f = arr[..., :3].astype(np.float32) / 255.0
+    small = f.reshape(H // 4, 4, W // 4, 4, 3).mean((1, 3))
+    lum = small.max(-1, keepdims=True)
+    hi = small * np.clip((lum - 0.72) / 0.28, 0, 1)
+    b = gaussian_filter(hi, (9, 9, 0)) + 0.6 * gaussian_filter(hi, (26, 26, 0))
+    b = nzoom(b, (4, 4, 1), order=1)
+    f = 1 - (1 - f) * (1 - np.clip(b * 0.85, 0, 1))
+    if _VIG is None:
+        yy, xx = np.mgrid[0:H, 0:W]
+        d = np.hypot((xx - W / 2) / (W / 2), (yy - H / 2) / (H / 2)) / np.sqrt(2)
+        _VIG = (1 - 0.5 * np.clip((d - 0.45) / 0.55, 0, 1) ** 1.6)[..., None].astype(np.float32)
+    f = f * _VIG
+    arr[..., :3] = np.clip(f * 255 + 0.5, 0, 255).astype(np.uint8)
+    return arr
 
 
 @lru_cache(maxsize=1)
@@ -106,7 +160,7 @@ def sheer(u):
     return (float(bez(u, -345, -200, 120, 300)), float(bez(u, -62, -30, -30, -95)))
 
 
-def ship(cv, t, furl, row):
+def ship(cv, t, furl, row, sun=(0.0, -200.0)):
     """The galley, bow to the left, origin on the waterline."""
     # rigging and mast sit behind the sail
     line = paint(_col(_mix(C.walnut, C.dusk, 0.25)), 2.4)
@@ -148,8 +202,12 @@ def ship(cv, t, furl, row):
         cv.clipRect(skia.Rect(-120 - b, -296, 100, -220))
         cv.drawPath(crescent, gold)
         cv.restore()
+    lit = skia.Paint(AntiAlias=True, Shader=skia.GradientShader.MakeRadial(skia.Point(*sun), 520, [_col(C.gold, 0.3), _col(C.ember, 0.1), _col(C.ember, 0.0)], [0.0, 0.5, 1.0]))
+    lit.setBlendMode(skia.BlendMode.kScreen)
+    cv.drawRect(skia.Rect(-260, -460, 260, -30), lit)
     cv.restore()
     cv.drawPath(sail, paint(_col(C.walnut, 0.8), 3))
+    cv.drawPath(sail, paint(_col(C.gold, 0.45), 1.4))
     cv.drawLine(-246, -434, 236, -434, paint(_col(C.walnut), 11))
     cv.drawLine(-246, -437, 236, -437, paint(_col(C.ember, 0.7), 2))
     for x in (-232, 222):
@@ -193,7 +251,8 @@ def ship(cv, t, furl, row):
     hull.cubicTo(-200, -30, 120, -30, 300, -95)
     hull.cubicTo(270, 50, -230, 60, -345, -62)
     hull.close()
-    cv.drawPath(hull, paint(_col(C.walnut)))
+    hp = skia.Paint(AntiAlias=True, Shader=skia.GradientShader.MakeLinear([skia.Point(0, -90), skia.Point(0, 40)], [_col(_mix(C.walnut, C.dusk, 0.35)), _col(C.walnut), _col(_mix(C.walnut, C.indigo, 0.6))], [0.0, 0.45, 1.0]))
+    cv.drawPath(hull, hp)
     cv.save()
     cv.clipPath(hull, True)
     for k, dy in enumerate((20, 40, 62, 84)):
@@ -255,10 +314,10 @@ def voyage(arrive, dusk_start, end):
         for x, y, r, ph in star:
             cv.drawCircle(x, y, r, paint(_col(C.foam, float(np.clip(0.28 + night * 0.7 + 0.1 * np.sin(0.8 * t + ph), 0, 1)))))
         sy = HZ - 44 + 62 * float(sstep(t / end))
-        for r, a in ((236, 0.12), (190, 0.18)):
-            cv.drawCircle(SUN_X, sy, r, paint(_col(C.ember, a)))
-        cv.drawCircle(SUN_X, sy, 142, paint(_col(C.gold)))
-        cv.drawCircle(SUN_X, sy, 112, paint(_col(C.foam, 0.5)))
+        glow(cv, SUN_X, sy, 760, [(C.gold, 0.5, 0.0), (C.ember, 0.28, 0.25), (C.rose, 0.1, 0.55), (C.rose, 0.0, 1.0)])
+        rays(cv, SUN_X, sy, t)
+        disc = skia.Paint(AntiAlias=True, Shader=skia.GradientShader.MakeRadial(skia.Point(SUN_X, sy - 30), 150, [_col(C.foam), _col(C.gold), _col(C.ember)], [0.0, 0.55, 1.0]))
+        cv.drawCircle(SUN_X, sy, 142, disc)
         for gx, gy, gs, gp in gulls:
             x = (gx + 80 * t + S * 0.2) % (W + 300) - 150
             f = 18 * np.sin(3.2 * t + gp) * gs / 70
@@ -277,6 +336,9 @@ def voyage(arrive, dusk_start, end):
                     lit = float(sstep((t - arrive - 0.4 - abs(x) * 0.0012) / 0.9))
                     cv.drawCircle(x, HZ + y + 34, 4.2, paint(_col(C.gold, lit)))
             cv.restore()
+
+        haze = skia.Paint(Shader=skia.GradientShader.MakeLinear([skia.Point(0, HZ - 230), skia.Point(0, HZ + 4)], [_col(C.rose, 0.0), _col(C.rose, 0.32), _col(C.ember, 0.42)], [0.0, 0.7, 1.0]))
+        cv.drawRect(skia.Rect(-200, HZ - 230, W + 200, HZ + 4), haze)
 
         # the sea, row by row toward the viewer
         sx = float(1500 - 440 * u)
@@ -306,7 +368,7 @@ def voyage(arrive, dusk_start, end):
                 cv.save()
                 cv.translate(sx, wy)
                 cv.rotate(float(pitch))
-                ship(cv, t, furl, i)
+                ship(cv, t, furl, i, sun=(SUN_X - sx, sy - wy))
                 cv.restore()
                 move = 1 - furl
                 for j in range(4):
@@ -314,10 +376,25 @@ def voyage(arrive, dusk_start, end):
                     L = 170 + j * 80
                     cv.drawRoundRect(skia.Rect(fx, wy + 28 + j * 9, fx + L, wy + 32 + j * 9), 2, 2, paint(_col(C.foam, (0.5 - j * 0.1) * move)))
                 cv.drawRoundRect(skia.Rect(sx - 400, wy + 38, sx + 310, wy + 44), 3, 3, paint(_col(C.foam, 0.58)))
+        col = skia.Paint(AntiAlias=True, Shader=skia.GradientShader.MakeLinear([skia.Point(0, HZ), skia.Point(0, HZ + 380)], [_col(C.gold, 0.42), _col(C.ember, 0.14), _col(C.ember, 0.0)], [0.0, 0.5, 1.0]),
+                          MaskFilter=skia.MaskFilter.MakeBlur(skia.kNormal_BlurStyle, 26.0))
+        col.setBlendMode(skia.BlendMode.kScreen)
+        cv.drawOval(skia.Rect(SUN_X - 150, HZ - 6, SUN_X + 150, HZ + 380), col)
+        deep = skia.Paint(Shader=skia.GradientShader.MakeLinear([skia.Point(0, HZ + 120), skia.Point(0, H + 60)], [_col(C.indigo, 0.0), _col(C.indigo, 0.42)], [0.0, 1.0]))
+        cv.drawRect(skia.Rect(-200, HZ + 120, W + 200, H + 80), deep)
+        cv.save()
+        cv.clipRect(skia.Rect(-200, wy + 40, W + 200, H + 80))
+        cv.saveLayer(None, skia.Paint(Alpha=60, ImageFilter=skia.ImageFilters.Blur(3.0, 7.0)))
+        cv.translate(sx, wy + 44)
+        cv.scale(1.0, -0.62)
+        cv.rotate(float(-pitch))
+        ship(cv, t, furl, 4, sun=(SUN_X - sx, sy - wy))
+        cv.restore()
+        cv.restore()
         cv.restore()
         if night > 0:
             cv.drawRect(skia.Rect(0, 0, W, H), paint(_col(C.indigo, 0.3 * night)))
         arr = sf.toarray(colorType=skia.kRGBA_8888_ColorType, alphaType=skia.kUnpremul_AlphaType).copy()
         arr[..., 3] = 255
-        return arr
+        return post(arr)
     return frame

@@ -1,39 +1,83 @@
-"""s08: what the video will show, and the promise: the mysterious number can be measured with a stick."""
+"""s08: what the video will show, as one flight through the mountain (the touch, the arrows, the method), then Dido's beach: the mysterious number is a stick lying on the sand."""
 from aion import *
 
+from beach3d import SH, sand_and_sea
 from beats import T
-from cards import panel, twisted
-from coast import coast
-from shots import BEST, E, arrow, backdrop, bold, contour_mobs, curtain, lab, mp, p3, poly, rect_rope, tex, trail_mob, walker, hill_grad, trail_grad
+from ch1 import *
+from world import trail_grad
+
+ALL = np.linspace(0, TAU, 360)
+R = 40.0 * 0.2 / np.pi                        # a 40 m rope as a semicircle, in world units
+
+
+def semi(n=200):
+    th = np.linspace(0, np.pi, n)
+    return np.column_stack([R * np.cos(th), SH - R * np.sin(th)])
 
 
 @scene(T.cut_preview, T.cut_ch1)
 def s08_preview(s):
     backdrop(s)
-    coast(s, z=-60)
-    s.solid(C.bg, z=-10, opacity=keys((T.concrete + 0.6, 1.0), (T.measure - 0.3, 0.0)))
-    m = s.manim(z=0)
-    xs = np.linspace(-4.95, 4.95, 4)
-    boxes = [panel(x, 0.2, 3.05, 3.8, a) for x, a in zip(xs, (C.obj, C.con, C.lam, C.area))]
-    a = VGroup(contour_mobs(width=1.2), trail_mob(3.5), walker(mp(BEST))).scale(0.345).move_to([xs[0], 0.2, 0])
-    c = np.array([xs[1], 0.2])
-    d = np.array([0.6, 0.8])
-    t_ = np.array([d[1], -d[0]])
-    b = VGroup(poly([c - 1.3 * t_, c + 1.3 * t_], C.tang, 4), arrow(c, c + 1.15 * d, C.obj), arrow(c, c - 0.8 * d, C.con), walker(c))
-    e = tex(r"\nabla f", "=", r"\lambda", r"\nabla g", size=52, colors={0: C.obj, 2: C.lam, 3: C.con}).move_to([xs[2], 0.2, 0])
-    r = rect_rope(10, 20) * 0.55 + [xs[3], -0.9]
-    plot = VGroup(Polygon(*[p3(q) for q in r], fill_color=C.area, fill_opacity=0.4, stroke_width=0), twisted(poly(r, C.con, 5), 5, 30), Line(p3(r[0]) + LEFT * 0.4, p3(r[3]) + RIGHT * 0.4, color=C.sand, stroke_width=4)).scale_to_fit_width(2.6).move_to([xs[3], 0.2, 0])
-    tags = ["the touch", "the arrows", "the method", "the examples"]
-    ats = [T.pv_top, T.pv_arrow, T.pv_method, T.pv_solve]
-    gone = VGroup()
-    for x, box, art, tag, at in zip(xs, boxes, [a, b, e, plot], tags, ats):
-        name = lab(tag, 32, C.text).move_to([x, -2.25, 0])
-        m.play(FadeIn(VGroup(box, art, name), scale=0.84, shift=0.2 * UP), at=at, dur=0.55, ease="out_back")
-        gone.add(box, art, name)
-    m.play(FadeOut(gone), at=T.concrete - 0.5, dur=0.6)
-    lam = tex(r"\lambda", size=170, color=C.lam).move_to([0, 0.6, 0])
-    m.play(FadeIn(lam, scale=0.7), at=T.concrete, dur=0.7, ease="out_back")
-    stick = Line([-1.9, -2.3, 0], [1.9, -2.05, 0], color=C.lam, stroke_width=11)
-    m.play(lam.animate.scale(0.55).move_to([0, -1.25, 0]), at=T.measure - 0.1, dur=0.8, ease=E)
-    m.play(Create(stick), at=T.measure + 0.2, dur=0.8, ease=E)
-    curtain(s)
+    q = BEST
+    zq = float(hill(*q))
+    beach = (-80, 42, 1.15, 0.0, -0.9, 30, 0.0, SH - 1.2, 0.0)
+    cam = camera((T.cut_preview, (-64, 33, 1.08, 0.1, -1.0, 26, 0, 0, 0)), (T.pv_top + 0.3, (-35, 42, 1.5, 0.0, -0.6, 26, q[0] * 0.6, q[1] * 0.6, zq * 0.6)),
+                 (T.pv_arrow + 0.3, (-20, 48, 2.3, 0.0, -0.4, 26, q[0], q[1], zq)), (T.pv_solve - 0.35, (-10, 46, 1.9, 0.0, -0.9, 26, q[0], q[1], zq)),
+                 (T.pv_solve - 0.05, beach), (T.concrete, (-86, 46, 1.2, 0.0, -0.9, 30, 0.0, SH - 1.2, 0.0)),
+                 (T.measure + 0.6, (-94, 56, 1.75, 0.0, -0.6, 30, 0.0, SH - R / 2, 0.0)), (T.cut_ch1, (-98, 58, 1.8, 0.0, -0.6, 30, 0.0, SH - R / 2, 0.0)))
+    hill_a = lambda t: 1 - ramp(t, T.pv_solve - 0.45, T.pv_solve - 0.1)
+    beach_a = lambda t: ramp(t, T.pv_solve, T.pv_solve + 0.45)
+    gf = hill_grad(*q)
+    gg = trail_grad(*q)
+    lam = np.linalg.norm(gf) / np.linalg.norm(gg)
+
+    def frame(t):
+        v = view().begin(cam(t))
+        a = hill_a(t)
+        if a > 0.01:
+            floor(v, 1.0, 0.5 * a)
+            mountain(v, 1.0, a)
+            contours(v, 1.0, None, 0.55 * a)
+            curve(v, np.column_stack(trail(ALL)), C.con, 6.0, a)
+            ka = win(t, T.pv_top - 0.2, T.pv_solve, 0.6, 0.3) * a
+            if ka > 0.01:
+                level(v, float(BEST_H), C.text, 4.0, ka)
+            aa = ramp(t, T.pv_arrow - 0.1, T.pv_arrow + 0.6) * a
+            if aa > 0.01:
+                s0, s1 = up(q, 0.9 * gf / np.linalg.norm(gf) * aa)
+                v.arrow(s0, s1, C.obj, width=6.0, tip=0.24)
+                s0, s1 = up(q, 0.9 * gf / np.linalg.norm(gf) / lam * aa * 0.55 / 0.9 * 1.2)
+                v.arrow(s0, s1, C.con, width=6.0, tip=0.22)
+            bead(v, q, color=C.you, r=0.12 * a + 1e-3)
+        b = beach_a(t)
+        if b > 0.01:
+            X, Y = np.meshgrid([-16, 16], [SH, 16])
+            v.mesh(X, Y, np.full_like(X, -0.01), np.broadcast_to(rgb(C.sea) * 0.45 + rgb(C.bg) * 0.55, (2, 2, 3)), alpha=b, shade=False)
+            sand_and_sea(v)
+            ra = ramp(t, T.pv_solve + 0.2, T.pv_solve + 1.6)
+            P = semi()
+            n = max(2, int(len(P) * ra))
+            fa = ramp(t, T.pv_solve + 1.4, T.pv_solve + 2.2)
+            if fa > 0.01:
+                X = np.vstack([P[:, 0], P[:, 0]])
+                Y = np.vstack([P[:, 1], np.full(len(P), SH)])
+                v.mesh(X, Y, np.full_like(X, 0.004), C.area, alpha=0.3 * fa, shade=False)
+            v.line(np.column_stack([P[:n], np.full(n, 0.03)]), C.con, 6.0)
+            sa = ramp(t, T.measure - 0.1, T.measure + 0.7)
+            if sa > 0.01:
+                y1 = SH - R * sa
+                v.line([[0.0, SH, 0.06], [0.0, y1, 0.06]], C.bg, 14.0)
+                v.line([[0.0, SH, 0.06], [0.0, y1, 0.06]], C.lam, 9.0)
+        return v.rgba()
+
+    s.add(FramesLayer(frame, height=8.0, z=-5, during=[(T.cut_preview, T.cut_ch1)]))
+    m = s.manim(z=5, parallax=0.0)
+    zt = np.array([q[0], q[1], zq + 0.05])
+    pin(m, cam, zt, backed(lab("the touch", 32, C.text), 0.1, 0.85), T.pv_top + 0.2, T.pv_arrow - 0.1, off=(0.0, -0.6))
+    pin(m, cam, zt, backed(lab("the arrows", 32, C.obj), 0.1, 0.85), T.pv_arrow + 0.3, T.pv_method - 0.1, off=(0.0, -0.6))
+    pin(m, cam, [0.0, SH - R - 0.2, 0.0], backed(lab("the examples", 32, C.area), 0.1, 0.85), T.pv_solve + 0.6, T.concrete - 0.2, off=(0.0, -0.45))
+    pin(m, cam, [0.0, SH - R / 2, 0.06], tex(r"\lambda", size=80, color=C.lam), T.measure + 0.5, T.cut_ch1 - 0.05, off=(0.55, 0.0))
+    h = s.manim(z=20, parallax=0.0)
+    headline(h, backed(tex(r"\nabla f", "=", r"\lambda", r"\nabla g", size=64, colors={0: C.obj, 2: C.lam, 3: C.con}), 0.12, 0.85), T.pv_method, T.pv_solve - 0.4)
+    headline(h, backed(sc("surprisingly concrete", 38, C.lam), 0.1, 0.85), T.concrete, T.cut_ch1 - 0.3)
+    curtain(s, a=False, b=True)

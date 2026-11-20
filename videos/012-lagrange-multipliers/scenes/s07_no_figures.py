@@ -3,7 +3,8 @@ from aion import *
 
 from beats import T
 from cards import card, pop
-from shots import BEST, E, backdrop, contour_mobs, curtain, lab, mp, sc, tex, trail_mob, walker, words
+from ch1 import bead, camera, contours, curve, floor, mountain, ramp, trail
+from shots import view, BEST, E, backdrop, contour_mobs, curtain, lab, mp, sc, tex, trail_mob, walker, words
 
 
 @scene(T.cut_nofig, T.cut_preview)
@@ -28,8 +29,27 @@ def s07_no_figures(s):
     m.play(Create(empty), Create(cross), at=T.not_one, dur=0.6, ease=E)
     gone = Group(page, head, alg, quote, face, empty, cross)
     m.play(FadeOut(gone, shift=0.1 * DOWN), at=T.pity + 0.2, dur=0.9)
-    pic = VGroup(contour_mobs(), trail_mob(), walker(mp(BEST))).move_to(ORIGIN)
-    m.play(LaggedStart(*[Create(c) for c in pic[0]], lag_ratio=0.06), at=T.pity + 1.0, dur=2.2, ease=E)
-    m.play(Create(pic[1]), at=T.beautiful - 0.4, dur=1.5, ease=E)
-    m.play(FadeIn(pic[2], scale=0.4), at=T.beautiful + 1.2, dur=0.5, ease="out_back")
+    # the picture he left out: contours on a map, which rise into the mountain
+    ALL = np.linspace(0, TAU, 360)
+    top = (-90, 89.5, 0.95, 0.0, 0.0, 400, 0.0, 0.0, 0.0)
+    cam = camera((T.pity, top), (T.beautiful - 0.6, top), (T.beautiful + 1.4, (-70, 36, 1.05, 0.1, -0.9, 26, 0, 0, 0)), (T.cut_preview, (-64, 33, 1.08, 0.1, -1.0, 26, 0, 0, 0)))
+    rise = lambda t: ramp(t, T.beautiful - 0.6, T.beautiful + 1.2)
+
+    def pic(t):
+        v = view().begin(cam(t))
+        k = rise(t)
+        a = ramp(t, T.pity + 0.9, T.pity + 2.6)
+        floor(v, k, 0.5 * a)
+        mountain(v, k, min(1.0, 2.2 * k))
+        contours(v, k, C.obj, a * (1 - k) + 0.01, 2.4)
+        if k > 0.02:
+            contours(v, k, None, 0.55 * k)
+        ta = ramp(t, T.beautiful - 0.4, T.beautiful + 1.1)
+        if ta > 0.01:
+            n = max(2, int(len(ALL) * ta))
+            curve(v, np.column_stack(trail(ALL[:n])), C.con, 6.0, 1.0, k)
+        if t > float(T.beautiful) + 1.1:
+            bead(v, BEST, k)
+        return v.rgba()
+    s.add(FramesLayer(pic, height=8.0, z=-5, during=[(T.pity, T.cut_preview)]))
     curtain(s)

@@ -2,7 +2,7 @@
 from aion import *
 
 from beats import T
-from classic import *
+from ch1 import *
 
 TOP = np.array([-0.6, -0.8, 3.0])
 GG = np.array([-1.2, -1.6, 0.0])
@@ -15,7 +15,13 @@ KV = 1.15
 @scene(T.cut_ellipse, T.cut_ch7)
 def s22_ellipse(s):
     backdrop(s)
-    progress(s, 6)
+    cam = camera(
+        (T.cut_ellipse, (-40, 22, 1.3, 0.0, -0.1, 30, 0, 0, 2.05)),
+        (T.top_e + 1.0, (-25, 20, 1.45, 0.0, -0.1, 30, 0, 0, 2.05)),
+        (T.plane_dirs, (-10, 24, 1.9, 0.0, -0.4, 30, TOP[0], TOP[1], TOP[2])),
+        (T.spanned, (15, 26, 1.9, 0.0, -0.4, 30, TOP[0], TOP[1], TOP[2])),
+        (T.cut_ch7, (35, 26, 1.7, 0.0, -0.4, 30, TOP[0], TOP[1], TOP[2])),
+    )
     assert np.allclose(LAM * GG + MU * GH, GF)
     th = np.linspace(0, TAU, 200)
     ell = np.column_stack([np.cos(th), np.sin(th), (10 - 3 * np.cos(th) - 4 * np.sin(th)) / 5])
@@ -32,8 +38,9 @@ def s22_ellipse(s):
     D = TOP[None, None] + (dr * np.cos(da))[..., None] * n1 + (dr * np.sin(da))[..., None] * n2
 
     def frame(t):
-        az = -28 + 14 * (t - float(s.start)) / 33.0
-        v = view().begin(Cam(az=az, el=19, zoom=1.45, center=(0.0, -0.1), target=(0, 0, 2.05), dist=30))
+        c = cam(t)
+        v = view().begin(c)
+        az = float(np.degrees(np.arctan2(c.d[1], c.d[0])))
         for d in (np.array([3.2, 0, 0]), np.array([0, 3.2, 0])):
             v.line(np.array([-d, d]), C.axis, 2.2, 0.8)
         v.line(np.array([[0, 0, -0.6], [0, 0, 4.9]]), C.axis, 2.2, 0.8)
@@ -71,11 +78,17 @@ def s22_ellipse(s):
         return v.rgba()
 
     s.add(FramesLayer(frame, height=8.0, z=-10))
-    h = hud(s)
-    board(h, [(tex("x^2+y^2", "=", "1", size=40, colors={0: C.con, 2: C.con}), T.cylinder), (tex("3x+4y+5z", "=", "10", size=40, colors={0: C.con2, 2: C.con2}), T.cylinder + 1.3), (tex(r"\max\;", "z", size=44, colors={1: C.obj}), T.top_e)])
-    board(h, [(lab("a plane of normals", 28, C.text), T.plane_dirs)], "ur", out=T.eq_two - 0.5)
+    h = s.manim(z=20, parallax=0.0)
+    stack(h, [(tex("x^2+y^2", "=", "1", size=42, colors={0: C.con, 2: C.con}), T.cylinder), (tex("3x+4y+5z", "=", "10", size=42, colors={0: C.con2, 2: C.con2}), T.cylinder + 1.3), (tex(r"\max\;", "z", size=46, colors={1: C.obj}), T.top_e)], pos=(-6.75, 3.3))
     eq = tex(r"\nabla f", "=", r"\lambda", r"\nabla g", "+", r"\mu", r"\nabla h", size=66, colors={0: C.obj, 2: C.lam, 3: C.con, 5: C.mu, 6: C.con2})
-    vals = tex(r"\lambda", r"=\tfrac12,\quad", r"\mu", r"=\tfrac15", size=46, colors={0: C.lam, 2: C.mu})
-    own = lab("one multiplier per constraint", 28, C.you)
-    board(h, [(eq, T.eq_two), (vals, T.mu_t + 1.3), (own, T.own)], "d")
+    headline(h, backed(eq, 0.14, 0.85), T.eq_two, T.cut_ch7 - 0.3, y=-2.6)
+    vals = backed(tex(r"\lambda", r"=\tfrac12,\quad", r"\mu", r"=\tfrac15", size=46, colors={0: C.lam, 2: C.mu}), 0.1, 0.85).move_to([0, -3.55, 0])
+    h.play(FadeIn(vals, shift=0.06 * UP), at=T.mu_t + 1.3, dur=0.5, ease=E)
+    m = s.manim(z=5, parallax=0.0)
+    pin(m, cam, [0, 0, 0.0], backed(lab("an ellipse floating in space", 28, C.text), 0.1, 0.85), T.back_on, T.plane_dirs, off=(0.0, -1.6))
+    pin(m, cam, TOP + 1.3 * n2, backed(lab("a whole plane of normals", 28, C.text), 0.1, 0.85), T.plane_dirs + 0.4, T.eq_two - 0.3, off=(0.0, 0.4))
+    pin(m, cam, TOP + KV * GG * 0.5, tex(r"\nabla g", size=48, color=C.con), T.no_single + 0.2, T.cut_ch7 - 0.05, off=(-0.35, -0.2))
+    pin(m, cam, TOP + KV * GH / np.linalg.norm(GH) * 1.2, tex(r"\nabla h", size=48, color=C.con2), T.no_single + 0.4, T.cut_ch7 - 0.05, off=(0.4, 0.2))
+    pin(m, cam, TOP + KV * GF, tex(r"\nabla f", size=50, color=C.obj), T.no_single + 0.2, T.cut_ch7 - 0.05, off=(0.0, 0.35))
+    pin(m, cam, [0, 0, 0.0], backed(lab("one multiplier per constraint", 30, C.you), 0.1, 0.85), T.own, T.cut_ch7 - 0.05, off=(0.0, -1.9))
     curtain(s)

@@ -39,6 +39,7 @@ class Cam:
 
 def _argb(c, a=1.0):
     c = np.clip(c, 0, 1)
+    a = min(max(float(a), 0.0), 1.0)          # alpha > 1 would overflow the 32-bit colour
     return (int(a * 255) << 24) | (int(c[0] * 255) << 16) | (int(c[1] * 255) << 8) | int(c[2] * 255)
 
 

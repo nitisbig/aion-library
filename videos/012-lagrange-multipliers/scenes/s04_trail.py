@@ -3,6 +3,7 @@ from aion import *
 
 from beats import T
 from draw3d import Cam
+from ch1 import backed, pin
 from shots import BEST, BEST_S, E, LOW_S, SUMMIT, backdrop, curtain, draw_mountain, lab, live, p3, seen, surf, trail, view, hill_grad
 
 
@@ -50,8 +51,8 @@ def s04_trail(s):
         xy, _ = camera(t, t0, t1).frame(surf(*SUMMIT, lift=0.06))
         return lab("summit", 32, C.wrong).move_to(p3(xy) + [0, 0.5, 0])
     live(hud, peak_tag, (T.summit, T.cut_lagrange))
-    risen = lab("still rising", 34, C.text).move_to([4.6, 2.7, 0])
-    hud.play(FadeIn(risen, shift=0.08 * UP), at=T.rises, dur=0.5)
-    no = lab("off limits", 34, C.wrong).next_to(risen, DOWN, buff=0.22)
-    hud.play(FadeIn(no, shift=0.08 * UP), at=T.cant, dur=0.45)
+    tip = surf(*path_xy[-1], lift=0.05)
+    cam_t = lambda t: camera(t, t0, t1)
+    pin(hud, cam_t, tip, backed(lab("still rising", 34, C.text), 0.1, 0.85), T.rises, T.cut_lagrange - 0.05, off=(1.45, 0.25))
+    pin(hud, cam_t, tip, backed(lab("off limits", 34, C.wrong), 0.1, 0.85), T.cant, T.cut_lagrange - 0.05, off=(1.45, -0.25))
     curtain(s)

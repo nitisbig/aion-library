@@ -30,7 +30,10 @@ def card(key, title, sub=None, h=2.5, tilt=0.0, pos=ORIGIN, photo=True):
     name.next_to(rule, DOWN, buff=0.13)
     parts = [rule, name]
     if sub:
-        parts.append(lab(sub, 22, C.muted).next_to(name, DOWN, buff=0.09))
+        sl = lab(sub, 22, C.muted)
+        if sl.width > w:
+            sl.scale_to_fit_width(w)
+        parts.append(sl.next_to(name, DOWN, buff=0.09))
     body = Group(img, *parts)
     mat = Rectangle(width=body.width + 0.34, height=body.height + 0.34, fill_color=C.bg, fill_opacity=1, stroke_color=C.gold, stroke_width=2).move_to(body)
     shade = mat.copy().set_stroke(width=0).set_fill(C.bg, 0.42).shift(0.13 * RIGHT + 0.13 * DOWN)
