@@ -82,3 +82,38 @@ def test_inserted_paragraphs_are_planned_alone_and_spliced_in_place(tmp_path):
     for w in out:                                                   # speech is still under every cue
         seg = y[int((w.start + 0.05) * RATE):int((w.start + 0.25) * RATE)]
         assert np.sqrt((seg ** 2).mean()) > 0.2
+
+
+def longest_zero_run(y):
+    """(first sample, length) of the longest run of exact zeros (inserted silence)."""
+    z = np.concatenate([[0], (y == 0).astype(np.int8), [0]])
+    edges = np.flatnonzero(np.diff(z))
+    starts, ends = edges[::2], edges[1::2]
+    k = int(np.argmax(ends - starts))
+    return int(starts[k]), int(ends[k] - starts[k])
+
+
+def test_stretch_cuts_at_the_quietest_point_when_the_voice_runs_on():
+    """No real silence before the word: the cut lands on the quietest dip just before it, faded, and nothing is lost."""
+    t = np.arange(int(2.0 * RATE)) / RATE
+    amp = np.where((t >= 0.80) & (t < 0.85), 0.02, 0.4)                 # a short dip between two sentences
+    x = (amp * np.sin(2 * np.pi * 220 * t)).astype(np.float32)
+    words = [Word("one.", 0.0, 0.95), Word("two", 0.95, 2.0)]
+    assert not [s for s in silences(x, RATE, min_len=0.08) if s[0] < 1.0]   # really no silence there
+    y, out, added = stretch(x, words, RATE, [(1, 0.5)], tail=0.25)
+    assert abs(added - 0.5) < 1e-6 and abs(len(y) - len(x) - 0.75 * RATE) <= 1      # + 0.25 s tail
+    assert abs(out[1].start - 1.45) < 1e-6
+    start, n = longest_zero_run(y)
+    assert n >= 0.5 * RATE - 1 and 0.80 <= start / RATE <= 0.86         # the silence starts in the dip
+    assert np.abs(y[start - 4:start]).max() < 0.01                     # faded out into the silence
+    assert np.abs(y[start + n:start + n + 4]).max() < 0.01             # and faded back in: no click
+    assert np.sqrt((y[int(1.6 * RATE):int(1.9 * RATE)] ** 2).mean()) > 0.2
+
+
+def test_stretch_never_cuts_before_the_previous_word():
+    t = np.arange(int(1.0 * RATE)) / RATE
+    x = (0.4 * np.sin(2 * np.pi * 220 * t)).astype(np.float32)
+    words = [Word("a", 0.0, 0.5), Word("b", 0.5, 0.6), Word("c", 0.6, 1.0)]
+    y, out, _ = stretch(x, words, RATE, [(2, 0.3)])
+    start, n = longest_zero_run(y)
+    assert n >= 0.3 * RATE - 1 and 0.5 <= start / RATE <= 0.6 and abs(out[2].start - 0.9) < 1e-6

@@ -18,7 +18,8 @@ alpha), then graded and encoded. The builder `s` inside `@scene` creates them:
 ## Common layer parameters (all accept Tracks)
 `z` (draw order), `start` / `end` (visibility window, default the scene), `opacity`, `blend`, `fx=[…]`,
 `matte=<layer>` + `matte_mode` (`alpha`, `alpha_inv`, `luma`, `luma_inv`), `parallax` (1 world,
-0 HUD/locked to screen, 0.3 distant background), `pos=(x, y)`, `scale`, `rotation`, `name`.
+0 HUD/locked to screen, 0.3 distant background), `pos=(x, y)`, `scale`, `rotation`, `name`. A `ManimLayer` honours `pos` (it moves the whole layer, e.g. to
+slide a picture across the frame) but not `scale` or `rotation`; use `s.camera` or Manim transforms for those.
 
 Blend modes: `normal`, `add`, `screen` (fast GL) and `multiply`, `overlay`, `soft_light`, `difference`,
 `lighten`, `darken`, `color_dodge` (shader ping-pong, a little slower).

@@ -1,0 +1,893 @@
+WEBVTT
+
+1
+00:00:01.000 --> 00:00:03.510
+In sixteen fourteen, John Napier
+
+2
+00:00:03.560 --> 00:00:08.060
+published a book of tables that took him
+about twenty years to compute by hand.
+
+3
+00:00:08.830 --> 00:00:10.700
+They rested on one idea,
+
+4
+00:00:10.750 --> 00:00:15.630
+and that idea let astronomers turn every
+long multiplication into an addition,
+
+5
+00:00:15.680 --> 00:00:18.990
+which is far quicker
+and far harder to get wrong.
+
+6
+00:00:19.800 --> 00:00:22.950
+He called the numbers
+in those tables logarithms.
+
+7
+00:00:23.400 --> 00:00:27.790
+That idea turned out to be much larger
+than a shortcut for astronomers.
+
+8
+00:00:28.130 --> 00:00:32.980
+It counts how many times you multiply,
+it turns a ruler into a calculator,
+
+9
+00:00:33.030 --> 00:00:36.890
+and its graph is the mirror
+image of exponential growth.
+
+10
+00:00:37.370 --> 00:00:42.610
+It hides in the area under a simple curve,
+which is where the number e comes from,
+
+11
+00:00:42.660 --> 00:00:46.260
+and it is the scale our ears
+use to hear the world.
+
+12
+00:00:46.660 --> 00:00:51.150
+It even lets us draw an atom
+and a galaxy on the same page.
+
+13
+00:00:52.130 --> 00:00:55.440
+You may have met logarithms
+as a button on a calculator,
+
+14
+00:00:55.480 --> 00:00:58.210
+or as rules to memorize before an exam.
+
+15
+00:00:59.010 --> 00:01:03.530
+In this video we will build them step
+by step, work through examples together,
+
+16
+00:01:03.580 --> 00:01:05.870
+and see where every rule comes from.
+
+17
+00:01:06.690 --> 00:01:11.490
+And we will start with a single question:
+how many times do you have to multiply?
+
+18
+00:01:13.230 --> 00:01:15.810
+Take a single cell and let it divide.
+
+19
+00:01:16.350 --> 00:01:21.620
+After one division there are two cells,
+after another there are four, then eight,
+
+20
+00:01:21.670 --> 00:01:23.560
+then sixteen.
+
+21
+00:01:23.800 --> 00:01:27.630
+Each division doubles the count,
+so after only ten divisions there
+
+22
+00:01:27.680 --> 00:01:30.080
+are one thousand and twenty four cells.
+
+23
+00:01:30.750 --> 00:01:32.530
+Now turn the question around.
+
+24
+00:01:32.990 --> 00:01:37.720
+If a dish holds one thousand and twenty
+four cells, how many divisions made them?
+
+25
+00:01:38.420 --> 00:01:42.330
+The answer is ten,
+and that number is a logarithm.
+
+26
+00:01:43.180 --> 00:01:45.440
+We can draw this as a staircase.
+
+27
+00:01:45.760 --> 00:01:50.610
+Each step up is one more multiplication
+by two, so the height of the staircase
+
+28
+00:01:50.660 --> 00:01:52.360
+counts the steps.
+
+29
+00:01:52.680 --> 00:01:56.480
+Ten twos multiplied together give
+one thousand and twenty four,
+
+30
+00:01:56.520 --> 00:02:01.610
+and we write that the logarithm, base two,
+of one thousand and twenty four is ten.
+
+31
+00:02:02.420 --> 00:02:04.500
+Both lines state the same fact,
+
+32
+00:02:04.550 --> 00:02:08.350
+one read from the number of steps
+and the other from the result.
+
+33
+00:02:09.300 --> 00:02:11.940
+The base is the size of each step.
+
+34
+00:02:12.230 --> 00:02:13.530
+With base ten,
+
+35
+00:02:13.580 --> 00:02:16.840
+each step multiplies by ten, so ten,
+
+36
+00:02:16.880 --> 00:02:19.800
+one hundred and one thousand sit one,
+
+37
+00:02:19.850 --> 00:02:23.940
+two and three steps up,
+and the logarithm counts the zeros.
+
+38
+00:02:24.750 --> 00:02:26.070
+Try one yourself.
+
+39
+00:02:26.340 --> 00:02:30.000
+How many threes do you multiply
+together to reach eighty one?
+
+40
+00:02:31.680 --> 00:02:35.740
+Three times three is nine,
+then twenty seven, then eighty one,
+
+41
+00:02:35.780 --> 00:02:39.357
+so it takes four threes,
+and the logarithm, base three,
+
+42
+00:02:39.407 --> 00:02:41.200
+of eighty one is four.
+
+43
+00:02:42.010 --> 00:02:44.930
+The staircase also has
+room between its steps.
+
+44
+00:02:45.400 --> 00:02:49.940
+Six lies between four and eight,
+so its logarithm, base two,
+
+45
+00:02:49.980 --> 00:02:53.720
+lies between two and three,
+at about two point five eight.
+
+46
+00:02:54.410 --> 00:02:58.550
+Fill in every number like this,
+and the staircase smooths into a curve.
+
+47
+00:03:00.630 --> 00:03:04.500
+Napier's trick comes straight
+out of the staircase.
+
+48
+00:03:04.580 --> 00:03:06.620
+Write the powers of two in one row,
+
+49
+00:03:06.660 --> 00:03:09.400
+and the number of steps
+for each of them underneath.
+
+50
+00:03:09.880 --> 00:03:14.940
+To multiply eight by thirty two,
+look up their steps, three and five.
+
+51
+00:03:15.510 --> 00:03:18.600
+Add them to get eight,
+and read across the table:
+
+52
+00:03:18.820 --> 00:03:22.700
+eight steps up is two hundred
+and fifty six, which is the product.
+
+53
+00:03:23.120 --> 00:03:27.627
+Climbing three steps and then five
+is the same as climbing eight,
+
+54
+00:03:27.653 --> 00:03:30.260
+so the multiplication
+has become an addition.
+
+55
+00:03:31.170 --> 00:03:36.670
+That is the main rule: the logarithm
+of a product is the sum of the logarithms.
+
+56
+00:03:37.160 --> 00:03:39.930
+The other rules follow
+from the same picture.
+
+57
+00:03:40.540 --> 00:03:43.040
+Dividing walks back down the staircase,
+
+58
+00:03:43.090 --> 00:03:46.100
+so the logarithm
+of a quotient is a difference.
+
+59
+00:03:46.750 --> 00:03:50.900
+Raising a number to a power repeats
+the same climb several times,
+
+60
+00:03:50.940 --> 00:03:54.810
+so the logarithm of a power
+is that many copies of the climb.
+
+61
+00:03:55.410 --> 00:03:57.090
+Every rule you may have memorized
+
+62
+00:03:57.140 --> 00:03:59.660
+is the staircase seen
+from a different side.
+
+63
+00:04:00.550 --> 00:04:03.890
+These rules turn hard
+questions into easy ones.
+
+64
+00:04:04.540 --> 00:04:05.890
+How many digits does two
+
+65
+00:04:05.940 --> 00:04:09.510
+to the hundredth power have,
+a hundred twos multiplied together?
+
+66
+00:04:10.910 --> 00:04:15.260
+Nobody wants to multiply that out,
+but the power rule says its logarithm,
+
+67
+00:04:15.300 --> 00:04:18.710
+base ten,
+is a hundred times the logarithm of two.
+
+68
+00:04:19.130 --> 00:04:20.600
+The logarithm of two
+
+69
+00:04:20.640 --> 00:04:25.290
+is about zero point three zero one,
+so the answer is about thirty point one.
+
+70
+00:04:25.760 --> 00:04:29.880
+That puts the number between ten
+to the thirty and ten to the thirty one,
+
+71
+00:04:29.920 --> 00:04:32.010
+so it has thirty one digits.
+
+72
+00:04:32.700 --> 00:04:36.360
+This is the kind of work Napier's
+twenty years made possible.
+
+73
+00:04:38.490 --> 00:04:43.180
+Around sixteen twenty, logarithms
+were engraved onto a wooden rule.
+
+74
+00:04:43.390 --> 00:04:46.120
+On this scale,
+each number sits at a distance
+
+75
+00:04:46.160 --> 00:04:49.320
+from the start equal to its logarithm.
+
+76
+00:04:49.400 --> 00:04:53.870
+One is at the very beginning,
+ten is at the far end, and two sits
+
+77
+00:04:53.920 --> 00:04:59.293
+at zero point three zero one of the way
+along, the same number we just used.
+
+78
+00:04:59.547 --> 00:05:02.100
+The marks crowd together
+as the numbers grow.
+
+79
+00:05:02.890 --> 00:05:06.620
+Put two of these scales side by side,
+and you have a slide rule.
+
+80
+00:05:07.580 --> 00:05:09.540
+To multiply two by three,
+
+81
+00:05:09.590 --> 00:05:14.360
+slide the upper scale until its one
+sits above the two on the lower scale.
+
+82
+00:05:14.990 --> 00:05:17.360
+Then find three on the upper scale,
+
+83
+00:05:17.400 --> 00:05:20.080
+and read the number beneath it,
+which is six.
+
+84
+00:05:20.560 --> 00:05:23.420
+The two lengths have
+been added end to end,
+
+85
+00:05:23.470 --> 00:05:27.880
+and because each length is a logarithm,
+adding them multiplies the numbers.
+
+86
+00:05:28.570 --> 00:05:30.210
+Engineers used slide rules like
+
+87
+00:05:30.260 --> 00:05:35.170
+this for centuries, to design bridges,
+aircraft and the Apollo rockets.
+
+88
+00:05:36.020 --> 00:05:40.940
+Going from one to ten takes the same
+distance as going from ten to a hundred,
+
+89
+00:05:40.980 --> 00:05:45.930
+or from a hundred to a thousand, because
+each of those is the same multiplication.
+
+90
+00:05:46.670 --> 00:05:51.050
+On a piano, every octave doubles
+the frequency of the note, yet each
+
+91
+00:05:51.100 --> 00:05:53.760
+octave takes up the same width of keys.
+
+92
+00:05:54.240 --> 00:05:59.670
+The keyboard is laid out on a logarithmic
+scale, because our own ears hear this way.
+
+93
+00:06:01.820 --> 00:06:06.710
+Now draw the curve of two to the x, which
+doubles with every step to the right.
+
+94
+00:06:07.140 --> 00:06:09.930
+The logarithm undoes that curve.
+
+95
+00:06:10.470 --> 00:06:12.940
+Where the exponential
+takes three to eight,
+
+96
+00:06:12.990 --> 00:06:18.230
+the logarithm takes eight back to three,
+so its graph is the same curve reflected
+
+97
+00:06:18.280 --> 00:06:19.990
+across the diagonal line.
+
+98
+00:06:20.460 --> 00:06:23.307
+Every point swaps its two coordinates,
+
+99
+00:06:23.333 --> 00:06:26.610
+and the steep climb becomes a long,
+slow rise.
+
+100
+00:06:27.540 --> 00:06:29.820
+That rise is very slow.
+
+101
+00:06:30.150 --> 00:06:35.260
+Out at a million, the logarithm,
+base ten, has only reached six,
+
+102
+00:06:35.310 --> 00:06:37.710
+and at a billion it has reached nine.
+
+103
+00:06:38.350 --> 00:06:42.510
+So the common logarithm of a whole
+number tells you, to within one,
+
+104
+00:06:42.560 --> 00:06:44.330
+how many digits it has.
+
+105
+00:06:44.930 --> 00:06:49.190
+The curve never stops climbing,
+but it trades enormous distances
+
+106
+00:06:49.240 --> 00:06:51.190
+for small, steady heights.
+
+107
+00:06:51.920 --> 00:06:55.530
+Logarithms with different
+bases all share one shape.
+
+108
+00:06:56.130 --> 00:06:58.030
+The curve for base two is the curve
+
+109
+00:06:58.080 --> 00:07:02.510
+for base ten stretched upward,
+by the same factor at every point.
+
+110
+00:07:03.360 --> 00:07:04.977
+So to change base,
+
+111
+00:07:05.027 --> 00:07:08.780
+you divide by a single number,
+the logarithm of the new base.
+
+112
+00:07:09.530 --> 00:07:12.210
+This is how you solve
+for an unknown exponent.
+
+113
+00:07:12.910 --> 00:07:14.980
+Which power of two gives ten?
+
+114
+00:07:16.420 --> 00:07:18.670
+The answer is the logarithm of ten,
+
+115
+00:07:18.720 --> 00:07:22.460
+base two, which is one divided
+by the logarithm of two,
+
+116
+00:07:22.510 --> 00:07:26.140
+about three point three two,
+the same stretch we just saw.
+
+117
+00:07:27.050 --> 00:07:30.470
+Mathematicians prefer one
+base above all the others.
+
+118
+00:07:30.700 --> 00:07:34.790
+It is a number close to two
+point seven one eight, called e.
+
+119
+00:07:35.530 --> 00:07:38.430
+To see where it comes from,
+we need a piece of geometry.
+
+120
+00:07:40.520 --> 00:07:44.337
+Take the curve whose height
+at each point is one over x,
+
+121
+00:07:44.387 --> 00:07:47.190
+and shade the area beneath it,
+starting from one.
+
+122
+00:07:48.000 --> 00:07:49.380
+In the sixteen forties,
+
+123
+00:07:49.420 --> 00:07:53.320
+mathematicians studying this curve
+noticed something about those areas.
+
+124
+00:07:53.980 --> 00:07:55.660
+The area from one to two,
+
+125
+00:07:55.710 --> 00:08:00.120
+added to the area from one to three,
+gives the area from one to six.
+
+126
+00:08:00.770 --> 00:08:05.220
+Check the numbers: about zero point
+six nine and one point one zero,
+
+127
+00:08:05.270 --> 00:08:07.950
+which together make one point seven nine.
+
+128
+00:08:08.720 --> 00:08:13.590
+Areas that add when their endpoints
+multiply behave exactly like logarithms.
+
+129
+00:08:14.350 --> 00:08:16.390
+There is a simple reason for this.
+
+130
+00:08:17.040 --> 00:08:19.310
+Take the region from one
+to two and stretch
+
+131
+00:08:19.360 --> 00:08:23.920
+it sideways by a factor of three,
+so it now runs from three to six.
+
+132
+00:08:24.320 --> 00:08:29.090
+It becomes three times wider, but out
+there the curve is three times lower,
+
+133
+00:08:29.140 --> 00:08:31.210
+so the area does not change.
+
+134
+00:08:31.780 --> 00:08:34.330
+So the area from three to six matches
+
+135
+00:08:34.380 --> 00:08:39.420
+the area from one to two, and together
+with one to three it makes one to six.
+
+136
+00:08:39.960 --> 00:08:45.470
+The area under this curve is a logarithm,
+and the curve itself chooses its base.
+
+137
+00:08:46.490 --> 00:08:51.840
+To find that base, slide the right edge
+outward until the area is exactly one.
+
+138
+00:08:52.330 --> 00:08:57.850
+The edge stops at two point seven one
+eight two eight and so on, the number e.
+
+139
+00:08:58.580 --> 00:09:00.920
+This area is the natural logarithm,
+
+140
+00:09:00.960 --> 00:09:05.870
+written l n, and its slope at every
+point is the height of the first curve.
+
+141
+00:09:06.370 --> 00:09:11.380
+That is why e appears wherever something
+grows at a rate set by its own size.
+
+142
+00:09:12.090 --> 00:09:15.770
+Suppose an amount grows continuously
+by seven percent a year.
+
+143
+00:09:16.110 --> 00:09:17.770
+How long until it doubles?
+
+144
+00:09:19.010 --> 00:09:23.470
+It doubles once the rate times the time
+reaches the natural logarithm of two,
+
+145
+00:09:23.520 --> 00:09:25.620
+about zero point six nine.
+
+146
+00:09:25.920 --> 00:09:30.760
+So the doubling time is zero point six
+nine divided by zero point zero seven,
+
+147
+00:09:30.810 --> 00:09:34.780
+close to ten years, and that is where
+the rule of seventy comes from.
+
+148
+00:09:36.910 --> 00:09:39.040
+Our senses work the same way.
+
+149
+00:09:39.380 --> 00:09:43.850
+We notice changes in proportion,
+so a sound must grow by a fixed
+
+150
+00:09:43.900 --> 00:09:46.670
+factor before it seems one step louder.
+
+151
+00:09:47.400 --> 00:09:50.930
+That is why loudness is measured
+in decibels, where every ten
+
+152
+00:09:50.980 --> 00:09:53.480
+decibels means ten times the power.
+
+153
+00:09:54.180 --> 00:09:57.340
+So how much more powerful
+is a ninety decibel concert
+
+154
+00:09:57.380 --> 00:09:59.450
+than a sixty decibel conversation?
+
+155
+00:10:00.860 --> 00:10:04.740
+The difference is thirty decibels,
+which is three steps of ten,
+
+156
+00:10:04.780 --> 00:10:07.880
+so the concert carries
+a thousand times the power.
+
+157
+00:10:08.520 --> 00:10:10.620
+Star brightness works the same way,
+
+158
+00:10:10.660 --> 00:10:13.680
+where five magnitudes mean
+a hundred times the light.
+
+159
+00:10:14.500 --> 00:10:17.430
+The same idea measures
+the ground and the water.
+
+160
+00:10:18.090 --> 00:10:21.970
+On the earthquake magnitude scale,
+each whole step means about thirty
+
+161
+00:10:22.020 --> 00:10:24.120
+two times more energy.
+
+162
+00:10:24.340 --> 00:10:28.690
+Two steps multiply that by itself,
+so a magnitude seven releases
+
+163
+00:10:28.740 --> 00:10:32.270
+about a thousand times more
+energy than a magnitude five.
+
+164
+00:10:32.930 --> 00:10:38.100
+Acidity is measured by pH, which
+counts powers of ten of hydrogen ions.
+
+165
+00:10:38.310 --> 00:10:40.740
+So lemon juice, at about two,
+
+166
+00:10:40.780 --> 00:10:45.740
+is roughly a hundred thousand times
+more acidic than pure water at seven.
+
+167
+00:10:46.060 --> 00:10:49.440
+Both scales lay a huge
+range out in even steps.
+
+168
+00:10:50.340 --> 00:10:53.150
+Logarithms also reveal hidden laws.
+
+169
+00:10:53.440 --> 00:10:55.870
+Johannes Kepler found a rule linking
+
+170
+00:10:55.920 --> 00:10:59.880
+each planet's distance from the Sun
+to the time it takes to go around.
+
+171
+00:11:00.310 --> 00:11:01.740
+Plotted plainly,
+
+172
+00:11:01.780 --> 00:11:06.500
+the planets lie on a bending curve,
+but take the logarithm of both quantities
+
+173
+00:11:06.540 --> 00:11:10.710
+and they fall on a straight line,
+rising three steps for every two.
+
+174
+00:11:11.190 --> 00:11:14.380
+That straight line
+is the mark of a power law.
+
+175
+00:11:14.940 --> 00:11:20.690
+And with logarithmic steps, an atom,
+a person, the Earth and a whole galaxy
+
+176
+00:11:20.740 --> 00:11:25.290
+can share one ruler, about thirty
+one powers of ten from end to end.
+
+177
+00:11:27.460 --> 00:11:30.670
+So a logarithm is a count
+of multiplications,
+
+178
+00:11:30.720 --> 00:11:33.010
+the number of steps up a staircase.
+
+179
+00:11:33.640 --> 00:11:37.810
+Because steps add when numbers multiply,
+products become sums,
+
+180
+00:11:37.860 --> 00:11:42.140
+unknown exponents can be solved,
+and a slide rule can multiply.
+
+181
+00:11:42.780 --> 00:11:45.940
+Its graph is the exponential
+seen in a mirror.
+
+182
+00:11:46.330 --> 00:11:48.550
+The area under one over x gives
+
+183
+00:11:48.600 --> 00:11:53.120
+the natural logarithm, and the point
+where that area reaches one is e.
+
+184
+00:11:53.770 --> 00:11:58.243
+And because we sense the world in ratios,
+logarithms measure sound,
+
+185
+00:11:58.293 --> 00:12:01.750
+starlight and earthquakes,
+from atoms to galaxies.
+
+186
+00:12:02.580 --> 00:12:04.320
+Napier spent twenty years
+
+187
+00:12:04.360 --> 00:12:08.510
+on his tables so that other people
+could spend less time on arithmetic.
+
+188
+00:12:09.160 --> 00:12:12.950
+Four centuries later,
+his idea is still doing that work.
+
+189
+00:12:13.830 --> 00:12:16.000
+So the next time you see a logarithm,
+
+190
+00:12:16.050 --> 00:12:20.070
+read it as a quiet question:
+how many times did we multiply?
+
+191
+00:12:20.880 --> 00:12:22.400
+Thanks for watching.

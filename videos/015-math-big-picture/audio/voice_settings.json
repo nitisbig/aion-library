@@ -1,0 +1,246 @@
+{
+  "voice_id": "s3TPKV1kjDlVtZbl4Ksh",
+  "model_id": "eleven_v4",
+  "output_format": "mp3_44100_128",
+  "chunking": "scene",
+  "stitch": true,
+  "base_seed": 7,
+  "settings": {
+    "stability": 0.55,
+    "similarity_boost": 0.75,
+    "speed": 0.9
+  },
+  "pacing": {
+    "snap": true,
+    "lead_in": 1.0,
+    "paragraph_gap": 0.0,
+    "section_gap": 0.0,
+    "tail": 6.0
+  },
+  "aliases": {
+    "Euler": "Oiler",
+    "Buffon": "Boo-fon",
+    "Chongzhi": "Chong-jur"
+  },
+  "notes": [
+    "eleven_v4 ignores voice_settings.speed; it is kept only because it is part of the cache key.",
+    "Each scene is one request with the neighbouring scenes sent as previous_text / next_text.",
+    "Pauses are not sent to the TTS; they are inserted afterwards by the free pacing pass."
+  ],
+  "measured": {
+    "words": 3434,
+    "runtime_s": 1453.28,
+    "wpm_overall": 141.8,
+    "wpm_within_scenes": 152.6
+  },
+  "per_scene_requests": {
+    "co_s01": {
+      "seed": 7,
+      "take": 0
+    },
+    "in_s01": {
+      "seed": 7,
+      "take": 0
+    },
+    "in_s02": {
+      "seed": 7,
+      "take": 0
+    },
+    "in_s03": {
+      "seed": 7,
+      "take": 0
+    },
+    "in_s04": {
+      "seed": 7,
+      "take": 0
+    },
+    "in_s05": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch1_s01": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch1_s02": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch1_s03": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch1_s04": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch1_s05": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch1_s06": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch2_s01": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch2_s02": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch2_s03": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch2_s04": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch2_s05": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch2_s06": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch3_s01": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch3_s02": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch3_s03": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch3_s04": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch3_s05": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch3_s06": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch3_s07": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch4_s01": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch4_s02": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch4_s03": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch4_s04": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch4_s05": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch4_s06": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch4_s07": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch5_s01": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch5_s02": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch5_s03": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch5_s04": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch5_s05": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch5_s06": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch5_s07": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch6_s01": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch6_s02": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch6_s03": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch6_s04": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch6_s05": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch6_s06": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch6_s07": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch7_s01": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch7_s02": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch7_s03": {
+      "seed": 7,
+      "take": 0
+    },
+    "ch7_s04": {
+      "seed": 7,
+      "take": 0
+    },
+    "out_s01": {
+      "seed": 7,
+      "take": 0
+    },
+    "out_s02": {
+      "seed": 7,
+      "take": 0
+    }
+  }
+}

@@ -112,6 +112,8 @@ class Layer:
     def surface(self, t: float, rc: RenderContext) -> Surface:
         """draw() with reuse of the previous surface when content is static."""
         cam_key = rc.cam.key() if (self.vector and rc.cam is not None) else None
+        if self.vector:                                      # a vector layer rasterizes its `pos` offset itself
+            cam_key = (cam_key, tuple(np.round(np.asarray(self.pos(t), dtype=float)[:2], 6)))
         if self._last is not None:
             t_prev, cam_prev, surf = self._last
             if cam_prev == cam_key and not self.content_changes(min(t_prev, t), max(t_prev, t)):
@@ -121,7 +123,7 @@ class Layer:
         return surf
 
     def model(self, t: float) -> np.ndarray:
-        """3x3 layer→world transform (applied to quads; vector layers ignore it)."""
+        """3x3 layer→world transform (applied to quads; ManimLayer applies only the `pos` translation)."""
         px, py = np.asarray(self.pos(t), dtype=float)[:2]
         s = np.asarray(self.scale(t), dtype=float)
         sx, sy = (float(s), float(s)) if s.ndim == 0 else (float(s[0]), float(s[1]))

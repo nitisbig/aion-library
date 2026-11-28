@@ -1,0 +1,2064 @@
+# plan/scenes.yaml: the source of truth for video 015 (Phase 1).
+#
+# Edit narration and visuals here, then regenerate everything that derives from it:
+#   uv run python videos/015-math-big-picture/scripts/build_script.py
+# That rewrites voiceover.md, script/narration_full.md, plan/scene_plan.md and fills duration_s (estimate).
+# After voicing, scripts/timing.py replaces duration_s with the real value (duration_source: audio).
+#
+# Narration marks: [pause 0.8s] = extra silence inserted after the audio is generated (free to change);
+# *word* = emphasis (a note for the read; stripped before TTS). Numbers and symbols are written as spoken.
+# pause_after_s = silent beat after the scene (the picture carries it); chapter-final scenes hold for the map turn.
+# reveal_sequence[].at_word must appear in the scene's narration, in order (checked by scripts/check_plan.py).
+# Colors are theme roles (C.<role>): foundations, quantity, structure, space, change, uncertainty, circle, map_off,
+# alert. Retention rule IDs (R1..R15) refer to plan/research_digest.md.
+
+video:
+  slug: 015-math-big-picture
+  title: "Fundamentals of Math: The Big Picture"
+  alt_titles:
+    - "Math Explained From the Ground Up"
+    - "What Math Really Is"
+    - "Six Key Math Concepts and How They Connect"
+  mode: concept overview with tutorial moments (intuition first, one worked example per chapter)
+  audience: undergrads and curious learners; high-school algebra assumed, nothing more
+  target_runtime_s: {min: 1320, goal: 1500, max: 1680}
+  master_format: "3840x2160, 60 fps, SDR Rec.709 (draft 1920x1080, 30 fps); see plan/decisions.md D14"
+  spine: >-
+    One circle, seen through each branch of math in turn. A Map of Math (a ring of six nodes around the circle)
+    turns 60 degrees at every chapter boundary and lights one node per chapter. The intro's promise (how do
+    sticks on a floor know about pi?) is answered only when every branch has been seen.
+
+pillars:   # ring_deg: position on the Map of Math ring at the start (Foundations at the bottom, then clockwise)
+  - {id: foundations, name: Foundations, fields: logic and sets, color: foundations, glyph: '\in', ring_deg: 270}
+  - {id: quantity, name: Quantity, fields: arithmetic and number theory, color: quantity, glyph: '\pi', ring_deg: 210}
+  - {id: structure, name: Structure, fields: algebra, color: structure, glyph: 'e^{i\theta}', ring_deg: 150}
+  - {id: space, name: Space, fields: geometry and topology, color: space, glyph: '\chi', ring_deg: 90}
+  - {id: change, name: Change, fields: calculus and analysis, color: change, glyph: '\tfrac{d}{dr}', ring_deg: 30}
+  - {id: uncertainty, name: Uncertainty, fields: probability and statistics, color: uncertainty, glyph: 'P', ring_deg: -30}
+
+chapters:
+  - id: cold
+    title: Cold open
+    target_s: 25
+  - id: intro
+    title: Intro
+    target_s: 155
+  - id: foundations
+    title: Foundations
+    pillar: foundations
+    target_s: 180
+    lens: "A circle is a set: every point one leash length from a post."
+    takeaway: "Underneath all of math sit definitions: rules that say exactly what is in and what is out."
+    concepts:
+      - {concept: set, graphic: "sample points lit in or out by a rule", equation: '\{(x,y) : x^2+y^2=r^2\}', animation: "a scan line deciding membership"}
+      - {concept: if and only if, graphic: "two arrows between 'on the circle' and 'passes the test'", equation: '\iff', animation: "each arrow lights in turn"}
+      - {concept: converse, graphic: "a Reuleaux triangle under a level board", equation: '\text{constant width}\not\Rightarrow\text{circle}', animation: "rolling under the board"}
+      - {concept: intersection and union, graphic: "two overlapping disks", equation: 'A\cap B,\ A\cup B', animation: "overlap, then everything, shading in"}
+  - id: quantity
+    title: Quantity
+    pillar: quantity
+    target_s: 180
+    lens: "Measure the circle and a number appears that no fraction can name: pi."
+    takeaway: "Numbers come in kinds, and even a simple circle holds lengths that no fraction can name."
+    concepts:
+      - {concept: pi, graphic: "a wheel one unit across rolled out on a number line", equation: '\pi=3.14159\ldots', animation: "one full roll"}
+      - {concept: rational approximations, graphic: "fraction ticks closing in on pi", equation: '\tfrac{223}{71}<\pi<\tfrac{22}{7},\ \tfrac{355}{113}', animation: "log zooms"}
+      - {concept: density of fractions, graphic: "ticks filling every stretch", equation: '\frac{p+q}{2}', animation: "midpoints dropping in"}
+      - {concept: irrationality, graphic: "a square inside the unit circle", equation: 'p^2=2q^2', animation: "a derivation with old lines dimmed"}
+  - id: structure
+    title: Structure
+    pillar: structure
+    target_s: 195
+    lens: "Turning a circle is an algebra: the turns form a group, and the turns are numbers."
+    takeaway: "For a circle, the moves are turns, and the turns are numbers."
+    concepts:
+      - {concept: symmetry, graphic: "circle and square turning over their ghosts", equation: "", animation: "ghosts matching at every angle vs quarter turns"}
+      - {concept: group, graphic: "a lock dial", equation: '30^\circ+45^\circ=75^\circ', animation: "arcs combining and undoing"}
+      - {concept: i, graphic: "an arrow turning off the number line", equation: 'i^2=-1', animation: "two quarter turns make a half turn"}
+      - {concept: e to the i theta, graphic: "a point on the unit circle", equation: 'e^{i\theta}=\cos\theta+i\sin\theta', animation: "the point sweeping the circle"}
+      - {concept: multiplying adds angles, graphic: "60 and 30 degree arcs", equation: 'e^{i\pi/3}e^{i\pi/6}=e^{i\pi/2}=i', animation: "the expansion cancelling to i"}
+  - id: space
+    title: Space
+    pillar: space
+    target_s: 195
+    lens: "Stretch the circle without tearing: to a topologist, a circle and a square are the same."
+    takeaway: "A circle and a square disagree on every measurement, and agree on everything that survives a stretch."
+    concepts:
+      - {concept: topological equivalence, graphic: "circle morphing to square, triangle, loop", equation: "", animation: "continuous morphs; a pinch refused"}
+      - {concept: holes, graphic: "loops on a circle, a disk and a torus", equation: "", animation: "loops shrinking or snagging"}
+      - {concept: Euler characteristic, graphic: "polygon, cube and torus meshes", equation: '\chi=V-E+F', animation: "counters ticking as parts light"}
+  - id: change
+    title: Change
+    pillar: change
+    target_s: 195
+    lens: "Grow the radius: the rate at which the area grows is the circumference."
+    takeaway: "For a circle, the rate at which its area grows is its own edge."
+    concepts:
+      - {concept: derivative, graphic: "a curve straightening under zoom", equation: '\frac{dy}{dx}', animation: "zoom x100 to a tangent"}
+      - {concept: e, graphic: "the exponential curve with tangents", equation: '\frac{d}{dx}e^x=e^x', animation: "slope tags equal to heights"}
+      - {concept: area rate, graphic: "a thin ring unrolled", equation: 'dA\approx2\pi r\,dr', animation: "the ring unrolling"}
+      - {concept: integration, graphic: "rings stacked into a triangle", equation: '\tfrac12\cdot2\pi r\cdot r=\pi r^2', animation: "peeling and stacking"}
+  - id: uncertainty
+    title: Uncertainty
+    pillar: uncertainty
+    target_s: 195
+    lens: "Drop needles at random and recover pi from chance (Buffon's needle)."
+    takeaway: "Many events add up to numbers you can trust, and sometimes those numbers are old friends, like pi."
+    concepts:
+      - {concept: law of large numbers, graphic: "running share of heads", equation: '\tfrac{\text{heads}}{\text{flips}}\to\tfrac12', animation: "the curve settling"}
+      - {concept: geometric probability, graphic: "the angle-distance rectangle", equation: 'x\le\sin\theta', animation: "throws as dots under a sine arch"}
+      - {concept: Buffon's needle, graphic: "the area under the sine arch", equation: 'P=\frac{1}{\pi}\int_0^{\pi}\sin\theta\,d\theta=\frac{2}{\pi}', animation: "the region shading"}
+      - {concept: convergence, graphic: "estimate vs number of throws", equation: '\text{error}\sim1/\sqrt N', animation: "the band narrowing"}
+  - id: connects
+    title: How it connects
+    target_s: 120
+    takeaway: "Every lens saw something true, and each needed the others."
+  - id: outro
+    title: Outro
+    target_s: 60
+
+loops:   # R7: plant before paying; scripts/check_plan.py checks the order
+  - id: L1
+    promise: "Sticks on a floor give pi: why, and where is the circle?"
+    planted_in: [in_s05, ch4_s01]
+    paid_in: [ch6_s03, ch6_s04, ch6_s05, ch7_s03]
+  - id: L2
+    promise: "e, i and pi will meet in one line."
+    planted_in: [ch3_s05]
+    paid_in: [ch7_s02]
+  - id: L3
+    promise: "The map turns by the same amount every time we move on."
+    planted_in: [in_s05]
+    paid_in: [ch3_s03, ch7_s01]
+
+map_edges:   # chords of the Map of Math; lit_in = the scene whose map update lights it
+  - {a: foundations, b: quantity, idea: "proof by contradiction", lit_in: ch2_s06}
+  - {a: foundations, b: structure, idea: "a group is a set with rules", lit_in: ch3_s07}
+  - {a: quantity, b: structure, idea: "numbers that turn", lit_in: ch3_s07}
+  - {a: structure, b: space, idea: "symmetry", lit_in: ch4_s07}
+  - {a: quantity, b: space, idea: "counting holes", lit_in: ch4_s07}
+  - {a: space, b: change, idea: "area and edge", lit_in: ch5_s07}
+  - {a: quantity, b: change, idea: "limits", lit_in: ch5_s07}
+  - {a: change, b: uncertainty, idea: "area under a curve", lit_in: ch6_s07}
+  - {a: space, b: uncertainty, idea: "geometry of chance", lit_in: ch6_s07}
+  - {a: quantity, b: uncertainty, idea: "pi from counting", lit_in: ch6_s07}
+  - {a: foundations, b: space, idea: "definitions under everything", lit_in: ch7_s01}
+  - {a: foundations, b: change, idea: "definitions under everything", lit_in: ch7_s01}
+  - {a: foundations, b: uncertainty, idea: "definitions under everything", lit_in: ch7_s01}
+  - {a: change, b: structure, idea: "growth meets turning", lit_in: ch7_s02}
+  - {a: structure, b: uncertainty, idea: "every angle equally likely", lit_in: ch7_s03}
+
+scenes:
+
+# ======================================================================== COLD OPEN
+# ======================================================================== COLD OPEN
+  - id: co_s01
+    chapter: cold
+    title: "Sticks on a floor"
+    arc_step: hook
+    duration_s: 21.48
+    duration_source: audio
+    goal: "Pose the video's question in seconds: random sticks produce pi, and no circle is in sight."
+    narration: |
+      Throw a stick onto a wooden floor. [pause 0.5s] Then another, and another. [pause 1.0s]
+      Count how often one lands across a crack between the boards, and from that count alone,
+      you can work out *pi*. [pause 2.0s] There is no circle anywhere on this floor. [pause 0.6s]
+      So where is it hiding?
+    pause_after_s: 2.5
+    cut_offset: 0.9          # the cold open keeps most of the pause: the circle draws and holds
+    visual:
+      description: >
+        A wooden floor of boards across the frame. Needles (C.uncertainty) fall and settle, a few at first, then
+        thousands as the rate ramps. A small readout (CM sans, tabular figures, HUD) tracks the estimate 2N/H,
+        wobbling and then settling. The estimate locks and turns gold (C.quantity) as pi. On the last line every
+        needle slides to the center keeping its angle; their tips trace THE circle (prism ring).
+      reveal_sequence:
+        - {at_word: "stick", action: "first needle falls and settles, 0.5s smooth"}
+        - {at_word: "another", action: "two more needles land 0.3s apart"}
+        - {at_word: "Count", action: "crossing needles brighten; readout 'throws / crossings' appears"}
+        - {at_word: "work out", action: "rate ramps; estimate streams and narrows"}
+        - {at_word: "pi", action: "estimate locks at 3.1416 and turns C.quantity"}
+        - {at_word: "no circle", action: "camera pulls back 8%; floor dims to 40%"}
+        - {at_word: "hiding", action: "needles slide to center keeping their angles, tips trace the circle"}
+      equations: []
+      camera: "static; pull-back 8% at 'no circle'"
+      layers: [bg_solid, skia_floor, skia_needles, manim_hud_readout, manim_circle]
+    engines: {primary: skia, secondary: [numpy, manim]}
+    engine_reason: "Thousands of independent segments per frame: numpy samples them (seeded) and skia draws them."
+    retention_device: "question first and the payoff shown unexplained (R1, R2); opens loop L1 (R7)"
+    interrupt: question
+    transition_out: "The circle stays where it formed; the intro opens on the worksheets."
+    sfx_music: "Soft wooden tick per landing for the first needles, thinning into a quiet hiss; silence on 'hiding'."
+
+# ======================================================================== INTRO
+  - id: in_s01
+    chapter: intro
+    title: "Patterns, not chores"
+    arc_step: hook
+    duration_s: 27.35
+    duration_source: audio
+    goal: "Replace 'math = arithmetic drills' with 'math = the study of patterns', anchored on the circle."
+    narration: |
+      Most of us met math as a list of chores. [pause 0.4s] Add these. [pause 0.2s] Solve for x. [pause 0.2s]
+      Show your work. [pause 1.0s] Mathematicians mean something else by the word. [pause 0.4s] They mean the
+      study of patterns. [pause 0.4s] A ripple on a pond, the rim of a wheel and the face of a clock all share one
+      shape. [pause 0.3s] Math studies that shape stripped down, until only the pattern is left.
+    pause_after_s: 2.0
+    visual:
+      description: >
+        The video's first frame. Worksheets of sums (CM roman, C.muted) hang at several depths (2.5D parallax) and
+        the camera drifts through them while answers write themselves in. On 'something else' the sheets blow
+        apart and their figures settle into a sunflower spiral of points (phyllotaxis, golden angle) on
+        'patterns'. Three detailed objects then arrive side by side: a pond ripple (Taichi wave equation, crisp
+        contours), a spoked wheel rolling on a scrolling road while a rim point traces a cycloid, and a clock face
+        with ticking hands. On 'one shape' the circle in each is picked out in warm white; on 'stripped' the three
+        circles fly to the centre and merge into THE circle while the objects dissolve. Title lockup in the pause.
+      reveal_sequence:
+        - {at_word: "chores", action: "worksheets at three depths fade in; the camera drifts through them"}
+        - {at_word: "Solve", action: "answers write themselves in across the sheets, 0.25s apart"}
+        - {at_word: "something else", action: "the sheets blow apart (parallax), their figures scatter as points"}
+        - {at_word: "patterns", action: "the points settle into a sunflower spiral (golden angle)"}
+        - {at_word: "ripple", action: "pond tile: wave-equation ripple spreading from a drop (FieldLayer, contours)"}
+        - {at_word: "wheel", action: "wheel tile: spoked wheel rolls, road scrolls, a rim point traces a cycloid"}
+        - {at_word: "clock", action: "clock tile: dial, numerals, ticking hands"}
+        - {at_word: "one shape", action: "the circle in each object is drawn over it in C.circle"}
+        - {at_word: "stripped", action: "the three circles fly to the centre and merge into THE circle; objects dissolve, 1.4s"}
+      equations: []
+      camera: "slow push-in 5% across the scene"
+      layers: [bg_solid, manim_sheets_x3_parallax, points_spiral, field_ripple, manim_wheel, manim_clock, manim_circle, manim_title]
+    engines: {primary: manim, secondary: [taichi, points]}
+    engine_reason: "Type, line art and the merge in Manim; the ripple is the real damped wave equation (Taichi Wave2D) shown as a contoured field; the spiral is a points layer (R15)."
+    retention_device: "wrong idea of math first, then the reframe (R4); three objects become one circle (R8)"
+    interrupt: "new objects: ripple, wheel, clock"
+    transition_out: "Title lockup fades on the silent beat; the circle stays."
+    sfx_music: "Quiet. Optional low pad, 28 dB under the voice, under the title lockup only."
+
+  - id: in_s02
+    chapter: intro
+    title: "Pieces without the map"
+    arc_step: intuition
+    duration_s: 30.06
+    duration_source: audio
+    goal: "Name the problem the video solves: people only ever see isolated pieces."
+    narration: |
+      In school, math arrives one piece at a time. [pause 0.3s] A year of algebra, a year of geometry, a little
+      statistics near the end. [pause 0.8s] Each piece makes sense on its own, but nobody shows how they fit
+      together. [pause 0.6s] It's like learning a city one street at a time, without ever seeing the map.
+      [pause 0.8s] With the map, a new idea stops being a stray fact. [pause 0.3s] It becomes a place you can
+      find again, next to things you already know.
+    pause_after_s: 1.2
+    visual:
+      description: >
+        Small isolated fragments appear around the circle, each in its pillar color: the quadratic formula, a
+        triangle with angles, a derivative, a bell curve, a pair of overlapping sets, a list of primes. They
+        drift apart with dark space between them. A thin line tries to join two of them and retracts. The
+        fragments shrink into street segments of a city grid; the camera pulls back and the streets turn out
+        to be the faint chords of the Map of Math ring around the circle.
+      reveal_sequence:
+        - {at_word: "one piece", action: "fragments pop in one by one, stagger 120ms"}
+        - {at_word: "makes sense", action: "fragments drift apart"}
+        - {at_word: "fit together", action: "a thin line reaches between two fragments and retracts"}
+        - {at_word: "city", action: "fragments shrink into street segments"}
+        - {at_word: "map", action: "camera pulls back 20%, 2.0s easy_ease: the streets are the dim map's chords"}
+        - {at_word: "stray fact", action: "one fragment (the derivative) slides onto its street and settles there"}
+      equations: ['x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}', '\frac{d}{dx}x^2=2x']
+      camera: "pull-back 20% on 'map'"
+      layers: [bg_solid, manim_fragments, manim_streets, manim_circle, manim_map_ghost]
+    engines: {primary: manim}
+    engine_reason: "TeX fragments and line-art streets morphing into graph edges (R15)."
+    retention_device: "concrete analogy, a city learned street by street (R10); first glimpse of the map (R2)"
+    interrupt: "scale: pull-back from fragments to the whole map"
+    transition_out: "The dim map stays; the camera holds the wide view."
+    sfx_music: "None; a faint air movement on the pull-back."
+
+  - id: in_s03
+    chapter: intro
+    title: "Math at work"
+    arc_step: sighting
+    duration_s: 23.94
+    duration_source: audio
+    goal: "Four 3-5 second glimpses of the pillars at work, so the map feels worth learning."
+    narration: |
+      And the map is worth seeing, because its pieces are everywhere. [pause 0.4s] Your phone finds you where
+      circles of distance around several satellites meet. [pause 0.6s] A spam filter weighs the odds that a
+      message is junk. [pause 0.6s] Every secure payment leans on the arithmetic of whole numbers. [pause 0.6s]
+      And spacecraft reach other planets because calculus tells us where to aim.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        Four crisp vignettes, each about four seconds, each pushed out of the node it belongs to. Satellites
+        with distance circles that grow and meet at one point (tag 'geometry', C.space). A scatter of two kinds
+        of messages with a boundary line sweeping into place over soft probability shading (tags 'probability',
+        'linear algebra'). A seventeen-hour clock dial with powers of three hopping around it (tag 'number
+        theory', C.quantity). A transfer ellipse between two circular orbits with a tangent velocity arrow (tag
+        'calculus', C.change).
+      reveal_sequence:
+        - {at_word: "phone", action: "GPS vignette: circles grow and meet at one point"}
+        - {at_word: "spam", action: "boundary line sweeps into place over the scatter"}
+        - {at_word: "secure", action: "powers of 3 mod 17 hop around the dial"}
+        - {at_word: "spacecraft", action: "transfer ellipse draws, velocity arrow rides it"}
+      equations: ['3^k \bmod 17']
+      camera: "four quick push-ins (0.6s) toward each vignette's node"
+      layers: [bg_solid, manim_glimpses, manim_tags_hud]
+    engines: {primary: manim, secondary: [numpy]}
+    engine_reason: "Small diagrams computed with numpy (circle intersections, a fitted boundary, modular powers, a Hohmann ellipse), drawn crisply in Manim."
+    retention_device: "rapid change every ~4 s (R5); real uses before any theory (R10)"
+    interrupt: "pace: four short vignettes"
+    transition_out: "The last vignette shrinks into its node; the dim map returns."
+    sfx_music: "A light tick on each cut."
+
+  - id: in_s04
+    chapter: intro
+    title: "The plan"
+    arc_step: preview
+    duration_s: 21.00
+    duration_source: audio
+    goal: "Preview the chapters as the Map of Math assembling, in one spoken sentence."
+    narration: |
+      So, the plan. [pause 0.3s] We'll take one circle and look at it through each major branch of math
+      in turn: what it is, how big it is, how it turns, what shape it really has, how it grows, and what it has
+      to do with chance. [pause 1.2s] Each look lights up one part of the map.
+    pause_after_s: 1.5
+    visual:
+      description: >
+        The circle brightens at the center. Six nodes appear on a ring around it, each on its clause: a small
+        circle outline in its pillar color with its glyph inside and its name in small caps outside.
+        Foundations sits at the bottom, then clockwise Quantity, Structure, Space, Change, Uncertainty. On the
+        last line all six pulse once and settle to unlit outlines (C.map_off fill).
+      reveal_sequence:
+        - {at_word: "one circle", action: "circle brightens"}
+        - {at_word: "what it is", action: "Foundations node (glyph in) appears at the bottom"}
+        - {at_word: "how big", action: "Quantity node (pi)"}
+        - {at_word: "how it turns", action: "Structure node (e^{i theta})"}
+        - {at_word: "what shape", action: "Space node (chi)"}
+        - {at_word: "how it grows", action: "Change node (d/dr)"}
+        - {at_word: "chance", action: "Uncertainty node (P)"}
+        - {at_word: "lights up", action: "all six pulse once, settle unlit"}
+      equations: []
+      camera: "static, centered on the ring"
+      layers: [bg_solid, manim_map_ring, manim_circle]
+    engines: {primary: manim}
+    engine_reason: "A six-node graph with type; graph layout belongs to Manim (ST); the Classic look has no glow, so no shader is needed."
+    retention_device: "the whole map in one sentence (R3); the map becomes the progress indicator (R6)"
+    interrupt: "new object: the Map of Math"
+    transition_out: "Hold on the ring."
+    sfx_music: "Six soft ticks, one per node."
+
+  - id: in_s05
+    chapter: intro
+    title: "A promise, and the first turn"
+    arc_step: map_turn
+    duration_s: 31.51
+    duration_source: audio
+    goal: "Plant the open loops (the sticks, the turning map) and ask the first chapter's question."
+    narration: |
+      Before we start, a promise. [pause 0.4s] By the end, you'll see exactly why those sticks on the floor
+      found pi, and why the answer needs every part of this map at once. [pause 0.8s] And one small thing to
+      watch for. [pause 0.3s] Each time we move on, the whole map will turn by the same amount. [pause 0.4s]
+      That turning is math too, and we'll come back to it. [pause 1.2s] We start where all of math starts:
+      with a definition. [pause 0.5s] What, exactly, is a circle?
+    pause_after_s: 1.5
+    visual:
+      description: >
+        A miniature of the needle floor flickers inside the Uncertainty node. On 'every part' faint chords flash
+        between all the nodes and fade. On 'turn' the ring makes the signature move: it turns 60 degrees and
+        back (preview). On 'definition' the Foundations node, already at the bottom, expands into the chapter
+        card: 'Foundations' in small caps (80 px), 'logic and sets' in CM sans, glyph in C.foundations. On the
+        question the card shrinks away and the circle is alone again.
+      reveal_sequence:
+        - {at_word: "sticks", action: "mini needle floor flickers in the Uncertainty node"}
+        - {at_word: "every part", action: "all chords flash faintly, then fade"}
+        - {at_word: "turn", action: "ring turns 60 degrees and back, 1.2s easy_ease each way"}
+        - {at_word: "come back", action: "a small C.structure arc marks the turn angle, fades"}
+        - {at_word: "definition", action: "camera pushes into Foundations; node opens into the chapter card"}
+        - {at_word: "circle", action: "card shrinks away; the circle alone, centered"}
+      equations: []
+      camera: "static; push-in 1.2x into the Foundations node on 'definition', 1.5s easy_ease"
+      layers: [bg_solid, manim_map_ring, skia_mini_needles, manim_chapter_card, manim_circle]
+    engines: {primary: manim, secondary: [skia]}
+    engine_reason: "Map and card in Manim; the needle floor is the seeded skia layer (kit)."
+    retention_device: "opens L1 and L3 as tracked promises (R7); chapter question first (R1)"
+    interrupt: "motion: first turn of the ring; chapter card"
+    transition_out: "Signature chapter transition: the Foundations node opens into Chapter 1."
+    map_update: {lights: [], edges: [], card: foundations}
+    sfx_music: "A soft tone under the chapter card."
+
+# ======================================================================== CH1 FOUNDATIONS
+  - id: ch1_s01
+    chapter: foundations
+    title: "The tight leash"
+    arc_step: hook
+    duration_s: 26.93
+    duration_source: audio
+    goal: "Turn 'a round shape' into 'a rule you can check' with a human example."
+    narration: |
+      Picture a dog tied to a post. [pause 0.4s] When it pulls the leash tight, it can stand in lots of places,
+      but not just anywhere. [pause 0.6s] Every spot it can reach with the leash tight is exactly one leash
+      length from the post. [pause 1.0s] Gather up all of those spots, and they make a circle. [pause 0.8s] That
+      shift, from a shape we recognize to a rule we can check, is the first idea of *foundations*.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        A small cross marks the post at the center. A dot (C.foundations, tagged 'dog' in CM sans) sits at the
+        end of a taut leash. It runs around with the leash tight, leaving a trail of sampled positions. A length
+        tick on the leash reads 'one leash length'. The trail closes into the circle (C.circle). A key-word tag
+        'rule' appears beside the leash.
+      reveal_sequence:
+        - {at_word: "post", action: "post cross, leash and dog dot appear"}
+        - {at_word: "pulls", action: "the dog runs around with the leash tight, trail of dots"}
+        - {at_word: "exactly one", action: "length tick 'one leash length' on the leash"}
+        - {at_word: "Gather", action: "trail closes into the circle, 1.0s easy_ease"}
+        - {at_word: "rule", action: "key word 'rule' beside the leash"}
+      equations: []
+      camera: "static"
+      layers: [bg_solid, manim_leash, manim_trail, manim_circle, manim_tags]
+    engines: {primary: manim}
+    engine_reason: "A driven dot and its trail are pure functions of t (m.drive / m.redraw)."
+    retention_device: "concrete human example before any definition (R10); chapter question answered by a picture (R1)"
+    interrupt: "new object: the leash"
+    transition_out: "The post becomes the origin of the coming grid (continuity, R8)."
+    sfx_music: "None."
+
+  - id: ch1_s02
+    chapter: foundations
+    title: "A set is a rule"
+    arc_step: intuition
+    duration_s: 26.35
+    duration_source: audio
+    goal: "A set is everything a rule lets in; change the rule, change the set."
+    narration: |
+      Mathematicians call a collection like this a *set*. [pause 0.4s] A set is defined by a rule, and the rule
+      decides, for every possible point, whether it's in or out. [pause 0.8s] There's no partly in. [pause 0.6s]
+      Change the rule, and you change the set. [pause 0.3s] Let the leash go slack, and the set fills in to a
+      whole disk. [pause 1.0s] The circle is only the points that are *exactly* one leash length away.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        Braces close around the circle's points in C.foundations. A scan line sweeps the plane through a seeded
+        grid of sample points; each flashes C.foundations (in) or dims (out). An inset zoom shows a point right
+        at the edge snapping to one side. The leash goes slack, the dog roams inside, and the disk fills at 20%
+        C.foundations. On 'exactly' the fill drains, leaving only the ring of points.
+      reveal_sequence:
+        - {at_word: "set", action: "braces close around the circle's points"}
+        - {at_word: "every possible", action: "scan line sweeps; points light in or dim out"}
+        - {at_word: "partly", action: "inset zoom: an edge point snaps in or out"}
+        - {at_word: "slack", action: "leash slackens; disk fills at 20%"}
+        - {at_word: "exactly", action: "fill drains; only the circle's points remain"}
+      equations: []
+      camera: "static"
+      layers: [bg_solid, manim_points, manim_disk_fill, manim_circle, manim_braces]
+    engines: {primary: manim, secondary: [numpy]}
+    engine_reason: "A seeded grid of sample points tested with numpy, drawn as Manim dots."
+    retention_device: "one color means 'in the set' for the whole video (R11)"
+    interrupt: "color: membership lights"
+    transition_out: "A coordinate grid fades in under the circle."
+    sfx_music: "None."
+
+  - id: ch1_s03
+    chapter: foundations
+    title: "From rule to equation"
+    arc_step: formalization
+    duration_s: 37.11
+    duration_source: audio
+    goal: "Pythagoras turns 'one leash length away' into a test on coordinates; the circle as a set; if and only if."
+    narration: |
+      To make the rule exact, put the post at the center of a grid. [pause 0.4s] Every point on the circle is
+      the corner of a right triangle whose longest side is the leash. [pause 0.3s] Pythagoras turns *one leash length
+      away* into a test you can run on any point's coordinates. [pause 1.2s] Wrap that test in braces, and the
+      circle is written as a set. [pause 0.5s] Georg Cantor started the study of sets in the eighteen seventies,
+      and sets became the ground floor of mathematics. [pause 0.6s] A point belongs to this one *if and only if*
+      it passes the test. [pause 0.4s] The promise runs in both directions.
+    pause_after_s: 1.2
+    visual:
+      description: >
+        The Classic grid fades in with the post at the origin. A right triangle drops from a point on the
+        circle: the legs run along and up, the hypotenuse is the leash. The test writes term by term, each term
+        colored like its side. It slides inside braces (C.foundations). Lower third: 'G. Cantor · 1874' in small
+        caps. Two arrows between the key words 'on the circle' and 'passes the test' light in turn.
+      reveal_sequence:
+        - {at_word: "grid", action: "Classic grid fades in, post at the origin"}
+        - {at_word: "right triangle", action: "triangle drops from a point on the circle"}
+        - {at_word: "Pythagoras", action: "x^2 + y^2 = r^2 writes term by term"}
+        - {at_word: "braces", action: "equation slides into set-builder braces"}
+        - {at_word: "Cantor", action: "lower third 'G. Cantor · 1874'"}
+        - {at_word: "if and only if", action: "right arrow lights"}
+        - {at_word: "both directions", action: "left arrow lights"}
+      equations: ['x^2+y^2=r^2', '\{(x,y)\ :\ x^2+y^2=r^2\}', '\text{on the circle}\iff x^2+y^2=r^2']
+      camera: "slow push-in 5%"
+      layers: [bg_solid, manim_grid, manim_triangle, manim_equations, manim_lower_third]
+    engines: {primary: manim}
+    engine_reason: "Gradual TeX reveal colored to match the triangle's sides (TransformMatchingTex)."
+    retention_device: "picture before symbol (R10); terms colored like their sides (R11)"
+    interrupt: "mode: picture becomes an equation"
+    transition_out: "Equation dims to the corner; the radius becomes 5 for the worked example."
+    sfx_music: "None."
+
+  - id: ch1_s04
+    chapter: foundations
+    title: "Is it on the circle?"
+    arc_step: worked_example
+    duration_s: 29.93
+    duration_source: audio
+    goal: "Run the test on three points and see one rule split the plane into three sets."
+    narration: |
+      Try it with a leash five units long. [pause 0.3s] Which of these points can the dog reach with the leash
+      tight? [pause 2.0s] The first passes the test exactly, so it sits on the circle. [pause 0.8s] The second
+      comes up short, so it's inside. [pause 0.5s] The third overshoots: outside. [pause 1.0s] One test sorts every point in the plane into
+      exactly one of three sets, with nothing left over and nothing counted twice.
+    pause_after_s: 1.2
+    visual:
+      description: >
+        Circle of radius 5 on the grid. Three points with coordinate labels: (3,4), (2,4), (4,4), white. During
+        the 2 s predict beat nothing else moves. Each test computes beside its point and the point takes its
+        verdict: on the circle (C.foundations), inside, outside. Then the plane splits into three regions with
+        key words 'inside', 'on', 'outside'; they pulse in turn.
+      reveal_sequence:
+        - {at_word: "five units", action: "radius 5 circle, radius tick '5'"}
+        - {at_word: "Which", action: "three labelled points appear; predict beat"}
+        - {at_word: "first", action: "3^2+4^2=25 computes; point lands on the circle"}
+        - {at_word: "second", action: "2^2+4^2=20<25; point marked inside"}
+        - {at_word: "third", action: "4^2+4^2=32>25; point marked outside"}
+        - {at_word: "sorts", action: "plane splits into inside / on / outside"}
+        - {at_word: "left over", action: "the three regions pulse in turn"}
+      equations: ['3^2+4^2=25', '2^2+4^2=20<25', '4^2+4^2=32>25']
+      camera: "static"
+      layers: [bg_solid, manim_grid, manim_points, manim_equations, manim_regions]
+    engines: {primary: manim}
+    engine_reason: "Exact arithmetic set as TeX beside each point."
+    retention_device: "pause and predict, 2 s (R12); small payoff (R13)"
+    interrupt: question
+    transition_out: "Regions fade; the circle leaves the grid and drops onto a floor line."
+    sfx_music: "None."
+
+  - id: ch1_s05
+    chapter: foundations
+    title: "A shape that rolls like a circle"
+    arc_step: [formalization, sighting]
+    duration_s: 38.56
+    duration_source: audio
+    goal: "A statement and its converse differ: constant width does not imply circle (Reuleaux triangle)."
+    narration: |
+      That two-way promise matters. [pause 0.5s] Roll a
+      circle under a flat board, and the board glides along at a constant height. [pause 0.6s] So you might
+      guess the reverse: anything that rolls that smoothly must be a circle. [pause 1.2s] It doesn't have to
+      be. [pause 0.5s] This rounded triangle, built from three arcs, keeps the board just as level.
+      [pause 1.0s] The British fifty pence coin uses the same trick with seven sides, so vending machines can
+      measure its width like a circle's. [pause 1.0s] A statement and its reverse are different claims, and
+      logic is the habit of checking both.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        A board rests on the circle; the circle rolls and the board slides along level (height tag 'constant
+        width'). The logic arrow 'circle => constant width' flips into 'constant width => circle?'. A Reuleaux
+        triangle (three arcs centered on an equilateral triangle's corners) slides in and rolls under the board;
+        the height tick never changes (support function computed). A plain seven-sided curved coin outline (no
+        imagery) rolls once. The reversed arrow is struck through (dashed, C.muted).
+      reveal_sequence:
+        - {at_word: "flat board", action: "board on the rolling circle, height tag"}
+        - {at_word: "reverse", action: "logic arrow flips, question mark"}
+        - {at_word: "doesn't have", action: "Reuleaux triangle slides in"}
+        - {at_word: "rounded triangle", action: "it rolls under the board; height tick unchanged"}
+        - {at_word: "fifty pence", action: "heptagonal coin outline rolls once"}
+        - {at_word: "different claims", action: "reversed arrow struck through"}
+      equations: ['\text{circle}\Rightarrow\text{constant width}', '\text{constant width}\not\Rightarrow\text{circle}']
+      camera: "tracks sideways with the rolling, 3 units over 4s"
+      layers: [bg_solid, manim_floor, manim_board, manim_shapes, manim_logic_arrows]
+    engines: {primary: manim, secondary: [numpy]}
+    engine_reason: "The board height needs the shape's support function per angle (numpy) so the roll is exact; drawn in Manim."
+    retention_device: "wrong intuition first, then a visual surprise (R4)"
+    interrupt: "visual surprise: a non-circle that rolls"
+    transition_out: "The rolling shapes leave; two overlapping disks slide in."
+    sfx_music: "None."
+
+  - id: ch1_s06
+    chapter: foundations
+    title: "Sets every day"
+    arc_step: [sighting, takeaway]
+    duration_s: 27.04
+    duration_source: audio
+    goal: "Everyday sighting (search filters as intersection and union), the one-line takeaway, the first lit node."
+    narration: |
+      Anyone who shops online uses this. [pause 0.3s] Filter for shoes that are red *and* in your size, and the
+      shop returns the overlap of two sets. [pause 0.5s] Ask for red *or* your size, and it returns everything in
+      either one. [pause 1.0s] Underneath all of math sit definitions like these: rules that say exactly what
+      is in and what is out. [pause 0.8s] Everything else is built on top.
+    pause_after_s: 3.0
+    visual:
+      description: >
+        Two overlapping disks with key words 'red' and 'your size' (C.foundations outlines). The overlap fills,
+        then the union fills. On the takeaway the chapter's hero image (the circle inside its braces) returns
+        for a visual callback, then shrinks into the Foundations node, which lights solid. During the silent
+        beat the ring makes the signature 60 degree turn and the camera pulls back to the whole map.
+      reveal_sequence:
+        - {at_word: "red", action: "two overlapping disks with key words"}
+        - {at_word: "overlap", action: "intersection fills"}
+        - {at_word: "or", action: "union fills"}
+        - {at_word: "Underneath", action: "hero callback: the circle in braces"}
+        - {at_word: "built on top", action: "hero shrinks into the Foundations node; node lights; ring turns 60 degrees in the silent beat"}
+      equations: ['A\cap B', 'A\cup B']
+      camera: "pull back to the full map during the turn"
+      layers: [bg_solid, manim_venn, manim_hero_callback, manim_map_ring]
+    engines: {primary: manim}
+    engine_reason: "Venn shading and the map turn in Manim."
+    retention_device: "one-sentence takeaway over a visual callback (R13); first lit node as progress (R6)"
+    interrupt: "scale: back out to the map"
+    transition_out: "Signature map turn: Quantity rotates into the active spot and opens into Chapter 2."
+    map_update: {lights: [foundations], edges: [], card: quantity}
+    sfx_music: "A soft tone as the node lights."
+
+# ======================================================================== CH2 QUANTITY
+  - id: ch2_s01
+    chapter: quantity
+    title: "One turn of a wheel"
+    arc_step: hook
+    duration_s: 30.27
+    duration_source: audio
+    goal: "Meet pi as a measured length: one turn of a wheel one unit across lands just past three."
+    narration: |
+      How big is a circle? [pause 0.4s] Take a wheel exactly one unit across, paint a dot on its rim, and roll it
+      along a number line for one full turn. [pause 0.3s] Where will the dot touch down? [pause 2.0s] Just past
+      three. [pause 0.6s] That length is the distance around the wheel, and it has a name: *pi*. [pause 0.8s]
+      Every circle, from a coin to a Ferris wheel, measures pi times its own width all the way around.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        The Quantity card shrinks away. The circle, now one unit across, stands on a number line (ticks 0 to 4,
+        CM roman) with a dot on its rim at 0. On the question the wheel rolls one turn without slipping (center
+        moves theta times r, computed); the dot traces a thin cycloid (C.quantity) and touches down at 3.14159.
+        A gold tick and the glyph pi land there. A coin and a Ferris-wheel outline unroll their rims beside it,
+        each tagged 'pi x width'.
+      reveal_sequence:
+        - {at_word: "wheel", action: "the circle stands on the number line; diameter tick '1'"}
+        - {at_word: "dot", action: "a dot appears on the rim at 0"}
+        - {at_word: "touch down", action: "predict beat: the wheel starts a slow roll (2.2 s smooth), landing on 'Just past'"}
+        - {at_word: "Just past", action: "the dot touches down; cycloid complete"}
+        - {at_word: "pi", action: "gold tick and glyph pi at 3.14159..."}
+        - {at_word: "coin", action: "coin and Ferris-wheel outlines unroll their rims, tagged 'pi x width'"}
+      equations: ['C=\pi d', '\pi=3.14159\ldots']
+      camera: "static; slight pan right with the roll (1.5 units over 2.2 s)"
+      layers: [bg_solid, manim_number_line, manim_wheel, manim_cycloid, manim_tags]
+    engines: {primary: manim, secondary: [numpy]}
+    engine_reason: "A rolling wheel is a pure function of t (center = theta r; the dot on a cycloid computed in numpy), drawn crisp in Manim."
+    retention_device: "pause and predict, 2 s (R12); measured before named (R10)"
+    interrupt: question
+    transition_out: "The number line stays; the camera dives toward pi for the fraction hunt (R8)."
+    sfx_music: "A soft click when the dot touches down."
+
+  - id: ch2_s02
+    chapter: quantity
+    title: "Hunting for the fraction"
+    arc_step: intuition
+    duration_s: 35.73
+    duration_source: audio
+    goal: "Wrong intuition first: some fraction must hit pi. The best ancient fractions come close and miss."
+    narration: |
+      So pi is a little more than three. [pause 0.3s] You'd expect some fraction to land on it exactly, if we
+      just find the right one. [pause 0.8s] More than two thousand years ago, Archimedes trapped pi between two
+      fractions by drawing polygons with ninety-six sides. [pause 0.5s] The upper one, twenty-two sevenths, is
+      still used in schools. [pause 0.6s] Around the year four eighty, Zu Chongzhi in China found three hundred
+      fifty-five over one hundred thirteen, right to six decimal places. [pause 0.8s] Zoom in on either one,
+      and there is still a gap.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        Ninety-six-sided polygons draw inside and outside the circle (C.quantity, thin); their perimeters
+        become two ticks bracketing pi on the number line: 223/71 and 22/7. Lower third 'Archimedes · c. 250 BC'.
+        The camera dives into the line by powers of ten (decimal readouts in tabular figures); 355/113 lands a
+        hair from pi with lower third 'Zu Chongzhi · c. 480'. At the deepest zoom a gap remains between each
+        fraction tick and pi, its width tagged.
+      reveal_sequence:
+        - {at_word: "fraction", action: "a fraction tick hovers near pi, ghosted"}
+        - {at_word: "Archimedes", action: "96-gons draw inside and outside the circle; lower third"}
+        - {at_word: "twenty-two sevenths", action: "the outer perimeter becomes the 22/7 tick; 223/71 below pi"}
+        - {at_word: "four eighty", action: "zoom x1000; lower third 'Zu Chongzhi · c. 480'"}
+        - {at_word: "three hundred", action: "355/113 tick lands; decimals 3.1415929 vs 3.1415926"}
+        - {at_word: "gap", action: "deepest zoom: the gap between tick and pi glows its width tag"}
+      equations: ['\tfrac{223}{71}<\pi<\tfrac{22}{7}', '\tfrac{355}{113}=3.1415929\ldots', '\pi=3.1415926\ldots']
+      camera: "log zoom into pi: x10 per 0.8 s, three steps"
+      layers: [bg_solid, manim_polygons, manim_number_line, manim_ticks, manim_lower_third]
+    engines: {primary: manim, secondary: [numpy]}
+    engine_reason: "Exact polygon perimeters and decimal expansions computed in numpy; log zoom by re-drawing the line per frame (m.redraw) keeps ticks crisp at any scale."
+    retention_device: "wrong intuition first (R4); history in one line each (R14)"
+    interrupt: "scale: log zoom into the number line"
+    transition_out: "Zoom back out; the fraction ticks multiply across the line."
+    sfx_music: "None."
+
+  - id: ch2_s03
+    chapter: quantity
+    title: "Kinds of number"
+    arc_step: formalization
+    duration_s: 25.88
+    duration_source: audio
+    goal: "Number kinds answer needs (whole, negative, rational); fractions are dense, which suggests there is no room left."
+    narration: |
+      Each kind of number answers a need. [pause 0.3s] Counting gives the whole numbers. [pause 0.3s] Owing
+      gives the negatives. [pause 0.3s] Sharing a pizza gives fractions, which mathematicians call *rational*
+      numbers. [pause 0.8s] And fractions are packed tight: between any two sits another, halfway between, and
+      another between those, without end. [pause 1.0s] It looks as if they leave no room for anything else.
+    pause_after_s: 0.8
+    visual:
+      description: >
+        The number line fills by kind. Dots at 1, 2, 3 (counting), mirrored to -1, -2, -3 (owing), then fraction
+        ticks (a pizza cut into slices tags the first one). Nested labels appear in small caps above the line:
+        N inside Z inside Q (C.quantity). The camera settles on the stretch 3 to 3.25; midpoints drop in
+        recursively (depth 7, 60 ms stagger) until the stretch looks solid. A ghosted 'R ?' waits at the end.
+      reveal_sequence:
+        - {at_word: "Counting", action: "dots at 1, 2, 3; label N"}
+        - {at_word: "Owing", action: "mirror dots at -1, -2, -3; label Z"}
+        - {at_word: "pizza", action: "a pizza outline cut in slices; fraction ticks appear; label Q"}
+        - {at_word: "packed", action: "camera settles on 3 to 3.25"}
+        - {at_word: "halfway", action: "midpoints drop in, depth 1, 2, 3 ..."}
+        - {at_word: "no room", action: "the stretch looks solid; ghost label 'R ?' fades in"}
+      equations: ['\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}', '\tfrac{p}{q}\ \text{and}\ \tfrac{r}{s}\ \Rightarrow\ \tfrac12\left(\tfrac{p}{q}+\tfrac{r}{s}\right)']
+      camera: "push from the whole line to 3..3.25 over 2 s"
+      layers: [bg_solid, manim_number_line, manim_ticks, manim_sets_labels]
+    engines: {primary: manim}
+    engine_reason: "Ticks and nested labels on a number line; recursion depth fixed so the frame stays legible."
+    retention_device: "human examples: counting, owing, sharing a pizza (R10); sets up the surprise (R4)"
+    interrupt: "new object: nested number kinds"
+    transition_out: "The circle returns over the line for the square construction."
+    sfx_music: "None."
+
+  - id: ch2_s04
+    chapter: quantity
+    title: "The square inside the circle"
+    arc_step: worked_example
+    duration_s: 42.49
+    duration_source: audio
+    goal: "Worked example: the side of the square inscribed in the unit circle is the square root of two, and it is not a fraction."
+    narration: |
+      Fit a square inside a circle of radius one. [pause 0.4s] Its diagonal runs straight across the circle,
+      so it's two units long, and Pythagoras makes each side the square root of two. [pause 0.8s] Is that length
+      a fraction? [pause 1.5s] Suppose it is, in lowest terms. [pause 0.4s] Squaring gives an equation in whole
+      numbers, and it forces the top number to be even. [pause 0.6s] Feed that back in, and the bottom number
+      must be even too. [pause 0.8s] But a fraction in lowest terms can't have both numbers even. [pause 0.6s]
+      The assumption fails, so the square root of two is not a fraction. [pause 0.5s] Numbers like this are
+      called *irrational*.
+    pause_after_s: 1.2
+    visual:
+      description: >
+        Unit circle (C.circle) with an inscribed square (C.quantity). The diagonal draws (tag '2'); the side's
+        right triangle shows s squared plus s squared equals 4, so s = sqrt 2. The derivation writes one line at
+        a time on the right, older lines dimming to 40 percent. 'p even' and 'q even' ring their letters; the
+        clash is struck through in C.alert, the video's one use of the alert color. Then the number line returns
+        and sqrt 2 lands as a gold point between fraction ticks, touching none.
+      reveal_sequence:
+        - {at_word: "square", action: "inscribed square draws in the unit circle"}
+        - {at_word: "diagonal", action: "diagonal draws, tag '2'"}
+        - {at_word: "Pythagoras", action: "s^2 + s^2 = 2^2 resolves to s = sqrt 2"}
+        - {at_word: "fraction", action: "predict beat; 'sqrt 2 = p/q ?' writes"}
+        - {at_word: "lowest terms", action: "'lowest terms' key word under p/q"}
+        - {at_word: "Squaring", action: "p^2 = 2q^2 writes; 'p even' rings p"}
+        - {at_word: "Feed", action: "p = 2k substituted; q^2 = 2k^2; 'q even' rings q"}
+        - {at_word: "both numbers even", action: "the clash is struck through in C.alert"}
+        - {at_word: "irrational", action: "sqrt 2 lands on the number line between fraction ticks; key word 'irrational'"}
+      equations: ['s^2+s^2=2^2\ \Rightarrow\ s=\sqrt2', '\sqrt2=\tfrac{p}{q}', 'p^2=2q^2', 'p=2k\ \Rightarrow\ q^2=2k^2']
+      camera: "static; the derivation column has its own fixed frame (no camera move while lines write)"
+      layers: [bg_solid, manim_circle, manim_square, manim_derivation, manim_number_line]
+    engines: {primary: manim}
+    engine_reason: "A TeX derivation revealed line by line with color-matched terms (TransformMatchingTex)."
+    retention_device: "pause and predict (R12); a proof as a small payoff (R13)"
+    interrupt: "mode: picture becomes a proof"
+    transition_out: "The derivation dims; the number line slides to the center."
+    sfx_music: "None; a single low tap on the contradiction."
+
+  - id: ch2_s05
+    chapter: quantity
+    title: "Pi joins them"
+    arc_step: sighting
+    duration_s: 24.98
+    duration_source: audio
+    goal: "Pi is irrational too (Lambert 1761); in practice fifteen digits steer spacecraft."
+    narration: |
+      In seventeen sixty-one, Johann Lambert proved that pi is irrational too, so its decimals never fall into a
+      repeating loop. [pause 0.8s] In practice, we never need them all. [pause 0.3s] Navigators at NASA use
+      fifteen decimal places to steer spacecraft between planets. [pause 0.6s] Forty places would give the
+      distance around the visible universe to within the width of an atom.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        Lower third 'J. H. Lambert · 1761'. Pi's digits stream to the right in tabular CM roman, a scanning
+        bracket finding no repeat. The first fifteen decimals highlight (C.quantity) beside a thin transfer
+        orbit between two planet dots. The camera pulls back through scales (planet, solar system, a circle
+        labelled 'visible universe'); forty digits ride along, and an inset shows a gap the size of an atom.
+      reveal_sequence:
+        - {at_word: "Lambert", action: "lower third; digits begin streaming"}
+        - {at_word: "repeating", action: "a bracket scans for a repeat and finds none"}
+        - {at_word: "fifteen", action: "first 15 decimals highlight; transfer orbit draws"}
+        - {at_word: "Forty", action: "pull back to a 'visible universe' circle; 40 digits"}
+        - {at_word: "atom", action: "inset: an atom-sized gap"}
+      equations: ['\pi=3.141592653589793\ldots']
+      camera: "pull-back across scales, 3.0 s easy_ease"
+      layers: [bg_solid, manim_digits, manim_orbit, manim_scale_circles, manim_lower_third]
+    engines: {primary: manim}
+    engine_reason: "Typography and simple orbit lines; the scale pull-back is a camera move over crisp vectors."
+    retention_device: "real-world sighting (R10); scale change (R5)"
+    interrupt: "scale: pull-back to the visible universe"
+    transition_out: "Everything shrinks back to the wheel and the square for the callback."
+    sfx_music: "None."
+
+  - id: ch2_s06
+    chapter: quantity
+    title: "Kinds of number, and how we knew"
+    arc_step: takeaway
+    duration_s: 18.62
+    duration_source: audio
+    goal: "One-line takeaway; proof by contradiction links Quantity to Foundations; second node lights."
+    narration: |
+      Numbers come in kinds, and even a simple circle holds lengths that no fraction can name. [pause 0.8s]
+      And notice how we showed it: assume the opposite, follow the rules, and arrive at something impossible.
+      [pause 0.5s] That move comes straight from foundations.
+    pause_after_s: 3.0
+    visual:
+      description: >
+        Hero callback: the rolling wheel and the square in the circle side by side, then both shrink into the
+        Quantity node, which fills gold. The chord from Foundations to Quantity draws with the key word
+        'contradiction' riding it for one second. In the silent beat the ring turns 60 degrees and Structure
+        arrives at the bottom and opens into the Chapter 3 card.
+      reveal_sequence:
+        - {at_word: "kinds", action: "hero callback: wheel and inscribed square"}
+        - {at_word: "assume", action: "the three proof steps flash as key words: assume, follow, impossible"}
+        - {at_word: "foundations", action: "Quantity node fills; chord F-Q draws; ring turns in the silent beat"}
+      equations: []
+      camera: "pull back to the full map during the turn"
+      layers: [bg_solid, manim_hero_callback, manim_map_ring]
+    engines: {primary: manim}
+    engine_reason: "Map node, chord and the ring turn in Manim."
+    retention_device: "one-sentence takeaway over a visual callback (R13); progress (R6)"
+    interrupt: "scale: back out to the map"
+    transition_out: "Signature map turn: Structure opens into Chapter 3."
+    map_update: {lights: [quantity], edges: [[foundations, quantity]], card: structure}
+    sfx_music: "A soft tone as the node lights."
+
+# ======================================================================== CH3 STRUCTURE
+  - id: ch3_s01
+    chapter: structure
+    title: "What stays the same"
+    arc_step: hook
+    duration_s: 27.12
+    duration_source: audio
+    goal: "Symmetry is a move that leaves a shape looking the same: the square has four turns, the circle every angle."
+    narration: |
+      Turn a square a little, and you can tell it moved. [pause 0.5s] Turn it a quarter of the way around, and
+      it looks exactly as it did before. [pause 0.8s] Now turn the circle. [pause 0.3s] Turn it by any amount at
+      all, and nothing seems to change. [pause 1.0s] A move that leaves a shape looking the same is called a
+      *symmetry*. [pause 0.4s] The square has four turning symmetries. [pause 0.3s] The circle has one for every
+      angle.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        The Structure card shrinks away. A square (C.structure) beside the circle (C.circle), each over a dashed
+        ghost of its starting position (C.map_off). The square turns 20 degrees and visibly misses its ghost, then
+        reaches 90 and snaps onto it (a small tick). The circle turns continuously, a rim dot proving it moves,
+        and always matches its ghost. The square's four turns appear as four small arcs; the circle fills with a
+        fan of arcs at every angle.
+      reveal_sequence:
+        - {at_word: "a little", action: "square turns 20 degrees; mismatch with its ghost"}
+        - {at_word: "quarter", action: "square reaches 90 degrees and snaps onto its ghost"}
+        - {at_word: "turn the circle", action: "circle turns continuously; rim dot moves; ghost always matches"}
+        - {at_word: "symmetry", action: "key word 'symmetry' in small caps"}
+        - {at_word: "four", action: "four quarter-turn arcs on the square"}
+        - {at_word: "every", action: "a fan of arcs at every angle fills the circle"}
+      equations: []
+      camera: "static"
+      layers: [bg_solid, manim_square, manim_circle, manim_ghosts, manim_arcs]
+    engines: {primary: manim}
+    engine_reason: "Rigid rotations of vector shapes, driven by Tracks."
+    retention_device: "wrong intuition (symmetry as shape, not moves) set up for the next scene (R4)"
+    interrupt: "new objects: ghosts and turning shapes"
+    transition_out: "The circle becomes the dial of a combination lock (R8)."
+    sfx_music: "A faint click when the square matches."
+
+  - id: ch3_s02
+    chapter: structure
+    title: "Moves you can combine"
+    arc_step: intuition
+    duration_s: 29.72
+    duration_source: audio
+    goal: "A group is a set of moves you can combine and undo, including doing nothing (lock dial)."
+    narration: |
+      Mathematicians study the moves themselves. [pause 0.4s] Think of the dial on a combination lock.
+      [pause 0.3s] Turn it thirty degrees, then forty-five more, and together that's one turn of seventy-five.
+      [pause 0.6s] Any turn can be undone by turning back, and leaving the dial alone counts as a turn of zero.
+      [pause 1.0s] Moves you can combine and undo, including the move that does nothing, form what's called a
+      *group*. [pause 0.5s] Groups are one of the basic objects of *algebra*.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        The circle gains forty ticks and a pointer: a lock dial. A 30 degree arc (C.structure) sweeps, then a
+        45 degree arc; they merge into one 75 degree arc while the sum assembles. A reverse arc returns the
+        pointer to zero; then the pointer rests with a '0' tag. Key words 'combine', 'undo', 'do nothing' line up
+        and fold into the small-caps word 'group'.
+      reveal_sequence:
+        - {at_word: "lock", action: "the circle becomes a dial: forty ticks and a pointer"}
+        - {at_word: "thirty", action: "30 degree arc sweeps"}
+        - {at_word: "forty-five", action: "45 degree arc follows"}
+        - {at_word: "seventy-five", action: "arcs merge into 75; equation assembles"}
+        - {at_word: "undone", action: "reverse arc to zero"}
+        - {at_word: "alone", action: "pointer rests, tag '0'"}
+        - {at_word: "group", action: "the three key words fold into 'group'"}
+      equations: ['30^\circ+45^\circ=75^\circ', '75^\circ+(-75^\circ)=0^\circ']
+      camera: "static"
+      layers: [bg_solid, manim_dial, manim_arcs, manim_equations, manim_tags]
+    engines: {primary: manim}
+    engine_reason: "Arcs and a pointer as pure functions of t; equation assembly with TransformMatchingTex."
+    retention_device: "human example, a lock dial (R10); continuity: the circle becomes the dial (R8)"
+    interrupt: "new object: the lock dial"
+    transition_out: "Pull back to the map ring: its turns are moves too."
+    sfx_music: "Dial clicks, one per tick passed, very quiet."
+
+  - id: ch3_s03
+    chapter: structure
+    title: "Why the map turns"
+    arc_step: payoff
+    duration_s: 25.13
+    duration_source: audio
+    goal: "Pay off loop L3: the map's turns form the cyclic group of order six; plant 'all six by the end'."
+    narration: |
+      Remember how the map turns each time we move on? [pause 0.4s] It's always a sixth of a full circle, and six
+      of those bring it back to the start. [pause 0.8s] Those six turns, counting the one that
+      does nothing, form a group of their own, the *cyclic group of order six*. [pause 0.6s] A snowflake has the
+      same six turns. [pause 0.6s] By the end of this video, the map will have made all six.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        Pull back to the map ring with two lit nodes. A ghost replays the two turns made so far as 60 degree arcs
+        (C.structure). Six arcs complete the circle with tags 0, 60, ..., 300 degrees, and the sum of six sixths
+        returns to 0. Key word 'C6'. A hexagonal snowflake (line art, C.circle) turns by 60 degrees onto its
+        ghost. A six-segment progress arc marks two turns done and four to come.
+      reveal_sequence:
+        - {at_word: "Remember", action: "pull back to the ring; ghost replays the two turns"}
+        - {at_word: "sixth", action: "a 60 degree arc tags the turn"}
+        - {at_word: "six of those", action: "six arcs complete the circle; 6 x 60 = 360"}
+        - {at_word: "cyclic group", action: "key word 'C6' and its six turn arrows"}
+        - {at_word: "snowflake", action: "snowflake turns 60 degrees onto its ghost"}
+        - {at_word: "all six", action: "progress arc: two segments lit, four dim"}
+      equations: ['6\times60^\circ=360^\circ', 'C_6']
+      camera: "pull back 15% to the ring"
+      layers: [bg_solid, manim_map_ring, manim_arcs, manim_snowflake, manim_progress]
+    engines: {primary: manim}
+    engine_reason: "The map is a Manim graph; the snowflake is a computed Koch-style polyline."
+    retention_device: "pays off loop L3 and opens a small new promise (R7)"
+    interrupt: "scale: back out to the map"
+    transition_out: "The ring fades back; one arrow on the number line remains."
+    sfx_music: "None."
+
+  - id: ch3_s04
+    chapter: structure
+    title: "A quarter turn is a number"
+    arc_step: formalization
+    duration_s: 26.23
+    duration_source: audio
+    goal: "i is the quarter turn: two quarter turns make the half turn, multiplying by minus one."
+    narration: |
+      Turns can be numbers too. [pause 0.4s] Multiplying by minus one flips the number line around: a half turn.
+      [pause 0.6s] So what would a quarter turn be? [pause 1.2s] Call it *i*. [pause 0.3s] Do it twice, and
+      you've made a half turn, the same as multiplying by minus one. [pause 0.5s] That's all the square root of
+      minus one means: a quarter turn, off the line and into the plane.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        A number line (C.axis) with an arrow from 0 to 1 (C.structure). Multiplying by -1 swings the arrow
+        through a half-turn arc to -1. Predict beat. The arrow swings a quarter turn up off the line; a vertical
+        axis and the plane fade in; the tip is labelled i. Two quarter-turn arcs chain into the half turn and
+        i times i equals -1 assembles.
+      reveal_sequence:
+        - {at_word: "minus one", action: "arrow swings 180 degrees to -1"}
+        - {at_word: "quarter turn", action: "predict beat: a ghost arrow hesitates at 90 degrees"}
+        - {at_word: "i", action: "the arrow lifts to i; the plane fades in"}
+        - {at_word: "twice", action: "second quarter turn lands on -1; i i = -1 assembles"}
+        - {at_word: "plane", action: "the plane's grid brightens to full"}
+      equations: ['(-1)\cdot 1=-1', 'i\cdot i=i^2=-1']
+      camera: "static"
+      layers: [bg_solid, manim_number_line, manim_arrow, manim_plane, manim_equations]
+    engines: {primary: manim}
+    engine_reason: "Rotations of one arrow and a grid fade: Manim primitives."
+    retention_device: "pause and predict (R12); one idea at a time (R10)"
+    interrupt: "mode: a line becomes a plane"
+    transition_out: "The arrow keeps turning past i and sweeps the unit circle (R8)."
+    sfx_music: "None."
+
+  - id: ch3_s05
+    chapter: structure
+    title: "Any turn at all"
+    arc_step: formalization
+    duration_s: 28.84
+    duration_source: audio
+    goal: "Euler's formula writes any turn as a power of e; plant loop L2 (e, i and pi will meet)."
+    narration: |
+      Leonhard Euler found a way to write *any* turn as a number. [pause 0.4s] Each one is a power of a single
+      constant, the number e, which we'll meet properly in the chapter on change. [pause 1.0s] As the angle
+      grows, the point sweeps around the circle, with cosine as its shadow along one axis and sine along the
+      other. [pause 0.8s] Keep an eye on e, i and pi. [pause 0.4s] Before the end, all three will meet in one
+      short line.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        Unit circle in the plane; a point at angle theta (C.structure) sweeps around. Its shadows on the two axes
+        slide in step (dashed), tracing cosine and sine graphs that unroll to the side. Euler's formula writes
+        in with e in C.change and i in C.structure. Lower third 'L. Euler · 1748'. On the promise, the glyphs e,
+        i and pi lift out, pulse once and park in a small tracker near the corner.
+      reveal_sequence:
+        - {at_word: "Euler", action: "lower third; the point appears at angle 0"}
+        - {at_word: "power", action: "e^{i theta} writes, e colored C.change"}
+        - {at_word: "sweeps", action: "the point sweeps; shadows slide on both axes"}
+        - {at_word: "cosine", action: "cosine and sine graphs unroll; the full formula completes"}
+        - {at_word: "Keep an eye", action: "glyphs e, i, pi lift out and pulse"}
+        - {at_word: "one", action: "the glyphs park in a corner tracker"}
+      equations: ['e^{i\theta}=\cos\theta+i\sin\theta']
+      camera: "static"
+      layers: [bg_solid, manim_plane, manim_unit_circle, manim_shadows, manim_equations, manim_loop_tracker]
+    engines: {primary: manim}
+    engine_reason: "A driven point with projections (m.drive) and TeX colored per role."
+    retention_device: "opens loop L2 (R7); history in one line (R14)"
+    interrupt: "new object: the sweeping point and its shadows"
+    transition_out: "Two arcs split off the sweeping point for the worked example."
+    sfx_music: "None."
+
+  - id: ch3_s06
+    chapter: structure
+    title: "Multiplying adds angles"
+    arc_step: worked_example
+    duration_s: 27.76
+    duration_source: audio
+    goal: "Worked example: the 60 and 30 degree turns multiply to i; multiplying turns adds angles."
+    narration: |
+      Turns written this way are easy to combine. [pause 0.3s] Take a turn of sixty degrees and a turn of
+      thirty. [pause 0.3s] What does multiplying them give? [pause 1.5s] Expanding the brackets, the
+      pieces combine, and everything cancels except i: a turn of ninety degrees. [pause 0.8s] Multiplying turns
+      adds their angles. [pause 0.5s] The angle formulas from school trigonometry are hiding inside that one
+      line.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        Two arcs, 60 and 30 degrees (C.structure), on the unit circle. The product writes in exponential form,
+        then expands term by term in Cartesian form; the two real parts cancel (struck through in C.muted) and
+        the imaginary parts sum to 1, leaving i. A 90 degree arc lands on i. The general rule writes below, and
+        the cosine angle-addition formula fades in under it, dimmed.
+      reveal_sequence:
+        - {at_word: "sixty", action: "60 degree arc"}
+        - {at_word: "thirty", action: "30 degree arc"}
+        - {at_word: "multiplying", action: "predict beat; product writes in exponential form"}
+        - {at_word: "Expanding", action: "Cartesian expansion term by term"}
+        - {at_word: "cancels", action: "real parts struck; i remains; 90 degree arc lands on i"}
+        - {at_word: "adds", action: "general rule e^{ia} e^{ib} = e^{i(a+b)}"}
+        - {at_word: "trigonometry", action: "cos(a+b) formula fades in under it, dimmed"}
+      equations: ['e^{i\pi/3}\,e^{i\pi/6}=\left(\tfrac12+\tfrac{\sqrt3}{2}i\right)\left(\tfrac{\sqrt3}{2}+\tfrac12 i\right)=i', 'e^{ia}e^{ib}=e^{i(a+b)}', '\cos(a+b)=\cos a\cos b-\sin a\sin b']
+      camera: "static"
+      layers: [bg_solid, manim_unit_circle, manim_arcs, manim_equations]
+    engines: {primary: manim}
+    engine_reason: "Exact algebra shown as TeX; arcs computed from the same angles."
+    retention_device: "pause and predict (R12); small payoff (R13)"
+    interrupt: question
+    transition_out: "The circle tips into 3D as a ring of a gimbal."
+    sfx_music: "None."
+
+  - id: ch3_s07
+    chapter: structure
+    title: "Turning in three dimensions"
+    arc_step: [sighting, takeaway]
+    duration_s: 31.87
+    duration_source: audio
+    goal: "Sighting (quaternions in games and phones; Hamilton 1843), the takeaway, the third lit node."
+    narration: |
+      The same idea steers machines. [pause 0.3s] In eighteen forty-three, William Rowan Hamilton found numbers
+      that do for turns in space what i does in the plane, and he carved the rule into a bridge in Dublin.
+      [pause 0.6s] Today these numbers, called quaternions, turn the camera in video games and tell your phone
+      which way is up. [pause 1.0s] For a circle, the moves are turns, and the turns are numbers. [pause 0.8s]
+      Algebra is the study of moves like these.
+    pause_after_s: 3.0
+    visual:
+      description: >
+        Three gimbal rings (C.structure, projected 3D computed from quaternion rotations) turn a plain phone
+        outline. Hamilton's rule appears in CM roman on a flat stone-grey card; lower third 'W. R. Hamilton ·
+        1843'. A wireframe cube with an orbiting camera frustum. Takeaway: hero callback, the point sweeping the
+        unit circle with its formula, shrinks into the Structure node, which fills violet; chords F-S ('a group
+        is a set with rules') and Q-S ('numbers that turn') draw. Silent beat: the ring turns 60 degrees.
+      reveal_sequence:
+        - {at_word: "machines", action: "gimbal rings turn a phone outline"}
+        - {at_word: "Hamilton", action: "lower third; the rule card"}
+        - {at_word: "quaternions", action: "camera frustum orbits a wireframe cube"}
+        - {at_word: "phone", action: "phone outline rights itself as it tilts"}
+        - {at_word: "moves are turns", action: "hero callback: the sweeping point and its formula"}
+        - {at_word: "Algebra", action: "Structure node fills; chords F-S and Q-S draw; ring turns in the silent beat"}
+      equations: ['i^2=j^2=k^2=ijk=-1']
+      camera: "slow orbit feel from rotating the projection (the 2.5D camera stays put)"
+      layers: [bg_solid, manim_gimbal, manim_rule_card, manim_wireframe, manim_hero_callback, manim_map_ring]
+    engines: {primary: manim, secondary: [numpy]}
+    engine_reason: "Quaternion rotations computed in numpy and projected to 2D lines; a few rings do not need a 3D engine."
+    retention_device: "real-world sighting (R10); takeaway over a callback (R13); progress (R6)"
+    interrupt: "2D to 3D: gimbal rings"
+    transition_out: "Signature map turn: Space opens into Chapter 4."
+    map_update: {lights: [structure], edges: [[foundations, structure], [quantity, structure]], card: space}
+    sfx_music: "A soft tone as the node lights."
+
+# ======================================================================== CH4 SPACE
+  - id: ch4_s01
+    chapter: space
+    title: "Halfway, and a rubber band"
+    arc_step: hook
+    duration_s: 28.93
+    duration_source: audio
+    goal: "Midpoint re-hook (we still owe the sticks); squash the circle into a square: to a topologist nothing happened."
+    narration: |
+      We're halfway around the map, and we still owe you the sticks on the floor. [pause 0.5s] We need a closer
+      look at shape and at change first, and then we'll have everything. [pause 1.0s] So, shape. [pause 0.3s]
+      Think of the circle as a rubber band, and squash it into a square. [pause 1.2s] To a geometer, everything
+      just changed: the curve is gone, and corners appeared. [pause 0.6s] To a topologist, nothing happened at
+      all.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        The full map with three lit nodes; the Uncertainty node flickers the mini needle floor and a progress
+        tag reads three of six. The Space card opens and shrinks away. The circle thickens into a rubber band
+        (C.space) and squashes into a square by a continuous radial blend. Geometer's tags ('length', 'angle',
+        'corners') pop onto the square; on the last line they fall away, leaving the word 'same'.
+      reveal_sequence:
+        - {at_word: "halfway", action: "full map; progress tag 3 / 6"}
+        - {at_word: "sticks", action: "Uncertainty node flickers the mini needle floor"}
+        - {at_word: "So, shape", action: "Space card opens and shrinks away"}
+        - {at_word: "rubber band", action: "circle thickens into a band, slight elastic wobble"}
+        - {at_word: "square", action: "band squashes into a square, 1.5 s easy_ease"}
+        - {at_word: "geometer", action: "tags length, angle, corners pop on"}
+        - {at_word: "topologist", action: "tags fall away; key word 'same'"}
+      equations: []
+      camera: "push from the map into the Space node, 1.5 s"
+      layers: [bg_solid, manim_map_ring, skia_mini_needles, manim_band, manim_tags]
+    engines: {primary: manim, secondary: [skia]}
+    engine_reason: "The band is a parametric curve blended between shapes (m.redraw); the mini floor reuses the intro's seeded skia layer."
+    retention_device: "midpoint re-hook, open loop L1 restated (R9, R7); surprise (R4)"
+    interrupt: "re-hook: back to the full map"
+    transition_out: "The square keeps morphing into other loops."
+    sfx_music: "A faint elastic creak on the squash."
+
+  - id: ch4_s02
+    chapter: space
+    title: "Stretch, don't tear"
+    arc_step: intuition
+    duration_s: 29.47
+    duration_source: audio
+    goal: "Topology allows stretching and bending, not cutting or gluing; every simple loop is the same circle."
+    narration: |
+      Topology is geometry with the measurements thrown away. [pause 0.4s] Stretching, bending and squashing are
+      allowed, as much as you like. [pause 0.3s] Cutting and gluing are not. [pause 0.8s] So the rubber band can become a
+      triangle, or a wobbly blob, or a star. [pause 0.6s] What it can't become is a figure eight, because that
+      means pinching two points together. [pause 1.0s] To a topologist, every one of these loops is the same
+      circle.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        Key words 'stretch', 'bend', then 'cut' and 'glue' (dimmed, struck). The band morphs square, triangle,
+        blob, star (radial functions, 1.2 s each). A figure-eight attempt: two points slide together, a dashed
+        C.muted flash marks the forbidden pinch, and the band springs back. All the loops line up in a row and
+        an equals sign joins them to the circle.
+      reveal_sequence:
+        - {at_word: "Stretching", action: "key words stretch, bend, squash"}
+        - {at_word: "Cutting", action: "'cut' and 'glue' appear dimmed and struck"}
+        - {at_word: "triangle", action: "band morphs to a triangle"}
+        - {at_word: "blob", action: "to a blob"}
+        - {at_word: "star", action: "to a star"}
+        - {at_word: "figure eight", action: "pinch attempt, dashed flash, spring back"}
+        - {at_word: "same", action: "all loops in a row, joined by '=' to the circle"}
+      equations: []
+      camera: "static"
+      layers: [bg_solid, manim_band, manim_tags, manim_loop_row]
+    engines: {primary: manim, secondary: [numpy]}
+    engine_reason: "Shapes sampled as radial functions in numpy so every morph is continuous; drawn in Manim."
+    retention_device: "rules shown as moves, not stated (R11); continuity of one band (R8)"
+    interrupt: "motion: shape morphs"
+    transition_out: "The row collapses to a disk and the band."
+    sfx_music: "None."
+
+  - id: ch4_s03
+    chapter: space
+    title: "Loops that snag"
+    arc_step: formalization
+    duration_s: 26.62
+    duration_source: audio
+    goal: "Holes survive stretching: loops shrink on a disk, snag on the band, snag two ways on a torus."
+    narration: |
+      So what does survive a stretch? [pause 0.6s] Holes. [pause 0.4s] Draw a loop on a flat disk, and it can
+      always shrink down to a point. [pause 0.5s] Wrap a loop once around the rubber band, and it snags on
+      the hole, however it's stretched. [pause 0.8s] On the surface of a donut, a loop can snag in two different
+      ways. [pause 1.0s] Loops that can't be shrunk are one of the main ways topologists tell shapes apart.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        A disk (C.space fill at 15 percent) with a loop that shrinks to a point. The band with a loop wrapped
+        once around it: it tightens and stops against the hole. A shaded torus (PyVista, teal key light, crisp
+        silhouette) turns slowly; one loop around the tube and one around the hole each try to shrink and snag.
+      reveal_sequence:
+        - {at_word: "Holes", action: "key word 'holes'"}
+        - {at_word: "disk", action: "loop on the disk shrinks to a point"}
+        - {at_word: "Wrap", action: "loop around the band tightens and snags"}
+        - {at_word: "donut", action: "torus turns in; two loops draw"}
+        - {at_word: "two different", action: "each loop tries to shrink and snags"}
+        - {at_word: "tell shapes apart", action: "disk, band and torus line up with their snagging loops"}
+      equations: []
+      camera: "static; the torus layer rotates on its own"
+      layers: [bg_solid, manim_disk, manim_band, pyvista_torus, manim_loops]
+    engines: {primary: pyvista, secondary: [manim]}
+    engine_reason: "A shaded torus with loops on its surface is a mesh job (PyVista off-screen to ArrayLayer); disk and band stay in Manim."
+    retention_device: "2D to 3D switch (R9); one idea, holes (R10)"
+    interrupt: "2D to 3D: the torus"
+    transition_out: "The torus turns into a wireframe mesh for counting."
+    sfx_music: "None."
+
+  - id: ch4_s04
+    chapter: space
+    title: "Corners, edges, faces"
+    arc_step: worked_example
+    duration_s: 31.20
+    duration_source: audio
+    goal: "Worked example: Euler characteristic of a loop (0), a disk (1), a cube (2), a torus (0); it ignores re-cutting and stretching."
+    narration: |
+      Euler found an even simpler test. [pause 0.3s] Build a shape from corners, edges and faces, add up the
+      corners and faces, and take away the edges. [pause 0.8s] Any loop comes out at zero. [pause 0.4s] Fill it
+      in, and the face makes it one. [pause 0.5s] A cube comes out at two. [pause 0.6s] What about the donut?
+      [pause 1.5s] Zero again. [pause 0.4s] Cut any of these into different pieces, or stretch them however you
+      like, and the count never changes.
+    pause_after_s: 1.2
+    visual:
+      description: >
+        Header chi = V - E + F with V in C.circle, E and F in C.space. A 12-sided loop: counters tick V 12, E 12,
+        F 0, chi 0. It fills: F 1, chi 1. A wireframe cube (projected): 8, 12, 6, chi 2. Predict beat. The torus
+        becomes a 16 by 8 quad mesh: 128, 256, 128, chi 0. Finally one cube face splits into four; V, E and F roll
+        to new values and chi stays 2.
+      reveal_sequence:
+        - {at_word: "simpler", action: "header chi = V - E + F"}
+        - {at_word: "loop", action: "12-sided loop: 12, 12, 0, chi 0"}
+        - {at_word: "Fill", action: "fill: F 1, chi 1"}
+        - {at_word: "cube", action: "cube: 8, 12, 6, chi 2"}
+        - {at_word: "donut", action: "predict beat; torus mesh appears"}
+        - {at_word: "Zero again", action: "torus: 128, 256, 128, chi 0"}
+        - {at_word: "different pieces", action: "a cube face splits in four; counts change, chi stays 2"}
+      equations: ['\chi=V-E+F', '12-12+0=0', '12-12+1=1', '8-12+6=2', '128-256+128=0', '12-20+10=2']
+      camera: "static"
+      layers: [bg_solid, manim_counters, manim_polygon, manim_cube_wire, pyvista_torus_mesh]
+    engines: {primary: manim, secondary: [pyvista]}
+    engine_reason: "Counters and wireframes in Manim; the torus mesh is the same PyVista mesh as the last scene, shown as edges."
+    retention_device: "pause and predict (R12); counters tick in step with parts (R11)"
+    interrupt: question
+    transition_out: "The torus mesh fills in and becomes a coffee mug."
+    sfx_music: "A soft tick per count."
+
+  - id: ch4_s05
+    chapter: space
+    title: "Coffee mug, donut"
+    arc_step: sighting
+    duration_s: 25.05
+    duration_source: audio
+    goal: "Sighting: a mug and a donut are the same shape to topology (both count out at zero)."
+    narration: |
+      That's why people joke that a topologist can't tell a coffee mug from a donut. [pause 0.5s] Squash the
+      mug down into its handle, and what's left is a ring with one hole. [pause 1.2s] Both count out at zero.
+      [pause 0.4s] To topology they're the same shape. [pause 0.8s] Biologists use the same way of thinking to
+      follow how long strands of DNA tangle and untangle inside a cell.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        A shaded mug (PyVista, C.space tint, one soft key light, crisp edge) morphs into a torus over 3 s by
+        blending two signed distance fields. A 'chi = 0' tag sits under each end state. Then a long looped strand
+        (C.space line, Manim) tangles into a knot and slips free again.
+      reveal_sequence:
+        - {at_word: "coffee mug", action: "mug appears, turning slowly"}
+        - {at_word: "Squash", action: "mug-to-torus morph, 3 s easy_ease"}
+        - {at_word: "zero", action: "chi = 0 tags under mug and torus"}
+        - {at_word: "DNA", action: "a looped strand tangles into a knot and slips free"}
+      equations: ['\chi=0']
+      camera: "static"
+      layers: [bg_solid, pyvista_mug_morph, manim_tags]
+    engines: {primary: pyvista}
+    engine_reason: "A morph between two closed surfaces needs a mesher (marching cubes on blended distance fields) and shading."
+    retention_device: "a well-known joke made precise (R13); visual surprise (R4)"
+    interrupt: "visual surprise: mug becomes donut"
+    transition_out: "The torus flattens into a tangle of transit lines."
+    sfx_music: "None."
+
+  - id: ch4_s06
+    chapter: space
+    title: "Maps that forget distance"
+    arc_step: sighting
+    duration_s: 25.74
+    duration_source: audio
+    goal: "Human example: Harry Beck's 1933 Underground diagram keeps connections and drops distances."
+    narration: |
+      If you've ridden a subway, you've used this idea. [pause 0.3s] In nineteen thirty-three, Harry Beck redrew
+      the map of the London Underground with straight lines and evenly spaced stops. [pause 0.6s] Distances were
+      wrong everywhere, but which stops connect to which stayed exactly right. [pause 0.8s] Riders found it far
+      easier to use, and transit maps around the world have copied the idea ever since.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        A made-up transit network (no real lines, names or branding) drawn geographically: tangled, unevenly
+        spaced. Lower third 'H. Beck · 1933'. It straightens into horizontal, vertical and 45 degree segments with
+        even spacing. A highlighted pair of stops stays connected through the morph; a ruler tag shows a distance
+        changing while the connection does not.
+      reveal_sequence:
+        - {at_word: "subway", action: "the tangled geographic network"}
+        - {at_word: "Harry Beck", action: "lower third"}
+        - {at_word: "straight lines", action: "network straightens, 2.5 s easy_ease"}
+        - {at_word: "Distances", action: "ruler tag shows a distance changing"}
+        - {at_word: "connect", action: "a highlighted pair of stops keeps its link"}
+      equations: []
+      camera: "static"
+      layers: [bg_solid, manim_network, manim_lower_third, manim_tags]
+    engines: {primary: manim, secondary: [numpy]}
+    engine_reason: "Node positions interpolate between two layouts computed in numpy; edges follow."
+    retention_device: "human, everyday example (R10)"
+    interrupt: "new object: a transit diagram"
+    transition_out: "The network fades; the band returns as a circle for the callback."
+    sfx_music: "None."
+
+  - id: ch4_s07
+    chapter: space
+    title: "What survives a stretch"
+    arc_step: takeaway
+    duration_s: 18.52
+    duration_source: audio
+    goal: "One-line takeaway; the fourth node lights with chords to Structure and Quantity."
+    narration: |
+      A circle and a square disagree on every measurement, and agree on everything that survives a stretch.
+      [pause 0.8s] Even with every length thrown away, we still ended up counting. [pause 0.6s] Next, the lengths come
+      back, because the circle is about to grow.
+    pause_after_s: 3.0
+    visual:
+      description: >
+        Hero callback: the band morphs circle to square and back once, then shrinks into the Space node, which
+        fills teal. Chords S-Sp ('symmetry') and Q-Sp ('counting holes') draw. Silent beat: the ring turns 60
+        degrees and Change opens into Chapter 5.
+      reveal_sequence:
+        - {at_word: "circle", action: "hero callback: circle to square and back"}
+        - {at_word: "counting", action: "Space node fills; chords S-Sp and Q-Sp draw"}
+        - {at_word: "grow", action: "the circle in the Change node swells once; ring turns in the silent beat"}
+      equations: []
+      camera: "pull back to the full map during the turn"
+      layers: [bg_solid, manim_hero_callback, manim_map_ring]
+    engines: {primary: manim}
+    engine_reason: "Map node, chords and the ring turn in Manim."
+    retention_device: "one-sentence takeaway over a visual callback (R13); progress (R6)"
+    interrupt: "scale: back out to the map"
+    transition_out: "Signature map turn: Change opens into Chapter 5."
+    map_update: {lights: [space], edges: [[structure, space], [quantity, space]], card: change}
+    sfx_music: "A soft tone as the node lights."
+
+# ======================================================================== CH5 CHANGE
+  - id: ch5_s01
+    chapter: change
+    title: "A ripple"
+    arc_step: hook
+    duration_s: 28.90
+    duration_source: audio
+    goal: "Wrong intuition first: the radius grows steadily, the area does not. Calculus asks how fast, at an instant."
+    narration: |
+      Drop a stone into still water. [pause 1.0s] The ripple spreads as a circle, and its radius grows at a
+      steady pace. [pause 0.6s] You'd expect the area inside to grow steadily too. [pause 1.0s] It doesn't.
+      [pause 0.3s] Every second, the ripple sweeps over more new water than the second before. [pause 0.8s]
+      Asking how fast something is changing, at a single instant, is the question behind *calculus*.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        The Change card shrinks away. A Taichi Wave2D height field, drawn as crisp contour lines (no glow): a
+        stone drops at the center and a ring spreads. The leading crest is traced by the circle (C.circle). A
+        radius readout ticks evenly; beside it, bars of 'new water each second' grow 1, 3, 5, 7 (times pi,
+        C.change), so the area's growth visibly speeds up.
+      reveal_sequence:
+        - {at_word: "stone", action: "the stone drops; first ring"}
+        - {at_word: "circle", action: "the leading crest is traced by the circle"}
+        - {at_word: "steady", action: "radius readout ticks evenly"}
+        - {at_word: "expect", action: "a straight dashed guess line for the area"}
+        - {at_word: "doesn't", action: "bars 1, 3, 5, 7 pi grow and leave the guess line behind"}
+        - {at_word: "calculus", action: "key word 'calculus' in small caps"}
+      equations: ['A=\pi r^2', '\Delta A=\pi(2t+1)']
+      camera: "static, slightly top-down feel from contour spacing only"
+      layers: [bg_solid, taichi_wave_field, manim_circle, manim_readouts, manim_bars]
+    engines: {primary: taichi, secondary: [manim]}
+    engine_reason: "A real wave on water is a PDE: Taichi Wave2D baked once, drawn as a FieldLayer with contours; readouts in Manim (R15)."
+    retention_device: "wrong intuition first (R4); new engine and texture (R9)"
+    interrupt: "new engine: a simulated wave"
+    transition_out: "The water stills; one contour becomes a road on a time axis."
+    sfx_music: "One soft water drop at the start; nothing after."
+
+  - id: ch5_s02
+    chapter: change
+    title: "Zoom until it's straight"
+    arc_step: intuition
+    duration_s: 28.57
+    duration_source: audio
+    goal: "The derivative: zoom into a smooth curve until it is straight; its steepness is the rate right now (speedometer)."
+    narration: |
+      A car's speedometer answers that kind of question. [pause 0.4s] It doesn't show your average over the
+      trip, but how fast you're going right now. [pause 0.8s] To make right now precise, zoom in on a smooth
+      curve until it looks like a straight line. [pause 0.6s] The steepness of that line is the *derivative*:
+      the rate of change at a single point. [pause 1.0s] Isaac Newton and Gottfried Leibniz built calculus on
+      this idea in the late sixteen hundreds.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        A distance-time curve of a short drive (C.change) with a speedometer dial (face C.circle, needle C.change)
+        tied to a point moving along it. An average-speed chord appears and is set aside. The camera zooms x10,
+        then x100 at one point; the curve straightens onto its tangent. A rise-over-run triangle reads the slope,
+        matching the dial. Lower third 'I. Newton · G. W. Leibniz · 1680s'.
+      reveal_sequence:
+        - {at_word: "speedometer", action: "the drive curve and the dial, point moving"}
+        - {at_word: "average", action: "average chord across the trip, then dimmed"}
+        - {at_word: "zoom", action: "zoom x10, then x100 at one point"}
+        - {at_word: "straight", action: "curve and tangent overlap"}
+        - {at_word: "derivative", action: "rise-over-run triangle; slope equals the dial reading"}
+        - {at_word: "Newton", action: "lower third"}
+      equations: ['\frac{dy}{dx}=\lim_{h\to0}\frac{y(x+h)-y(x)}{h}']
+      camera: "log zoom x100 into one point, 2.5 s easy_ease"
+      layers: [bg_solid, manim_axes, manim_curve, manim_dial, manim_lower_third]
+    engines: {primary: manim, secondary: [numpy]}
+    engine_reason: "The curve is re-drawn per frame at the zoom (m.redraw) so it stays crisp at x100; slopes computed in numpy."
+    retention_device: "human example, a speedometer (R10); scale change (R5)"
+    interrupt: "scale: x100 zoom"
+    transition_out: "Zoom back out; the curve is replaced by the exponential."
+    sfx_music: "None."
+
+  - id: ch5_s03
+    chapter: change
+    title: "The curve that is its own slope"
+    arc_step: intuition
+    duration_s: 25.79
+    duration_source: audio
+    goal: "Meet e: the curve whose steepness equals its height; compound interest as the human example."
+    narration: |
+      One curve has a special property: at every point, its steepness matches its height. [pause 0.8s] It grows
+      the way savings do when interest keeps compounding: the more there is, the faster it grows. [pause 0.6s]
+      Its heights are powers of one particular number, about two point seven one eight, called *e*. [pause 1.0s] This is
+      the same e that Euler used to describe turns.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        y = e^x (C.change) on Classic axes. At x = 0, 1, 1.5 a tangent segment and a height bar appear side by
+        side with equal tags (1.00, 2.72, 4.48). A small savings card compounds one year at 100 percent:
+        yearly 2.00, monthly 2.61, daily 2.71, continuous 2.71828. The glyph e flies to the e, i, pi tracker.
+      reveal_sequence:
+        - {at_word: "steepness", action: "tangent and height bar pairs with equal tags"}
+        - {at_word: "savings", action: "savings card compounds: yearly, monthly, daily"}
+        - {at_word: "two point seven", action: "continuous: 2.71828..."}
+        - {at_word: "e", action: "e^x labels the curve"}
+        - {at_word: "Euler", action: "glyph e flies to the e, i, pi tracker"}
+      equations: ['\frac{d}{dx}e^x=e^x', '\left(1+\tfrac1n\right)^n\to e=2.71828\ldots']
+      camera: "static"
+      layers: [bg_solid, manim_axes, manim_curve, manim_tangents, manim_savings_card, manim_loop_tracker]
+    engines: {primary: manim}
+    engine_reason: "Exact tangents and compound values computed and set as TeX."
+    retention_device: "callback to Ch3 and loop L2 (R7); human example (R10)"
+    interrupt: "new object: the exponential curve"
+    transition_out: "The axes fade; the circle returns at the center."
+    sfx_music: "None."
+
+  - id: ch5_s04
+    chapter: change
+    title: "Growing the radius"
+    arc_step: formalization
+    duration_s: 24.41
+    duration_source: audio
+    goal: "dA is a thin ring about circumference times dr, so the derivative of the area is the circumference."
+    narration: |
+      Back to the circle. [pause 0.3s] Grow its radius by a tiny amount, and the new area is a thin ring around
+      the edge. [pause 0.6s] Cut the ring and unroll it, and it's almost a rectangle: as long as the
+      circumference, and as thick as the nudge. [pause 1.0s] So the area grows at a rate equal to the length of
+      the edge. [pause 0.6s] The derivative of the circle's area is its circumference.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        The circle with a radius tick r. It grows by dr; the new thin ring fills C.change. The ring is cut at the
+        top and unrolls into a strip of length 2 pi r and height dr (computed; a slight trapezoid is visible).
+        The approximation writes, then the derivative statement.
+      reveal_sequence:
+        - {at_word: "circle", action: "the circle with a radius tick"}
+        - {at_word: "Grow", action: "radius grows by dr; thin ring fills"}
+        - {at_word: "unroll", action: "ring cut and unrolled into a strip"}
+        - {at_word: "circumference", action: "strip tagged 2 pi r by dr"}
+        - {at_word: "rate", action: "dA = 2 pi r dr writes"}
+        - {at_word: "derivative", action: "d/dr of pi r^2 = 2 pi r"}
+      equations: ['dA\approx2\pi r\,dr', '\frac{d}{dr}\left(\pi r^2\right)=2\pi r']
+      camera: "static"
+      layers: [bg_solid, manim_circle, manim_ring, manim_strip, manim_equations]
+    engines: {primary: manim, secondary: [numpy]}
+    engine_reason: "The unrolling ring is an exact annulus-to-trapezoid map computed per frame (m.redraw)."
+    retention_device: "continuity: the same circle (R8); picture before symbol (R10)"
+    interrupt: "motion: a ring unrolls"
+    transition_out: "The circle becomes a pizza."
+    sfx_music: "None."
+
+  - id: ch5_s05
+    chapter: change
+    title: "A slightly bigger pizza"
+    arc_step: worked_example
+    duration_s: 31.16
+    duration_source: audio
+    goal: "Worked example: r 10 to 10.1 cm; edge times nudge 6.28 vs exact 6.31 cm squared; the error shrinks as the nudge squared."
+    narration: |
+      Try it on a pizza ten centimeters in radius. [pause 0.3s] Stretch the dough until the radius grows by one
+      millimeter. [pause 0.3s] How much more pizza is that? [pause 1.5s] The edge times the nudge says about six
+      point two eight square centimeters. [pause 0.6s] Working it out exactly gives six point three one.
+      [pause 0.8s] The small difference is there because the ring's outer edge is a little longer than its inner
+      edge. [pause 0.5s] Make the nudge ten times smaller, and the difference gets a hundred times smaller.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        A flat pizza disk (crust ring in C.change, no photo) with a radius tick '10 cm'. The 1 mm ring is drawn
+        exaggerated, tagged 'not to scale'. The estimate and the exact value write as two rows; their difference
+        appears as a third. A two-row table compares nudges of 0.1 cm and 0.01 cm: estimate, exact, difference.
+      reveal_sequence:
+        - {at_word: "pizza", action: "pizza disk, radius tick 10 cm"}
+        - {at_word: "millimeter", action: "exaggerated ring, tag 'not to scale'"}
+        - {at_word: "How much", action: "predict beat"}
+        - {at_word: "edge times", action: "estimate row: 2 pi x 10 x 0.1 = 6.28"}
+        - {at_word: "exactly", action: "exact row: pi (10.1^2 - 10^2) = 6.31"}
+        - {at_word: "outer edge", action: "outer and inner edges highlight; difference pi (0.1)^2 = 0.03"}
+        - {at_word: "ten times smaller", action: "second table row for 0.01 cm: difference 0.0003"}
+      equations: ['2\pi\cdot10\cdot0.1\approx6.28', '\pi\left(10.1^2-10^2\right)\approx6.31', '\pi\,(dr)^2']
+      camera: "static"
+      layers: [bg_solid, manim_pizza, manim_ring, manim_table]
+    engines: {primary: manim}
+    engine_reason: "Exact arithmetic as TeX; the ring is the same object as the last scene."
+    retention_device: "pause and predict (R12); human example, pizza (R10)"
+    interrupt: question
+    transition_out: "The pizza peels into rings."
+    sfx_music: "None."
+
+  - id: ch5_s06
+    chapter: change
+    title: "Adding up the rings"
+    arc_step: formalization
+    duration_s: 32.58
+    duration_source: audio
+    goal: "Integration: peel the disk into rings and stack them into a triangle whose area is pi r squared."
+    narration: |
+      Calculus also runs the other way. [pause 0.4s] Peel a whole disk into thin rings, unroll each one, and
+      stack them, smallest on top. [pause 1.0s] They make a triangle as tall as the radius, with the
+      circumference as its base. [pause 0.6s] Its area works out to exactly the area of the circle.
+      [pause 0.8s] Adding up infinitely many thin pieces is called *integration*, and it undoes the derivative.
+      [pause 0.6s] Archimedes proved the circle matches this triangle more than two thousand years ago.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        The disk peels into 12 rings (alternating two tints of C.change); each unrolls and stacks into a
+        stepped triangle. The rings double to 24, then 48, and the steps smooth into a triangle with base
+        2 pi r and height r. The area formula writes, then the integral. Lower third 'Archimedes · c. 250 BC'.
+      reveal_sequence:
+        - {at_word: "other way", action: "the disk splits into 12 rings"}
+        - {at_word: "unroll", action: "rings unroll and stack, smallest on top, 60 ms stagger"}
+        - {at_word: "triangle", action: "steps smooth as rings double to 24, then 48"}
+        - {at_word: "area", action: "1/2 x 2 pi r x r = pi r^2"}
+        - {at_word: "integration", action: "the integral writes beside it"}
+        - {at_word: "Archimedes", action: "lower third"}
+      equations: ['\tfrac12\cdot2\pi r\cdot r=\pi r^2', '\int_0^r2\pi s\,ds=\pi r^2']
+      camera: "static"
+      layers: [bg_solid, manim_rings, manim_triangle, manim_equations, manim_lower_third]
+    engines: {primary: manim, secondary: [numpy]}
+    engine_reason: "Ring-to-strip maps computed in numpy; the stack is exact at each ring count."
+    retention_device: "small payoff: the familiar formula earned (R13)"
+    interrupt: "motion: rings peel and stack"
+    transition_out: "The triangle folds back into the disk; a weather grid fades in."
+    sfx_music: "None."
+
+  - id: ch5_s07
+    chapter: change
+    title: "Small changes, added up"
+    arc_step: [sighting, takeaway]
+    duration_s: 19.89
+    duration_source: audio
+    goal: "Sighting (weather forecasts), one-line takeaway, the fifth lit node."
+    narration: |
+      Every weather forecast is built this way: small changes in air and water, worked out step by step and
+      added up. [pause 1.0s] For a circle, the rate at which its area grows is its own edge. [pause 0.8s]
+      Change is measured by derivatives and added up by integrals.
+    pause_after_s: 3.0
+    visual:
+      description: >
+        A globe of thin latitude and longitude lines (C.circle) with pressure contours (C.change) stepping
+        forward: tags '+1 h', '+2 h', '+3 h'. Hero callback: the ring unrolling off the disk, then it shrinks into
+        the Change node, which fills orange; chords Sp-C ('area and edge') and Q-C ('limits') draw. Silent beat:
+        the ring turns 60 degrees and Uncertainty opens into Chapter 6.
+      reveal_sequence:
+        - {at_word: "weather", action: "globe with contours stepping forward"}
+        - {at_word: "For a circle", action: "hero callback: the ring unrolling"}
+        - {at_word: "integrals", action: "Change node fills; chords Sp-C and Q-C; ring turns in the silent beat"}
+      equations: []
+      camera: "pull back to the full map during the turn"
+      layers: [bg_solid, manim_globe, manim_contours, manim_hero_callback, manim_map_ring]
+    engines: {primary: manim, secondary: [numpy]}
+    engine_reason: "A projected globe and a smooth analytic pressure field (numpy) drawn as contours; no simulation needed."
+    retention_device: "real-world sighting (R10); takeaway over a callback (R13); progress (R6)"
+    interrupt: "scale: back out to the map"
+    transition_out: "Signature map turn: Uncertainty opens into Chapter 6."
+    map_update: {lights: [change], edges: [[space, change], [quantity, change]], card: uncertainty}
+    sfx_music: "A soft tone as the node lights."
+
+# ======================================================================== CH6 UNCERTAINTY
+  - id: ch6_s01
+    chapter: uncertainty
+    title: "Back to the floor"
+    arc_step: hook
+    duration_s: 22.40
+    duration_source: audio
+    goal: "Return to the intro's floor (in_s05); one throw is unpredictable, many throws have a pattern."
+    narration: |
+      Back to the floor and the sticks, as promised. [pause 0.8s] One throw is unpredictable. [pause 0.3s] Will
+      this stick cross a crack? [pause 0.6s] There's no way to know, just as there's no way to call a single coin
+      flip. [pause 0.8s] But many throws together follow a pattern, and that pattern is the subject of
+      *probability*.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        The Uncertainty card shrinks away. The intro's floor returns (same boards, same seed). One stick
+        tumbles in slow motion (keyed Clock, rate 0.25) and hangs above a crack with a '?' tag. A coin flips
+        beside it and freezes edge-on. On 'many throws' time resumes and sticks rain at full rate.
+      reveal_sequence:
+        - {at_word: "floor", action: "the intro's floor returns"}
+        - {at_word: "One throw", action: "one stick tumbles in slow motion"}
+        - {at_word: "cross", action: "it hangs above a crack, '?' tag"}
+        - {at_word: "coin", action: "a coin flips and freezes edge-on"}
+        - {at_word: "many throws", action: "time resumes; sticks rain at full rate"}
+        - {at_word: "probability", action: "key word 'probability' in small caps"}
+      equations: []
+      camera: "static"
+      layers: [bg_solid, manim_boards, skia_needles, manim_coin, manim_tags]
+    engines: {primary: skia, secondary: [numpy, manim]}
+    engine_reason: "The same seeded needle layer as the intro (numpy samples, skia draws); slow motion is a keyed Clock."
+    retention_device: "keeps the intro's promise (R7); visual callback (R8)"
+    interrupt: "callback: the intro's floor"
+    transition_out: "The coin flips on and becomes a running chart."
+    sfx_music: "The same wooden tick as the intro, once."
+
+  - id: ch6_s02
+    chapter: uncertainty
+    title: "Many coin flips"
+    arc_step: intuition
+    duration_s: 29.62
+    duration_source: audio
+    goal: "Law of large numbers: the share of heads settles to one half (Bernoulli 1713)."
+    narration: |
+      Flip a coin again and again, and keep track of the share of heads. [pause 0.6s] Early on, it jumps
+      around. [pause 0.4s] After a thousand flips it hugs one half, and the longer it runs, the closer it stays.
+      [pause 1.0s] Jacob Bernoulli proved this in a book published in seventeen thirteen: averages of many
+      random events settle down. [pause 0.6s] One flip tells you nothing. [pause 0.3s] A million flips land
+      within a whisker of one half.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        A running share of heads against flips on a log axis from 1 to a million (seeded), drawn in
+        C.uncertainty, with a dashed one-half line (C.muted). A band of plus or minus one over two root N narrows
+        around it. A flip counter in tabular figures. Lower third 'J. Bernoulli · 1713'.
+      reveal_sequence:
+        - {at_word: "share of heads", action: "axes and the dashed one-half line"}
+        - {at_word: "jumps", action: "the running share zigzags over the first 50 flips"}
+        - {at_word: "thousand", action: "counter passes 1,000; the line hugs one half"}
+        - {at_word: "closer", action: "the band narrows"}
+        - {at_word: "Bernoulli", action: "lower third"}
+        - {at_word: "million", action: "counter reaches 1,000,000; the line sits inside a hairline band"}
+      equations: ['\frac{\text{heads}}{\text{flips}}\to\frac12']
+      camera: "static"
+      layers: [bg_solid, manim_axes, manim_running_share, manim_band, manim_counter, manim_lower_third]
+    engines: {primary: manim, secondary: [numpy]}
+    engine_reason: "A million seeded flips summarized by numpy cumsum; Manim draws the curve and the band."
+    retention_device: "human example, coin flips (R10); wrong intuition, chance means chaos (R4)"
+    interrupt: "mode: a chart"
+    transition_out: "The chart slides away; one stick is enlarged for measuring."
+    sfx_music: "None."
+
+  - id: ch6_s03
+    chapter: uncertainty
+    title: "Each throw is a dot"
+    arc_step: formalization
+    duration_s: 31.50
+    duration_source: audio
+    goal: "Geometric probability: each throw is a dot (angle, distance) in a rectangle; crossing means under the sine arch."
+    narration: |
+      Make the sticks exactly as long as the boards are wide. [pause 0.4s] Then describe each throw with two
+      numbers: how far
+      the middle of the stick lands from the nearest crack, and the angle it makes with the boards. [pause 0.8s]
+      Every throw becomes a dot in a rectangle of possibilities, and every dot is equally likely. [pause 0.6s]
+      The stick crosses a crack exactly when its dot falls under this curve, one arch of a sine wave.
+      [pause 0.8s] So what share of throws should cross? [pause 2.0s]
+    pause_after_s: 0.5
+    visual:
+      description: >
+        One stick enlarged over two cracks; its length matches the board width (a tick). The distance from its
+        middle to the nearest crack and its angle with the boards are drawn and tagged. A rectangle (C.space)
+        appears, angle 0 to pi across, distance 0 to 1 up (in half-board widths). Throws on the floor drop as
+        dots into the rectangle; the sine arch (C.change) draws; dots under it light C.uncertainty, the rest
+        dim. Predict beat: dots keep arriving, no readout.
+      reveal_sequence:
+        - {at_word: "as long as", action: "one stick enlarged; length matches the board width"}
+        - {at_word: "how far", action: "distance from the middle to the nearest crack, tagged x"}
+        - {at_word: "angle", action: "angle with the boards, tagged theta"}
+        - {at_word: "rectangle", action: "rectangle of possibilities; throws drop in as dots"}
+        - {at_word: "crosses", action: "sine arch draws; dots under it light, others dim"}
+        - {at_word: "what share", action: "predict beat: dots keep arriving, no readout"}
+      equations: ['x\le\sin\theta', '0\le\theta\le\pi,\quad 0\le x\le1']
+      camera: "push from the floor into the single stick, then pan to the rectangle"
+      layers: [bg_solid, manim_boards, skia_needles, manim_rectangle, manim_dots, manim_curve]
+    engines: {primary: manim, secondary: [numpy, skia]}
+    engine_reason: "Each throw's (theta, x) comes from the same seeded samples as the floor, so the dots are the real throws."
+    retention_device: "pause and predict, 2 s (R12); colors carry the links: rectangle = space, arch = change (R11)"
+    interrupt: "mode: a floor becomes a diagram"
+    transition_out: "The region under the arch fills."
+    sfx_music: "None."
+
+  - id: ch6_s04
+    chapter: uncertainty
+    title: "Where the circle was hiding"
+    arc_step: worked_example
+    duration_s: 33.36
+    duration_source: audio
+    goal: "Pay off loop L1: P = (area under the arch) / (rectangle) = 2/pi; the circle hides in the angle."
+    narration: |
+      The share of sticks that cross is the share of the rectangle under the arch. [pause 0.5s] Calculus gives
+      the area under one arch of a sine wave: exactly two. [pause 0.6s] The rectangle is a half turn wide, so its
+      area is pi. [pause 1.0s] So the crossing share is two over pi, about sixty-four percent. [pause 1.0s]
+      And that's where the circle was hiding: in the angle. [pause 0.4s] Every direction a stick can point lies
+      on a circle, and pi is what it takes to go halfway around.
+    pause_after_s: 1.5
+    visual:
+      description: >
+        The region under the arch fills C.change at 30 percent and its integral writes. The rectangle's width
+        tick turns gold (pi, C.quantity). P = 2/pi assembles; the live crossing share of the dots converges on
+        0.6366. Then every stick on the floor slides to the center keeping its angle, as their tips trace the circle; the
+        tips trace the circle and the half-turn arc of directions glows gold.
+      reveal_sequence:
+        - {at_word: "share", action: "region under the arch fills"}
+        - {at_word: "exactly two", action: "integral of sin from 0 to pi = 2"}
+        - {at_word: "half turn", action: "width tick becomes pi; rectangle area pi"}
+        - {at_word: "two over pi", action: "P = 2/pi = 0.6366; live share converges"}
+        - {at_word: "hiding", action: "sticks slide to the center keeping their angles; tips trace the circle"}
+        - {at_word: "halfway", action: "the half-turn arc of directions glows gold; pi = 2 x throws / crossings"}
+      equations: ['\int_0^{\pi}\sin\theta\,d\theta=2', 'P=\frac{2}{\pi}\approx0.6366', '\pi\approx\frac{2\times\text{throws}}{\text{crossings}}']
+      camera: "pull back from the rectangle to the floor on 'hiding'"
+      layers: [bg_solid, manim_rectangle, manim_curve, manim_equations, skia_needles, manim_circle]
+    engines: {primary: manim, secondary: [skia, numpy]}
+    engine_reason: "Areas and the converging share from the same seeded throws; the needle slide reuses the seeded skia layer."
+    retention_device: "pays off loop L1 (R7); big visual callback to the intro's floor (R8, R13)"
+    interrupt: "callback: the needle floor, now explained"
+    transition_out: "The circle holds; history cards slide in."
+    sfx_music: "A soft hiss under the slide, then silence."
+
+  - id: ch6_s05
+    chapter: uncertainty
+    title: "Buffon, and a lucky result"
+    arc_step: history
+    duration_s: 30.44
+    duration_source: audio
+    goal: "Buffon (1777); estimates improve as 1 over root N; Lazzarini's 1901 result was too good (exactly 355/113)."
+    narration: |
+      The French naturalist Buffon worked this out in the seventeen hundreds. [pause 0.6s] In nineteen-oh-one,
+      Mario Lazzarini reported three thousand four hundred and eight throws that gave pi to six decimal places.
+      [pause 0.8s] That's suspiciously good. [pause 0.4s] A random estimate improves slowly: each extra correct
+      digit takes about a hundred times more throws. [pause 0.6s] His answer was exactly Zu Chongzhi's fraction,
+      and his numbers suggest he chose when to stop.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        Lower thirds 'G.-L. Leclerc, Comte de Buffon · 1777' and 'M. Lazzarini · 1901'. A log-log plot of
+        estimate error against throws: thirty seeded honest runs (faint C.uncertainty) inside a band with slope
+        minus one half. Lazzarini's point (3,408 throws, error 0.0000003) sits far below the band, tagged 'too
+        lucky'. His 5,680 / 1,808 reduces to 355/113, and the gold 355/113 tick from Chapter 2 flies in to match.
+      reveal_sequence:
+        - {at_word: "Buffon", action: "lower third"}
+        - {at_word: "Lazzarini", action: "lower third"}
+        - {at_word: "suspiciously", action: "his point drops far below the honest band"}
+        - {at_word: "slowly", action: "the 1/sqrt N slope line; 'x100 throws per digit' tag"}
+        - {at_word: "Zu Chongzhi's", action: "5680/1808 = 355/113; the Chapter 2 tick flies in"}
+      equations: ['\text{error}\sim\frac{1}{\sqrt N}', '\frac{5680}{1808}=\frac{355}{113}']
+      camera: "static"
+      layers: [bg_solid, manim_loglog, manim_runs, manim_lower_third, manim_callback_tick]
+    engines: {primary: manim, secondary: [numpy]}
+    engine_reason: "Thirty seeded Buffon runs simulated in numpy; Manim draws the log-log plot."
+    retention_device: "history as a small story (R14); callback to Ch2 (R8)"
+    interrupt: "mode: a log-log plot"
+    transition_out: "The honest runs become rays of light."
+    sfx_music: "None."
+
+  - id: ch6_s06
+    chapter: uncertainty
+    title: "Randomness at work"
+    arc_step: sighting
+    duration_s: 25.33
+    duration_source: audio
+    goal: "Sightings: Monte Carlo (1940s); film lighting by random light paths; medical trials and luck."
+    narration: |
+      Measuring things with random samples is now a standard tool, called the *Monte Carlo* method, named in the
+      nineteen forties after the famous casino. [pause 0.8s] The animated films you watch are lit this way: a
+      computer follows millions of random paths of light and averages them. [pause 0.8s] And when a medical trial
+      reports that a treatment works, statistics is what tells us whether the result could just be luck.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        Key words 'Monte Carlo · 1940s'. A simple line-art scene, a ball on a floor under a lamp, lit by random
+        light paths (thin C.uncertainty rays, skia); its shading goes from noisy to smooth as samples grow
+        (counter 1, 16, 256, 4096 per pixel). Then two groups of dots (treatment, control) and a histogram of
+        differences that chance alone would give; the observed difference lands outside it, tagged 'not luck'.
+      reveal_sequence:
+        - {at_word: "Monte Carlo", action: "key words 'Monte Carlo · 1940s'"}
+        - {at_word: "films", action: "lamp, ball and floor in line art"}
+        - {at_word: "random paths", action: "rays trace; shading goes from noisy to smooth"}
+        - {at_word: "medical trial", action: "two groups of dots"}
+        - {at_word: "luck", action: "chance histogram; observed difference lands outside, 'not luck'"}
+      equations: []
+      camera: "static"
+      layers: [bg_solid, skia_rays, numpy_shading_frames, manim_trial_chart]
+    engines: {primary: skia, secondary: [numpy, manim]}
+    engine_reason: "A toy 2D path tracer in numpy (seeded) and thousands of ray segments drawn by skia; the chart in Manim."
+    retention_device: "real-world sightings (R10); fast change (R5)"
+    interrupt: "new objects: light paths"
+    transition_out: "The dots gather back into the rectangle under the arch."
+    sfx_music: "None."
+
+  - id: ch6_s07
+    chapter: uncertainty
+    title: "Numbers you can trust"
+    arc_step: takeaway
+    duration_s: 16.58
+    duration_source: audio
+    goal: "One-line takeaway; the sixth node lights; the ring makes its sixth turn and is back at the start."
+    narration: |
+      Many random events add up to numbers you can trust, and sometimes those numbers are old friends, like pi.
+      [pause 0.8s] And to get there, the sticks needed every branch we've seen. [pause 0.5s] So let's see how the
+      branches fit together.
+    pause_after_s: 3.0
+    visual:
+      description: >
+        Hero callback: dots filling the rectangle under the arch, which then shrinks into the Uncertainty node;
+        it fills pink. Chords C-U ('area under a curve'), Sp-U ('geometry of chance') and Q-U ('pi from counting')
+        draw. Silent beat: the ring makes its sixth turn; Foundations is back at the bottom, all six nodes lit.
+      reveal_sequence:
+        - {at_word: "random", action: "hero callback: dots filling the rectangle"}
+        - {at_word: "every branch", action: "Uncertainty node fills; three chords; sixth ring turn in the silent beat"}
+      equations: []
+      camera: "pull back to the full map during the turn"
+      layers: [bg_solid, manim_hero_callback, manim_map_ring]
+    engines: {primary: manim}
+    engine_reason: "Map node, chords and the ring turn in Manim."
+    retention_device: "one-sentence takeaway over a visual callback (R13); progress complete (R6)"
+    interrupt: "scale: back out to the map"
+    transition_out: "Signature map turn, the sixth: the whole map opens into Chapter 7."
+    map_update: {lights: [uncertainty], edges: [[change, uncertainty], [space, uncertainty], [quantity, uncertainty]], card: connects}
+    sfx_music: "A soft tone as the node lights."
+
+# ======================================================================== CH7 HOW IT CONNECTS
+  - id: ch7_s01
+    chapter: connects
+    title: "Six turns later"
+    arc_step: hook
+    duration_s: 25.70
+    duration_source: audio
+    goal: "The map is back at the start (the identity of C6); the branches were connected all along."
+    narration: |
+      Six turns later, the map is right back where it started, just as the group of turns promised.
+      [pause 1.0s] And the branches were never really separate. [pause 0.4s] Statistics runs on calculus.
+      [pause 0.3s] The secure messages on your phone run on the algebra of whole numbers. [pause 0.3s] Physics
+      runs on symmetry. [pause 0.6s] And under every one of them sit the definitions we started with.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        The card 'How it connects' (small caps, C.text) shrinks away. The C6 progress arc completes: six of six,
+        back to 0 degrees. All six nodes lit. As each link is named, its chord pulses: C-U, Q-S, S-Sp. On the last
+        line three new chords draw from Foundations to Space, Change and Uncertainty.
+      reveal_sequence:
+        - {at_word: "Six turns", action: "C6 progress arc completes; 6 / 6 returns to 0 degrees"}
+        - {at_word: "never", action: "all lit chords brighten once"}
+        - {at_word: "Statistics", action: "chord C-U pulses"}
+        - {at_word: "secure", action: "chord Q-S pulses"}
+        - {at_word: "Physics", action: "chord S-Sp pulses"}
+        - {at_word: "definitions", action: "chords F-Sp, F-C, F-U draw"}
+      equations: []
+      camera: "static on the full map"
+      layers: [bg_solid, manim_map_ring, manim_progress]
+    engines: {primary: manim}
+    engine_reason: "Graph edges and pulses on the Manim map."
+    retention_device: "pays off the 'all six' promise (R7); everything visible at once (R6)"
+    interrupt: "new chapter: the full map"
+    transition_out: "The camera moves into the center of the ring, onto the unit circle."
+    map_update: {lights: [], edges: [[foundations, space], [foundations, change], [foundations, uncertainty]], pulse: [[change, uncertainty], [quantity, structure], [structure, space]]}
+    sfx_music: "None."
+
+  - id: ch7_s02
+    chapter: connects
+    title: "One short line"
+    arc_step: payoff
+    duration_s: 30.83
+    duration_source: audio
+    goal: "Pay off loop L2: a half turn gives minus one, Euler's identity, each symbol from a different branch."
+    narration: |
+      Back in the chapter on structure, we promised that e, i and pi would meet. [pause 0.6s] Turn by pi, a half
+      turn, and you land on minus one. [pause 0.8s] Written as an equation, that's Euler's identity.
+      [pause 1.2s] The e comes from change. [pause 0.3s] The i comes from turning. [pause 0.3s] Pi comes from the
+      circle, and one and zero are where counting starts. [pause 1.0s] One short line, touching almost
+      every part of the map.
+    pause_after_s: 1.2
+    visual:
+      description: >
+        The glyphs e, i and pi leave their corner tracker. On the unit circle the point sweeps a half turn from 1
+        to -1 (C.structure arc). Euler's identity assembles with each symbol in its pillar color: e C.change,
+        i C.structure, pi C.quantity, 1 and 0 C.foundations. Each symbol then flies along a chord to its node, and
+        the chord S-C ('growth meets turning') draws.
+      reveal_sequence:
+        - {at_word: "promised", action: "the three glyphs leave the tracker"}
+        - {at_word: "half turn", action: "the point sweeps from 1 to -1"}
+        - {at_word: "Euler's identity", action: "e^{i pi} + 1 = 0 assembles in pillar colors"}
+        - {at_word: "change", action: "e flies to the Change node"}
+        - {at_word: "turning", action: "i flies to Structure"}
+        - {at_word: "Pi", action: "pi flies to Quantity; 1 and 0 to Foundations"}
+        - {at_word: "every part", action: "chord S-C draws; the identity glows once in place"}
+      equations: ['e^{i\pi}=-1', 'e^{i\pi}+1=0']
+      camera: "push into the unit circle, then back out to the map, 1.5 s each"
+      layers: [bg_solid, manim_unit_circle, manim_equations, manim_map_ring, manim_loop_tracker]
+    engines: {primary: manim}
+    engine_reason: "Glyph flights along chords are Manim paths; TeX parts colored by role."
+    retention_device: "pays off loop L2 (R7); the biggest single payoff (R13)"
+    interrupt: "camera: push in and out"
+    transition_out: "The map shrinks around a small floor of sticks at its center."
+    map_update: {lights: [], edges: [[structure, change]]}
+    sfx_music: "A low soft tone under the identity."
+
+  - id: ch7_s03
+    chapter: connects
+    title: "The sticks, retold"
+    arc_step: payoff
+    duration_s: 31.37
+    duration_source: audio
+    goal: "Final payoff of loop L1: Buffon's answer used every branch."
+    narration: |
+      And the sticks on the floor needed all of it. [pause 0.6s] Definitions said exactly what counts as a
+      crossing. [pause 0.4s] Symmetry said every angle is equally likely. [pause 0.4s] Geometry turned each
+      throw into a dot in a rectangle. [pause 0.4s] Calculus measured the area under the arch. [pause 0.4s]
+      Probability turned that area into a share of throws. [pause 0.4s] And out came pi, a number no fraction can
+      reach. [pause 1.2s] No single branch could have found it alone.
+    pause_after_s: 1.2
+    visual:
+      description: >
+        A small floor of sticks sits inside the ring. Each line draws one piece in its pillar color and lights the
+        chord from the floor to that node: the crossing condition as a set (C.foundations); directions spinning
+        evenly (C.structure, and chord S-U draws); the rectangle (C.space); the arch area (C.change); the share
+        (C.uncertainty); pi (C.quantity). On the last line all six nodes pulse together.
+      reveal_sequence:
+        - {at_word: "all of it", action: "the floor of sticks at the ring's center"}
+        - {at_word: "Definitions", action: "crossing condition as a set, C.foundations"}
+        - {at_word: "Symmetry", action: "directions spin evenly; chord S-U draws"}
+        - {at_word: "Geometry", action: "the rectangle, C.space"}
+        - {at_word: "Calculus", action: "the arch area, C.change"}
+        - {at_word: "Probability", action: "the share, C.uncertainty"}
+        - {at_word: "out came pi", action: "pi in C.quantity"}
+        - {at_word: "alone", action: "all six nodes pulse together"}
+      equations: ['\{(\theta,x):x\le\sin\theta\}', 'P=\frac{2}{\pi}']
+      camera: "static"
+      layers: [bg_solid, skia_needles, manim_map_ring, manim_pieces]
+    engines: {primary: manim, secondary: [skia]}
+    engine_reason: "Map and pieces in Manim; the floor reuses the seeded skia needle layer."
+    retention_device: "keeps the intro's promise (R7, R13); visual callback (R8)"
+    interrupt: "callback montage, one change per line"
+    transition_out: "The floor fades; equations from other fields drift in."
+    map_update: {lights: [], edges: [[structure, uncertainty]]}
+    sfx_music: "None."
+
+  - id: ch7_s04
+    chapter: connects
+    title: "Every lens"
+    arc_step: takeaway
+    duration_s: 21.37
+    duration_source: audio
+    goal: "Human example of connections at work (Wiles 1994) and the chapter's takeaway."
+    narration: |
+      Mathematicians lean on these connections all the time. [pause 0.4s] In nineteen ninety-four, Andrew Wiles
+      settled a question about whole numbers that had stood open for more than three hundred and fifty years,
+      using tools from geometry and algebra. [pause 1.0s] Every lens saw something true, and each needed the
+      others.
+    pause_after_s: 2.0
+    visual:
+      description: >
+        Fermat's equation with 'no whole-number solutions for n > 2' (C.quantity). An elliptic curve (C.space)
+        and a symmetry glyph (C.structure) link to it with lit chords. Lower third 'A. Wiles · 1994'. Then the
+        full map with all fifteen chords lit holds for the takeaway.
+      reveal_sequence:
+        - {at_word: "connections", action: "Fermat's equation fades in"}
+        - {at_word: "Wiles", action: "lower third"}
+        - {at_word: "geometry", action: "an elliptic curve and a symmetry glyph link to the equation"}
+        - {at_word: "Every lens", action: "the full map, all fifteen chords lit"}
+      equations: ['x^n+y^n=z^n', 'y^2=x^3-x']
+      camera: "pull back to the full map on the takeaway"
+      layers: [bg_solid, manim_equations, manim_curve, manim_lower_third, manim_map_ring]
+    engines: {primary: manim, secondary: [numpy]}
+    engine_reason: "The elliptic curve's real points computed in numpy and drawn as a crisp curve."
+    retention_device: "human example (R10); takeaway (R13)"
+    interrupt: "new objects: Fermat and an elliptic curve"
+    transition_out: "The full map holds as the outro begins."
+    sfx_music: "None."
+
+# ======================================================================== OUTRO
+  - id: out_s01
+    chapter: outro
+    title: "So, what is a circle?"
+    arc_step: recap
+    duration_s: 31.59
+    duration_source: audio
+    goal: "Recap in six one-line lenses as the ring turns once more; the payoff image, six arcs into one circle."
+    narration: |
+      So, what is a circle? [pause 0.6s] It's a rule about distance. [pause 0.3s] It's a length that no fraction
+      can name. [pause 0.3s] It's every turn at once. [pause 0.3s] It's a loop that survives any stretch.
+      [pause 0.3s] It's an area that grows at the rate of its own edge. [pause 0.3s] And it's what a floor full
+      of random sticks was hiding. [pause 1.2s] Math isn't a pile of separate subjects. [pause 0.4s] It's one
+      connected landscape, and every branch is a way into it.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        The ring turns a slow full circle. On each line one node's hero image flashes small inside the circle and
+        leaves a 60 degree arc in that pillar's color: braces, the rolling wheel, the sweeping point, the band
+        becoming a square, the unrolled ring, the needle tips. The six arcs join into one whole circle, then
+        cross-fade to C.circle. On 'landscape' the camera pulls back and the lit map becomes a small emblem.
+      reveal_sequence:
+        - {at_word: "what is a circle", action: "the ring starts a slow full turn"}
+        - {at_word: "rule", action: "braces flash; blue arc"}
+        - {at_word: "no fraction", action: "wheel flash; gold arc"}
+        - {at_word: "every turn", action: "sweeping point; violet arc"}
+        - {at_word: "survives", action: "band to square; teal arc"}
+        - {at_word: "grows", action: "unrolled ring; orange arc"}
+        - {at_word: "random sticks", action: "needle tips; pink arc; the circle is whole"}
+        - {at_word: "landscape", action: "arcs cross-fade to C.circle; pull back; map becomes an emblem"}
+      equations: []
+      camera: "slow pull-back on 'landscape', 3 s easy_ease"
+      layers: [bg_solid, manim_map_ring, manim_hero_flashes, manim_arcs, manim_circle]
+    engines: {primary: manim}
+    engine_reason: "Callbacks are small re-uses of each chapter's Manim objects; arcs are exact 60 degree pieces."
+    retention_device: "end on the payoff image (R13); callbacks (R8)"
+    interrupt: "motion: the final ring turn"
+    transition_out: "The circle stays as the closing image under the question."
+    sfx_music: "Optional quiet pad from 'landscape' to the end, 28 dB under the voice."
+
+  - id: out_s02
+    chapter: outro
+    title: "What to watch next"
+    arc_step: cta
+    duration_s: 30.49
+    duration_source: audio
+    goal: "A reflective question, then one next video (007, Euler's identity) and the channel's links."
+    narration: |
+      A question to take with you: which branch felt most like the math you met in school, and which felt least
+      like it? [pause 1.5s] To see one of these connections up close, watch the next video: it takes Euler's
+      identity apart, piece by piece. [pause 0.6s] Subscribe so you don't miss it, and to play with these ideas
+      yourself, try the interactive app at I give ideas dot com.
+    pause_after_s: 6.0
+    visual:
+      description: >
+        The circle holds at the center. The question types in two lines of CM sans (C.text). Then the end card:
+        'Next: Euler's identity' with the identity in pillar colors over a frame for video 007, and 'interactive app ·
+        igiveideas.com' in CM sans (C.muted). The circle stays as the last image; 6 s of hold for YouTube end-screen elements.
+      reveal_sequence:
+        - {at_word: "question", action: "question types in, two lines"}
+        - {at_word: "next video", action: "end card: 'Next: Euler's identity'"}
+        - {at_word: "Subscribe", action: "subscribe slot on the end card"}
+        - {at_word: "I give ideas", action: "'interactive app · igiveideas.com' in CM sans"}
+      equations: ['e^{i\pi}+1=0']
+      camera: "static"
+      layers: [bg_solid, manim_circle, manim_question, manim_end_card]
+    engines: {primary: manim}
+    engine_reason: "Type and a framed end card in Manim; YouTube end-screen elements are added on upload."
+    retention_device: "reflective question; one next video, not a list (R13)"
+    interrupt: question
+    transition_out: "Hold on the circle; cut to black at the end of the audio."
+    sfx_music: "The pad from out_s01 fades out over the final hold."

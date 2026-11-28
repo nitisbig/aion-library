@@ -1,0 +1,1734 @@
+1
+00:00:01,000 --> 00:00:03,250
+Throw a stick onto a wooden floor.
+
+2
+00:00:03,750 --> 00:00:05,710
+Then another, and another.
+
+3
+00:00:06,690 --> 00:00:10,290
+Count how often one lands across
+a crack between the boards,
+
+4
+00:00:10,340 --> 00:00:13,300
+and from that count alone,
+you can work out pi.
+
+5
+00:00:15,300 --> 00:00:18,220
+There is no circle anywhere on this floor.
+
+6
+00:00:18,880 --> 00:00:20,510
+So where is it hiding?
+
+7
+00:00:22,850 --> 00:00:25,680
+Most of us met math as a list of chores.
+
+8
+00:00:26,170 --> 00:00:28,720
+Add these.
+Solve for x.
+
+9
+00:00:28,850 --> 00:00:30,030
+Show your work.
+
+10
+00:00:31,230 --> 00:00:33,850
+Mathematicians mean
+something else by the word.
+
+11
+00:00:34,140 --> 00:00:36,790
+They mean the study of patterns.
+
+12
+00:00:37,110 --> 00:00:38,640
+A ripple on a pond,
+
+13
+00:00:38,690 --> 00:00:43,010
+the rim of a wheel and the face
+of a clock all share one shape.
+
+14
+00:00:43,130 --> 00:00:48,000
+Math studies that shape stripped down,
+until only the pattern is left.
+
+15
+00:00:50,050 --> 00:00:53,390
+In school,
+math arrives one piece at a time.
+
+16
+00:00:53,760 --> 00:00:58,620
+A year of algebra, a year of geometry,
+a little statistics near the end.
+
+17
+00:00:59,750 --> 00:01:04,130
+Each piece makes sense on its own,
+but nobody shows how they fit together.
+
+18
+00:01:04,950 --> 00:01:09,390
+It's like learning a city one street
+at a time, without ever seeing the map.
+
+19
+00:01:10,470 --> 00:01:14,270
+With the map,
+a new idea stops being a stray fact.
+
+20
+00:01:14,520 --> 00:01:18,380
+It becomes a place you can find again,
+next to things you already know.
+
+21
+00:01:19,800 --> 00:01:23,950
+And the map is worth seeing,
+because its pieces are everywhere.
+
+22
+00:01:24,500 --> 00:01:27,170
+Your phone finds you where
+circles of distance around
+
+23
+00:01:27,220 --> 00:01:28,900
+several satellites meet.
+
+24
+00:01:29,410 --> 00:01:32,890
+A spam filter weighs the odds
+that a message is junk.
+
+25
+00:01:33,480 --> 00:01:37,370
+Every secure payment leans
+on the arithmetic of whole numbers.
+
+26
+00:01:37,950 --> 00:01:42,500
+And spacecraft reach other planets
+because calculus tells us where to aim.
+
+27
+00:01:43,550 --> 00:01:45,240
+So, the plan.
+
+28
+00:01:45,450 --> 00:01:50,420
+We'll take one circle and look at it
+through each major branch of math in turn:
+
+29
+00:01:50,640 --> 00:01:54,010
+what it is, how big it is, how it turns,
+
+30
+00:01:54,060 --> 00:01:56,930
+what shape it really has, how it grows,
+
+31
+00:01:56,980 --> 00:01:59,190
+and what it has to do with chance.
+
+32
+00:02:00,620 --> 00:02:03,210
+Each look lights up one part of the map.
+
+33
+00:02:04,850 --> 00:02:07,210
+Before we start, a promise.
+
+34
+00:02:07,630 --> 00:02:12,037
+By the end, you'll see exactly why
+those sticks on the floor found pi,
+
+35
+00:02:12,087 --> 00:02:15,490
+and why the answer needs every
+part of this map at once.
+
+36
+00:02:16,480 --> 00:02:18,600
+And one small thing to watch for.
+
+37
+00:02:19,050 --> 00:02:23,030
+Each time we move on, the whole
+map will turn by the same amount.
+
+38
+00:02:23,480 --> 00:02:26,640
+That turning is math too,
+and we'll come back to it.
+
+39
+00:02:28,120 --> 00:02:31,560
+We start where all of math starts:
+with a definition.
+
+40
+00:02:32,270 --> 00:02:34,730
+What, exactly, is a circle?
+
+41
+00:02:36,340 --> 00:02:38,580
+Picture a dog tied to a post.
+
+42
+00:02:38,890 --> 00:02:40,580
+When it pulls the leash tight,
+
+43
+00:02:40,630 --> 00:02:44,180
+it can stand in lots of places,
+but not just anywhere.
+
+44
+00:02:45,050 --> 00:02:46,270
+Every spot it can reach
+
+45
+00:02:46,320 --> 00:02:50,290
+with the leash tight is exactly
+one leash length from the post.
+
+46
+00:02:51,510 --> 00:02:54,500
+Gather up all of those spots,
+and they make a circle.
+
+47
+00:02:55,530 --> 00:02:57,350
+That shift, from a shape we
+
+48
+00:02:57,400 --> 00:03:01,940
+recognize to a rule we can check,
+is the first idea of foundations.
+
+49
+00:03:02,990 --> 00:03:06,270
+Mathematicians call
+a collection like this a set.
+
+50
+00:03:06,790 --> 00:03:10,110
+A set is defined by a rule,
+and the rule decides,
+
+51
+00:03:10,160 --> 00:03:13,390
+for every possible point,
+whether it's in or out.
+
+52
+00:03:14,330 --> 00:03:15,850
+There's no partly in.
+
+53
+00:03:16,610 --> 00:03:19,010
+Change the rule, and you change the set.
+
+54
+00:03:19,450 --> 00:03:23,270
+Let the leash go slack,
+and the set fills in to a whole disk.
+
+55
+00:03:24,290 --> 00:03:28,290
+The circle is only the points
+that are exactly one leash length away.
+
+56
+00:03:29,330 --> 00:03:33,350
+To make the rule exact,
+put the post at the center of a grid.
+
+57
+00:03:34,020 --> 00:03:35,940
+Every point on the circle is the corner
+
+58
+00:03:35,980 --> 00:03:39,200
+of a right triangle whose
+longest side is the leash.
+
+59
+00:03:39,610 --> 00:03:41,190
+Pythagoras turns one leash
+
+60
+00:03:41,240 --> 00:03:45,130
+length away into a test you can
+run on any point's coordinates.
+
+61
+00:03:46,360 --> 00:03:50,180
+Wrap that test in braces,
+and the circle is written as a set.
+
+62
+00:03:50,790 --> 00:03:55,090
+Georg Cantor started the study of sets
+in the eighteen seventies, and sets
+
+63
+00:03:55,140 --> 00:03:57,520
+became the ground floor of mathematics.
+
+64
+00:03:58,140 --> 00:04:02,520
+A point belongs to this one
+if and only if it passes the test.
+
+65
+00:04:02,950 --> 00:04:05,350
+The promise runs in both directions.
+
+66
+00:04:06,490 --> 00:04:09,430
+Try it with a leash five units long.
+
+67
+00:04:09,480 --> 00:04:12,600
+Which of these points can the dog
+reach with the leash tight?
+
+68
+00:04:14,830 --> 00:04:18,880
+The first passes the test exactly,
+so it sits on the circle.
+
+69
+00:04:19,660 --> 00:04:23,010
+The second comes up short, so it's inside.
+
+70
+00:04:23,730 --> 00:04:26,400
+The third overshoots: outside.
+
+71
+00:04:27,530 --> 00:04:32,300
+One test sorts every point in the plane
+into exactly one of three sets,
+
+72
+00:04:32,340 --> 00:04:35,270
+with nothing left over
+and nothing counted twice.
+
+73
+00:04:36,430 --> 00:04:38,850
+That two-way promise matters.
+
+74
+00:04:39,590 --> 00:04:41,747
+Roll a circle under a flat board,
+
+75
+00:04:41,773 --> 00:04:44,890
+and the board glides along
+at a constant height.
+
+76
+00:04:45,320 --> 00:04:50,560
+So you might guess the reverse: anything
+that rolls that smoothly must be a circle.
+
+77
+00:04:52,030 --> 00:04:53,300
+It doesn't have to be.
+
+78
+00:04:53,680 --> 00:04:56,690
+This rounded triangle,
+built from three arcs,
+
+79
+00:04:56,740 --> 00:04:58,700
+keeps the board just as level.
+
+80
+00:05:00,000 --> 00:05:04,020
+The British fifty pence coin uses
+the same trick with seven sides,
+
+81
+00:05:04,060 --> 00:05:07,150
+so vending machines can measure
+its width like a circle's.
+
+82
+00:05:08,310 --> 00:05:11,110
+A statement and its reverse
+are different claims,
+
+83
+00:05:11,160 --> 00:05:13,780
+and logic is the habit of checking both.
+
+84
+00:05:15,040 --> 00:05:17,490
+Anyone who shops online uses this.
+
+85
+00:05:17,960 --> 00:05:21,310
+Filter for shoes that are red
+and in your size, and the shop
+
+86
+00:05:21,360 --> 00:05:23,640
+returns the overlap of two sets.
+
+87
+00:05:24,350 --> 00:05:28,810
+Ask for red or your size,
+and it returns everything in either one.
+
+88
+00:05:30,090 --> 00:05:34,940
+Underneath all of math sit definitions
+like these: rules that say exactly what
+
+89
+00:05:34,980 --> 00:05:36,710
+is in and what is out.
+
+90
+00:05:37,750 --> 00:05:39,850
+Everything else is built on top.
+
+91
+00:05:43,040 --> 00:05:44,660
+How big is a circle?
+
+92
+00:05:45,410 --> 00:05:50,330
+Take a wheel exactly one unit across,
+paint a dot on its rim, and roll it
+
+93
+00:05:50,380 --> 00:05:52,830
+along a number line for one full turn.
+
+94
+00:05:53,350 --> 00:05:55,060
+Where will the dot touch down?
+
+95
+00:05:57,310 --> 00:05:59,520
+Just past three.
+
+96
+00:05:59,760 --> 00:06:04,100
+That length is the distance around
+the wheel, and it has a name: pi.
+
+97
+00:06:05,220 --> 00:06:08,430
+Every circle,
+from a coin to a Ferris wheel, measures
+
+98
+00:06:08,480 --> 00:06:11,160
+pi times its own width all the way around.
+
+99
+00:06:12,270 --> 00:06:14,900
+So pi is a little more than three.
+
+100
+00:06:15,150 --> 00:06:20,150
+You'd expect some fraction to land on it
+exactly, if we just find the right one.
+
+101
+00:06:21,240 --> 00:06:25,370
+More than two thousand years ago,
+Archimedes trapped pi between two
+
+102
+00:06:25,420 --> 00:06:28,970
+fractions by drawing polygons
+with ninety-six sides.
+
+103
+00:06:29,660 --> 00:06:33,520
+The upper one, twenty-two sevenths,
+is still used in schools.
+
+104
+00:06:34,270 --> 00:06:38,400
+Around the year four eighty,
+Zu Chongzhi in China found three hundred
+
+105
+00:06:38,440 --> 00:06:43,360
+fifty-five over one hundred thirteen,
+right to six decimal places.
+
+106
+00:06:43,990 --> 00:06:46,910
+Zoom in on either one,
+and there is still a gap.
+
+107
+00:06:47,980 --> 00:06:50,480
+Each kind of number answers a need.
+
+108
+00:06:50,850 --> 00:06:52,880
+Counting gives the whole numbers.
+
+109
+00:06:53,240 --> 00:06:55,020
+Owing gives the negatives.
+
+110
+00:06:55,430 --> 00:06:59,980
+Sharing a pizza gives fractions, which
+mathematicians call rational numbers.
+
+111
+00:07:00,900 --> 00:07:06,167
+And fractions are packed tight: between
+any two sits another, halfway between,
+
+112
+00:07:06,193 --> 00:07:08,830
+and another between those, without end.
+
+113
+00:07:09,890 --> 00:07:12,850
+It looks as if they leave
+no room for anything else.
+
+114
+00:07:13,790 --> 00:07:16,940
+Fit a square inside
+a circle of radius one.
+
+115
+00:07:17,560 --> 00:07:21,820
+Its diagonal runs straight across
+the circle, so it's two units long,
+
+116
+00:07:21,870 --> 00:07:25,430
+and Pythagoras makes each
+side the square root of two.
+
+117
+00:07:26,490 --> 00:07:28,110
+Is that length a fraction?
+
+118
+00:07:29,740 --> 00:07:32,120
+Suppose it is, in lowest terms.
+
+119
+00:07:32,460 --> 00:07:35,550
+Squaring gives an equation
+in whole numbers,
+
+120
+00:07:35,600 --> 00:07:38,070
+and it forces the top number to be even.
+
+121
+00:07:38,910 --> 00:07:43,000
+Feed that back in,
+and the bottom number must be even too.
+
+122
+00:07:43,400 --> 00:07:46,900
+But a fraction in lowest terms
+can't have both numbers even.
+
+123
+00:07:47,610 --> 00:07:52,800
+The assumption fails, so the square
+root of two is not a fraction.
+
+124
+00:07:52,900 --> 00:07:55,200
+Numbers like this are called irrational.
+
+125
+00:07:56,420 --> 00:07:59,970
+In seventeen sixty-one,
+Johann Lambert proved that pi
+
+126
+00:08:00,020 --> 00:08:04,760
+is irrational too, so its decimals
+never fall into a repeating loop.
+
+127
+00:08:05,740 --> 00:08:08,230
+In practice, we never need them all.
+
+128
+00:08:08,530 --> 00:08:11,550
+Navigators at NASA use
+fifteen decimal places
+
+129
+00:08:11,600 --> 00:08:14,180
+to steer spacecraft between planets.
+
+130
+00:08:14,660 --> 00:08:16,470
+Forty places would give the distance
+
+131
+00:08:16,520 --> 00:08:20,150
+around the visible universe
+to within the width of an atom.
+
+132
+00:08:21,430 --> 00:08:24,830
+Numbers come in kinds,
+and even a simple circle
+
+133
+00:08:24,880 --> 00:08:27,340
+holds lengths that no fraction can name.
+
+134
+00:08:27,990 --> 00:08:29,800
+And notice how we showed it:
+
+135
+00:08:30,050 --> 00:08:34,600
+assume the opposite, follow the rules,
+and arrive at something impossible.
+
+136
+00:08:35,280 --> 00:08:37,870
+That move comes straight from foundations.
+
+137
+00:08:40,940 --> 00:08:44,020
+Turn a square a little,
+and you can tell it moved.
+
+138
+00:08:44,660 --> 00:08:49,220
+Turn it a quarter of the way around,
+and it looks exactly as it did before.
+
+139
+00:08:50,040 --> 00:08:51,410
+Now turn the circle.
+
+140
+00:08:51,550 --> 00:08:55,410
+Turn it by any amount at all,
+and nothing seems to change.
+
+141
+00:08:56,270 --> 00:09:00,380
+A move that leaves a shape looking
+the same is called a symmetry.
+
+142
+00:09:00,670 --> 00:09:03,420
+The square has four turning symmetries.
+
+143
+00:09:03,690 --> 00:09:06,060
+The circle has one for every angle.
+
+144
+00:09:06,990 --> 00:09:09,870
+Mathematicians study the moves themselves.
+
+145
+00:09:10,100 --> 00:09:12,470
+Think of the dial on a combination lock.
+
+146
+00:09:12,860 --> 00:09:14,310
+Turn it thirty degrees,
+
+147
+00:09:14,360 --> 00:09:18,890
+then forty-five more, and together
+that's one turn of seventy-five.
+
+148
+00:09:19,690 --> 00:09:22,260
+Any turn can be undone by turning back,
+
+149
+00:09:22,300 --> 00:09:25,490
+and leaving the dial alone
+counts as a turn of zero.
+
+150
+00:09:26,640 --> 00:09:30,540
+Moves you can combine and undo,
+including the move that does nothing,
+
+151
+00:09:30,580 --> 00:09:32,370
+form what's called a group.
+
+152
+00:09:32,750 --> 00:09:35,750
+Groups are one of the basic
+objects of algebra.
+
+153
+00:09:36,740 --> 00:09:39,610
+Remember how the map turns
+each time we move on?
+
+154
+00:09:39,960 --> 00:09:42,680
+It's always a sixth of a full circle,
+
+155
+00:09:42,720 --> 00:09:45,700
+and six of those bring
+it back to the start.
+
+156
+00:09:46,300 --> 00:09:49,240
+Those six turns,
+counting the one that does nothing,
+
+157
+00:09:49,290 --> 00:09:53,230
+form a group of their own,
+the cyclic group of order six.
+
+158
+00:09:53,830 --> 00:09:56,550
+A snowflake has the same six turns.
+
+159
+00:09:57,180 --> 00:10:00,760
+By the end of this video,
+the map will have made all six.
+
+160
+00:10:01,990 --> 00:10:03,910
+Turns can be numbers too.
+
+161
+00:10:04,560 --> 00:10:09,190
+Multiplying by minus one flips
+the number line around: a half turn.
+
+162
+00:10:10,070 --> 00:10:12,210
+So what would a quarter turn be?
+
+163
+00:10:13,570 --> 00:10:14,760
+Call it i.
+
+164
+00:10:15,390 --> 00:10:21,060
+Do it twice, and you've made a half turn,
+the same as multiplying by minus one.
+
+165
+00:10:21,200 --> 00:10:24,770
+That's all the square root
+of minus one means: a quarter turn,
+
+166
+00:10:24,820 --> 00:10:26,980
+off the line and into the plane.
+
+167
+00:10:28,220 --> 00:10:31,980
+Leonhard Euler found a way
+to write any turn as a number.
+
+168
+00:10:32,650 --> 00:10:37,400
+Each one is a power of a single constant,
+the number e, which we'll meet properly
+
+169
+00:10:37,440 --> 00:10:39,090
+in the chapter on change.
+
+170
+00:10:40,340 --> 00:10:43,720
+As the angle grows,
+the point sweeps around the circle,
+
+171
+00:10:43,760 --> 00:10:48,120
+with cosine as its shadow along
+one axis and sine along the other.
+
+172
+00:10:48,820 --> 00:10:51,840
+Keep an eye on e, i and pi.
+
+173
+00:10:52,130 --> 00:10:55,850
+Before the end,
+all three will meet in one short line.
+
+174
+00:10:57,030 --> 00:10:59,830
+Turns written this way
+are easy to combine.
+
+175
+00:11:00,390 --> 00:11:03,390
+Take a turn of sixty degrees
+and a turn of thirty.
+
+176
+00:11:03,890 --> 00:11:05,690
+What does multiplying them give?
+
+177
+00:11:07,350 --> 00:11:10,250
+Expanding the brackets,
+the pieces combine,
+
+178
+00:11:10,300 --> 00:11:14,790
+and everything cancels except i:
+a turn of ninety degrees.
+
+179
+00:11:15,730 --> 00:11:18,340
+Multiplying turns adds their angles.
+
+180
+00:11:18,740 --> 00:11:20,320
+The angle formulas from school
+
+181
+00:11:20,360 --> 00:11:23,600
+trigonometry are hiding
+inside that one line.
+
+182
+00:11:24,810 --> 00:11:27,260
+The same idea steers machines.
+
+183
+00:11:27,450 --> 00:11:32,210
+In eighteen forty-three, William Rowan
+Hamilton found numbers that do for turns
+
+184
+00:11:32,260 --> 00:11:38,030
+in space what i does in the plane, and he
+carved the rule into a bridge in Dublin.
+
+185
+00:11:38,570 --> 00:11:41,380
+Today these numbers, called quaternions,
+
+186
+00:11:41,420 --> 00:11:45,140
+turn the camera in video games
+and tell your phone which way is up.
+
+187
+00:11:46,430 --> 00:11:51,020
+For a circle, the moves are turns,
+and the turns are numbers.
+
+188
+00:11:51,770 --> 00:11:54,460
+Algebra is the study of moves like these.
+
+189
+00:11:57,680 --> 00:12:01,490
+We're halfway around the map, and we
+still owe you the sticks on the floor.
+
+190
+00:12:01,870 --> 00:12:03,150
+We need a closer look
+
+191
+00:12:03,200 --> 00:12:07,170
+at shape and at change first,
+and then we'll have everything.
+
+192
+00:12:08,370 --> 00:12:09,890
+So, shape.
+
+193
+00:12:10,360 --> 00:12:14,380
+Think of the circle as a rubber band,
+and squash it into a square.
+
+194
+00:12:15,830 --> 00:12:20,950
+To a geometer, everything just changed:
+the curve is gone, and corners appeared.
+
+195
+00:12:21,820 --> 00:12:24,460
+To a topologist, nothing happened at all.
+
+196
+00:12:25,540 --> 00:12:29,080
+Topology is geometry
+with the measurements thrown away.
+
+197
+00:12:29,390 --> 00:12:34,080
+Stretching, bending and squashing
+are allowed, as much as you like.
+
+198
+00:12:34,590 --> 00:12:36,720
+Cutting and gluing are not.
+
+199
+00:12:37,690 --> 00:12:42,950
+So the rubber band can become a triangle,
+or a wobbly blob, or a star.
+
+200
+00:12:43,450 --> 00:12:46,123
+What it can't become is a figure eight,
+
+201
+00:12:46,173 --> 00:12:49,210
+because that means pinching
+two points together.
+
+202
+00:12:50,020 --> 00:12:53,900
+To a topologist, every one
+of these loops is the same circle.
+
+203
+00:12:55,030 --> 00:12:57,170
+So what does survive a stretch?
+
+204
+00:12:57,960 --> 00:12:58,970
+Holes.
+
+205
+00:12:59,550 --> 00:13:03,800
+Draw a loop on a flat disk,
+and it can always shrink down to a point.
+
+206
+00:13:04,490 --> 00:13:06,767
+Wrap a loop once around the rubber band,
+
+207
+00:13:06,793 --> 00:13:09,710
+and it snags on the hole,
+however it's stretched.
+
+208
+00:13:10,710 --> 00:13:14,650
+On the surface of a donut,
+a loop can snag in two different ways.
+
+209
+00:13:15,850 --> 00:13:18,410
+Loops that can't be shrunk
+are one of the main ways
+
+210
+00:13:18,460 --> 00:13:20,520
+topologists tell shapes apart.
+
+211
+00:13:21,650 --> 00:13:24,240
+Euler found an even simpler test.
+
+212
+00:13:24,440 --> 00:13:27,860
+Build a shape from corners,
+edges and faces,
+
+213
+00:13:27,910 --> 00:13:31,140
+add up the corners and faces,
+and take away the edges.
+
+214
+00:13:32,150 --> 00:13:34,210
+Any loop comes out at zero.
+
+215
+00:13:34,570 --> 00:13:37,440
+Fill it in, and the face makes it one.
+
+216
+00:13:37,920 --> 00:13:39,890
+A cube comes out at two.
+
+217
+00:13:40,770 --> 00:13:41,920
+What about the donut?
+
+218
+00:13:43,670 --> 00:13:45,120
+Zero again.
+
+219
+00:13:45,470 --> 00:13:47,920
+Cut any of these into different pieces,
+
+220
+00:13:47,960 --> 00:13:51,630
+or stretch them however you like,
+and the count never changes.
+
+221
+00:13:52,930 --> 00:13:57,280
+That's why people joke that a topologist
+can't tell a coffee mug from a donut.
+
+222
+00:13:57,940 --> 00:14:02,770
+Squash the mug down into its handle,
+and what's left is a ring with one hole.
+
+223
+00:14:04,070 --> 00:14:05,990
+Both count out at zero.
+
+224
+00:14:06,500 --> 00:14:08,760
+To topology they're the same shape.
+
+225
+00:14:09,740 --> 00:14:14,770
+Biologists use the same way of thinking
+to follow how long strands of DNA tangle
+
+226
+00:14:14,820 --> 00:14:16,790
+and untangle inside a cell.
+
+227
+00:14:17,880 --> 00:14:20,800
+If you've ridden a subway,
+you've used this idea.
+
+228
+00:14:21,350 --> 00:14:24,320
+In nineteen thirty-three,
+Harry Beck redrew the map
+
+229
+00:14:24,360 --> 00:14:28,740
+of the London Underground with straight
+lines and evenly spaced stops.
+
+230
+00:14:29,560 --> 00:14:33,510
+Distances were wrong everywhere,
+but which stops connect to which
+
+231
+00:14:33,560 --> 00:14:35,130
+stayed exactly right.
+
+232
+00:14:36,280 --> 00:14:40,270
+Riders found it far easier to use,
+and transit maps around the world
+
+233
+00:14:40,320 --> 00:14:42,490
+have copied the idea ever since.
+
+234
+00:14:43,660 --> 00:14:47,710
+A circle and a square disagree
+on every measurement, and agree
+
+235
+00:14:47,760 --> 00:14:50,080
+on everything that survives a stretch.
+
+236
+00:14:50,980 --> 00:14:54,990
+Even with every length thrown away,
+we still ended up counting.
+
+237
+00:14:55,630 --> 00:15:00,000
+Next, the lengths come back,
+because the circle is about to grow.
+
+238
+00:15:03,200 --> 00:15:05,560
+Drop a stone into still water.
+
+239
+00:15:06,830 --> 00:15:11,380
+The ripple spreads as a circle,
+and its radius grows at a steady pace.
+
+240
+00:15:12,260 --> 00:15:15,430
+You'd expect the area
+inside to grow steadily too.
+
+241
+00:15:16,730 --> 00:15:17,800
+It doesn't.
+
+242
+00:15:18,390 --> 00:15:22,940
+Every second, the ripple sweeps over
+more new water than the second before.
+
+243
+00:15:24,040 --> 00:15:26,287
+Asking how fast something is changing,
+
+244
+00:15:26,313 --> 00:15:29,980
+at a single instant,
+is the question behind calculus.
+
+245
+00:15:31,030 --> 00:15:33,920
+A car's speedometer answers
+that kind of question.
+
+246
+00:15:34,280 --> 00:15:36,880
+It doesn't show
+your average over the trip,
+
+247
+00:15:36,930 --> 00:15:39,280
+but how fast you're going right now.
+
+248
+00:15:40,300 --> 00:15:42,240
+To make right now precise,
+
+249
+00:15:42,290 --> 00:15:45,950
+zoom in on a smooth curve until
+it looks like a straight line.
+
+250
+00:15:46,490 --> 00:15:49,420
+The steepness of that line
+is the derivative:
+
+251
+00:15:49,470 --> 00:15:51,800
+the rate of change at a single point.
+
+252
+00:15:53,040 --> 00:15:54,970
+Isaac Newton and Gottfried Leibniz
+
+253
+00:15:55,020 --> 00:15:58,510
+built calculus on this idea
+in the late sixteen hundreds.
+
+254
+00:15:59,630 --> 00:16:05,628
+One curve has a special property: at every
+point, its steepness matches its height.
+
+255
+00:16:06,440 --> 00:16:08,090
+It grows the way savings
+
+256
+00:16:08,140 --> 00:16:12,690
+do when interest keeps compounding:
+the more there is, the faster it grows.
+
+257
+00:16:13,170 --> 00:16:16,400
+Its heights are powers
+of one particular number,
+
+258
+00:16:16,450 --> 00:16:19,640
+about two point seven one eight, called e.
+
+259
+00:16:20,550 --> 00:16:24,380
+This is the same e that Euler
+used to describe turns.
+
+260
+00:16:25,350 --> 00:16:26,670
+Back to the circle.
+
+261
+00:16:27,150 --> 00:16:29,507
+Grow its radius by a tiny amount,
+
+262
+00:16:29,533 --> 00:16:32,540
+and the new area is a thin
+ring around the edge.
+
+263
+00:16:33,270 --> 00:16:36,630
+Cut the ring and unroll it,
+and it's almost a rectangle:
+
+264
+00:16:36,710 --> 00:16:39,950
+as long as the circumference,
+and as thick as the nudge.
+
+265
+00:16:41,120 --> 00:16:44,880
+So the area grows at a rate
+equal to the length of the edge.
+
+266
+00:16:45,530 --> 00:16:48,800
+The derivative of the circle's
+area is its circumference.
+
+267
+00:16:49,750 --> 00:16:52,770
+Try it on a pizza ten
+centimeters in radius.
+
+268
+00:16:52,910 --> 00:16:56,640
+Stretch the dough until the radius
+grows by one millimeter.
+
+269
+00:16:57,080 --> 00:16:58,620
+How much more pizza is that?
+
+270
+00:17:00,400 --> 00:17:05,000
+The edge times the nudge says about
+six point two eight square centimeters.
+
+271
+00:17:05,430 --> 00:17:08,930
+Working it out exactly
+gives six point three one.
+
+272
+00:17:09,600 --> 00:17:12,500
+The small difference is there
+because the ring's outer edge
+
+273
+00:17:12,540 --> 00:17:15,433
+is a little longer than its inner edge.
+
+274
+00:17:15,587 --> 00:17:17,347
+Make the nudge ten times smaller,
+
+275
+00:17:17,373 --> 00:17:19,870
+and the difference gets
+a hundred times smaller.
+
+276
+00:17:21,000 --> 00:17:23,350
+Calculus also runs the other way.
+
+277
+00:17:23,670 --> 00:17:29,668
+Peel a whole disk into thin rings, unroll
+each one, and stack them, smallest on top.
+
+278
+00:17:30,850 --> 00:17:32,190
+They make a triangle
+
+279
+00:17:32,240 --> 00:17:35,720
+as tall as the radius,
+with the circumference as its base.
+
+280
+00:17:36,200 --> 00:17:40,010
+Its area works out to exactly
+the area of the circle.
+
+281
+00:17:40,710 --> 00:17:42,750
+Adding up infinitely many thin
+
+282
+00:17:42,800 --> 00:17:46,650
+pieces is called integration,
+and it undoes the derivative.
+
+283
+00:17:47,510 --> 00:17:50,470
+Archimedes proved the circle
+matches this triangle more
+
+284
+00:17:50,520 --> 00:17:52,440
+than two thousand years ago.
+
+285
+00:17:53,580 --> 00:17:56,140
+Every weather forecast is built this way:
+
+286
+00:17:56,260 --> 00:18:01,030
+small changes in air and water,
+worked out step by step and added up.
+
+287
+00:18:02,110 --> 00:18:06,460
+For a circle, the rate at which
+its area grows is its own edge.
+
+288
+00:18:07,180 --> 00:18:11,310
+Change is measured by derivatives
+and added up by integrals.
+
+289
+00:18:14,490 --> 00:18:17,500
+Back to the floor and the sticks,
+as promised.
+
+290
+00:18:18,450 --> 00:18:20,580
+One throw is unpredictable.
+
+291
+00:18:21,100 --> 00:18:22,890
+Will this stick cross a crack?
+
+292
+00:18:23,620 --> 00:18:28,130
+There's no way to know, just as there's
+no way to call a single coin flip.
+
+293
+00:18:28,780 --> 00:18:31,780
+But many throws together follow a pattern,
+
+294
+00:18:31,830 --> 00:18:34,720
+and that pattern
+is the subject of probability.
+
+295
+00:18:35,890 --> 00:18:40,260
+Flip a coin again and again,
+and keep track of the share of heads.
+
+296
+00:18:41,060 --> 00:18:43,010
+Early on, it jumps around.
+
+297
+00:18:43,490 --> 00:18:46,287
+After a thousand flips it hugs one half,
+
+298
+00:18:46,313 --> 00:18:49,270
+and the longer it runs,
+the closer it stays.
+
+299
+00:18:50,390 --> 00:18:55,490
+Jacob Bernoulli proved this in a book
+published in seventeen thirteen: averages
+
+300
+00:18:55,540 --> 00:18:57,890
+of many random events settle down.
+
+301
+00:18:58,730 --> 00:19:00,660
+One flip tells you nothing.
+
+302
+00:19:00,850 --> 00:19:04,380
+A million flips land within
+a whisker of one half.
+
+303
+00:19:05,470 --> 00:19:09,040
+Make the sticks exactly
+as long as the boards are wide.
+
+304
+00:19:09,370 --> 00:19:13,990
+Then describe each throw with two numbers:
+how far the middle of the stick
+
+305
+00:19:14,040 --> 00:19:17,920
+lands from the nearest crack,
+and the angle it makes with the boards.
+
+306
+00:19:18,860 --> 00:19:20,280
+Every throw becomes a dot
+
+307
+00:19:20,320 --> 00:19:24,740
+in a rectangle of possibilities,
+and every dot is equally likely.
+
+308
+00:19:25,530 --> 00:19:29,640
+The stick crosses a crack exactly
+when its dot falls under this curve,
+
+309
+00:19:29,720 --> 00:19:31,640
+one arch of a sine wave.
+
+310
+00:19:32,590 --> 00:19:35,150
+So what share of throws should cross?
+
+311
+00:19:37,690 --> 00:19:39,970
+The share of sticks
+that cross is the share
+
+312
+00:19:40,020 --> 00:19:42,150
+of the rectangle under the arch.
+
+313
+00:19:42,810 --> 00:19:47,680
+Calculus gives the area under one
+arch of a sine wave: exactly two.
+
+314
+00:19:48,480 --> 00:19:52,470
+The rectangle is a half turn wide,
+so its area is pi.
+
+315
+00:19:53,470 --> 00:19:58,090
+So the crossing share is two over pi,
+about sixty-four percent.
+
+316
+00:19:59,310 --> 00:20:02,510
+And that's where the circle was hiding:
+in the angle.
+
+317
+00:20:03,060 --> 00:20:07,070
+Every direction a stick can point
+lies on a circle, and pi is what
+
+318
+00:20:07,120 --> 00:20:09,020
+it takes to go halfway around.
+
+319
+00:20:10,540 --> 00:20:14,660
+The French naturalist Buffon worked
+this out in the seventeen hundreds.
+
+320
+00:20:15,330 --> 00:20:18,050
+In nineteen-oh-one,
+Mario Lazzarini reported
+
+321
+00:20:18,100 --> 00:20:23,160
+three thousand four hundred and eight
+throws that gave pi to six decimal places.
+
+322
+00:20:24,090 --> 00:20:25,930
+That's suspiciously good.
+
+323
+00:20:26,520 --> 00:20:31,010
+A random estimate improves slowly:
+each extra correct digit takes about
+
+324
+00:20:31,060 --> 00:20:32,910
+a hundred times more throws.
+
+325
+00:20:33,650 --> 00:20:35,930
+His answer was exactly Zu Chongzhi's
+
+326
+00:20:35,980 --> 00:20:39,690
+fraction, and his numbers
+suggest he chose when to stop.
+
+327
+00:20:40,740 --> 00:20:44,460
+Measuring things with random
+samples is now a standard tool,
+
+328
+00:20:44,500 --> 00:20:47,650
+called the Monte Carlo method,
+named in the nineteen forties
+
+329
+00:20:47,700 --> 00:20:49,340
+after the famous casino.
+
+330
+00:20:50,360 --> 00:20:52,910
+The animated films you
+watch are lit this way:
+
+331
+00:20:52,960 --> 00:20:57,470
+a computer follows millions of random
+paths of light and averages them.
+
+332
+00:20:58,400 --> 00:21:01,340
+And when a medical trial
+reports that a treatment works,
+
+333
+00:21:01,380 --> 00:21:05,030
+statistics is what tells us whether
+the result could just be luck.
+
+334
+00:21:06,070 --> 00:21:07,530
+Many random events add up
+
+335
+00:21:07,580 --> 00:21:12,970
+to numbers you can trust, and sometimes
+those numbers are old friends, like pi.
+
+336
+00:21:14,000 --> 00:21:18,433
+And to get there,
+the sticks needed every branch we've seen.
+
+337
+00:21:18,533 --> 00:21:20,620
+So let's see how
+the branches fit together.
+
+338
+00:21:23,640 --> 00:21:24,920
+Six turns later,
+
+339
+00:21:24,960 --> 00:21:29,460
+the map is right back where it started,
+just as the group of turns promised.
+
+340
+00:21:30,490 --> 00:21:32,980
+And the branches
+were never really separate.
+
+341
+00:21:33,600 --> 00:21:36,110
+Statistics runs on calculus.
+
+342
+00:21:36,450 --> 00:21:41,483
+The secure messages on your phone
+run on the algebra of whole numbers.
+
+343
+00:21:41,533 --> 00:21:43,050
+Physics runs on symmetry.
+
+344
+00:21:43,530 --> 00:21:47,220
+And under every one of them sit
+the definitions we started with.
+
+345
+00:21:48,450 --> 00:21:53,890
+Back in the chapter on structure,
+we promised that e, i and pi would meet.
+
+346
+00:21:54,690 --> 00:21:58,770
+Turn by pi, a half turn,
+and you land on minus one.
+
+347
+00:21:59,890 --> 00:22:03,020
+Written as an equation,
+that's Euler's identity.
+
+348
+00:22:04,160 --> 00:22:06,280
+The e comes from change.
+
+349
+00:22:06,560 --> 00:22:08,380
+The i comes from turning.
+
+350
+00:22:08,820 --> 00:22:13,590
+Pi comes from the circle, and one
+and zero are where counting starts.
+
+351
+00:22:14,490 --> 00:22:18,030
+One short line,
+touching almost every part of the map.
+
+352
+00:22:19,300 --> 00:22:21,880
+And the sticks on the floor
+needed all of it.
+
+353
+00:22:22,730 --> 00:22:26,210
+Definitions said exactly
+what counts as a crossing.
+
+354
+00:22:26,520 --> 00:22:30,050
+Symmetry said every
+angle is equally likely.
+
+355
+00:22:30,330 --> 00:22:33,980
+Geometry turned each throw
+into a dot in a rectangle.
+
+356
+00:22:34,560 --> 00:22:37,210
+Calculus measured the area under the arch.
+
+357
+00:22:37,740 --> 00:22:41,260
+Probability turned that area
+into a share of throws.
+
+358
+00:22:41,480 --> 00:22:46,240
+And out came pi,
+a number no fraction can reach.
+
+359
+00:22:47,040 --> 00:22:49,370
+No single branch could
+have found it alone.
+
+360
+00:22:50,700 --> 00:22:54,190
+Mathematicians lean
+on these connections all the time.
+
+361
+00:22:54,570 --> 00:22:57,830
+In nineteen ninety-four,
+Andrew Wiles settled a question about
+
+362
+00:22:57,880 --> 00:23:02,400
+whole numbers that had stood open for more
+than three hundred and fifty years,
+
+363
+00:23:02,440 --> 00:23:05,110
+using tools from geometry and algebra.
+
+364
+00:23:06,430 --> 00:23:10,360
+Every lens saw something true,
+and each needed the others.
+
+365
+00:23:12,440 --> 00:23:14,520
+So, what is a circle?
+
+366
+00:23:15,250 --> 00:23:20,560
+It's a rule about distance.
+It's a length that no fraction can name.
+
+367
+00:23:21,010 --> 00:23:26,070
+It's every turn at once.
+It's a loop that survives any stretch.
+
+368
+00:23:26,320 --> 00:23:29,790
+It's an area that grows
+at the rate of its own edge.
+
+369
+00:23:30,080 --> 00:23:33,280
+And it's what a floor full
+of random sticks was hiding.
+
+370
+00:23:34,730 --> 00:23:37,490
+Math isn't a pile of separate subjects.
+
+371
+00:23:37,880 --> 00:23:42,390
+It's one connected landscape,
+and every branch is a way into it.
+
+372
+00:23:43,580 --> 00:23:48,510
+A question to take with you: which branch
+felt most like the math you met in school,
+
+373
+00:23:48,560 --> 00:23:50,430
+and which felt least like it?
+
+374
+00:23:52,140 --> 00:23:56,910
+To see one of these connections up close,
+watch the next video: it takes Euler's
+
+375
+00:23:56,960 --> 00:24:00,067
+identity apart, piece by piece.
+
+376
+00:24:00,453 --> 00:24:04,040
+Subscribe so you don't miss it,
+and to play with these ideas yourself,
+
+377
+00:24:04,080 --> 00:24:08,040
+try the interactive app
+at I give ideas dot com.

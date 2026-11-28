@@ -24,6 +24,8 @@ sfx/
 *.wav
 *.svg
 *.jpg
+*.jpeg
+*.pdf
 frames/
 
 # Production inputs (large audio; keep SRT/scripts tracked)

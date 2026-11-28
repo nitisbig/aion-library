@@ -1,0 +1,128 @@
+{
+ "basel": 1.6449340668482264,
+ "zeros_first10": [
+  14.134725,
+  21.02204,
+  25.010858,
+  30.424876,
+  32.935062,
+  37.586178,
+  40.918719,
+  43.327073,
+  48.005151,
+  49.773832
+ ],
+ "zeros_upto_1000": 649,
+ "min_gap_upto_1000": 0.3104307045319956,
+ "twins_below_100": 8,
+ "pnt_1e6": {
+  "pi": 78498,
+  "x_over_ln": 72382.41365054197,
+  "li": 78627.54915946216
+ },
+ "schoenfeld_from": 2657,
+ "explicit_errors": {
+  "R": 0.8993256451429446,
+  "1": 0.843042642049916,
+  "5": 0.7104329185678999,
+  "30": 0.498337944734903,
+  "100": 0.2510508719914988,
+  "200": 0.16259359398643802
+ },
+ "offline_growth": {
+  "sqrt": [
+   10.0,
+   100.0,
+   1000.0,
+   10000.0
+  ],
+  "x08": [
+   39.810717055349734,
+   1584.893192461114,
+   63095.734448019364,
+   2511886.4315095823
+  ]
+ },
+ "euclid": {
+  "product_2357": 210,
+  "plus_one": 211,
+  "next": 30031,
+  "next_factors": [
+   59,
+   509
+  ]
+ },
+ "lehmer": {
+  "zeros": [
+   7005.062866175261,
+   7005.100564672268
+  ],
+  "gap": 0.037698497007113474,
+  "mean_gap": 0.8954856592858494,
+  "peak": 0.0039673573658688295
+ },
+ "hasse": {
+  "p101": 104,
+  "primes_checked": 669,
+  "max_ratio": 0.9916678072574654
+ },
+ "robin": {
+  "e_gamma": 1.781072417990198,
+  "sigma_5040": 19344,
+  "last_exception": 5040
+ },
+ "sourced": {
+  "riemann_year": 1859,
+  "riemann_pages": 9,
+  "years_open": 167,
+  "euler_product_year": 1737,
+  "basel_year": 1734,
+  "gauss_years": "1792 or 1793",
+  "pnt_year": 1896,
+  "hardy_year": 1914,
+  "selberg_year": 1942,
+  "levinson_year": 1974,
+  "conrey_year": 1989,
+  "przz_year": 2020,
+  "przz_fraction": "5/12",
+  "claude_bound_announced": "2026-08-10",
+  "claude_bound_post": "41.6% -> 67.2%",
+  "alpoge_furman": "\u2265 2/3 simple and on the line; 0.6725 with the Montgomery\u2013Taylor window",
+  "lamzouri": "> 67.25%",
+  "zeros_checked": "10^13",
+  "platt_trudgian_height": "3e12",
+  "rh_claim_date": "2026-11-20",
+  "lean_files": 175187,
+  "lean_declarations": 1468418,
+  "lean_archive_bytes": 239275554,
+  "lean_export_bytes": 61570595788,
+  "clay_prize_usd": 1000000,
+  "clay_wait_years": 2,
+  "euclid": "c. 300 BC (Elements IX.20)",
+  "gauss_born": 1777,
+  "riemann_notes_siegel": 1932,
+  "hilbert_year": 1900,
+  "clay_year": 2000,
+  "turing": "computed 1950, published 1953",
+  "von_koch_year": 1901,
+  "schoenfeld_year": 1976,
+  "littlewood_year": 1914,
+  "no_flip_below": "1e19 (B\u00fcthe 2015)",
+  "flip_before": "1.4e316 (Saouter\u2013Demichel 2010)",
+  "lehmer_year": 1956,
+  "newman_year": 1976,
+  "rodgers_tao_year": 2018,
+  "hasse_year": 1933,
+  "weil": "1940 note, 1948 proof",
+  "deligne_year": 1974,
+  "stepanov_year": 1969,
+  "cramer_year": 1920,
+  "miller_year": 1976,
+  "robin_year": 1984,
+  "lagarias_year": 2002,
+  "montgomery_year": 1973,
+  "lamzouri_posted": "2026-09-02",
+  "alpoge_note_pages": 4,
+  "sutherland_status": "2026-11-21 09:30 UTC: compile, leanchecker, nanoda, con-leche, lean4lean pass; comparator and default/paranoid kernel replays running; Robin/Lagarias combination: nanoda and con-leche accept, comparator running"
+ }
+}

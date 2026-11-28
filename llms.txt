@@ -144,5 +144,9 @@ Everything is importable with `from aion import *` (which also re-exports Manim)
 - `Theme(bg: 'str' = '#000000', bg2: 'str' = '#161616', text: 'str' = '#ffffff', muted: 'str' = '#a6a6a6', faint: 'str' = '#3a3a3a', accent: 'str' = '#58c4dd', accent2: 'str' = '#ffe94a', good: 'str' = '#83c167', bad: 'str' =…)`: Semantic design tokens (colors are sRGB hex).
 
 ### aion.voice
+- `check_subtitles(path: 'str | Path', max_chars: 'int' = 42, max_lines: 'int' = 2, min_dur: 'float' = 1.0, max_dur: 'float' = 6.0) -> 'list[str]'`: Every caption-limit violation in an SRT or VTT file: line length, line count, seconds on screen, overlaps.
+- `write_subtitles(words: 'list[Word]', path: 'Path', max_chars: 'int' = 42, max_lines: 'int' = 2, min_dur: 'float' = 1.2, max_dur: 'float' = 6.5, max_cps: 'float' = 20.0, gap: 'float' = 0.6, linger: 'float' = 0.4, limits: 'tuple[float…)`: Viewer captions (SRT): cues of up to `max_lines` lines of ≤ `max_chars`, broken where a reader would pause.
+- `write_vtt(words: 'list[Word]', path: 'Path', max_chars: 'int' = 42, max_lines: 'int' = 2, min_dur: 'float' = 1.2, max_dur: 'float' = 6.5, max_cps: 'float' = 20.0, gap: 'float' = 0.6, linger: 'float' = 0.4, limits: 'tuple[float…)`: WebVTT captions with exactly the cues of `write_subtitles` (same search, same 1–6 s hard limits).
 - `VoiceSettings(voice_id: 'str' = 's3TPKV1kjDlVtZbl4Ksh', model_id: 'str' = 'eleven_v4', output_format: 'str' = 'mp3_44100_128', stitch: 'bool' = True, seed: 'int | None' = 7, settings: 'dict' = …) -> None`: Voice/model choice. Override per video in `videos/<slug>/voice.toml`.
+- `read_scenes(path: 'str | Path') -> 'list[tuple[str, list[Para]]]'`: Paragraphs grouped by their `<!-- scene: id -->` marker, in script order: [(scene id, [Para, …])].
 <!-- API:END -->

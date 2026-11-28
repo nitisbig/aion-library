@@ -17,7 +17,7 @@ from pathlib import Path
 from aion import cache
 from aion._env import secret
 
-__all__ = ["VoiceSettings", "tts_with_timestamps", "is_cached", "API"]
+__all__ = ["VoiceSettings", "tts_with_timestamps", "is_cached", "store_take", "API"]
 
 API = "https://api.elevenlabs.io/v1"
 
@@ -70,6 +70,21 @@ def _key(text, prev, nxt, vs):
 
 def is_cached(text: str, prev: str | None, nxt: str | None, vs: VoiceSettings) -> bool:
     return cache.path("tts", cache.key(_key(text, prev, nxt, vs)), ".json").exists()
+
+
+def store_take(text: str, prev: str | None, nxt: str | None, vs: VoiceSettings, audio: bytes,
+               alignment: dict) -> Path:
+    """Put a take you already have (audio bytes + character alignment) back in the TTS cache under its request.
+
+    `aion voice` uses it to restore a scene from `audio/scenes/<id>.mp3` and `audio/alignment/<id>.json` after a
+    cache prune, so a take that was paid for is never billed again.
+
+    Example:
+        store_take(text, prev, nxt, vs, Path("audio/scenes/s01.mp3").read_bytes(), alignment)
+    """
+    dest = cache.path("tts", cache.key(_key(text, prev, nxt, vs)), ".json")
+    return cache.atomic_write(dest, json.dumps({"audio_base64": base64.b64encode(audio).decode(),
+                                                "alignment": alignment}))
 
 
 def tts_with_timestamps(text: str, prev: str | None, nxt: str | None, vs: VoiceSettings,

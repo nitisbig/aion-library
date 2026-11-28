@@ -1,0 +1,38 @@
+# ElevenLabs settings for video 018: the channel voice (as in 004-017), read calm and unhurried.
+voice_id = "s3TPKV1kjDlVtZbl4Ksh"
+model_id = "eleven_v4"
+output_format = "mp3_44100_128"
+stitch = true
+seed = 7
+chunking = "scene"          # one TTS request per <!-- scene: id --> block, neighbours sent for stitching
+
+[settings]
+stability = 0.55
+similarity_boost = 0.75
+speed = 0.90                # the 015/016 setting (eleven_v4 ignores it; kept for parity)
+
+# Pacing pass (free: applied to cached audio, never re-bills). Planned silences live in plan/scenes.yaml.
+[pacing]
+snap = true
+lead_in = 1.0
+paragraph_gap = 0.0
+section_gap = 0.0
+tail = 6.0                  # = out_s02 pause_after_s: hold for the YouTube end-screen elements
+
+# TTS spellings of single words (captions keep the script's spelling).
+[aliases]
+Napier = "Nay-pee-er"
+Oughtred = "Oh-tred"
+Fechner = "Fek-ner"
+Pogson = "Pog-son"
+Sarasa = "Sa-ra-sa"
+"Grégoire" = "Gray-gwahr"
+Euler = "Oiler"
+pH = "pee-aitch"
+
+[lint]
+banned = ["strange", "fascinating", "mind-blowing", "magical", "delve", "dive in", "dive into", "journey",
+          "tapestry", "realm", "unlock", "it's worth noting", "let's explore", "in today's video", "buckle up",
+          "simply put", "game-changer", "game changer", "astonishing", "remarkable", "extraordinary", "stunning",
+          "profound", "crucial", "in fact", "and yet", "at its heart", "this is where", "here's the thing",
+          "incredible", "beautiful", "elegant", "revolutionary", "secrets", "mysterious"]

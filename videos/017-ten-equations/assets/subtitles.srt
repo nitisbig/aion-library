@@ -1,0 +1,1046 @@
+1
+00:00:01,000 --> 00:00:05,270
+Two hundred years ago, the French
+mathematician Joseph Fourier set
+
+2
+00:00:05,320 --> 00:00:10,500
+out to understand something quite modest:
+how heat spreads through a bar of metal.
+
+3
+00:00:11,300 --> 00:00:15,070
+To solve the equation he wrote for it,
+he broke the temperature into a sum
+
+4
+00:00:15,120 --> 00:00:17,300
+of simple, smooth waves.
+
+5
+00:00:18,230 --> 00:00:22,230
+He could not have known that the same
+idea would one day carry music,
+
+6
+00:00:22,280 --> 00:00:26,170
+compress photographs and let
+doctors see inside the human body.
+
+7
+00:00:27,260 --> 00:00:29,290
+Equations often go this way.
+
+8
+00:00:29,750 --> 00:00:33,530
+Someone writes one down to understand
+a single thing, and it ends up running
+
+9
+00:00:33,580 --> 00:00:35,940
+a part of the world they never imagined.
+
+10
+00:00:36,800 --> 00:00:38,980
+This video is about ten of them.
+
+11
+00:00:39,610 --> 00:00:44,250
+The oldest is an idea about probability,
+published in seventeen sixty three,
+
+12
+00:00:44,300 --> 00:00:46,090
+and the youngest is a formula
+
+13
+00:00:46,140 --> 00:00:49,670
+for pricing financial contracts,
+from nineteen seventy three.
+
+14
+00:00:50,520 --> 00:00:52,450
+Between them sit the laws of light
+
+15
+00:00:52,500 --> 00:00:57,720
+and magnetism, the shape of gravity,
+and the wave that describes an atom.
+
+16
+00:00:57,970 --> 00:01:02,930
+Then come the motion of air and water,
+the slowing of moving clocks, the method
+
+17
+00:01:02,980 --> 00:01:07,540
+machines use to learn, and the limit
+on how much any wire can carry.
+
+18
+00:01:08,450 --> 00:01:12,610
+You won't need to follow the symbols,
+because each equation is really a sentence
+
+19
+00:01:12,660 --> 00:01:17,740
+about how something changes, and we'll say
+each of those sentences in plain words.
+
+20
+00:01:18,370 --> 00:01:22,090
+They also lead into one another,
+in a chain that runs from a beam
+
+21
+00:01:22,140 --> 00:01:24,620
+of light all the way to the stock market.
+
+22
+00:01:25,690 --> 00:01:27,830
+So we'll begin with light.
+
+23
+00:01:30,000 --> 00:01:33,730
+In the early eighteen hundreds,
+electricity and magnetism looked
+
+24
+00:01:33,780 --> 00:01:35,940
+like two separate curiosities.
+
+25
+00:01:36,440 --> 00:01:40,530
+Then in eighteen twenty,
+Hans Christian Ørsted saw a compass
+
+26
+00:01:40,580 --> 00:01:44,830
+needle twitch beside a live wire,
+and the two turned out to be connected.
+
+27
+00:01:45,630 --> 00:01:49,650
+Around every charge and every
+magnet there is a field, a push
+
+28
+00:01:49,700 --> 00:01:54,710
+or pull waiting at each point in space,
+and iron filings let you see its shape.
+
+29
+00:01:55,750 --> 00:02:01,280
+Forty years later, James Clerk Maxwell
+gathered all of it into four equations.
+
+30
+00:02:01,920 --> 00:02:05,750
+Electric field lines spread outward
+from charges, while magnetic field
+
+31
+00:02:05,800 --> 00:02:09,950
+lines never begin or end,
+and always close into loops.
+
+32
+00:02:10,640 --> 00:02:14,807
+A changing magnetic field drives
+the electric field around in a circle,
+
+33
+00:02:14,833 --> 00:02:17,710
+which is how every power
+station makes electricity.
+
+34
+00:02:18,240 --> 00:02:21,940
+And a changing electric field does
+the same to the magnetic field.
+
+35
+00:02:22,800 --> 00:02:25,220
+Those last two laws feed each other.
+
+36
+00:02:25,650 --> 00:02:27,690
+Each field, as it changes,
+
+37
+00:02:27,740 --> 00:02:32,740
+creates the other, so together they can
+travel through empty space as a wave.
+
+38
+00:02:33,280 --> 00:02:37,350
+When Maxwell worked out its speed,
+he got the speed of light.
+
+39
+00:02:38,290 --> 00:02:41,970
+Light is an electromagnetic wave,
+and so are radio,
+
+40
+00:02:42,020 --> 00:02:44,730
+WiFi and every signal a phone sends.
+
+41
+00:02:45,410 --> 00:02:47,170
+It seemed obvious that light
+
+42
+00:02:47,220 --> 00:02:52,050
+travels in straight lines, until Einstein
+asked what happens near something heavy.
+
+43
+00:02:54,200 --> 00:02:56,610
+Newton described gravity as a pull between
+
+44
+00:02:56,660 --> 00:03:01,070
+masses, but in nineteen fifteen,
+Einstein replaced that picture.
+
+45
+00:03:01,600 --> 00:03:05,970
+Mass bends space and time around it,
+much as a heavy ball sinks
+
+46
+00:03:06,020 --> 00:03:10,950
+into a stretched sheet, and anything
+moving nearby simply follows the curve.
+
+47
+00:03:11,650 --> 00:03:13,110
+The Earth orbits the Sun
+
+48
+00:03:13,160 --> 00:03:17,370
+because that is the straightest path
+open to it through curved spacetime.
+
+49
+00:03:18,360 --> 00:03:21,530
+The field equations put
+this into a single line.
+
+50
+00:03:21,800 --> 00:03:24,670
+One side describes the shape of spacetime,
+
+51
+00:03:24,720 --> 00:03:28,440
+and the other the matter
+and energy inside it.
+
+52
+00:03:28,640 --> 00:03:33,250
+As the physicist John Wheeler put it,
+matter tells spacetime how to curve,
+
+53
+00:03:33,300 --> 00:03:35,970
+and spacetime tells matter how to move.
+
+54
+00:03:36,810 --> 00:03:41,430
+Four years later, during a solar eclipse,
+astronomers measured starlight bending
+
+55
+00:03:41,480 --> 00:03:44,840
+around the Sun by just the amount
+Einstein had predicted.
+
+56
+00:03:45,800 --> 00:03:48,150
+Squeeze enough mass into a small enough
+
+57
+00:03:48,200 --> 00:03:53,190
+space, and the curve becomes so steep
+that not even light can climb back out.
+
+58
+00:03:53,980 --> 00:03:55,930
+That is a black hole.
+
+59
+00:03:56,950 --> 00:04:01,630
+In twenty fifteen, the LIGO detectors
+picked up ripples in spacetime from two
+
+60
+00:04:01,680 --> 00:04:06,300
+black holes merging, a stretch of less
+than a hundredth of a proton's width.
+
+61
+00:04:07,390 --> 00:04:10,050
+Einstein's equations
+govern the very large,
+
+62
+00:04:10,100 --> 00:04:14,790
+but at the scale of a single atom, matter
+stops behaving like a ball on a sheet.
+
+63
+00:04:16,960 --> 00:04:21,400
+Fire electrons one at a time
+at a barrier with two narrow slits,
+
+64
+00:04:21,440 --> 00:04:26,160
+and each one lands on the screen
+as a single dot, like a tiny ball.
+
+65
+00:04:26,700 --> 00:04:30,950
+But as thousands of dots build up,
+they form stripes, and stripes like
+
+66
+00:04:31,000 --> 00:04:33,810
+that only appear when waves overlap.
+
+67
+00:04:34,570 --> 00:04:38,610
+Each electron travels as a wave,
+and lands as a particle.
+
+68
+00:04:39,610 --> 00:04:42,490
+In nineteen twenty six,
+Erwin Schrödinger wrote
+
+69
+00:04:42,540 --> 00:04:44,990
+down the equation that governs this wave.
+
+70
+00:04:45,260 --> 00:04:46,970
+It tells you how the wave
+
+71
+00:04:47,020 --> 00:04:50,330
+changes from moment to moment,
+given the energy around it.
+
+72
+00:04:50,880 --> 00:04:54,820
+Where the wave is tall,
+the electron is likely to be found.
+
+73
+00:04:55,150 --> 00:04:57,330
+The wave can even leak through a wall
+
+74
+00:04:57,380 --> 00:05:01,100
+that a ball could never cross,
+an effect called tunnelling.
+
+75
+00:05:02,120 --> 00:05:04,730
+Around a nucleus the wave is trapped,
+
+76
+00:05:04,780 --> 00:05:07,410
+and it can only settle
+into certain shapes.
+
+77
+00:05:07,790 --> 00:05:10,657
+Those shapes are the orbitals of the atom,
+
+78
+00:05:10,707 --> 00:05:15,300
+and they decide how atoms bond,
+which is to say, all of chemistry.
+
+79
+00:05:15,980 --> 00:05:20,910
+Lasers, computer chips and MRI scanners
+were all designed with this equation.
+
+80
+00:05:21,890 --> 00:05:25,790
+And a wave that spreads and swirls
+as it moves turns out to describe
+
+81
+00:05:25,840 --> 00:05:28,050
+something much larger than an atom.
+
+82
+00:05:30,030 --> 00:05:34,940
+Pour cream into coffee, and it curls
+into swirls that never quite repeat.
+
+83
+00:05:35,380 --> 00:05:39,250
+To describe a flow like that,
+think of the liquid as a huge number
+
+84
+00:05:39,300 --> 00:05:45,040
+of tiny parcels, each one obeying Newton's
+old rule that a push changes its speed.
+
+85
+00:05:45,800 --> 00:05:48,710
+Claude-Louis Navier and George
+Stokes wrote that rule
+
+86
+00:05:48,760 --> 00:05:51,160
+out for fluids in the eighteen hundreds.
+
+87
+00:05:51,970 --> 00:05:55,580
+Their equation adds up everything
+that pushes on a parcel.
+
+88
+00:05:56,200 --> 00:06:00,160
+The flow carries it along,
+pressure shoves it from high to low,
+
+89
+00:06:00,200 --> 00:06:01,600
+and a kind of stickiness,
+
+90
+00:06:01,640 --> 00:06:05,470
+called viscosity, drags it toward
+the speed of its neighbours.
+
+91
+00:06:06,230 --> 00:06:08,300
+Let water run past an obstacle,
+
+92
+00:06:08,350 --> 00:06:12,960
+and the equation produces swirls that peel
+away from one side and then the other.
+
+93
+00:06:13,820 --> 00:06:15,190
+Weather forecasts,
+
+94
+00:06:15,240 --> 00:06:20,420
+aircraft wings and models of blood flowing
+through the heart are all built on it.
+
+95
+00:06:20,940 --> 00:06:23,750
+Even so,
+no one has proved that its solutions
+
+96
+00:06:23,800 --> 00:06:27,510
+always stay smooth in three dimensions,
+and there is a million dollar
+
+97
+00:06:27,560 --> 00:06:29,360
+prize for whoever settles it.
+
+98
+00:06:30,590 --> 00:06:33,710
+Turbulence is a tangle
+of swirls of every size,
+
+99
+00:06:33,760 --> 00:06:37,740
+and to pull a tangle like that apart,
+we need a different kind of tool.
+
+100
+00:06:39,970 --> 00:06:42,150
+That tool is the one we met at the very
+
+101
+00:06:42,200 --> 00:06:46,000
+start, from Joseph Fourier
+and his bar of hot metal.
+
+102
+00:06:46,750 --> 00:06:50,370
+Play three notes on a piano together,
+and the sound reaching your ear
+
+103
+00:06:50,420 --> 00:06:54,590
+is one bumpy wave,
+yet you hear three separate notes.
+
+104
+00:06:55,240 --> 00:06:57,710
+Fourier's claim was that any wiggle at all
+
+105
+00:06:57,760 --> 00:07:01,270
+can be built by adding together simple,
+smooth waves.
+
+106
+00:07:02,160 --> 00:07:05,310
+The Fourier transform
+runs this in reverse.
+
+107
+00:07:05,560 --> 00:07:09,880
+It tests a signal against one
+pure frequency after another,
+
+108
+00:07:09,920 --> 00:07:14,240
+and when a test wave matches part
+of the signal, the total grows large.
+
+109
+00:07:14,690 --> 00:07:16,280
+What comes out is a list
+
+110
+00:07:16,320 --> 00:07:19,860
+of the frequencies inside,
+and how strong each one is.
+
+111
+00:07:20,660 --> 00:07:25,490
+Even a drawing can be rebuilt this way,
+from circles spinning at different speeds.
+
+112
+00:07:26,400 --> 00:07:28,650
+Music files keep the strong frequencies
+
+113
+00:07:28,700 --> 00:07:33,700
+and quietly drop the ones you won't miss,
+photographs are compressed the same way,
+
+114
+00:07:33,740 --> 00:07:37,300
+and MRI scanners build
+their images from frequencies.
+
+115
+00:07:38,230 --> 00:07:42,570
+Frequency is also how we keep time,
+and the most precise clocks count
+
+116
+00:07:42,620 --> 00:07:45,020
+the waves of light given off by atoms.
+
+117
+00:07:45,360 --> 00:07:48,330
+So does every clock tick at the same rate?
+
+118
+00:07:50,450 --> 00:07:52,560
+Imagine a clock made of light,
+
+119
+00:07:52,610 --> 00:07:57,460
+a pulse bouncing between two mirrors,
+where each bounce counts as one tick.
+
+120
+00:07:57,860 --> 00:08:01,730
+Put that clock on a fast train,
+and someone on the platform sees
+
+121
+00:08:01,780 --> 00:08:04,350
+the light trace a longer, slanted path.
+
+122
+00:08:04,840 --> 00:08:08,650
+In nineteen oh five, Einstein took
+the speed of light to be the same
+
+123
+00:08:08,700 --> 00:08:13,810
+for every observer, and a longer path
+at the same speed takes more time.
+
+124
+00:08:13,860 --> 00:08:16,440
+So the moving clock ticks more slowly.
+
+125
+00:08:17,220 --> 00:08:19,970
+The triangle gives the exact amount.
+
+126
+00:08:20,330 --> 00:08:25,300
+At everyday speeds the effect is far too
+small to notice, but close to the speed
+
+127
+00:08:25,340 --> 00:08:27,730
+of light it grows without limit.
+
+128
+00:08:28,450 --> 00:08:31,860
+Muons,
+particles created high in the atmosphere,
+
+129
+00:08:31,900 --> 00:08:35,610
+should decay long before they reach
+the ground, and they only make it
+
+130
+00:08:35,660 --> 00:08:37,620
+because their clocks run slow.
+
+131
+00:08:38,500 --> 00:08:40,620
+GPS depends on this.
+
+132
+00:08:41,040 --> 00:08:44,250
+The satellites move fast,
+so their clocks lose about
+
+133
+00:08:44,300 --> 00:08:46,640
+seven millionths of a second a day.
+
+134
+00:08:46,940 --> 00:08:50,730
+But they also sit higher in Earth's
+gravity, where Einstein's field
+
+135
+00:08:50,780 --> 00:08:54,970
+equations say time runs faster,
+by about forty five millionths.
+
+136
+00:08:55,490 --> 00:08:59,010
+Without correcting for both,
+a GPS position would drift
+
+137
+00:08:59,060 --> 00:09:01,670
+by more than ten kilometres every day.
+
+138
+00:09:02,820 --> 00:09:06,990
+The phones that rely on those satellites
+also predict the next word you will type,
+
+139
+00:09:07,040 --> 00:09:09,400
+a skill learned by walking downhill.
+
+140
+00:09:11,580 --> 00:09:16,410
+Suppose you are standing on a hillside
+in thick fog, trying to reach the valley.
+
+141
+00:09:17,100 --> 00:09:18,460
+You can't see the bottom,
+
+142
+00:09:18,500 --> 00:09:21,710
+but you can feel which way
+the ground slopes under your feet,
+
+143
+00:09:21,760 --> 00:09:25,320
+so you take a small step downhill,
+and then feel again.
+
+144
+00:09:26,120 --> 00:09:29,690
+That is gradient descent,
+and Augustin-Louis Cauchy
+
+145
+00:09:29,740 --> 00:09:32,150
+described it in eighteen forty seven.
+
+146
+00:09:32,980 --> 00:09:35,500
+The size of each step matters.
+
+147
+00:09:35,860 --> 00:09:38,840
+Too small, and progress is painfully slow,
+
+148
+00:09:38,890 --> 00:09:42,100
+and too large,
+and you leap right past the valley.
+
+149
+00:09:43,020 --> 00:09:46,100
+For a computer, the hill is its own error.
+
+150
+00:09:46,540 --> 00:09:49,870
+Take a line that should fit some points,
+and every step
+
+151
+00:09:49,920 --> 00:09:54,740
+downhill turns and shifts it a little,
+until the error is as small as it can be.
+
+152
+00:09:55,880 --> 00:09:59,820
+A modern language model has billions
+of these knobs instead of two,
+
+153
+00:09:59,870 --> 00:10:02,690
+so its landscape has
+billions of directions,
+
+154
+00:10:02,740 --> 00:10:05,320
+but the rule stays exactly the same.
+
+155
+00:10:06,380 --> 00:10:10,740
+Every answer such a model gives then
+has to travel through cables and air,
+
+156
+00:10:10,790 --> 00:10:12,630
+where signals pick up noise.
+
+157
+00:10:13,110 --> 00:10:16,360
+So how much can a noisy
+wire actually carry?
+
+158
+00:10:18,570 --> 00:10:22,647
+In nineteen forty eight, Claude Shannon,
+an engineer at Bell Labs,
+
+159
+00:10:22,673 --> 00:10:27,390
+gave information a unit:
+the bit, a single yes or no.
+
+160
+00:10:27,870 --> 00:10:33,760
+A song, a photograph or a page
+of text can all be written as bits.
+
+161
+00:10:33,860 --> 00:10:35,810
+But any signal sent down a wire,
+
+162
+00:10:35,860 --> 00:10:38,770
+or through the air,
+collects noise along the way.
+
+163
+00:10:39,780 --> 00:10:44,850
+To send more bits each second, you can
+pack more signal levels closer together,
+
+164
+00:10:44,900 --> 00:10:48,190
+but then the noise begins
+to blur one into another.
+
+165
+00:10:48,930 --> 00:10:51,330
+Shannon found the exact limit.
+
+166
+00:10:51,660 --> 00:10:53,370
+It depends on how wide a band
+
+167
+00:10:53,420 --> 00:10:57,720
+of frequencies you use, and how strong
+the signal is compared to the noise.
+
+168
+00:10:58,450 --> 00:11:01,750
+Under that limit,
+errors can be made as rare as you like,
+
+169
+00:11:01,800 --> 00:11:03,940
+and beyond it, nothing helps.
+
+170
+00:11:04,820 --> 00:11:08,890
+Every WiFi and mobile network
+is designed against this limit.
+
+171
+00:11:09,400 --> 00:11:11,570
+Voyager One, more than twenty four
+
+172
+00:11:11,620 --> 00:11:16,790
+billion kilometres away, still sends data
+home with a radio of about twenty watts.
+
+173
+00:11:17,610 --> 00:11:20,930
+The receiver hears a faint,
+noisy signal and has to work
+
+174
+00:11:20,980 --> 00:11:22,980
+out what was most likely sent,
+
+175
+00:11:23,030 --> 00:11:27,420
+and reasoning backward from evidence like
+that is the subject of our next equation.
+
+176
+00:11:29,350 --> 00:11:33,730
+Suppose a disease affects one person
+in a hundred, and a test catches
+
+177
+00:11:33,780 --> 00:11:38,600
+nine in ten cases, but also flags
+nine in a hundred healthy people.
+
+178
+00:11:39,470 --> 00:11:42,330
+If you test positive,
+how worried should you be?
+
+179
+00:11:43,420 --> 00:11:45,110
+Think of a thousand people.
+
+180
+00:11:45,520 --> 00:11:48,870
+Ten of them are ill,
+and nine of those test positive.
+
+181
+00:11:49,500 --> 00:11:51,760
+Of the nine hundred
+and ninety who are healthy,
+
+182
+00:11:51,800 --> 00:11:54,290
+about eighty nine test positive as well.
+
+183
+00:11:54,720 --> 00:11:59,710
+So among all the positives,
+only about one in eleven is really ill.
+
+184
+00:12:00,560 --> 00:12:04,760
+Thomas Bayes, an English minister,
+worked out how to reason this way,
+
+185
+00:12:04,810 --> 00:12:09,120
+and his essay was published after
+his death, in seventeen sixty three.
+
+186
+00:12:09,870 --> 00:12:12,720
+His rule tells you how to update a belief.
+
+187
+00:12:12,940 --> 00:12:17,070
+You start with how likely something
+was before, weigh it by how well it
+
+188
+00:12:17,120 --> 00:12:18,760
+explains the new evidence,
+
+189
+00:12:18,800 --> 00:12:22,430
+and then compare that against every
+way the evidence could have come about.
+
+190
+00:12:23,260 --> 00:12:26,900
+Each new clue sharpens
+the belief a little further.
+
+191
+00:12:27,630 --> 00:12:31,260
+Spam filters work this way,
+and so do self-driving cars.
+
+192
+00:12:31,860 --> 00:12:34,850
+In twenty eleven,
+searchers used it to locate the wreck
+
+193
+00:12:34,900 --> 00:12:39,520
+of Air France flight four four seven,
+within a week of starting a new search.
+
+194
+00:12:40,500 --> 00:12:44,440
+And few things are as uncertain
+as the future price of a share.
+
+195
+00:12:46,590 --> 00:12:48,220
+Suppose you buy the right,
+
+196
+00:12:48,260 --> 00:12:53,270
+but not the obligation, to buy a share
+for one hundred dollars a year from now.
+
+197
+00:12:53,700 --> 00:12:57,610
+If the price climbs to one fifty,
+that right is worth fifty,
+
+198
+00:12:57,660 --> 00:13:00,050
+and if it falls, you simply walk away.
+
+199
+00:13:00,640 --> 00:13:05,110
+A contract like this is called an option,
+and the question is what it
+
+200
+00:13:05,160 --> 00:13:08,640
+should cost today,
+when nobody knows where the price will go.
+
+201
+00:13:09,530 --> 00:13:12,120
+In nineteen seventy three, Fischer Black,
+
+202
+00:13:12,160 --> 00:13:15,330
+Myron Scholes and Robert
+Merton found an answer.
+
+203
+00:13:15,650 --> 00:13:20,990
+They treated the price as a random walk,
+and then built a mix of the share and cash
+
+204
+00:13:21,040 --> 00:13:25,470
+that moves exactly like the option,
+so that the randomness cancels out.
+
+205
+00:13:26,100 --> 00:13:30,450
+What remains is an equation
+for the option's value as time runs out.
+
+206
+00:13:30,940 --> 00:13:35,030
+With a change of variables,
+it becomes the heat equation, the very one
+
+207
+00:13:35,080 --> 00:13:37,600
+Fourier wrote for his bar of hot metal.
+
+208
+00:13:38,280 --> 00:13:43,110
+It helped build a huge global market,
+and it won Scholes and Merton a Nobel
+
+209
+00:13:43,160 --> 00:13:45,230
+Prize in nineteen ninety seven.
+
+210
+00:13:46,010 --> 00:13:51,630
+But it assumes that prices wander calmly,
+and in real crashes they jump, which cost
+
+211
+00:13:51,680 --> 00:13:54,050
+the traders who forgot it a great deal.
+
+212
+00:13:54,860 --> 00:13:58,760
+An equation is a map of the world,
+not the world itself.
+
+213
+00:14:00,860 --> 00:14:04,500
+Looking back, each equation
+handed something to the next.
+
+214
+00:14:05,060 --> 00:14:09,000
+Light led us to gravity,
+and gravity down to the atom.
+
+215
+00:14:09,320 --> 00:14:14,410
+Waves led to water, water to frequencies,
+and frequencies to clocks.
+
+216
+00:14:14,880 --> 00:14:18,430
+Clocks led to learning machines,
+learning to noisy wires,
+
+217
+00:14:18,480 --> 00:14:21,790
+noise to evidence,
+and evidence to markets.
+
+218
+00:14:22,810 --> 00:14:27,990
+Ten equations, written over more than two
+hundred years, mostly by people who simply
+
+219
+00:14:28,040 --> 00:14:30,070
+wanted to understand one thing.
+
+220
+00:14:31,140 --> 00:14:35,210
+Each one is a statement about how
+something in the world changes.
+
+221
+00:14:35,690 --> 00:14:39,630
+Like Fourier with his bar of metal,
+the people who wrote them were usually
+
+222
+00:14:39,680 --> 00:14:43,070
+trying to understand something small,
+and what they found turned
+
+223
+00:14:43,120 --> 00:14:44,750
+out to be much larger.
+
+224
+00:14:45,390 --> 00:14:46,980
+Thanks for watching.

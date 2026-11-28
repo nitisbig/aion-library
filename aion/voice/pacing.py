@@ -66,7 +66,11 @@ def silences(x: np.ndarray, rate: int, min_len: float = 0.2, drop_db: float = 34
     n = len(x) // hop
     if n == 0:
         return []
-    e = 20 * np.log10(np.sqrt((x[:n * hop].astype(np.float64).reshape(n, hop) ** 2).mean(1)) + 1e-9)
+    power = np.empty(n)
+    for i in range(0, n, 8192):                 # blocks of 8192 hops: a 25-minute narration never needs a full
+        seg = x[i * hop:min(n, i + 8192) * hop].astype(np.float64).reshape(-1, hop)   # float64 copy
+        power[i:i + len(seg)] = (seg ** 2).mean(1)
+    e = 20 * np.log10(np.sqrt(power) + 1e-9)
     quiet = e < np.percentile(e, 95) - drop_db
     out, i = [], 0
     while i < n:
@@ -131,13 +135,27 @@ def snap_words(words: list, sil: list[tuple[float, float]], reach: float = 0.45)
     return w, moved
 
 
+def _quietest(x: np.ndarray, rate: int, t0: float, t1: float) -> float:
+    """Centre (seconds) of the quietest 10 ms window between t0 and t1: where to cut when there is no silence."""
+    hop = max(1, int(rate * 0.01))
+    i0, i1 = max(0, int(t0 * rate)), min(len(x), int(t1 * rate))
+    n = (i1 - i0) // hop
+    if n < 1:
+        return max(t1, 0.0)
+    seg = x[i0:i0 + n * hop].astype(np.float64).reshape(n, hop)
+    k = int(np.argmin((seg ** 2).mean(1)))
+    return (i0 + k * hop + hop / 2) / rate
+
+
 def stretch(x: np.ndarray, words: list, rate: int, breaks: list[tuple[int, float]], lead_in: float = 0.0,
-            sil: list[tuple[float, float]] | None = None, tail: float = 0.0) -> tuple[np.ndarray, list, float]:
+            sil: list[tuple[float, float]] | None = None, tail: float = 0.0,
+            reach: float = 0.35) -> tuple[np.ndarray, list, float]:
     """Insert extra silence before the words listed in `breaks` [(word index, seconds)], inside the real pause there.
 
-    Each cut lands in the middle of the detected silence that ends at that word, so no speech is split.
-    Breaks with no real silence are skipped. `tail` appends silence. Returns (audio, shifted words, seconds
-    added before the last word).
+    Each cut lands in the middle of the detected silence that ends at that word, so no speech is split. When the
+    voice ran straight into the word (no silence there), the cut goes at the quietest 10 ms in the `reach` seconds
+    before it (never before the previous word starts), faded out and back in so it doesn't click. `tail` appends
+    silence. Returns (audio, shifted words, seconds added before the last word).
 
     Example:
         audio, words, added = stretch(pcm, words, 44100, [(12, 0.5), (40, 1.5)], lead_in=4.0)
@@ -146,32 +164,45 @@ def stretch(x: np.ndarray, words: list, rate: int, breaks: list[tuple[int, float
     ends = np.array([b for _, b in sil]) if sil else np.zeros(0)
     cuts: list[tuple[float, float, int]] = []                # (time, seconds, first shifted word)
     for idx, sec in sorted(breaks):
-        if sec <= 0 or not 0 < idx < len(words) or len(ends) == 0:
+        if sec <= 0 or not 0 < idx < len(words):
             continue
-        k = int(np.argmin(np.abs(ends - words[idx].start)))
-        a, b = sil[k]
-        if abs(b - words[idx].start) > 0.2:
+        k = int(np.argmin(np.abs(ends - words[idx].start))) if len(ends) else -1
+        if k >= 0 and abs(sil[k][1] - words[idx].start) <= 0.2:
+            a, b = sil[k]
+            t = 0.5 * (a + b)
+        else:
+            t = _quietest(x, rate, max(words[idx].start - reach, words[idx - 1].start), words[idx].start)
+        if cuts and t <= cuts[-1][0]:
             continue
-        cuts.append((0.5 * (a + b), sec, idx))
+        cuts.append((t, sec, idx))
     fade = int(rate * 0.008)
-    parts, pos, shift, out = [], 0, lead_in, list(words)
+    # pieces in output order: (view of x, fade in, fade out) or (None, n silent samples). Written straight into
+    # one output array, so a long narration never needs more than the input plus the output in memory.
+    pieces: list[tuple[np.ndarray | None, int, bool]] = []
+    pos, shift = 0, lead_in
     shifts = np.full(len(words), lead_in)
     if lead_in > 0:
-        parts.append(np.zeros(int(round(lead_in * rate)), x.dtype))
+        pieces.append((None, int(round(lead_in * rate)), False))
     for t, sec, idx in cuts:
         cut = int(round(t * rate))
-        seg = x[pos:cut].copy()
-        if len(seg) > fade:
-            seg[-fade:] *= np.linspace(1.0, 0.0, fade, dtype=x.dtype)
-        parts += [seg, np.zeros(int(round(sec * rate)), x.dtype)]
+        pieces += [(x[pos:cut], pos > 0, True), (None, int(round(sec * rate)), False)]
         pos = cut
         shift += round(sec * rate) / rate
         shifts[idx:] = shift
-    tail_sec, tail = tail, x[pos:].copy()
-    if cuts and len(tail) > fade:
-        tail[:fade] *= np.linspace(0.0, 1.0, fade, dtype=x.dtype)
-    parts.append(tail)
-    if tail_s := max(tail_sec, 0.0):
-        parts.append(np.zeros(int(round(tail_s * rate)), x.dtype))
+    pieces.append((x[pos:], pos > 0, False))
+    if tail_s := max(tail, 0.0):
+        pieces.append((None, int(round(tail_s * rate)), False))
+    y = np.zeros(sum(n if seg is None else len(seg) for seg, n, _ in pieces), x.dtype)
+    o = 0
+    for seg, n, out_fade in pieces:
+        if seg is None:
+            o += n
+            continue
+        y[o:o + len(seg)] = seg
+        if out_fade and len(seg) > fade:
+            y[o + len(seg) - fade:o + len(seg)] *= np.linspace(1.0, 0.0, fade, dtype=x.dtype)
+        if n and len(seg) > fade:
+            y[o:o + fade] *= np.linspace(0.0, 1.0, fade, dtype=x.dtype)
+        o += len(seg)
     out = [replace(w, start=w.start + s, end=w.end + s) for w, s in zip(words, shifts)]
-    return np.concatenate(parts), out, float(shift)
+    return y, out, float(shift)

@@ -1,0 +1,1106 @@
+# plan/scenes.yaml: the source of truth for video 018 (What Logarithms Actually Are).
+#
+# Edit narration and visuals here, then regenerate everything that derives from it:
+#   uv run python videos/018-logarithms/scripts/build_script.py
+# That rewrites voiceover.md, script/narration_full.md, plan/scene_plan.md, storyboard.md and fills duration_s
+# (estimate). After voicing, scripts/timing.py replaces duration_s with the real value (duration_source: audio).
+#
+# Narration marks: [pause 0.8s] = extra silence inserted after the audio is generated (free to change);
+# *word* = emphasis (a note for the read; stripped before TTS). Numbers are written as spoken.
+# The narration never reads symbols aloud: each equation is said as a plain sentence while its terms light.
+# reveal_sequence[].at_word must appear in the scene's narration, in order (checked by build_script.py).
+# Every spoken or plotted figure is computed and asserted in logdata.py (verify()).
+# Colours are theme roles (C.<role>), one per math object for the whole video:
+#   base (the multiplier, amber) · steps (the count / the logarithm, cyan) · value (the result, magenta)
+#   natural (e and ln, green) · area (the region under 1/x, teal) · ruler (engraved scales, ivory) · paper (Napier's page)
+#   cell · sound · star · quake · acid · planet (in-chapter roles); one hue per chapter for the progress rail.
+# Layouts: L1 full-bleed stage, L2 staircase + open column, L3 graph plane, L4 ruler band. No boards, boxes, panels
+# or n/N counters; text never glows; the progress rail sits bottom-left. See design/design_sheet.md.
+# Camera: 2D flat · 2.5D (s.camera push/pan/tilt + parallax depth layers) · 3D (Manim ThreeD, pyvista).
+
+video:
+  slug: 018-logarithms
+  title: "What Logarithms Actually Are"
+  alt_titles:
+    - "Logarithms Aren't What You Were Taught"
+    - "Logarithms, Finally Visualized"
+  mode: tutorial and concept overview (build the idea from counting, derive every rule from one picture)
+  audience: anyone curious; no maths assumed beyond multiplication
+  target_runtime_s: {min: 600, goal: 720, max: 780}
+  master_format: "1920x1080, 60 fps, SDR Rec.709 (4K on request)"
+  spine: >-
+    A logarithm counts multiplications. One motif carries the whole video: the multiplication staircase, where each
+    step up multiplies by the base and the height counts the steps. Each chapter turns that staircase a new way:
+    counting (the cell that divides), Napier's trick (climbs add, so products become sums), the slide rule (the
+    staircase laid flat as a ruler), the curve (the exponential seen in a mirror), the area under 1/x (why the
+    natural base is e), and the scales of the world (sound, starlight, earthquakes, acidity, planets, atom to
+    galaxy). The intro opens on Napier's 1614 tables and previews all six pictures; the outro rebuilds the staircase
+    one last time and lights one lesson per step.
+
+datasets:
+  - name: staircase
+    what: >-
+      The motif, one Manim group built in kit.py: steps of width 0.9 u and height 0.5 u, each tread labelled with
+      its value (C.value) and each riser with its step count (C.steps); the base shown as a small ×b on each riser
+      (C.base). Supports base 2 and 10, fractional fill (log₂6 = 2.585), a smooth ramp limit, end-to-end stacking
+      (product rule) and descending walks (quotient rule).
+    used_in: [in_s02, in_s03, c01_s02, c01_s03, c02_s01, c02_s02, out_s01]
+  - name: numbers
+    what: >-
+      logdata.py: 2^10 = 1024; log2 6 = 2.585; 8·32 = 2^(3+5) = 256; log10 2 = 0.301 (Gunter's 2 nearly a third
+      of the way); 2·3 = 6 on the slide rule; log10 1e6 = 6, 1e9 = 9; change of base log2 x = log10 x / log10 2
+      (factor 3.32); areas under 1/x: A(1,2) + A(1,3) = A(1,6) = 1.792; A(1,e) = 1 by brentq → 2.718281828;
+      (1+1/n)^n for n = 1…10^6; dB: +10 dB = 10× power; Pogson 5 mag = 100× (2.512 per magnitude); quake +1 = 10^1.5
+      = 31.6× energy; pH lemon 2 vs water 7 → 10^5; Kepler a (AU) and T (yr) for six planets, fitted slope 1.500;
+      atom 1.06e-10 m to Milky Way 9.5e20 m → 31 powers of ten.
+    used_in: [c01, c02, c03, c04, c05, c06]
+  - name: sims
+    what: >-
+      Seeded, baked: cell division (Taichi soft-body discs that push apart after each split, seed 1801, 1024 cells,
+      baked to PointsLayer); sound field from a point source (GLSL analytic wave, amplitude a pure function of t);
+      seismic ripple on a terrain patch (pyvista off-screen, a decaying Rayleigh-like ring, 180 frames, seed 1806);
+      Napier's page and Gunter's ruler textures (skia-python, procedural paper fibre noise from opensimplex, seed 1614).
+    used_in: [in_s01, c01_s01, c03_s01, c03_s02, c06_s01, c06_s02]
+
+layouts:
+  - {id: L1, name: Full-bleed stage, use: "The picture owns the frame and runs to the edges (Napier's page, the dividing cells, the sound field, the atom-to-galaxy zoom). Text floats in open black space, on a feathered shade only where the raster behind is busy."}
+  - {id: L2, name: Staircase + open column, use: "The staircase climbs from the lower left through the left two thirds; the equation floats in the open right column (x 2.75 to 6.40), its terms coloured by role (base amber, steps cyan, value magenta) and lit as the narration says them."}
+  - {id: L3, name: Graph plane, use: "The Classic blue grid fills the frame with white axes; the curve owns the picture and the equation floats top-right inside the safe box. Used for the mirror, the slow climb, the bases and the hyperbola."}
+  - {id: L4, name: Ruler band, use: "A long engraved ruler (or two) runs across the middle of the frame in slight 2.5D perspective; numbers sit on the ticks and one result reads out below in CM. Gunter, the slide rule, octaves and the shared scales of chapter 6."}
+
+boards:
+  - {name: "The multiplication staircase · the motif, kit.staircase()", pinned_in: c01_s02, recalled_in: [in_s02, in_s03, c01_s03, c02_s01, c02_s02, c03_s01, out_s01], wiped_at: "never for long; it returns as the ruler (laid flat), the curve (smoothed) and the outro"}
+  - {name: "Progress rail · bottom-left, six segments sized by chapter length, chapter title in small caps above, head moves with audio time", pinned_in: in_s03 (draws in on 'how many times'), recalled_in: [all chapters], wiped_at: out_s01}
+  - {name: "Name tag · top-left hue rule over small caps 'Name · year', first appearance only", pinned_in: each person's first mention, recalled_in: [], wiped_at: "fades after ~4 s"}
+
+chapters:
+  - id: intro
+    title: Intro
+    target_s: 80
+  - id: c01
+    title: "Counting Multiplications"
+    target_s: 90
+    lens: "A logarithm answers: how many times did we multiply?"
+    takeaway: "log_b y is the number of ×b steps from 1 to y; fractional steps fill in every positive number."
+    concepts:
+      - {concept: repeated doubling, graphic: "one cell dividing into 1024", equation: '2^{10}=1024', animation: "Taichi division bake, step tags"}
+      - {concept: the logarithm as a count, graphic: "the multiplication staircase", equation: '2^{10}=1024\iff\log_2 1024=10', animation: "steps climb, the equation turns around"}
+      - {concept: base and fractional steps, graphic: "base-10 staircase; 6 between the steps; the ramp", equation: '\log_2 6\approx 2.585', animation: "re-skin to base 10, a partial step fills, steps smooth into a curve"}
+  - id: c02
+    title: "Multiplication Becomes Addition"
+    target_s: 100
+    lens: "Climbs add, so products become sums."
+    takeaway: "log(ab) = log a + log b; the quotient and power rules are the same picture; the power rule counts the digits of 2^100."
+    concepts:
+      - {concept: Napier's trick, graphic: "a row of powers of two over a row of step counts", equation: '8\cdot 32=2^3\cdot 2^5=2^{3+5}=256', animation: "lookup arrows, 3 + 5, read across"}
+      - {concept: the rules, graphic: "two staircases stacked end to end; a walk down; a climb repeated", equation: '\log(ab)=\log a+\log b', animation: "stack, descend, repeat"}
+      - {concept: using the rules, graphic: "a row of a hundred 2s folding into 100·log 2; a 10^30…10^31 ruler", equation: '\log_{10}2^{100}=100\log_{10}2\approx30.1', animation: "row folds, marker lands, 31 digits type out"}
+  - id: c03
+    title: "The Slide Rule"
+    target_s: 90
+    lens: "Lay the staircase flat and it becomes a ruler that multiplies."
+    takeaway: "On a log scale, distance is the logarithm, so adding lengths multiplies numbers and equal ratios take equal steps."
+    concepts:
+      - {concept: the log scale, graphic: "Gunter's ruler engraved tick by tick", equation: 'x=\log_{10} n', animation: "each tick drops to its log distance"}
+      - {concept: the slide rule, graphic: "two scales sliding", equation: '\log 2+\log 3=\log 6', animation: "slide, read off 6"}
+      - {concept: equal ratios, graphic: "decades and piano octaves on one ruler", equation: null, animation: "equal brackets over 1→10→100→1000; keys light per octave"}
+  - id: c04
+    title: "The Curve"
+    target_s: 95
+    lens: "The logarithm is the exponential seen in a mirror."
+    takeaway: "y = log_b x reflects y = bˣ across y = x; it climbs forever but slowly; all bases are scaled copies."
+    concepts:
+      - {concept: inverse function, graphic: "2ˣ reflected across the diagonal", equation: 'y=2^x\ \leftrightarrow\ y=\log_2 x', animation: "points swap coordinates with light trails"}
+      - {concept: slow growth, graphic: "the x-axis zooms out to a billion", equation: '\log_{10}10^9=9', animation: "camera zoom, the curve barely rises"}
+      - {concept: change of base and solving, graphic: "log₂, log₁₀, ln as stretched copies; 2ˣ = 10 on the graph", equation: '2^x=10\Rightarrow x=1/\log_{10}2\approx3.32', animation: "a slider stretches one curve into another; a drop line finds x"}
+  - id: c05
+    title: "Why e"
+    target_s: 120
+    lens: "Area under 1/x is a logarithm, and its natural base is e."
+    takeaway: "ln x is the area under 1/t from 1 to x; the area reaches 1 at x = e; the slope of ln x is 1/x."
+    concepts:
+      - {concept: area under the hyperbola, graphic: "teal region under 1/x from 1", equation: 'A(1,2)+A(1,3)=A(1,6)', animation: "areas fill and add"}
+      - {concept: stretch invariance, graphic: "a region stretched ×3 sideways and squashed ×1/3", equation: 'A(1,2)=A(3,6)', animation: "strips stretch, height drops, area counter holds"}
+      - {concept: e and ln, graphic: "edge slides until the area is 1", equation: '\ln x=\int_1^x\frac{dt}{t},\quad \ln e=1,\quad \frac{d}{dx}\ln x=\frac1x', animation: "edge slides, counter hits 1.000, tangent slope tracks 1/x"}
+      - {concept: doubling time, graphic: "growth curve meeting the doubling line", equation: 't=\ln 2/r\approx0.693/0.07\approx9.9', animation: "crossing found, drops to the axis; rule of seventy"}
+  - id: c06
+    title: "A World in Logarithms"
+    target_s: 100
+    lens: "We sense and measure the world in ratios."
+    takeaway: "Decibels, magnitudes, earthquakes and pH are log scales; power laws become straight lines; atom to galaxy fits one ruler."
+    concepts:
+      - {concept: perception, graphic: "a sound field getting louder, a decibel ruler in even steps; stars by magnitude", equation: 'L=10\log_{10}\frac{P}{P_0}', animation: "rings brighten ×10 per step"}
+      - {concept: earth and water, graphic: "seismic ripple, a pH ruler", equation: '\mathrm{pH}=-\log_{10}[\mathrm{H^+}]', animation: "ripple grows ×31.6 per step, liquids slide onto the ruler"}
+      - {concept: power laws, graphic: "Kepler's planets on linear then log-log axes; atom to galaxy", equation: 'T^2\propto a^3\Rightarrow \log T=\tfrac32\log a+c', animation: "axes re-scale, points fall onto a line, zoom across powers of ten"}
+  - id: outro
+    title: Outro
+    target_s: 60
+
+loops:
+  - {id: L1, promise: "Why would anyone spend twenty years computing tables of numbers?", planted_in: [in_s01], paid_in: [c02_s01, c02_s03]}
+  - {id: L2, promise: "Where does the odd number e come from?", planted_in: [c04_s03], paid_in: [c05_s03]}
+  - {id: L3, promise: "Why do our ears hear on a logarithmic scale?", planted_in: [c03_s03], paid_in: [c06_s01]}
+  - {id: L4, promise: "Napier's page: does his idea still do its work?", planted_in: [in_s01], paid_in: [out_s02]}
+
+scenes:
+# ======================================================================== INTRO
+  - id: in_s01
+    chapter: intro
+    title: "Napier's tables"
+    arc_step: hook
+    duration_s: 22.98
+    duration_source: audio
+    goal: "One short line of history: tables that turned multiplication into addition. Then straight to the idea."
+    narration: |
+      In sixteen fourteen, John Napier published a book of tables that took him about twenty years to compute by
+      hand. [pause 0.6s] They rested on one idea, and that idea let astronomers turn every long multiplication into
+      an addition, which is far quicker and far harder to get wrong. [pause 0.6s] He called the numbers in those
+      tables logarithms.
+    pause_after_s: 0.8
+    visual:
+      description: >
+        L1. Black, then a slow 2.5D push-in over an old printed page (skia-python: warm paper with opensimplex fibre
+        noise, C.paper, feathered into black at its edges; columns of seven-figure numbers in CM old-style figures,
+        never readable as body text). 1614 writes in small caps, then becomes the name tag "John Napier · 1614"
+        beside his public-domain portrait (duotone, feathered). On "long multiplication" two nine-digit factors appear
+        in CM and a long-multiplication grid unrolls beneath them. On "into an addition" the grid collapses: the two
+        factors drop onto two short numbers (their logs, C.steps) that add with a single +, and the sum climbs back
+        up into the product (C.value). Accent glow only on the + as it lands. On "logarithms" the word log writes in CM.
+      reveal_sequence:
+        - {at_word: "sixteen fourteen", action: "1614 writes on black; the page fades up in depth"}
+        - {at_word: "John Napier", action: "portrait and name tag"}
+        - {at_word: "twenty years", action: "the camera drifts across a three-page parallax stack"}
+        - {at_word: "long multiplication", action: "two nine-digit factors; the multiplication grid unrolls"}
+        - {at_word: "into an addition", action: "grid collapses into log + log; the sum climbs back into the product"}
+        - {at_word: "logarithms", action: "log writes in CM"}
+      equations: ['a\times b\ \longrightarrow\ \log a+\log b']
+      camera: "2.5D: slow push-in over a three-page parallax stack, then flat for the equation"
+      layout: L1
+      layers: [bg_solid, napier_pages_skia, portrait_duotone, name_tag, long_mult_manim, glow_plus]
+    engines: {primary: skia-python, secondary: [manim, moderngl]}
+    engine_reason: "Printed pages and paper texture are skia rasters; numbers and the collapse are Manim; the 2.5D push is s.camera."
+    retention_device: "a short story with a cost (twenty years) and a promise (multiplication becomes addition); plants L1 and L4"
+    interrupt: visual
+    transition_out: "The + stays lit while the page dissolves; the camera pulls back into the first preview picture."
+    sfx_music: "Room tone, a quiet paper rustle on the page turns."
+
+  - id: in_s02
+    chapter: intro
+    title: "Preview"
+    arc_step: promise
+    duration_s: 28.46
+    duration_source: audio
+    goal: "Preview the six pictures the video builds, as a quick, calm montage."
+    narration: |
+      That idea turned out to be much larger than a shortcut for astronomers. [pause 0.5s]
+      It counts how many times you multiply, it turns a ruler into a calculator, and its graph is the mirror image
+      of exponential growth. [pause 0.6s] It hides in the area under a simple curve, which is where the number e
+      comes from, and it is the scale our ears use to hear the world. [pause 0.5s] It even lets us draw an atom and a
+      galaxy on the same page.
+    pause_after_s: 0.8
+    visual:
+      description: >
+        A montage of precomps taken from the chapters (each a reused Comp, about 3 s, crossfaded through black on the
+        cue words). (1) The staircase climbs from 1 to 1024 with its step counts lighting cyan (c01). (2) Two
+        engraved rulers slide and a 6 lights under a 3 (c03). (3) The curve 2ˣ swings across the diagonal into log₂x
+        (c04). (4) The teal area under 1/x fills until its counter reads 1, and e glows green (c05). (5) Concentric
+        sound rings with a decibel ruler (c06). (6) The atom-to-galaxy zoom: a log ruler of powers of ten with an
+        atom, a person, the Earth and a spiral galaxy sitting at equal steps. No text beyond each picture's own
+        symbols; the logarithm sign log writes once at the start in CM and stays faint in the upper-left.
+      reveal_sequence:
+        - {at_word: "That idea", action: "log moves to the upper-left, faint"}
+        - {at_word: "how many times", action: "preview 1: staircase climbs"}
+        - {at_word: "ruler", action: "preview 2: rulers slide"}
+        - {at_word: "mirror image", action: "preview 3: the curve reflects"}
+        - {at_word: "area", action: "preview 4: area under 1/x fills"}
+        - {at_word: "number e", action: "the counter hits 1 and e glows"}
+        - {at_word: "ears", action: "preview 5: sound rings and decibel ruler"}
+        - {at_word: "atom", action: "preview 6: atom-to-galaxy ruler"}
+      equations: ['\log']
+      camera: "each precomp keeps its own camera; cuts are crossfades through black"
+      layout: L1
+      layers: [bg_solid, precomp_staircase, precomp_ruler, precomp_mirror, precomp_area, precomp_sound, precomp_scales]
+    engines: {primary: manim, secondary: [moderngl, skia-python, taichi]}
+    engine_reason: "The montage reuses each chapter's own layers as precomps, so the preview is the real picture."
+    retention_device: "curiosity montage: six pictures shown, none explained yet"
+    interrupt: visual
+    transition_out: "The last picture's ruler shrinks to a single short line in the centre."
+    sfx_music: "A soft low pulse under each cut."
+
+  - id: in_s03
+    chapter: intro
+    title: "One question"
+    arc_step: promise
+    duration_s: 20.72
+    duration_source: audio
+    goal: "Reframe logarithms from a calculator button to a count, and pose the one question of the video."
+    narration: |
+      You may have met logarithms as a button on a calculator, or as rules to memorize before an exam.
+      [pause 0.5s] In this video we will build them step by step, work through examples together, and see where
+      every rule comes from.
+      [pause 0.6s] And we will start with a single question: how many times do you have to multiply?
+    pause_after_s: 1.5
+    visual:
+      description: >
+        A calculator key labelled log (thin CM sans line drawing, C.muted) sits alone; on "rules" three log rules
+        flicker in around it in dim C.muted like half-remembered notes, then fall away. On "step by step" a single dot
+        at 1 sits on the floor line and the first three steps of the staircase draw in (amber ×2 on each riser,
+        magenta values 2, 4, 8, cyan counts 1, 2, 3). On "how many times" the staircase collapses into the single
+        line log₂ 8 = 3, each part in its role colour, and the progress rail draws in bottom-left.
+      reveal_sequence:
+        - {at_word: "button", action: "the log key"}
+        - {at_word: "rules", action: "dim rules flicker in and fall away"}
+        - {at_word: "step by step", action: "a dot at 1; three steps draw in"}
+        - {at_word: "how many times", action: "staircase collapses into log₂ 8 = 3; progress rail draws in"}
+      equations: ['\log_2 8 = 3']
+      camera: "2D"
+      layout: L2
+      layers: [bg_solid, log_key, dim_rules, staircase, title_equation, progress_rail]
+    engines: {primary: manim}
+    engine_reason: "Line art, the staircase and the equation are Manim."
+    retention_device: "reframe (a button → a count) and one clear question to carry into chapter 1"
+    interrupt: equation
+    transition_out: "The 3 in log₂ 8 = 3 stays; everything else fades; chapter card."
+    sfx_music: "Silence under the question, then a soft tone on the card."
+
+# ======================================================================== C01 COUNTING
+  - id: c01_s01
+    chapter: c01
+    title: "One cell"
+    arc_step: hook
+    duration_s: 30.40
+    duration_source: audio
+    goal: "A human-scale example of repeated doubling, then turn the question around."
+    narration: |
+      Take a single cell and let it divide. [pause 0.4s] After one division there are two cells, after another
+      there are four, then eight, then sixteen. [pause 0.6s] Each division doubles the count, so after only ten divisions there are one thousand and twenty four cells. [pause 0.6s] Now turn
+      the question around. [pause 0.3s] If a dish holds one thousand and twenty four cells, how many divisions made them? [pause 0.6s] The answer is ten, and that number is a logarithm.
+    pause_after_s: 0.8
+    visual:
+      description: >
+        L1. A Taichi soft-body bake (seed 1801): one translucent disc (C.cell, a thin bright membrane rim and a soft
+        interior) divides by pinching into two, and daughters push each other apart on a dark dish. Divisions are
+        synchronised to the words (the bake runs 10 generations; the layer's time is remapped so generation k lands
+        on its beat). A small cyan tally of divisions (1, 2, 3 …) and a magenta count (2, 4, 8 …) float top-right.
+        After "ten divisions" the colony of 1024 fills the frame (PointsLayer, instanced discs). On "turn the
+        question around" time runs backwards: the colony recombines down to one cell while the cyan tally counts
+        up to 10 in the open column. "10" stays, with the word log beside it in CM.
+      reveal_sequence:
+        - {at_word: "divide", action: "first division"}
+        - {at_word: "two cells", action: "tally 1 · count 2"}
+        - {at_word: "four", action: "tally 2 · count 4"}
+        - {at_word: "eight", action: "tally 3 · count 8"}
+        - {at_word: "sixteen", action: "tally 4 · count 16"}
+        - {at_word: "ten divisions", action: "fast run to 1024; the dish fills the frame"}
+        - {at_word: "turn", action: "time runs backwards; the colony recombines"}
+        - {at_word: "how many divisions", action: "cyan tally counts 1 … 10"}
+        - {at_word: "answer is ten", action: "10 lights"}
+        - {at_word: "logarithm", action: "10 stays, with log beside it"}
+      equations: ['2^{10}=1024']
+      camera: "2.5D: slow pull-back as the colony grows, push back in as it recombines"
+      layout: L1
+      layers: [bg_solid, cell_points_taichi, tally_manim, count_manim]
+    engines: {primary: taichi, secondary: [manim]}
+    engine_reason: "Cell packing is a baked Taichi soft-body sim (deterministic); counters are Manim."
+    retention_device: "human example (a dish of cells); turning the question around is the reveal"
+    interrupt: visual
+    transition_out: "The cells line up into a column of ten and become the first ten steps."
+    sfx_music: "A soft tick on each division."
+
+  - id: c01_s02
+    chapter: c01
+    title: "The staircase"
+    arc_step: picture
+    duration_s: 26.07
+    duration_source: audio
+    goal: "Introduce the motif and write the definition both ways."
+    narration: |
+      We can draw this as a staircase. [pause 0.4s] Each step up is one more multiplication by two, so the height of
+      the staircase counts the steps. [pause 0.5s] Ten twos multiplied
+      together give one thousand and twenty four, and we write that the logarithm, base two, of one thousand and
+      twenty four is ten. [pause 0.6s] Both lines state the same fact, one read from the number of steps and the other from
+      the result.
+    pause_after_s: 0.8
+    visual:
+      description: >
+        L2. The staircase (kit.staircase, base 2) climbs from the lower left: each riser carries ×2 (C.base), each
+        tread its value (C.value) and a cyan step count sits at the left of each level. Values beyond 64 shrink so
+        the stairs stay inside the left two thirds (camera tilt-up follows the climb). In the open column the
+        exponential form writes 2^{10} = 1024 (2 amber, 10 cyan, 1024 magenta); on "logarithm" the same three
+        coloured parts slide (TransformMatchingTex) into log₂ 1024 = 10 below it. On "both lines" a two-way arrow ⇔
+        joins them. On "starts from the number of steps" an arrow sweeps up the staircase; on "starts from the
+        result" it sweeps back down.
+      reveal_sequence:
+        - {at_word: "staircase", action: "steps draw in from 1"}
+        - {at_word: "multiplication by two", action: "×2 lights on each riser in turn"}
+        - {at_word: "height", action: "cyan counts light up the left edge"}
+        - {at_word: "Ten twos", action: "2^10 = 1024 writes in the column"}
+        - {at_word: "logarithm", action: "parts slide into log₂ 1024 = 10"}
+        - {at_word: "same fact", action: "⇔ joins the two lines"}
+        - {at_word: "number of steps", action: "arrow sweeps up the stairs"}
+        - {at_word: "from the result", action: "arrow sweeps down"}
+      equations: ['2^{10}=1024', '\log_2 1024=10']
+      camera: "2D with a slow tilt up the staircase"
+      layout: L2
+      layers: [bg_solid, staircase, equation_column, sweep_arrows, progress_rail]
+    engines: {primary: manim}
+    engine_reason: "Exact geometry and colour-matched TeX transforms are Manim."
+    retention_device: "one picture, two sentences that mean the same thing"
+    interrupt: equation
+    transition_out: "The ×2 labels flip to ×10."
+    sfx_music: "None."
+
+  - id: c01_s03
+    chapter: c01
+    title: "Other bases, in-between steps"
+    arc_step: equation
+    duration_s: 50.76
+    duration_source: audio
+    goal: "The base is the step size; a try-it-yourself in base three; logs of non-powers sit between steps; the curve."
+    narration: |
+      The base is the size of each step. [pause 0.4s] With base ten, each step multiplies by ten, so ten, one
+      hundred and one thousand sit one, two and three steps up, and the logarithm counts the zeros. [pause 0.6s] Try
+      one yourself. [pause 0.4s] How many threes do you multiply together to reach eighty one? [pause 1.5s] Three
+      times three is nine, then twenty seven, then eighty one, so it takes four threes, and the logarithm, base three,
+      of eighty one is four. [pause 0.6s] The staircase also has room between its steps. [pause 0.4s] Six lies
+      between four and eight, so its logarithm, base two, lies between two and three, at about two point five eight.
+      [pause 0.6s] Fill in every number like this, and the staircase smooths into a curve.
+    pause_after_s: 2.0
+    visual:
+      description: >
+        L2. The risers relabel ×10 and the treads become 10, 100, 1000; on "counts the zeros" the zeros of each
+        value pulse cyan, one per step. On "Try one yourself" the staircase resets to base 3 with its values hidden;
+        the question log₃ 81 = ? writes in the column with a slow thin countdown ring (graphic only) during the
+        1.5 s pause. On "Three times three" the treads reveal 3, 9, 27, 81 one by one with cyan counts 1–4, and the ?
+        turns into a 4. Then back to base 2 for steps 0–4: on "Six" a magenta 6 drops between the 4 and 8 treads,
+        and a partial step fills to height 2.585 (computed, logdata) with a cyan readout. On "Fill in" in-between
+        points rain onto the risers and the stepped path morphs into the smooth curve y = log₂ x, tilted in 2.5D.
+      reveal_sequence:
+        - {at_word: "size of each step", action: "×2 flips to ×10"}
+        - {at_word: "one thousand", action: "treads 10, 100, 1000"}
+        - {at_word: "counts the zeros", action: "zeros pulse cyan per step"}
+        - {at_word: "Try", action: "base-3 staircase with hidden values; log₃ 81 = ? and a countdown ring"}
+        - {at_word: "Three times three", action: "treads reveal 3, 9, 27, 81; counts 1–4"}
+        - {at_word: "is four", action: "? becomes 4"}
+        - {at_word: "room between", action: "back to base 2; gaps between steps highlight"}
+        - {at_word: "Six", action: "6 drops between 4 and 8"}
+        - {at_word: "two point five eight", action: "partial step fills to 2.585"}
+        - {at_word: "smooths into a curve", action: "steps morph into y = log₂ x; 2.5D tilt"}
+      equations: ['\log_{10}1000=3', '\log_3 81=4', '\log_2 6\approx 2.585']
+      camera: "2D, then a 2.5D tilt to show the ramp"
+      layout: L2
+      layers: [bg_solid, staircase, quiz_ring, partial_step, curve_morph, equation_column, progress_rail]
+    engines: {primary: manim}
+    engine_reason: "Staircase-to-curve morph and the computed partial step are exact Manim paths."
+    retention_device: "try-it-yourself pause (base three), then the answer revealed on the staircase"
+    interrupt: question
+    transition_out: "The curve flattens back into a staircase seen from above: a table of powers. Chapter card."
+    sfx_music: "A soft tick under the countdown; a rising tone as the curve smooths."
+
+# ======================================================================== C02 ADDITION
+  - id: c02_s01
+    chapter: c02
+    title: "Napier's trick"
+    arc_step: hook
+    duration_s: 31.12
+    duration_source: audio
+    goal: "Multiply 8 × 32 by adding step counts; pay L1 (why the tables)."
+    narration: |
+      Napier's trick comes straight out of the staircase. [pause 0.4s] Write the powers of two in one row, and the
+      number of steps for each of them underneath. [pause 0.5s] To multiply eight by thirty two, look up their
+      steps, three and five. [pause 0.4s] Add them to get eight, and read across the table: eight steps up is two
+      hundred and fifty six, which is the product. [pause 0.6s] Climbing three steps and then five is the same as climbing eight, so the multiplication has become an addition.
+    pause_after_s: 0.8
+    visual:
+      description: >
+        L2 rotated: a two-row table without a grid, set in open space: values 1, 2, 4 … 1024 (C.value) over step
+        counts 0 … 10 (C.steps). On "eight by thirty two" 8 and 32 light; thin arrows drop to 3 and 5. On "Add" the
+        3 and 5 lift into the column as 3 + 5 = 8, the 8 slides back along the steps row and an arrow rises to 256,
+        which glows briefly (graphic glow, not text: a ring behind it). Then the staircase reappears below: a climb
+        of 3 (amber ×2 ×3) followed by a climb of 5 is the same as one climb of 8; the full identity writes in the
+        column with matching colours.
+      reveal_sequence:
+        - {at_word: "powers of two", action: "values row writes in"}
+        - {at_word: "steps", action: "steps row writes in under it"}
+        - {at_word: "eight by thirty two", action: "8 and 32 light; arrows to 3 and 5"}
+        - {at_word: "Add them", action: "3 + 5 = 8 in the column"}
+        - {at_word: "read across", action: "8 → 256, a ring lights behind it"}
+        - {at_word: "climbing three steps", action: "climb of 3 then 5 on a staircase below"}
+        - {at_word: "addition", action: "identity 8·32 = 2³·2⁵ = 2⁸ = 256 writes"}
+      equations: ['8\cdot 32=2^3\cdot 2^5=2^{3+5}=256']
+      camera: "2D"
+      layout: L2
+      layers: [bg_solid, powers_table, lookup_arrows, staircase, equation_column, ring_glow, progress_rail]
+    engines: {primary: manim, secondary: [moderngl]}
+    engine_reason: "Table, arrows and TeX are Manim; the ring behind 256 is a GL Glow on a graphic layer."
+    retention_device: "a worked example the viewer can check in their head; pays L1"
+    interrupt: equation
+    transition_out: "The identity shrinks to its middle: log(ab) = log a + log b."
+    sfx_music: "A small click as 256 is read."
+
+  - id: c02_s02
+    chapter: c02
+    title: "Every rule from one picture"
+    arc_step: equation
+    duration_s: 29.39
+    duration_source: audio
+    goal: "Product, quotient and power rules as stacking, descending and repeating climbs."
+    narration: |
+      That is the main rule: the logarithm of a product is the sum of the logarithms. [pause 0.6s] The other rules follow from the same picture. [pause 0.4s] Dividing walks back
+      down the staircase, so the logarithm of a quotient is a difference. [pause 0.5s] Raising a number to a power
+      repeats the same climb several times, so the logarithm of a power is that many copies of the climb.
+      [pause 0.6s] Every rule you may have memorized is the staircase seen from a different side.
+    pause_after_s: 0.8
+    visual:
+      description: >
+        L2. Three short animations on one staircase, each paired with its rule written in the column and kept
+        (a growing stack of three rules, no boxes): (1) two climbs a and b stacked end to end, their cyan heights
+        adding: log(ab) = log a + log b; (2) a climb of a then a walk down of b, the descent drawn as a magenta ÷
+        on each riser: log(a/b) = log a − log b; (3) one climb copied n times, the copies stacking like a ladder:
+        log(aⁿ) = n log a. On "different side" the three rules light together and the staircase rotates in 2.5D,
+        showing a different face for each rule.
+      reveal_sequence:
+        - {at_word: "main rule", action: "two climbs stack end to end"}
+        - {at_word: "sum of the logarithms", action: "log(ab) = log a + log b writes"}
+        - {at_word: "walks back", action: "a walk down the stairs"}
+        - {at_word: "difference", action: "log(a/b) = log a − log b writes"}
+        - {at_word: "repeats the same climb", action: "one climb copied n times"}
+        - {at_word: "many copies", action: "log(aⁿ) = n log a writes"}
+        - {at_word: "different side", action: "all three light; staircase turns in 2.5D"}
+      equations: ['\log(ab)=\log a+\log b', '\log\frac{a}{b}=\log a-\log b', '\log a^{n}=n\log a']
+      camera: "2D, a slow 2.5D rotation of the staircase at the end"
+      layout: L2
+      layers: [bg_solid, staircase, climb_copies, rule_stack, progress_rail]
+    engines: {primary: manim}
+    engine_reason: "Rule-by-rule geometry and TeX are Manim; the turn is s.camera rotate."
+    retention_device: "three rules, one picture: memorised facts become visible"
+    interrupt: equation
+    transition_out: "The staircase recedes; an old printed page slides in on top."
+    sfx_music: "None."
+
+  - id: c02_s03
+    chapter: c02
+    title: "Putting the rules to work"
+    arc_step: application
+    duration_s: 37.32
+    duration_source: audio
+    goal: "A worked example: count the digits of 2^100 with the power rule. Pays L1 (this is what the tables were for)."
+    narration: |
+      These rules turn hard questions into easy ones. [pause 0.4s] How many digits does two to the hundredth power
+      have, a hundred twos multiplied together? [pause 1.2s] Nobody wants to multiply that out, but the power rule
+      says its logarithm, base ten, is a hundred times the logarithm of two. [pause 0.5s] The logarithm of two is
+      about zero point three zero one, so the answer is about thirty point one. [pause 0.6s] That puts the number
+      between ten to the thirty and ten to the thirty one, so it has thirty one digits. [pause 0.6s] This is the kind of work Napier's twenty years made possible.
+    pause_after_s: 2.0
+    visual:
+      description: >
+        L2. The question writes in the column: how many digits in 2¹⁰⁰? A long row of a hundred small amber 2s
+        stretches off the right edge of the frame (a 2.5D dolly along it shows how long it is). On "power rule" the
+        row folds into the power-rule line log₁₀ 2¹⁰⁰ = 100 · log₁₀ 2 (the 100 slides down into place as a
+        coefficient, C.steps). On "zero point three zero one" log₁₀ 2 ≈ 0.30103 lights, then 100 × 0.30103 = 30.103.
+        On "between ten to the thirty" a log ruler from 10³⁰ to 10³¹ appears with a magenta marker at 30.103. On
+        "thirty one digits" the full 31-digit number 1267650600228229401496703205376 (computed) types out in CM with
+        a cyan underline counting its digits. On "Napier's twenty years" the in_s01 page fades in faintly behind it.
+      reveal_sequence:
+        - {at_word: "hard questions", action: "question writes"}
+        - {at_word: "hundred twos", action: "a row of a hundred 2s; dolly along it"}
+        - {at_word: "power rule", action: "row folds into 100 · log₁₀ 2"}
+        - {at_word: "zero point three zero one", action: "0.30103 lights"}
+        - {at_word: "thirty point one", action: "100 × 0.30103 = 30.103"}
+        - {at_word: "between ten to the thirty", action: "a 10³⁰ … 10³¹ ruler with a marker at 30.103"}
+        - {at_word: "thirty one digits", action: "the 31-digit number types out; digits underlined"}
+        - {at_word: "twenty years", action: "Napier's page fades in behind"}
+      equations: ['\log_{10}2^{100}=100\log_{10}2\approx30.103', '10^{30}<2^{100}<10^{31}']
+      camera: "2D with a 2.5D dolly along the row of 2s"
+      layout: L2
+      layers: [bg_solid, twos_row, equation_column, decade_ruler, digit_counter, napier_page_ghost, progress_rail]
+    engines: {primary: manim, secondary: [skia-python]}
+    engine_reason: "Rows, TeX and the ruler are Manim; the ghost page reuses the intro's skia raster."
+    retention_device: "worked example with a pause to guess; pays L1"
+    interrupt: question
+    transition_out: "The digits slide together into an engraved ruler. Chapter card."
+    sfx_music: "Typewriter-soft ticks as the digits type out."
+
+# ======================================================================== C03 SLIDE RULE
+  - id: c03_s01
+    chapter: c03
+    title: "The logarithmic ruler"
+    arc_step: picture
+    duration_s: 29.67
+    duration_source: audio
+    goal: "Lay the staircase flat: a scale where distance is the logarithm."
+    narration: |
+      Around sixteen twenty, logarithms were engraved onto a wooden rule. [pause 0.4s] On this scale, each number
+      sits at a distance from the start equal to its logarithm. [pause 0.4s] One is at the very beginning, ten is at
+      the far end, and two sits at zero point three zero one of the way along, the same number we just used.
+      [pause 0.6s] The marks crowd together as the numbers grow. [pause 0.5s] Put two of these scales side by side,
+      and you have a slide rule.
+    pause_after_s: 0.8
+    visual:
+      description: >
+        L4. The staircase tips over flat (2.5D rotation) and its cyan heights become distances along a horizontal
+        ruler with a skia boxwood texture (C.ruler engraving on warm wood, feathered ends); a small tag "Gunter ·
+        1620" fades in and out. Ticks for 1…10 engrave one by one; each number drops from a linear position above
+        onto its log position (thin magenta drop lines). On "zero point three zero one" a cyan bracket measures
+        0.301 of the length and the 0.30103 from c02_s03 flies in to match it. On "crowd together" the minor ticks
+        between 1–2 and 9–10 fill in and the camera pushes along the ruler to compare their spacing. On "side by side"
+        a second identical ruler slides in above the first.
+      reveal_sequence:
+        - {at_word: "wooden rule", action: "staircase tips flat into a wooden ruler; small tag"}
+        - {at_word: "distance from the start", action: "ticks engrave; numbers drop onto log positions"}
+        - {at_word: "zero point three zero one", action: "bracket 0.301; c02's value flies in to match"}
+        - {at_word: "crowd together", action: "minor ticks fill; camera pushes along"}
+        - {at_word: "side by side", action: "a second ruler slides in above"}
+      equations: ['x=\log_{10} n', '\log_{10}2\approx0.301']
+      camera: "2.5D: tip-over rotation, then a lateral dolly along the ruler"
+      layout: L4
+      layers: [bg_solid, staircase, ruler_skia, ticks_manim, drop_lines, name_tag, progress_rail]
+    engines: {primary: skia-python, secondary: [manim]}
+    engine_reason: "Wood and engraving are skia (crisp ticks at any zoom); numbers, drops and brackets are Manim."
+    retention_device: "the motif transforms in front of the viewer (staircase → ruler); callback to 0.301"
+    interrupt: visual
+    transition_out: "Both rulers hold; the upper one begins to slide."
+    sfx_music: "A faint wooden slide."
+
+  - id: c03_s02
+    chapter: c03
+    title: "Multiplying by sliding"
+    arc_step: equation
+    duration_s: 28.50
+    duration_source: audio
+    goal: "Compute 2 × 3 on the slide rule and explain why adding lengths multiplies."
+    narration: |
+      To multiply two by three, slide the upper scale until its one sits above the two on the lower scale.
+      [pause 0.5s] Then find three on the upper scale, and read the number beneath it, which is six. [pause 0.6s]
+      The two lengths have been added end to end, and because each length is a logarithm, adding them multiplies
+      the numbers. [pause 0.5s] Engineers used slide rules like this for centuries, to design bridges, aircraft and the Apollo rockets.
+    pause_after_s: 0.8
+    visual:
+      description: >
+        L4. The upper ruler slides right until its 1 sits over the lower 2 (an ivory cursor line, the only thing
+        that glows faintly as a graphic). On "three" the cursor moves to upper 3 and the lower 6 lights magenta.
+        On "lengths" two cyan bars appear under the rulers, log 2 then log 3, end to end, and their total lands on
+        6; the column writes log 2 + log 3 = log 6. On "Engineers" the frame pulls back to a full slide rule in
+        perspective (pyvista: a simple extruded rule with the skia texture mapped, studio-lit, accent glow off),
+        then dissolves through three line drawings in C.ruler: a truss bridge, a wing, a Saturn V silhouette.
+        A second quick computation runs silently on the rule during the pull-back: 3.5 × 2.4 = 8.4.
+      reveal_sequence:
+        - {at_word: "slide the upper scale", action: "upper ruler slides; 1 over 2"}
+        - {at_word: "three", action: "cursor to 3"}
+        - {at_word: "six", action: "lower 6 lights"}
+        - {at_word: "added end to end", action: "cyan bars log 2 + log 3"}
+        - {at_word: "multiplies", action: "log 2 + log 3 = log 6 writes"}
+        - {at_word: "Engineers", action: "pull back to a 3D slide rule; 3.5 × 2.4 = 8.4 runs silently"}
+        - {at_word: "bridges", action: "line drawings: bridge, wing, Saturn V"}
+      equations: ['\log 2+\log 3=\log 6']
+      camera: "2.5D, then a 3D pull-back around the rendered rule"
+      layout: L4
+      layers: [bg_solid, ruler_skia_x2, cursor_glow, length_bars, equation_column, rule_3d_pyvista, line_drawings, progress_rail]
+    engines: {primary: skia-python, secondary: [manim, pyvista, moderngl]}
+    engine_reason: "Rulers are skia; the 3D object shot is pyvista off-screen → ArrayLayer; the cursor glow is GL."
+    retention_device: "a physical object the viewer can imagine holding; the 'why' lands right after the 'how'"
+    interrupt: visual
+    transition_out: "The rule's scale lengthens to cover 1 to 1000."
+    sfx_music: "Wooden slide; a click as the cursor stops."
+
+  - id: c03_s03
+    chapter: c03
+    title: "Equal ratios, equal steps"
+    arc_step: insight
+    duration_s: 25.15
+    duration_source: audio
+    goal: "On a log scale equal ratios take equal distances; octaves show it; plants L3."
+    narration: |
+      Going from one to ten takes the same distance as going from
+      ten to a hundred, or from a hundred to a thousand, because each of those is the same multiplication.
+      [pause 0.6s] On a piano, every octave doubles the frequency of the note, yet each octave takes up the same
+      width of keys. [pause 0.6s] The keyboard is laid out on a logarithmic scale, because our own ears hear this way.
+    pause_after_s: 2.0
+    visual:
+      description: >
+        L4. A three-decade log ruler (1 to 1000) across the frame; equal cyan brackets ×10 span each decade. On
+        "piano" a crisp keyboard line drawing (skia, C.ruler keys, no glow) rises under the ruler; above it, the
+        frequencies of every A (55, 110, 220, 440, 880 Hz, computed) sit on a log frequency axis at equal spacing,
+        each octave bracket ×2 in amber. On "logarithmic scale" a linear frequency axis appears beneath for
+        contrast: the same five As bunch up at the left. On "ears" a single soft sine (C.sound) leaves the 440.
+      reveal_sequence:
+        - {at_word: "one to ten", action: "first ×10 bracket"}
+        - {at_word: "ten to a hundred", action: "second bracket, same length"}
+        - {at_word: "a hundred to a thousand", action: "third bracket"}
+        - {at_word: "piano", action: "keyboard and the five As on a log axis"}
+        - {at_word: "same width", action: "×2 octave brackets light"}
+        - {at_word: "logarithmic scale", action: "linear axis below: As bunch up"}
+        - {at_word: "ears", action: "a sine leaves the 440"}
+      equations: []
+      camera: "2D"
+      layout: L4
+      layers: [bg_solid, decade_ruler, brackets, keyboard_skia, freq_axes, progress_rail]
+    engines: {primary: manim, secondary: [skia-python]}
+    engine_reason: "Axes and brackets are Manim; the keyboard is a skia drawing."
+    retention_device: "human example (a piano); plants L3"
+    interrupt: visual
+    transition_out: "The sine flattens onto the blue grid as a curve. Chapter card."
+    sfx_music: "The note A sounds softly in octaves: 110, 220, 440."
+
+# ======================================================================== C04 CURVE
+  - id: c04_s01
+    chapter: c04
+    title: "The mirror"
+    arc_step: picture
+    duration_s: 26.33
+    duration_source: audio
+    goal: "Show the logarithm as the inverse of the exponential: reflection across y = x."
+    narration: |
+      Now draw the curve of two to the x, which doubles with every step to the right.
+      [pause 0.5s] The logarithm undoes that curve. [pause 0.4s] Where the exponential takes three to eight, the
+      logarithm takes eight back to three, so its graph is the same curve reflected across the diagonal line.
+      [pause 0.6s] Every point swaps its two coordinates, and the steep climb becomes a long, slow rise.
+    pause_after_s: 0.8
+    visual:
+      description: >
+        L3. The Classic blue grid with white axes, square units. y = 2ˣ draws in amber-to-magenta (C.value along
+        the curve) with tick dots at x = 0…3 doubling. On "three to eight" the point (3, 8) lights with dashed
+        guides; on "eight back to three" its mirror (8, 3) lights in cyan. The diagonal y = x draws dashed. On
+        "reflected" the whole curve rotates in 3D about the diagonal (a real 180° flip, Manim ThreeD), landing as
+        y = log₂ x (C.steps). On "swaps" a dozen points travel from (x, 2ˣ) to (2ˣ, x) along short light trails
+        (graphic glow). Column: y = 2ˣ ⟷ y = log₂ x.
+      reveal_sequence:
+        - {at_word: "two to the x", action: "y = 2ˣ draws"}
+        - {at_word: "every step", action: "doubling tick dots"}
+        - {at_word: "three to eight", action: "(3, 8) lights"}
+        - {at_word: "eight back to three", action: "(8, 3) lights"}
+        - {at_word: "reflected", action: "diagonal; the curve flips about it in 3D"}
+        - {at_word: "swaps", action: "points travel with light trails"}
+        - {at_word: "slow rise", action: "log₂ x holds"}
+      equations: ['y=2^x\ \longleftrightarrow\ y=\log_2 x']
+      camera: "2D, a 3D flip of the curve about the diagonal"
+      layout: L3
+      layers: [bg_solid, grid, curve_exp, diagonal, curve_flip_3d, point_trails_glow, equation_float, progress_rail]
+    engines: {primary: manim, secondary: [moderngl]}
+    engine_reason: "Graph and the 3D flip are Manim; trails glow via a GL layer."
+    retention_device: "a physical metaphor (a mirror) made literal by a 3D flip"
+    interrupt: visual
+    transition_out: "The camera begins to pull back along the x-axis."
+    sfx_music: "None."
+
+  - id: c04_s02
+    chapter: c04
+    title: "Slow growth"
+    arc_step: insight
+    duration_s: 24.48
+    duration_source: audio
+    goal: "The logarithm climbs forever but slowly; log₁₀ counts digits."
+    narration: |
+      That rise is very slow. [pause 0.4s] Out at a million, the logarithm, base ten, has only reached six, and at a
+      billion it has reached nine. [pause 0.6s] So the common logarithm of a whole number tells you, to within one, how many digits it has. [pause 0.6s] The curve
+      never stops climbing, but it trades enormous distances for small, steady heights.
+    pause_after_s: 0.8
+    visual:
+      description: >
+        L3. The camera zooms out along x by powers of ten (logarithmic camera path, so each decade takes equal
+        time); grid labels rescale (10, 100, … 10⁹ written in CM). y = log₁₀ x rises to 6 at a million and 9 at a
+        billion; magenta markers on x, cyan readouts on y. On "digits" the number 1 000 000 000 writes out under
+        the axis with its digits counted by a cyan underline, and log₁₀ 10⁹ = 9 floats top-right. On "never stops"
+        the right end of the curve keeps creeping upward as the zoom continues.
+      reveal_sequence:
+        - {at_word: "very slow", action: "zoom out begins"}
+        - {at_word: "million", action: "marker at 10⁶, readout 6"}
+        - {at_word: "billion", action: "marker at 10⁹, readout 9"}
+        - {at_word: "digits", action: "1 000 000 000 with its digits underlined"}
+        - {at_word: "never stops climbing", action: "curve keeps creeping as the zoom runs on"}
+      equations: ['\log_{10}10^{6}=6', '\log_{10}10^{9}=9']
+      camera: "2D, exponential zoom-out along x"
+      layout: L3
+      layers: [bg_solid, grid_rescaling, curve_log, markers, digit_counter, equation_float, progress_rail]
+    engines: {primary: manim}
+    engine_reason: "Rescaling axes and an exact curve per frame (m.redraw) are Manim."
+    retention_device: "a concrete trick the viewer can use (logs count digits)"
+    interrupt: visual
+    transition_out: "The zoom returns to the unit view; three curves appear."
+    sfx_music: "A slowly descending tone during the zoom."
+
+  - id: c04_s03
+    chapter: c04
+    title: "One shape, many bases"
+    arc_step: equation
+    duration_s: 47.92
+    duration_source: audio
+    goal: "All log curves are stretches of one another; change of base; solve 2^x = 10; plant L2."
+    narration: |
+      Logarithms with different bases all share one shape. [pause 0.4s] The curve for base two is the curve for base
+      ten stretched upward, by the same factor at every point. [pause 0.6s] So to change base, you divide by a single
+      number, the logarithm of the new base. [pause 0.6s] This is how you solve for an unknown exponent. [pause 0.4s]
+      Which power of two gives ten? [pause 1.2s] The answer is the logarithm of ten, base two, which is one divided by
+      the logarithm of two, about three point three two, the same stretch we just saw. [pause 0.6s] Mathematicians
+      prefer one base above all the others. [pause 0.4s] It is a number close to two point seven one eight, called e. [pause 0.4s] To see where it comes from, we need a piece of geometry.
+    pause_after_s: 2.0
+    visual:
+      description: >
+        L3. Three curves: log₁₀ x (C.muted), ln x (C.natural) and log₂ x (C.steps). On "stretched upward" a vertical
+        stretch slider (a thin rule with a dot, C.base) drags log₁₀ x up by the factor 3.32 (computed) until it lands
+        on log₂ x, with vertical arrows at x = 2, 4, 8 showing the same ratio. The change-of-base formula writes
+        top-right. On "unknown exponent" the question 2ˣ = 10 writes; on "Which power" a horizontal dashed line at
+        height 10 meets y = 2ˣ (drawn faintly) and a vertical drop marks x = ?; during the pause the ? pulses. The
+        solution steps write: x = log₂ 10 = 1 / log₁₀ 2 ≈ 3.32, and the drop lands at 3.32 on the x-axis. On "one base"
+        the other curves dim and ln x stays; on "called e" a green e appears at the point (e, 1) on ln x. On "piece of
+        geometry" the hyperbola y = 1/x fades in faintly under everything.
+      reveal_sequence:
+        - {at_word: "share one shape", action: "three curves draw"}
+        - {at_word: "stretched upward", action: "slider stretches log₁₀ onto log₂"}
+        - {at_word: "change base", action: "change-of-base formula writes"}
+        - {at_word: "unknown exponent", action: "2ˣ = 10 writes"}
+        - {at_word: "Which power", action: "dashed line at 10 meets 2ˣ; x = ? pulses"}
+        - {at_word: "three point three two", action: "x = log₂ 10 = 1/log₁₀ 2 ≈ 3.32; the drop lands"}
+        - {at_word: "one base", action: "others dim; ln stays"}
+        - {at_word: "called e", action: "e marks (e, 1)"}
+        - {at_word: "piece of geometry", action: "1/x fades in beneath"}
+      equations: ['\log_b x=\frac{\log_{10} x}{\log_{10} b}', '2^x=10\ \Rightarrow\ x=\frac{1}{\log_{10}2}\approx3.32']
+      camera: "2D"
+      layout: L3
+      layers: [bg_solid, grid, curves_three, stretch_slider, solve_lines, equation_float, e_marker, hyperbola_ghost, progress_rail]
+    engines: {primary: manim}
+    engine_reason: "Curves, slider, solving steps and TeX are Manim."
+    retention_device: "worked example (solve for an exponent) with a pause to guess; plants L2 (why e?)"
+    interrupt: question
+    transition_out: "The hyperbola brightens while the log curves fade. Chapter card."
+    sfx_music: "None."
+
+# ======================================================================== C05 WHY E
+  - id: c05_s01
+    chapter: c05
+    title: "The area under 1/x"
+    arc_step: hook
+    duration_s: 34.50
+    duration_source: audio
+    goal: "Introduce the hyperbola area and check with numbers that areas add when endpoints multiply."
+    narration: |
+      Take the curve whose height at each point is one over x, and shade the area beneath it, starting from one.
+      [pause 0.5s] In the sixteen forties, mathematicians studying this curve noticed something about those areas.
+      [pause 0.5s] The area from one to two, added to the area from one to three, gives the area from one to six.
+      [pause 0.6s] Check the numbers: about zero point six nine and one point one zero, which together make one point
+      seven nine. [pause 0.6s] Areas that add when their endpoints multiply behave exactly like logarithms.
+    pause_after_s: 0.8
+    visual:
+      description: >
+        L3. y = 1/x in white over the grid (first quadrant). The area from 1 to a fills in teal (a GLSL fill shader:
+        a soft vertical gradient in linear light with a crisp bright edge along the curve, accent glow on the edge
+        only) as a slider at a moves. A small tag "Saint-Vincent · de Sarasa · 1647–49" fades in and out. On "one to
+        two" the region [1, 2] fills; on "one to three" a second region [1, 3] fills in a lighter teal; on "one to
+        six" the two areas fly and stack into the region [1, 6], which fills exactly. On "Check the numbers" cyan
+        readouts 0.693, 1.099 and their sum 1.792 write beside each region (computed). Column: A(1,2) + A(1,3) =
+        A(1,6), then next to it log 2 + log 3 = log 6 from chapter 3.
+      reveal_sequence:
+        - {at_word: "one over x", action: "y = 1/x draws"}
+        - {at_word: "shade the area", action: "area from 1 fills as a slider moves"}
+        - {at_word: "sixteen forties", action: "small history tag"}
+        - {at_word: "one to two", action: "region [1,2]"}
+        - {at_word: "one to three", action: "region [1,3]"}
+        - {at_word: "one to six", action: "the two areas stack into [1,6]"}
+        - {at_word: "Check the numbers", action: "readouts 0.693 + 1.099 = 1.792"}
+        - {at_word: "behave exactly like logarithms", action: "log 2 + log 3 = log 6 lights next to the area rule"}
+      equations: ['A(1,2)+A(1,3)=A(1,6)', '0.693+1.099=1.792']
+      camera: "2D"
+      layout: L3
+      layers: [bg_solid, grid, hyperbola, area_fill_shader, name_tag, readouts, equation_float, progress_rail]
+    engines: {primary: manim, secondary: [moderngl]}
+    engine_reason: "Curve and TeX are Manim; the area fill and edge glow are a GLSL shader driven by a Track."
+    retention_device: "a coincidence checked with real numbers; begins paying L2"
+    interrupt: visual
+    transition_out: "The [1,2] region lifts off to be stretched."
+    sfx_music: "A soft fill swell."
+
+  - id: c05_s02
+    chapter: c05
+    title: "Stretch and squash"
+    arc_step: insight
+    duration_s: 32.01
+    duration_source: audio
+    goal: "Explain why with stretch invariance."
+    narration: |
+      There is a simple reason for this. [pause 0.4s] Take the region from one to two and stretch it sideways by a
+      factor of three, so it now runs from three to six. [pause 0.5s] It becomes three times wider, but out there the
+      curve is three times lower, so the area does not change. [pause 0.6s] So the area from three to six matches the area from one to two, and together with one to three it makes one to six.
+      [pause 0.6s] The area under this curve is a logarithm, and the curve itself chooses its base.
+    pause_after_s: 0.8
+    visual:
+      description: >
+        L3. The region [1, 2] is cut into eight thin teal strips (Riemann strips that tile it exactly). On "stretch"
+        every strip widens ×3 (amber ×3 arrow on the x-axis) and slides to [3, 6], while its height drops ×1/3 to
+        meet the curve (magenta ÷3 arrow); an area readout stays fixed at 0.693 throughout. On "area from one to six"
+        the [1, 3] region and the moved [3, 6] region join, totalling 1.792. Column: A(3,6) = A(1,2), then the
+        general rule A(1,ab) = A(1,a) + A(1,b). On "chooses its base" a question mark sits on the x-axis to the
+        right of 2.
+      reveal_sequence:
+        - {at_word: "simple reason", action: "region [1,2] cut into strips"}
+        - {at_word: "stretch it sideways", action: "strips widen ×3 and slide to [3,6]"}
+        - {at_word: "three times lower", action: "heights drop ×1/3; readout holds at 0.693"}
+        - {at_word: "three to six", action: "A(3,6) = A(1,2) writes"}
+        - {at_word: "makes one to six", action: "[1,3] + [3,6] = [1,6]; general rule writes"}
+        - {at_word: "chooses its base", action: "a ? on the x-axis"}
+      equations: ['A(3,6)=A(1,2)', 'A(1,ab)=A(1,a)+A(1,b)']
+      camera: "2D"
+      layout: L3
+      layers: [bg_solid, grid, hyperbola, area_strips, scale_arrows, readout, equation_float, progress_rail]
+    engines: {primary: manim}
+    engine_reason: "Exact strip geometry under 1/x is Manim (each strip a pure function of the stretch Track)."
+    retention_device: "the 'why' is a single visual move the viewer can repeat"
+    interrupt: visual
+    transition_out: "The strips merge back into one region starting at 1."
+    sfx_music: "None."
+
+  - id: c05_s03
+    chapter: c05
+    title: "e, and doubling time"
+    arc_step: payoff
+    duration_s: 49.87
+    duration_source: audio
+    goal: "Find e as the point where the area is 1; define ln and its slope; worked example: doubling time. Pays L2."
+    narration: |
+      To find that base, slide the right edge outward until the area is exactly one. [pause 0.5s] The edge stops at
+      two point seven one eight two eight and so on, the number e. [pause 0.6s] This area is the natural logarithm,
+      written l n, and its slope at every point is the height of the first curve. [pause 0.5s] That is why e appears
+      wherever something grows at a rate set by its own size. [pause 0.6s] Suppose an amount grows continuously by
+      seven percent a year. [pause 0.4s] How long until it doubles? [pause 1.2s] It doubles once the rate times the
+      time reaches the natural logarithm of two, about zero point six nine. [pause 0.4s] So the doubling time is
+      zero point six nine divided by zero point zero seven, close to ten years, and that is where the rule of seventy
+      comes from.
+    pause_after_s: 2.0
+    visual:
+      description: >
+        L3. A right edge slides out from 1; the teal area and a big cyan readout climb (0.500, 0.800, 0.950 …) and the
+        edge eases to a stop where the readout reads 1.000 at x = 2.71828 (computed with brentq; a spring ease so it
+        lands exactly). The point glows green: e (C.natural, accent glow on the mark, not the letter). On "natural
+        logarithm" ln x = ∫₁ˣ dt/t writes; on "slope" y = ln x appears above the hyperbola with a tangent sliding
+        along it, its slope readout tracking the hyperbola's height at the same x (a vertical dashed link); d/dx ln x
+        = 1/x writes. On "seven percent" the frame clears to a growth curve A(t) = e^{0.07t} (C.natural) with a
+        dashed line at twice the start; on "How long" the crossing point pulses with a ? during the pause. The
+        solution writes step by step: e^{0.07t} = 2 → 0.07t = ln 2 ≈ 0.693 → t ≈ 9.9 years; the crossing drops to
+        t ≈ 9.9 on the axis. On "rule of seventy" 70 / 7 = 10 writes beside it in C.muted.
+      reveal_sequence:
+        - {at_word: "slide the right edge", action: "edge slides; readout climbs"}
+        - {at_word: "exactly one", action: "readout 1.000"}
+        - {at_word: "two point seven one eight two eight", action: "edge stops at e; green glow on the point"}
+        - {at_word: "natural logarithm", action: "ln x = ∫₁ˣ dt/t writes"}
+        - {at_word: "slope", action: "y = ln x with a sliding tangent linked to 1/x"}
+        - {at_word: "seven percent", action: "growth curve e^{0.07t} and a doubling line"}
+        - {at_word: "How long", action: "crossing pulses with ?"}
+        - {at_word: "natural logarithm of two", action: "0.07t = ln 2 ≈ 0.693"}
+        - {at_word: "close to ten years", action: "t ≈ 9.9 years; the crossing drops to the axis"}
+        - {at_word: "rule of seventy", action: "70 / 7 = 10"}
+      equations: ['\ln x=\int_1^x\frac{dt}{t}', '\ln e=1', '\frac{d}{dx}\ln x=\frac1x', 'e^{0.07t}=2\ \Rightarrow\ t=\frac{\ln 2}{0.07}\approx9.9']
+      camera: "2D; the frame stacks two plots (ln x above 1/x) with no divider, then clears for the growth curve"
+      layout: L3
+      layers: [bg_solid, grid, hyperbola, area_fill_shader, readout, e_glow, ln_curve, tangent, growth_curve, equation_float, progress_rail]
+    engines: {primary: manim, secondary: [moderngl]}
+    engine_reason: "Curves, tangent and solving steps are Manim; the area fill and e glow are GL layers."
+    retention_device: "pays L2; then a worked example (doubling time) with a pause to guess"
+    interrupt: question
+    transition_out: "The growth curve dissolves into rings spreading from a point. Chapter card."
+    sfx_music: "A soft chime as the readout reaches 1.000."
+
+# ======================================================================== C06 WORLD
+  - id: c06_s01
+    chapter: c06
+    title: "Senses"
+    arc_step: application
+    duration_s: 38.25
+    duration_source: audio
+    goal: "Perception is logarithmic; worked example: concert vs conversation in decibels. Pays L3."
+    narration: |
+      Our senses work the same way. [pause 0.4s] We notice changes in proportion, so a sound must grow by a fixed
+      factor before it seems one step louder. [pause 0.6s] That is why loudness is measured in decibels, where every
+      ten decibels means ten times the power. [pause 0.6s] So how much more powerful is a ninety decibel concert than
+      a sixty decibel conversation? [pause 1.2s] The difference is thirty decibels, which is three steps of ten, so
+      the concert carries a thousand times the power. [pause 0.6s] Star brightness works the same way, where five
+      magnitudes mean a hundred times the light.
+    pause_after_s: 0.8
+    visual:
+      description: >
+        L1. A sound field from a point source fills the frame (GLSL analytic expanding rings, C.sound, amplitude a
+        pure function of t). On "decibels" a vertical decibel ruler (C.ruler) at the right rises in even 10 dB steps
+        while the ring brightness multiplies ×10 per step (the shader's power uniform follows 10^(L/10), tone-mapped
+        so the frame never clips). Column: L = 10 log₁₀(P/P₀). On "ninety decibel concert" two markers sit on the
+        ruler: a speech icon at 60 and a speaker-stack line drawing at 90; the ? pulses during the pause. On "three
+        steps" three ×10 brackets climb from 60 to 90 and 10 × 10 × 10 = 1000 writes. On "Star brightness" the rings
+        fade into a seeded star field (C.star, sizes by magnitude 1–6) and a magnitude ruler lights, 2.512⁵ ≈ 100
+        beside it.
+      reveal_sequence:
+        - {at_word: "senses", action: "sound rings start"}
+        - {at_word: "fixed factor", action: "ring power ×10; a dB step ticks"}
+        - {at_word: "decibels", action: "dB ruler in even steps; equation writes"}
+        - {at_word: "ninety decibel concert", action: "markers at 60 and 90; ? pulses"}
+        - {at_word: "three steps of ten", action: "three ×10 brackets"}
+        - {at_word: "thousand times", action: "10 × 10 × 10 = 1000"}
+        - {at_word: "Star brightness", action: "rings fade into a star field; magnitude ruler"}
+        - {at_word: "hundred times", action: "2.512⁵ ≈ 100"}
+      equations: ['L=10\log_{10}\frac{P}{P_0}\ \mathrm{dB}', '90-60=30\ \mathrm{dB}\ \Rightarrow\ 10^{3}=1000\times', '2.512^{5}\approx100']
+      camera: "2.5D: slow push into the rings, then a drift across the star field"
+      layout: L1
+      layers: [bg_solid, sound_shader, db_ruler, markers, starfield_points, mag_ruler, equation_float, progress_rail]
+    engines: {primary: moderngl, secondary: [manim]}
+    engine_reason: "Sound rings are a per-pixel shader; the star field is a PointsLayer; rulers and TeX are Manim."
+    retention_device: "pays L3 (our ears); worked example (concert vs conversation) with a pause to guess"
+    interrupt: question
+    transition_out: "The stars sink into the ground; the ground begins to ripple."
+    sfx_music: "A tone getting louder in three even steps."
+
+  - id: c06_s02
+    chapter: c06
+    title: "Earth and water"
+    arc_step: application
+    duration_s: 35.80
+    duration_source: audio
+    goal: "Earthquake magnitude (worked: 7 vs 5) and pH (lemon vs water) as log scales."
+    narration: |
+      The same idea measures the ground and the water. [pause 0.4s] On the earthquake magnitude scale, each whole
+      step means about thirty two times more energy. [pause 0.4s] Two steps multiply that by itself, so a magnitude
+      seven releases about a thousand times more energy than a magnitude five. [pause 0.6s] Acidity is measured by
+      pH, which counts powers of ten of hydrogen ions. [pause 0.4s] So lemon juice, at about two, is roughly a hundred
+      thousand times more acidic than pure water at seven. [pause 0.5s] Both scales lay a huge range out in even steps.
+    pause_after_s: 0.8
+    visual:
+      description: >
+        L1 then L4. A pyvista off-screen terrain patch (seeded opensimplex heightfield, low sun, crisp shading, a
+        decaying ring wave travelling out from the epicentre; 180 baked frames → ArrayLayer, feathered into black). A
+        magnitude ruler 4…8 rises at the right; each step the ripple amplitude grows and a ×31.6 (computed 10^1.5) tag
+        lights in C.quake. On "Two steps" the 5 → 7 span gets two ×31.6 brackets and 31.6² ≈ 1000 writes. On
+        "Acidity" the terrain fades and a horizontal pH ruler 0…14 runs across the frame; small line-drawn glasses
+        (lemon juice at 2, coffee at 5, water at 7, baking soda at 9) slide onto it in C.acid; the 2 → 7 span gets five
+        ×10 brackets, = 10⁵. On "even steps" both rulers align one above the other.
+      reveal_sequence:
+        - {at_word: "ground", action: "terrain fades up; ripple begins"}
+        - {at_word: "thirty two times", action: "magnitude ruler; ×31.6 per step"}
+        - {at_word: "Two steps", action: "5 → 7 bracket; 31.6² ≈ 1000"}
+        - {at_word: "Acidity", action: "pH ruler 0…14"}
+        - {at_word: "lemon juice", action: "glasses slide onto the ruler"}
+        - {at_word: "hundred thousand", action: "five ×10 brackets = 10⁵"}
+        - {at_word: "even steps", action: "both rulers align"}
+      equations: ['E\propto10^{1.5M}', '31.6^{2}\approx1000', '\mathrm{pH}=-\log_{10}[\mathrm{H^+}]']
+      camera: "3D orbit over the terrain (pyvista), then 2D"
+      layout: L4
+      layers: [bg_solid, terrain_pyvista, mag_ruler, ph_ruler, glass_drawings, equation_float, progress_rail]
+    engines: {primary: pyvista, secondary: [manim, skia-python]}
+    engine_reason: "Lit 3D terrain is pyvista; rulers and TeX are Manim; glass line art is skia."
+    retention_device: "worked examples (magnitude 7 vs 5, lemon vs water)"
+    interrupt: visual
+    transition_out: "The rulers rotate upright to become the axes of a plot."
+    sfx_music: "A low rumble that grows per step."
+
+  - id: c06_s03
+    chapter: c06
+    title: "Straight lines and the scale of everything"
+    arc_step: payoff
+    duration_s: 36.48
+    duration_source: audio
+    goal: "Power laws become straight lines (Kepler's third law); atom to galaxy on one ruler."
+    narration: |
+      Logarithms also reveal hidden laws. [pause 0.4s] Johannes Kepler found a
+      rule linking each planet's distance from the Sun to the time it takes to go around. [pause 0.5s] Plotted
+      plainly, the planets lie on a bending curve, but take the logarithm of both quantities and they fall on a
+      straight line, rising three steps for every two. [pause 0.6s] That straight line is the mark of a power law. [pause 0.6s] And with logarithmic steps, an atom, a
+      person, the Earth and a whole galaxy can share one ruler, about thirty one powers of ten from end to end.
+    pause_after_s: 2.0
+    visual:
+      description: >
+        L3. Linear axes: distance from the Sun (AU) vs period (years); six planets Mercury…Saturn as dots in
+        C.planet (real values, logdata). Small tag "Kepler · 1619". On "bending curve" a fitted curve
+        T = a^1.5 draws through them. On "take the logarithm" both axes animate to log scales (each tick moves to its
+        log position, m.redraw per frame) and the points glide onto a straight line of slope 1.500 (fitted, shown
+        as a rise/run triangle 3 over 2 in value/steps). Column: T² ∝ a³ ⇒ log T = 3/2 log a + c. On "atom" the
+        plot dissolves into one long horizontal log ruler from 10⁻¹⁰ m to 10²¹ m; the camera pans along it (2.5D
+        parallax) past an atom (line orbitals), a person silhouette, the Earth (pyvista-lit sphere), and a spiral
+        galaxy (seeded points, PointsLayer), each sitting at its power of ten. The span reads 31 powers of ten.
+      reveal_sequence:
+        - {at_word: "Kepler", action: "planets on linear axes; small tag"}
+        - {at_word: "bending curve", action: "T = a^1.5 draws through them"}
+        - {at_word: "take the logarithm", action: "axes become log scales; points glide onto a line"}
+        - {at_word: "three steps for every two", action: "rise/run triangle 3 over 2"}
+        - {at_word: "power law", action: "log T = 3/2 log a + c writes"}
+        - {at_word: "atom", action: "plot dissolves into the atom-to-galaxy ruler; pan begins"}
+        - {at_word: "galaxy", action: "galaxy at 10²¹ m"}
+        - {at_word: "thirty one powers", action: "span bracket, hold"}
+      equations: ['T^2\propto a^3', '\log T=\tfrac32\log a+c']
+      camera: "2D for the plot, then a 2.5D parallax pan along the ruler"
+      layout: L3
+      layers: [bg_solid, axes_rescaling, planet_points, fit_curve, slope_triangle, equation_float, scale_ruler, scale_objects, galaxy_points, earth_pyvista, progress_rail]
+    engines: {primary: manim, secondary: [pyvista, moderngl]}
+    engine_reason: "Axis rescaling and the fit are Manim; Earth is a pyvista raster; galaxy is a PointsLayer."
+    retention_device: "two payoffs: a hidden law becomes a line, and everything fits one ruler"
+    interrupt: visual
+    transition_out: "The ruler folds up into a staircase of six steps. Rail completes."
+    sfx_music: "A slow wide pad during the pan."
+
+# ======================================================================== OUTRO
+  - id: out_s01
+    chapter: outro
+    title: "What we covered"
+    arc_step: recap
+    duration_s: 35.79
+    duration_source: audio
+    goal: "Recap every chapter as one lit step of the staircase."
+    narration: |
+      So a logarithm is a count of multiplications, the number of steps up a staircase. [pause 0.6s] Because steps
+      add when numbers multiply, products become sums, unknown exponents can be solved, and a slide rule can
+      multiply. [pause 0.6s] Its graph is the exponential seen in a mirror. [pause 0.5s] The area under one over x
+      gives the natural logarithm, and the point where that area reaches one is e. [pause 0.6s] And because we sense
+      the world in ratios, logarithms measure sound, starlight and earthquakes, from atoms to galaxies.
+    pause_after_s: 0.8
+    visual:
+      description: >
+        L2. A six-step staircase climbs diagonally across the frame. Each step lights in its chapter hue as its
+        lesson is spoken, with a tiny live thumbnail of that chapter's picture resting on the tread (precomps, no
+        frame, feathered) and one key word in CM sans beneath: count · add · ruler · mirror · e · scales. Each
+        step's equation fades in beside its thumbnail and out again (log₂ 8 = 3, log(ab) = log a + log b, log 2 +
+        log 3 = log 6, y = log₂ x, ln e = 1, log T = 3/2 log a + c). The progress rail fills to the end and fades.
+      reveal_sequence:
+        - {at_word: "count of multiplications", action: "step 1 lights: staircase thumbnail, count"}
+        - {at_word: "products become sums", action: "step 2: add"}
+        - {at_word: "slide rule", action: "step 3: ruler"}
+        - {at_word: "mirror", action: "step 4: mirror"}
+        - {at_word: "is e", action: "step 5: e"}
+        - {at_word: "galaxies", action: "step 6: scales; rail completes and fades"}
+      equations: ['\log_2 8=3', '\log(ab)=\log a+\log b', '\ln e=1']
+      camera: "2.5D: slow climb along the staircase"
+      layout: L2
+      layers: [bg_solid, staircase_six, chapter_thumbnails, keywords, equations_transient, progress_rail]
+    engines: {primary: manim, secondary: [moderngl]}
+    engine_reason: "Staircase and TeX are Manim; thumbnails are precomps composited by the GPU."
+    retention_device: "summary as a single climbing picture; each lesson tied to its image"
+    interrupt: visual
+    transition_out: "The camera rises above the staircase; Napier's page fades in beneath it."
+    sfx_music: "A soft rising tone per step."
+
+  - id: out_s02
+    chapter: outro
+    title: "Napier's question"
+    arc_step: close
+    duration_s: 25.95
+    duration_source: audio
+    goal: "Close the loop on Napier and leave the viewer with the one question."
+    narration: |
+      Napier spent twenty years on his tables so that other people could spend less time on arithmetic.
+      [pause 0.6s] Four centuries later, his idea is still doing that work. [pause 0.8s] So the next time you see a logarithm, read it as a quiet question: how many
+      times did we multiply? [pause 0.6s] Thanks for watching.
+    pause_after_s: 6.0
+    visual:
+      description: >
+        L1. Napier's page (the in_s01 skia raster) under the staircase; the page's columns slide together into a
+        log ruler, which shrinks into the single line log₂ 8 = 3 at the centre. On "how many times" the 3 lights
+        cyan. On "Thanks" the title "What Logarithms Actually Are" in small caps fades in above, with a thin rule.
+        Hold 6 s on a clean frame for the end-screen elements (right two thirds kept empty).
+      reveal_sequence:
+        - {at_word: "twenty years", action: "Napier's page under the staircase"}
+        - {at_word: "Four centuries", action: "columns slide into a log ruler"}
+        - {at_word: "quiet question", action: "the ruler becomes log₂ 8 = 3"}
+        - {at_word: "how many", action: "the 3 lights"}
+        - {at_word: "Thanks", action: "title fades in; end-screen hold"}
+      equations: ['\log_2 8=3']
+      camera: "2.5D slow pull-back"
+      layout: L1
+      layers: [bg_solid, napier_pages_skia, staircase, ruler, final_equation, title]
+    engines: {primary: manim, secondary: [skia-python]}
+    engine_reason: "Reuses the intro's skia page; the morph into the equation is Manim."
+    retention_device: "closes L4 (Napier) and returns to the opening question"
+    interrupt: story
+    transition_out: "End screen."
+    sfx_music: "Room tone; a final soft tone on the 3."

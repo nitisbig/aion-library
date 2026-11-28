@@ -1,0 +1,183 @@
+{
+  "voice_id": "s3TPKV1kjDlVtZbl4Ksh",
+  "model_id": "eleven_v4",
+  "output_format": "mp3_44100_128",
+  "chunking": "scene",
+  "stitch": true,
+  "base_seed": 7,
+  "settings": {
+    "stability": 0.55,
+    "similarity_boost": 0.75,
+    "speed": 0.9
+  },
+  "pacing": {
+    "snap": true,
+    "lead_in": 1.0,
+    "paragraph_gap": 0.0,
+    "section_gap": 0.0,
+    "tail": 6.0
+  },
+  "aliases": {
+    "Schr\u00f6dinger": "Shroh-ding-er",
+    "Navier": "Nav-yay",
+    "Fourier": "Foo-ree-ay",
+    "Scholes": "Sholes",
+    "Cauchy": "Koh-shee",
+    "LIGO": "Lie-go",
+    "WiFi": "Why-fy",
+    "\u00d8rsted": "Er-sted"
+  },
+  "notes": [
+    "eleven_v4 ignores voice_settings.speed; it is kept only because it is part of the cache key.",
+    "Each scene is one request with the neighbouring scenes sent as previous_text / next_text.",
+    "Pauses are not sent to the TTS; they are inserted afterwards by the free pacing pass."
+  ],
+  "measured": {
+    "words": 2247,
+    "runtime_s": 892.5,
+    "wpm_overall": 151.1,
+    "wpm_within_scenes": 162.9
+  },
+  "per_scene_requests": {
+    "in_s01": {
+      "seed": 7,
+      "take": 0
+    },
+    "in_s02": {
+      "seed": 7,
+      "take": 0
+    },
+    "in_s03": {
+      "seed": 7,
+      "take": 0
+    },
+    "c01_s01": {
+      "seed": 7,
+      "take": 0
+    },
+    "c01_s02": {
+      "seed": 7,
+      "take": 0
+    },
+    "c01_s03": {
+      "seed": 7,
+      "take": 0
+    },
+    "c02_s01": {
+      "seed": 7,
+      "take": 0
+    },
+    "c02_s02": {
+      "seed": 7,
+      "take": 0
+    },
+    "c02_s03": {
+      "seed": 7,
+      "take": 0
+    },
+    "c03_s01": {
+      "seed": 7,
+      "take": 0
+    },
+    "c03_s02": {
+      "seed": 7,
+      "take": 0
+    },
+    "c03_s03": {
+      "seed": 7,
+      "take": 0
+    },
+    "c04_s01": {
+      "seed": 7,
+      "take": 0
+    },
+    "c04_s02": {
+      "seed": 7,
+      "take": 0
+    },
+    "c04_s03": {
+      "seed": 7,
+      "take": 0
+    },
+    "c05_s01": {
+      "seed": 7,
+      "take": 0
+    },
+    "c05_s02": {
+      "seed": 7,
+      "take": 0
+    },
+    "c05_s03": {
+      "seed": 7,
+      "take": 0
+    },
+    "c06_s01": {
+      "seed": 7,
+      "take": 0
+    },
+    "c06_s02": {
+      "seed": 7,
+      "take": 0
+    },
+    "c06_s03": {
+      "seed": 7,
+      "take": 0
+    },
+    "c07_s01": {
+      "seed": 7,
+      "take": 0
+    },
+    "c07_s02": {
+      "seed": 7,
+      "take": 0
+    },
+    "c07_s03": {
+      "seed": 7,
+      "take": 0
+    },
+    "c08_s01": {
+      "seed": 7,
+      "take": 0
+    },
+    "c08_s02": {
+      "seed": 7,
+      "take": 0
+    },
+    "c08_s03": {
+      "seed": 7,
+      "take": 0
+    },
+    "c09_s01": {
+      "seed": 7,
+      "take": 0
+    },
+    "c09_s02": {
+      "seed": 7,
+      "take": 0
+    },
+    "c09_s03": {
+      "seed": 7,
+      "take": 0
+    },
+    "c10_s01": {
+      "seed": 7,
+      "take": 0
+    },
+    "c10_s02": {
+      "seed": 7,
+      "take": 0
+    },
+    "c10_s03": {
+      "seed": 7,
+      "take": 0
+    },
+    "out_s01": {
+      "seed": 7,
+      "take": 0
+    },
+    "out_s02": {
+      "seed": 7,
+      "take": 0
+    }
+  }
+}

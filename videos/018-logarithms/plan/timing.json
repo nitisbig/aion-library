@@ -1,0 +1,1150 @@
+{
+ "source": "audio",
+ "total_s": 747.92,
+ "words": 1883,
+ "wpm_overall": 151.1,
+ "chapters": [
+  {
+   "id": "intro",
+   "title": "Intro",
+   "start": 0.0,
+   "end": 72.16,
+   "duration_s": 72.16,
+   "target_s": 80,
+   "words": 191
+  },
+  {
+   "id": "c01",
+   "title": "Counting Multiplications",
+   "start": 72.16,
+   "end": 179.39,
+   "duration_s": 107.23,
+   "target_s": 90,
+   "words": 261
+  },
+  {
+   "id": "c02",
+   "title": "Multiplication Becomes Addition",
+   "start": 179.39,
+   "end": 277.225,
+   "duration_s": 97.84,
+   "target_s": 100,
+   "words": 256
+  },
+  {
+   "id": "c03",
+   "title": "The Slide Rule",
+   "start": 277.225,
+   "end": 360.545,
+   "duration_s": 83.32,
+   "target_s": 90,
+   "words": 220
+  },
+  {
+   "id": "c04",
+   "title": "The Curve",
+   "start": 360.545,
+   "end": 459.275,
+   "duration_s": 98.73,
+   "target_s": 95,
+   "words": 241
+  },
+  {
+   "id": "c05",
+   "title": "Why e",
+   "start": 459.275,
+   "end": 575.645,
+   "duration_s": 116.37,
+   "target_s": 120,
+   "words": 310
+  },
+  {
+   "id": "c06",
+   "title": "A World in Logarithms",
+   "start": 575.645,
+   "end": 686.175,
+   "duration_s": 110.53,
+   "target_s": 100,
+   "words": 272
+  },
+  {
+   "id": "outro",
+   "title": "Outro",
+   "start": 686.175,
+   "end": 747.92,
+   "duration_s": 61.75,
+   "target_s": 60,
+   "words": 132
+  }
+ ],
+ "scenes": [
+  {
+   "id": "in_s01",
+   "chapter": "intro",
+   "start": 0.0,
+   "end": 22.975,
+   "speech_start": 1.0,
+   "speech_end": 22.55,
+   "words": 55,
+   "cues": [
+    {
+     "at_word": "sixteen fourteen",
+     "t": 1.24,
+     "word_index": 1
+    },
+    {
+     "at_word": "John Napier",
+     "t": 2.68,
+     "word_index": 3
+    },
+    {
+     "at_word": "twenty years",
+     "t": 5.72,
+     "word_index": 14
+    },
+    {
+     "at_word": "long multiplication",
+     "t": 13.36,
+     "word_index": 32
+    },
+    {
+     "at_word": "into an addition",
+     "t": 14.56,
+     "word_index": 34
+    },
+    {
+     "at_word": "logarithms",
+     "t": 21.59,
+     "word_index": 54
+    }
+   ]
+  },
+  {
+   "id": "in_s02",
+   "chapter": "intro",
+   "start": 22.975,
+   "end": 51.44,
+   "speech_start": 23.4,
+   "speech_end": 50.75,
+   "words": 80,
+   "cues": [
+    {
+     "at_word": "That idea",
+     "t": 23.4,
+     "word_index": 55
+    },
+    {
+     "at_word": "how many times",
+     "t": 29.02,
+     "word_index": 70
+    },
+    {
+     "at_word": "ruler",
+     "t": 31.393,
+     "word_index": 78
+    },
+    {
+     "at_word": "mirror image",
+     "t": 34.62,
+     "word_index": 87
+    },
+    {
+     "at_word": "area",
+     "t": 38.5,
+     "word_index": 96
+    },
+    {
+     "at_word": "number e",
+     "t": 41.14,
+     "word_index": 105
+    },
+    {
+     "at_word": "ears",
+     "t": 44.42,
+     "word_index": 115
+    },
+    {
+     "at_word": "atom",
+     "t": 48.36,
+     "word_index": 127
+    }
+   ]
+  },
+  {
+   "id": "in_s03",
+   "chapter": "intro",
+   "start": 51.44,
+   "end": 72.16,
+   "speech_start": 52.13,
+   "speech_end": 71.09,
+   "words": 56,
+   "cues": [
+    {
+     "at_word": "button",
+     "t": 53.88,
+     "word_index": 142
+    },
+    {
+     "at_word": "rules",
+     "t": 56.04,
+     "word_index": 148
+    },
+    {
+     "at_word": "step by step",
+     "t": 60.78,
+     "word_index": 161
+    },
+    {
+     "at_word": "how many times",
+     "t": 69.2,
+     "word_index": 183
+    }
+   ]
+  },
+  {
+   "id": "c01_s01",
+   "chapter": "c01",
+   "start": 72.16,
+   "end": 102.555,
+   "speech_start": 73.23,
+   "speech_end": 101.93,
+   "words": 72,
+   "cues": [
+    {
+     "at_word": "divide",
+     "t": 74.96,
+     "word_index": 198
+    },
+    {
+     "at_word": "two cells",
+     "t": 77.84,
+     "word_index": 204
+    },
+    {
+     "at_word": "four",
+     "t": 80.08,
+     "word_index": 210
+    },
+    {
+     "at_word": "ten divisions",
+     "t": 86.52,
+     "word_index": 223
+    },
+    {
+     "at_word": "turn",
+     "t": 91.12,
+     "word_index": 234
+    },
+    {
+     "at_word": "how many divisions",
+     "t": 95.94,
+     "word_index": 248
+    },
+    {
+     "at_word": "logarithm",
+     "t": 101.46,
+     "word_index": 262
+    }
+   ]
+  },
+  {
+   "id": "c01_s02",
+   "chapter": "c01",
+   "start": 102.555,
+   "end": 128.625,
+   "speech_start": 103.18,
+   "speech_end": 127.95,
+   "words": 70,
+   "cues": [
+    {
+     "at_word": "staircase",
+     "t": 104.34,
+     "word_index": 269
+    },
+    {
+     "at_word": "multiplication by two",
+     "t": 107.66,
+     "word_index": 276
+    },
+    {
+     "at_word": "height",
+     "t": 109.66,
+     "word_index": 281
+    },
+    {
+     "at_word": "Ten twos",
+     "t": 112.68,
+     "word_index": 288
+    },
+    {
+     "at_word": "logarithm",
+     "t": 117.32,
+     "word_index": 303
+    },
+    {
+     "at_word": "same fact",
+     "t": 123.6,
+     "word_index": 318
+    },
+    {
+     "at_word": "number of steps",
+     "t": 125.56,
+     "word_index": 324
+    },
+    {
+     "at_word": "from the result",
+     "t": 127.28,
+     "word_index": 330
+    }
+   ]
+  },
+  {
+   "id": "c01_s03",
+   "chapter": "c01",
+   "start": 128.625,
+   "end": 179.39,
+   "speech_start": 129.3,
+   "speech_end": 178.15,
+   "words": 119,
+   "cues": [
+    {
+     "at_word": "size of each step",
+     "t": 130.44,
+     "word_index": 337
+    },
+    {
+     "at_word": "one thousand",
+     "t": 137.92,
+     "word_index": 354
+    },
+    {
+     "at_word": "counts the zeros",
+     "t": 142.64,
+     "word_index": 366
+    },
+    {
+     "at_word": "Try",
+     "t": 144.75,
+     "word_index": 369
+    },
+    {
+     "at_word": "Three times three",
+     "t": 151.68,
+     "word_index": 383
+    },
+    {
+     "at_word": "is four",
+     "t": 160.38,
+     "word_index": 407
+    },
+    {
+     "at_word": "room between",
+     "t": 163.42,
+     "word_index": 413
+    },
+    {
+     "at_word": "Six",
+     "t": 165.4,
+     "word_index": 417
+    },
+    {
+     "at_word": "two point five eight",
+     "t": 172.38,
+     "word_index": 435
+    },
+    {
+     "at_word": "smooths into a curve",
+     "t": 176.98,
+     "word_index": 448
+    }
+   ]
+  },
+  {
+   "id": "c02_s01",
+   "chapter": "c02",
+   "start": 179.39,
+   "end": 210.515,
+   "speech_start": 180.63,
+   "speech_end": 209.86,
+   "words": 81,
+   "cues": [
+    {
+     "at_word": "powers of two",
+     "t": 184.82,
+     "word_index": 462
+    },
+    {
+     "at_word": "steps",
+     "t": 187.46,
+     "word_index": 472
+    },
+    {
+     "at_word": "eight by thirty two",
+     "t": 190.92,
+     "word_index": 480
+    },
+    {
+     "at_word": "Add them",
+     "t": 195.51,
+     "word_index": 491
+    },
+    {
+     "at_word": "read across",
+     "t": 197.24,
+     "word_index": 497
+    },
+    {
+     "at_word": "climbing three steps",
+     "t": 203.12,
+     "word_index": 514
+    },
+    {
+     "at_word": "addition",
+     "t": 209.36,
+     "word_index": 532
+    }
+   ]
+  },
+  {
+   "id": "c02_s02",
+   "chapter": "c02",
+   "start": 210.515,
+   "end": 239.905,
+   "speech_start": 211.17,
+   "speech_end": 239.26,
+   "words": 78,
+   "cues": [
+    {
+     "at_word": "main rule",
+     "t": 211.92,
+     "word_index": 536
+    },
+    {
+     "at_word": "sum of the logarithms",
+     "t": 215.04,
+     "word_index": 545
+    },
+    {
+     "at_word": "walks back",
+     "t": 221.24,
+     "word_index": 558
+    },
+    {
+     "at_word": "difference",
+     "t": 225.25,
+     "word_index": 571
+    },
+    {
+     "at_word": "repeats the same climb",
+     "t": 228.42,
+     "word_index": 578
+    },
+    {
+     "at_word": "many copies",
+     "t": 233.18,
+     "word_index": 592
+    },
+    {
+     "at_word": "different side",
+     "t": 238.793,
+     "word_index": 609
+    }
+   ]
+  },
+  {
+   "id": "c02_s03",
+   "chapter": "c02",
+   "start": 239.905,
+   "end": 277.225,
+   "speech_start": 240.55,
+   "speech_end": 275.96,
+   "words": 97,
+   "cues": [
+    {
+     "at_word": "hard questions",
+     "t": 241.62,
+     "word_index": 614
+    },
+    {
+     "at_word": "hundred twos",
+     "t": 247.62,
+     "word_index": 630
+    },
+    {
+     "at_word": "power rule",
+     "t": 253.38,
+     "word_index": 642
+    },
+    {
+     "at_word": "zero point three zero one",
+     "t": 261.2,
+     "word_index": 663
+    },
+    {
+     "at_word": "thirty point one",
+     "t": 264.12,
+     "word_index": 673
+    },
+    {
+     "at_word": "between ten to the thirty",
+     "t": 267.12,
+     "word_index": 680
+    },
+    {
+     "at_word": "thirty one digits",
+     "t": 270.6,
+     "word_index": 694
+    },
+    {
+     "at_word": "twenty years",
+     "t": 274.52,
+     "word_index": 704
+    }
+   ]
+  },
+  {
+   "id": "c03_s01",
+   "chapter": "c03",
+   "start": 277.225,
+   "end": 306.9,
+   "speech_start": 278.49,
+   "speech_end": 306.22,
+   "words": 79,
+   "cues": [
+    {
+     "at_word": "wooden rule",
+     "t": 281.907,
+     "word_index": 716
+    },
+    {
+     "at_word": "distance from the start",
+     "t": 285.987,
+     "word_index": 726
+    },
+    {
+     "at_word": "zero point three zero one",
+     "t": 294.16,
+     "word_index": 750
+    },
+    {
+     "at_word": "crowd together",
+     "t": 300.0,
+     "word_index": 767
+    },
+    {
+     "at_word": "side by side",
+     "t": 304.06,
+     "word_index": 778
+    }
+   ]
+  },
+  {
+   "id": "c03_s02",
+   "chapter": "c03",
+   "start": 306.9,
+   "end": 335.395,
+   "speech_start": 307.58,
+   "speech_end": 334.77,
+   "words": 73,
+   "cues": [
+    {
+     "at_word": "slide the upper scale",
+     "t": 309.59,
+     "word_index": 792
+    },
+    {
+     "at_word": "three",
+     "t": 315.96,
+     "word_index": 809
+    },
+    {
+     "at_word": "six",
+     "t": 319.32,
+     "word_index": 822
+    },
+    {
+     "at_word": "added end to end",
+     "t": 322.08,
+     "word_index": 828
+    },
+    {
+     "at_word": "multiplies",
+     "t": 326.4,
+     "word_index": 841
+    },
+    {
+     "at_word": "Engineers",
+     "t": 328.57,
+     "word_index": 844
+    },
+    {
+     "at_word": "bridges",
+     "t": 332.18,
+     "word_index": 854
+    }
+   ]
+  },
+  {
+   "id": "c03_s03",
+   "chapter": "c03",
+   "start": 335.395,
+   "end": 360.545,
+   "speech_start": 336.02,
+   "speech_end": 359.27,
+   "words": 68,
+   "cues": [
+    {
+     "at_word": "one to ten",
+     "t": 336.66,
+     "word_index": 862
+    },
+    {
+     "at_word": "ten to a hundred",
+     "t": 339.62,
+     "word_index": 872
+    },
+    {
+     "at_word": "a hundred to a thousand",
+     "t": 341.46,
+     "word_index": 878
+    },
+    {
+     "at_word": "piano",
+     "t": 346.9,
+     "word_index": 893
+    },
+    {
+     "at_word": "same width",
+     "t": 352.14,
+     "word_index": 908
+    },
+    {
+     "at_word": "logarithmic scale",
+     "t": 356.22,
+     "word_index": 919
+    },
+    {
+     "at_word": "ears",
+     "t": 358.34,
+     "word_index": 924
+    }
+   ]
+  },
+  {
+   "id": "c04_s01",
+   "chapter": "c04",
+   "start": 360.545,
+   "end": 386.875,
+   "speech_start": 361.82,
+   "speech_end": 386.21,
+   "words": 63,
+   "cues": [
+    {
+     "at_word": "two to the x",
+     "t": 363.06,
+     "word_index": 933
+    },
+    {
+     "at_word": "every step",
+     "t": 365.3,
+     "word_index": 940
+    },
+    {
+     "at_word": "three to eight",
+     "t": 371.88,
+     "word_index": 954
+    },
+    {
+     "at_word": "eight back to three",
+     "t": 374.2,
+     "word_index": 960
+    },
+    {
+     "at_word": "reflected",
+     "t": 377.76,
+     "word_index": 971
+    },
+    {
+     "at_word": "swaps",
+     "t": 381.6,
+     "word_index": 978
+    },
+    {
+     "at_word": "slow rise",
+     "t": 385.36,
+     "word_index": 989
+    }
+   ]
+  },
+  {
+   "id": "c04_s02",
+   "chapter": "c04",
+   "start": 386.875,
+   "end": 411.355,
+   "speech_start": 387.54,
+   "speech_end": 410.79,
+   "words": 57,
+   "cues": [
+    {
+     "at_word": "very slow",
+     "t": 388.8,
+     "word_index": 994
+    },
+    {
+     "at_word": "million",
+     "t": 390.96,
+     "word_index": 999
+    },
+    {
+     "at_word": "billion",
+     "t": 395.733,
+     "word_index": 1011
+    },
+    {
+     "at_word": "digits",
+     "t": 403.16,
+     "word_index": 1031
+    },
+    {
+     "at_word": "never stops climbing",
+     "t": 405.84,
+     "word_index": 1036
+    }
+   ]
+  },
+  {
+   "id": "c04_s03",
+   "chapter": "c04",
+   "start": 411.355,
+   "end": 459.275,
+   "speech_start": 411.92,
+   "speech_end": 458.03,
+   "words": 121,
+   "cues": [
+    {
+     "at_word": "share one shape",
+     "t": 414.08,
+     "word_index": 1053
+    },
+    {
+     "at_word": "stretched upward",
+     "t": 419.12,
+     "word_index": 1067
+    },
+    {
+     "at_word": "change base",
+     "t": 424.12,
+     "word_index": 1078
+    },
+    {
+     "at_word": "unknown exponent",
+     "t": 430.88,
+     "word_index": 1099
+    },
+    {
+     "at_word": "Which power",
+     "t": 432.91,
+     "word_index": 1101
+    },
+    {
+     "at_word": "three point three two",
+     "t": 442.96,
+     "word_index": 1126
+    },
+    {
+     "at_word": "one base",
+     "t": 448.36,
+     "word_index": 1138
+    },
+    {
+     "at_word": "called e",
+     "t": 453.68,
+     "word_index": 1155
+    },
+    {
+     "at_word": "piece of geometry",
+     "t": 457.16,
+     "word_index": 1166
+    }
+   ]
+  },
+  {
+   "id": "c05_s01",
+   "chapter": "c05",
+   "start": 459.275,
+   "end": 493.77,
+   "speech_start": 460.52,
+   "speech_end": 493.19,
+   "words": 86,
+   "cues": [
+    {
+     "at_word": "one over x",
+     "t": 463.08,
+     "word_index": 1178
+    },
+    {
+     "at_word": "shade the area",
+     "t": 464.52,
+     "word_index": 1182
+    },
+    {
+     "at_word": "sixteen forties",
+     "t": 468.34,
+     "word_index": 1192
+    },
+    {
+     "at_word": "one to two",
+     "t": 474.8,
+     "word_index": 1206
+    },
+    {
+     "at_word": "one to three",
+     "t": 476.88,
+     "word_index": 1214
+    },
+    {
+     "at_word": "one to six",
+     "t": 478.96,
+     "word_index": 1221
+    },
+    {
+     "at_word": "Check the numbers",
+     "t": 480.77,
+     "word_index": 1224
+    },
+    {
+     "at_word": "behave exactly like logarithms",
+     "t": 491.28,
+     "word_index": 1251
+    }
+   ]
+  },
+  {
+   "id": "c05_s02",
+   "chapter": "c05",
+   "start": 493.77,
+   "end": 525.78,
+   "speech_start": 494.35,
+   "speech_end": 525.07,
+   "words": 91,
+   "cues": [
+    {
+     "at_word": "simple reason",
+     "t": 494.88,
+     "word_index": 1258
+    },
+    {
+     "at_word": "stretch it sideways",
+     "t": 499.04,
+     "word_index": 1270
+    },
+    {
+     "at_word": "three times lower",
+     "t": 508.06,
+     "word_index": 1297
+    },
+    {
+     "at_word": "three to six",
+     "t": 512.94,
+     "word_index": 1310
+    },
+    {
+     "at_word": "makes one to six",
+     "t": 517.98,
+     "word_index": 1327
+    },
+    {
+     "at_word": "chooses its base",
+     "t": 524.1,
+     "word_index": 1343
+    }
+   ]
+  },
+  {
+   "id": "c05_s03",
+   "chapter": "c05",
+   "start": 525.78,
+   "end": 575.645,
+   "speech_start": 526.49,
+   "speech_end": 574.38,
+   "words": 133,
+   "cues": [
+    {
+     "at_word": "slide the right edge",
+     "t": 527.86,
+     "word_index": 1350
+    },
+    {
+     "at_word": "exactly one",
+     "t": 530.5,
+     "word_index": 1359
+    },
+    {
+     "at_word": "two point seven one eight two eight",
+     "t": 533.56,
+     "word_index": 1365
+    },
+    {
+     "at_word": "natural logarithm",
+     "t": 539.68,
+     "word_index": 1382
+    },
+    {
+     "at_word": "slope",
+     "t": 542.72,
+     "word_index": 1389
+    },
+    {
+     "at_word": "seven percent",
+     "t": 554.38,
+     "word_index": 1422
+    },
+    {
+     "at_word": "How long",
+     "t": 556.11,
+     "word_index": 1426
+    },
+    {
+     "at_word": "natural logarithm of two",
+     "t": 561.9,
+     "word_index": 1441
+    },
+    {
+     "at_word": "close to ten years",
+     "t": 570.81,
+     "word_index": 1465
+    },
+    {
+     "at_word": "rule of seventy",
+     "t": 573.1,
+     "word_index": 1474
+    }
+   ]
+  },
+  {
+   "id": "c06_s01",
+   "chapter": "c06",
+   "start": 575.645,
+   "end": 613.89,
+   "speech_start": 576.91,
+   "speech_end": 613.28,
+   "words": 93,
+   "cues": [
+    {
+     "at_word": "senses",
+     "t": 577.14,
+     "word_index": 1480
+    },
+    {
+     "at_word": "fixed factor",
+     "t": 583.58,
+     "word_index": 1497
+    },
+    {
+     "at_word": "decibels",
+     "t": 589.34,
+     "word_index": 1512
+    },
+    {
+     "at_word": "ninety decibel concert",
+     "t": 596.06,
+     "word_index": 1529
+    },
+    {
+     "at_word": "three steps of ten",
+     "t": 603.38,
+     "word_index": 1544
+    },
+    {
+     "at_word": "thousand times",
+     "t": 606.327,
+     "word_index": 1553
+    },
+    {
+     "at_word": "Star brightness",
+     "t": 608.52,
+     "word_index": 1557
+    },
+    {
+     "at_word": "hundred times",
+     "t": 612.34,
+     "word_index": 1568
+    }
+   ]
+  },
+  {
+   "id": "c06_s02",
+   "chapter": "c06",
+   "start": 613.89,
+   "end": 649.69,
+   "speech_start": 614.5,
+   "speech_end": 649.04,
+   "words": 87,
+   "cues": [
+    {
+     "at_word": "ground",
+     "t": 616.1,
+     "word_index": 1577
+    },
+    {
+     "at_word": "thirty two times",
+     "t": 621.7,
+     "word_index": 1591
+    },
+    {
+     "at_word": "Two steps",
+     "t": 624.34,
+     "word_index": 1596
+    },
+    {
+     "at_word": "Acidity",
+     "t": 632.93,
+     "word_index": 1617
+    },
+    {
+     "at_word": "lemon juice",
+     "t": 639.02,
+     "word_index": 1631
+    },
+    {
+     "at_word": "hundred thousand",
+     "t": 641.5,
+     "word_index": 1639
+    },
+    {
+     "at_word": "even steps",
+     "t": 648.32,
+     "word_index": 1657
+    }
+   ]
+  },
+  {
+   "id": "c06_s03",
+   "chapter": "c06",
+   "start": 649.69,
+   "end": 686.175,
+   "speech_start": 650.34,
+   "speech_end": 684.89,
+   "words": 92,
+   "cues": [
+    {
+     "at_word": "Kepler",
+     "t": 654.24,
+     "word_index": 1665
+    },
+    {
+     "at_word": "bending curve",
+     "t": 662.9,
+     "word_index": 1691
+    },
+    {
+     "at_word": "take the logarithm",
+     "t": 664.5,
+     "word_index": 1694
+    },
+    {
+     "at_word": "three steps for every two",
+     "t": 668.94,
+     "word_index": 1708
+    },
+    {
+     "at_word": "power law",
+     "t": 673.42,
+     "word_index": 1721
+    },
+    {
+     "at_word": "atom",
+     "t": 677.14,
+     "word_index": 1728
+    },
+    {
+     "at_word": "galaxy",
+     "t": 679.86,
+     "word_index": 1736
+    },
+    {
+     "at_word": "thirty one powers",
+     "t": 682.58,
+     "word_index": 1742
+    }
+   ]
+  },
+  {
+   "id": "out_s01",
+   "chapter": "outro",
+   "start": 686.175,
+   "end": 721.965,
+   "speech_start": 687.46,
+   "speech_end": 721.35,
+   "words": 82,
+   "cues": [
+    {
+     "at_word": "count of multiplications",
+     "t": 688.9,
+     "word_index": 1756
+    },
+    {
+     "at_word": "products become sums",
+     "t": 696.32,
+     "word_index": 1772
+    },
+    {
+     "at_word": "slide rule",
+     "t": 700.38,
+     "word_index": 1782
+    },
+    {
+     "at_word": "mirror",
+     "t": 705.22,
+     "word_index": 1794
+    },
+    {
+     "at_word": "is e",
+     "t": 712.24,
+     "word_index": 1813
+    },
+    {
+     "at_word": "galaxies",
+     "t": 720.72,
+     "word_index": 1832
+    }
+   ]
+  },
+  {
+   "id": "out_s02",
+   "chapter": "outro",
+   "start": 721.965,
+   "end": 747.92,
+   "speech_start": 722.58,
+   "speech_end": 742.0,
+   "words": 50,
+   "cues": [
+    {
+     "at_word": "twenty years",
+     "t": 723.52,
+     "word_index": 1835
+    },
+    {
+     "at_word": "Four centuries",
+     "t": 729.16,
+     "word_index": 1850
+    },
+    {
+     "at_word": "quiet question",
+     "t": 736.76,
+     "word_index": 1872
+    },
+    {
+     "at_word": "how many",
+     "t": 738.17,
+     "word_index": 1874
+    },
+    {
+     "at_word": "Thanks",
+     "t": 740.88,
+     "word_index": 1880
+    }
+   ]
+  }
+ ]
+}

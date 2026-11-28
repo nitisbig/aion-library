@@ -1,0 +1,1457 @@
+{
+ "source": "audio",
+ "total_s": 975.62,
+ "words": 2291,
+ "wpm_overall": 140.9,
+ "chapters": [
+  {
+   "id": "intro",
+   "title": "Intro",
+   "start": 0.0,
+   "end": 169.415,
+   "duration_s": 169.41,
+   "target_s": 170,
+   "words": 398
+  },
+  {
+   "id": "ch1",
+   "title": "Data as a Cloud",
+   "start": 169.415,
+   "end": 294.885,
+   "duration_s": 125.47,
+   "target_s": 130,
+   "words": 309
+  },
+  {
+   "id": "ch2",
+   "title": "The Best Direction",
+   "start": 294.885,
+   "end": 436.315,
+   "duration_s": 141.43,
+   "target_s": 150,
+   "words": 341
+  },
+  {
+   "id": "ch3",
+   "title": "The Covariance Matrix",
+   "start": 436.315,
+   "end": 578.625,
+   "duration_s": 142.31,
+   "target_s": 145,
+   "words": 332
+  },
+  {
+   "id": "ch4",
+   "title": "Eigenvectors",
+   "start": 578.625,
+   "end": 703.35,
+   "duration_s": 124.73,
+   "target_s": 125,
+   "words": 275
+  },
+  {
+   "id": "ch5",
+   "title": "Cutting Dimensions",
+   "start": 703.35,
+   "end": 834.405,
+   "duration_s": 131.05,
+   "target_s": 135,
+   "words": 310
+  },
+  {
+   "id": "ch6",
+   "title": "Where PCA Breaks",
+   "start": 834.405,
+   "end": 924.06,
+   "duration_s": 89.65,
+   "target_s": 95,
+   "words": 219
+  },
+  {
+   "id": "outro",
+   "title": "Outro",
+   "start": 924.06,
+   "end": 975.62,
+   "duration_s": 51.56,
+   "target_s": 55,
+   "words": 107
+  }
+ ],
+ "scenes": [
+  {
+   "id": "in_s01",
+   "chapter": "intro",
+   "start": 0.0,
+   "end": 28.87,
+   "speech_start": 1.0,
+   "speech_end": 28.12,
+   "words": 66,
+   "cues": [
+    {
+     "at_word": "lamp",
+     "t": 2.28,
+     "word_index": 6
+    },
+    {
+     "at_word": "Turn",
+     "t": 5.71,
+     "word_index": 15
+    },
+    {
+     "at_word": "blob",
+     "t": 11.8,
+     "word_index": 32
+    },
+    {
+     "at_word": "one direction",
+     "t": 13.88,
+     "word_index": 35
+    },
+    {
+     "at_word": "three separate groups",
+     "t": 14.87,
+     "word_index": 37
+    },
+    {
+     "at_word": "spiral",
+     "t": 17.0,
+     "word_index": 43
+    },
+    {
+     "at_word": "flat",
+     "t": 20.92,
+     "word_index": 50
+    },
+    {
+     "at_word": "least",
+     "t": 27.48,
+     "word_index": 65
+    }
+   ]
+  },
+  {
+   "id": "in_s02",
+   "chapter": "intro",
+   "start": 28.87,
+   "end": 59.535,
+   "speech_start": 29.62,
+   "speech_end": 58.77,
+   "words": 67,
+   "cues": [
+    {
+     "at_word": "handwritten digit",
+     "t": 34.26,
+     "word_index": 78
+    },
+    {
+     "at_word": "sixty-four squares",
+     "t": 37.2,
+     "word_index": 85
+    },
+    {
+     "at_word": "Write",
+     "t": 41.33,
+     "word_index": 93
+    },
+    {
+     "at_word": "Two numbers",
+     "t": 46.86,
+     "word_index": 106
+    },
+    {
+     "at_word": "Three",
+     "t": 49.53,
+     "word_index": 114
+    },
+    {
+     "at_word": "nobody can picture",
+     "t": 53.74,
+     "word_index": 122
+    },
+    {
+     "at_word": "this table",
+     "t": 56.14,
+     "word_index": 126
+    }
+   ]
+  },
+  {
+   "id": "in_s03",
+   "chapter": "intro",
+   "start": 59.535,
+   "end": 92.47,
+   "speech_start": 60.3,
+   "speech_end": 91.68,
+   "words": 74,
+   "cues": [
+    {
+     "at_word": "best shadow",
+     "t": 62.18,
+     "word_index": 140
+    },
+    {
+     "at_word": "Squeeze",
+     "t": 63.97,
+     "word_index": 142
+    },
+    {
+     "at_word": "Nobody told",
+     "t": 71.67,
+     "word_index": 159
+    },
+    {
+     "at_word": "zeros",
+     "t": 75.86,
+     "word_index": 170
+    },
+    {
+     "at_word": "sixes",
+     "t": 77.86,
+     "word_index": 176
+    },
+    {
+     "at_word": "fours",
+     "t": 79.34,
+     "word_index": 180
+    },
+    {
+     "at_word": "survives",
+     "t": 85.06,
+     "word_index": 193
+    },
+    {
+     "at_word": "principal component analysis",
+     "t": 88.62,
+     "word_index": 202
+    }
+   ]
+  },
+  {
+   "id": "in_s04",
+   "chapter": "intro",
+   "start": 92.47,
+   "end": 129.72,
+   "speech_start": 93.26,
+   "speech_end": 128.78,
+   "words": 96,
+   "cues": [
+    {
+     "at_word": "genes",
+     "t": 96.66,
+     "word_index": 216
+    },
+    {
+     "at_word": "faces",
+     "t": 103.9,
+     "word_index": 237
+    },
+    {
+     "at_word": "shrinks images",
+     "t": 110.46,
+     "word_index": 255
+    },
+    {
+     "at_word": "interest rates",
+     "t": 115.66,
+     "word_index": 268
+    },
+    {
+     "at_word": "rise together",
+     "t": 118.9,
+     "word_index": 277
+    },
+    {
+     "at_word": "tilt",
+     "t": 120.14,
+     "word_index": 280
+    },
+    {
+     "at_word": "bend",
+     "t": 121.42,
+     "word_index": 283
+    },
+    {
+     "at_word": "too many measurements",
+     "t": 124.38,
+     "word_index": 287
+    }
+   ]
+  },
+  {
+   "id": "in_s05",
+   "chapter": "intro",
+   "start": 129.72,
+   "end": 169.415,
+   "speech_start": 130.66,
+   "speech_end": 168.11,
+   "words": 95,
+   "cues": [
+    {
+     "at_word": "Karl Pearson",
+     "t": 134.82,
+     "word_index": 313
+    },
+    {
+     "at_word": "Harold Hotelling",
+     "t": 141.36,
+     "word_index": 331
+    },
+    {
+     "at_word": "same answer",
+     "t": 149.84,
+     "word_index": 355
+    },
+    {
+     "at_word": "cloud of points",
+     "t": 155.4,
+     "word_index": 368
+    },
+    {
+     "at_word": "best direction",
+     "t": 156.8,
+     "word_index": 372
+    },
+    {
+     "at_word": "one matrix",
+     "t": 158.08,
+     "word_index": 374
+    },
+    {
+     "at_word": "eigenvectors",
+     "t": 159.44,
+     "word_index": 377
+    },
+    {
+     "at_word": "cutting the dimensions",
+     "t": 160.65,
+     "word_index": 378
+    },
+    {
+     "at_word": "breaks",
+     "t": 163.08,
+     "word_index": 386
+    },
+    {
+     "at_word": "map of digits",
+     "t": 166.08,
+     "word_index": 391
+    }
+   ]
+  },
+  {
+   "id": "ch1_s01",
+   "chapter": "ch1",
+   "start": 169.415,
+   "end": 205.915,
+   "speech_start": 170.72,
+   "speech_end": 205.15,
+   "words": 86,
+   "cues": [
+    {
+     "at_word": "Forty people",
+     "t": 172.39,
+     "word_index": 401
+    },
+    {
+     "at_word": "arm span",
+     "t": 176.14,
+     "word_index": 409
+    },
+    {
+     "at_word": "Each row",
+     "t": 181.78,
+     "word_index": 421
+    },
+    {
+     "at_word": "Give each person a dot",
+     "t": 184.72,
+     "word_index": 429
+    },
+    {
+     "at_word": "diagonal",
+     "t": 194.64,
+     "word_index": 455
+    },
+    {
+     "at_word": "Leonardo da Vinci",
+     "t": 198.59,
+     "word_index": 464
+    }
+   ]
+  },
+  {
+   "id": "ch1_s02",
+   "chapter": "ch1",
+   "start": 205.915,
+   "end": 229.745,
+   "speech_start": 206.68,
+   "speech_end": 228.96,
+   "words": 61,
+   "cues": [
+    {
+     "at_word": "centre",
+     "t": 208.28,
+     "word_index": 491
+    },
+    {
+     "at_word": "Average all the heights",
+     "t": 209.94,
+     "word_index": 495
+    },
+    {
+     "at_word": "arm spans",
+     "t": 212.6,
+     "word_index": 502
+    },
+    {
+     "at_word": "average person",
+     "t": 215.4,
+     "word_index": 510
+    },
+    {
+     "at_word": "slide",
+     "t": 217.96,
+     "word_index": 513
+    },
+    {
+     "at_word": "spread out",
+     "t": 228.54,
+     "word_index": 543
+    }
+   ]
+  },
+  {
+   "id": "ch1_s03",
+   "chapter": "ch1",
+   "start": 229.745,
+   "end": 265.975,
+   "speech_start": 230.53,
+   "speech_end": 264.95,
+   "words": 89,
+   "cues": [
+    {
+     "at_word": "how far",
+     "t": 234.7,
+     "word_index": 555
+    },
+    {
+     "at_word": "square that gap",
+     "t": 236.61,
+     "word_index": 563
+    },
+    {
+     "at_word": "average the squares",
+     "t": 238.18,
+     "word_index": 567
+    },
+    {
+     "at_word": "variance",
+     "t": 241.26,
+     "word_index": 574
+    },
+    {
+     "at_word": "far points",
+     "t": 246.38,
+     "word_index": 585
+    },
+    {
+     "at_word": "spread along height",
+     "t": 250.9,
+     "word_index": 597
+    },
+    {
+     "at_word": "along arm span",
+     "t": 252.5,
+     "word_index": 601
+    },
+    {
+     "at_word": "diagonal",
+     "t": 255.28,
+     "word_index": 608
+    },
+    {
+     "at_word": "cares about",
+     "t": 264.44,
+     "word_index": 632
+    }
+   ]
+  },
+  {
+   "id": "ch1_s04",
+   "chapter": "ch1",
+   "start": 265.975,
+   "end": 294.885,
+   "speech_start": 267.0,
+   "speech_end": 293.63,
+   "words": 73,
+   "cues": [
+    {
+     "at_word": "shoulder width",
+     "t": 268.9,
+     "word_index": 639
+    },
+    {
+     "at_word": "three dimensions",
+     "t": 271.94,
+     "word_index": 648
+    },
+    {
+     "at_word": "turn it",
+     "t": 276.52,
+     "word_index": 659
+    },
+    {
+     "at_word": "digits",
+     "t": 279.36,
+     "word_index": 666
+    },
+    {
+     "at_word": "Sixty-four shades",
+     "t": 281.21,
+     "word_index": 671
+    },
+    {
+     "at_word": "can't turn",
+     "t": 287.68,
+     "word_index": 686
+    },
+    {
+     "at_word": "calculation",
+     "t": 292.5,
+     "word_index": 705
+    }
+   ]
+  },
+  {
+   "id": "ch2_s01",
+   "chapter": "ch2",
+   "start": 294.885,
+   "end": 332.445,
+   "speech_start": 296.14,
+   "speech_end": 331.53,
+   "words": 84,
+   "cues": [
+    {
+     "at_word": "Draw a line",
+     "t": 299.56,
+     "word_index": 716
+    },
+    {
+     "at_word": "drop every point",
+     "t": 301.98,
+     "word_index": 723
+    },
+    {
+     "at_word": "shadows",
+     "t": 307.38,
+     "word_index": 738
+    },
+    {
+     "at_word": "turn the line",
+     "t": 311.1,
+     "word_index": 746
+    },
+    {
+     "at_word": "bunch up",
+     "t": 314.6,
+     "word_index": 754
+    },
+    {
+     "at_word": "spread far apart",
+     "t": 317.44,
+     "word_index": 760
+    },
+    {
+     "at_word": "record",
+     "t": 320.2,
+     "word_index": 764
+    },
+    {
+     "at_word": "one clear peak",
+     "t": 325.7,
+     "word_index": 776
+    },
+    {
+     "at_word": "first principal component",
+     "t": 330.34,
+     "word_index": 788
+    }
+   ]
+  },
+  {
+   "id": "ch2_s02",
+   "chapter": "ch2",
+   "start": 332.445,
+   "end": 372.54,
+   "speech_start": 333.36,
+   "speech_end": 371.56,
+   "words": 101,
+   "cues": [
+    {
+     "at_word": "closest to the points",
+     "t": 338.08,
+     "word_index": 806
+    },
+    {
+     "at_word": "one point",
+     "t": 343.52,
+     "word_index": 819
+    },
+    {
+     "at_word": "distance from the centre",
+     "t": 345.3,
+     "word_index": 822
+    },
+    {
+     "at_word": "right triangle",
+     "t": 350.22,
+     "word_index": 838
+    },
+    {
+     "at_word": "Pythagoras",
+     "t": 354.7,
+     "word_index": 848
+    },
+    {
+     "at_word": "shadows grow",
+     "t": 361.22,
+     "word_index": 866
+    },
+    {
+     "at_word": "fits closest",
+     "t": 367.22,
+     "word_index": 882
+    },
+    {
+     "at_word": "same",
+     "t": 371.26,
+     "word_index": 891
+    }
+   ]
+  },
+  {
+   "id": "ch2_s03",
+   "chapter": "ch2",
+   "start": 372.54,
+   "end": 400.065,
+   "speech_start": 373.52,
+   "speech_end": 399.21,
+   "words": 70,
+   "cues": [
+    {
+     "at_word": "arrow one unit long",
+     "t": 376.2,
+     "word_index": 900
+    },
+    {
+     "at_word": "dot product",
+     "t": 380.58,
+     "word_index": 912
+    },
+    {
+     "at_word": "Square each shadow",
+     "t": 383.49,
+     "word_index": 920
+    },
+    {
+     "at_word": "variance in that direction",
+     "t": 387.62,
+     "word_index": 933
+    },
+    {
+     "at_word": "one sentence",
+     "t": 392.26,
+     "word_index": 943
+    },
+    {
+     "at_word": "as big as possible",
+     "t": 398.02,
+     "word_index": 958
+    }
+   ]
+  },
+  {
+   "id": "ch2_s04",
+   "chapter": "ch2",
+   "start": 400.065,
+   "end": 436.315,
+   "speech_start": 400.92,
+   "speech_end": 435.05,
+   "words": 86,
+   "cues": [
+    {
+     "at_word": "right angle",
+     "t": 407.78,
+     "word_index": 981
+    },
+    {
+     "at_word": "second principal component",
+     "t": 410.78,
+     "word_index": 988
+    },
+    {
+     "at_word": "Turn the grid",
+     "t": 416.56,
+     "word_index": 1000
+    },
+    {
+     "at_word": "overall size",
+     "t": 424.32,
+     "word_index": 1022
+    },
+    {
+     "at_word": "long or short",
+     "t": 428.04,
+     "word_index": 1032
+    },
+    {
+     "at_word": "mean something",
+     "t": 434.4,
+     "word_index": 1046
+    }
+   ]
+  },
+  {
+   "id": "ch3_s01",
+   "chapter": "ch3",
+   "start": 436.315,
+   "end": 474.18,
+   "speech_start": 437.58,
+   "speech_end": 473.28,
+   "words": 86,
+   "cues": [
+    {
+     "at_word": "sixty-four",
+     "t": 441.56,
+     "word_index": 1056
+    },
+    {
+     "at_word": "variance along an arrow",
+     "t": 450.04,
+     "word_index": 1076
+    },
+    {
+     "at_word": "small matrix product",
+     "t": 453.8,
+     "word_index": 1085
+    },
+    {
+     "at_word": "regroup",
+     "t": 455.32,
+     "word_index": 1089
+    },
+    {
+     "at_word": "the middle",
+     "t": 461.04,
+     "word_index": 1103
+    },
+    {
+     "at_word": "covariance matrix",
+     "t": 468.48,
+     "word_index": 1120
+    },
+    {
+     "at_word": "never need",
+     "t": 471.78,
+     "word_index": 1127
+    }
+   ]
+  },
+  {
+   "id": "ch3_s02",
+   "chapter": "ch3",
+   "start": 474.18,
+   "end": 517.955,
+   "speech_start": 475.08,
+   "speech_end": 516.94,
+   "words": 111,
+   "cues": [
+    {
+     "at_word": "diagonal",
+     "t": 477.38,
+     "word_index": 1139
+    },
+    {
+     "at_word": "covariance",
+     "t": 486.42,
+     "word_index": 1163
+    },
+    {
+     "at_word": "multiply",
+     "t": 491.7,
+     "word_index": 1177
+    },
+    {
+     "at_word": "tall person with long arms",
+     "t": 495.7,
+     "word_index": 1190
+    },
+    {
+     "at_word": "short person with short arms",
+     "t": 499.88,
+     "word_index": 1202
+    },
+    {
+     "at_word": "Mixed cases",
+     "t": 502.05,
+     "word_index": 1207
+    },
+    {
+     "at_word": "Average the products",
+     "t": 505.02,
+     "word_index": 1212
+    },
+    {
+     "at_word": "symmetric",
+     "t": 512.96,
+     "word_index": 1231
+    }
+   ]
+  },
+  {
+   "id": "ch3_s03",
+   "chapter": "ch3",
+   "start": 517.955,
+   "end": 548.05,
+   "speech_start": 518.97,
+   "speech_end": 547.06,
+   "words": 65,
+   "cues": [
+    {
+     "at_word": "motion",
+     "t": 520.62,
+     "word_index": 1250
+    },
+    {
+     "at_word": "Apply the covariance matrix",
+     "t": 522.07,
+     "word_index": 1251
+    },
+    {
+     "at_word": "ellipse",
+     "t": 527.18,
+     "word_index": 1267
+    },
+    {
+     "at_word": "remember",
+     "t": 530.9,
+     "word_index": 1273
+    },
+    {
+     "at_word": "along its own original direction",
+     "t": 536.74,
+     "word_index": 1288
+    },
+    {
+     "at_word": "same record",
+     "t": 540.12,
+     "word_index": 1295
+    },
+    {
+     "at_word": "every direction",
+     "t": 546.16,
+     "word_index": 1308
+    }
+   ]
+  },
+  {
+   "id": "ch3_s04",
+   "chapter": "ch3",
+   "start": 548.05,
+   "end": 578.625,
+   "speech_start": 549.04,
+   "speech_end": 577.38,
+   "words": 70,
+   "cues": [
+    {
+     "at_word": "sixty-four rows",
+     "t": 551.58,
+     "word_index": 1317
+    },
+    {
+     "at_word": "two pixels",
+     "t": 558.82,
+     "word_index": 1331
+    },
+    {
+     "at_word": "Neighbouring pixels",
+     "t": 561.37,
+     "word_index": 1335
+    },
+    {
+     "at_word": "blank in every scan",
+     "t": 569.74,
+     "word_index": 1358
+    },
+    {
+     "at_word": "best view",
+     "t": 576.1,
+     "word_index": 1375
+    }
+   ]
+  },
+  {
+   "id": "ch4_s01",
+   "chapter": "ch4",
+   "start": 578.625,
+   "end": 610.41,
+   "speech_start": 579.87,
+   "speech_end": 609.42,
+   "words": 73,
+   "cues": [
+    {
+     "at_word": "fan of arrows",
+     "t": 582.3,
+     "word_index": 1388
+    },
+    {
+     "at_word": "stretched and turned",
+     "t": 586.02,
+     "word_index": 1395
+    },
+    {
+     "at_word": "two directions",
+     "t": 589.42,
+     "word_index": 1403
+    },
+    {
+     "at_word": "exactly where they were",
+     "t": 592.7,
+     "word_index": 1410
+    },
+    {
+     "at_word": "eigenvectors",
+     "t": 596.98,
+     "word_index": 1419
+    },
+    {
+     "at_word": "eigenvalue",
+     "t": 603.72,
+     "word_index": 1438
+    },
+    {
+     "at_word": "long and short axes",
+     "t": 607.48,
+     "word_index": 1446
+    }
+   ]
+  },
+  {
+   "id": "ch4_s02",
+   "chapter": "ch4",
+   "start": 610.41,
+   "end": 647.34,
+   "speech_start": 611.4,
+   "speech_end": 646.41,
+   "words": 89,
+   "cues": [
+    {
+     "at_word": "eigenvectors as axes",
+     "t": 617.12,
+     "word_index": 1467
+    },
+    {
+     "at_word": "mix",
+     "t": 620.84,
+     "word_index": 1474
+    },
+    {
+     "at_word": "add up to one",
+     "t": 624.04,
+     "word_index": 1483
+    },
+    {
+     "at_word": "largest ingredient",
+     "t": 628.12,
+     "word_index": 1495
+    },
+    {
+     "at_word": "all the weight",
+     "t": 631.62,
+     "word_index": 1505
+    },
+    {
+     "at_word": "Lagrange multipliers",
+     "t": 639.02,
+     "word_index": 1522
+    },
+    {
+     "at_word": "arrow itself",
+     "t": 645.66,
+     "word_index": 1540
+    }
+   ]
+  },
+  {
+   "id": "ch4_s03",
+   "chapter": "ch4",
+   "start": 647.34,
+   "end": 677.065,
+   "speech_start": 648.27,
+   "speech_end": 676.13,
+   "words": 65,
+   "cues": [
+    {
+     "at_word": "plain meaning",
+     "t": 650.04,
+     "word_index": 1547
+    },
+    {
+     "at_word": "variance of the data",
+     "t": 651.96,
+     "word_index": 1551
+    },
+    {
+     "at_word": "symmetric",
+     "t": 657.4,
+     "word_index": 1564
+    },
+    {
+     "at_word": "right angles",
+     "t": 660.32,
+     "word_index": 1570
+    },
+    {
+     "at_word": "turn to the eigenvector axes",
+     "t": 671.55,
+     "word_index": 1595
+    },
+    {
+     "at_word": "stretch",
+     "t": 673.5,
+     "word_index": 1600
+    },
+    {
+     "at_word": "turn back",
+     "t": 675.56,
+     "word_index": 1605
+    }
+   ]
+  },
+  {
+   "id": "ch4_s04",
+   "chapter": "ch4",
+   "start": 677.065,
+   "end": 703.35,
+   "speech_start": 678.0,
+   "speech_end": 702.07,
+   "words": 48,
+   "cues": [
+    {
+     "at_word": "Centre the data",
+     "t": 680.39,
+     "word_index": 1611
+    },
+    {
+     "at_word": "covariance matrix",
+     "t": 682.64,
+     "word_index": 1616
+    },
+    {
+     "at_word": "eigenvectors",
+     "t": 685.18,
+     "word_index": 1620
+    },
+    {
+     "at_word": "Sort",
+     "t": 686.7,
+     "word_index": 1621
+    },
+    {
+     "at_word": "shadows on the top few",
+     "t": 692.26,
+     "word_index": 1633
+    },
+    {
+     "at_word": "ten thousand",
+     "t": 701.42,
+     "word_index": 1653
+    }
+   ]
+  },
+  {
+   "id": "ch5_s01",
+   "chapter": "ch5",
+   "start": 703.35,
+   "end": 731.885,
+   "speech_start": 704.63,
+   "speech_end": 730.82,
+   "words": 70,
+   "cues": [
+    {
+     "at_word": "three measurements",
+     "t": 706.18,
+     "word_index": 1660
+    },
+    {
+     "at_word": "pebble",
+     "t": 711.78,
+     "word_index": 1673
+    },
+    {
+     "at_word": "flat sheet",
+     "t": 715.94,
+     "word_index": 1681
+    },
+    {
+     "at_word": "Drop every point",
+     "t": 718.52,
+     "word_index": 1688
+    },
+    {
+     "at_word": "face us",
+     "t": 721.42,
+     "word_index": 1699
+    },
+    {
+     "at_word": "threw away",
+     "t": 727.62,
+     "word_index": 1712
+    }
+   ]
+  },
+  {
+   "id": "ch5_s02",
+   "chapter": "ch5",
+   "start": 731.885,
+   "end": 764.335,
+   "speech_start": 732.95,
+   "speech_end": 763.33,
+   "words": 79,
+   "cues": [
+    {
+     "at_word": "eigenvalues",
+     "t": 735.32,
+     "word_index": 1731
+    },
+    {
+     "at_word": "add up to the total",
+     "t": 741.4,
+     "word_index": 1745
+    },
+    {
+     "at_word": "share",
+     "t": 745.52,
+     "word_index": 1754
+    },
+    {
+     "at_word": "first two directions",
+     "t": 752.2,
+     "word_index": 1771
+    },
+    {
+     "at_word": "nine tenths",
+     "t": 757.1,
+     "word_index": 1786
+    },
+    {
+     "at_word": "nothing at all",
+     "t": 759.94,
+     "word_index": 1791
+    },
+    {
+     "at_word": "every scan",
+     "t": 762.7,
+     "word_index": 1802
+    }
+   ]
+  },
+  {
+   "id": "ch5_s03",
+   "chapter": "ch5",
+   "start": 764.335,
+   "end": 797.145,
+   "speech_start": 765.34,
+   "speech_end": 796.19,
+   "words": 79,
+   "cues": [
+    {
+     "at_word": "draw it as an image",
+     "t": 770.76,
+     "word_index": 1820
+    },
+    {
+     "at_word": "average digit",
+     "t": 774.36,
+     "word_index": 1829
+    },
+    {
+     "at_word": "one at a time",
+     "t": 780.32,
+     "word_index": 1845
+    },
+    {
+     "at_word": "blur",
+     "t": 785.093,
+     "word_index": 1856
+    },
+    {
+     "at_word": "With ten",
+     "t": 786.12,
+     "word_index": 1857
+    },
+    {
+     "at_word": "With twenty",
+     "t": 788.45,
+     "word_index": 1863
+    },
+    {
+     "at_word": "lose very little",
+     "t": 795.2,
+     "word_index": 1880
+    }
+   ]
+  },
+  {
+   "id": "ch5_s04",
+   "chapter": "ch5",
+   "start": 797.145,
+   "end": 834.405,
+   "speech_start": 798.1,
+   "speech_end": 833.17,
+   "words": 82,
+   "cues": [
+    {
+     "at_word": "map from the beginning",
+     "t": 798.62,
+     "word_index": 1885
+    },
+    {
+     "at_word": "two axes",
+     "t": 801.46,
+     "word_index": 1892
+    },
+    {
+     "at_word": "each pattern",
+     "t": 808.1,
+     "word_index": 1910
+    },
+    {
+     "at_word": "share strokes",
+     "t": 811.66,
+     "word_index": 1916
+    },
+    {
+     "at_word": "In practice",
+     "t": 816.75,
+     "word_index": 1927
+    },
+    {
+     "at_word": "singular value decomposition",
+     "t": 823.26,
+     "word_index": 1941
+    },
+    {
+     "at_word": "same directions",
+     "t": 825.58,
+     "word_index": 1946
+    },
+    {
+     "at_word": "greatest spread",
+     "t": 832.42,
+     "word_index": 1963
+    }
+   ]
+  },
+  {
+   "id": "ch6_s01",
+   "chapter": "ch6",
+   "start": 834.405,
+   "end": 865.54,
+   "speech_start": 835.64,
+   "speech_end": 864.63,
+   "words": 76,
+   "cues": [
+    {
+     "at_word": "millimetres",
+     "t": 841.8,
+     "word_index": 1981
+    },
+    {
+     "at_word": "metres",
+     "t": 843.72,
+     "word_index": 1986
+    },
+    {
+     "at_word": "thousand times bigger",
+     "t": 846.88,
+     "word_index": 1993
+    },
+    {
+     "at_word": "straight along height",
+     "t": 854.96,
+     "word_index": 2014
+    },
+    {
+     "at_word": "same footing",
+     "t": 861.04,
+     "word_index": 2031
+    },
+    {
+     "at_word": "own spread",
+     "t": 864.0,
+     "word_index": 2039
+    }
+   ]
+  },
+  {
+   "id": "ch6_s02",
+   "chapter": "ch6",
+   "start": 865.54,
+   "end": 890.495,
+   "speech_start": 866.45,
+   "speech_end": 889.67,
+   "words": 63,
+   "cues": [
+    {
+     "at_word": "flat views",
+     "t": 868.48,
+     "word_index": 2046
+    },
+    {
+     "at_word": "spiral",
+     "t": 871.52,
+     "word_index": 2055
+    },
+    {
+     "at_word": "squashes the layers",
+     "t": 875.72,
+     "word_index": 2064
+    },
+    {
+     "at_word": "far apart",
+     "t": 878.84,
+     "word_index": 2076
+    },
+    {
+     "at_word": "follow the curve",
+     "t": 885.56,
+     "word_index": 2094
+    },
+    {
+     "at_word": "kernel PCA",
+     "t": 887.08,
+     "word_index": 2099
+    }
+   ]
+  },
+  {
+   "id": "ch6_s03",
+   "chapter": "ch6",
+   "start": 890.495,
+   "end": 924.06,
+   "speech_start": 891.32,
+   "speech_end": 922.51,
+   "words": 80,
+   "cues": [
+    {
+     "at_word": "long and thin",
+     "t": 896.44,
+     "word_index": 2119
+    },
+    {
+     "at_word": "first component",
+     "t": 903.16,
+     "word_index": 2138
+    },
+    {
+     "at_word": "piles both groups",
+     "t": 906.12,
+     "word_index": 2143
+    },
+    {
+     "at_word": "separates them",
+     "t": 910.56,
+     "word_index": 2154
+    },
+    {
+     "at_word": "ranks it last",
+     "t": 913.76,
+     "word_index": 2162
+    },
+    {
+     "at_word": "keeps the most variation",
+     "t": 917.6,
+     "word_index": 2170
+    },
+    {
+     "at_word": "your call",
+     "t": 922.12,
+     "word_index": 2182
+    }
+   ]
+  },
+  {
+   "id": "out_s01",
+   "chapter": "outro",
+   "start": 924.06,
+   "end": 952.045,
+   "speech_start": 925.61,
+   "speech_end": 950.98,
+   "words": 62,
+   "cues": [
+    {
+     "at_word": "cloud of points",
+     "t": 929.3,
+     "word_index": 2193
+    },
+    {
+     "at_word": "spreads the shadows",
+     "t": 933.54,
+     "word_index": 2203
+    },
+    {
+     "at_word": "symmetric matrix",
+     "t": 937.88,
+     "word_index": 2213
+    },
+    {
+     "at_word": "eigenvectors",
+     "t": 940.2,
+     "word_index": 2216
+    },
+    {
+     "at_word": "how much each one keeps",
+     "t": 943.32,
+     "word_index": 2224
+    },
+    {
+     "at_word": "handful",
+     "t": 948.54,
+     "word_index": 2238
+    }
+   ]
+  },
+  {
+   "id": "out_s02",
+   "chapter": "outro",
+   "start": 952.045,
+   "end": 975.62,
+   "speech_start": 953.11,
+   "speech_end": 969.7,
+   "words": 45,
+   "cues": [
+    {
+     "at_word": "throws something away",
+     "t": 954.32,
+     "word_index": 2250
+    },
+    {
+     "at_word": "exactly what you kept",
+     "t": 960.7,
+     "word_index": 2264
+    },
+    {
+     "at_word": "what you lost",
+     "t": 962.86,
+     "word_index": 2270
+    },
+    {
+     "at_word": "turn it to the light",
+     "t": 968.01,
+     "word_index": 2285
+    }
+   ]
+  }
+ ]
+}

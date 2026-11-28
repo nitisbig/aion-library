@@ -265,10 +265,13 @@ class ManimLayer(Layer):
         self.advance(t)
         cam = self._camera
         st = rc.cam
+        px, py = np.asarray(self.pos(t), dtype=float)[:2]       # `pos` moves the whole layer (world units)
         if st is not None and self.parallax:
             z = st.zoom ** self.parallax
-            cam.frame_center = np.array([st.x * self.parallax, st.y * self.parallax, 0.0])
+            cam.frame_center = np.array([st.x * self.parallax - px, st.y * self.parallax - py, 0.0])
             cam.frame_width, cam.frame_height = rc.frame_units[0] / z, rc.frame_units[1] / z
+        else:
+            cam.frame_center = np.array([-px, -py, 0.0])
         cam.pixel_array_to_cairo_context.clear()   # Manim caches the frame matrix per pixel array: drop it so pans/zooms apply
         cam.reset()
         cam.capture_mobjects(self._scene.mobjects)

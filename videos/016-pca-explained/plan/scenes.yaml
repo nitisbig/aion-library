@@ -1,0 +1,1344 @@
+# plan/scenes.yaml: the source of truth for video 016 (PCA).
+#
+# Edit narration and visuals here, then regenerate everything that derives from it:
+#   uv run python videos/016-pca-explained/scripts/build_script.py
+# That rewrites voiceover.md, script/narration_full.md, plan/scene_plan.md, storyboard.md and fills duration_s
+# (estimate). After voicing, scripts/timing.py replaces duration_s with the real value (duration_source: audio).
+#
+# Narration marks: [pause 0.8s] = extra silence inserted after the audio is generated (free to change);
+# *word* = emphasis (a note for the read; stripped before TTS). Numbers are written as spoken.
+# The narration never reads formulas or screen positions aloud: the picture carries them.
+# reveal_sequence[].at_word must appear in the scene's narration, in order (checked by build_script.py).
+# Colours are theme roles (C.<role>): data, mean, probe, pc1, pc2, pc3, residual, spread, d0..d9, lamp.
+# Layouts: L1 stage, L2 stage + rail (3 pinned mini-boards), L3 split, L4 grid. See design/design_sheet.md.
+
+video:
+  slug: 016-pca-explained
+  title: "PCA Explained Visually: The Mathematics of Dimensionality Reduction"
+  alt_titles:
+    - "Understanding PCA Through Geometry"
+    - "The Beautiful Mathematics of Dimensionality Reduction"
+    - "PCA: The Art of Finding Hidden Dimensions"
+    - "How to Reduce 100 Dimensions to Just 2"
+  mode: tutorial and concept overview (intuition first, one worked example carried through every chapter)
+  audience: undergrads and curious learners; vectors and matrix multiplication assumed, nothing more
+  target_runtime_s: {min: 720, goal: 990, max: 1080}
+  master_format: "3840x2160, 30 fps, SDR Rec.709 (drafts and stills 1920x1080)"
+  spine: >-
+    Which shadow keeps the most? A lamp circles a hidden 3D point sculpture; most shadows are blobs, one shows its
+    structure. PCA is the calculation that finds that view. Two datasets carry the whole video: forty people's
+    height and arm span (2D, later 3D with shoulder width) for intuition, and 1,797 scanned digits (64D) for the
+    payoff. Finished results shrink into a rail of mini-boards instead of being erased, so earlier ideas stay in view.
+
+datasets:
+  - name: people
+    what: >-
+      Forty people, seeded synthetic (seed 16): height ~ N(170, 8.5) cm, arm span = height + N(1.5, 6) cm; a third
+      column, shoulder width, for the 3D chapters (seed 17). Computed: mean (170.7, 173.3), covariance
+      [[67.1, 58.4], [58.4, 84.8]], eigenvalues 135.0 and 16.9 (ratio 8), PC1 keeps 89 %; 3D shares 87 / 11 / 2 %.
+      Labelled illustrative on screen.
+    used_in: [ch1, ch2, ch3, ch4, ch5_s01, ch6_s01, out]
+  - name: digits
+    what: >-
+      UCI optical digits via sklearn, 1,797 scans of 8x8 pixels, 17 grey levels. Computed: PC1 14.9 %, PC2 13.6 %
+      (28.5 % together), 21 components for 90 %, 3 always-blank pixels (zero eigenvalues).
+    used_in: [in_s02, in_s03, ch1_s04, ch3_s04, ch5_s02, ch5_s03, ch5_s04, out]
+  - name: sculpture
+    what: >-
+      Seeded 3D point sculpture (seed 1601): three Gaussian clusters threaded by a helix, built so its top principal
+      plane separates all three. Used for the lamp-and-shadow bookends.
+    used_in: [in_s01, ch6_s03, out_s02]
+
+layouts:
+  - {id: L1, name: Stage, use: "Full frame. Intro shots, big reveals, chapter cards."}
+  - {id: L2, name: Stage + Rail, use: "Main stage on the left two thirds; a rail of three pinned mini-boards on the right. A finished result shrinks into a free slot instead of being erased; a board slides back to the stage when it is needed again."}
+  - {id: L3, name: Split, use: "Two equal boards side by side for comparisons (Pearson vs Hotelling, 2D vs 3D, dial vs matrix)."}
+  - {id: L4, name: Grid, use: "Four boards in a 2x2 grid: the applications montage (in_s04) and the recap wall (out_s01)."}
+
+boards:
+  - {name: "B_shadow · the best shadow", pinned_in: in_s05, recalled_in: [ch6_s03, out_s02], wiped_at: "ch1 card (kept as the card's carry-over strip)"}
+  - {name: "B_map · the 2D digit map", pinned_in: in_s03, recalled_in: [ch5_s04, out_s01], wiped_at: "in_s04 (stored, returns in ch5)"}
+  - {name: "B_cloud · the centred cloud with its mean", pinned_in: ch1_s02, recalled_in: [ch2_s01], wiped_at: ch3 card}
+  - {name: "B_var · variance as an average of squares", pinned_in: ch1_s03, recalled_in: [ch2_s03], wiped_at: ch3 card}
+  - {name: "B_dial · spread of shadows vs angle", pinned_in: ch2_s01, recalled_in: [ch3_s03], wiped_at: ch4 card}
+  - {name: "B_varu · Var(u) = mean of squared shadows", pinned_in: ch2_s03, recalled_in: [ch3_s01], wiped_at: ch4 card}
+  - {name: "B_C · the 2x2 covariance matrix", pinned_in: ch3_s02, recalled_in: [ch4_s01, ch4_s03], wiped_at: ch5 card}
+  - {name: "B_eig · Cv = λv", pinned_in: ch4_s01, recalled_in: [ch4_s04], wiped_at: ch5 card}
+  - {name: "B_recipe · the five-step recipe", pinned_in: ch4_s04, recalled_in: [ch5_s01, ch5_s02, ch5_s03, out_s01], wiped_at: ch6 card}
+  - {name: "B_scree · explained variance", pinned_in: ch5_s02, recalled_in: [out_s01], wiped_at: ch6 card}
+
+chapters:
+  - id: intro
+    title: Intro
+    target_s: 170
+  - id: ch1
+    title: Data as a Cloud
+    target_s: 130
+    takeaway: "A table is a cloud of points. Centre it, and its spread (variance) is what we want to keep."
+    concepts:
+      - {concept: data point, graphic: "table rows flying to dots", equation: 'x_i = (h_i,\ a_i)', animation: "staggered row-to-dot flights"}
+      - {concept: centring, graphic: "the cloud sliding to the origin", equation: '\tilde x_i = x_i - \mu', animation: "translate, mean marker pinned"}
+      - {concept: variance, graphic: "deviation squares averaged into one square", equation: '\sigma^2 = \tfrac1n\sum_i (x_i-\mu)^2', animation: "squares draw then merge"}
+  - id: ch2
+    title: The Best Direction
+    target_s: 150
+    takeaway: "The first principal component is the direction where shadows spread the most, which is also the line that fits closest."
+    concepts:
+      - {concept: projection, graphic: "points dropping onto a turning line", equation: 'x\cdot u,\ \ \lVert u\rVert = 1', animation: "probe line turns, shadows slide"}
+      - {concept: max variance = min distance, graphic: "right triangle per point with squares on its legs", equation: '\lVert x\rVert^2 = (x\cdot u)^2 + d^2', animation: "one total grows while the other shrinks"}
+      - {concept: objective, graphic: "spread-vs-angle dial with one peak", equation: '\max_{\lVert u\rVert=1}\ \tfrac1n\sum_i (x_i\cdot u)^2', animation: "dial traces itself; lock-in glow"}
+  - id: ch3
+    title: The Covariance Matrix
+    target_s: 145
+    takeaway: "All the variances in every direction fit in one symmetric matrix C; the spread along u is uᵀCu."
+    concepts:
+      - {concept: quadratic form, graphic: "sum regrouping into a sandwich", equation: 'u^\top C\,u', animation: "TransformMatchingTex regroup"}
+      - {concept: covariance, graphic: "signed product rectangles in four quadrants", equation: 'C_{12} = \tfrac1n\sum_i \tilde h_i\,\tilde a_i', animation: "rectangles stack into one entry"}
+      - {concept: C as a map, graphic: "circle to tilted ellipse", equation: 'u \mapsto Cu', animation: "linear transform of the grid"}
+  - id: ch4
+    title: Eigenvectors
+    target_s: 125
+    takeaway: "The best direction is the top eigenvector of C; each eigenvalue is the variance along its eigenvector."
+    concepts:
+      - {concept: eigenvector, graphic: "a fan of arrows, two stay on their lines", equation: 'Cv = \lambda v', animation: "before/after fan"}
+      - {concept: why the top one wins, graphic: "a balance bar mixing λ1 and λ2", equation: 'u^\top C u = \lambda_1 a^2 + \lambda_2 b^2,\ a^2+b^2=1', animation: "weight slides to λ1"}
+      - {concept: spectral decomposition, graphic: "turn, stretch, turn back", equation: 'C = V\Lambda V^\top', animation: "three-step transform"}
+  - id: ch5
+    title: Cutting Dimensions
+    target_s: 135
+    takeaway: "Keep the top k components; the eigenvalue shares say exactly how much variation survives."
+    concepts:
+      - {concept: projection to a plane, graphic: "3D pebble cloud dropping onto a sheet", equation: 'z = V_k^\top \tilde x', animation: "drop lines, sheet turns to face us"}
+      - {concept: explained variance, graphic: "scree bars and cumulative curve", equation: '\lambda_j \big/ \textstyle\sum_i \lambda_i', animation: "bars rise, curve crosses 90 %"}
+      - {concept: reconstruction, graphic: "a 3 sharpening as components add", equation: 'x \approx \mu + \sum_{j\le k} (\tilde x\cdot v_j)\,v_j', animation: "k steps 1→64"}
+  - id: ch6
+    title: Where PCA Breaks
+    target_s: 95
+    takeaway: "PCA depends on units, sees only flat structure, and ranks by spread, not by meaning."
+    concepts:
+      - {concept: scaling, graphic: "cloud stretched by a unit change", equation: 'z = (x-\mu)/\sigma', animation: "PC1 snaps to the big axis, then back"}
+      - {concept: linearity, graphic: "a rolled sheet squashed flat", equation: null, animation: "roll flattens, layers mix"}
+      - {concept: variance is not meaning, graphic: "two thin groups merged by the PC1 shadow", equation: null, animation: "shadow on PC1 vs PC2"}
+  - id: outro
+    title: Outro
+    target_s: 55
+
+loops:
+  - {id: L1, promise: "How can 64 dimensions fit in 2 and still show the digits?", planted_in: [in_s02, in_s03], paid_in: [ch5_s04]}
+  - {id: L2, promise: "Which shadow keeps the most?", planted_in: [in_s01], paid_in: [ch2_s01, out_s02]}
+  - {id: L3, promise: "What did we throw away?", planted_in: [in_s01, in_s05], paid_in: [ch5_s02, ch6_s03, out_s02]}
+
+scenes:
+# ======================================================================== INTRO
+  - id: in_s01
+    chapter: intro
+    title: "The shadow"
+    arc_step: hook
+    duration_s: 28.87
+    duration_source: audio
+    goal: "Open on the video's question as a picture: every shadow loses a dimension; which one loses least?"
+    narration: |
+      Hold an object up to a lamp, and it throws a shadow on the wall. [pause 0.6s] Turn it a little, and the
+      shadow changes. [pause 1.0s] From most sides, this one looks like a shapeless blob. [pause 0.8s] But from
+      one direction, three separate groups appear, with a spiral running through them. [pause 1.2s] A shadow is
+      flat. [pause 0.3s] It always throws a dimension away. [pause 0.5s] The question is which view throws away
+      the least.
+    pause_after_s: 1.5
+    visual:
+      description: >
+        Black room, a single warm lamp. A 3D point sculpture (C.data, lit spheres) floats in front of a wall. The lamp
+        lights with a soft volumetric cone (GL shader) and casts a real shadow of the points on the wall (pyvista
+        shadows, re-rendered as the object turns). The object turns slowly; the shadow is a blob. It eases into its
+        top-principal-plane orientation: the shadow resolves into three clusters (C.pc1-tinted rim) with a spiral
+        through them. Accent glow on the resolved shadow only. On "flat" a thin depth axis (C.residual) through the
+        object collapses to a dot. Final hold on the best shadow.
+      reveal_sequence:
+        - {at_word: "lamp", action: "lamp fades up; light cone sweeps in, 1.2s easy_ease"}
+        - {at_word: "Turn", action: "sculpture starts a slow turn (0.15 rad/s); shadow updates every frame"}
+        - {at_word: "blob", action: "turn slows; shadow is a blob"}
+        - {at_word: "one direction", action: "sculpture eases into the best orientation, 2.0s smooth"}
+        - {at_word: "three separate groups", action: "shadow sharpens; cluster rims glow (accent)"}
+        - {at_word: "spiral", action: "spiral in the shadow traced by a moving highlight"}
+        - {at_word: "flat", action: "depth axis through the sculpture collapses to a point"}
+        - {at_word: "least", action: "hold; camera pushes in 4% on the shadow"}
+      equations: []
+      camera: "slow push-in 4% over the scene"
+      layout: L1
+      layers: [bg_solid, gl_light_cone, pyvista_sculpture_and_shadow, glow_shadow_rim]
+    engines: {primary: pyvista, secondary: [moderngl, numpy]}
+    engine_reason: "Real lit 3D spheres with a cast shadow need a 3D renderer; the soft light cone is a GLSL layer."
+    retention_device: "question as a picture (curiosity gap); opens loops L2 and L3"
+    interrupt: question
+    transition_out: "Camera drifts right; the shadow shrinks toward the top-right corner as the digit scan enters."
+    sfx_music: "Low room tone; a soft click as the lamp lights; a gentle rise when the shadow resolves."
+
+  - id: in_s02
+    chapter: intro
+    title: "Too many columns"
+    arc_step: problem
+    duration_s: 30.66
+    duration_source: audio
+    goal: "Show that data has the same problem, with far more dimensions: one digit is 64 numbers."
+    narration: |
+      Data has the same problem, only worse. [pause 0.4s] Take a scan of a handwritten digit. [pause 0.3s] It's a
+      small grid of sixty-four squares, each one some shade of gray. [pause 0.6s] Write those shades down in a row,
+      and one digit becomes sixty-four numbers. [pause 0.8s] Two numbers, we can plot on a page. [pause 0.3s]
+      Three, we can turn in our hands. [pause 0.6s] Sixty-four, nobody can picture. [pause 0.8s] And this table has
+      almost eighteen hundred rows.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        A real 8x8 digit (a "3") drawn as crisp grey tiles (skia). Each tile's grey level appears as a tiny number.
+        The tiles peel off row by row and line up into one 64-cell strip. The strip drops into a table that scrolls
+        upward fast (skia, 1,797 rows, tabular figures). Side board (L3): axes multiply: a 2D plane, a 3D box that
+        turns, then 4, 8, 16 ... 64 axes as a crowded star of lines (C.muted) that becomes unreadable.
+      reveal_sequence:
+        - {at_word: "handwritten digit", action: "8x8 digit fades in at stage centre"}
+        - {at_word: "sixty-four squares", action: "grid lines draw; grey values appear in each tile"}
+        - {at_word: "Write", action: "tiles fly into a 64-cell row, staggered 0.02s"}
+        - {at_word: "Two numbers", action: "side board: 2D axes draw"}
+        - {at_word: "Three", action: "3D box axes draw and rotate"}
+        - {at_word: "nobody can picture", action: "axes multiply to a 64-spoke star"}
+        - {at_word: "this table", action: "row drops into the table; table scrolls fast to row 1,797"}
+      equations: ['x \in \mathbb{R}^{64}']
+      camera: static
+      layout: L3
+      layers: [skia_digit_tiles, skia_table, manim_axes_star]
+    engines: {primary: skia, secondary: [manim, numpy]}
+    engine_reason: "Thousands of table cells and pixel tiles are fastest as skia rasters; axes and the R^64 tag are Manim."
+    retention_device: "the problem made concrete in one object"
+    interrupt: scale jump
+    transition_out: "The table's rows collapse into dots that fly to the map."
+    sfx_music: "Soft paper ticks as tiles move; a fast whir as the table scrolls."
+
+  - id: in_s03
+    chapter: intro
+    title: "The glimpse"
+    arc_step: payoff preview
+    duration_s: 32.94
+    duration_source: audio
+    goal: "Show the payoff before explaining it: 1,797 digits in two numbers, and they sort themselves."
+    narration: |
+      So let's ask the data for its best shadow. [pause 0.5s] Squeeze every digit down from sixty-four numbers to
+      just two, and plot each one as a dot. [pause 1.5s] Nobody told the method which digit is which. [pause 0.6s]
+      And still the zeros gather in one place, the sixes in another, the fours somewhere else. [pause 1.0s] Two
+      numbers out of sixty-four, and much of the structure survives. [pause 0.6s] The method that found this view
+      is called principal component analysis, or *PCA*.
+    pause_after_s: 1.2
+    visual:
+      description: >
+        The table's 1,797 rows turn into points (PointsLayer) and fly, staggered, to their real 2D PCA coordinates.
+        They arrive grey (C.data). On "Nobody told" they stay grey; then each class lights in its own hue (C.d0..d9)
+        one after another, with a CM numeral at each class centroid. Accent glow pulses once as the map settles.
+        Title lockup on "PCA": \textsf{PCA} in white with "principal component analysis" in CM small caps below.
+      reveal_sequence:
+        - {at_word: "best shadow", action: "rows flare and detach from the table"}
+        - {at_word: "Squeeze", action: "points fly to their 2D coordinates over 2.5s, staggered"}
+        - {at_word: "Nobody told", action: "all grey; a gentle camera settle"}
+        - {at_word: "zeros", action: "zeros light C.d0 with numeral 0"}
+        - {at_word: "sixes", action: "sixes light C.d6"}
+        - {at_word: "fours", action: "fours light C.d4, then all other classes light together"}
+        - {at_word: "survives", action: "accent glow pulse across the map"}
+        - {at_word: "principal component analysis", action: "title lockup writes in below the map"}
+      equations: ['\mathbb{R}^{64} \to \mathbb{R}^{2}']
+      camera: "slight pull-back as points spread"
+      layout: L1
+      layers: [points_digits, manim_numerals, manim_title, glow_map]
+    engines: {primary: PointsLayer, secondary: [manim, numpy, sklearn]}
+    engine_reason: "1,797 moving points in one draw call on the GPU; PCA coordinates computed with numpy (checked against sklearn)."
+    retention_device: "payoff shown unexplained (opens loop L1)"
+    interrupt: reveal
+    transition_out: "The map shrinks into a stored board (B_map) and the frame splits into four."
+    sfx_music: "A rising shimmer as the points fly; a single soft tone per class lighting."
+
+  - id: in_s04
+    chapter: intro
+    title: "Where it is used"
+    arc_step: stakes
+    duration_s: 37.25
+    duration_source: audio
+    goal: "Show why it matters: genes, faces, images, interest rates."
+    narration: |
+      It shows up all over science. [pause 0.4s] Feed it the genes of people across Europe, and its best shadow
+      looks a lot like a map of Europe. [pause 0.8s] Feed it photos of faces, and it finds a small set of ghostly
+      base faces that every face is built from. [pause 0.8s] It shrinks images and cleans up noisy signals. [pause
+      0.4s] And in finance, it finds that interest rates mostly move in just three ways: they rise together, they
+      tilt, or they bend. [pause 1.2s] Whenever there are too many measurements to look at, PCA is one of the first
+      tools people reach for.
+    pause_after_s: 1.2
+    visual:
+      description: >
+        L4 grid of four framed boards, each built in turn, key word tags only (\textsf). (1) "genes": a stylised
+        scatter whose coloured groups settle into the outline of Europe (schematic, after Novembre et al. 2008;
+        credited small). (2) "faces": a grid of made-up generated face sketches (skia, not real people) melting into
+        four ghostly eigenface tiles. (3) "images": a photo-like texture rebuilt with k = 1, 5, 20, 50 components.
+        (4) "rates": a yield curve (Manim) wobbling as level, slope and curvature shapes in C.pc1, C.pc2, C.pc3.
+      reveal_sequence:
+        - {at_word: "genes", action: "board 1 builds; dots settle into the map outline"}
+        - {at_word: "faces", action: "board 2 builds; faces fade into eigenface tiles"}
+        - {at_word: "shrinks images", action: "board 3 builds; image sharpens with k"}
+        - {at_word: "interest rates", action: "board 4 builds; curve wobbles"}
+        - {at_word: "rise together", action: "C.pc1 level shift"}
+        - {at_word: "tilt", action: "C.pc2 slope"}
+        - {at_word: "bend", action: "C.pc3 curvature"}
+        - {at_word: "too many measurements", action: "all four boards hold, then dim to 40%"}
+      equations: []
+      camera: static
+      layout: L4
+      layers: [skia_boards, manim_rates, panel_frames]
+    engines: {primary: skia, secondary: [manim, numpy]}
+    engine_reason: "Image-like boards (faces, textures) are rasters; the yield curve is a Manim plot."
+    retention_device: "stakes: four worlds in fifteen seconds"
+    interrupt: montage
+    transition_out: "Boards slide off; the shadow board returns to centre for the roadmap."
+    sfx_music: "A light pulse as each board opens."
+
+  - id: in_s05
+    chapter: intro
+    title: "Pearson, Hotelling, and the road map"
+    arc_step: roadmap
+    duration_s: 39.69
+    duration_source: audio
+    goal: "A little history, then the six chapters as a path, and the promise that the digit map will make sense."
+    narration: |
+      The idea is older than computers. [pause 0.4s] In nineteen oh one, Karl Pearson looked for the line that
+      passes closest to a cloud of points. [pause 0.5s] In nineteen thirty three, Harold Hotelling looked for the
+      directions in which data varies the most, and he named them principal components. [pause 0.8s] They turned out
+      to be the same answer. [pause 1.0s] We'll build it one step at a time: data as a cloud of points, the best
+      direction, one matrix, its eigenvectors, cutting the dimensions down, and where it all breaks. [pause 1.0s] By
+      the end, that map of digits will make complete sense.
+    pause_after_s: 2.0
+    visual:
+      description: >
+        Two small name cards in CM small caps with dates (\textsc{Karl Pearson} 1901, \textsc{Harold Hotelling} 1933),
+        each with a tiny icon: a line threading a cloud (Pearson) and an arrow along the cloud's long axis
+        (Hotelling). The two icons slide together and overlap exactly. Then six chapter tiles appear along a gentle
+        arc, each a tiny preview (cloud, turning line, 2x2 matrix, fan of arrows, scree bars, rolled sheet), lit one by
+        one on their words. The shadow board pins into rail slot 1 (L2), and the digit map flashes on "map of digits".
+      reveal_sequence:
+        - {at_word: "Karl Pearson", action: "Pearson card + closest-line icon"}
+        - {at_word: "Harold Hotelling", action: "Hotelling card + max-spread arrow icon"}
+        - {at_word: "same answer", action: "icons slide together and coincide; brief glow"}
+        - {at_word: "cloud of points", action: "tile 1 lights"}
+        - {at_word: "best direction", action: "tile 2 lights"}
+        - {at_word: "one matrix", action: "tile 3 lights"}
+        - {at_word: "eigenvectors", action: "tile 4 lights"}
+        - {at_word: "cutting the dimensions", action: "tile 5 lights"}
+        - {at_word: "breaks", action: "tile 6 lights"}
+        - {at_word: "map of digits", action: "B_map flashes in rail slot 2, then the chapter 1 card opens"}
+      equations: []
+      camera: static
+      layout: "L1 → L2"
+      rail: [B_shadow, B_map]
+      layers: [manim_cards, manim_tiles, rail_boards]
+    engines: {primary: manim, secondary: [skia]}
+    engine_reason: "Cards, tiles and small vector previews are crisp Manim drawings; previews reuse each chapter's own mobjects."
+    retention_device: "road map with a promise (closes the intro, keeps L1 open)"
+    interrupt: history
+    transition_out: "Chapter 1 card: tile 1 grows to fill the frame; the shadow strip stays at the bottom edge."
+    sfx_music: "Quiet ticks per tile; a soft swell into the card."
+
+# ======================================================================== CH1 DATA AS A CLOUD
+  - id: ch1_s01
+    chapter: ch1
+    title: "Rows become points"
+    arc_step: setup
+    duration_s: 36.50
+    duration_source: audio
+    goal: "A human example: forty people's height and arm span become a tilted cloud."
+    narration: |
+      Let's start small. [pause 0.3s] Forty people, and two measurements each: height, and arm span, the distance
+      from fingertip to fingertip with arms stretched out. [pause 0.8s] Each row of the table is one person. [pause
+      0.3s] Give each person a dot, with height along one axis and arm span along the other. [pause 1.2s] The dots
+      don't scatter at random. [pause 0.4s] They lean along a diagonal, because taller people tend to have longer
+      arms. [pause 0.6s] Leonardo da Vinci noticed this more than five hundred years ago: for most people, arm span
+      is close to height.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        Chapter card first (\textsc{Data as a Cloud}). A small table (skia, tabular CM figures, two columns tagged
+        \textsf{height} and \textsf{arm span}, cm) sits at stage left. A Classic plane (C.grid over C.grid_minor,
+        white axes, ticks every 10 cm from 150 to 195) draws on the right. Each row lifts and flies to its dot
+        (C.data), staggered 0.05s; the row and dot share a brief highlight. A dashed diagonal y = x (C.muted) draws
+        on "close to height". A small Vitruvian-style figure (thin line drawing, skia) with arms out, span = height,
+        sits in a corner frame.
+      reveal_sequence:
+        - {at_word: "Forty people", action: "table fades in, rows staggered"}
+        - {at_word: "arm span", action: "a stick figure stretches its arms; a C.pc1-free ruler measures fingertip to fingertip"}
+        - {at_word: "Each row", action: "first row highlights"}
+        - {at_word: "Give each person a dot", action: "plane draws; rows fly to dots, staggered"}
+        - {at_word: "diagonal", action: "cloud's long axis hinted by a soft ellipse outline (C.muted)"}
+        - {at_word: "Leonardo da Vinci", action: "Vitruvian figure in a small frame; dashed y = x line draws"}
+      equations: ['x_i = (h_i,\ a_i)']
+      camera: static
+      layout: L2
+      layers: [chapter_card, skia_table, manim_plane, manim_dots, skia_vitruvian]
+    engines: {primary: manim, secondary: [skia, numpy]}
+    engine_reason: "Axes and dots are exact vector geometry; the table and figure are skia rasters."
+    retention_device: "human example (people, their arms)"
+    interrupt: history
+    transition_out: "Table fades; the cloud stays."
+    sfx_music: "Soft ticks as dots land."
+
+  - id: ch1_s02
+    chapter: ch1
+    title: "Find the centre"
+    arc_step: build
+    duration_s: 23.83
+    duration_source: audio
+    goal: "Centring: subtract the mean so only the shape of the spread is left."
+    narration: |
+      The first step is to find the centre of the cloud. [pause 0.4s] Average all the heights, average all the arm
+      spans, and you get one point: the average person. [pause 0.8s] Then slide the whole cloud so the average person
+      sits at zero. [pause 1.0s] Nothing about the shape changes. [pause 0.3s] We only stop caring where the cloud
+      is, so we can study how it's spread out.
+    pause_after_s: 1.0
+    visual:
+      description: >
+        Two averaging rulers slide in along the axes (C.mean ticks at 170.7 and 173.3). Their cross lines meet at the
+        mean point (C.mean, ring marker). On "slide" the cloud and the mean translate together to the origin while
+        the axes relabel to deviations. The equation builds under the plane, term by term, with \mu in C.mean. The
+        finished plane shrinks into rail slot 1 as B_cloud.
+      reveal_sequence:
+        - {at_word: "centre", action: "the cloud's bounding hint pulses"}
+        - {at_word: "Average all the heights", action: "height ruler + average tick"}
+        - {at_word: "arm spans", action: "arm span ruler + average tick"}
+        - {at_word: "average person", action: "mean marker appears where the lines cross"}
+        - {at_word: "slide", action: "cloud translates to origin, 1.5s smooth; equation builds"}
+        - {at_word: "spread out", action: "board shrinks into rail slot 1 (B_cloud)"}
+      equations: ['\mu = \tfrac{1}{n}\sum_i x_i', '\tilde x_i = x_i - \mu']
+      camera: static
+      layout: L2
+      rail: [B_cloud]
+      layers: [manim_plane, manim_dots, manim_mean, manim_eqn, rail_boards]
+    engines: {primary: manim, secondary: [numpy]}
+    engine_reason: "Pure 2D geometry and equations."
+    retention_device: "one small, satisfying motion"
+    interrupt: null
+    transition_out: "A fresh centred copy of the cloud stays on the stage."
+    sfx_music: "A soft slide."
+
+  - id: ch1_s03
+    chapter: ch1
+    title: "Spread"
+    arc_step: build
+    duration_s: 36.23
+    duration_source: audio
+    goal: "Variance as the average of squared distances, and the hint that the measured axes are not the best ones."
+    narration: |
+      How spread out is it? [pause 0.4s] Take each person's height, see how far it is from the average height,
+      square that gap, and average the squares. [pause 0.6s] That number is the variance. [pause 0.8s] Squaring
+      makes every gap count as positive, and it makes far points count much more than near ones. [pause 1.0s] We can
+      measure the spread along height, and along arm span. [pause 0.5s] But look along the diagonal. [pause 0.4s] The
+      cloud stretches further that way than along either one. [pause 0.8s] The directions we happened to measure in
+      are not the directions the data cares about.
+    pause_after_s: 1.5
+    visual:
+      description: >
+        Each point's horizontal gap draws as a segment, then grows a square on it (C.spread, 30% fill, crisp edge).
+        The squares fly together and average into one square whose side is the standard deviation. Two edge rulers
+        show the spread along height and arm span as bars (C.spread). A third bar along the diagonal (y = x
+        direction) grows longer than both. Equation for variance builds and pins into rail slot 2 (B_var).
+      reveal_sequence:
+        - {at_word: "how far", action: "gap segments draw"}
+        - {at_word: "square that gap", action: "squares grow on each gap"}
+        - {at_word: "average the squares", action: "squares fly together and average into one"}
+        - {at_word: "variance", action: "sigma squared equation builds"}
+        - {at_word: "far points", action: "the two largest squares pulse"}
+        - {at_word: "spread along height", action: "height spread bar"}
+        - {at_word: "along arm span", action: "arm span spread bar"}
+        - {at_word: "diagonal", action: "diagonal bar grows past both (accent)"}
+        - {at_word: "cares about", action: "equation pins to rail slot 2 (B_var)"}
+      equations: ['\sigma^2 = \tfrac{1}{n}\sum_i (x_i - \mu)^2']
+      camera: static
+      layout: L2
+      rail: [B_cloud, B_var]
+      layers: [manim_plane, manim_squares, manim_bars, manim_eqn, rail_boards]
+    engines: {primary: manim, secondary: [numpy]}
+    engine_reason: "Squares and bars are exact vector shapes, computed from the data."
+    retention_device: "a visual surprise (the diagonal beats both axes)"
+    interrupt: contrast
+    transition_out: "Frame splits; the 2D cloud moves to the left board."
+    sfx_music: "Soft chime when the diagonal bar passes."
+
+  - id: ch1_s04
+    chapter: ch1
+    title: "More columns"
+    arc_step: generalise
+    duration_s: 28.91
+    duration_source: audio
+    goal: "Extend the picture: three measurements give a 3D cloud; a digit is a point in 64 dimensions."
+    narration: |
+      Add a third measurement, say shoulder width, and every person becomes a point in three dimensions. [pause 1.0s]
+      The cloud is still there. [pause 0.3s] We just need to turn it to see its shape. [pause 0.8s] The digits work
+      the same way. [pause 0.4s] Sixty-four shades in a column make one point in a space with sixty-four directions.
+      [pause 0.8s] We can't turn that cloud to look at it. [pause 0.5s] So we need a way to find its best view by
+      calculation instead.
+    pause_after_s: 2.0
+    visual:
+      description: >
+        L3 split. Left board keeps the 2D cloud. Right board: a third axis (\textsf{shoulder}) grows out of the plane
+        and the camera orbits; dots rise to their 3D heights (PointsLayer 3D with s.camera orbit). Then the right
+        board swaps to the digit "3" whose 64 tiles unroll into a tall column vector (skia), labelled \mathbb{R}^{64}.
+        A greyed 64-spoke star behind it.
+      reveal_sequence:
+        - {at_word: "shoulder width", action: "third axis grows out of the plane"}
+        - {at_word: "three dimensions", action: "dots rise; camera orbits 40 degrees"}
+        - {at_word: "turn it", action: "orbit continues to show the flat-pebble shape"}
+        - {at_word: "digits", action: "right board crossfades to the digit"}
+        - {at_word: "Sixty-four shades", action: "tiles unroll into a column vector"}
+        - {at_word: "can't turn", action: "64-spoke star greys out"}
+        - {at_word: "calculation", action: "hold; chapter end"}
+      equations: ['x \in \mathbb{R}^{3}', 'x \in \mathbb{R}^{64}']
+      camera: "orbit on the right board only"
+      layout: L3
+      rail: [B_cloud, B_var]
+      layers: [panel_left_2d, points_3d_orbit, skia_column_vector]
+    engines: {primary: PointsLayer, secondary: [manim, skia]}
+    engine_reason: "A 3D point cloud with a camera orbit is a PointsLayer job; the column vector is a skia raster."
+    retention_device: "scale jump from 2 to 3 to 64"
+    interrupt: null
+    transition_out: "Chapter 2 card; the right board clears and the 2D cloud returns to the stage."
+    sfx_music: "Low whoosh with the orbit."
+
+# ======================================================================== CH2 THE BEST DIRECTION
+  - id: ch2_s01
+    chapter: ch2
+    title: "Shadows on a line"
+    arc_step: explore
+    duration_s: 37.56
+    duration_source: audio
+    goal: "Find the best direction by search: spread of shadows as the line turns, with one clear peak."
+    narration: |
+      Back to two dimensions, where we can see everything. [pause 0.4s] Draw a line through the centre, and drop every
+      point straight onto it, at a right angle. [pause 0.6s] Those landing spots are the shadows of the points on
+      this line. [pause 1.0s] Now turn the line. [pause 0.5s] Pointing one way, the shadows bunch up together. [pause
+      0.4s] Pointing another, they spread far apart. [pause 1.0s] Let's record the spread of the shadows for every
+      angle. [pause 1.5s] The record has one clear peak. [pause 0.4s] That direction keeps the most spread, and it's
+      the first principal component.
+    pause_after_s: 1.5
+    visual:
+      description: >
+        Chapter card (\textsc{The Best Direction}). The centred cloud on the stage. A white probe line (C.probe)
+        through the origin; thin perpendicular drops (C.residual, 50%) and shadow dots on the line (C.data, hollow).
+        The line turns; the shadows bunch and spread. A polar dial board on the right traces the spread vs angle live
+        (a peanut-shaped polar curve, C.spread, with a glowing tip). It reaches the peak; the line locks there,
+        turns gold (C.pc1) and glows once. Label \textsf{PC1}. The dial pins to rail slot 3 (B_dial).
+      reveal_sequence:
+        - {at_word: "Draw a line", action: "probe line draws through origin"}
+        - {at_word: "drop every point", action: "perpendicular drops, staggered"}
+        - {at_word: "shadows", action: "shadow dots appear on the line"}
+        - {at_word: "turn the line", action: "line starts turning, shadows slide with it"}
+        - {at_word: "bunch up", action: "line near the short axis; shadows packed"}
+        - {at_word: "spread far apart", action: "line near the long axis; shadows wide"}
+        - {at_word: "record", action: "dial board opens; tracing begins for a full turn"}
+        - {at_word: "one clear peak", action: "line locks at the peak; turns C.pc1; accent glow"}
+        - {at_word: "first principal component", action: "label PC1; dial pins to rail slot 3"}
+      equations: []
+      camera: static
+      layout: L2
+      rail: [B_cloud, B_var, B_dial]
+      layers: [chapter_card, manim_plane, manim_probe, manim_shadows, manim_dial, glow_pc1, rail_boards]
+    engines: {primary: manim, secondary: [moderngl, numpy]}
+    engine_reason: "Exact projections redrawn as a pure function of the angle (m.redraw); the glow is a GL fx layer."
+    retention_device: "a live search the viewer can predict"
+    interrupt: reveal
+    transition_out: "Frame splits for the two views."
+    sfx_music: "A soft rising tone that follows the spread, peaking at the lock."
+
+  - id: ch2_s02
+    chapter: ch2
+    title: "Two ways to say best"
+    arc_step: insight
+    duration_s: 40.10
+    duration_source: audio
+    goal: "Most spread equals closest fit, by Pythagoras: Pearson's line and Hotelling's direction coincide."
+    narration: |
+      There's a second way to pick a best line. [pause 0.4s] Pearson wanted the line that passes closest to the
+      points, with the smallest total of squared gaps. [pause 0.8s] Look at one point. [pause 0.3s] Its distance from
+      the centre is fixed. [pause 0.4s] Its shadow and its gap to the line make a right triangle, with that distance
+      as the long side. [pause 0.8s] By Pythagoras, the shadow squared and the gap squared always add up to the same
+      thing. [pause 1.0s] So when the shadows grow, the gaps must shrink. [pause 0.6s] The line with the most spread is
+      the line that fits closest. [pause 0.4s] Pearson's line and Hotelling's direction are the same.
+    pause_after_s: 1.5
+    visual:
+      description: >
+        L3 split: left board tagged \textsf{most spread} (shadows, C.data), right board \textsf{closest fit} (gaps,
+        C.residual). One point is singled out with its right triangle: hypotenuse C.mean, shadow leg C.pc1, gap leg
+        C.residual, with squares on all three sides. As the probe line turns, the shadow square grows while the gap
+        square shrinks, the big square fixed. Totals shown as two stacked bars that always sum to the same height.
+        Both boards lock at the same angle; their lines glow gold together.
+      reveal_sequence:
+        - {at_word: "closest to the points", action: "right board: gaps draw from points to the line"}
+        - {at_word: "one point", action: "one point highlighted, others dim"}
+        - {at_word: "distance from the centre", action: "hypotenuse draws"}
+        - {at_word: "right triangle", action: "both legs draw, right-angle mark"}
+        - {at_word: "Pythagoras", action: "squares grow on all three sides; equation builds"}
+        - {at_word: "shadows grow", action: "line turns; stacked bars trade height"}
+        - {at_word: "fits closest", action: "both boards lock at the same angle"}
+        - {at_word: "same", action: "lines glow C.pc1 together"}
+      equations: ['\lVert \tilde x\rVert^2 = (\tilde x\cdot u)^2 + d^2']
+      camera: static
+      layout: L3
+      rail: [B_cloud, B_var, B_dial]
+      layers: [panel_left, panel_right, manim_triangle, manim_squares, manim_bars, glow_pc1]
+    engines: {primary: manim, secondary: [numpy]}
+    engine_reason: "Exact right triangles and squares; the trade-off is computed from the data."
+    retention_device: "two stories become one (a satisfying click)"
+    interrupt: contrast
+    transition_out: "Right board clears; the formula builds on the stage."
+    sfx_music: "Two tones that converge into one at the lock."
+
+  - id: ch2_s03
+    chapter: ch2
+    title: "Write it down"
+    arc_step: formalise
+    duration_s: 27.52
+    duration_source: audio
+    goal: "Turn the picture into the optimisation problem: maximise the mean squared projection over unit vectors."
+    narration: |
+      To compute this, describe the direction with an arrow one unit long. [pause 0.5s] A point's shadow on that line
+      is the dot product of the point with the arrow. [pause 0.8s] Square each shadow and average over all the points,
+      and you get the variance in that direction. [pause 1.0s] So the whole problem fits in one sentence. [pause 0.4s]
+      Among all arrows of length one, find the one that makes this average as big as possible.
+    pause_after_s: 1.2
+    visual:
+      description: >
+        A unit arrow u (C.probe) on the line, with a unit circle ghost. One point's shadow length labelled as the dot
+        product, coloured to match (x̃ C.data, u C.probe). The variance formula builds term by term next to it
+        (B_var slides back from the rail to show the same averaging-of-squares shape). Then the max and the unit
+        constraint wrap around it. The finished objective pins to rail slot 2, replacing B_var.
+      reveal_sequence:
+        - {at_word: "arrow one unit long", action: "unit arrow + ghost unit circle"}
+        - {at_word: "dot product", action: "shadow length labelled x·u"}
+        - {at_word: "Square each shadow", action: "squares on shadows; B_var slides out beside them"}
+        - {at_word: "variance in that direction", action: "Var(u) formula completes"}
+        - {at_word: "one sentence", action: "max over unit u wraps the formula"}
+        - {at_word: "as big as possible", action: "objective pins to rail slot 2 (B_varu)"}
+      equations: ['\tilde x\cdot u', '\lVert u\rVert = 1', '\mathrm{Var}(u) = \tfrac{1}{n}\sum_i (\tilde x_i\cdot u)^2', '\max_{\lVert u\rVert = 1}\ \mathrm{Var}(u)']
+      camera: static
+      layout: L2
+      rail: [B_cloud, B_varu, B_dial]
+      layers: [manim_plane, manim_arrow, manim_eqn, rail_boards]
+    engines: {primary: manim}
+    engine_reason: "Equations and arrows."
+    retention_device: "the problem stated in one line"
+    interrupt: null
+    transition_out: "The equation stays pinned; the plane returns full size."
+    sfx_music: "Quiet."
+
+  - id: ch2_s04
+    chapter: ch2
+    title: "The second direction"
+    arc_step: extend
+    duration_s: 36.25
+    duration_source: audio
+    goal: "PC2 at a right angle to PC1; rotate the grid so the new axes mean size and proportion."
+    narration: |
+      One direction rarely tells the whole story. [pause 0.4s] Look for the best direction again, but only among
+      those at a right angle to the first. [pause 0.6s] That's the second principal component. [pause 0.3s] It picks
+      up the spread the first one missed. [pause 1.0s] Turn the grid to line up with these two, and every person gets
+      new coordinates. [pause 0.6s] Along the first axis, people differ in overall size. [pause 0.4s] Along the second,
+      in whether their arms are long or short for their height. [pause 1.0s] Same people, same cloud, but the axes
+      finally mean something.
+    pause_after_s: 2.0
+    visual:
+      description: >
+        A right-angle mark at the origin; a second line (C.pc2) at 90 degrees to PC1 with label \textsf{PC2}. The whole
+        Classic grid rotates to align with PC1 and PC2 (Manim ApplyMatrix on the grid, 2s smooth). New axis tags
+        appear: \textsf{size} on PC1 and \textsf{arms vs height} on PC2. Two example people (tall, long-armed) get
+        small stick-figure icons at their dots.
+      reveal_sequence:
+        - {at_word: "right angle", action: "right-angle mark at the origin"}
+        - {at_word: "second principal component", action: "PC2 line draws (C.pc2)"}
+        - {at_word: "Turn the grid", action: "grid rotates to PC axes"}
+        - {at_word: "overall size", action: "size tag; two figures small vs large"}
+        - {at_word: "long or short", action: "arms tag; two figures with short vs long arms"}
+        - {at_word: "mean something", action: "hold"}
+      equations: ['u_2 \perp u_1']
+      camera: static
+      layout: L2
+      rail: [B_cloud, B_varu, B_dial]
+      layers: [manim_plane_rotating, manim_pc_axes, skia_figures, rail_boards]
+    engines: {primary: manim, secondary: [skia]}
+    engine_reason: "A grid transform is Manim's strength."
+    retention_device: "human example (size vs proportion)"
+    interrupt: null
+    transition_out: "Chapter 3 card; B_cloud and B_var leave the rail, B_dial and B_varu stay."
+    sfx_music: "A soft turn sound."
+
+# ======================================================================== CH3 THE COVARIANCE MATRIX
+  - id: ch3_s01
+    chapter: ch3
+    title: "From a sum to a matrix"
+    arc_step: formalise
+    duration_s: 37.87
+    duration_source: audio
+    goal: "Rewrite Var(u) as uᵀCu so the data collapses into one matrix built once."
+    narration: |
+      Searching every angle works in two dimensions. [pause 0.4s] In sixty-four, there are far too many directions to
+      try. [pause 0.6s] We need the answer directly. [pause 0.8s] Start from the formula for the variance along an
+      arrow. [pause 0.4s] Write each shadow as a small matrix product, and regroup. [pause 0.8s] The arrow moves to the
+      outside, and everything about the data collects in the middle. [pause 1.0s] That middle part is a single matrix,
+      built once from the data. [pause 0.4s] It's called the covariance matrix. [pause 0.5s] Once we have it, we never
+      need to touch the points again.
+    pause_after_s: 1.2
+    visual:
+      description: >
+        Chapter card (\textsc{The Covariance Matrix}). A 64-spoke star of directions flickers to show "too many".
+        B_varu slides from the rail to the stage. Line by line, with TransformMatchingTex: the square becomes
+        uᵀx̃ x̃ᵀu, the u's slide outside the sum, and the bracketed middle collects (C.spread tint box). The box collapses
+        into the symbol C. The points of the cloud fade to 20% on "never need to touch the points".
+      reveal_sequence:
+        - {at_word: "sixty-four", action: "64-spoke star flickers and greys"}
+        - {at_word: "variance along an arrow", action: "B_varu slides to the stage"}
+        - {at_word: "small matrix product", action: "square rewrites as u^T x x^T u"}
+        - {at_word: "regroup", action: "u's slide outside the sum"}
+        - {at_word: "the middle", action: "middle term boxed (C.spread)"}
+        - {at_word: "covariance matrix", action: "box collapses to C; u^T C u"}
+        - {at_word: "never need", action: "points fade to 20%"}
+      equations: ['\tfrac1n\sum_i (\tilde x_i\cdot u)^2', '\tfrac1n\sum_i u^\top \tilde x_i\,\tilde x_i^\top u', 'u^\top\Big(\tfrac1n\sum_i \tilde x_i\,\tilde x_i^\top\Big)u', 'u^\top C\,u']
+      camera: static
+      layout: L2
+      rail: [B_varu, B_dial]
+      layers: [chapter_card, manim_eqn_chain, manim_cloud_dim, rail_boards]
+    engines: {primary: manim}
+    engine_reason: "Term-matched equation morphs."
+    retention_device: "gradual reveal of one equation"
+    interrupt: null
+    transition_out: "C grows into a 2x2 matrix with brackets."
+    sfx_music: "Soft clicks per regroup."
+
+  - id: ch3_s02
+    chapter: ch3
+    title: "What is inside C"
+    arc_step: explain
+    duration_s: 43.78
+    duration_source: audio
+    goal: "A human example: variances on the diagonal, covariance off it, shown as signed product rectangles."
+    narration: |
+      What's inside it? [pause 0.4s] Down the diagonal sit the variances we already met: the spread of height, and the
+      spread of arm span. [pause 0.8s] Off the diagonal sits something new, the covariance. [pause 0.4s] For each
+      person, take how far they are from the average height, and multiply it by how far they are from the average arm
+      span. [pause 0.6s] A tall person with long arms gives a positive product. [pause 0.3s] So does a short person
+      with short arms. [pause 0.4s] Mixed cases give negative ones. [pause 0.8s] Average the products. [pause 0.4s]
+      A large positive covariance says the two measurements tend to rise together. [pause 0.6s] And the matrix is
+      symmetric, because height with arm span is the same as arm span with height.
+    pause_after_s: 1.5
+    visual:
+      description: >
+        A 2x2 matrix (Classic square brackets, `Mat`) on the right of the stage with entries filled from the data:
+        67.1 and 84.8 on the diagonal, 58.4 off it (all C.spread; the off-diagonal pair outlined). Left: the centred plane with quadrant tints.
+        Each person's deviation rectangle draws from the origin to their dot: positive quadrants C.spread fill, negative
+        quadrants C.residual fill. The rectangles stack into one average rectangle whose area becomes the off-diagonal
+        entry. The two off-diagonal entries swap places with a mirror flash for "symmetric". Matrix pins to rail slot 1
+        (B_C).
+      reveal_sequence:
+        - {at_word: "diagonal", action: "diagonal entries fill (C.spread)"}
+        - {at_word: "covariance", action: "off-diagonal entries highlight (C.spread)"}
+        - {at_word: "multiply", action: "first deviation rectangle draws"}
+        - {at_word: "tall person with long arms", action: "upper-right rectangles fill C.spread"}
+        - {at_word: "short person with short arms", action: "lower-left rectangles fill C.spread"}
+        - {at_word: "Mixed cases", action: "the few mixed rectangles fill C.residual"}
+        - {at_word: "Average the products", action: "rectangles stack and average into the entry 58.4"}
+        - {at_word: "symmetric", action: "mirror flash across the diagonal; matrix pins to rail slot 1 (B_C)"}
+      equations: ['C = \begin{bmatrix}\sigma_h^2 & \sigma_{ha}\\ \sigma_{ha} & \sigma_a^2\end{bmatrix}', '\sigma_{ha} = \tfrac1n\sum_i \tilde h_i\,\tilde a_i']
+      camera: static
+      layout: L2
+      rail: [B_C, B_varu, B_dial]
+      layers: [manim_plane_quadrants, manim_rects, manim_matrix, rail_boards]
+    engines: {primary: manim, secondary: [numpy]}
+    engine_reason: "Rectangles and matrix entries computed from the data."
+    retention_device: "human example (tall with long arms)"
+    interrupt: null
+    transition_out: "Plane returns to a Classic grid for the transform."
+    sfx_music: "A tick per rectangle, thinning out."
+
+  - id: ch3_s03
+    chapter: ch3
+    title: "C bends space"
+    arc_step: connect
+    duration_s: 30.09
+    duration_source: audio
+    goal: "C as a transformation: circle to ellipse, and uᵀCu around the circle is the Ch2 dial rebuilt."
+    narration: |
+      A matrix is also a motion. [pause 0.4s] Apply the covariance matrix to every arrow on a circle, and the circle
+      stretches into an ellipse, tilted along the cloud. [pause 1.0s] And remember the spread we recorded for every
+      angle? [pause 0.4s] Measure how far each stretched arrow reaches along its own original direction. [pause 0.5s]
+      That's the same record, rebuilt from the matrix alone. [pause 1.0s] The matrix knows the variance in every
+      direction.
+    pause_after_s: 1.5
+    visual:
+      description: >
+        Classic grid with a unit circle of 24 arrows (C.probe). The grid transforms by C (scaled to fit), the circle
+        becomes a tilted ellipse (C.spread), the cloud ghost lies along it. B_dial slides back from the rail and overlays
+        the new polar curve traced from uᵀCu; the two curves coincide exactly (flash). L3 split at the end: dial left,
+        matrix right.
+      reveal_sequence:
+        - {at_word: "motion", action: "unit circle of arrows draws"}
+        - {at_word: "Apply the covariance matrix", action: "grid and arrows transform by C, 2s smooth"}
+        - {at_word: "ellipse", action: "ellipse outline (C.spread); cloud ghost appears along it"}
+        - {at_word: "remember", action: "B_dial slides from the rail"}
+        - {at_word: "along its own original direction", action: "each arrow's projection onto its start direction marks a point"}
+        - {at_word: "same record", action: "new curve traces and lands on the dial exactly (flash)"}
+        - {at_word: "every direction", action: "hold"}
+      equations: ['u \mapsto Cu', 'u^\top C u = \mathrm{Var}(u)']
+      camera: static
+      layout: "L2 → L3"
+      rail: [B_C, B_varu]
+      layers: [manim_grid_transform, manim_arrows, manim_dial, rail_boards]
+    engines: {primary: manim, secondary: [numpy]}
+    engine_reason: "Linear transforms of a grid are native Manim."
+    retention_device: "callback: an old picture returns and matches"
+    interrupt: callback
+    transition_out: "Cross-fade to the digits' 64x64 matrix."
+    sfx_music: "A stretch sound; a bright click when the curves match."
+
+  - id: ch3_s04
+    chapter: ch3
+    title: "A bigger C"
+    arc_step: scale up
+    duration_s: 30.58
+    duration_source: audio
+    goal: "The real 64x64 covariance of the digits as a heatmap; neighbours correlate; blank pixels give empty rows."
+    narration: |
+      For the digits, the covariance matrix has sixty-four rows and sixty-four columns, one for each pixel. [pause
+      0.8s] Each entry says how strongly two pixels brighten together. [pause 0.6s] Neighbouring pixels mostly rise and
+      fall together, because a pen stroke is wider than one square. [pause 0.6s] A few pixels near the edges are blank
+      in every scan, so their rows are empty. [pause 1.0s] Somewhere in this grid of numbers is the best view of the
+      digits.
+    pause_after_s: 2.0
+    visual:
+      description: >
+        The real 64x64 covariance as a heatmap (FieldLayer, diverging cmap C.data (negative) - black - C.spread (positive)), crisp cells,
+        thin frame. A highlighted pixel on a small 8x8 digit tile links to its row in the heatmap; its neighbours on
+        the tile light where the row is bright. The three always-blank pixels' rows and columns go dark with a thin
+        C.muted outline. The heatmap shrinks to rail slot 2 on the final line.
+      reveal_sequence:
+        - {at_word: "sixty-four rows", action: "heatmap builds row by row (staggered 0.01s)"}
+        - {at_word: "two pixels", action: "a pixel pair highlights on the tile and in the matrix"}
+        - {at_word: "Neighbouring pixels", action: "the pixel's row lights its neighbours on the tile"}
+        - {at_word: "blank in every scan", action: "three empty rows/columns outlined"}
+        - {at_word: "best view", action: "heatmap pins to the rail; chapter end"}
+      equations: ['C \in \mathbb{R}^{64\times 64}']
+      camera: static
+      layout: L3
+      rail: [B_C, B_varu]
+      layers: [field_heatmap, skia_digit_tile, manim_links]
+    engines: {primary: FieldLayer, secondary: [skia, numpy]}
+    engine_reason: "A 64x64 colour-mapped array is one GPU texture."
+    retention_device: "real data, at full size"
+    interrupt: scale jump
+    transition_out: "Chapter 4 card."
+    sfx_music: "Faint data hum."
+
+# ======================================================================== CH4 EIGENVECTORS
+  - id: ch4_s01
+    chapter: ch4
+    title: "Directions that don't turn"
+    arc_step: discover
+    duration_s: 31.78
+    duration_source: audio
+    goal: "Eigenvectors as the directions C only stretches."
+    narration: |
+      Watch what the covariance matrix does to a fan of arrows. [pause 0.8s] Almost every arrow gets stretched and
+      turned off its own line. [pause 0.6s] But two directions only stretch. [pause 0.4s] They stay pointing exactly
+      where they were. [pause 1.0s] Arrows like these are called eigenvectors, from the German word for own. [pause
+      0.5s] Each one has a number that says how much it's stretched, its eigenvalue. [pause 0.8s] And these two lie
+      right along the long and short axes of our cloud.
+    pause_after_s: 1.5
+    visual:
+      description: >
+        Chapter card (\textsc{Eigenvectors}). A fan of 16 arrows (C.probe) with faint lines through each. C acts:
+        each arrow moves to Cu, with a thin trail; most leave their lines (lines flash C.muted). Two arrows stay on
+        their lines and stretch: one long (C.pc1), one short (C.pc2), both glow. Cv = λv builds with v in the arrow's
+        colour and λ in C.spread. The cloud ghost fades in beneath; its axes match the two arrows. Pins to rail (B_eig).
+      reveal_sequence:
+        - {at_word: "fan of arrows", action: "fan + guide lines draw"}
+        - {at_word: "stretched and turned", action: "C acts on all arrows, 2s"}
+        - {at_word: "two directions", action: "two arrows highlighted on their lines"}
+        - {at_word: "exactly where they were", action: "accent glow on both"}
+        - {at_word: "eigenvectors", action: "Cv = λv writes in"}
+        - {at_word: "eigenvalue", action: "λ highlights (C.spread); stretch factors shown 135.0 and 16.9"}
+        - {at_word: "long and short axes", action: "cloud ghost fades in under the arrows; pins B_eig"}
+      equations: ['C v = \lambda v']
+      camera: static
+      layout: L2
+      rail: [B_C, B_eig]
+      layers: [chapter_card, manim_fan, manim_eqn, glow_eigs, rail_boards]
+    engines: {primary: manim, secondary: [moderngl, numpy]}
+    engine_reason: "Arrows and equations in Manim; accent glow as a GL fx; eigenpairs from numpy.linalg.eigh."
+    retention_device: "spot the odd ones out; human example: the two arrows are the people cloud's own size and proportion axes"
+    interrupt: reveal
+    transition_out: "The two eigenvectors become the axes of the next board."
+    sfx_music: "A soft chord when the two arrows stay put."
+
+  - id: ch4_s02
+    chapter: ch4
+    title: "Why the top one wins"
+    arc_step: prove
+    duration_s: 36.93
+    duration_source: audio
+    goal: "In the eigenbasis, variance is a weighted average of eigenvalues; maximum at the top eigenvector."
+    narration: |
+      Why should the best direction be an eigenvector? [pause 0.5s] Describe any arrow using the two eigenvectors as
+      axes. [pause 0.4s] Its variance becomes a mix of the two eigenvalues, with weights that always add up to one.
+      [pause 1.0s] A mix can never be bigger than its largest ingredient. [pause 0.5s] So the best you can do is put
+      all the weight on the largest eigenvalue. [pause 0.4s] That means pointing straight along its eigenvector. [pause
+      1.0s] The method of Lagrange multipliers reaches the same place: at the best arrow, the matrix times the arrow
+      points along the arrow itself.
+    pause_after_s: 1.5
+    visual:
+      description: >
+        Axes are the eigenvectors (C.pc1, C.pc2). A unit arrow u turns; its components a, b shown as projections. A
+        horizontal balance bar below: weight a² on the λ1 side (C.pc1), b² on the λ2 side (C.pc2); a marker at the
+        weighted mean slides between λ2 and λ1. When u aligns with v1 the marker hits λ1 and glows. Equation builds
+        term by term. Small inset board (callback to video 012): level curve of uᵀCu tangent to the unit circle, two
+        gradient arrows parallel, Cu = λu.
+      reveal_sequence:
+        - {at_word: "eigenvectors as axes", action: "grid turns to eigen-axes"}
+        - {at_word: "mix", action: "balance bar with weights a², b²; equation builds"}
+        - {at_word: "add up to one", action: "a² + b² = 1 highlights"}
+        - {at_word: "largest ingredient", action: "marker slides; it never passes λ1"}
+        - {at_word: "all the weight", action: "u turns onto v1; marker hits λ1; glow"}
+        - {at_word: "Lagrange multipliers", action: "inset: level curve tangent to circle, parallel gradients"}
+        - {at_word: "arrow itself", action: "Cu = λu in the inset"}
+      equations: ['u = a\,v_1 + b\,v_2', 'u^\top C u = \lambda_1 a^2 + \lambda_2 b^2', 'a^2 + b^2 = 1', '\nabla(u^\top C u) = 2\lambda u \;\Rightarrow\; Cu = \lambda u']
+      camera: static
+      layout: L2
+      rail: [B_C, B_eig]
+      layers: [manim_eigen_axes, manim_balance, manim_eqn, manim_inset_lagrange, glow_lock]
+    engines: {primary: manim}
+    engine_reason: "Equations, a bar and a small contour inset."
+    retention_device: "an argument the viewer can finish themselves"
+    interrupt: callback
+    transition_out: "Inset closes; the ellipse returns."
+    sfx_music: "Quiet; one bright tone at the lock."
+
+  - id: ch4_s03
+    chapter: ch4
+    title: "Eigenvalues are spreads"
+    arc_step: interpret
+    duration_s: 29.73
+    duration_source: audio
+    goal: "λ = variance along v; symmetric C gives perpendicular eigenvectors; C = VΛVᵀ."
+    narration: |
+      So each eigenvalue has a plain meaning. [pause 0.4s] It's the variance of the data along its eigenvector. [pause
+      0.8s] And because the covariance matrix is symmetric, its eigenvectors always meet at right angles. [pause 0.6s]
+      That's why the principal components come out perpendicular, with no extra work. [pause 1.0s] Put it together,
+      and the matrix splits into three simple moves: turn to the eigenvector axes, stretch by the eigenvalues, and turn
+      back.
+    pause_after_s: 1.5
+    visual:
+      description: >
+        The cloud with its ellipse; semi-axes along v1, v2 with lengths proportional to √λ (C.pc1, C.pc2), the
+        shadows on v1 spread to show λ1. B_C slides back; a right-angle mark at the origin pulses on "right angles".
+        C = VΛVᵀ builds with each factor under a tiny animation: a unit square turns (Vᵀ), stretches (Λ, C.spread), and
+        turns back (V); the result matches C applied directly (ghost overlay).
+      reveal_sequence:
+        - {at_word: "plain meaning", action: "ellipse semi-axes draw"}
+        - {at_word: "variance of the data", action: "shadows on v1 spread; λ1 label"}
+        - {at_word: "symmetric", action: "B_C slides in; its mirror flash repeats"}
+        - {at_word: "right angles", action: "right-angle mark pulses"}
+        - {at_word: "turn to the eigenvector axes", action: "V^T: square turns"}
+        - {at_word: "stretch", action: "Λ: square stretches"}
+        - {at_word: "turn back", action: "V: square turns back; overlay matches"}
+      equations: ['\lambda_j = \mathrm{Var}(v_j)', 'v_1 \perp v_2', 'C = V\Lambda V^\top']
+      camera: static
+      layout: L2
+      rail: [B_C, B_eig]
+      layers: [manim_ellipse, manim_square_steps, manim_eqn, rail_boards]
+    engines: {primary: manim}
+    engine_reason: "Geometric transform steps."
+    retention_device: "one equation, three moves"
+    interrupt: null
+    transition_out: "The pieces fly to the recipe board."
+    sfx_music: "Three soft steps."
+
+  - id: ch4_s04
+    chapter: ch4
+    title: "The recipe"
+    arc_step: summarise
+    duration_s: 26.28
+    duration_source: audio
+    goal: "The PCA algorithm in five steps, assembled from the rail boards."
+    narration: |
+      That's the whole method. [pause 0.4s] Centre the data. [pause 0.3s] Build the covariance matrix. [pause 0.3s] Find
+      its eigenvectors. [pause 0.3s] Sort them by eigenvalue, largest first. [pause 0.3s] Then describe every point by
+      its shadows on the top few. [pause 1.2s] No searching, no guessing. [pause 0.4s] The same steps work for two
+      columns, for sixty-four, or for ten thousand.
+    pause_after_s: 2.0
+    visual:
+      description: >
+        A tall recipe board builds five lines, each with a tiny icon pulled from an earlier board (the mean marker,
+        the matrix, the two eigen-arrows, sorted bars, shadows on PC1). Lines are short: \textsf{centre},
+        \textsf{covariance}, \textsf{eigenvectors}, \textsf{sort}, \textsf{project}, with the formula beside each.
+        On "ten thousand" the matrix icon scales from 2x2 to 64x64 to a big grey block. Board pins to the rail
+        (B_recipe) and stays through Ch5.
+      reveal_sequence:
+        - {at_word: "Centre the data", action: "line 1 with mean icon"}
+        - {at_word: "covariance matrix", action: "line 2 with matrix icon"}
+        - {at_word: "eigenvectors", action: "line 3 with eigen-arrows"}
+        - {at_word: "Sort", action: "line 4 with sorted bars"}
+        - {at_word: "shadows on the top few", action: "line 5 with projection icon"}
+        - {at_word: "ten thousand", action: "matrix icon scales up; board pins to rail (B_recipe)"}
+      equations: ['\tilde X = X - \mu', 'C = \tfrac1n \tilde X^\top \tilde X', 'C v_j = \lambda_j v_j', '\lambda_1 \ge \lambda_2 \ge \dots', 'z = V_k^\top \tilde x']
+      camera: static
+      layout: L1
+      rail: [B_recipe]
+      layers: [manim_recipe, manim_icons]
+    engines: {primary: manim}
+    engine_reason: "A board of equations and vector icons."
+    retention_device: "a clean summary card the viewer can screenshot"
+    interrupt: null
+    transition_out: "Chapter 5 card."
+    sfx_music: "A tick per line."
+
+# ======================================================================== CH5 CUTTING DIMENSIONS
+  - id: ch5_s01
+    chapter: ch5
+    title: "From three to two"
+    arc_step: apply
+    duration_s: 28.53
+    duration_source: audio
+    goal: "A human example in 3D: project people onto the PC1-PC2 plane; what is lost is the short drop."
+    narration: |
+      Back to our people, with three measurements. [pause 0.4s] Their cloud is long, fairly wide, and quite thin, like
+      a pebble. [pause 0.8s] The first two principal components span a flat sheet through the middle of it. [pause 0.6s]
+      Drop every point onto that sheet, and turn the sheet to face us. [pause 1.2s] We've gone from three numbers per
+      person to two. [pause 0.4s] What we threw away is only the short drop from each point to the sheet.
+    pause_after_s: 1.5
+    visual:
+      description: >
+        Chapter card (\textsc{Cutting Dimensions}). Lit 3D scene (pyvista off-screen, baked frames): the pebble cloud
+        as small shaded spheres (C.data), three eigen-axes (C.pc1, C.pc2, C.pc3). A translucent sheet (C.pc1-tinted
+        edge, 15% fill) spans PC1-PC2. Drop lines (C.residual) from each sphere to the sheet; spheres slide down them.
+        The camera turns until the sheet faces us; the scene cross-fades to a crisp Manim 2D scatter in PC
+        coordinates. The drop lengths collect into a small bar labelled \textsf{lost}.
+      reveal_sequence:
+        - {at_word: "three measurements", action: "3D cloud fades in, slow orbit"}
+        - {at_word: "pebble", action: "three eigen-axes draw with lengths ∝ √λ"}
+        - {at_word: "flat sheet", action: "sheet fades in through PC1, PC2"}
+        - {at_word: "Drop every point", action: "drop lines draw; spheres slide onto the sheet"}
+        - {at_word: "face us", action: "camera turns to face the sheet; cross-fade to 2D"}
+        - {at_word: "threw away", action: "drop lengths gather into the 'lost' bar"}
+      equations: ['z = V_2^\top \tilde x \in \mathbb{R}^2']
+      camera: "pyvista orbit, then a turn to face the plane"
+      layout: L2
+      rail: [B_recipe]
+      layers: [chapter_card, pyvista_cloud_plane, manim_2d_scatter, manim_lost_bar, rail_boards]
+    engines: {primary: pyvista, secondary: [manim, numpy]}
+    engine_reason: "Lit spheres and a translucent plane read as real 3D; the 2D result is crisp Manim."
+    retention_device: "human example (people as a pebble)"
+    interrupt: null
+    transition_out: "The 2D scatter shrinks; bars rise."
+    sfx_music: "Soft drops."
+
+  - id: ch5_s02
+    chapter: ch5
+    title: "How much we keep"
+    arc_step: quantify
+    duration_s: 32.45
+    duration_source: audio
+    goal: "Explained variance from eigenvalues; for the digits, two keep a bit over a quarter, about twenty keep 90 %."
+    narration: |
+      How much did we lose? [pause 0.4s] The eigenvalues answer that. [pause 0.4s] Each one is the variance along its
+      direction, and together they add up to the total variance. [pause 0.8s] So each eigenvalue's share of the total is
+      the share of the variation that direction carries. [pause 1.0s] For the digits, the first two directions carry a
+      little more than a quarter. [pause 0.5s] About twenty of them carry nine tenths. [pause 0.6s] And three carry
+      nothing at all: those are the pixels that are blank in every scan.
+    pause_after_s: 1.5
+    visual:
+      description: >
+        Scree chart (Manim axes): 64 bars of the digits' eigenvalue shares (C.spread), sorted, with a cumulative
+        curve (C.pc1) rising over them. A dashed 90% line; the curve crosses it at k = 21, marked. The first two bars
+        highlight with "28.5%". The last three bars are zero-height, outlined in C.muted, and link to the three blank
+        pixels on a small digit tile. Chart pins to the rail (B_scree).
+      reveal_sequence:
+        - {at_word: "eigenvalues", action: "axes draw; bars rise staggered"}
+        - {at_word: "add up to the total", action: "bars stack into one 100% column, then return"}
+        - {at_word: "share", action: "cumulative curve draws"}
+        - {at_word: "first two directions", action: "first two bars highlight; 28.5% label"}
+        - {at_word: "nine tenths", action: "90% line; crossing at k = 21 marked"}
+        - {at_word: "nothing at all", action: "last three bars outlined; link to blank pixels"}
+        - {at_word: "every scan", action: "chart pins to rail (B_scree)"}
+      equations: ['\dfrac{\lambda_j}{\sum_i \lambda_i}', '\sum_{j\le 21} \lambda_j \big/ \sum_i \lambda_i \approx 0.90']
+      camera: static
+      layout: L2
+      rail: [B_recipe, B_scree]
+      layers: [manim_scree, manim_cumulative, skia_digit_tile, rail_boards]
+    engines: {primary: manim, secondary: [numpy, sklearn]}
+    engine_reason: "A computed bar chart in Manim."
+    retention_device: "a concrete number answers loop L3"
+    interrupt: null
+    transition_out: "The eigen-digit images replace the bars."
+    sfx_music: "A tick as the curve crosses 90%."
+
+  - id: ch5_s03
+    chapter: ch5
+    title: "Rebuilding a digit"
+    arc_step: apply
+    duration_s: 32.81
+    duration_source: audio
+    goal: "Components are images; a digit is the mean plus a weighted sum of them; reconstruction sharpens with k."
+    narration: |
+      Each principal component of the digits is itself a pattern of sixty-four shades, so we can draw it as an image.
+      [pause 0.8s] Every digit is the average digit plus some amount of each pattern. [pause 0.6s] Start from the
+      average, and add the patterns one at a time, largest first. [pause 1.2s] With a few, it's a blur. [pause 0.4s]
+      With ten, you can read it. [pause 0.4s] With twenty, it's hard to tell from the original. [pause 1.0s] So twenty
+      numbers per digit, instead of sixty-four, lose very little.
+    pause_after_s: 1.5
+    visual:
+      description: >
+        A row of the first eight eigen-digits as 8x8 tiles (skia, diverging C.data (negative) / black / C.spread (positive)). The mean
+        digit tile (greyscale). Equation builds: x ≈ μ + Σ z_j v_j with each z_j a small slider. A "3" rebuilds in a
+        large tile beside the original as k steps 1, 2, 3, 5, 10, 20, 64; each added pattern flies from the row into
+        the sum. A k counter in CM sans.
+      reveal_sequence:
+        - {at_word: "draw it as an image", action: "eigen-digit row fades in, staggered"}
+        - {at_word: "average digit", action: "mean tile; equation builds"}
+        - {at_word: "one at a time", action: "k = 1, 2, 3 with patterns flying in"}
+        - {at_word: "blur", action: "k = 5"}
+        - {at_word: "With ten", action: "k = 10"}
+        - {at_word: "With twenty", action: "k = 20; original appears beside it"}
+        - {at_word: "lose very little", action: "k = 64 (exact); difference tile nearly black"}
+      equations: ['\tilde x = \sum_j z_j v_j', 'x \approx \mu + \sum_{j\le k} z_j\,v_j', 'z_j = \tilde x\cdot v_j']
+      camera: static
+      layout: L2
+      rail: [B_recipe, B_scree]
+      layers: [skia_eigendigits, skia_recon, manim_eqn, manim_counter, rail_boards]
+    engines: {primary: skia, secondary: [manim, numpy]}
+    engine_reason: "Pixel tiles are rasters; reconstructions computed exactly with numpy."
+    retention_device: "watching a picture sharpen (progress reward)"
+    interrupt: null
+    transition_out: "Tiles fly to the axes of the digit map."
+    sfx_music: "A soft pop per step."
+
+  - id: ch5_s04
+    chapter: ch5
+    title: "The map, explained"
+    arc_step: payoff
+    duration_s: 37.26
+    duration_source: audio
+    goal: "Close loop L1: the intro map's axes are PC1 and PC2; mention the SVD as how it's computed in practice."
+    narration: |
+      Now the map from the beginning makes sense. [pause 0.4s] Its two axes are the first two principal components.
+      [pause 0.4s] Each dot is one digit, placed by how much of each pattern it contains. [pause 1.0s] Digits that share
+      strokes contain similar amounts, so they land near each other. [pause 1.0s] In practice, nobody builds the
+      covariance matrix for large data. [pause 0.4s] A related factorization, the singular value decomposition, finds
+      the same directions straight from the table, and more accurately. [pause 0.8s] The answer is the same: the
+      directions of greatest spread.
+    pause_after_s: 2.0
+    visual:
+      description: >
+        B_map returns from storage to full stage (PointsLayer, digit hues). The first two eigen-digit tiles fly onto
+        its axes as axis labels (PC1 along x, PC2 along y). One "0" dot is picked: its two coordinates drawn as
+        dashed projections, its tile shown as μ + z1 v1 + z2 v2 (blurry but recognisable). Accent glow on the map. Then
+        a compact SVD line: the table X splits into U Σ Vᵀ blocks (Manim rectangles), and Vᵀ's top rows light as the
+        same two eigen-digits; σ²/n = λ noted.
+      reveal_sequence:
+        - {at_word: "map from the beginning", action: "B_map returns full stage"}
+        - {at_word: "two axes", action: "eigen-digit tiles land on the axes"}
+        - {at_word: "each pattern", action: "one dot's coordinates shown as projections"}
+        - {at_word: "share strokes", action: "two neighbouring clusters pulse; accent glow"}
+        - {at_word: "In practice", action: "map shrinks; table block appears"}
+        - {at_word: "singular value decomposition", action: "X splits into U Σ V^T"}
+        - {at_word: "same directions", action: "V^T rows light as the eigen-digits"}
+        - {at_word: "greatest spread", action: "hold; chapter end"}
+      equations: ['X = U\Sigma V^\top', '\lambda_j = \sigma_j^2 / n']
+      camera: "gentle pull-back at 'In practice'"
+      layout: L2
+      rail: [B_recipe, B_scree]
+      layers: [points_digits, skia_axis_tiles, manim_svd_blocks, glow_map, rail_boards]
+    engines: {primary: PointsLayer, secondary: [manim, skia, numpy]}
+    engine_reason: "The map is the same PointsLayer as the intro (continuity); SVD blocks are Manim rectangles."
+    retention_device: "pays loop L1"
+    interrupt: callback
+    transition_out: "Chapter 6 card."
+    sfx_music: "The intro shimmer, reprised softly."
+
+# ======================================================================== CH6 WHERE PCA BREAKS
+  - id: ch6_s01
+    chapter: ch6
+    title: "Units matter"
+    arc_step: caution
+    duration_s: 31.13
+    duration_source: audio
+    goal: "A human example: a unit change hijacks PC1; standardising fixes it."
+    narration: |
+      PCA is simple, and that makes its limits easy to see. [pause 0.5s] Suppose we record height in millimetres, but
+      arm span in metres. [pause 0.6s] The height numbers are now a thousand times bigger than the arm span numbers, so
+      their variance is a million times bigger. [pause 0.8s] The first component points almost straight along height,
+      whatever the people are like. [pause 0.8s] The fix is to put every measurement on the same footing first: divide
+      each one by its own spread.
+    pause_after_s: 1.2
+    visual:
+      description: >
+        Chapter card (\textsc{Where PCA Breaks}). The centred people cloud with PC1 (C.pc1). Axis tags change: height
+        in \textsf{mm}, arm span in \textsf{m}. The cloud stretches horizontally off the frame (the camera zooms out to
+        follow), and PC1 snaps flat to the height axis. Then the z-score equation builds and the cloud rescales back
+        to a round-ish tilted cloud; PC1 returns to the diagonal.
+      reveal_sequence:
+        - {at_word: "millimetres", action: "height tag changes to mm"}
+        - {at_word: "metres", action: "arm span tag changes to m"}
+        - {at_word: "thousand times bigger", action: "cloud stretches; camera zooms out"}
+        - {at_word: "straight along height", action: "PC1 snaps to the height axis (C.residual flash)"}
+        - {at_word: "same footing", action: "z-score equation builds"}
+        - {at_word: "own spread", action: "cloud rescales; PC1 returns to the diagonal"}
+      equations: ['z = \dfrac{x - \mu}{\sigma}']
+      camera: "zoom out and back"
+      layout: L1
+      layers: [chapter_card, manim_plane, manim_dots, manim_pc1, manim_eqn]
+    engines: {primary: manim, secondary: [numpy]}
+    engine_reason: "2D geometry and one equation."
+    retention_device: "human example (a unit mix-up anyone could make)"
+    interrupt: contrast
+    transition_out: "Cut to the rolled sheet."
+    sfx_music: "A stretch, then a settle."
+
+  - id: ch6_s02
+    chapter: ch6
+    title: "Curved data"
+    arc_step: caution
+    duration_s: 24.96
+    duration_source: audio
+    goal: "PCA only finds flat views; a rolled sheet gets squashed; name the nonlinear alternatives."
+    narration: |
+      PCA also only looks for flat views. [pause 0.4s] Roll a sheet of points into a spiral, like a cinnamon roll.
+      [pause 0.6s] Its best flat shadow squashes the layers on top of each other, and points that were far apart along
+      the sheet land side by side. [pause 0.8s] For curved data like this, people use methods that follow the curve,
+      such as kernel PCA, t-SNE and UMAP.
+    pause_after_s: 1.2
+    visual:
+      description: >
+        L3 split. Left: a seeded swiss roll (PointsLayer 3D, colour gradient along the sheet from C.pc2 to C.pc1)
+        rolling up from a flat sheet, slow orbit. Right: its PCA projection: the colours mix and overlap. Two points
+        far apart along the sheet (ringed) land next to each other. Three key-word tags appear small:
+        \textsf{kernel PCA}, \textsf{t-SNE}, \textsf{UMAP}, with a ghost of the roll unrolling cleanly.
+      reveal_sequence:
+        - {at_word: "flat views", action: "flat sheet of points"}
+        - {at_word: "spiral", action: "sheet rolls up, orbit"}
+        - {at_word: "squashes the layers", action: "right board: PCA projection, colours mixed"}
+        - {at_word: "far apart", action: "two ringed points land side by side"}
+        - {at_word: "follow the curve", action: "ghost roll unrolls cleanly"}
+        - {at_word: "kernel PCA", action: "three tags appear"}
+      equations: []
+      camera: "slow orbit on the left board"
+      layout: L3
+      layers: [points_swiss_roll_3d, points_projection_2d, manim_tags]
+    engines: {primary: PointsLayer, secondary: [numpy]}
+    engine_reason: "3D points with a camera; projection computed by our own PCA."
+    retention_device: "a failure you can see"
+    interrupt: null
+    transition_out: "The two-group example slides in."
+    sfx_music: "Low tone."
+
+  - id: ch6_s03
+    chapter: ch6
+    title: "Spread is not meaning"
+    arc_step: caution + callback
+    duration_s: 33.56
+    duration_source: audio
+    goal: "Largest variance can hide the structure you care about; tie back to the shadow."
+    narration: |
+      And the biggest spread is not always the most interesting. [pause 0.4s] Take two groups that are long and thin,
+      lying side by side. [pause 0.6s] Most of the spread runs along their length, so that's where the first component
+      points. [pause 0.6s] Its shadow piles both groups on top of each other. [pause 1.0s] The direction that separates
+      them has very little spread, and PCA ranks it last. [pause 0.8s] PCA finds the view that keeps the most variation.
+      [pause 0.4s] Whether that's the view you need is still your call.
+    pause_after_s: 2.5
+    visual:
+      description: >
+        Two parallel thin clusters (C.d1 and C.d7 hues). PC1 (C.pc1) along their length: the shadow histogram on PC1
+        shows one merged hump. PC2 (C.pc2): its histogram shows two clean humps. B_shadow returns from storage in a
+        small frame: the blob shadow vs the structured shadow, echoing the intro.
+      reveal_sequence:
+        - {at_word: "long and thin", action: "two clusters draw"}
+        - {at_word: "first component", action: "PC1 line"}
+        - {at_word: "piles both groups", action: "PC1 histogram: one hump"}
+        - {at_word: "separates them", action: "PC2 histogram: two humps"}
+        - {at_word: "ranks it last", action: "small 'λ2 ≪ λ1' tag"}
+        - {at_word: "keeps the most variation", action: "B_shadow returns small"}
+        - {at_word: "your call", action: "hold; chapter end"}
+      equations: ['\lambda_2 \ll \lambda_1']
+      camera: static
+      layout: L2
+      rail: [B_shadow]
+      layers: [manim_clusters, manim_histograms, rail_boards]
+    engines: {primary: manim, secondary: [numpy]}
+    engine_reason: "Points and histograms computed from seeded data."
+    retention_device: "callback to the opening shadow"
+    interrupt: callback
+    transition_out: "Recap wall."
+    sfx_music: "Quiet."
+
+# ======================================================================== OUTRO
+  - id: out_s01
+    chapter: outro
+    title: "The boards"
+    arc_step: recap
+    duration_s: 27.99
+    duration_source: audio
+    goal: "Recap the whole chain using the saved boards, each lighting in turn."
+    narration: |
+      Let's put it all back together. [pause 0.4s] Data becomes a cloud of points. [pause 0.4s] We centre it, and ask
+      which direction spreads the shadows the most. [pause 0.5s] That variance fits inside one symmetric matrix. [pause
+      0.4s] Its eigenvectors are the answer, and its eigenvalues say how much each one keeps. [pause 0.5s] Keep the top
+      few, and sixty-four numbers become a handful, with most of the picture still there.
+    pause_after_s: 1.5
+    visual:
+      description: >
+        The saved boards return as a wall (L4 grid extended to 2x3): B_cloud, B_dial, B_C, B_eig, B_scree, B_map.
+        Each lights to full brightness on its line while the others sit at 40%. A thin C.pc1 thread links them in
+        order.
+      reveal_sequence:
+        - {at_word: "cloud of points", action: "B_cloud lights"}
+        - {at_word: "spreads the shadows", action: "B_dial lights"}
+        - {at_word: "symmetric matrix", action: "B_C lights"}
+        - {at_word: "eigenvectors", action: "B_eig lights"}
+        - {at_word: "how much each one keeps", action: "B_scree lights"}
+        - {at_word: "handful", action: "B_map lights; thread completes"}
+      equations: []
+      camera: static
+      layout: L4
+      layers: [rail_boards_wall, manim_thread]
+    engines: {primary: manim, secondary: [skia]}
+    engine_reason: "Re-uses each chapter's board render."
+    retention_device: "recap with the viewer's own memory of each board"
+    interrupt: null
+    transition_out: "The wall dissolves to the lamp."
+    sfx_music: "One tone per board."
+
+  - id: out_s02
+    chapter: outro
+    title: "The best shadow"
+    arc_step: close
+    duration_s: 23.58
+    duration_source: audio
+    goal: "Close loops L2 and L3 with the opening image; end-screen hold."
+    narration: |
+      Every view of data throws something away, just like a shadow. [pause 0.6s] PCA doesn't avoid that. [pause 0.3s]
+      It tells you exactly what you kept, and exactly what you lost. [pause 1.0s] So the next time you meet a table with
+      too many columns, turn it to the light first.
+    pause_after_s: 6.0
+    visual:
+      description: >
+        The lamp and sculpture from in_s01. The sculpture turns once through blob shadows and settles at the best view;
+        the shadow resolves with its accent glow. A small kept / lost readout (C.pc1 / C.residual bars) under the
+        shadow. Title card fades in on the final line; the frame holds 6 s for the end screen with the shadow dim
+        behind.
+      reveal_sequence:
+        - {at_word: "throws something away", action: "lamp and sculpture return; blob shadow"}
+        - {at_word: "exactly what you kept", action: "kept bar (C.pc1) grows"}
+        - {at_word: "what you lost", action: "lost bar (C.residual) grows"}
+        - {at_word: "turn it to the light", action: "sculpture settles at the best view; shadow glows"}
+      equations: []
+      camera: "slow pull-back for the end screen"
+      layout: L1
+      layers: [gl_light_cone, pyvista_sculpture_and_shadow, manim_bars, manim_title]
+    engines: {primary: pyvista, secondary: [moderngl, manim]}
+    engine_reason: "Same renders as the opening (bookend)."
+    retention_device: "bookend; closes loops L2 and L3"
+    interrupt: null
+    transition_out: "End screen."
+    sfx_music: "Room tone fades out with the lamp."

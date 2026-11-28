@@ -1,0 +1,1618 @@
+{
+ "source": "audio",
+ "total_s": 892.5,
+ "words": 2247,
+ "wpm_overall": 151.1,
+ "chapters": [
+  {
+   "id": "intro",
+   "title": "Intro",
+   "start": 0.0,
+   "end": 88.715,
+   "duration_s": 88.72,
+   "target_s": 80,
+   "words": 232
+  },
+  {
+   "id": "c01",
+   "title": "Maxwell's Equations",
+   "start": 88.715,
+   "end": 172.925,
+   "duration_s": 84.21,
+   "target_s": 66,
+   "words": 201
+  },
+  {
+   "id": "c02",
+   "title": "Einstein's Field Equations",
+   "start": 172.925,
+   "end": 255.675,
+   "duration_s": 82.75,
+   "target_s": 70,
+   "words": 201
+  },
+  {
+   "id": "c03",
+   "title": "The Schr\u00f6dinger Equation",
+   "start": 255.675,
+   "end": 328.84,
+   "duration_s": 73.16,
+   "target_s": 66,
+   "words": 186
+  },
+  {
+   "id": "c04",
+   "title": "The Navier\u2013Stokes Equations",
+   "start": 328.84,
+   "end": 398.655,
+   "duration_s": 69.81,
+   "target_s": 66,
+   "words": 182
+  },
+  {
+   "id": "c05",
+   "title": "The Fourier Transform",
+   "start": 398.655,
+   "end": 469.19,
+   "duration_s": 70.54,
+   "target_s": 64,
+   "words": 179
+  },
+  {
+   "id": "c06",
+   "title": "Relativistic Time Dilation",
+   "start": 469.19,
+   "end": 550.29,
+   "duration_s": 81.1,
+   "target_s": 70,
+   "words": 205
+  },
+  {
+   "id": "c07",
+   "title": "Gradient Descent",
+   "start": 550.29,
+   "end": 617.265,
+   "duration_s": 66.98,
+   "target_s": 64,
+   "words": 170
+  },
+  {
+   "id": "c08",
+   "title": "Shannon's Channel Capacity",
+   "start": 617.265,
+   "end": 688.185,
+   "duration_s": 70.92,
+   "target_s": 64,
+   "words": 181
+  },
+  {
+   "id": "c09",
+   "title": "Bayes' Theorem",
+   "start": 688.185,
+   "end": 765.315,
+   "duration_s": 77.13,
+   "target_s": 66,
+   "words": 201
+  },
+  {
+   "id": "c10",
+   "title": "The Black\u2013Scholes Equation",
+   "start": 765.315,
+   "end": 839.61,
+   "duration_s": 74.29,
+   "target_s": 66,
+   "words": 199
+  },
+  {
+   "id": "outro",
+   "title": "Outro",
+   "start": 839.61,
+   "end": 892.5,
+   "duration_s": 52.89,
+   "target_s": 45,
+   "words": 110
+  }
+ ],
+ "scenes": [
+  {
+   "id": "in_s01",
+   "chapter": "intro",
+   "start": 0.0,
+   "end": 36.17,
+   "speech_start": 1.0,
+   "speech_end": 35.54,
+   "words": 94,
+   "cues": [
+    {
+     "at_word": "Two hundred years ago",
+     "t": 1.0,
+     "word_index": 0
+    },
+    {
+     "at_word": "Joseph",
+     "t": 3.8,
+     "word_index": 7
+    },
+    {
+     "at_word": "modest",
+     "t": 6.92,
+     "word_index": 15
+    },
+    {
+     "at_word": "heat",
+     "t": 8.2,
+     "word_index": 17
+    },
+    {
+     "at_word": "equation",
+     "t": 11.84,
+     "word_index": 27
+    },
+    {
+     "at_word": "smooth waves",
+     "t": 16.12,
+     "word_index": 41
+    },
+    {
+     "at_word": "music",
+     "t": 21.36,
+     "word_index": 56
+    },
+    {
+     "at_word": "photographs",
+     "t": 22.56,
+     "word_index": 58
+    },
+    {
+     "at_word": "inside",
+     "t": 24.72,
+     "word_index": 63
+    },
+    {
+     "at_word": "Equations often",
+     "t": 27.26,
+     "word_index": 67
+    },
+    {
+     "at_word": "never imagined",
+     "t": 34.82,
+     "word_index": 92
+    }
+   ]
+  },
+  {
+   "id": "in_s02",
+   "chapter": "intro",
+   "start": 36.17,
+   "end": 67.795,
+   "speech_start": 36.8,
+   "speech_end": 67.14,
+   "words": 82,
+   "cues": [
+    {
+     "at_word": "ten of them",
+     "t": 38.06,
+     "word_index": 98
+    },
+    {
+     "at_word": "probability",
+     "t": 41.66,
+     "word_index": 107
+    },
+    {
+     "at_word": "pricing",
+     "t": 46.42,
+     "word_index": 120
+    },
+    {
+     "at_word": "light",
+     "t": 52.18,
+     "word_index": 133
+    },
+    {
+     "at_word": "gravity",
+     "t": 54.58,
+     "word_index": 139
+    },
+    {
+     "at_word": "atom",
+     "t": 56.58,
+     "word_index": 146
+    },
+    {
+     "at_word": "air",
+     "t": 59.3,
+     "word_index": 152
+    },
+    {
+     "at_word": "clocks",
+     "t": 61.82,
+     "word_index": 159
+    },
+    {
+     "at_word": "learn",
+     "t": 63.86,
+     "word_index": 165
+    },
+    {
+     "at_word": "wire",
+     "t": 66.42,
+     "word_index": 173
+    }
+   ]
+  },
+  {
+   "id": "in_s03",
+   "chapter": "intro",
+   "start": 67.795,
+   "end": 88.715,
+   "speech_start": 68.45,
+   "speech_end": 87.43,
+   "words": 56,
+   "cues": [
+    {
+     "at_word": "symbols",
+     "t": 69.54,
+     "word_index": 182
+    },
+    {
+     "at_word": "plain words",
+     "t": 76.74,
+     "word_index": 202
+    },
+    {
+     "at_word": "lead into",
+     "t": 79.18,
+     "word_index": 206
+    },
+    {
+     "at_word": "stock market",
+     "t": 83.66,
+     "word_index": 225
+    },
+    {
+     "at_word": "begin with light",
+     "t": 86.58,
+     "word_index": 229
+    }
+   ]
+  },
+  {
+   "id": "c01_s01",
+   "chapter": "c01",
+   "start": 88.715,
+   "end": 115.03,
+   "speech_start": 90.0,
+   "speech_end": 114.31,
+   "words": 65,
+   "cues": [
+    {
+     "at_word": "electricity",
+     "t": 91.74,
+     "word_index": 237
+    },
+    {
+     "at_word": "magnetism",
+     "t": 92.7,
+     "word_index": 239
+    },
+    {
+     "at_word": "\u00d8rsted",
+     "t": 99.02,
+     "word_index": 251
+    },
+    {
+     "at_word": "twitch",
+     "t": 100.82,
+     "word_index": 256
+    },
+    {
+     "at_word": "field",
+     "t": 108.42,
+     "word_index": 278
+    },
+    {
+     "at_word": "iron filings",
+     "t": 112.58,
+     "word_index": 290
+    }
+   ]
+  },
+  {
+   "id": "c01_s02",
+   "chapter": "c01",
+   "start": 115.03,
+   "end": 142.17,
+   "speech_start": 115.75,
+   "speech_end": 141.54,
+   "words": 65,
+   "cues": [
+    {
+     "at_word": "Maxwell",
+     "t": 117.94,
+     "word_index": 302
+    },
+    {
+     "at_word": "spread outward",
+     "t": 123.08,
+     "word_index": 313
+    },
+    {
+     "at_word": "never begin",
+     "t": 126.28,
+     "word_index": 321
+    },
+    {
+     "at_word": "loops",
+     "t": 129.16,
+     "word_index": 329
+    },
+    {
+     "at_word": "changing magnetic",
+     "t": 130.98,
+     "word_index": 331
+    },
+    {
+     "at_word": "power station",
+     "t": 135.74,
+     "word_index": 346
+    },
+    {
+     "at_word": "changing electric",
+     "t": 138.62,
+     "word_index": 352
+    }
+   ]
+  },
+  {
+   "id": "c01_s03",
+   "chapter": "c01",
+   "start": 142.17,
+   "end": 172.925,
+   "speech_start": 142.8,
+   "speech_end": 171.65,
+   "words": 71,
+   "cues": [
+    {
+     "at_word": "feed each other",
+     "t": 144.14,
+     "word_index": 366
+    },
+    {
+     "at_word": "empty space",
+     "t": 150.9,
+     "word_index": 383
+    },
+    {
+     "at_word": "its speed",
+     "t": 154.58,
+     "word_index": 392
+    },
+    {
+     "at_word": "speed of light",
+     "t": 156.02,
+     "word_index": 397
+    },
+    {
+     "at_word": "radio",
+     "t": 161.22,
+     "word_index": 408
+    },
+    {
+     "at_word": "signal",
+     "t": 163.22,
+     "word_index": 412
+    },
+    {
+     "at_word": "straight lines",
+     "t": 167.78,
+     "word_index": 423
+    },
+    {
+     "at_word": "heavy",
+     "t": 171.38,
+     "word_index": 432
+    }
+   ]
+  },
+  {
+   "id": "c02_s01",
+   "chapter": "c02",
+   "start": 172.925,
+   "end": 197.665,
+   "speech_start": 174.2,
+   "speech_end": 196.97,
+   "words": 58,
+   "cues": [
+    {
+     "at_word": "pull",
+     "t": 175.94,
+     "word_index": 438
+    },
+    {
+     "at_word": "Einstein",
+     "t": 179.1,
+     "word_index": 445
+    },
+    {
+     "at_word": "bends",
+     "t": 182.18,
+     "word_index": 450
+    },
+    {
+     "at_word": "curve",
+     "t": 190.18,
+     "word_index": 473
+    },
+    {
+     "at_word": "Earth",
+     "t": 191.88,
+     "word_index": 475
+    },
+    {
+     "at_word": "straightest",
+     "t": 194.2,
+     "word_index": 483
+    }
+   ]
+  },
+  {
+   "id": "c02_s02",
+   "chapter": "c02",
+   "start": 197.665,
+   "end": 225.12,
+   "speech_start": 198.36,
+   "speech_end": 224.44,
+   "words": 66,
+   "cues": [
+    {
+     "at_word": "single line",
+     "t": 200.36,
+     "word_index": 498
+    },
+    {
+     "at_word": "shape",
+     "t": 203.4,
+     "word_index": 504
+    },
+    {
+     "at_word": "matter and energy",
+     "t": 205.8,
+     "word_index": 511
+    },
+    {
+     "at_word": "Wheeler",
+     "t": 209.84,
+     "word_index": 520
+    },
+    {
+     "at_word": "eclipse",
+     "t": 218.68,
+     "word_index": 542
+    },
+    {
+     "at_word": "predicted",
+     "t": 223.99,
+     "word_index": 556
+    }
+   ]
+  },
+  {
+   "id": "c02_s03",
+   "chapter": "c02",
+   "start": 225.12,
+   "end": 255.675,
+   "speech_start": 225.8,
+   "speech_end": 254.39,
+   "words": 77,
+   "cues": [
+    {
+     "at_word": "Squeeze",
+     "t": 225.8,
+     "word_index": 557
+    },
+    {
+     "at_word": "light",
+     "t": 231.64,
+     "word_index": 574
+    },
+    {
+     "at_word": "black hole",
+     "t": 235.093,
+     "word_index": 582
+    },
+    {
+     "at_word": "LIGO",
+     "t": 238.44,
+     "word_index": 588
+    },
+    {
+     "at_word": "merging",
+     "t": 242.32,
+     "word_index": 599
+    },
+    {
+     "at_word": "proton's",
+     "t": 245.12,
+     "word_index": 609
+    },
+    {
+     "at_word": "atom",
+     "t": 251.52,
+     "word_index": 624
+    }
+   ]
+  },
+  {
+   "id": "c03_s01",
+   "chapter": "c03",
+   "start": 255.675,
+   "end": 278.91,
+   "speech_start": 256.96,
+   "speech_end": 278.21,
+   "words": 58,
+   "cues": [
+    {
+     "at_word": "electrons",
+     "t": 257.36,
+     "word_index": 635
+    },
+    {
+     "at_word": "single dot",
+     "t": 263.44,
+     "word_index": 656
+    },
+    {
+     "at_word": "thousands",
+     "t": 267.08,
+     "word_index": 664
+    },
+    {
+     "at_word": "waves",
+     "t": 272.56,
+     "word_index": 679
+    },
+    {
+     "at_word": "particle",
+     "t": 278.087,
+     "word_index": 691
+    }
+   ]
+  },
+  {
+   "id": "c03_s02",
+   "chapter": "c03",
+   "start": 278.91,
+   "end": 301.41,
+   "speech_start": 279.61,
+   "speech_end": 300.7,
+   "words": 60,
+   "cues": [
+    {
+     "at_word": "Schr\u00f6dinger",
+     "t": 281.5,
+     "word_index": 697
+    },
+    {
+     "at_word": "changes",
+     "t": 287.02,
+     "word_index": 712
+    },
+    {
+     "at_word": "energy",
+     "t": 289.1,
+     "word_index": 719
+    },
+    {
+     "at_word": "tall",
+     "t": 292.02,
+     "word_index": 726
+    },
+    {
+     "at_word": "wall",
+     "t": 297.193,
+     "word_index": 741
+    },
+    {
+     "at_word": "tunnelling",
+     "t": 300.26,
+     "word_index": 751
+    }
+   ]
+  },
+  {
+   "id": "c03_s03",
+   "chapter": "c03",
+   "start": 301.41,
+   "end": 328.84,
+   "speech_start": 302.12,
+   "speech_end": 327.65,
+   "words": 68,
+   "cues": [
+    {
+     "at_word": "nucleus",
+     "t": 302.58,
+     "word_index": 754
+    },
+    {
+     "at_word": "shapes",
+     "t": 306.58,
+     "word_index": 766
+    },
+    {
+     "at_word": "chemistry",
+     "t": 314.36,
+     "word_index": 787
+    },
+    {
+     "at_word": "Lasers",
+     "t": 315.98,
+     "word_index": 788
+    },
+    {
+     "at_word": "swirls",
+     "t": 323.44,
+     "word_index": 806
+    },
+    {
+     "at_word": "larger",
+     "t": 326.64,
+     "word_index": 816
+    }
+   ]
+  },
+  {
+   "id": "c04_s01",
+   "chapter": "c04",
+   "start": 328.84,
+   "end": 351.365,
+   "speech_start": 330.03,
+   "speech_end": 350.76,
+   "words": 57,
+   "cues": [
+    {
+     "at_word": "cream",
+     "t": 330.56,
+     "word_index": 821
+    },
+    {
+     "at_word": "parcels",
+     "t": 339.98,
+     "word_index": 849
+    },
+    {
+     "at_word": "Newton's",
+     "t": 341.82,
+     "word_index": 853
+    },
+    {
+     "at_word": "push",
+     "t": 343.46,
+     "word_index": 858
+    },
+    {
+     "at_word": "Navier",
+     "t": 346.48,
+     "word_index": 863
+    }
+   ]
+  },
+  {
+   "id": "c04_s02",
+   "chapter": "c04",
+   "start": 351.365,
+   "end": 373.19,
+   "speech_start": 351.97,
+   "speech_end": 372.56,
+   "words": 58,
+   "cues": [
+    {
+     "at_word": "adds up",
+     "t": 352.84,
+     "word_index": 879
+    },
+    {
+     "at_word": "carries",
+     "t": 356.76,
+     "word_index": 889
+    },
+    {
+     "at_word": "pressure",
+     "t": 357.88,
+     "word_index": 892
+    },
+    {
+     "at_word": "viscosity",
+     "t": 361.92,
+     "word_index": 905
+    },
+    {
+     "at_word": "obstacle",
+     "t": 367.6,
+     "word_index": 919
+    },
+    {
+     "at_word": "other",
+     "t": 372.32,
+     "word_index": 934
+    }
+   ]
+  },
+  {
+   "id": "c04_s03",
+   "chapter": "c04",
+   "start": 373.19,
+   "end": 398.655,
+   "speech_start": 373.82,
+   "speech_end": 397.34,
+   "words": 67,
+   "cues": [
+    {
+     "at_word": "Weather",
+     "t": 373.82,
+     "word_index": 935
+    },
+    {
+     "at_word": "wings",
+     "t": 375.68,
+     "word_index": 938
+    },
+    {
+     "at_word": "heart",
+     "t": 378.24,
+     "word_index": 946
+    },
+    {
+     "at_word": "smooth",
+     "t": 384.52,
+     "word_index": 963
+    },
+    {
+     "at_word": "million dollar",
+     "t": 387.053,
+     "word_index": 971
+    },
+    {
+     "at_word": "Turbulence",
+     "t": 390.59,
+     "word_index": 978
+    },
+    {
+     "at_word": "pull",
+     "t": 394.28,
+     "word_index": 989
+    }
+   ]
+  },
+  {
+   "id": "c05_s01",
+   "chapter": "c05",
+   "start": 398.655,
+   "end": 421.515,
+   "speech_start": 399.97,
+   "speech_end": 420.87,
+   "words": 60,
+   "cues": [
+    {
+     "at_word": "Fourier",
+     "t": 403.56,
+     "word_index": 1015
+    },
+    {
+     "at_word": "piano",
+     "t": 407.9,
+     "word_index": 1027
+    },
+    {
+     "at_word": "three separate notes",
+     "t": 413.02,
+     "word_index": 1042
+    },
+    {
+     "at_word": "adding together",
+     "t": 418.64,
+     "word_index": 1057
+    }
+   ]
+  },
+  {
+   "id": "c05_s02",
+   "chapter": "c05",
+   "start": 421.515,
+   "end": 445.745,
+   "speech_start": 422.16,
+   "speech_end": 445.09,
+   "words": 61,
+   "cues": [
+    {
+     "at_word": "reverse",
+     "t": 424.32,
+     "word_index": 1068
+    },
+    {
+     "at_word": "tests",
+     "t": 426.16,
+     "word_index": 1070
+    },
+    {
+     "at_word": "matches",
+     "t": 430.88,
+     "word_index": 1084
+    },
+    {
+     "at_word": "list",
+     "t": 436.04,
+     "word_index": 1098
+    },
+    {
+     "at_word": "drawing",
+     "t": 441.22,
+     "word_index": 1111
+    },
+    {
+     "at_word": "circles",
+     "t": 443.18,
+     "word_index": 1118
+    }
+   ]
+  },
+  {
+   "id": "c05_s03",
+   "chapter": "c05",
+   "start": 445.745,
+   "end": 469.19,
+   "speech_start": 446.4,
+   "speech_end": 467.93,
+   "words": 58,
+   "cues": [
+    {
+     "at_word": "Music",
+     "t": 446.4,
+     "word_index": 1123
+    },
+    {
+     "at_word": "photographs",
+     "t": 451.31,
+     "word_index": 1137
+    },
+    {
+     "at_word": "MRI",
+     "t": 454.06,
+     "word_index": 1144
+    },
+    {
+     "at_word": "keep time",
+     "t": 459.86,
+     "word_index": 1156
+    },
+    {
+     "at_word": "atoms",
+     "t": 464.22,
+     "word_index": 1171
+    },
+    {
+     "at_word": "same rate",
+     "t": 467.56,
+     "word_index": 1179
+    }
+   ]
+  },
+  {
+   "id": "c06_s01",
+   "chapter": "c06",
+   "start": 469.19,
+   "end": 496.63,
+   "speech_start": 470.45,
+   "speech_end": 496.04,
+   "words": 74,
+   "cues": [
+    {
+     "at_word": "light",
+     "t": 471.76,
+     "word_index": 1186
+    },
+    {
+     "at_word": "tick",
+     "t": 476.72,
+     "word_index": 1199
+    },
+    {
+     "at_word": "train",
+     "t": 479.86,
+     "word_index": 1206
+    },
+    {
+     "at_word": "slanted",
+     "t": 483.22,
+     "word_index": 1218
+    },
+    {
+     "at_word": "Einstein",
+     "t": 486.42,
+     "word_index": 1224
+    },
+    {
+     "at_word": "longer path",
+     "t": 490.34,
+     "word_index": 1239
+    },
+    {
+     "at_word": "slowly",
+     "t": 495.62,
+     "word_index": 1254
+    }
+   ]
+  },
+  {
+   "id": "c06_s02",
+   "chapter": "c06",
+   "start": 496.63,
+   "end": 517.86,
+   "speech_start": 497.22,
+   "speech_end": 517.22,
+   "words": 53,
+   "cues": [
+    {
+     "at_word": "triangle",
+     "t": 497.38,
+     "word_index": 1256
+    },
+    {
+     "at_word": "everyday",
+     "t": 500.82,
+     "word_index": 1262
+    },
+    {
+     "at_word": "without limit",
+     "t": 506.58,
+     "word_index": 1281
+    },
+    {
+     "at_word": "Muons",
+     "t": 508.45,
+     "word_index": 1283
+    },
+    {
+     "at_word": "decay",
+     "t": 512.06,
+     "word_index": 1291
+    },
+    {
+     "at_word": "make it",
+     "t": 515.14,
+     "word_index": 1301
+    }
+   ]
+  },
+  {
+   "id": "c06_s03",
+   "chapter": "c06",
+   "start": 517.86,
+   "end": 550.29,
+   "speech_start": 518.5,
+   "speech_end": 549.0,
+   "words": 78,
+   "cues": [
+    {
+     "at_word": "GPS",
+     "t": 518.5,
+     "word_index": 1308
+    },
+    {
+     "at_word": "seven",
+     "t": 524.3,
+     "word_index": 1321
+    },
+    {
+     "at_word": "gravity",
+     "t": 529.02,
+     "word_index": 1335
+    },
+    {
+     "at_word": "forty five",
+     "t": 533.42,
+     "word_index": 1346
+    },
+    {
+     "at_word": "drift",
+     "t": 538.7,
+     "word_index": 1357
+    },
+    {
+     "at_word": "next word",
+     "t": 545.74,
+     "word_index": 1375
+    },
+    {
+     "at_word": "downhill",
+     "t": 548.62,
+     "word_index": 1385
+    }
+   ]
+  },
+  {
+   "id": "c07_s01",
+   "chapter": "c07",
+   "start": 550.29,
+   "end": 572.365,
+   "speech_start": 551.58,
+   "speech_end": 571.75,
+   "words": 56,
+   "cues": [
+    {
+     "at_word": "fog",
+     "t": 554.26,
+     "word_index": 1395
+    },
+    {
+     "at_word": "slopes",
+     "t": 560.38,
+     "word_index": 1414
+    },
+    {
+     "at_word": "step",
+     "t": 562.98,
+     "word_index": 1423
+    },
+    {
+     "at_word": "gradient descent",
+     "t": 567.02,
+     "word_index": 1431
+    },
+    {
+     "at_word": "Cauchy",
+     "t": 569.14,
+     "word_index": 1435
+    }
+   ]
+  },
+  {
+   "id": "c07_s02",
+   "chapter": "c07",
+   "start": 572.365,
+   "end": 595.11,
+   "speech_start": 572.98,
+   "speech_end": 594.34,
+   "words": 60,
+   "cues": [
+    {
+     "at_word": "size",
+     "t": 573.18,
+     "word_index": 1443
+    },
+    {
+     "at_word": "slow",
+     "t": 578.28,
+     "word_index": 1454
+    },
+    {
+     "at_word": "leap",
+     "t": 580.4,
+     "word_index": 1460
+    },
+    {
+     "at_word": "error",
+     "t": 585.44,
+     "word_index": 1473
+    },
+    {
+     "at_word": "fit",
+     "t": 587.92,
+     "word_index": 1479
+    },
+    {
+     "at_word": "as small",
+     "t": 593.16,
+     "word_index": 1496
+    }
+   ]
+  },
+  {
+   "id": "c07_s03",
+   "chapter": "c07",
+   "start": 595.11,
+   "end": 617.265,
+   "speech_start": 595.88,
+   "speech_end": 615.96,
+   "words": 54,
+   "cues": [
+    {
+     "at_word": "billions",
+     "t": 597.56,
+     "word_index": 1507
+    },
+    {
+     "at_word": "directions",
+     "t": 601.76,
+     "word_index": 1520
+    },
+    {
+     "at_word": "rule",
+     "t": 603.28,
+     "word_index": 1523
+    },
+    {
+     "at_word": "cables",
+     "t": 609.52,
+     "word_index": 1539
+    },
+    {
+     "at_word": "noise",
+     "t": 611.84,
+     "word_index": 1546
+    }
+   ]
+  },
+  {
+   "id": "c08_s01",
+   "chapter": "c08",
+   "start": 617.265,
+   "end": 639.075,
+   "speech_start": 618.57,
+   "speech_end": 638.37,
+   "words": 53,
+   "cues": [
+    {
+     "at_word": "Shannon",
+     "t": 620.3,
+     "word_index": 1561
+    },
+    {
+     "at_word": "bit",
+     "t": 624.71,
+     "word_index": 1572
+    },
+    {
+     "at_word": "song",
+     "t": 628.4,
+     "word_index": 1579
+    },
+    {
+     "at_word": "wire",
+     "t": 635.22,
+     "word_index": 1599
+    },
+    {
+     "at_word": "noise",
+     "t": 637.38,
+     "word_index": 1605
+    }
+   ]
+  },
+  {
+   "id": "c08_s02",
+   "chapter": "c08",
+   "start": 639.075,
+   "end": 664.18,
+   "speech_start": 639.78,
+   "speech_end": 663.54,
+   "words": 67,
+   "cues": [
+    {
+     "at_word": "pack",
+     "t": 642.18,
+     "word_index": 1617
+    },
+    {
+     "at_word": "blur",
+     "t": 646.5,
+     "word_index": 1629
+    },
+    {
+     "at_word": "limit",
+     "t": 650.54,
+     "word_index": 1637
+    },
+    {
+     "at_word": "wide",
+     "t": 652.82,
+     "word_index": 1642
+    },
+    {
+     "at_word": "strong",
+     "t": 655.34,
+     "word_index": 1651
+    },
+    {
+     "at_word": "rare",
+     "t": 660.66,
+     "word_index": 1667
+    }
+   ]
+  },
+  {
+   "id": "c08_s03",
+   "chapter": "c08",
+   "start": 664.18,
+   "end": 688.185,
+   "speech_start": 664.82,
+   "speech_end": 687.02,
+   "words": 61,
+   "cues": [
+    {
+     "at_word": "WiFi",
+     "t": 665.22,
+     "word_index": 1677
+    },
+    {
+     "at_word": "Voyager",
+     "t": 669.4,
+     "word_index": 1686
+    },
+    {
+     "at_word": "twenty watts",
+     "t": 675.62,
+     "word_index": 1704
+    },
+    {
+     "at_word": "receiver",
+     "t": 677.98,
+     "word_index": 1707
+    },
+    {
+     "at_word": "most likely",
+     "t": 681.7,
+     "word_index": 1720
+    },
+    {
+     "at_word": "evidence",
+     "t": 684.26,
+     "word_index": 1727
+    }
+   ]
+  },
+  {
+   "id": "c09_s01",
+   "chapter": "c09",
+   "start": 688.185,
+   "end": 719.935,
+   "speech_start": 689.35,
+   "speech_end": 719.31,
+   "words": 80,
+   "cues": [
+    {
+     "at_word": "one person in a hundred",
+     "t": 690.98,
+     "word_index": 1741
+    },
+    {
+     "at_word": "nine in ten",
+     "t": 693.78,
+     "word_index": 1750
+    },
+    {
+     "at_word": "flags",
+     "t": 696.26,
+     "word_index": 1756
+    },
+    {
+     "at_word": "positive",
+     "t": 700.42,
+     "word_index": 1766
+    },
+    {
+     "at_word": "thousand",
+     "t": 703.953,
+     "word_index": 1775
+    },
+    {
+     "at_word": "Ten of them",
+     "t": 705.52,
+     "word_index": 1777
+    },
+    {
+     "at_word": "nine of those",
+     "t": 707.08,
+     "word_index": 1783
+    },
+    {
+     "at_word": "eighty nine",
+     "t": 712.2,
+     "word_index": 1798
+    },
+    {
+     "at_word": "among",
+     "t": 715.44,
+     "word_index": 1805
+    },
+    {
+     "at_word": "one in eleven",
+     "t": 717.6,
+     "word_index": 1811
+    }
+   ]
+  },
+  {
+   "id": "c09_s02",
+   "chapter": "c09",
+   "start": 719.935,
+   "end": 742.645,
+   "speech_start": 720.56,
+   "speech_end": 742.03,
+   "words": 64,
+   "cues": [
+    {
+     "at_word": "Bayes",
+     "t": 720.96,
+     "word_index": 1818
+    },
+    {
+     "at_word": "update",
+     "t": 731.38,
+     "word_index": 1847
+    },
+    {
+     "at_word": "before",
+     "t": 735.04,
+     "word_index": 1857
+    },
+    {
+     "at_word": "explains",
+     "t": 737.12,
+     "word_index": 1864
+    },
+    {
+     "at_word": "every way",
+     "t": 740.24,
+     "word_index": 1873
+    }
+   ]
+  },
+  {
+   "id": "c09_s03",
+   "chapter": "c09",
+   "start": 742.645,
+   "end": 765.315,
+   "speech_start": 743.26,
+   "speech_end": 764.04,
+   "words": 57,
+   "cues": [
+    {
+     "at_word": "clue",
+     "t": 744.16,
+     "word_index": 1883
+    },
+    {
+     "at_word": "Spam",
+     "t": 747.63,
+     "word_index": 1890
+    },
+    {
+     "at_word": "self-driving",
+     "t": 749.98,
+     "word_index": 1898
+    },
+    {
+     "at_word": "Air France",
+     "t": 755.06,
+     "word_index": 1911
+    },
+    {
+     "at_word": "week",
+     "t": 757.78,
+     "word_index": 1919
+    },
+    {
+     "at_word": "uncertain",
+     "t": 761.78,
+     "word_index": 1930
+    },
+    {
+     "at_word": "price",
+     "t": 763.3,
+     "word_index": 1934
+    }
+   ]
+  },
+  {
+   "id": "c10_s01",
+   "chapter": "c10",
+   "start": 765.315,
+   "end": 788.885,
+   "speech_start": 766.59,
+   "speech_end": 788.24,
+   "words": 66,
+   "cues": [
+    {
+     "at_word": "right",
+     "t": 767.62,
+     "word_index": 1942
+    },
+    {
+     "at_word": "one fifty",
+     "t": 774.92,
+     "word_index": 1964
+    },
+    {
+     "at_word": "falls",
+     "t": 778.36,
+     "word_index": 1974
+    },
+    {
+     "at_word": "option",
+     "t": 782.96,
+     "word_index": 1986
+    },
+    {
+     "at_word": "today",
+     "t": 785.96,
+     "word_index": 1995
+    }
+   ]
+  },
+  {
+   "id": "c10_s02",
+   "chapter": "c10",
+   "start": 788.885,
+   "end": 817.74,
+   "speech_start": 789.53,
+   "speech_end": 817.2,
+   "words": 78,
+   "cues": [
+    {
+     "at_word": "Black",
+     "t": 791.76,
+     "word_index": 2009
+    },
+    {
+     "at_word": "random walk",
+     "t": 797.28,
+     "word_index": 2024
+    },
+    {
+     "at_word": "mix",
+     "t": 799.36,
+     "word_index": 2030
+    },
+    {
+     "at_word": "equation",
+     "t": 807.08,
+     "word_index": 2052
+    },
+    {
+     "at_word": "heat equation",
+     "t": 813.08,
+     "word_index": 2069
+    },
+    {
+     "at_word": "bar of hot metal",
+     "t": 816.24,
+     "word_index": 2078
+    }
+   ]
+  },
+  {
+   "id": "c10_s03",
+   "chapter": "c10",
+   "start": 817.74,
+   "end": 839.61,
+   "speech_start": 818.28,
+   "speech_end": 838.36,
+   "words": 55,
+   "cues": [
+    {
+     "at_word": "market",
+     "t": 820.44,
+     "word_index": 2088
+    },
+    {
+     "at_word": "Nobel",
+     "t": 822.72,
+     "word_index": 2096
+    },
+    {
+     "at_word": "calmly",
+     "t": 828.0,
+     "word_index": 2108
+    },
+    {
+     "at_word": "jump",
+     "t": 830.4,
+     "word_index": 2114
+    },
+    {
+     "at_word": "map",
+     "t": 836.12,
+     "word_index": 2129
+    }
+   ]
+  },
+  {
+   "id": "out_s01",
+   "chapter": "outro",
+   "start": 839.61,
+   "end": 870.405,
+   "speech_start": 840.86,
+   "speech_end": 869.67,
+   "words": 66,
+   "cues": [
+    {
+     "at_word": "handed",
+     "t": 842.72,
+     "word_index": 2141
+    },
+    {
+     "at_word": "gravity",
+     "t": 846.04,
+     "word_index": 2150
+    },
+    {
+     "at_word": "atom",
+     "t": 848.12,
+     "word_index": 2156
+    },
+    {
+     "at_word": "water",
+     "t": 850.26,
+     "word_index": 2160
+    },
+    {
+     "at_word": "frequencies",
+     "t": 851.62,
+     "word_index": 2163
+    },
+    {
+     "at_word": "clocks",
+     "t": 853.74,
+     "word_index": 2167
+    },
+    {
+     "at_word": "learning",
+     "t": 855.8,
+     "word_index": 2171
+    },
+    {
+     "at_word": "noisy wires",
+     "t": 857.4,
+     "word_index": 2175
+    },
+    {
+     "at_word": "evidence",
+     "t": 859.24,
+     "word_index": 2179
+    },
+    {
+     "at_word": "markets",
+     "t": 860.94,
+     "word_index": 2183
+    },
+    {
+     "at_word": "Ten equations",
+     "t": 862.81,
+     "word_index": 2184
+    }
+   ]
+  },
+  {
+   "id": "out_s02",
+   "chapter": "outro",
+   "start": 870.405,
+   "end": 892.5,
+   "speech_start": 871.14,
+   "speech_end": 886.58,
+   "words": 44,
+   "cues": [
+    {
+     "at_word": "statement",
+     "t": 872.08,
+     "word_index": 2207
+    },
+    {
+     "at_word": "Fourier",
+     "t": 876.0,
+     "word_index": 2216
+    },
+    {
+     "at_word": "larger",
+     "t": 884.0,
+     "word_index": 2243
+    },
+    {
+     "at_word": "Thanks",
+     "t": 885.39,
+     "word_index": 2244
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "scene": "ch3_s05",
+    "speed": 0.9,
+    "file": "audio/voice_test/ch3_s05_speed0.9.mp3",
+    "words": 75,
+    "speech_s": 25.28,
+    "wpm": 178.0
+  },
+  {
+    "scene": "ch6_s05",
+    "speed": 0.9,
+    "file": "audio/voice_test/ch6_s05_speed0.9.mp3",
+    "words": 65,
+    "speech_s": 26.88,
+    "wpm": 145.1
+  }
+]

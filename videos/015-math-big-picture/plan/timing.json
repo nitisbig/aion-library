@@ -1,0 +1,2192 @@
+{
+ "source": "audio",
+ "total_s": 1453.28,
+ "words": 3434,
+ "wpm_overall": 141.8,
+ "chapters": [
+  {
+   "id": "cold",
+   "title": "Cold open",
+   "start": 0.0,
+   "end": 21.48,
+   "duration_s": 21.48,
+   "target_s": 25,
+   "words": 45
+  },
+  {
+   "id": "intro",
+   "title": "Intro",
+   "start": 21.48,
+   "end": 155.335,
+   "duration_s": 133.86,
+   "target_s": 155,
+   "words": 328
+  },
+  {
+   "id": "foundations",
+   "title": "Foundations",
+   "start": 155.335,
+   "end": 341.245,
+   "duration_s": 185.91,
+   "target_s": 180,
+   "words": 458
+  },
+  {
+   "id": "quantity",
+   "title": "Quantity",
+   "start": 341.245,
+   "end": 519.205,
+   "duration_s": 177.96,
+   "target_s": 180,
+   "words": 406
+  },
+  {
+   "id": "structure",
+   "title": "Structure",
+   "start": 519.205,
+   "end": 715.87,
+   "duration_s": 196.66,
+   "target_s": 195,
+   "words": 478
+  },
+  {
+   "id": "space",
+   "title": "Space",
+   "start": 715.87,
+   "end": 901.4,
+   "duration_s": 185.53,
+   "target_s": 195,
+   "words": 434
+  },
+  {
+   "id": "change",
+   "title": "Change",
+   "start": 901.4,
+   "end": 1092.7,
+   "duration_s": 191.3,
+   "target_s": 195,
+   "words": 456
+  },
+  {
+   "id": "uncertainty",
+   "title": "Uncertainty",
+   "start": 1092.7,
+   "end": 1281.93,
+   "duration_s": 189.23,
+   "target_s": 195,
+   "words": 450
+  },
+  {
+   "id": "connects",
+   "title": "How it connects",
+   "start": 1281.93,
+   "end": 1391.2,
+   "duration_s": 109.27,
+   "target_s": 120,
+   "words": 241
+  },
+  {
+   "id": "outro",
+   "title": "Outro",
+   "start": 1391.2,
+   "end": 1453.28,
+   "duration_s": 62.08,
+   "target_s": 60,
+   "words": 138
+  }
+ ],
+ "scenes": [
+  {
+   "id": "co_s01",
+   "chapter": "cold",
+   "start": 0.0,
+   "end": 21.48,
+   "speech_start": 1.0,
+   "speech_end": 20.11,
+   "words": 45,
+   "cues": [
+    {
+     "at_word": "stick",
+     "t": 1.4,
+     "word_index": 2
+    },
+    {
+     "at_word": "another",
+     "t": 3.98,
+     "word_index": 8
+    },
+    {
+     "at_word": "Count",
+     "t": 6.69,
+     "word_index": 11
+    },
+    {
+     "at_word": "work out",
+     "t": 12.18,
+     "word_index": 29
+    },
+    {
+     "at_word": "pi",
+     "t": 12.58,
+     "word_index": 31
+    },
+    {
+     "at_word": "no circle",
+     "t": 15.94,
+     "word_index": 34
+    },
+    {
+     "at_word": "hiding",
+     "t": 19.873,
+     "word_index": 44
+    }
+   ]
+  },
+  {
+   "id": "in_s01",
+   "chapter": "intro",
+   "start": 21.48,
+   "end": 48.825,
+   "speech_start": 22.85,
+   "speech_end": 47.6,
+   "words": 63,
+   "cues": [
+    {
+     "at_word": "chores",
+     "t": 24.84,
+     "word_index": 54
+    },
+    {
+     "at_word": "Solve",
+     "t": 27.47,
+     "word_index": 57
+    },
+    {
+     "at_word": "something else",
+     "t": 32.44,
+     "word_index": 65
+    },
+    {
+     "at_word": "patterns",
+     "t": 35.8,
+     "word_index": 75
+    },
+    {
+     "at_word": "ripple",
+     "t": 37.56,
+     "word_index": 77
+    },
+    {
+     "at_word": "wheel",
+     "t": 39.4,
+     "word_index": 85
+    },
+    {
+     "at_word": "clock",
+     "t": 40.68,
+     "word_index": 91
+    },
+    {
+     "at_word": "one shape",
+     "t": 41.96,
+     "word_index": 94
+    },
+    {
+     "at_word": "stripped",
+     "t": 45.06,
+     "word_index": 100
+    }
+   ]
+  },
+  {
+   "id": "in_s02",
+   "chapter": "intro",
+   "start": 48.825,
+   "end": 78.89,
+   "speech_start": 50.05,
+   "speech_end": 77.98,
+   "words": 77,
+   "cues": [
+    {
+     "at_word": "one piece",
+     "t": 51.86,
+     "word_index": 112
+    },
+    {
+     "at_word": "makes sense",
+     "t": 60.4,
+     "word_index": 133
+    },
+    {
+     "at_word": "fit together",
+     "t": 63.12,
+     "word_index": 143
+    },
+    {
+     "at_word": "city",
+     "t": 65.92,
+     "word_index": 149
+    },
+    {
+     "at_word": "map",
+     "t": 68.68,
+     "word_index": 159
+    },
+    {
+     "at_word": "stray fact",
+     "t": 73.08,
+     "word_index": 169
+    }
+   ]
+  },
+  {
+   "id": "in_s03",
+   "chapter": "intro",
+   "start": 78.89,
+   "end": 102.825,
+   "speech_start": 79.8,
+   "speech_end": 102.1,
+   "words": 56,
+   "cues": [
+    {
+     "at_word": "phone",
+     "t": 84.74,
+     "word_index": 197
+    },
+    {
+     "at_word": "spam",
+     "t": 89.82,
+     "word_index": 209
+    },
+    {
+     "at_word": "secure",
+     "t": 93.86,
+     "word_index": 220
+    },
+    {
+     "at_word": "spacecraft",
+     "t": 98.22,
+     "word_index": 230
+    }
+   ]
+  },
+  {
+   "id": "in_s04",
+   "chapter": "intro",
+   "start": 102.825,
+   "end": 123.83,
+   "speech_start": 103.55,
+   "speech_end": 122.81,
+   "words": 54,
+   "cues": [
+    {
+     "at_word": "one circle",
+     "t": 106.32,
+     "word_index": 246
+    },
+    {
+     "at_word": "what it is",
+     "t": 110.64,
+     "word_index": 260
+    },
+    {
+     "at_word": "how big",
+     "t": 111.61,
+     "word_index": 263
+    },
+    {
+     "at_word": "how it turns",
+     "t": 112.87,
+     "word_index": 267
+    },
+    {
+     "at_word": "what shape",
+     "t": 114.06,
+     "word_index": 270
+    },
+    {
+     "at_word": "how it grows",
+     "t": 115.85,
+     "word_index": 275
+    },
+    {
+     "at_word": "chance",
+     "t": 118.32,
+     "word_index": 285
+    },
+    {
+     "at_word": "lights up",
+     "t": 121.4,
+     "word_index": 288
+    }
+   ]
+  },
+  {
+   "id": "in_s05",
+   "chapter": "intro",
+   "start": 123.83,
+   "end": 155.335,
+   "speech_start": 124.85,
+   "speech_end": 154.33,
+   "words": 78,
+   "cues": [
+    {
+     "at_word": "sticks",
+     "t": 130.14,
+     "word_index": 308
+    },
+    {
+     "at_word": "every part",
+     "t": 133.34,
+     "word_index": 319
+    },
+    {
+     "at_word": "turn",
+     "t": 141.32,
+     "word_index": 342
+    },
+    {
+     "at_word": "come back",
+     "t": 145.72,
+     "word_index": 354
+    },
+    {
+     "at_word": "definition",
+     "t": 150.6,
+     "word_index": 367
+    },
+    {
+     "at_word": "circle",
+     "t": 153.9,
+     "word_index": 372
+    }
+   ]
+  },
+  {
+   "id": "ch1_s01",
+   "chapter": "foundations",
+   "start": 155.335,
+   "end": 182.265,
+   "speech_start": 156.34,
+   "speech_end": 181.54,
+   "words": 71,
+   "cues": [
+    {
+     "at_word": "post",
+     "t": 157.73,
+     "word_index": 379
+    },
+    {
+     "at_word": "pulls",
+     "t": 159.4,
+     "word_index": 382
+    },
+    {
+     "at_word": "exactly one",
+     "t": 167.6,
+     "word_index": 407
+    },
+    {
+     "at_word": "Gather",
+     "t": 171.51,
+     "word_index": 414
+    },
+    {
+     "at_word": "rule",
+     "t": 178.4,
+     "word_index": 434
+    }
+   ]
+  },
+  {
+   "id": "ch1_s02",
+   "chapter": "foundations",
+   "start": 182.265,
+   "end": 208.61,
+   "speech_start": 182.99,
+   "speech_end": 207.89,
+   "words": 67,
+   "cues": [
+    {
+     "at_word": "set",
+     "t": 185.44,
+     "word_index": 451
+    },
+    {
+     "at_word": "every possible",
+     "t": 190.32,
+     "word_index": 464
+    },
+    {
+     "at_word": "partly",
+     "t": 194.8,
+     "word_index": 474
+    },
+    {
+     "at_word": "slack",
+     "t": 200.26,
+     "word_index": 488
+    },
+    {
+     "at_word": "exactly",
+     "t": 206.14,
+     "word_index": 506
+    }
+   ]
+  },
+  {
+   "id": "ch1_s03",
+   "chapter": "foundations",
+   "start": 208.61,
+   "end": 245.72,
+   "speech_start": 209.33,
+   "speech_end": 244.95,
+   "words": 100,
+   "cues": [
+    {
+     "at_word": "grid",
+     "t": 212.66,
+     "word_index": 524
+    },
+    {
+     "at_word": "right triangle",
+     "t": 216.26,
+     "word_index": 535
+    },
+    {
+     "at_word": "Pythagoras",
+     "t": 219.61,
+     "word_index": 543
+    },
+    {
+     "at_word": "braces",
+     "t": 227.28,
+     "word_index": 563
+    },
+    {
+     "at_word": "Cantor",
+     "t": 231.22,
+     "word_index": 573
+    },
+    {
+     "at_word": "if and only if",
+     "t": 239.9,
+     "word_index": 597
+    },
+    {
+     "at_word": "both directions",
+     "t": 244.18,
+     "word_index": 609
+    }
+   ]
+  },
+  {
+   "id": "ch1_s04",
+   "chapter": "foundations",
+   "start": 245.72,
+   "end": 275.65,
+   "speech_start": 246.49,
+   "speech_end": 274.87,
+   "words": 66,
+   "cues": [
+    {
+     "at_word": "five units",
+     "t": 247.5,
+     "word_index": 616
+    },
+    {
+     "at_word": "Which",
+     "t": 249.48,
+     "word_index": 619
+    },
+    {
+     "at_word": "first",
+     "t": 255.0,
+     "word_index": 632
+    },
+    {
+     "at_word": "second",
+     "t": 260.32,
+     "word_index": 644
+    },
+    {
+     "at_word": "third",
+     "t": 264.14,
+     "word_index": 652
+    },
+    {
+     "at_word": "sorts",
+     "t": 268.26,
+     "word_index": 657
+    },
+    {
+     "at_word": "left over",
+     "t": 272.94,
+     "word_index": 671
+    }
+   ]
+  },
+  {
+   "id": "ch1_s05",
+   "chapter": "foundations",
+   "start": 275.65,
+   "end": 314.21,
+   "speech_start": 276.43,
+   "speech_end": 313.38,
+   "words": 91,
+   "cues": [
+    {
+     "at_word": "flat board",
+     "t": 280.84,
+     "word_index": 686
+    },
+    {
+     "at_word": "reverse",
+     "t": 286.38,
+     "word_index": 702
+    },
+    {
+     "at_word": "doesn't have",
+     "t": 292.16,
+     "word_index": 713
+    },
+    {
+     "at_word": "rounded triangle",
+     "t": 294.34,
+     "word_index": 718
+    },
+    {
+     "at_word": "fifty pence",
+     "t": 300.58,
+     "word_index": 732
+    },
+    {
+     "at_word": "different claims",
+     "t": 310.02,
+     "word_index": 758
+    }
+   ]
+  },
+  {
+   "id": "ch1_s06",
+   "chapter": "foundations",
+   "start": 314.21,
+   "end": 341.245,
+   "speech_start": 315.04,
+   "speech_end": 339.45,
+   "words": 63,
+   "cues": [
+    {
+     "at_word": "red",
+     "t": 319.08,
+     "word_index": 779
+    },
+    {
+     "at_word": "overlap",
+     "t": 321.88,
+     "word_index": 789
+    },
+    {
+     "at_word": "or",
+     "t": 325.34,
+     "word_index": 796
+    },
+    {
+     "at_word": "Underneath",
+     "t": 330.09,
+     "word_index": 806
+    },
+    {
+     "at_word": "built on top",
+     "t": 338.86,
+     "word_index": 828
+    }
+   ]
+  },
+  {
+   "id": "ch2_s01",
+   "chapter": "quantity",
+   "start": 341.245,
+   "end": 371.515,
+   "speech_start": 343.04,
+   "speech_end": 370.76,
+   "words": 71,
+   "cues": [
+    {
+     "at_word": "wheel",
+     "t": 345.9,
+     "word_index": 838
+    },
+    {
+     "at_word": "dot",
+     "t": 348.66,
+     "word_index": 845
+    },
+    {
+     "at_word": "touch down",
+     "t": 354.16,
+     "word_index": 864
+    },
+    {
+     "at_word": "Just past",
+     "t": 357.31,
+     "word_index": 866
+    },
+    {
+     "at_word": "pi",
+     "t": 363.32,
+     "word_index": 882
+    },
+    {
+     "at_word": "coin",
+     "t": 366.4,
+     "word_index": 887
+    }
+   ]
+  },
+  {
+   "id": "ch2_s02",
+   "chapter": "quantity",
+   "start": 371.515,
+   "end": 407.245,
+   "speech_start": 372.27,
+   "speech_end": 406.51,
+   "words": 85,
+   "cues": [
+    {
+     "at_word": "fraction",
+     "t": 376.54,
+     "word_index": 913
+    },
+    {
+     "at_word": "Archimedes",
+     "t": 383.22,
+     "word_index": 932
+    },
+    {
+     "at_word": "twenty-two sevenths",
+     "t": 390.55,
+     "word_index": 947
+    },
+    {
+     "at_word": "four eighty",
+     "t": 395.04,
+     "word_index": 957
+    },
+    {
+     "at_word": "three hundred",
+     "t": 397.92,
+     "word_index": 964
+    },
+    {
+     "at_word": "gap",
+     "t": 406.16,
+     "word_index": 986
+    }
+   ]
+  },
+  {
+   "id": "ch2_s03",
+   "chapter": "quantity",
+   "start": 407.245,
+   "end": 433.12,
+   "speech_start": 407.98,
+   "speech_end": 432.45,
+   "words": 55,
+   "cues": [
+    {
+     "at_word": "Counting",
+     "t": 410.85,
+     "word_index": 994
+    },
+    {
+     "at_word": "Owing",
+     "t": 413.24,
+     "word_index": 999
+    },
+    {
+     "at_word": "pizza",
+     "t": 415.9,
+     "word_index": 1005
+    },
+    {
+     "at_word": "packed",
+     "t": 421.98,
+     "word_index": 1016
+    },
+    {
+     "at_word": "halfway",
+     "t": 425.18,
+     "word_index": 1023
+    },
+    {
+     "at_word": "no room",
+     "t": 431.06,
+     "word_index": 1037
+    }
+   ]
+  },
+  {
+   "id": "ch2_s04",
+   "chapter": "quantity",
+   "start": 433.12,
+   "end": 475.61,
+   "speech_start": 433.79,
+   "speech_end": 474.8,
+   "words": 100,
+   "cues": [
+    {
+     "at_word": "square",
+     "t": 434.34,
+     "word_index": 1044
+    },
+    {
+     "at_word": "diagonal",
+     "t": 437.78,
+     "word_index": 1052
+    },
+    {
+     "at_word": "Pythagoras",
+     "t": 442.26,
+     "word_index": 1064
+    },
+    {
+     "at_word": "fraction",
+     "t": 447.26,
+     "word_index": 1077
+    },
+    {
+     "at_word": "lowest terms",
+     "t": 451.12,
+     "word_index": 1082
+    },
+    {
+     "at_word": "Squaring",
+     "t": 452.46,
+     "word_index": 1084
+    },
+    {
+     "at_word": "Feed",
+     "t": 458.91,
+     "word_index": 1100
+    },
+    {
+     "at_word": "both numbers even",
+     "t": 465.68,
+     "word_index": 1120
+    },
+    {
+     "at_word": "irrational",
+     "t": 474.18,
+     "word_index": 1141
+    }
+   ]
+  },
+  {
+   "id": "ch2_s05",
+   "chapter": "quantity",
+   "start": 475.61,
+   "end": 500.59,
+   "speech_start": 476.42,
+   "speech_end": 499.75,
+   "words": 56,
+   "cues": [
+    {
+     "at_word": "Lambert",
+     "t": 478.66,
+     "word_index": 1146
+    },
+    {
+     "at_word": "repeating",
+     "t": 483.54,
+     "word_index": 1160
+    },
+    {
+     "at_word": "fifteen",
+     "t": 490.16,
+     "word_index": 1173
+    },
+    {
+     "at_word": "Forty",
+     "t": 494.66,
+     "word_index": 1181
+    },
+    {
+     "at_word": "atom",
+     "t": 499.48,
+     "word_index": 1197
+    }
+   ]
+  },
+  {
+   "id": "ch2_s06",
+   "chapter": "quantity",
+   "start": 500.59,
+   "end": 519.205,
+   "speech_start": 501.43,
+   "speech_end": 517.47,
+   "words": 39,
+   "cues": [
+    {
+     "at_word": "kinds",
+     "t": 502.32,
+     "word_index": 1201
+    },
+    {
+     "at_word": "assume",
+     "t": 510.05,
+     "word_index": 1220
+    },
+    {
+     "at_word": "foundations",
+     "t": 516.74,
+     "word_index": 1236
+    }
+   ]
+  },
+  {
+   "id": "ch3_s01",
+   "chapter": "structure",
+   "start": 519.205,
+   "end": 546.325,
+   "speech_start": 520.94,
+   "speech_end": 545.66,
+   "words": 69,
+   "cues": [
+    {
+     "at_word": "a little",
+     "t": 521.74,
+     "word_index": 1240
+    },
+    {
+     "at_word": "quarter",
+     "t": 525.28,
+     "word_index": 1251
+    },
+    {
+     "at_word": "turn the circle",
+     "t": 530.32,
+     "word_index": 1265
+    },
+    {
+     "at_word": "symmetry",
+     "t": 539.54,
+     "word_index": 1292
+    },
+    {
+     "at_word": "four",
+     "t": 541.86,
+     "word_index": 1296
+    },
+    {
+     "at_word": "every",
+     "t": 545.04,
+     "word_index": 1304
+    }
+   ]
+  },
+  {
+   "id": "ch3_s02",
+   "chapter": "structure",
+   "start": 546.325,
+   "end": 576.045,
+   "speech_start": 546.99,
+   "speech_end": 575.35,
+   "words": 72,
+   "cues": [
+    {
+     "at_word": "lock",
+     "t": 551.88,
+     "word_index": 1318
+    },
+    {
+     "at_word": "thirty",
+     "t": 553.26,
+     "word_index": 1321
+    },
+    {
+     "at_word": "forty-five",
+     "t": 554.66,
+     "word_index": 1324
+    },
+    {
+     "at_word": "seventy-five",
+     "t": 557.78,
+     "word_index": 1332
+    },
+    {
+     "at_word": "undone",
+     "t": 560.62,
+     "word_index": 1337
+    },
+    {
+     "at_word": "alone",
+     "t": 563.18,
+     "word_index": 1345
+    },
+    {
+     "at_word": "group",
+     "t": 571.54,
+     "word_index": 1368
+    }
+   ]
+  },
+  {
+   "id": "ch3_s03",
+   "chapter": "structure",
+   "start": 576.045,
+   "end": 601.175,
+   "speech_start": 576.74,
+   "speech_end": 600.36,
+   "words": 69,
+   "cues": [
+    {
+     "at_word": "Remember",
+     "t": 576.74,
+     "word_index": 1378
+    },
+    {
+     "at_word": "sixth",
+     "t": 581.04,
+     "word_index": 1391
+    },
+    {
+     "at_word": "six of those",
+     "t": 582.96,
+     "word_index": 1397
+    },
+    {
+     "at_word": "cyclic group",
+     "t": 591.16,
+     "word_index": 1422
+    },
+    {
+     "at_word": "snowflake",
+     "t": 594.28,
+     "word_index": 1428
+    },
+    {
+     "at_word": "all six",
+     "t": 599.68,
+     "word_index": 1445
+    }
+   ]
+  },
+  {
+   "id": "ch3_s04",
+   "chapter": "structure",
+   "start": 601.175,
+   "end": 627.4,
+   "speech_start": 601.99,
+   "speech_end": 626.58,
+   "words": 62,
+   "cues": [
+    {
+     "at_word": "minus one",
+     "t": 605.48,
+     "word_index": 1454
+    },
+    {
+     "at_word": "quarter turn",
+     "t": 611.12,
+     "word_index": 1468
+    },
+    {
+     "at_word": "i",
+     "t": 614.24,
+     "word_index": 1473
+    },
+    {
+     "at_word": "twice",
+     "t": 615.74,
+     "word_index": 1476
+    },
+    {
+     "at_word": "plane",
+     "t": 626.24,
+     "word_index": 1508
+    }
+   ]
+  },
+  {
+   "id": "ch3_s05",
+   "chapter": "structure",
+   "start": 627.4,
+   "end": 656.24,
+   "speech_start": 628.22,
+   "speech_end": 655.45,
+   "words": 75,
+   "cues": [
+    {
+     "at_word": "Euler",
+     "t": 628.68,
+     "word_index": 1510
+    },
+    {
+     "at_word": "power",
+     "t": 633.747,
+     "word_index": 1525
+    },
+    {
+     "at_word": "sweeps",
+     "t": 642.32,
+     "word_index": 1548
+    },
+    {
+     "at_word": "cosine",
+     "t": 644.08,
+     "word_index": 1553
+    },
+    {
+     "at_word": "Keep an eye",
+     "t": 648.82,
+     "word_index": 1565
+    },
+    {
+     "at_word": "one",
+     "t": 649.76,
+     "word_index": 1568
+    }
+   ]
+  },
+  {
+   "id": "ch3_s06",
+   "chapter": "structure",
+   "start": 656.24,
+   "end": 684.005,
+   "speech_start": 657.03,
+   "speech_end": 683.2,
+   "words": 57,
+   "cues": [
+    {
+     "at_word": "sixty",
+     "t": 661.18,
+     "word_index": 1596
+    },
+    {
+     "at_word": "thirty",
+     "t": 662.62,
+     "word_index": 1602
+    },
+    {
+     "at_word": "multiplying",
+     "t": 664.4,
+     "word_index": 1605
+    },
+    {
+     "at_word": "Expanding",
+     "t": 667.35,
+     "word_index": 1608
+    },
+    {
+     "at_word": "cancels",
+     "t": 670.9,
+     "word_index": 1616
+    },
+    {
+     "at_word": "adds",
+     "t": 676.94,
+     "word_index": 1626
+    },
+    {
+     "at_word": "trigonometry",
+     "t": 680.36,
+     "word_index": 1634
+    }
+   ]
+  },
+  {
+   "id": "ch3_s07",
+   "chapter": "structure",
+   "start": 684.005,
+   "end": 715.87,
+   "speech_start": 684.81,
+   "speech_end": 714.06,
+   "words": 74,
+   "cues": [
+    {
+     "at_word": "machines",
+     "t": 686.24,
+     "word_index": 1645
+    },
+    {
+     "at_word": "Hamilton",
+     "t": 690.02,
+     "word_index": 1651
+    },
+    {
+     "at_word": "quaternions",
+     "t": 700.3,
+     "word_index": 1680
+    },
+    {
+     "at_word": "phone",
+     "t": 703.82,
+     "word_index": 1690
+    },
+    {
+     "at_word": "moves are turns",
+     "t": 707.7,
+     "word_index": 1699
+    },
+    {
+     "at_word": "Algebra",
+     "t": 711.77,
+     "word_index": 1707
+    }
+   ]
+  },
+  {
+   "id": "ch4_s01",
+   "chapter": "space",
+   "start": 715.87,
+   "end": 744.8,
+   "speech_start": 717.68,
+   "speech_end": 744.06,
+   "words": 67,
+   "cues": [
+    {
+     "at_word": "halfway",
+     "t": 717.98,
+     "word_index": 1716
+    },
+    {
+     "at_word": "sticks",
+     "t": 720.3,
+     "word_index": 1726
+    },
+    {
+     "at_word": "So, shape",
+     "t": 728.37,
+     "word_index": 1746
+    },
+    {
+     "at_word": "rubber band",
+     "t": 731.62,
+     "word_index": 1754
+    },
+    {
+     "at_word": "square",
+     "t": 733.62,
+     "word_index": 1761
+    },
+    {
+     "at_word": "geometer",
+     "t": 736.1,
+     "word_index": 1764
+    },
+    {
+     "at_word": "topologist",
+     "t": 742.06,
+     "word_index": 1777
+    }
+   ]
+  },
+  {
+   "id": "ch4_s02",
+   "chapter": "space",
+   "start": 744.8,
+   "end": 774.265,
+   "speech_start": 745.54,
+   "speech_end": 773.5,
+   "words": 66,
+   "cues": [
+    {
+     "at_word": "Stretching",
+     "t": 749.39,
+     "word_index": 1790
+    },
+    {
+     "at_word": "Cutting",
+     "t": 754.59,
+     "word_index": 1801
+    },
+    {
+     "at_word": "triangle",
+     "t": 759.56,
+     "word_index": 1813
+    },
+    {
+     "at_word": "blob",
+     "t": 760.88,
+     "word_index": 1817
+    },
+    {
+     "at_word": "star",
+     "t": 762.16,
+     "word_index": 1820
+    },
+    {
+     "at_word": "figure eight",
+     "t": 765.293,
+     "word_index": 1827
+    },
+    {
+     "at_word": "same",
+     "t": 772.8,
+     "word_index": 1846
+    }
+   ]
+  },
+  {
+   "id": "ch4_s03",
+   "chapter": "space",
+   "start": 774.265,
+   "end": 800.885,
+   "speech_start": 775.03,
+   "speech_end": 800.12,
+   "words": 69,
+   "cues": [
+    {
+     "at_word": "Holes",
+     "t": 777.96,
+     "word_index": 1854
+    },
+    {
+     "at_word": "disk",
+     "t": 781.08,
+     "word_index": 1861
+    },
+    {
+     "at_word": "Wrap",
+     "t": 784.49,
+     "word_index": 1871
+    },
+    {
+     "at_word": "donut",
+     "t": 791.54,
+     "word_index": 1893
+    },
+    {
+     "at_word": "two different",
+     "t": 793.38,
+     "word_index": 1899
+    },
+    {
+     "at_word": "tell shapes apart",
+     "t": 799.3,
+     "word_index": 1914
+    }
+   ]
+  },
+  {
+   "id": "ch4_s04",
+   "chapter": "space",
+   "start": 800.885,
+   "end": 832.08,
+   "speech_start": 801.65,
+   "speech_end": 831.23,
+   "words": 70,
+   "cues": [
+    {
+     "at_word": "simpler",
+     "t": 802.98,
+     "word_index": 1921
+    },
+    {
+     "at_word": "loop",
+     "t": 812.56,
+     "word_index": 1943
+    },
+    {
+     "at_word": "Fill",
+     "t": 814.57,
+     "word_index": 1948
+    },
+    {
+     "at_word": "cube",
+     "t": 818.46,
+     "word_index": 1958
+    },
+    {
+     "at_word": "donut",
+     "t": 821.3,
+     "word_index": 1966
+    },
+    {
+     "at_word": "Zero again",
+     "t": 823.67,
+     "word_index": 1967
+    },
+    {
+     "at_word": "different pieces",
+     "t": 826.92,
+     "word_index": 1974
+    }
+   ]
+  },
+  {
+   "id": "ch4_s05",
+   "chapter": "space",
+   "start": 832.08,
+   "end": 857.135,
+   "speech_start": 832.93,
+   "speech_end": 856.39,
+   "words": 62,
+   "cues": [
+    {
+     "at_word": "coffee mug",
+     "t": 835.64,
+     "word_index": 1997
+    },
+    {
+     "at_word": "Squash",
+     "t": 837.94,
+     "word_index": 2002
+    },
+    {
+     "at_word": "zero",
+     "t": 845.18,
+     "word_index": 2022
+    },
+    {
+     "at_word": "DNA",
+     "t": 853.54,
+     "word_index": 2042
+    }
+   ]
+  },
+  {
+   "id": "ch4_s06",
+   "chapter": "space",
+   "start": 857.135,
+   "end": 882.875,
+   "speech_start": 857.88,
+   "speech_end": 882.09,
+   "words": 60,
+   "cues": [
+    {
+     "at_word": "subway",
+     "t": 858.7,
+     "word_index": 2053
+    },
+    {
+     "at_word": "Harry Beck",
+     "t": 862.8,
+     "word_index": 2061
+    },
+    {
+     "at_word": "straight lines",
+     "t": 866.0,
+     "word_index": 2071
+    },
+    {
+     "at_word": "Distances",
+     "t": 869.56,
+     "word_index": 2077
+    },
+    {
+     "at_word": "connect",
+     "t": 872.68,
+     "word_index": 2084
+    }
+   ]
+  },
+  {
+   "id": "ch4_s07",
+   "chapter": "space",
+   "start": 882.875,
+   "end": 901.4,
+   "speech_start": 883.66,
+   "speech_end": 899.6,
+   "words": 40,
+   "cues": [
+    {
+     "at_word": "circle",
+     "t": 884.04,
+     "word_index": 2110
+    },
+    {
+     "at_word": "counting",
+     "t": 894.16,
+     "word_index": 2136
+    },
+    {
+     "at_word": "grow",
+     "t": 899.4,
+     "word_index": 2148
+    }
+   ]
+  },
+  {
+   "id": "ch5_s01",
+   "chapter": "change",
+   "start": 901.4,
+   "end": 930.305,
+   "speech_start": 903.2,
+   "speech_end": 929.58,
+   "words": 59,
+   "cues": [
+    {
+     "at_word": "stone",
+     "t": 903.68,
+     "word_index": 2151
+    },
+    {
+     "at_word": "circle",
+     "t": 908.52,
+     "word_index": 2160
+    },
+    {
+     "at_word": "steady",
+     "t": 910.28,
+     "word_index": 2167
+    },
+    {
+     "at_word": "expect",
+     "t": 912.4,
+     "word_index": 2170
+    },
+    {
+     "at_word": "doesn't",
+     "t": 917.04,
+     "word_index": 2179
+    },
+    {
+     "at_word": "calculus",
+     "t": 928.98,
+     "word_index": 2207
+    }
+   ]
+  },
+  {
+   "id": "ch5_s02",
+   "chapter": "change",
+   "start": 930.305,
+   "end": 958.87,
+   "speech_start": 931.03,
+   "speech_end": 958.11,
+   "words": 72,
+   "cues": [
+    {
+     "at_word": "speedometer",
+     "t": 931.5,
+     "word_index": 2210
+    },
+    {
+     "at_word": "average",
+     "t": 935.42,
+     "word_index": 2220
+    },
+    {
+     "at_word": "zoom",
+     "t": 942.29,
+     "word_index": 2236
+    },
+    {
+     "at_word": "straight",
+     "t": 944.94,
+     "word_index": 2247
+    },
+    {
+     "at_word": "derivative",
+     "t": 948.5,
+     "word_index": 2256
+    },
+    {
+     "at_word": "Newton",
+     "t": 953.42,
+     "word_index": 2266
+    }
+   ]
+  },
+  {
+   "id": "ch5_s03",
+   "chapter": "change",
+   "start": 958.87,
+   "end": 984.665,
+   "speech_start": 959.63,
+   "speech_end": 983.98,
+   "words": 59,
+   "cues": [
+    {
+     "at_word": "steepness",
+     "t": 963.62,
+     "word_index": 2290
+    },
+    {
+     "at_word": "savings",
+     "t": 967.62,
+     "word_index": 2298
+    },
+    {
+     "at_word": "two point seven",
+     "t": 976.9,
+     "word_index": 2321
+    },
+    {
+     "at_word": "e",
+     "t": 979.02,
+     "word_index": 2327
+    },
+    {
+     "at_word": "Euler",
+     "t": 982.34,
+     "word_index": 2334
+    }
+   ]
+  },
+  {
+   "id": "ch5_s04",
+   "chapter": "change",
+   "start": 984.665,
+   "end": 1009.075,
+   "speech_start": 985.35,
+   "speech_end": 1008.4,
+   "words": 67,
+   "cues": [
+    {
+     "at_word": "circle",
+     "t": 986.02,
+     "word_index": 2342
+    },
+    {
+     "at_word": "Grow",
+     "t": 987.15,
+     "word_index": 2343
+    },
+    {
+     "at_word": "unroll",
+     "t": 994.08,
+     "word_index": 2365
+    },
+    {
+     "at_word": "circumference",
+     "t": 997.44,
+     "word_index": 2376
+    },
+    {
+     "at_word": "rate",
+     "t": 1002.52,
+     "word_index": 2389
+    },
+    {
+     "at_word": "derivative",
+     "t": 1005.68,
+     "word_index": 2398
+    }
+   ]
+  },
+  {
+   "id": "ch5_s05",
+   "chapter": "change",
+   "start": 1009.075,
+   "end": 1040.235,
+   "speech_start": 1009.75,
+   "speech_end": 1039.47,
+   "words": 79,
+   "cues": [
+    {
+     "at_word": "pizza",
+     "t": 1010.52,
+     "word_index": 2410
+    },
+    {
+     "at_word": "millimeter",
+     "t": 1015.78,
+     "word_index": 2424
+    },
+    {
+     "at_word": "How much",
+     "t": 1017.08,
+     "word_index": 2425
+    },
+    {
+     "at_word": "edge times",
+     "t": 1020.62,
+     "word_index": 2432
+    },
+    {
+     "at_word": "exactly",
+     "t": 1026.34,
+     "word_index": 2447
+    },
+    {
+     "at_word": "outer edge",
+     "t": 1031.94,
+     "word_index": 2461
+    },
+    {
+     "at_word": "ten times smaller",
+     "t": 1036.2,
+     "word_index": 2474
+    }
+   ]
+  },
+  {
+   "id": "ch5_s06",
+   "chapter": "change",
+   "start": 1040.235,
+   "end": 1072.81,
+   "speech_start": 1041.0,
+   "speech_end": 1072.04,
+   "words": 75,
+   "cues": [
+    {
+     "at_word": "other way",
+     "t": 1042.48,
+     "word_index": 2489
+    },
+    {
+     "at_word": "unroll",
+     "t": 1046.55,
+     "word_index": 2498
+    },
+    {
+     "at_word": "triangle",
+     "t": 1051.64,
+     "word_index": 2510
+    },
+    {
+     "at_word": "area",
+     "t": 1056.8,
+     "word_index": 2523
+    },
+    {
+     "at_word": "integration",
+     "t": 1063.76,
+     "word_index": 2541
+    },
+    {
+     "at_word": "Archimedes",
+     "t": 1067.51,
+     "word_index": 2547
+    }
+   ]
+  },
+  {
+   "id": "ch5_s07",
+   "chapter": "change",
+   "start": 1072.81,
+   "end": 1092.7,
+   "speech_start": 1073.58,
+   "speech_end": 1090.91,
+   "words": 45,
+   "cues": [
+    {
+     "at_word": "weather",
+     "t": 1073.92,
+     "word_index": 2561
+    },
+    {
+     "at_word": "For a circle",
+     "t": 1082.11,
+     "word_index": 2581
+    },
+    {
+     "at_word": "integrals",
+     "t": 1090.44,
+     "word_index": 2604
+    }
+   ]
+  },
+  {
+   "id": "ch6_s01",
+   "chapter": "uncertainty",
+   "start": 1092.7,
+   "end": 1115.105,
+   "speech_start": 1094.49,
+   "speech_end": 1114.32,
+   "words": 50,
+   "cues": [
+    {
+     "at_word": "floor",
+     "t": 1095.2,
+     "word_index": 2608
+    },
+    {
+     "at_word": "One throw",
+     "t": 1098.45,
+     "word_index": 2614
+    },
+    {
+     "at_word": "cross",
+     "t": 1101.86,
+     "word_index": 2621
+    },
+    {
+     "at_word": "coin",
+     "t": 1107.14,
+     "word_index": 2638
+    },
+    {
+     "at_word": "many throws",
+     "t": 1109.5,
+     "word_index": 2641
+    },
+    {
+     "at_word": "probability",
+     "t": 1114.22,
+     "word_index": 2654
+    }
+   ]
+  },
+  {
+   "id": "ch6_s02",
+   "chapter": "uncertainty",
+   "start": 1115.105,
+   "end": 1144.725,
+   "speech_start": 1115.89,
+   "speech_end": 1143.98,
+   "words": 69,
+   "cues": [
+    {
+     "at_word": "share of heads",
+     "t": 1119.18,
+     "word_index": 2666
+    },
+    {
+     "at_word": "jumps",
+     "t": 1121.9,
+     "word_index": 2672
+    },
+    {
+     "at_word": "thousand",
+     "t": 1123.94,
+     "word_index": 2676
+    },
+    {
+     "at_word": "closer",
+     "t": 1127.86,
+     "word_index": 2688
+    },
+    {
+     "at_word": "Bernoulli",
+     "t": 1130.9,
+     "word_index": 2692
+    },
+    {
+     "at_word": "million",
+     "t": 1141.48,
+     "word_index": 2715
+    }
+   ]
+  },
+  {
+   "id": "ch6_s03",
+   "chapter": "uncertainty",
+   "start": 1144.725,
+   "end": 1176.22,
+   "speech_start": 1145.47,
+   "speech_end": 1174.75,
+   "words": 80,
+   "cues": [
+    {
+     "at_word": "as long as",
+     "t": 1147.0,
+     "word_index": 2728
+    },
+    {
+     "at_word": "how far",
+     "t": 1152.64,
+     "word_index": 2742
+    },
+    {
+     "at_word": "angle",
+     "t": 1156.12,
+     "word_index": 2756
+    },
+    {
+     "at_word": "rectangle",
+     "t": 1160.84,
+     "word_index": 2769
+    },
+    {
+     "at_word": "crosses",
+     "t": 1166.0,
+     "word_index": 2780
+    },
+    {
+     "at_word": "what share",
+     "t": 1173.24,
+     "word_index": 2798
+    }
+   ]
+  },
+  {
+   "id": "ch6_s04",
+   "chapter": "uncertainty",
+   "start": 1176.22,
+   "end": 1209.58,
+   "speech_start": 1177.69,
+   "speech_end": 1208.62,
+   "words": 81,
+   "cues": [
+    {
+     "at_word": "share",
+     "t": 1177.86,
+     "word_index": 2805
+    },
+    {
+     "at_word": "exactly two",
+     "t": 1186.22,
+     "word_index": 2830
+    },
+    {
+     "at_word": "half turn",
+     "t": 1189.6,
+     "word_index": 2836
+    },
+    {
+     "at_word": "two over pi",
+     "t": 1195.28,
+     "word_index": 2849
+    },
+    {
+     "at_word": "hiding",
+     "t": 1200.68,
+     "word_index": 2861
+    },
+    {
+     "at_word": "halfway",
+     "t": 1207.84,
+     "word_index": 2883
+    }
+   ]
+  },
+  {
+   "id": "ch6_s05",
+   "chapter": "uncertainty",
+   "start": 1209.58,
+   "end": 1240.015,
+   "speech_start": 1210.54,
+   "speech_end": 1239.29,
+   "words": 65,
+   "cues": [
+    {
+     "at_word": "Buffon",
+     "t": 1211.66,
+     "word_index": 2888
+    },
+    {
+     "at_word": "Lazzarini",
+     "t": 1216.86,
+     "word_index": 2899
+    },
+    {
+     "at_word": "suspiciously",
+     "t": 1224.38,
+     "word_index": 2916
+    },
+    {
+     "at_word": "slowly",
+     "t": 1228.1,
+     "word_index": 2922
+    },
+    {
+     "at_word": "Zu Chongzhi's",
+     "t": 1235.26,
+     "word_index": 2938
+    }
+   ]
+  },
+  {
+   "id": "ch6_s06",
+   "chapter": "uncertainty",
+   "start": 1240.015,
+   "end": 1265.35,
+   "speech_start": 1240.74,
+   "speech_end": 1264.63,
+   "words": 67,
+   "cues": [
+    {
+     "at_word": "Monte Carlo",
+     "t": 1244.82,
+     "word_index": 2962
+    },
+    {
+     "at_word": "films",
+     "t": 1251.06,
+     "word_index": 2976
+    },
+    {
+     "at_word": "random paths",
+     "t": 1254.98,
+     "word_index": 2988
+    },
+    {
+     "at_word": "medical trial",
+     "t": 1259.007,
+     "word_index": 2998
+    },
+    {
+     "at_word": "luck",
+     "t": 1264.34,
+     "word_index": 3016
+    }
+   ]
+  },
+  {
+   "id": "ch6_s07",
+   "chapter": "uncertainty",
+   "start": 1265.35,
+   "end": 1281.93,
+   "speech_start": 1266.07,
+   "speech_end": 1280.22,
+   "words": 38,
+   "cues": [
+    {
+     "at_word": "random",
+     "t": 1266.38,
+     "word_index": 3018
+    },
+    {
+     "at_word": "every branch",
+     "t": 1276.06,
+     "word_index": 3043
+    }
+   ]
+  },
+  {
+   "id": "ch7_s01",
+   "chapter": "connects",
+   "start": 1281.93,
+   "end": 1307.635,
+   "speech_start": 1283.64,
+   "speech_end": 1306.82,
+   "words": 58,
+   "cues": [
+    {
+     "at_word": "Six turns",
+     "t": 1283.64,
+     "word_index": 3055
+    },
+    {
+     "at_word": "never",
+     "t": 1291.6,
+     "word_index": 3077
+    },
+    {
+     "at_word": "Statistics",
+     "t": 1293.6,
+     "word_index": 3080
+    },
+    {
+     "at_word": "secure",
+     "t": 1296.62,
+     "word_index": 3085
+    },
+    {
+     "at_word": "Physics",
+     "t": 1301.533,
+     "word_index": 3097
+    },
+    {
+     "at_word": "definitions",
+     "t": 1305.6,
+     "word_index": 3109
+    }
+   ]
+  },
+  {
+   "id": "ch7_s02",
+   "chapter": "connects",
+   "start": 1307.635,
+   "end": 1338.465,
+   "speech_start": 1308.45,
+   "speech_end": 1337.63,
+   "words": 67,
+   "cues": [
+    {
+     "at_word": "promised",
+     "t": 1310.64,
+     "word_index": 3120
+    },
+    {
+     "at_word": "half turn",
+     "t": 1315.92,
+     "word_index": 3132
+    },
+    {
+     "at_word": "Euler's identity",
+     "t": 1321.68,
+     "word_index": 3145
+    },
+    {
+     "at_word": "change",
+     "t": 1325.44,
+     "word_index": 3151
+    },
+    {
+     "at_word": "turning",
+     "t": 1327.58,
+     "word_index": 3156
+    },
+    {
+     "at_word": "Pi",
+     "t": 1328.82,
+     "word_index": 3157
+    },
+    {
+     "at_word": "every part",
+     "t": 1336.64,
+     "word_index": 3175
+    }
+   ]
+  },
+  {
+   "id": "ch7_s03",
+   "chapter": "connects",
+   "start": 1338.465,
+   "end": 1369.835,
+   "speech_start": 1339.3,
+   "speech_end": 1368.97,
+   "words": 69,
+   "cues": [
+    {
+     "at_word": "all of it",
+     "t": 1341.12,
+     "word_index": 3187
+    },
+    {
+     "at_word": "Definitions",
+     "t": 1342.73,
+     "word_index": 3190
+    },
+    {
+     "at_word": "Symmetry",
+     "t": 1346.52,
+     "word_index": 3198
+    },
+    {
+     "at_word": "Geometry",
+     "t": 1350.33,
+     "word_index": 3205
+    },
+    {
+     "at_word": "Calculus",
+     "t": 1354.56,
+     "word_index": 3215
+    },
+    {
+     "at_word": "Probability",
+     "t": 1357.74,
+     "word_index": 3222
+    },
+    {
+     "at_word": "out came pi",
+     "t": 1362.04,
+     "word_index": 3232
+    },
+    {
+     "at_word": "alone",
+     "t": 1368.6,
+     "word_index": 3248
+    }
+   ]
+  },
+  {
+   "id": "ch7_s04",
+   "chapter": "connects",
+   "start": 1369.835,
+   "end": 1391.2,
+   "speech_start": 1370.7,
+   "speech_end": 1389.96,
+   "words": 47,
+   "cues": [
+    {
+     "at_word": "connections",
+     "t": 1372.36,
+     "word_index": 3253
+    },
+    {
+     "at_word": "Wiles",
+     "t": 1376.28,
+     "word_index": 3261
+    },
+    {
+     "at_word": "geometry",
+     "t": 1383.32,
+     "word_index": 3283
+    },
+    {
+     "at_word": "Every lens",
+     "t": 1386.43,
+     "word_index": 3286
+    }
+   ]
+  },
+  {
+   "id": "out_s01",
+   "chapter": "outro",
+   "start": 1391.2,
+   "end": 1422.785,
+   "speech_start": 1392.44,
+   "speech_end": 1421.99,
+   "words": 72,
+   "cues": [
+    {
+     "at_word": "what is a circle",
+     "t": 1393.16,
+     "word_index": 3297
+    },
+    {
+     "at_word": "rule",
+     "t": 1395.72,
+     "word_index": 3303
+    },
+    {
+     "at_word": "no fraction",
+     "t": 1398.98,
+     "word_index": 3310
+    },
+    {
+     "at_word": "every turn",
+     "t": 1401.36,
+     "word_index": 3315
+    },
+    {
+     "at_word": "survives",
+     "t": 1404.38,
+     "word_index": 3323
+    },
+    {
+     "at_word": "grows",
+     "t": 1407.44,
+     "word_index": 3330
+    },
+    {
+     "at_word": "random sticks",
+     "t": 1411.54,
+     "word_index": 3345
+    },
+    {
+     "at_word": "landscape",
+     "t": 1419.14,
+     "word_index": 3359
+    }
+   ]
+  },
+  {
+   "id": "out_s02",
+   "chapter": "outro",
+   "start": 1422.785,
+   "end": 1453.28,
+   "speech_start": 1423.58,
+   "speech_end": 1447.64,
+   "words": 66,
+   "cues": [
+    {
+     "at_word": "question",
+     "t": 1423.9,
+     "word_index": 3369
+    },
+    {
+     "at_word": "next video",
+     "t": 1434.84,
+     "word_index": 3401
+    },
+    {
+     "at_word": "Subscribe",
+     "t": 1440.453,
+     "word_index": 3411
+    },
+    {
+     "at_word": "I give ideas",
+     "t": 1445.76,
+     "word_index": 3429
+    }
+   ]
+  }
+ ]
+}

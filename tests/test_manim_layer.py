@@ -84,3 +84,20 @@ def test_parity_with_manim_camera():
     diff = np.abs(ours - ref)
     assert diff[H // 2, W // 2].max() <= 1                    # interior identical
     assert diff.mean() < 1.0                                  # edges: small linear-vs-sRGB AA difference
+
+
+def test_pos_moves_the_layer():
+    """`pos` (a Track) translates a ManimLayer like any other layer: a square drawn at the origin shows up shifted."""
+    from aion.core.track import Track
+
+    def lit_x(img):
+        cols = np.where((np.abs(img.astype(int) - img[0, 0].astype(int)).sum(axis=2) > 60).any(axis=0))[0]
+        return (cols.min() + cols.max()) / 2
+
+    comp = Comp((W, H), fps=30, background="#101418")
+    m = comp.add(ManimLayer(pos=Track(lambda t: (2.0 * t, 0.0))))
+    m.add(Square(1.0, color=BLUE, fill_opacity=1.0))
+    x0, x1 = lit_x(comp.frame(0.0)), lit_x(comp.frame(1.0))   # t = 0 s, then t = 1 s (shifted 2 units right)
+    px_per_unit = W / comp.frame_units[0]
+    assert abs(x0 - W / 2) < 2
+    assert abs((x1 - x0) - 2.0 * px_per_unit) < 2

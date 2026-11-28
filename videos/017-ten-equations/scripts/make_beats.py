@@ -1,0 +1,155 @@
+"""Generate beats.py for video 017 from plan/scenes.yaml and the voiced words, then check it resolves.
+
+beats.py gets one `cut()` per scene boundary, named after the scene that starts there, and one beat per reveal cue
+(`at_word`), named `<scene>_<word>`. Scene `x` runs from `T.x` to the next scene's beat; the first scene starts at
+`T.start` and the last ends at `T.end`. Phrases are copied from assets/words.json (the same tokens as
+assets/cue-per-word.srt), and every cut's phrases come after the scene's last cue, so the ordered search in `beats()`
+lands on the same words as plan/timing.json.
+
+The check imports the new beats.py and compares every beat with plan/timing.json: cues must agree to a millisecond,
+cuts must fall inside the silence between the two scenes. Run scripts/timing.py first.
+
+Usage (from the repo root):
+    uv run python videos/017-ten-equations/scripts/make_beats.py
+"""
+from __future__ import annotations
+
+import importlib.util
+import json
+import re
+import sys
+from pathlib import Path
+
+from ruamel.yaml import YAML
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from timing import find_phrase  # noqa: E402
+
+VIDEO = Path(__file__).resolve().parents[1]
+N_CUT = 3          # words on each side of a cut
+
+
+def slug(s: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "_", s.lower()).strip("_")[:20] or "cue"
+
+
+def phrase(words: list[dict], i: int, j: int) -> str:
+    """Words i..j-1 joined as the cue file has them."""
+    return " ".join(w["text"] for w in words[i:j])
+
+
+def build() -> tuple[str, list[tuple[str, str, float]]]:
+    data = YAML(typ="safe").load((VIDEO / "plan" / "scenes.yaml").read_text())
+    rows = {r["id"]: r for r in json.loads((VIDEO / "assets" / "scenes.json").read_text())}
+    words = json.loads((VIDEO / "assets" / "words.json").read_text())
+    scenes = data["scenes"]
+    lines, expect, names = [], [], set()
+    last_cue_end = -1          # index after the last word used by a beat so far
+    chapter = None
+    for k, s in enumerate(scenes):
+        r = rows[s["id"]]
+        if s["chapter"] != chapter:
+            chapter = s["chapter"]
+            lines.append(f"\n    # ── {chapter} " + "─" * (60 - len(chapter)))
+        if k > 0:
+            prev = rows[scenes[k - 1]["id"]]
+            b0 = max(prev["last_index"] - N_CUT + 1, last_cue_end)
+            if b0 > prev["last_index"]:
+                sys.exit(f"{scenes[k - 1]['id']}: its last cue sits on its last word; no room for the cut phrase")
+            before = phrase(words, b0, prev["last_index"] + 1)
+            after = phrase(words, r["first_index"], min(r["first_index"] + N_CUT, r["last_index"] + 1))
+            off = f", offset={scenes[k - 1]['cut_offset']}" if scenes[k - 1].get('cut_offset') else ""
+            lines.append(f"    {s['id']}=cut({before!r}, {after!r}{off}),")
+            expect.append((s["id"], "cut", r["start"]))
+            names.add(s["id"])
+        lines.append(f"    # {s['id']}: {s['title']}")
+        pos = r["first_index"]
+        for st in s["visual"].get("reveal_sequence") or []:
+            hit = find_phrase(words, pos, r["last_index"] + 1, st["at_word"])
+            if hit is None:
+                sys.exit(f"{s['id']}: cue {st['at_word']!r} not in the voiced words (run timing.py for details)")
+            # the voiced tokens may split differently (hyphens): take tokens until the letters match
+            j, acc = hit, ""
+            key = re.sub(r"[^a-z0-9]", "", st["at_word"].lower())
+            while acc != key:
+                acc += re.sub(r"[^a-z0-9]", "", words[j]["text"].lower())
+                j += 1
+            name = f"{s['id']}_{slug(st['at_word'])}"
+            base, d = name, 2
+            while name in names:
+                name, d = f"{base}_{d}", d + 1
+            names.add(name)
+            if hit == r["last_index"] and k + 1 < len(scenes):
+                # a cue on the scene's last word: anchor it on the words just before it, so the cut can still
+                # search for that last word (beats() searches strictly after the previous beat)
+                a0 = max(hit - 3, last_cue_end, r["first_index"])
+                if a0 >= hit:
+                    sys.exit(f"{s['id']}: no words between the previous beat and the cue {st['at_word']!r}")
+                off = words[hit]["start"] - words[a0]["start"]
+                lines.append(f"    {name}=w({phrase(words, a0, hit)!r}, offset={off:.3f}),   # {phrase(words, hit, j)!r}")
+                last_cue_end = hit
+            else:
+                lines.append(f"    {name}={phrase(words, hit, j)!r},")
+                last_cue_end = hit + 1
+            expect.append((name, "cue", words[hit]["start"]))
+            pos = hit + 1
+        last_cue_end = max(last_cue_end, r["first_index"])
+    head = f'''"""Named beats for video 017, resolved IN ORDER from assets/cue-per-word.srt (`uv run aion beats 017 --md`).
+
+GENERATED by scripts/make_beats.py from plan/scenes.yaml and assets/words.json. Do not edit by hand: change the
+`at_word` cues in scenes.yaml (or the narration, then re-voice) and rerun the script.
+
+Scene boundaries: `T.<scene_id>` is where that scene starts, a cut in the real silence before its first word.
+The first scene starts at T.start; each scene ends where the next begins; the last ends at T.end.
+Reveal cues: `T.<scene_id>_<word>` is the start of that cue's phrase (use with `at=`; motion lands `lead` early).
+A cue on a scene's last word is written `w("words before it", offset=…)` so the cut after it can find that word.
+"""
+from aion import beats, cut, w
+
+T = beats('''
+    order = [s["id"] for s in scenes]
+    tail = ")\n\n# (scene, start beat, end beat) in order, for @scene(...) and checks\nSCENES = [\n"
+    for i, sid in enumerate(order):
+        a = "start" if i == 0 else sid
+        b = "end" if i == len(order) - 1 else order[i + 1]
+        tail += f"    ({sid!r}, {a!r}, {b!r}),\n"
+    tail += "]\n"
+    return head + "\n".join(lines) + "\n" + tail, expect
+
+
+def check(expect: list[tuple[str, str, float]]) -> list[str]:
+    spec = importlib.util.spec_from_file_location("beats_017", VIDEO / "beats.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    T = mod.T
+    rows = {r["id"]: r for r in json.loads((VIDEO / "assets" / "scenes.json").read_text())}
+    order = [s for s, _, _ in mod.SCENES]
+    errs, worst = [], 0.0
+    for name, kind, t in expect:
+        got = float(getattr(T, name))
+        if kind == "cue":
+            if abs(got - t) > 1e-3:
+                errs.append(f"{name}: beats {got:.3f} s vs words.json {t:.3f} s")
+        else:
+            i = order.index(name)
+            prev = rows[order[i - 1]]
+            lo, hi = prev["speech_end"], rows[name]["speech_start"]
+            if not lo <= got <= hi:
+                errs.append(f"{name}: cut at {got:.3f} s is outside the silence {lo:.3f}–{hi:.3f} s")
+            worst = max(worst, abs(got - t))
+    print(f"beats.py: {len(expect)} beats resolve; cues match words.json; cuts sit in their silences "
+          f"(largest shift from scenes.json boundary {worst * 1000:.0f} ms)")
+    return errs
+
+
+def main() -> None:
+    text, expect = build()
+    (VIDEO / "beats.py").write_text(text)
+    errs = check(expect)
+    if errs:
+        print("\n".join(errs))
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
